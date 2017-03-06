@@ -22,7 +22,7 @@ public class Priority {
      * @throws IllegalValueException if given priority string is invalid.
      */
     public Priority(String priority) throws IllegalValueException {
-        if (priority == null){
+        if (priority == null) {
             this.value = DEFAULT_PRIORITY;
         } else {
             String trimmedPriority = priority.trim();
