@@ -19,7 +19,7 @@ import seedu.address.model.task.Person;
 import seedu.address.model.task.ReadOnlyPerson;
 import seedu.address.testutil.TypicalTestPersons;
 
-public class AddressBookTest {
+public class TaskManagerTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
