@@ -33,7 +33,8 @@ public class MainWindow extends UiPart<Region> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private TaskListPanel personListPanel;
+    private TaskListPanel taskListPanel;
+
     private Config config;
 
     @FXML
@@ -112,7 +113,8 @@ public class MainWindow extends UiPart<Region> {
     }
 
     void fillInnerParts() {
-        personListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredPersonList());
+
+        personListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getAddressBookFilePath());
         new CommandBox(getCommandBoxPlaceholder(), logic);
@@ -193,12 +195,12 @@ public class MainWindow extends UiPart<Region> {
         raise(new ExitAppRequestEvent());
     }
 
-    public PersonListPanel getPersonListPanel() {
+    public TaskListPanel getTaskListPanel() {
         return this.personListPanel;
     }
 
-    void loadPersonPage(ReadOnlyTask task) {
-        browserPanel.loadPersonPage(task);
+    void loadPersonPage(ReadOnlyPerson person) {
+        browserPanel.loadPersonPage(person);
     }
 
     void releaseResources() {
