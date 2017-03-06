@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.task.ReadOnlyPerson;
+import seedu.address.model.task.ReadOnlyTask;
 
 public class PersonCard extends UiPart<Region> {
 
@@ -18,25 +18,25 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label date;
     @FXML
-    private Label address;
+    private Label tag;
     @FXML
-    private Label email;
+    private Label priority;
     @FXML
     private FlowPane tags;
 
-    public PersonCard(ReadOnlyPerson person, int displayedIndex) {
+    public PersonCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
-        name.setText(person.getName().fullName);
+        name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        initTags(person);
+        date.setText(task.getDate().value);
+        tag.setText(task.getTag().toString());
+        priority.setText(task.getPriority().value);
+        initTags(task);
     }
 
-    private void initTags(ReadOnlyPerson person) {
-        person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    private void initTags(ReadOnlyTask task) {
+        task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }
