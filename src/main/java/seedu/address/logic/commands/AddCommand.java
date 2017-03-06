@@ -7,12 +7,14 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
-import seedu.address.model.task.Address;
-import seedu.address.model.task.Email;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
-import seedu.address.model.task.Person;
-import seedu.address.model.task.Phone;
-import seedu.address.model.task.UniquePersonList;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.Time;
+import seedu.address.model.task.UniqueTaskList;
+import seedu.address.model.task.Venue;
 
 /**
  * Adds a person to the address book.
@@ -21,33 +23,33 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
-            + "Parameters: NAME p/PHONE e/EMAIL a/ADDRESS  [t/TAG]...\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to Dueue. "
+            + "Parameters: n/TASKNAME [due/DUEDATE] [t/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL]"
             + "Example: " + COMMAND_WORD
-            + " John Doe p/98765432 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
+            + "n/Lecture due/10/3/2017 t/16:00 #CS2103 d/Interesting module @I3 p/3 *f";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in the address book";
 
-    private final Person toAdd;
+    private final Task toAdd;
 
     /**
      * Creates an AddCommand using raw values.
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
-    public AddCommand(String name, String phone, String email, String address, Set<String> tags)
+    public AddCommand(String name, String date, String time, String descripton, String tag, String venue,String priority)
             throws IllegalValueException {
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(new Tag(tagName));
-        }
-        this.toAdd = new Person(
+
+        this.toAdd = new Task(
                 new Name(name),
-                new Phone(phone),
-                new Email(email),
-                new Address(address),
-                new UniqueTagList(tagSet)
+                new Date(date),
+                new Time(time),
+                new Description(descripton),
+                new Tag(tag),
+                new Venue(venue),
+                new Priority(priority),
+                false
         );
     }
 
@@ -55,9 +57,9 @@ public class AddCommand extends Command {
     public CommandResult execute() throws CommandException {
         assert model != null;
         try {
-            model.addPerson(toAdd);
+            model.addTask(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        } catch (UniquePersonList.DuplicatePersonException e) {
+        } catch (UniqueTaskList.DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
