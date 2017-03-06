@@ -1,56 +1,47 @@
 package seedu.address.testutil;
 
-import seedu.address.model.tag.UniqueTagList;
-import seedu.address.model.task.Address;
-import seedu.address.model.task.Email;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
-import seedu.address.model.task.Phone;
-import seedu.address.model.task.ReadOnlyPerson;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.Time;
+import seedu.address.model.task.Venue;
 
 /**
- * A mutable person object. For testing only.
+ * A mutable task object. For testing only.
  */
 public class TestTask implements ReadOnlyTask {
 
     private Name name;
-    private Address address;
-    private Email email;
-    private Phone phone;
-    private UniqueTagList tags;
+    private Date date;
+    private Time time;
+    private Description description;
+    private Venue venue;
+    private Priority priority;
+    private boolean isFavorite;
+    private Tag tag;
 
-    public TestPerson() {
-        tags = new UniqueTagList();
-    }
+    public TestTask() {}
 
     /**
-     * Creates a copy of {@code personToCopy}.
+     * Creates a copy of {@code taskToCopy}.
      */
-    public TestPerson(TestPerson personToCopy) {
-        this.name = personToCopy.getName();
-        this.phone = personToCopy.getPhone();
-        this.email = personToCopy.getEmail();
-        this.address = personToCopy.getAddress();
-        this.tags = personToCopy.getTags();
+    public TestTask(TestTask taskToCopy) {
+        this.name = taskToCopy.getName();
+        this.date = taskToCopy.getDate();
+        this.time = taskToCopy.getTime();
+        this.tag = taskToCopy.getTag();
+        this.description = taskToCopy.getDescription();
+        this.venue = taskToCopy.getVenue();
+        this.priority = taskToCopy.getPriority();
+        this.isFavorite = taskToCopy.isFavorite();
     }
 
     public void setName(Name name) {
+        assert name != null;
         this.name = name;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public void setEmail(Email email) {
-        this.email = email;
-    }
-
-    public void setPhone(Phone phone) {
-        this.phone = phone;
-    }
-
-    public void setTags(UniqueTagList tags) {
-        this.tags = tags;
     }
 
     @Override
@@ -58,24 +49,73 @@ public class TestTask implements ReadOnlyTask {
         return name;
     }
 
-    @Override
-    public Phone getPhone() {
-        return phone;
+    public void setDate(Date date) {
+        assert date != null;
+        this.date = date;
     }
 
     @Override
-    public Email getEmail() {
-        return email;
+    public Date getDate() {
+        return date;
+    }
+
+    public void setTime(Time time) {
+        assert time != null;
+        this.time = time;
     }
 
     @Override
-    public Address getAddress() {
-        return address;
+    public Time getTime() {
+        return time;
+    }
+
+    public void setDescription(Description description) {
+        assert description != null;
+        this.description = description;
     }
 
     @Override
-    public UniqueTagList getTags() {
-        return tags;
+    public Description getDescription() {
+        return description;
+    }
+
+    @Override
+    public Tag getTag() {
+        return tag;
+    }
+
+    public void setTag(Tag tag) {
+        assert tag != null;
+        this.tag = tag;
+    }
+    
+    @Override
+    public Venue getVenue(){
+        return venue;
+    }
+    
+    public void setVenue(Venue venue){
+        assert venue != null;
+        this.venue = venue;
+    }
+
+    @Override
+    public Priority getPriority(){
+        return priority;
+    }
+    
+    public void setPriority(Priority priority){
+        assert priority != null;
+        this.priority = priority;
+    }
+    
+    @Override
+    public boolean isFavorite(){
+        return isFavorite;
+    }
+    
+    public void setFavorite(boolean isFavorite){
+        this.isFavorite = isFavorite;
     }
 
     @Override
@@ -84,12 +124,7 @@ public class TestTask implements ReadOnlyTask {
     }
 
     public String getAddCommand() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("add " + this.getName().fullName + " ");
-        sb.append("a/" + this.getAddress().value + " ");
-        sb.append("p/" + this.getPhone().value + " ");
-        sb.append("e/" + this.getEmail().value + " ");
-        this.getTags().asObservableList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
-        return sb.toString();
+        return null;
+        //TODO: add test cases
     }
 }
