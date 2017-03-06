@@ -26,7 +26,6 @@ public class Time {
      * @throws IllegalValueException if given time string is invalid.
      */
     public Time(String time) throws IllegalValueException {
-        assert time != null;
         if (!isValidTime(time)) {
             throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
         }

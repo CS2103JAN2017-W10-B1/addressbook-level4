@@ -9,6 +9,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  */
 public class Priority {
 
+    public static final String DEFAULT_PRIORITY = "2";
     public static final String MESSAGE_PRIORITY_CONSTRAINTS =
             "task priority can only be 1, 2, or 3";
     //TODO: public static final String DATE_VALIDATION_REGEX = 
@@ -21,12 +22,15 @@ public class Priority {
      * @throws IllegalValueException if given priority string is invalid.
      */
     public Priority(String priority) throws IllegalValueException {
-        assert priority != null;
-        String trimmedPriority = priority.trim();
-        if (!isValidPriority(trimmedPriority)) {
-            throw new IllegalValueException(MESSAGE_PRIORITY_CONSTRAINTS);
+        if (priority == null){
+            this.value = DEFAULT_PRIORITY;
+        } else {
+            String trimmedPriority = priority.trim();
+            if (!isValidPriority(trimmedPriority)) {
+                throw new IllegalValueException(MESSAGE_PRIORITY_CONSTRAINTS);
+            }
+            this.value = trimmedPriority;
         }
-        this.value = trimmedPriority;
     }
 
     /**

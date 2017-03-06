@@ -21,7 +21,6 @@ public class Venue {
      * @throws IllegalValueException if given venue string is invalid.
      */
     public Venue(String venue) throws IllegalValueException {
-        assert venue != null;
         String trimmedVenue = venue.trim();
         if (!isValidVenue(trimmedVenue)) {
             throw new IllegalValueException(MESSAGE_VENUE_CONSTRAINTS);
