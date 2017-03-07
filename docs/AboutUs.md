@@ -7,28 +7,28 @@ We are a team based in the [School of Computing, National University of Singapor
 #### [Wang Zexin](https://github.com/wangzexin)
 <img src="images/wangzexin.jpg" width="150"><br>
 Role: Developer <br>
-Responsibilities: Dev Ops
+Responsibilities: Testing, backup for Integration and Code quality, in charge of Commons
 
 -----
 
 #### [Yan Xiaoxuan](https://github.com/Matilda-Yxx)
 <img src="images/matilda-yxx.jpg" width="150"><br>
 Role: Developer <br>
-Responsibilities: UI
+Responsibilities: Documentation, backup for testing, in charge of UI
 
 -----
 
 #### [Jong Xue Min Shermine Ruth](https://github.com/ShermineJong)
 <img src="images/sherminejong.jpg" width="150"><br>
 Role: Developer <br>
-Responsibilities: Logic and Storage
+Responsibilities: Scheduling and deadlines checking, in charge of Logic and Storage
 
 -----
 
 #### [Mou Ziyang](http://github.com/mouziyanglovestudy)
 <img src="images/MouZiyang.jpg" width="150"><br>
 Role: Developer <br>
-Responsibilities: Dev Ops
+Responsibilities: Integration and Code quality, in charge of Model
 
 -----
 
