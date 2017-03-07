@@ -115,7 +115,7 @@ public class ParserUtil {
         assert venue != null;
         return venue.isPresent() ? Optional.of(new Venue(venue.get())) : Optional.empty();
     }
-    
+
     /**
      * Parses a {@code Optional<String> email} into an {@code Optional<Email>} if {@code email} is present.
      */

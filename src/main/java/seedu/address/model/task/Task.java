@@ -39,7 +39,7 @@ public class Task implements ReadOnlyTask {
      * Creates a copy of the given ReadOnlyTask.
      */
     public Task(ReadOnlyTask source) {
-        this(source.getName(), source.getDate(), source.getTime(), source.getDescription(), 
+        this(source.getName(), source.getDate(), source.getTime(), source.getDescription(),
                 source.getTag(), source.getVenue(), source.getPriority(), source.isFavorite());
     }
 
@@ -102,7 +102,7 @@ public class Task implements ReadOnlyTask {
         assert venue != null;
         this.venue = venue;
     }
-
+    
     @Override
     public Priority getPriority(){
         return priority;

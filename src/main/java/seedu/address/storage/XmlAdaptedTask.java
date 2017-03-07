@@ -1,13 +1,9 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
@@ -65,8 +61,7 @@ public class XmlAdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
     public Task toModelType() throws IllegalValueException {
-        
-        final Name name = new Name(this.name);
+    	final Name name = new Name(this.name);
         final Date date = new Date(this.date);
         final Time time = new Time(this.time);
         final Description description = new Description(this.description);

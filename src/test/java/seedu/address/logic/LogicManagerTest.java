@@ -35,6 +35,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+<<<<<<< HEAD
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTaskManager;
@@ -49,6 +50,14 @@ import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Time;
 import seedu.address.model.task.Venue;
+=======
+import seedu.address.model.TaskManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyTaskManager;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.*;
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
 import seedu.address.storage.StorageManager;
 
 
@@ -86,9 +95,9 @@ public class LogicManagerTest {
     @Before
     public void setUp() {
         model = new ModelManager();
-        String tempAddressBookFile = saveFolder.getRoot().getPath() + "TempAddressBook.xml";
+        String tempTaskManagerFile = saveFolder.getRoot().getPath() + "TempTaskManager.xml";
         String tempPreferencesFile = saveFolder.getRoot().getPath() + "TempPreferences.json";
-        logic = new LogicManager(model, new StorageManager(tempAddressBookFile, tempPreferencesFile));
+        logic = new LogicManager(model, new StorageManager(tempTaskManagerFile, tempPreferencesFile));
         EventsCenter.getInstance().registerHandler(this);
 
         latestSavedTaskManager = new TaskManager(model.getTaskManager()); // last saved assumed to be up to date
@@ -110,7 +119,7 @@ public class LogicManagerTest {
     /**
      * Executes the command, confirms that a CommandException is not thrown and that the result message is correct.
      * Also confirms that both the 'address book' and the 'last shown list' are as specified.
-     * @see #assertCommandBehavior(boolean, String, String, ReadOnlyAddressBook, List)
+     * @see #assertCommandBehavior(boolean, String, String, ReadOnlyTaskManager, List)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
                                       ReadOnlyTaskManager expectedTaskManager,
@@ -121,7 +130,7 @@ public class LogicManagerTest {
     /**
      * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
      * Both the 'address book' and the 'last shown list' are verified to be unchanged.
-     * @see #assertCommandBehavior(boolean, String, String, ReadOnlyAddressBook, List)
+     * @see #assertCommandBehavior(boolean, String, String, ReadOnlyTaskManager, List)
      */
     private void assertCommandFailure(String inputCommand, String expectedMessage) {
         TaskManager expectedTaskManager = new TaskManager(model.getTaskManager());
@@ -133,9 +142,9 @@ public class LogicManagerTest {
      * Executes the command, confirms that the result message is correct
      * and that a CommandException is thrown if expected
      * and also confirms that the following three parts of the LogicManager object's state are as expected:<br>
-     *      - the internal address book data are same as those in the {@code expectedAddressBook} <br>
+     *      - the internal address book data are same as those in the {@code expectedTaskManager} <br>
      *      - the backing list shown by UI matches the {@code shownList} <br>
-     *      - {@code expectedAddressBook} was saved to the storage file. <br>
+     *      - {@code expectedTaskManager} was saved to the storage file. <br>
      */
     private void assertCommandBehavior(boolean isCommandExceptionExpected, String inputCommand, String expectedMessage,
                                        ReadOnlyTaskManager expectedTaskManager,
@@ -196,6 +205,7 @@ public class LogicManagerTest {
         assertCommandFailure("add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address", expectedMessage);
     }
 
+<<<<<<< HEAD
     /*@Test
     public void execute_add_invalidPersonData() {
         assertCommandFailure("add []\\[;] p/12345 e/valid@e.mail a/valid, address",
@@ -204,6 +214,12 @@ public class LogicManagerTest {
                 Date.MESSAGE_DATE_CONSTRAINTS);
         assertCommandFailure("add Valid Name p/12345 e/notAnEmail a/valid, address",
                 Time.MESSAGE_TIME_CONSTRAINTS);
+=======
+    @Test
+    public void execute_add_invalidTaskData() {
+        assertCommandFailure("add []\\[;] p/12345 e/valid@e.mail a/valid, address",
+                Name.MESSAGE_NAME_CONSTRAINTS);
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
         assertCommandFailure("add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag",
                 Tag.MESSAGE_TAG_CONSTRAINTS);
 
@@ -213,7 +229,11 @@ public class LogicManagerTest {
     public void execute_add_successful() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
+<<<<<<< HEAD
         Task toBeAdded = helper.adam();
+=======
+        Task toBeAdded = helper.gym();
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
         TaskManager expectedAB = new TaskManager();
         expectedAB.addTask(toBeAdded);
 
@@ -221,7 +241,11 @@ public class LogicManagerTest {
         /*assertCommandSuccess(helper.generateAddCommand(toBeAdded),
                 String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
                 expectedAB,
+<<<<<<< HEAD
                 expectedAB.getTaskList());*/
+=======
+                expectedAB.getTaskList());
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
 
     }
 
@@ -229,10 +253,17 @@ public class LogicManagerTest {
     public void execute_addDuplicate_notAllowed() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
+<<<<<<< HEAD
         Task toBeAdded = helper.adam();
 
         // setup starting state
         model.addTask(toBeAdded); // person already in internal address book
+=======
+        Task toBeAdded = helper.gym();
+
+        // setup starting state
+        model.addTask(toBeAdded); // task already in internal address book
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
 
         // execute command and verify result
         //assertCommandFailure(helper.generateAddCommand(toBeAdded),  AddCommand.MESSAGE_DUPLICATE_TASK);
@@ -241,7 +272,11 @@ public class LogicManagerTest {
 
 
     @Test
+<<<<<<< HEAD
     public void execute_list_showsAllTask() throws Exception {
+=======
+    public void execute_list_showsAllTasks() throws Exception {
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
         // prepare expectations
         TestDataHelper helper = new TestDataHelper();
         TaskManager expectedAB = helper.generateTaskManager(2);
@@ -259,8 +294,8 @@ public class LogicManagerTest {
 
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command
-     * targeting a single person in the shown list, using visible index.
-     * @param commandWord to test assuming it targets a single person in the last shown list
+     * targeting a single task in the shown list, using visible index.
+     * @param commandWord to test assuming it targets a single task in the last shown list
      *                    based on visible index.
      */
     private void assertIncorrectIndexFormatBehaviorForCommand(String commandWord, String expectedMessage)
@@ -274,8 +309,8 @@ public class LogicManagerTest {
 
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command
-     * targeting a single person in the shown list, using visible index.
-     * @param commandWord to test assuming it targets a single person in the last shown list
+     * targeting a single task in the shown list, using visible index.
+     * @param commandWord to test assuming it targets a single task in the last shown list
      *                    based on visible index.
      */
     private void assertIndexNotFoundBehaviorForCommand(String commandWord) throws Exception {
@@ -283,10 +318,17 @@ public class LogicManagerTest {
         TestDataHelper helper = new TestDataHelper();
         List<Task> taskList = helper.generateTaskList(2);
 
+<<<<<<< HEAD
         // set AB state to 2 persons
         model.resetData(new TaskManager());
         for (Task t : taskList) {
             model.addTask(t);
+=======
+        // set AB state to 2 tasks
+        model.resetData(new TaskManager());
+        for (Task p : taskList) {
+            model.addTask(p);
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
         }
 
         assertCommandFailure(commandWord + " 3", expectedMessage);
@@ -304,19 +346,30 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_select_jumpsToCorrectPerson() throws Exception {
+    public void execute_select_jumpsToCorrectTask() throws Exception {
         TestDataHelper helper = new TestDataHelper();
+<<<<<<< HEAD
         List<Task> threePersons = helper.generateTaskList(3);
 
         TaskManager expectedAB = helper.generateTaskManager(threePersons);
         helper.addToModel(model, threePersons);
+=======
+        List<Task> threeTasks = helper.generateTaskList(3);
+
+        TaskManager expectedAB = helper.generateTaskManager(threeTasks);
+        helper.addToModel(model, threeTasks);
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
 
         /*assertCommandSuccess("select 2",
                 String.format(SelectCommand.MESSAGE_SELECT_PERSON_SUCCESS, 2),
                 expectedAB,
                 expectedAB.getTaskList());
         assertEquals(1, targetedJumpIndex);
+<<<<<<< HEAD
         assertEquals(model.getFilteredTaskList().get(1), threePersons.get(1));*/
+=======
+        assertEquals(model.getFilteredTaskList().get(1), threeTasks.get(1));
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
     }
 
 
@@ -332,7 +385,7 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_delete_removesCorrectPerson() throws Exception {
+    public void execute_delete_removesCorrectTask() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         List<Task> threeTasks = helper.generateTaskList(3);
 
@@ -340,10 +393,17 @@ public class LogicManagerTest {
         expectedAB.removeTask(threeTasks.get(1));
         helper.addToModel(model, threeTasks);
 
+<<<<<<< HEAD
         /*assertCommandSuccess("delete 2",
                 String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, threeTasks.get(1)),
                 expectedAB,
                 expectedAB.getTaskList());*/
+=======
+        assertCommandSuccess("delete 2",
+                String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, threeTasks.get(1)),
+                expectedAB,
+                expectedAB.getTaskList());
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
     }
 
 
@@ -367,7 +427,7 @@ public class LogicManagerTest {
         helper.addToModel(model, fourTasks);
 
         assertCommandSuccess("find KEY",
-                Command.getMessageForPersonListShownSummary(expectedList.size()),
+                Command.getMessageForTaskListShownSummary(expectedList.size()),
                 expectedAB,
                 expectedList);
     }*/
@@ -375,18 +435,27 @@ public class LogicManagerTest {
     /*@Test
     public void execute_find_isNotCaseSensitive() throws Exception {
         TestDataHelper helper = new TestDataHelper();
+<<<<<<< HEAD
         Task t1 = helper.generateTaskWithName("bla bla KEY bla ");
         Task t2 = helper.generateTaskWithName("bla KEY bla bceofeia");
         Task t3 = helper.generateTaskWithName("key key");
         Task t4 = helper.generateTaskWithName("KEy sduauo");
 
         List<Task> fourTasks = helper.generateTaskList(t3, t1, t4, t2);
+=======
+        Task p1 = helper.generateTaskWithName("bla bla KEY bla");
+        Task p2 = helper.generateTaskWithName("bla KEY bla bceofeia");
+        Task p3 = helper.generateTaskWithName("key key");
+        Task p4 = helper.generateTaskWithName("KEy sduauo");
+
+        List<Task> fourTasks = helper.generateTaskList(p3, p1, p4, p2);
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
         TaskManager expectedAB = helper.generateTaskManager(fourTasks);
         List<Task> expectedList = fourTasks;
         helper.addToModel(model, fourTasks);
 
         assertCommandSuccess("find KEY",
-                Command.getMessageForPersonListShownSummary(expectedList.size()),
+                Command.getMessageForTaskListShownSummary(expectedList.size()),
                 expectedAB,
                 expectedList);
     }*/
@@ -405,7 +474,7 @@ public class LogicManagerTest {
         helper.addToModel(model, fourTasks);
 
         assertCommandSuccess("find key rAnDoM",
-                Command.getMessageForPersonListShownSummary(expectedList.size()),
+                Command.getMessageForTaskListShownSummary(expectedList.size()),
                 expectedAB,
                 expectedList);
     }*/
@@ -416,6 +485,7 @@ public class LogicManagerTest {
      */
     class TestDataHelper {
 
+<<<<<<< HEAD
         Task adam() throws Exception {
             Name name = new Name("CS2103 Lecture");
             Date date = new Date("10/03/2017");
@@ -425,18 +495,31 @@ public class LogicManagerTest {
             Venue venue = new Venue("NUS");
             Priority priority = new Priority("3");
             return new Task(name, date, time, description, tag, venue, priority, false);
+=======
+        Task gym() throws Exception {
+            Name name = new Name("Homework");
+            Date date = new Date("10/03/2017");
+            Time time = new Time("12:00");
+            Description description = new Description("IE2100 CTMC");
+            Venue venue = new Venue("UTown");
+            Priority priority = new Priority("1"); 
+            boolean isFavorite = false;
+            Tag tag = new Tag("sweet");
+            return new Task(name, date, time, description, tag, venue, priority, isFavorite);
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
         }
 
         /**
-         * Generates a valid person using the given seed.
-         * Running this function with the same parameter values guarantees the returned person will have the same state.
-         * Each unique seed will generate a unique Person object.
+         * Generates a valid task using the given seed.
+         * Running this function with the same parameter values guarantees the returned task will have the same state.
+         * Each unique seed will generate a unique Task object.
          *
-         * @param seed used to generate the person data field values
+         * @param seed used to generate the task data field values
          */
         Task generateTask(int seed) throws Exception {
             return new Task(
                     new Name("Task " + seed),
+<<<<<<< HEAD
                     new Date("" + Math.abs(seed)+"/3/2017"),
                     new Time(seed + ""),
                     new Description("Interesting" + seed),
@@ -448,10 +531,24 @@ public class LogicManagerTest {
         }
 
         /** Generates the correct add command based on the person given */
+=======
+                    new Date("" + (Math.abs(seed) % 31 + 1) + "/" + (Math.abs(seed) % 12 + 1)),
+                    new Time("" + (Math.abs(seed) % 24 + 1) + "/" + (Math.abs(seed) % 60 + 1)),
+                    new Description("A valid description" + seed),
+                    new Tag("A valid tag" + seed),
+                    new Venue("LT" + (seed % 53 + 1)),
+                    new Priority("" + (seed % 3 + 1)),
+                    true
+            );
+        }
+
+        /** Generates the correct add command based on the task given */
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
         String generateAddCommand(Task t) {
             StringBuffer cmd = new StringBuffer();
 
             cmd.append("add ");
+<<<<<<< HEAD
 
             cmd.append("n/").append(t.getName().toString());
             cmd.append(" due/").append(t.getDate());
@@ -461,37 +558,53 @@ public class LogicManagerTest {
             cmd.append(" @").append(t.getVenue());
             cmd.append(" p/").append(t.getPriority());
 
+=======
+            cmd.append("n/").append(t.getName().toString());
+            cmd.append("due/").append(t.getDate());
+            cmd.append(" t/").append(t.getTime());
+            cmd.append(" d/").append(t.getDescription());
+            cmd.append(" @/").append(t.getVenue());
+            cmd.append(" p/").append(t.getPriority());
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
             return cmd.toString();
         }
 
         /**
-         * Generates an AddressBook with auto-generated persons.
+         * Generates an TaskManager with auto-generated tasks.
          */
         TaskManager generateTaskManager(int numGenerated) throws Exception {
+<<<<<<< HEAD
             TaskManager taskManager = new TaskManager();
+=======
+        	TaskManager taskManager = new TaskManager();
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
             addToTaskManager(taskManager, numGenerated);
             return taskManager;
         }
 
         /**
-         * Generates an AddressBook based on the list of Persons given.
+         * Generates an TaskManager based on the list of Tasks given.
          */
         TaskManager generateTaskManager(List<Task> tasks) throws Exception {
+<<<<<<< HEAD
             TaskManager taskManager = new TaskManager();
+=======
+        	TaskManager taskManager = new TaskManager();
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
             addToTaskManager(taskManager, tasks);
             return taskManager;
         }
 
         /**
-         * Adds auto-generated Person objects to the given AddressBook
-         * @param addressBook The AddressBook to which the Persons will be added
+         * Adds auto-generated Task objects to the given TaskManager
+         * @param taskManager The TaskManager to which the Tasks will be added
          */
         void addToTaskManager(TaskManager taskManager, int numGenerated) throws Exception {
             addToTaskManager(taskManager, generateTaskList(numGenerated));
         }
 
         /**
-         * Adds the given list of Persons to the given AddressBook
+         * Adds the given list of Tasks to the given taskManager
          */
         void addToTaskManager(TaskManager taskManager, List<Task> tasksToAdd) throws Exception {
             for (Task t: tasksToAdd) {
@@ -500,15 +613,15 @@ public class LogicManagerTest {
         }
 
         /**
-         * Adds auto-generated Person objects to the given model
-         * @param model The model to which the Persons will be added
+         * Adds auto-generated Task objects to the given model
+         * @param model The model to which the Tasks will be added
          */
         void addToModel(Model model, int numGenerated) throws Exception {
             addToModel(model, generateTaskList(numGenerated));
         }
 
         /**
-         * Adds the given list of Persons to the given model
+         * Adds the given list of Tasks to the given model
          */
         void addToModel(Model model, List<Task> tasksToAdd) throws Exception {
             for (Task t: tasksToAdd) {
@@ -517,7 +630,7 @@ public class LogicManagerTest {
         }
 
         /**
-         * Generates a list of Persons based on the flags.
+         * Generates a list of Tasks based on the flags.
          */
         List<Task> generateTaskList(int numGenerated) throws Exception {
             List<Task> tasks = new ArrayList<>();
@@ -532,11 +645,12 @@ public class LogicManagerTest {
         }
 
         /**
-         * Generates a Person object with given name. Other fields will have some dummy values.
+         * Generates a Task object with given name. Other fields will have some dummy values.
          */
         Task generateTaskWithName(String name) throws Exception {
             return new Task(
                     new Name(name),
+<<<<<<< HEAD
                     new Date(" "),
                     new Time(" "),
                     new Description(" "),
@@ -544,6 +658,15 @@ public class LogicManagerTest {
                     new Venue(" "),
                     new Priority(" "),
                     false
+=======
+                    new Date("1"),
+                    new Time("17:00"),
+                    new Description("This task requires a lot of efforts"),
+                    new Tag("Heavy grade"),
+                    new Venue("LT52"),
+                    new Priority("1"),
+                    true
+>>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
             );
         }
     }

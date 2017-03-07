@@ -98,7 +98,7 @@ public class TestTask implements ReadOnlyTask {
         assert venue != null;
         this.venue = venue;
     }
-
+    
     @Override
     public Priority getPriority(){
         return priority;
@@ -117,12 +117,12 @@ public class TestTask implements ReadOnlyTask {
     public void setFavorite(boolean isFavorite){
         this.isFavorite = isFavorite;
     }
-
+    
     @Override
     public String toString() {
         return getAsText();
     }
-
+    
     public String getAddCommand() {
         return null;
         //TODO: add test cases

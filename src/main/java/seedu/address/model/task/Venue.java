@@ -11,7 +11,7 @@ public class Venue {
 
     public static final String MESSAGE_VENUE_CONSTRAINTS =
             "task venue can be in any form.";
-    //TODO: public static final String DATE_VALIDATION_REGEX = 
+    //TODO: public static final String DATE_VALIDATION_REGEX =
 
     public final String value;
 

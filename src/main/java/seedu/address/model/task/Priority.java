@@ -10,10 +10,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class Priority {
 
     public static final String DEFAULT_PRIORITY = "2";
-    public static final String MESSAGE_PRIORITY_CONSTRAINTS =
-            "task priority can only be 1, 2, or 3";
-    //TODO: public static final String DATE_VALIDATION_REGEX = 
-
+    public static final String MESSAGE_PRIORITY_CONSTRAINTS = "task priority can only be 1, 2, or 3";
+    //TODO: public static final String DATE_VALIDATION_REGEX =
+    
     public final String value;
 
     /**
