@@ -33,11 +33,11 @@ public class MainWindow extends UiPart<Region> {
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
-    
+
     private ResultDisplay resultDisplay;
-    
+
     private StatusBarFooter statusBarFooter;
-    
+
     private CommandBox commandBox;
 
     private Config config;
