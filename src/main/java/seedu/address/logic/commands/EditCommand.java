@@ -167,7 +167,7 @@ public class EditCommand extends Command {
         public Optional<Tag> getTag() {
             return tag;
         }
-        
+
         public void setVenue(Optional<Venue> venue) {
             assert venue != null;
             this.venue = venue;
@@ -176,7 +176,7 @@ public class EditCommand extends Command {
         public Optional<Venue> getVenue() {
             return venue;
         }
-        
+
         public void setPriority(Optional<Priority> priority) {
             assert priority != null;
             this.priority = priority;

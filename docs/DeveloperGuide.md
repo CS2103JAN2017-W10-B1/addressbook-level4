@@ -369,7 +369,7 @@ Priority | As a ... | I want to ... | So that I can...
 `*` | user | delete the list and put all the tasks inside into Personal or delete all the tasks | delete the list and delete tasks by lists
 `*` | user | see different colours for different priority levels | know which one is more urgent
 `*` | user | specify priority level for a task after adding the task | know which task is more urgent
-`*` | user | mark a task to be my favourite | view it under list favorite 
+`*` | user | mark a task to be my favourite | view it under list favorite
 `*` | user | update the name of the list | modify it after creating
 `*` | user | view all the starred tasks using a "favourite" command | view all my favourite tasks
 `*` | user | see the autocomplete messages when I type | know what I can type
@@ -938,7 +938,7 @@ Use case ends
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
    should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should be 
+4. Should be able to respond for any command within 0.5 second.
 
 {More to be added}
 
@@ -977,7 +977,7 @@ Pros:
 * Can restore deleted lists
 * Can export task lists to formatted printable document
 * Overdue tasks will be highlighted as red (relevant lists and folders are also highlighted)
-* Subtask and notes functions are optional under each task 
+* Subtask and notes functions are optional under each task
 
 Cons:
 

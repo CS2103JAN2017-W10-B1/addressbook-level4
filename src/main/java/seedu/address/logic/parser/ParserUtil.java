@@ -107,7 +107,7 @@ public class ParserUtil {
         assert description != null;
         return description.isPresent() ? Optional.of(new Description(description.get())) : Optional.empty();
     }
-    
+
     /**
      * Parses a {@code Optional<String> email} into an {@code Optional<Email>} if {@code email} is present.
      */
