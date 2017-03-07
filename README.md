@@ -13,7 +13,7 @@
   the main programming language.
 * It is **written in OOP fashion**. It provides a **reasonably well-written** code example that is
   **significantly bigger** (around 6 KLoC)than what students usually write in beginner-level SE modules.
-* It is initiated by the sample project team from SE-EDU(https://github.com/se-edu/)
+* It is initiated by the sample project team from [SE-EDU](https://github.com/se-edu/)
 * What's different from [level 3](https://github.com/se-edu/addressbook-level3):
     * A more sophisticated GUI that includes a list panel and an in-built Browser.
     * More test cases, including automated GUI testing.
