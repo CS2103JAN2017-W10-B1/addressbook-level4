@@ -11,7 +11,7 @@ import seedu.address.model.task.UniqueTaskList;
 public class TypicalTestTasks {
 
     public TestTask gym;
-	public TestTask birthday;
+    public TestTask birthday;
 	public TestTask assignment;
 
     public TypicalTestTasks() {
