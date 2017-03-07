@@ -410,7 +410,7 @@ public class LogicManagerTest {
             Time time = new Time("12:00");
             Description description = new Description("IE2100 CTMC");
             Venue venue = new Venue("UTown");
-            Priority priority = new Priority("1");  
+            Priority priority = new Priority("1"); 
             boolean isFavorite = false;
             Tag tag = new Tag("sweet");
             return new Task(name, date, time, description, tag, venue, priority, isFavorite);

@@ -186,6 +186,5 @@ public class EditCommand extends Command {
         public Optional<Priority> getPriority() {
             return priority;
         }
-        
     }
 }
