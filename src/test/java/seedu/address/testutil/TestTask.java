@@ -88,41 +88,41 @@ public class TestTask implements ReadOnlyTask {
         assert tag != null;
         this.tag = tag;
     }
-    
+
     @Override
     public Venue getVenue(){
         return venue;
     }
-    
+
     public void setVenue(Venue venue){
         assert venue != null;
         this.venue = venue;
     }
-    
+
     @Override
     public Priority getPriority(){
         return priority;
     }
-    
+
     public void setPriority(Priority priority){
         assert priority != null;
         this.priority = priority;
     }
-    
+
     @Override
     public boolean isFavorite(){
         return isFavorite;
     }
-    
+
     public void setFavorite(boolean isFavorite){
         this.isFavorite = isFavorite;
     }
-    
+
     @Override
     public String toString() {
         return getAsText();
     }
-    
+
     public String getAddCommand() {
         return null;
         //TODO: add test cases

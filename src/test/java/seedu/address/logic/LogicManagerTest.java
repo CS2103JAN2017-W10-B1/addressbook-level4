@@ -279,7 +279,7 @@ public class LogicManagerTest {
         String expectedMessage = MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
         TestDataHelper helper = new TestDataHelper();
         List<Task> taskList = helper.generateTaskList(2);
-        
+
         // set AB state to 2 persons
         model.resetData(new TaskManager());
         for (Task t : taskList) {
@@ -419,7 +419,7 @@ public class LogicManagerTest {
             Time time = new Time("12:00");
             Description description = new Description("IE2100 CTMC");
             Venue venue = new Venue("UTown");
-            Priority priority = new Priority("1"); 
+            Priority priority = new Priority("1");
             boolean isFavorite = false;
             Tag tag = new Tag("sweet");
             return new Task(name, date, time, description, tag, venue, priority, isFavorite);

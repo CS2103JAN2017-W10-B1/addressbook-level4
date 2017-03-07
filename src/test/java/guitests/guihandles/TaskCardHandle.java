@@ -52,15 +52,15 @@ public class TaskCardHandle extends GuiHandle {
     public String getVenue() {
         return getTextFromLabel(VENUE_FIELD_ID);
     }
-    
+
     public String getPriority() {
         return getTextFromLabel(PRIORITY_FIELD_ID);
     }
-    
+
     public String isFavorite() {
         return getTextFromLabel(FAVORITE_FIELD_ID);
     }
-    
+
     public boolean isSameTask(ReadOnlyTask task) {
         return getFullName().equals(task.getName().fullName)
                 && getDate().equals(task.getDate().value)
