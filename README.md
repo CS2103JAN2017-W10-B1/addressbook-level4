@@ -1,8 +1,8 @@
 # Dueue
 
-[![Build Status](https://travis-ci.org/CS2103JAN2017-W10-B1/main.svg?branch=master)](https://travis-ci.org/CS2103JAN2017-W10-B1/main)
+[![Build Status](https://travis-ci.org/CS2103JAN2017-W10-B1/main.svg?branch=V0.1)](https://travis-ci.org/CS2103JAN2017-W10-B1/main)
 [![Build status](https://ci.appveyor.com/api/projects/status/3boko2x2vr5cc3w2?svg=true)](https://ci.appveyor.com/project/wangzexin/main)
-[![Coverage Status](https://coveralls.io/repos/github/CS2103JAN2017-W10-B1/main/badge.svg?branch=master)](https://coveralls.io/github/CS2103JAN2017-W10-B1/main?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/CS2103JAN2017-W10-B1/main/badge.svg?branch=V0.1)](https://coveralls.io/github/CS2103JAN2017-W10-B1/main?branch=V0.1)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b1f3bf7472e34e2a94cb325f5cdf5dd9)](https://www.codacy.com/app/wangzexin/main?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CS2103JAN2017-W10-B1/main&amp;utm_campaign=Badge_Grade)
 
 <img src="docs/images/Ui.png" width="600"><br>
@@ -13,6 +13,7 @@
   the main programming language.
 * It is **written in OOP fashion**. It provides a **reasonably well-written** code example that is
   **significantly bigger** (around 6 KLoC)than what students usually write in beginner-level SE modules.
+* It is initiated by the sample project team from SE-EDU(https://github.com/se-edu/)
 * What's different from [level 3](https://github.com/se-edu/addressbook-level3):
     * A more sophisticated GUI that includes a list panel and an in-built Browser.
     * More test cases, including automated GUI testing.
