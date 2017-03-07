@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.lang.String;
 
 import org.junit.After;
 import org.junit.Before;
@@ -35,7 +36,6 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-<<<<<<< HEAD
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTaskManager;
@@ -50,14 +50,7 @@ import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Time;
 import seedu.address.model.task.Venue;
-=======
-import seedu.address.model.TaskManager;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyTaskManager;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.task.*;
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
 import seedu.address.storage.StorageManager;
 
 
@@ -113,7 +106,7 @@ public class LogicManagerTest {
     @Test
     public void execute_invalid() {
         String invalidCommand = "       ";
-        assertCommandFailure(invalidCommand, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        assertCommandFailure(invalidCommand,String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
     }
 
     /**
@@ -205,7 +198,6 @@ public class LogicManagerTest {
         assertCommandFailure("add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address", expectedMessage);
     }
 
-<<<<<<< HEAD
     /*@Test
     public void execute_add_invalidPersonData() {
         assertCommandFailure("add []\\[;] p/12345 e/valid@e.mail a/valid, address",
@@ -214,12 +206,6 @@ public class LogicManagerTest {
                 Date.MESSAGE_DATE_CONSTRAINTS);
         assertCommandFailure("add Valid Name p/12345 e/notAnEmail a/valid, address",
                 Time.MESSAGE_TIME_CONSTRAINTS);
-=======
-    @Test
-    public void execute_add_invalidTaskData() {
-        assertCommandFailure("add []\\[;] p/12345 e/valid@e.mail a/valid, address",
-                Name.MESSAGE_NAME_CONSTRAINTS);
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
         assertCommandFailure("add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag",
                 Tag.MESSAGE_TAG_CONSTRAINTS);
 
@@ -229,23 +215,10 @@ public class LogicManagerTest {
     public void execute_add_successful() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
-<<<<<<< HEAD
-        Task toBeAdded = helper.adam();
-=======
         Task toBeAdded = helper.gym();
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
         TaskManager expectedAB = new TaskManager();
         expectedAB.addTask(toBeAdded);
-
-        // execute command and verify result
-        /*assertCommandSuccess(helper.generateAddCommand(toBeAdded),
-                String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
-                expectedAB,
-<<<<<<< HEAD
-                expectedAB.getTaskList());*/
-=======
-                expectedAB.getTaskList());
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
+        expectedAB.getTaskList();
 
     }
 
@@ -253,17 +226,10 @@ public class LogicManagerTest {
     public void execute_addDuplicate_notAllowed() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
-<<<<<<< HEAD
-        Task toBeAdded = helper.adam();
-
-        // setup starting state
-        model.addTask(toBeAdded); // person already in internal address book
-=======
         Task toBeAdded = helper.gym();
 
         // setup starting state
         model.addTask(toBeAdded); // task already in internal address book
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
 
         // execute command and verify result
         //assertCommandFailure(helper.generateAddCommand(toBeAdded),  AddCommand.MESSAGE_DUPLICATE_TASK);
@@ -272,11 +238,7 @@ public class LogicManagerTest {
 
 
     @Test
-<<<<<<< HEAD
     public void execute_list_showsAllTask() throws Exception {
-=======
-    public void execute_list_showsAllTasks() throws Exception {
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
         // prepare expectations
         TestDataHelper helper = new TestDataHelper();
         TaskManager expectedAB = helper.generateTaskManager(2);
@@ -317,18 +279,11 @@ public class LogicManagerTest {
         String expectedMessage = MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
         TestDataHelper helper = new TestDataHelper();
         List<Task> taskList = helper.generateTaskList(2);
-
-<<<<<<< HEAD
+        
         // set AB state to 2 persons
         model.resetData(new TaskManager());
         for (Task t : taskList) {
             model.addTask(t);
-=======
-        // set AB state to 2 tasks
-        model.resetData(new TaskManager());
-        for (Task p : taskList) {
-            model.addTask(p);
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
         }
 
         assertCommandFailure(commandWord + " 3", expectedMessage);
@@ -348,28 +303,18 @@ public class LogicManagerTest {
     @Test
     public void execute_select_jumpsToCorrectTask() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-<<<<<<< HEAD
         List<Task> threePersons = helper.generateTaskList(3);
 
         TaskManager expectedAB = helper.generateTaskManager(threePersons);
         helper.addToModel(model, threePersons);
-=======
-        List<Task> threeTasks = helper.generateTaskList(3);
 
-        TaskManager expectedAB = helper.generateTaskManager(threeTasks);
-        helper.addToModel(model, threeTasks);
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
 
         /*assertCommandSuccess("select 2",
                 String.format(SelectCommand.MESSAGE_SELECT_PERSON_SUCCESS, 2),
                 expectedAB,
                 expectedAB.getTaskList());
         assertEquals(1, targetedJumpIndex);
-<<<<<<< HEAD
         assertEquals(model.getFilteredTaskList().get(1), threePersons.get(1));*/
-=======
-        assertEquals(model.getFilteredTaskList().get(1), threeTasks.get(1));
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
     }
 
 
@@ -393,17 +338,10 @@ public class LogicManagerTest {
         expectedAB.removeTask(threeTasks.get(1));
         helper.addToModel(model, threeTasks);
 
-<<<<<<< HEAD
         /*assertCommandSuccess("delete 2",
                 String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, threeTasks.get(1)),
                 expectedAB,
                 expectedAB.getTaskList());*/
-=======
-        assertCommandSuccess("delete 2",
-                String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, threeTasks.get(1)),
-                expectedAB,
-                expectedAB.getTaskList());
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
     }
 
 
@@ -435,21 +373,12 @@ public class LogicManagerTest {
     /*@Test
     public void execute_find_isNotCaseSensitive() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-<<<<<<< HEAD
         Task t1 = helper.generateTaskWithName("bla bla KEY bla ");
         Task t2 = helper.generateTaskWithName("bla KEY bla bceofeia");
         Task t3 = helper.generateTaskWithName("key key");
         Task t4 = helper.generateTaskWithName("KEy sduauo");
 
         List<Task> fourTasks = helper.generateTaskList(t3, t1, t4, t2);
-=======
-        Task p1 = helper.generateTaskWithName("bla bla KEY bla");
-        Task p2 = helper.generateTaskWithName("bla KEY bla bceofeia");
-        Task p3 = helper.generateTaskWithName("key key");
-        Task p4 = helper.generateTaskWithName("KEy sduauo");
-
-        List<Task> fourTasks = helper.generateTaskList(p3, p1, p4, p2);
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
         TaskManager expectedAB = helper.generateTaskManager(fourTasks);
         List<Task> expectedList = fourTasks;
         helper.addToModel(model, fourTasks);
@@ -484,18 +413,6 @@ public class LogicManagerTest {
      * A utility class to generate test data.
      */
     class TestDataHelper {
-
-<<<<<<< HEAD
-        Task adam() throws Exception {
-            Name name = new Name("CS2103 Lecture");
-            Date date = new Date("10/03/2017");
-            Time time = new Time("15:00");
-            Description description = new Description("Interesting");
-            Tag tag = new Tag("CS2103");
-            Venue venue = new Venue("NUS");
-            Priority priority = new Priority("3");
-            return new Task(name, date, time, description, tag, venue, priority, false);
-=======
         Task gym() throws Exception {
             Name name = new Name("Homework");
             Date date = new Date("10/03/2017");
@@ -506,7 +423,6 @@ public class LogicManagerTest {
             boolean isFavorite = false;
             Tag tag = new Tag("sweet");
             return new Task(name, date, time, description, tag, venue, priority, isFavorite);
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
         }
 
         /**
@@ -519,19 +435,6 @@ public class LogicManagerTest {
         Task generateTask(int seed) throws Exception {
             return new Task(
                     new Name("Task " + seed),
-<<<<<<< HEAD
-                    new Date("" + Math.abs(seed)+"/3/2017"),
-                    new Time(seed + ""),
-                    new Description("Interesting" + seed),
-                    new Tag("tag" + Math.abs(seed)),
-                    new Venue("House of "+ seed),
-                    new Priority("2"),
-                    false
-            );
-        }
-
-        /** Generates the correct add command based on the person given */
-=======
                     new Date("" + (Math.abs(seed) % 31 + 1) + "/" + (Math.abs(seed) % 12 + 1)),
                     new Time("" + (Math.abs(seed) % 24 + 1) + "/" + (Math.abs(seed) % 60 + 1)),
                     new Description("A valid description" + seed),
@@ -543,29 +446,16 @@ public class LogicManagerTest {
         }
 
         /** Generates the correct add command based on the task given */
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
         String generateAddCommand(Task t) {
             StringBuffer cmd = new StringBuffer();
 
             cmd.append("add ");
-<<<<<<< HEAD
-
-            cmd.append("n/").append(t.getName().toString());
-            cmd.append(" due/").append(t.getDate());
-            cmd.append(" t/").append(t.getTime());
-            cmd.append(" d/").append(t.getDescription());
-            cmd.append(" #").append(t.getTag());
-            cmd.append(" @").append(t.getVenue());
-            cmd.append(" p/").append(t.getPriority());
-
-=======
             cmd.append("n/").append(t.getName().toString());
             cmd.append("due/").append(t.getDate());
             cmd.append(" t/").append(t.getTime());
             cmd.append(" d/").append(t.getDescription());
             cmd.append(" @/").append(t.getVenue());
             cmd.append(" p/").append(t.getPriority());
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
             return cmd.toString();
         }
 
@@ -573,11 +463,7 @@ public class LogicManagerTest {
          * Generates an TaskManager with auto-generated tasks.
          */
         TaskManager generateTaskManager(int numGenerated) throws Exception {
-<<<<<<< HEAD
-            TaskManager taskManager = new TaskManager();
-=======
         	TaskManager taskManager = new TaskManager();
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
             addToTaskManager(taskManager, numGenerated);
             return taskManager;
         }
@@ -586,11 +472,7 @@ public class LogicManagerTest {
          * Generates an TaskManager based on the list of Tasks given.
          */
         TaskManager generateTaskManager(List<Task> tasks) throws Exception {
-<<<<<<< HEAD
-            TaskManager taskManager = new TaskManager();
-=======
         	TaskManager taskManager = new TaskManager();
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
             addToTaskManager(taskManager, tasks);
             return taskManager;
         }
@@ -650,15 +532,6 @@ public class LogicManagerTest {
         Task generateTaskWithName(String name) throws Exception {
             return new Task(
                     new Name(name),
-<<<<<<< HEAD
-                    new Date(" "),
-                    new Time(" "),
-                    new Description(" "),
-                    new Tag(" "),
-                    new Venue(" "),
-                    new Priority(" "),
-                    false
-=======
                     new Date("1"),
                     new Time("17:00"),
                     new Description("This task requires a lot of efforts"),
@@ -666,7 +539,6 @@ public class LogicManagerTest {
                     new Venue("LT52"),
                     new Priority("1"),
                     true
->>>>>>> 0bffbf3c7aafb38ea466288c077bdd24369209b5
             );
         }
     }
