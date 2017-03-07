@@ -120,8 +120,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         try {
             tags.add(taskTag);
         } catch (DuplicateTagException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            //TODO: deal after adding lists features
         }
         /*
         // Create map with values = tag object references in the master list
