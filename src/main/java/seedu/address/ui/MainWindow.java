@@ -33,6 +33,12 @@ public class MainWindow extends UiPart<Region> {
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
+    
+    private ResultDisplay resultDisplay;
+    
+    private StatusBarFooter statusBarFooter;
+    
+    private CommandBox commandBox;
 
     private Config config;
 
@@ -113,9 +119,9 @@ public class MainWindow extends UiPart<Region> {
 
     public void fillInnerParts() {
     	taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
-    	new ResultDisplay(getResultDisplayPlaceholder());
-        new StatusBarFooter(getStatusbarPlaceholder(), config.getAddressBookFilePath());
-        new CommandBox(getCommandBoxPlaceholder(), logic);
+    	resultDisplay = new ResultDisplay(getResultDisplayPlaceholder());
+        statusBarFooter = new StatusBarFooter(getStatusbarPlaceholder(), config.getAddressBookFilePath());
+        commandBox = new CommandBox(getCommandBoxPlaceholder(), logic);
     }
 
     private AnchorPane getCommandBoxPlaceholder() {
@@ -131,7 +137,8 @@ public class MainWindow extends UiPart<Region> {
     }
 
     private AnchorPane getTaskListPlaceholder() {
-        return taskListPanelPlaceholder;
+        taskListPanelPlaceholder = new AnchorPane();
+    	return taskListPanelPlaceholder;
     }
 
     public void hide() {
