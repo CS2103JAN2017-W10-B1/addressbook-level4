@@ -52,17 +52,17 @@ public class TaskBuilder {
         this.task.setDescription(new Description(description));
         return this;
     }
-    
+
     public TaskBuilder withVenue(String venue) throws IllegalValueException {
         this.task.setVenue(new Venue(venue));
         return this;
     }
-    
+
     public TaskBuilder withPriority(String priority) throws IllegalValueException {
         this.task.setPriority(new Priority(priority));
         return this;
     }
-    
+
     public TaskBuilder withFavorite(boolean isFavorite) throws IllegalValueException {
         this.task.setFavorite(isFavorite);
         return this;
