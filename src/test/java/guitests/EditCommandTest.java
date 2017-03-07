@@ -8,10 +8,10 @@ import org.junit.Test;
 import guitests.guihandles.TaskCardHandle;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.model.task.Name;
 import seedu.address.model.task.Date;
-import seedu.address.model.task.Time;
+import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.Time;
 import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TestTask;
 
@@ -20,7 +20,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
     // The list of Tasks in the Task list panel is expected to match this list.
     // This list is updated with every successful call to assertEditSuccess().
-    TestTask[] expectedTasksList = td.getTypicalTasks();
+    private TestTask[] expectedTasksList = td.getTypicalTasks();
 
     @Test
     public void edit_allFieldsSpecified_success() throws Exception {
@@ -28,7 +28,8 @@ public class EditCommandTest extends TaskManagerGuiTest {
         int taskManagerIndex = 1;
 
         TestTask editedTask = new TaskBuilder().withName("Lecture").withDate("10/3/2017")
-                .withTime("16:00").withDescription("Interesting module").withVenue("I3").withPriority("3").withFavorite(true).build();
+                .withTime("16:00").withDescription("Interesting module").
+                withVenue("I3").withPriority("3").withFavorite(true).build();
 
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
@@ -38,8 +39,8 @@ public class EditCommandTest extends TaskManagerGuiTest {
         String detailsToEdit = "p/2";
         int taskManagerIndex = 2;
 
-        TestTask TaskToEdit = expectedTasksList[taskManagerIndex - 1];
-        TestTask editedTask = new TaskBuilder(TaskToEdit).withPriority("2").build();
+        TestTask taskToEdit = expectedTasksList[taskManagerIndex - 1];
+        TestTask editedTask = new TaskBuilder(taskToEdit).withPriority("2").build();
 
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
