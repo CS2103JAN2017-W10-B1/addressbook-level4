@@ -29,7 +29,7 @@ public class AddCommand extends Command {
             + "n/Lecture due/10/3/2017 t/16:00 #CS2103 d/Interesting module @I3 p/3 *f";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Dueue";
 
     private final Task toAdd;
 
