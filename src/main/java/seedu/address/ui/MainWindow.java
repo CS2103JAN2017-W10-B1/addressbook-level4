@@ -114,7 +114,7 @@ public class MainWindow extends UiPart<Region> {
 
     void fillInnerParts() {
 
-        personListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
+        taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getAddressBookFilePath());
         new CommandBox(getCommandBoxPlaceholder(), logic);
@@ -196,15 +196,6 @@ public class MainWindow extends UiPart<Region> {
     }
 
     public TaskListPanel getTaskListPanel() {
-        return this.personListPanel;
+        return this.taskListPanel;
     }
-
-    void loadPersonPage(ReadOnlyPerson person) {
-        browserPanel.loadPersonPage(person);
-    }
-
-    void releaseResources() {
-        browserPanel.freeResources();
-    }
-
 }
