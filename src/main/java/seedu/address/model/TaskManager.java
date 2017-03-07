@@ -65,12 +65,12 @@ public class TaskManager implements ReadOnlyTaskManager {
         try {
             setTasks(newData.getTaskList());
         } catch (UniqueTaskList.DuplicateTaskException e) {
-            assert false : "AddressBooks should not have duplicate tasks";
+            assert false : "TaskManagers should not have duplicate tasks";
         }
         try {
             setTags(newData.getTagList());
         } catch (UniqueTagList.DuplicateTagException e) {
-            assert false : "AddressBooks should not have duplicate tags";
+            assert false : "TaskManagers should not have duplicate tags";
         }
         syncMasterTagListWith(tasks);
     }
@@ -91,7 +91,7 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     /**
      * Updates the task in the list at position {@code index} with {@code editedReadOnlyTask}.
-     * {@code AddressBook}'s tag list will be updated with the tags of {@code editedReadOnlyTask}.
+     * {@code TaskManager}'s tag list will be updated with the tags of {@code editedReadOnlyTask}.
      * @see #syncMasterTagListWith(Task)
      *
      * @throws DuplicateTaskException if updating the task's details causes the task to be equivalent to
