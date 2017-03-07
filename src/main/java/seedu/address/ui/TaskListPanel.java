@@ -21,7 +21,7 @@ import seedu.address.model.task.ReadOnlyTask;
 public class TaskListPanel extends UiPart<Region> {
 
 	private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
-    private static final String FXML = "TaskListPanel.fxml";
+	private static final String FXML = "TaskListPanel.fxml";
 
     @FXML
     private ListView<ReadOnlyTask> taskListView;
