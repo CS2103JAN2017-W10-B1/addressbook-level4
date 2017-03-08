@@ -33,15 +33,7 @@ public class MainWindow extends UiPart<Region> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-
     private TaskListPanel taskListPanel;
-
-    private ResultDisplay resultDisplay;
-
-    private StatusBarFooter statusBarFooter;
-
-    private CommandBox commandBox;
-
     private Config config;
 
     @FXML
@@ -120,10 +112,10 @@ public class MainWindow extends UiPart<Region> {
     }
 
     public void fillInnerParts() {
-    	taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
-    	resultDisplay = new ResultDisplay(getResultDisplayPlaceholder());
-        statusBarFooter = new StatusBarFooter(getStatusbarPlaceholder(), config.getAddressBookFilePath());
-        commandBox = new CommandBox(getCommandBoxPlaceholder(), logic);
+        taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
+        new ResultDisplay(getResultDisplayPlaceholder());
+        new StatusBarFooter(getStatusbarPlaceholder(), config.getAddressBookFilePath());
+        new CommandBox(getCommandBoxPlaceholder(), logic);
     }
 
     private AnchorPane getCommandBoxPlaceholder() {
