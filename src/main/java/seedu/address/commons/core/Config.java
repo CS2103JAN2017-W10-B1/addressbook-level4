@@ -15,7 +15,7 @@ public class Config {
     private Level logLevel = Level.INFO;
     private String userPrefsFilePath = "preferences.json";
     private String dueueFilePath = "data/addressbook.xml";
-    private String dueueName = "MyAddressBook";
+    private String dueueName = "MyTaskManager";
 
 
     public String getAppTitle() {
@@ -42,19 +42,19 @@ public class Config {
         this.userPrefsFilePath = userPrefsFilePath;
     }
 
-    public String getAddressBookFilePath() {
+    public String getTaskManagerFilePath() {
         return dueueFilePath;
     }
 
-    public void setAddressBookFilePath(String dueueFilePath) {
+    public void setTaskManagerFilePath(String dueueFilePath) {
         this.dueueFilePath = dueueFilePath;
     }
 
-    public String getAddressBookName() {
+    public String getTaskManagerName() {
         return dueueName;
     }
 
-    public void setAddressBookName(String dueueName) {
+    public void setTaskManagerName(String dueueName) {
         this.dueueName = dueueName;
     }
 
@@ -89,7 +89,7 @@ public class Config {
         sb.append("\nCurrent log level : " + logLevel);
         sb.append("\nPreference file Location : " + userPrefsFilePath);
         sb.append("\nLocal data file location : " + dueueFilePath);
-        sb.append("\nAddressBook name : " + dueueName);
+        sb.append("\nTaskManager name : " + dueueName);
         return sb.toString();
     }
 
