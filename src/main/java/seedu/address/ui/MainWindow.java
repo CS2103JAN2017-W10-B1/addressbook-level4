@@ -130,8 +130,7 @@ public class MainWindow extends UiPart<Region> {
     }
 
     private AnchorPane getTaskListPlaceholder() {
-        taskListPanelPlaceholder = new AnchorPane();
-    	return taskListPanelPlaceholder;
+    		return this.taskListPanelPlaceholder;
     }
 
     public void hide() {
