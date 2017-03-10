@@ -1,4 +1,4 @@
-package seedu.address.model.list;
+package seedu.address.model.tasklist;
 
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
@@ -25,7 +25,7 @@ public class TaskList{
     public TaskList(String name) throws IllegalValueException{
         assert name != null;
         String trimmedName = name.trim();
-        if (!IsValidListName(trimmedName)) {
+        if (!isValidListName(trimmedName)) {
             throw new IllegalValueException(MESSAGE_LIST_CONSTRAINTS);
         }
         this.name = trimmedName;
@@ -35,16 +35,21 @@ public class TaskList{
     /**
      * Returns true if a given string is a valid list name.
      */
-    private boolean IsValidListName(String trimmedName) {
+    public static boolean isValidListName(String trimmedName) {
         // TODO Auto-generated method stub
         return true;
     }
 
     
     public void add(Tag tag) throws DuplicateTagException{
+        assert tag != null;
+        
         tags.add(tag);
     }
     
+    public UniqueTagList getTags() {
+        return tags;
+    }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -62,6 +67,16 @@ public class TaskList{
      */
     public String toString() {
         return '{' + name + '}';
+    }
+
+    /**
+     * Reset the TaskList with a new TaskList as the name
+     */
+    public void resetData(TaskList editedList) {
+        assert editedList != null;
+        
+        this.name = editedList.name;
+        this.tags = editedList.tags;
     }
 
 }
