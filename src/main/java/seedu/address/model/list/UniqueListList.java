@@ -36,7 +36,7 @@ public class UniqueListList implements Iterable<TaskList> {
      * Creates a UniqueListList using given String lists.
      * Enforces no nulls or duplicates.
      */
-    public UniqueListList(String... lists) throws DuplicateTagException, IllegalValueException {
+    public UniqueListList(String... lists) throws DuplicateListException, IllegalValueException {
         final List<TaskList> listList = new ArrayList<TaskList>();
         for (String list : lists) {
             listList.add(new TaskList(list));
@@ -48,11 +48,11 @@ public class UniqueListList implements Iterable<TaskList> {
      * Creates a UniqueListList using given lists.
      * Enforces no nulls or duplicates.
      */
-    public UniqueListList(TaskList... lists) throws DuplicateTagException {
+    public UniqueListList(TaskList... lists) throws DuplicateListException {
         assert !CollectionUtil.isAnyNull((Object[]) lists);
         final List<TaskList> initialLists = Arrays.asList(lists);
         if (!CollectionUtil.elementsAreUnique(initialLists)) {
-            throw new DuplicateTagException();
+            throw new DuplicateListException();
         }
         internalList.addAll(initialLists);
     }
@@ -61,7 +61,7 @@ public class UniqueListList implements Iterable<TaskList> {
      * Creates a UniqueListList using given lists.
      * Enforces no null or duplicate elements.
      */
-    public UniqueListList(Collection<TaskList> lists) throws DuplicateTagException {
+    public UniqueListList(Collection<TaskList> lists) throws DuplicateListException {
         this();
         setLists(lists);
     }
@@ -98,10 +98,10 @@ public class UniqueListList implements Iterable<TaskList> {
         this.internalList.setAll(replacement.internalList);
     }
 
-    public void setLists(Collection<TaskList> lists) throws DuplicateTagException {
+    public void setLists(Collection<TaskList> lists) throws DuplicateListException {
         assert !CollectionUtil.isAnyNull(lists);
         if (!CollectionUtil.elementsAreUnique(lists)) {
-            throw new DuplicateTagException();
+            throw new DuplicateListException();
         }
         internalList.setAll(lists);
     }
@@ -129,10 +129,10 @@ public class UniqueListList implements Iterable<TaskList> {
      *
      * @throws DuplicateTagException if the Tag to add is a duplicate of an existing Tag in the list.
      */
-    public void add(TaskList toAdd) throws DuplicateTagException {
+    public void add(TaskList toAdd) throws DuplicateListException {
         assert toAdd != null;
         if (contains(toAdd)) {
-            throw new DuplicateTagException();
+            throw new DuplicateListException();
         }
         internalList.add(toAdd);
     }
@@ -166,9 +166,15 @@ public class UniqueListList implements Iterable<TaskList> {
     /**
      * Signals that an operation would have violated the 'no duplicates' property of the list.
      */
-    public static class DuplicateTagException extends DuplicateDataException {
-        protected DuplicateTagException() {
+    public static class DuplicateListException extends DuplicateDataException {
+        protected DuplicateListException() {
             super("Operation would result in duplicate lists");
+        }
+    }
+    
+    public static class ListNotFoundException extends Exception{
+        protected ListNotFoundException() {
+            super("The list requested is not found");
         }
     }
 
