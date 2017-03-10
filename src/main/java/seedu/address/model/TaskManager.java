@@ -17,6 +17,8 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
+import seedu.address.model.tasklist.TaskList;
+import seedu.address.model.tasklist.UniqueListList;
 
 /**
  * Wraps all data at the task-manager level
@@ -26,6 +28,7 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     private final UniqueTaskList tasks;
     private final UniqueTagList tags;
+    private final UniqueListList lists;
 
     /*
      * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
@@ -37,12 +40,13 @@ public class TaskManager implements ReadOnlyTaskManager {
     {
         tasks = new UniqueTaskList();
         tags = new UniqueTagList();
+        lists = new UniqueListList();
     }
 
     public TaskManager() {}
 
     /**
-     * Creates an TaskManager using the Tasks and Tags in the {@code toBeCopied}
+     * Creates an TaskManager using the Tasks ,Tags and Lists in the {@code toBeCopied}
      */
     public TaskManager(ReadOnlyTaskManager toBeCopied) {
         this();
@@ -59,6 +63,10 @@ public class TaskManager implements ReadOnlyTaskManager {
     public void setTags(Collection<Tag> tags) throws UniqueTagList.DuplicateTagException {
         this.tags.setTags(tags);
     }
+    
+    public void setLists(Collection<TaskList> lists) throws UniqueListList.DuplicateListException {
+        this.lists.setLists(lists);
+    }
 
     public void resetData(ReadOnlyTaskManager newData) {
         assert newData != null;
@@ -73,6 +81,11 @@ public class TaskManager implements ReadOnlyTaskManager {
             assert false : "TaskManagers should not have duplicate tags";
         }*/
         syncMasterTagListWith(tasks);
+        try {
+            setLists(newData.getListList());
+        } catch (UniqueListList.DuplicateListException e) {
+            assert false : "TaskMangers shoudl not have duplicate lists";
+        }
     }
 
 //// task-level operations
@@ -159,11 +172,53 @@ public class TaskManager implements ReadOnlyTaskManager {
         tags.add(t);
     }
 
+//// list-level operations
+    
+    /**
+     * Add a TaskList in the master lists
+     * 
+     * @param list
+     * @throws UniqueListList.DuplicateListException if lists already has the list with the same name.
+     */
+    public void addList(TaskList list) throws UniqueListList.DuplicateListException {
+        lists.add(list);
+    }
+    
+    /**
+     * Remove a TastList in the master lists
+     * 
+     * @param list
+     * @return true if the removal is successful; false if there is no such list previously
+     * @throws UniqueListList.ListNotFoundException if the list is not found
+     */
+    public boolean removeList(TaskList list) throws UniqueListList.ListNotFoundException {
+        if (lists.remove(list)) {
+            return true;
+        } else {
+            throw new UniqueListList.ListNotFoundException();
+        }
+    }
+    
+    /**
+     * Update a TaskList with new List
+     * 
+     * @param index
+     * @param editedList which is going to replace the old TaskList
+     * @throws UniqueListList.DuplicateListException if updating causes duplicate lists in the master list.
+     */
+    public void updateList(int index, TaskList editedList)
+            throws UniqueListList.DuplicateListException {
+        assert editedList != null;
+        lists.updateTask(index, editedList);
+    }
+    
+    
 //// util methods
 
     @Override
     public String toString() {
-        return tasks.asObservableList().size() + " tasks, " + tags.asObservableList().size() +  " tags";
+        return tasks.asObservableList().size() + " tasks, " + tags.asObservableList().size() +  " tags, " 
+                + lists.asObservableList().size() + " lists";
         // TODO: refine later
     }
 
@@ -178,16 +233,23 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     @Override
+    public ObservableList<TaskList> getListList() {
+        return new UnmodifiableObservableList<>(lists.asObservableList());
+    }
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskManager // instanceof handles nulls
                 && this.tasks.equals(((TaskManager) other).tasks)
-                && this.tags.equalsOrderInsensitive(((TaskManager) other).tags));
+                && this.tags.equalsOrderInsensitive(((TaskManager) other).tags)
+                && this.lists.equalsOrderInsensitive(((TaskManager) other).lists));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(tasks, tags);
+        return Objects.hash(tasks, tags, lists);
     }
+
+
 }
