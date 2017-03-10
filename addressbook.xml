@@ -1,30 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addressbook>
     <tasks>
-        <name>CS2103 Lecture</name>
-        <date>10/3/2017</date>
-        <time>16:00</time>
-        <tag>CS2103</tag>
-        <description>Interesting module</description>
-        <venue>I3</venue>
-        <priority>3</priority>
-    </tasks>
-    <tasks>
-        <name>CS2103 Tutorial</name>
-        <date>8/3/2017</date>
-        <time>10:00</time>
-        <tag>CS210t</tag>
+        <name>Name</name>
+        <date></date>
+        <time></time>
+        <tag></tag>
         <description></description>
-        <venue>COMM2</venue>
-        <priority>2</priority>
-    </tasks>
-    <tasks>
-        <name>NDP Audition</name>
-        <date>12/03/2017</date>
-        <time>9:30</time>
-        <tag>NDP</tag>
-        <description></description>
-        <venue>PAHQ</venue>
-        <priority>2</priority>
+        <venue></venue>
+        <priority></priority>
     </tasks>
 </addressbook>
