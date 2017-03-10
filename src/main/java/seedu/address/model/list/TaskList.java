@@ -9,7 +9,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a List in Dueue.
  * Guarantees: name is valid as declared in {@link #isValidListName(String)}
  */
-public class List{
+public class TaskList{
     
     public static final String MESSAGE_LIST_CONSTRAINTS = "List name should not begin with digits.";
     //TODO: public static final String LIST_VALIDATION_REGEX = ;
@@ -22,7 +22,7 @@ public class List{
      *
      * @throws IllegalValueException if the given list name string is invalid.
      */
-    public List(String name) throws IllegalValueException{
+    public TaskList(String name) throws IllegalValueException{
         assert name != null;
         String trimmedName = name.trim();
         if (!IsValidListName(trimmedName)) {
@@ -48,8 +48,8 @@ public class List{
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof List // instanceof handles nulls
-                && this.name.equals(((List) other).name)); // state check
+                || (other instanceof TaskList // instanceof handles nulls
+                && this.name.equals(((TaskList) other).name)); // state check
     }
 
     @Override
