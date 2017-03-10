@@ -31,6 +31,7 @@ public class Task implements ReadOnlyTask {
         this.time = time;
         this.description = description;
         this.tag =  tag;
+        this.venue = venue;
         this.priority = priority;
         this.isFavorite = isFavorite;
     }
