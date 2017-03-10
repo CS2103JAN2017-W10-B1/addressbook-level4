@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addressbook>
     <tasks>
-        <name>Name</name>
+        <name>GYM</name>
         <date></date>
         <time></time>
         <tag></tag>
         <description></description>
         <venue></venue>
+        <priority></priority>
+    </tasks>
+    <tasks>
+        <name>CS2103</name>
+        <date></date>
+        <time></time>
+        <tag></tag>
+        <description></description>
+        <venue>I3</venue>
         <priority></priority>
     </tasks>
 </addressbook>
