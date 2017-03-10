@@ -1,5 +1,5 @@
 .background {
-    -fx-background-color: derive(#CCFF66, 100%);
+    -fx-background-color: derive(#B3D9FF, 100%);
 }
 
 .label {
@@ -39,9 +39,9 @@
 }
 
 .table-view {
-    -fx-base: #CCFF66;
-    -fx-control-inner-background: #CCFF66;
-    -fx-background-color: #CCFF66;
+    -fx-base: #B3D9FF;
+    -fx-control-inner-background: #B3D9FF;
+    -fx-background-color: #B3D9FF;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -76,14 +76,14 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-border-color: transparent #CCFF66 transparent #CCFF66;
-    -fx-background-color: transparent, derive(#CCFF66, 10%);
+    -fx-border-color: transparent #B3D9FF transparent #B3D9FF;
+    -fx-background-color: transparent, derive(#B3D9FF, 10%);
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#CCFF66, 20%);
+    -fx-background-color: derive(#B3D9FF, 20%);
 }
 
 .list-cell {
@@ -107,17 +107,17 @@
 }
 
 .anchor-pane {
-     -fx-background-color: derive(#CCFF66, 20%);
+     -fx-background-color: derive(#B3D9FF, 20%);
 }
 
 .anchor-pane-with-border {
-     -fx-background-color: derive(#CCFF66, 20%);
-     -fx-border-color: derive(#CCFF66, 10%);
+     -fx-background-color: derive(#B3D9FF, 20%);
+     -fx-border-color: derive(#B3D9FF, 10%);
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#CCFF66, 20%);
+    -fx-background-color: derive(#B3D9FF, 20%);
     -fx-text-fill: black;
 }
 
@@ -134,8 +134,8 @@
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#CCFF66, 30%);
-    -fx-border-color: derive(#CCFF66, 25%);
+    -fx-background-color: derive(#B3D9FF, 30%);
+    -fx-border-color: derive(#B3D9FF, 25%);
     -fx-border-width: 1px;
 }
 
@@ -144,17 +144,17 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(#CCFF66, 30%);
-    -fx-border-color: derive(#CCFF66, 30%);
+    -fx-background-color: derive(#B3D9FF, 30%);
+    -fx-border-color: derive(#B3D9FF, 30%);
     -fx-border-width: 1px;
 }
 
 .grid-pane .anchor-pane {
-    -fx-background-color: derive(#CCFF66, 30%);
+    -fx-background-color: derive(#B3D9FF, 30%);
 }
 
 .context-menu {
-    -fx-background-color: derive(#CCFF66, 50%);
+    -fx-background-color: derive(#B3D9FF, 50%);
 }
 
 .context-menu .label {
@@ -162,7 +162,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#CCFF66, 20%);
+    -fx-background-color: derive(#B3D9FF, 20%);
 }
 
 .menu-bar .label {
@@ -186,7 +186,7 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: #CCFF66;
+    -fx-background-color: #B3D9FF;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
@@ -199,7 +199,7 @@
 
 .button:pressed, .button:default:hover:pressed {
   -fx-background-color: white;
-  -fx-text-fill: #CCFF66;
+  -fx-text-fill: #B3D9FF;
 }
 
 .button:focused {
@@ -212,7 +212,7 @@
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
-    -fx-background-color: #CCFF66;
+    -fx-background-color: #B3D9FF;
     -fx-text-fill: white;
 }
 
@@ -226,11 +226,11 @@
 }
 
 .dialog-pane {
-    -fx-background-color: #CCFF66;
+    -fx-background-color: #B3D9FF;
 }
 
 .dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #CCFF66;
+    -fx-background-color: #B3D9FF;
 }
 
 .dialog-pane > *.label.content {
@@ -240,7 +240,7 @@
 }
 
 .dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#CCFF66, 25%);
+    -fx-background-color: derive(#B3D9FF, 25%);
 }
 
 .dialog-pane:header *.header-panel *.label {
@@ -251,12 +251,12 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#CCFF66, 50%);
+    -fx-background-color: derive(#B3D9FF, 50%);
     -fx-background-insets: 3;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
-    -fx-background-color: transparent;
+    -fx-background-color: #B3D9FF;
     -fx-padding: 0 0 0 0;
 }
 
@@ -273,7 +273,7 @@
 }
 
 #cardPane {
-    -fx-background-color: transparent;
+    -fx-background-color: #B3D9FF;
     -fx-border-color: #d6d6d6;
     -fx-border-width: 1 1 1 1;
 }
