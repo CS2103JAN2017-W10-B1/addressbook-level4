@@ -47,9 +47,14 @@ public class TaskList{
         tags.add(tag);
     }
     
+    public String getName(){
+        return name;
+    }
+    
     public UniqueTagList getTags() {
         return tags;
     }
+    
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
