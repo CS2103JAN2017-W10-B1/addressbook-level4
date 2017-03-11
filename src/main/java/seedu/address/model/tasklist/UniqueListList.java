@@ -149,7 +149,7 @@ public class UniqueListList implements Iterable<TaskList> {
      *      another existing list in the list.
      * @throws IndexOutOfBoundsException if {@code index} < 0 or >= the size of the list.
      */
-    public void updateTask(int index, TaskList editedList) throws DuplicateListException {
+    public void updateList(int index, TaskList editedList) throws DuplicateListException {
         assert editedList != null;
 
         TaskList listToUpdate = internalList.get(index);
