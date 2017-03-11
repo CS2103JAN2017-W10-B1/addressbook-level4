@@ -181,6 +181,8 @@ public class TaskManager implements ReadOnlyTaskManager {
      * @throws UniqueListList.DuplicateListException if lists already has the list with the same name.
      */
     public void addList(TaskList list) throws UniqueListList.DuplicateListException {
+        assert list != null;
+        
         lists.add(list);
     }
     
@@ -209,8 +211,10 @@ public class TaskManager implements ReadOnlyTaskManager {
     public void updateList(int index, TaskList editedList)
             throws UniqueListList.DuplicateListException {
         assert editedList != null;
-        lists.updateTask(index, editedList);
+        lists.updateList(index, editedList);
     }
+    
+    
     
     
 //// util methods
