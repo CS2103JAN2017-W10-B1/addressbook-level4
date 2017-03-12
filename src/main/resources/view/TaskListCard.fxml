@@ -21,7 +21,7 @@
                <children>
                       <VBox alignment="CENTER_LEFT">
                           <stylesheets>
-                              <URL value="@BlueTheme.css" />
+                              <URL value="@MainTheme.css" />
                               <URL value="@Extensions.css" />
                           </stylesheets>
                           <padding>
