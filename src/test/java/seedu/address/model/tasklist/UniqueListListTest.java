@@ -31,7 +31,7 @@ public class UniqueListListTest {
     @Test
     public void update() throws DuplicateListException, IllegalValueException {
         tester.add(new TaskList("add1"));
-        tester.updateTask(0, new TaskList("editedAdd1"));
+        tester.updateList(0, new TaskList("editedAdd1"));
         assertFalse(tester.contains(new TaskList("add1")));
         assertTrue(tester.contains(new TaskList("editedAdd1")));
     }
