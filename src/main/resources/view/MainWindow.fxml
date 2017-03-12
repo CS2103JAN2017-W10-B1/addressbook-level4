@@ -11,7 +11,7 @@
 
 <VBox prefHeight="187.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <stylesheets>
-      <URL value="@GreenTheme.css" />
+      <URL value="@MainTheme.css" />
       <URL value="@Extensions.css" />
    </stylesheets>
    <children>
@@ -56,6 +56,6 @@
             </VBox>
          </items>
       </SplitPane>
-      <AnchorPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+      <AnchorPane fx:id="statusbarPlaceholder" prefWidth="594.0" VBox.vgrow="NEVER" />
    </children>
 </VBox>
