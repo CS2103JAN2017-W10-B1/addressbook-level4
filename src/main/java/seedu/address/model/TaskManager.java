@@ -10,6 +10,7 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.UnmodifiableObservableList;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.tag.UniqueTagList.DuplicateTagException;
@@ -19,6 +20,8 @@ import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.model.tasklist.TaskList;
 import seedu.address.model.tasklist.UniqueListList;
+import seedu.address.model.tasklist.UniqueListList.DuplicateListException;
+import seedu.address.model.tasklist.UniqueListList.ListNotFoundExceptionWhenAdding;
 
 /**
  * Wraps all data at the task-manager level
@@ -71,21 +74,22 @@ public class TaskManager implements ReadOnlyTaskManager {
     public void resetData(ReadOnlyTaskManager newData) {
         assert newData != null;
         try {
-            setTasks(newData.getTaskList());
-        } catch (UniqueTaskList.DuplicateTaskException e) {
-            assert false : "TaskManagers should not have duplicate tasks";
+            setLists(newData.getListList());
+        } catch (UniqueListList.DuplicateListException e) {
+            assert false : "TaskMangers should not have duplicate lists";
         }
         /*try {
             setTags(newData.getTagList());
         } catch (UniqueTagList.DuplicateTagException e) {
             assert false : "TaskManagers should not have duplicate tags";
         }*/
-        syncMasterTagListWith(tasks);
         try {
-            setLists(newData.getListList());
-        } catch (UniqueListList.DuplicateListException e) {
-            assert false : "TaskMangers shoudl not have duplicate lists";
+            setTasks(newData.getTaskList());
+        } catch (UniqueTaskList.DuplicateTaskException e) {
+            assert false : "TaskManagers should not have duplicate tasks";
         }
+        syncMasterTagListWith(tasks);
+        
     }
 
 //// task-level operations
@@ -94,12 +98,30 @@ public class TaskManager implements ReadOnlyTaskManager {
      * Adds a task to the task manager.
      * Also checks the new task's tags and updates {@link #tags} with any new tags found,
      * and updates the Tag objects in the task to point to those in {@link #tags}.
-     *
-     * @throws UniqueTaskList.DuplicateTaskException if an equivalent task already exists.
+     * @throws IllegalValueException 
      */
-    public void addTask(Task p) throws UniqueTaskList.DuplicateTaskException {
+    public void addTask(Task p) throws IllegalValueException {
         syncMasterTagListWith(p);
+        try {
+            updateListsWhenAdding(p);
+        } catch (ListNotFoundExceptionWhenAdding e) {
+            addNewListWhenAddingTask(p);
+        }
         tasks.add(p);
+    }
+
+    private void addNewListWhenAddingTask(Task p)
+            throws IllegalValueException, DuplicateTaskException, DuplicateListException {
+        TaskList taskList = new TaskList(p.getTag().getName());
+        taskList.add(p);
+        addList(taskList);
+    }
+
+    private void updateListsWhenAdding(Task p)
+        throws IllegalValueException, ListNotFoundExceptionWhenAdding, DuplicateTaskException {
+        String listName = p.getTag().getName();
+        int listIndex = lists.indexOf(new TaskList(listName));
+        lists.get(listIndex).add(p);
     }
 
     /**
@@ -158,6 +180,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         tasks.forEach(this::syncMasterTagListWith);
     }
 
+    
     public boolean removeTask(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
         if (tasks.remove(key)) {
             return true;
@@ -214,7 +237,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         lists.updateList(index, editedList);
     }
     
-    
+
     
     
 //// util methods
