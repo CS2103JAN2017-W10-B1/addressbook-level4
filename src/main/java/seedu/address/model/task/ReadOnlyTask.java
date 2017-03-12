@@ -25,12 +25,12 @@ public interface ReadOnlyTask {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                 && other.getName().equals(this.getName()) // state checks here onwards
-                && other.getDate().equals(this.getDate())
-                && other.getTime().equals(this.getTime())
-                && other.getTag().equals(this.getTag())
-                && other.getDescription().equals(this.getDescription())
-                && other.getVenue().equals(this.getVenue())
-                && other.getPriority().equals(this.getPriority())
+                && other.getDate() != null? other.getDate().equals(this.getDate()): this.getDate() == null
+                && other.getTime() != null? other.getTime().equals(this.getTime()): this.getTime() == null
+                && other.getTag() != null? other.getTag().equals(this.getTag()): this.getTag() == null
+                && other.getDescription() != null? other.equals(this.getDescription()): this.getDescription() == null
+                && other.getVenue() != null? other.getVenue().equals(this.getVenue()): this.getVenue() == null
+                && other.getPriority() != null? other.getPriority().equals(this.getPriority()): this.getPriority() == null
                 && other.isFavorite()==this.isFavorite());
     }
 
