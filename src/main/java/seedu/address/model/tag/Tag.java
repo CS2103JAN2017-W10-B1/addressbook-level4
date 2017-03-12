@@ -2,6 +2,8 @@ package seedu.address.model.tag;
 
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.task.Task;
+import seedu.address.model.tasklist.TaskList;
 
 /**
  * Represents a Tag in the address book.
@@ -12,7 +14,9 @@ public class Tag {
     public static final String MESSAGE_TAG_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String tagName;
+    public String tagName;
+    public Task task;
+    public TaskList list;
 
     /**
      * Validates given tag name.
@@ -28,7 +32,7 @@ public class Tag {
         this.tagName = trimmedName;
     }
 
-    /**
+     /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
@@ -36,6 +40,25 @@ public class Tag {
     	//return test.matches(TAG_VALIDATION_REGEX);
     }
 
+    public Task getTask(){
+        return this.task;
+    }
+    
+    public TaskList getList(){
+        return this.list;
+    }
+
+    public void setTask(Task task){
+        assert task != null;
+        this.task = task;
+    }
+    
+    public void setList(TaskList list){
+        assert list != null;
+        this.list = list;
+        this.tagName = list.getName();
+    }
+    
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
