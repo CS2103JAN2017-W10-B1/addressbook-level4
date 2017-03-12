@@ -165,9 +165,9 @@ public class UniqueListList implements Iterable<TaskList> {
     }
 
     /**
-     * Removes the equivalent lsit from the list.
+     * Removes the equivalent list from the list.
      *
-     * @throws TaskNotFoundException if no such task could be found in the list.
+     * @throws ListNotFoundException if no such list could be found in the list.
      */
     public boolean remove(TaskList toRemove) throws ListNotFoundException {
         assert toRemove != null;
@@ -176,6 +176,24 @@ public class UniqueListList implements Iterable<TaskList> {
             throw new ListNotFoundException();
         }
         return listFoundAndDeleted;
+    }
+    
+    /**
+     * Return the index of the given taskList; 
+     * 
+     * @throws ListNotFoundExceptionWhenAdding if no such list in the list.
+     */
+    public int indexOf(TaskList list) throws ListNotFoundExceptionWhenAdding {
+        int index = internalList.indexOf(list);
+        if (index == -1) {
+            throw new ListNotFoundExceptionWhenAdding();
+        } else {
+            return index;
+        }
+    }
+    
+    public TaskList get(int index) {
+        return internalList.get(index);
     }
     
     @Override
@@ -213,9 +231,15 @@ public class UniqueListList implements Iterable<TaskList> {
         }
     }
     
-    public static class ListNotFoundException extends Exception{
+    public static class ListNotFoundException extends Exception {
         public ListNotFoundException() {
             super("The list requested is not found");
+        }
+    }
+    
+    public static class ListNotFoundExceptionWhenAdding extends Exception {
+        public ListNotFoundExceptionWhenAdding() {
+            super("The list requested is not found. Do you want to create a new list?");
         }
     }
 

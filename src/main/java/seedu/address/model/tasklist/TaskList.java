@@ -3,6 +3,9 @@ package seedu.address.model.tasklist;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.tag.UniqueTagList.DuplicateTagException;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList;
+import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
@@ -15,7 +18,7 @@ public class TaskList{
     //TODO: public static final String LIST_VALIDATION_REGEX = ;
     
     private String name;
-    private UniqueTagList tags;
+    private UniqueTaskList tasks;
     
     /**
      * Validates given list name.
@@ -29,7 +32,7 @@ public class TaskList{
             throw new IllegalValueException(MESSAGE_LIST_CONSTRAINTS);
         }
         this.name = trimmedName;
-        this.tags = new UniqueTagList();
+        this.tasks = new UniqueTaskList();
     }
 
     /**
@@ -41,18 +44,18 @@ public class TaskList{
     }
 
     
-    public void add(Tag tag) throws DuplicateTagException{
-        assert tag != null;
+    public void add(Task task) throws DuplicateTaskException{
+        assert task != null;
         
-        tags.add(tag);
+        tasks.add(task);
     }
     
     public String getName(){
         return name;
     }
     
-    public UniqueTagList getTags() {
-        return tags;
+    public UniqueTaskList getTasks() {
+        return tasks;
     }
     
     @Override
@@ -81,7 +84,7 @@ public class TaskList{
         assert editedList != null;
         
         this.name = editedList.name;
-        this.tags = editedList.tags;
+        this.tasks = editedList.tasks;
     }
 
 }

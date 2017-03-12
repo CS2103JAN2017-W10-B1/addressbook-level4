@@ -15,8 +15,7 @@ public class Tag {
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
 
     public String tagName;
-    public Task task;
-    public TaskList list;
+
 
     /**
      * Validates given tag name.
@@ -40,23 +39,8 @@ public class Tag {
     	//return test.matches(TAG_VALIDATION_REGEX);
     }
 
-    public Task getTask(){
-        return this.task;
-    }
-    
-    public TaskList getList(){
-        return this.list;
-    }
-
-    public void setTask(Task task){
-        assert task != null;
-        this.task = task;
-    }
-    
-    public void setList(TaskList list){
-        assert list != null;
-        this.list = list;
-        this.tagName = list.getName();
+    public String getName() {
+        return this.tagName;
     }
     
     @Override
