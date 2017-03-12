@@ -55,7 +55,6 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setDate(Date date) {
-        assert date != null;
         this.date = date;
     }
 
@@ -65,7 +64,6 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setTime(Time time) {
-        assert time != null;
         this.time = time;
     }
 
@@ -75,7 +73,6 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setDescription(Description description) {
-        assert description != null;
         this.description = description;
     }
 
@@ -100,7 +97,6 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setVenue(Venue venue){
-        assert venue != null;
         this.venue = venue;
     }
 
@@ -110,7 +106,6 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setPriority(Priority priority){
-        assert priority != null;
         this.priority = priority;
     }
 
