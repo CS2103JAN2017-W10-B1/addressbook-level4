@@ -18,12 +18,18 @@ public class TaskCard extends UiPart<Region> {
 
     @FXML
     private HBox cardPane;
+//    @FXML
+//    private Label tag;
+   @FXML
+   private Label index;
     @FXML
     private Label name;
+//  @FXML
+//  private Label date;
+    @FXML
+    private Label time;    
     @FXML
     private Label description;
-    @FXML
-    private Label time;
     @FXML
     private Label venue;
     @FXML
@@ -33,16 +39,15 @@ public class TaskCard extends UiPart<Region> {
 
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
+        index.setText(displayedIndex + ". ");
         name.setText(task.getName().fullName);
         description.setText(task.getDescription().value);
-        time.setText(task.getTime().value);
-        venue.setText(task.getVenue().value);
-        priority.setText(task.getPriority().value);
-        isFavorite.setText(String.valueOf(task.isFavorite()));
-        initTags(task);
-    }
-
-    private void initTags(ReadOnlyTask task) {
+        time.setText("Time: " + task.getTime().value);
+//     date.setText("Date: " + task.getDate().value);
+        venue.setText("Venue: " + task.getVenue().value);
+        priority.setText("Priority: " + task.getPriority().value);
+        isFavorite.setText("Favorite: " + String.valueOf(task.isFavorite()));
+//     tag.setText(task.getTag().tagName);
     }
 }
 
