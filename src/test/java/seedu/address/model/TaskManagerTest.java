@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,6 +68,11 @@ public class TaskManagerTest {
         assertEquals(newManager.getTaskList().get(0), sample);
         assertEquals(newManager.getListList().get(0).getTasks().asObservableList().get(0), sample);
         assertEquals(newManager.getListList().get(0).getTasks().asObservableList().get(0), newManager.getTaskList().get(0));
+        Task sample2 = new Task(new Name("2"), null, null, null, new Tag("sampleTag"), null, null, false);
+        assertFalse(newManager.getListList().get(0).getTasks().contains(sample2));
+        newManager.addTask(sample2);
+        assertEquals(newManager.getTaskList().size(), 2);
+        assertEquals(newManager.getListList().size(), 1);
     }
     
     /*@Test
