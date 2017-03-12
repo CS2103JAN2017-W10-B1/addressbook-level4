@@ -39,13 +39,10 @@ public class AddCommandParser {
             String description = checkString(argsTokenizer.getValue(PREFIX_DESCRIPTION));
             String venue = checkString(argsTokenizer.getValue(PREFIX_VENUE));
             String priority = checkString(argsTokenizer.getValue(PREFIX_PRIORITY));
-            if(name != null){
-            	return new AddCommand(name, date, time, tag, description, venue, priority);
-            }
-            else{
-            	return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-            }
-        } catch (IllegalValueException ive) {
+            return new AddCommand(name, date, time, tag, description, venue, priority);
+        }catch(NoSuchElementException ive){
+        	return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
     }

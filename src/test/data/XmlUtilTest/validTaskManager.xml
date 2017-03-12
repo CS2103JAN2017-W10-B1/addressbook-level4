@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addressbook>
+    <tasks>
+        <name>Lunch</name>
+		<date>8/3/2017</date>
+		<time>16:00</time>
+		<description>Eat</description>
+		<tag>Personal</tag>
+		<venue>canteen</venue>
+		<priority>3</priority>
+		<isFavorite>true</isFavorite>
+    </tasks>
+    <tasks>
+        <name>Lecture</name>
+		<date>10/3/2017</date>
+		<time>16:00</time>
+		<description>Listen to Uncel Soo</description>
+		<tag>CS2103</tag>
+		<venue>i3</venue>
+		<priority>3</priority>
+		<isFavorite>false</isFavorite>
+    </tasks>
+    <tasks>
+        <name>Homework</name>
+		<date>24/3/2017</date>
+		<time>23:59</time>
+		<description>Do Do Do</description>
+		<tag>QF3101</tag>
+		<venue>Home</venue>
+		<priority>3</priority>
+		<isFavorite>false</isFavorite>
+    </tasks>
+    <tasks>
+        <name>Tutorial</name>
+		<date>15/3/2017</date>
+		<time>10:00</time>
+		<description>Demo to Uncle Soo</description>
+		<tag>CS2103</tag>
+		<venue>Soc</venue>
+		<priority>3</priority>
+		<isFavorite>false</isFavorite>
+    </tasks>
+    <tasks>
+        <name>Dinner</name>
+		<date>12/3/2017</date>
+		<time>18:00</time>
+		<description>Eat alone</description>
+		<tag>Personal</tag>
+		<venue>Canteen</venue>
+		<priority>1</priority>
+		<isFavorite>false</isFavorite>
+    </tasks>
+    <tasks>
+        <name>Dinner Tomorrow</name>
+		<date>13/3/2017</date>
+		<time>17:40</time>
+		<description>Eat alone</description>
+		<tag>Personal</tag>
+		<venue>Unknown</venue>
+		<priority>1</priority>
+		<isFavorite>true</isFavorite>
+    </tasks>
+    <tasks>
+        <name>Event Tomorrow</name>
+		<date>13/3/2017</date>
+		<time>18:00</time>
+		<description>Watch someone eat</description>
+		<tag>Peronsal</tag>
+		<venue>Room</venue>
+		<priority>3</priority>
+		<isFavorite>true</isFavorite>
+    </tasks>
+    <tasks>
+        <name>Give Tutorial</name>
+		<date>13/3/2017</date>
+		<time>11:00</time>
+		<description>Someone coming</description>
+		<tag>CS1010S</tag>
+		<venue>Soc</venue>
+		<priority>3</priority>
+		<isFavorite>true</isFavorite>
+    </tasks>
+    <tasks>
+        <name>Lunch tomorrow</name>
+		<date>13/3/2017</date>
+		<time>11:00</time>
+		<description>Eat food</description>
+		<tag>Personal</tag>
+		<venue>Science</venue>
+		<priority>1</priority>
+		<isFavorite>false</isFavorite>
+    </tasks>
+</addressbook>
