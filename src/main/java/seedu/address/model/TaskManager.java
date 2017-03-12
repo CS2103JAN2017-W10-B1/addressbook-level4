@@ -1,13 +1,8 @@
 package seedu.address.model;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -18,6 +13,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
+import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 import seedu.address.model.tasklist.TaskList;
 import seedu.address.model.tasklist.UniqueListList;
 import seedu.address.model.tasklist.UniqueListList.DuplicateListException;
@@ -98,9 +94,9 @@ public class TaskManager implements ReadOnlyTaskManager {
      * Adds a task to the task manager.
      * Also checks the new task's tags and updates {@link #tags} with any new tags found,
      * and updates the Tag objects in the task to point to those in {@link #tags}.
-     * @throws IllegalValueException 
+     * @throws DuplicateTaskException 
      */
-    public void addTask(Task p) throws IllegalValueException {
+    public void addTask(Task p) throws DuplicateTaskException {
         syncMasterTagListWith(p);
         try {
             updateListsWhenAdding(p);
@@ -110,39 +106,88 @@ public class TaskManager implements ReadOnlyTaskManager {
         tasks.add(p);
     }
 
-    private void addNewListWhenAddingTask(Task p)
-            throws IllegalValueException, DuplicateTaskException, DuplicateListException {
-        TaskList taskList = new TaskList(p.getTag().getName());
-        taskList.add(p);
-        addList(taskList);
+    /** helper method for addTask 
+     * @throws DuplicateTaskException */
+    private void addNewListWhenAddingTask(Task p) throws DuplicateTaskException {
+        TaskList taskList;
+        try {
+            taskList = new TaskList(p.getTag().getName());
+            taskList.add(p);
+            addList(taskList);
+        } catch (IllegalValueException e) {
+            assert false : "not possible";
+        }
     }
 
+    /** helper method for addTask 
+     * @throws DuplicateTaskException */
     private void updateListsWhenAdding(Task p)
-        throws IllegalValueException, ListNotFoundExceptionWhenAdding, DuplicateTaskException {
+        throws ListNotFoundExceptionWhenAdding, DuplicateTaskException {
         String listName = p.getTag().getName();
-        int listIndex = lists.indexOf(new TaskList(listName));
-        lists.get(listIndex).add(p);
+        int listIndex;
+        try {
+            listIndex = lists.indexOf(new TaskList(listName));
+            lists.get(listIndex).add(p);
+        } catch (IllegalValueException e) {
+            assert false : "not possible";
+        }
     }
 
     /**
      * Updates the task in the list at position {@code index} with {@code editedReadOnlyTask}.
      * {@code TaskManager}'s tag list will be updated with the tags of {@code editedReadOnlyTask}.
+     * @throws IllegalValueException 
+     * @throws DuplicateListException 
+     * @throws DuplicateTaskException 
      * @see #syncMasterTagListWith(Task)
      *
-     * @throws DuplicateTaskException if updating the task's details causes the task to be equivalent to
-     *      another existing task in the list.
      * @throws IndexOutOfBoundsException if {@code index} < 0 or >= the size of the list.
      */
     public void updateTask(int index, ReadOnlyTask editedReadOnlyTask)
-            throws UniqueTaskList.DuplicateTaskException {
+            throws DuplicateTaskException {
         assert editedReadOnlyTask != null;
 
         Task editedTask = new Task(editedReadOnlyTask);
+       
+        updateListWhenUpdating(index, editedTask);
+        
         syncMasterTagListWith(editedTask);
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any task
         // in the task list.
         tasks.updateTask(index, editedTask);
+    }
+
+    /** Helper method in update command. Updating the lists */
+    private void updateListWhenUpdating(int index, Task editedTask)
+            throws DuplicateTaskException {
+        removeTaskInOldLisk(index);
+        addTaskInNewList(editedTask);
+    }
+
+    private void addTaskInNewList(Task editedTask) throws DuplicateTaskException {
+        String listNameEdited = editedTask.getTag().getName();
+        try {
+            int listIndex = lists.indexOf(new TaskList(listNameEdited));
+            lists.get(listIndex).add(editedTask);
+        } catch (ListNotFoundExceptionWhenAdding e) {
+            addNewListWhenAddingTask(editedTask);
+        } catch (IllegalValueException e) {
+            assert false : "not possible";
+        }
+    }
+
+    private void removeTaskInOldLisk(int index) {
+        ReadOnlyTask originalTask = tasks.get(index);
+        String listNameOriginal = originalTask.getTag().getName();
+        try {
+            int listIndex = lists.indexOf(new TaskList(listNameOriginal));
+            lists.get(listIndex).getTasks().remove(originalTask);
+        } catch (ListNotFoundExceptionWhenAdding | IllegalValueException e) {
+            assert false : "not possible";
+        } catch (TaskNotFoundException e) {
+            assert false : "not possible";
+        }
     }
 
     /**
@@ -182,11 +227,25 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     
     public boolean removeTask(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
+        updateListsWhenDeleting(key);
         if (tasks.remove(key)) {
             return true;
         } else {
             throw new UniqueTaskList.TaskNotFoundException();
         }
+    }
+    
+    /** helper method for deleteTask */
+    private void updateListsWhenDeleting(ReadOnlyTask p) {
+        String listName = p.getTag().getName();
+        int listIndex = -1;
+        try {
+            listIndex = lists.indexOf(new TaskList(listName));
+        } catch (ListNotFoundExceptionWhenAdding | IllegalValueException e) {
+            assert false : "not possible";
+        }
+        assert listIndex >= 0;
+        lists.get(listIndex).getTasks().delete(p);
     }
 
 //// tag-level operations

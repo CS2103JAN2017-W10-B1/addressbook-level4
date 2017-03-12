@@ -8,17 +8,15 @@ import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.events.model.DueueChangedEvent;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
+import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 import seedu.address.model.tasklist.TaskList;
 import seedu.address.model.tasklist.UniqueListList;
-import seedu.address.model.tasklist.UniqueListList.DuplicateListException;
-import seedu.address.model.tasklist.UniqueListList.ListNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -72,20 +70,14 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public synchronized void addTask(Task task) {
-        try {
-            taskManager.addTask(task);
-        } catch (IllegalValueException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    public synchronized void addTask(Task task) throws DuplicateTaskException {
+        taskManager.addTask(task);
         updateFilteredListToShowAllTasks();
         indicateTaskManagerChanged();
     }
 
     @Override
-    public void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
-            throws UniqueTaskList.DuplicateTaskException {
+    public void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask) throws UniqueTaskList.DuplicateTaskException {
         assert editedTask != null;
 
         int taskManagerIndex = filteredTasks.getSourceIndex(filteredTaskListIndex);
@@ -102,7 +94,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
     
     @Override
-    public synchronized void removeList(TaskList target) throws ListNotFoundException {
+    public synchronized void removeList(TaskList target) throws UniqueListList.ListNotFoundException {
         taskManager.removeList(target);
         indicateTaskManagerChanged();
     }
