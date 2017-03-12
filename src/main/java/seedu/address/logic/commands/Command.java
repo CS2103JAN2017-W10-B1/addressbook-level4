@@ -9,6 +9,8 @@ import seedu.address.model.Model;
  */
 public abstract class Command {
     protected Model model;
+    
+    public static final String MESSAGE_USAGE = "";
 
     /**
      * Constructs a feedback message to summarise an operation that displayed a listing of persons.
@@ -36,4 +38,12 @@ public abstract class Command {
     public void setData(Model model) {
         this.model = model;
     }
+    
+    /**
+     * Provides usage message for help command
+     */
+    public String getUsageMessage(){
+    	return MESSAGE_USAGE;
+    }
+
 }

@@ -9,6 +9,9 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Dueue has been cleared!";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clear all tasks in Dueue \n"
+            + "Parameters: Nil\n"
+            + "Example: " + COMMAND_WORD;
 
 
     @Override
