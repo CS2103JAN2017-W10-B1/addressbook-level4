@@ -102,7 +102,8 @@ public class ModelManager extends ComponentManager implements Model {
     }
     
     @Override
-    public void updateList(int filteredListListIndex, TaskList editedList) throws DuplicateListException {
+    public void updateList(int filteredListListIndex, TaskList editedList) throws
+            UniqueListList.DuplicateListException {
         assert editedList != null;
 
         int taskManagerIndex = filteredLists.getSourceIndex(filteredListListIndex);
