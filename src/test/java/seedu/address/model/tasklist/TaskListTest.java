@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Name;
+import seedu.address.model.task.Task;
 
 public class TaskListTest {
     
@@ -26,9 +28,9 @@ public class TaskListTest {
     @Test
     public void add() throws IllegalValueException {
         TaskList list1 = new TaskList("a");
-        assertFalse(list1.getTags() == null);
-        assertTrue(list1.getTags().toSet().size() == 0);
-        list1.add(new Tag("tag"));
-        assertTrue(list1.getTags().toSet().size() == 1);
+        assertFalse(list1.getTasks() == null);
+        assertTrue(list1.getTasks().asObservableList().size() == 0);
+        list1.add(new Task(new Name("task"), null, null, null, null, null, null, false));
+        assertTrue(list1.getTasks().asObservableList().size() == 1);
     }
 }

@@ -14,10 +14,12 @@ import org.junit.rules.ExpectedException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.task.Task;
 import seedu.address.model.tasklist.TaskList;
+import seedu.address.model.task.Name;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.testutil.TypicalTestTasks;
 
@@ -47,6 +49,26 @@ public class TaskManagerTest {
         assertEquals(newData, taskManager);
     }
 
+    @Test
+    public void emptyManager() {
+        TaskManager emptyManager = new TaskManager();
+        assertEquals(emptyManager.getTaskList().size(), 0);
+        assertEquals(emptyManager.getListList().size(), 0);
+        assertEquals(emptyManager.getTagList().size(), 0);
+    }
+    
+    @Test
+    public void addTask() throws IllegalValueException {
+        TaskManager newManager = new TaskManager();
+        Task sample = new Task(new Name("sampleName"), null, null, null, new Tag("sampleTag"), null, null, false);
+        newManager.addTask(sample);
+        assertEquals(newManager.getTaskList().size(), 1);
+        assertEquals(newManager.getListList().size(), 1);
+        assertEquals(newManager.getTaskList().get(0), sample);
+        assertEquals(newManager.getListList().get(0).getTasks().asObservableList().get(0), sample);
+        assertEquals(newManager.getListList().get(0).getTasks().asObservableList().get(0), newManager.getTaskList().get(0));
+    }
+    
     /*@Test
     public void resetData_withDuplicateTasks_throwsAssertionError() {
         TypicalTestTasks td = new TypicalTestTasks();
