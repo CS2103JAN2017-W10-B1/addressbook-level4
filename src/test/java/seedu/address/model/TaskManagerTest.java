@@ -19,7 +19,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 import seedu.address.model.tasklist.TaskList;
+import seedu.address.model.tasklist.UniqueListList.ListNotFoundException;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.testutil.TypicalTestTasks;
@@ -73,8 +75,72 @@ public class TaskManagerTest {
         newManager.addTask(sample2);
         assertEquals(newManager.getTaskList().size(), 2);
         assertEquals(newManager.getListList().size(), 1);
+        Task sample3 = new Task(new Name("3"), null, null, null, new Tag("sampleTag2"), null, null, false);
+        newManager.addTask(sample3);
+        assertEquals(newManager.getTaskList().size(), 3);
+        assertEquals(newManager.getListList().size(), 2);
     }
     
+    @Test
+    public void deleteTask() throws IllegalValueException, TaskNotFoundException {
+        TaskManager newManager = new TaskManager();
+        Task sample1= new Task(new Name("sampleName1"), null, null, null, new Tag("sampleTag1"), null, null, false);
+        Task sample2 = new Task(new Name("sampleName2"), null, null, null, new Tag("sampleTag1"), null, null, false);
+        Task sample3 = new Task(new Name("sampleName3"), null, null, null, new Tag("sampleTag3"), null, null, false);
+        newManager.addTask(sample1);
+        newManager.addTask(sample2);
+        newManager.addTask(sample3);
+        newManager.removeTask(sample1);
+        assertEquals(newManager.getTaskList().size(), 2);
+        newManager.removeTask(sample3);
+        assertEquals(newManager.getTaskList().size(), 1);
+        assertEquals(newManager.getListList().size(), 2);
+    }
+    
+    @Test
+    public void udpateTask() throws IllegalValueException {
+        TaskManager newManager = new TaskManager();
+        Task sample1= new Task(new Name("sampleName1"), null, null, null, new Tag("sampleTag1"), null, null, false);
+        Task sample2 = new Task(new Name("sampleName2"), null, null, null, new Tag("sampleTag1"), null, null, false);
+        Task sample3 = new Task(new Name("sampleName3"), null, null, null, new Tag("sampleTag3"), null, null, false);
+        ReadOnlyTask sample4 = new Task(new Name("sampleName4"), null, null, null, new Tag("sampleTag3"), null, null, false);
+        ReadOnlyTask sample5 = new Task(new Name("sampleName5"), null, null, null, new Tag("sampleTag5"), null, null, false);
+        newManager.addTask(sample1);
+        newManager.addTask(sample2);
+        newManager.addTask(sample3);
+        newManager.updateTask(1, sample4);
+        assertEquals(newManager.getTaskList().size(), 3);
+        assertEquals(newManager.getListList().size(), 2);
+        newManager.updateTask(1, sample5);
+        assertEquals(newManager.getTaskList().size(), 3);
+        assertEquals(newManager.getListList().size(), 3);
+    }
+    
+    @Test
+    public void addList() throws IllegalValueException {
+        TaskManager newManager = new TaskManager();
+        TaskList list1 = new TaskList("list1");
+        newManager.addList(list1);
+        assertEquals(newManager.getListList().size(), 1);
+    }
+    
+    @Test
+    public void deleteList() throws IllegalValueException, ListNotFoundException {
+        TaskManager newManager = new TaskManager();
+        TaskList list1 = new TaskList("list1");
+        newManager.addList(list1);
+        newManager.removeList(list1);
+        assertEquals(newManager.getListList().size(), 0);
+    }
+    
+    @Test
+    public void updateList() throws IllegalValueException {
+        TaskManager newManager = new TaskManager();
+        TaskList list1 = new TaskList("list1");
+        newManager.addList(list1);
+        newManager.updateList(0, new TaskList("list2"));
+        assertEquals(newManager.getListList().get(0).getName(), "list2");
+    }
     /*@Test
     public void resetData_withDuplicateTasks_throwsAssertionError() {
         TypicalTestTasks td = new TypicalTestTasks();
