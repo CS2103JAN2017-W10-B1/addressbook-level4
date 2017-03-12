@@ -11,9 +11,10 @@
 
 <HBox id="cardPane" fx:id="cardPane" prefHeight="147.0" prefWidth="437.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <GridPane HBox.hgrow="ALWAYS">
+        <GridPane prefHeight="147.0" prefWidth="437.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="336.0" />
+            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="101.0" />
             </columnConstraints>
             <children>
             <HBox>
@@ -35,7 +36,7 @@
                                     <Insets top="2.0" />
                                  </HBox.margin>
                               </Label>
-                                       <Label fx:id="name" alignment="TOP_LEFT" prefHeight="20.0" prefWidth="195.0" styleClass="cell_big_label" text="\$taskName" />
+                                       <Label fx:id="name" alignment="TOP_LEFT" prefHeight="20.0" prefWidth="149.0" styleClass="cell_big_label" text="\$taskName" />
                                     <Label fx:id="isFavorite" alignment="BOTTOM_RIGHT" prefHeight="16.0" prefWidth="76.0" styleClass="cell_small_label" text="\$isFavorite">
                                  <HBox.margin>
                                     <Insets top="3.0" />
@@ -60,22 +61,22 @@
                         <Insets />
                      </HBox.margin>
                       </VBox>
-                  <VBox alignment="TOP_RIGHT" maxWidth="92.0" prefHeight="147.0" prefWidth="65.0">
-                     <children>
-                              <Label fx:id="time" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="83.0" styleClass="cell_small_label" text="\$time" textAlignment="RIGHT">
-                           <VBox.margin>
-                              <Insets top="35.0" />
-                           </VBox.margin>
-                        </Label>
-                              <Label fx:id="venue" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="69.0" styleClass="cell_small_label" text="\$venue" textAlignment="RIGHT">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                     </children>
-                  </VBox>
                </children>
             </HBox>
+            <VBox alignment="TOP_RIGHT" maxWidth="98.0" prefHeight="147.0" prefWidth="98.0" GridPane.columnIndex="1">
+               <children>
+                        <Label fx:id="time" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="83.0" styleClass="cell_small_label" text="\$time" textAlignment="RIGHT">
+                     <VBox.margin>
+                        <Insets top="35.0" />
+                     </VBox.margin>
+                  </Label>
+                        <Label fx:id="venue" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="69.0" styleClass="cell_small_label" text="\$venue" textAlignment="RIGHT">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
             </children>
          <rowConstraints>
             <RowConstraints />
