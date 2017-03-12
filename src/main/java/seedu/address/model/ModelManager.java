@@ -8,6 +8,7 @@ import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.events.model.DueueChangedEvent;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.task.Task;
@@ -71,8 +72,13 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public synchronized void addTask(Task task) throws UniqueTaskList.DuplicateTaskException {
-        taskManager.addTask(task);
+    public synchronized void addTask(Task task) {
+        try {
+            taskManager.addTask(task);
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         updateFilteredListToShowAllTasks();
         indicateTaskManagerChanged();
     }
