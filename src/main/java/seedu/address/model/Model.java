@@ -45,6 +45,9 @@ public interface Model {
     /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
     
+    /** Updates the filter of the filtered task list to filter by the given list name*/
+    void updateFilteredTaskListGivenListName(Set<String> keywords);
+    
     /** Adds the given TaskList */
     void addList(TaskList list) throws UniqueListList.DuplicateListException;
     
