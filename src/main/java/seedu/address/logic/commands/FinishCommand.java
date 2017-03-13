@@ -61,7 +61,8 @@ public class FinishCommand extends Command {
         	Venue updatedVenue = taskToMark.getVenue();
         	Priority updatedPriority = taskToMark.getPriority();
 
-        	taskToMark  = new Task(updatedName, updatedDate, updatedTime, updatedDescription, updatedTag, updatedVenue, updatedPriority, false,true);
+        	taskToMark  = new Task(
+        	        updatedName, updatedDate, updatedTime, updatedDescription, updatedTag, updatedVenue, updatedPriority, false, true);
         }
      
         try {

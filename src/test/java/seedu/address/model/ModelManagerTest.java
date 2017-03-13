@@ -57,6 +57,13 @@ public class ModelManagerTest {
         assertEquals(modelManager.getFilteredTaskList().size(), 1);
         assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "gym");
         
+        modelManager.updateFilteredListToShowAllTasks();
+        assertEquals(modelManager.getFilteredTaskList().size(), 3);
+        
+        keywords.add("cs2103");
+        modelManager.updateFilteredTaskList(keywords);
+        assertEquals(modelManager.getFilteredTaskList().size(), 2);
+        
         modelManager = new ModelManager();
         modelManager.resetData(testUtil.getTypicalTaskManager());
         keywords.add("cs2103");

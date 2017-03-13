@@ -118,21 +118,36 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateFilteredListToShowAllTasks() {
+        filteredTasks.setPredicate(t -> !t.isFinished());
+    }
+    
+    @Override
+    public void updateFilteredListToShowAllTasksAll() {
         filteredTasks.setPredicate(null);
     }
 
     @Override
     public void updateFilteredTaskList(Set<String> keywords) {
+        updateFilteredTaskList(new PredicateExpression(new NameQualifierUnfinished(keywords)));
+    }
+    
+    @Override
+    public void updateFilteredTaskListAll(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
     }
-
-    private void updateFilteredTaskList(Expression expression) {
-        filteredTasks.setPredicate(expression::satisfies);
-    }
-
+    
     @Override
     public void updateFilteredTaskListGivenListName(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords)));
+    }
+
+    @Override
+    public void updateFilteredTaskListGivenListNameAll(Set<String> keywords) {
+        updateFilteredTaskList(new PredicateExpression(new TagQualifierUnfinished(keywords)));
+    }
+    
+    private void updateFilteredTaskList(Expression expression) {
+        filteredTasks.setPredicate(expression::satisfies);
     }
     //=========== Filtered List List Accessors ==============================================================
 
@@ -192,8 +207,38 @@ public class ModelManager extends ComponentManager implements Model {
         String toString();
     }
 
+    private class QualifierUnfinished implements Qualifier {
+
+        @Override
+        public boolean run(ReadOnlyTask task) {
+            return !task.isFinished();
+        }
+
+        @Override
+        public boolean run(TaskList list) {
+            // TODO Auto-generated method stub
+            return false;
+        }
+        
+    }
+    private class NameQualifierUnfinished extends NameQualifier {
+        
+        NameQualifierUnfinished(Set<String> nameKeyWords) {
+            super(nameKeyWords);
+        }
+        
+        @Override
+        public boolean run(ReadOnlyTask task) {
+            return nameKeyWords.stream()
+                    .filter(keyword -> StringUtil.containsWordIgnoreCase(task.getName().fullName, keyword))
+                    .filter(keyword -> !task.isFinished())
+                    .findAny()
+                    .isPresent();
+        }
+    }
+    
     private class NameQualifier implements Qualifier {
-        private Set<String> nameKeyWords;
+        protected Set<String> nameKeyWords;
 
         NameQualifier(Set<String> nameKeyWords) {
             this.nameKeyWords = nameKeyWords;
@@ -221,8 +266,24 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
+    private class TagQualifierUnfinished extends TagQualifier {
+        
+        TagQualifierUnfinished(Set<String> tagKeyWords) {
+            super(tagKeyWords);
+        }
+        
+        @Override
+        public boolean run(ReadOnlyTask task) {
+            return tagKeyWords.stream()
+                    .filter(keyword -> StringUtil.containsWordIgnoreCase(task.getTag().getName(), keyword))
+                    .filter(keyword -> !task.isFinished())
+                    .findAny()
+                    .isPresent();
+        }
+    }
+    
     private class TagQualifier implements Qualifier {
-        private Set<String> tagKeyWords;
+        protected Set<String> tagKeyWords;
 
         TagQualifier(Set<String> tagKeyWords) {
             this.tagKeyWords = tagKeyWords;
