@@ -21,7 +21,7 @@ public class HelpCommandParser {
         // keywords delimited by whitespace
         final String commandWord = args.trim();
         final String helpMessage = parseCommand(commandWord);
-        if (helpMessage.isEmpty()) {
+        if (helpMessage == null) {
         	return new HelpCommand();
         } else {
             return new HelpCommand(helpMessage);

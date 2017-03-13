@@ -33,7 +33,7 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute() {
-    	if (USAGE_MESSAGE.isEmpty()){
+    	if (USAGE_MESSAGE == null){
     		EventsCenter.getInstance().post(new ShowHelpRequestEvent());
             return new CommandResult(SHOWING_HELP_MESSAGE);
     	} else {

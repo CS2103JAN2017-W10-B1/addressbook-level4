@@ -29,7 +29,7 @@ public class FinishCommand extends Command {
 
     public static final String MESSAGE_FINISH_TASK_SUCCESS = "Mark finished task: %1$s";
     public static final String MESSAGE_FINISH_TASK_MARKED = "Task had been finished: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
+    public static final String MESSAGE_WRONG_TASK_INDEX = "This task already exists in the task manager.";
 
     public final int targetIndex;
 
@@ -67,7 +67,7 @@ public class FinishCommand extends Command {
         try {
 			model.updateTask(targetIndex-1, taskToMark);
 		} catch (DuplicateTaskException e) {
-			throw new CommandException(MESSAGE_DUPLICATE_TASK);
+			throw new CommandException(MESSAGE_WRONG_TASK_INDEX);
 		}
 
         return new CommandResult(String.format(MESSAGE_FINISH_TASK_SUCCESS, taskToMark));

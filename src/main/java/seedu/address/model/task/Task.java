@@ -122,6 +122,10 @@ public class Task implements ReadOnlyTask {
     public void setPriority(Priority priority){
         this.priority = priority;
     }
+    
+    public boolean checkFinished(){
+    	return isFinished;
+    }
 
     @Override
     public boolean isFavorite(){
