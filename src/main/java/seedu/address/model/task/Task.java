@@ -36,6 +36,19 @@ public class Task implements ReadOnlyTask {
         this.isFavorite = isFavorite;
         this.isFinished = false;
     }
+    
+    public Task(Name name, Date date, Time time, Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
+        assert !CollectionUtil.isAnyNull(name);
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.description = description;
+        this.tag =  tag;
+        this.venue = venue;
+        this.priority = priority;
+        this.isFavorite = isFavorite;
+        this.isFinished = isFinished;
+    }
 
     /**
      * Creates a copy of the given ReadOnlyTask.
