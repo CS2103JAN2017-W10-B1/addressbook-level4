@@ -65,7 +65,7 @@ public class FinishCommand extends Command {
         }
      
         try {
-			model.updateTask(targetIndex, taskToMark);
+			model.updateTask(targetIndex-1, taskToMark);
 		} catch (DuplicateTaskException e) {
 			throw new CommandException(MESSAGE_DUPLICATE_TASK);
 		}
