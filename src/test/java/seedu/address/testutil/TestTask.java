@@ -127,4 +127,10 @@ public class TestTask implements ReadOnlyTask {
         return null;
         //TODO: add test cases
     }
+
+	@Override
+	public boolean isFinished() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

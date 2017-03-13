@@ -82,16 +82,15 @@ public class MainApp extends Application {
             if (!taskManagerOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample TaskManager");
             }
-            initialData = taskManagerOptional.orElseGet(SampleDataUtil::getSampleTaskManager);
+            initialData = taskManagerOptional.orElse(SampleDataUtil.getSampleTaskManager());
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty TaskManager");
             initialData = new TaskManager();
+        } catch (IllegalValueException e) {
+        	throw new AssertionError("sample data cannot be invalid", e);
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty TaskManager");
-            initialData = new TaskManager();
-        } catch (IllegalValueException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            initialData = new TaskManager();        
 		}
 
         return new ModelManager(initialData, userPrefs);
