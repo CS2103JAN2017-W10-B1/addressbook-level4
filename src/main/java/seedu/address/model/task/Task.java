@@ -134,7 +134,7 @@ public class Task implements ReadOnlyTask {
     
     @Override
     public boolean isFinished() {
-        return isFavorite;
+        return isFinished;
     }
     
     public void setFinish(boolean isFinished) {
