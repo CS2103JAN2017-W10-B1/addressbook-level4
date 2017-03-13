@@ -18,6 +18,7 @@ public class Task implements ReadOnlyTask {
     private Venue venue;
     private Priority priority;
     private boolean isFavorite;
+    private boolean isFinished;
     private Tag tag;
 
     /**
@@ -33,6 +34,7 @@ public class Task implements ReadOnlyTask {
         this.venue = venue;
         this.priority = priority;
         this.isFavorite = isFavorite;
+        this.isFinished = false;
     }
 
     /**
@@ -116,6 +118,15 @@ public class Task implements ReadOnlyTask {
     public void setFavorite(boolean isFavorite){
         this.isFavorite = isFavorite;
     }
+    
+    @Override
+    public boolean isFinished() {
+        return isFavorite;
+    }
+    
+    public void setFinish(boolean isFinished) {
+        this.isFinished = isFinished;
+    }
 
     /**
      * Updates this task with the details of {@code replacement}.
@@ -131,6 +142,7 @@ public class Task implements ReadOnlyTask {
         this.setVenue(replacement.getVenue());
         this.setPriority(replacement.getPriority());
         this.setFavorite(replacement.isFavorite());
+        this.setFinish(replacement.isFinished());
     }
 
     @Override
@@ -143,7 +155,7 @@ public class Task implements ReadOnlyTask {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, date, time, description, tag, venue, priority, isFavorite);
+        return Objects.hash(name, date, time, description, tag, venue, priority, isFavorite, isFinished);
     }
 
     @Override
