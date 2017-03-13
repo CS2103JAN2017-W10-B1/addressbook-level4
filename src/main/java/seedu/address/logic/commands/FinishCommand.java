@@ -3,8 +3,15 @@ package seedu.address.logic.commands;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Name;
+import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
-import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.Time;
+import seedu.address.model.task.Venue;
 
 
 /**
@@ -40,18 +47,23 @@ public class FinishCommand extends Command {
 
         ReadOnlyTask taskToMark = lastShownList.get(targetIndex - 1);
 
-        try {
-        	if(taskToMark.isFinished()){
-        		throw new CommandException(MESSAGE_FINISH_TASK_MARKED) ;
-        	}
-        	else{
-        		taskToMark.
-        	}
-        } catch (TaskNotFoundException pnfe) {
-            assert false : "The target person cannot be missing";
+        if(taskToMark.isFinished()){
+        	throw new CommandException(MESSAGE_FINISH_TASK_MARKED) ;
+        }
+        else{
+        	Name updatedName = taskToMark.getName();
+        	Date updatedDate = taskToMark.getDate();
+        	Time updatedTime = taskToMark.getTime();
+        	Description updatedDescription = taskToMark.getDescription();
+        	Tag updatedTag = taskToMark.getTag();
+        	Venue updatedVenue = taskToMark.getVenue();
+        	Priority updatedPriority = taskToMark.getPriority();
+
+        	taskToMark  = new Task(updatedName, updatedDate, updatedTime, updatedDescription, updatedTag, updatedVenue, updatedPriority, false,true);
         }
 
-        return new CommandResult(String.format(MESSAGE_FINISH_TASK_SUCCESS, personToDelete));
+
+        return new CommandResult(String.format(MESSAGE_FINISH_TASK_SUCCESS, taskToMark));
     }
 
 }
