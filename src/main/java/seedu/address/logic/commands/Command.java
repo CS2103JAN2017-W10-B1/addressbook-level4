@@ -42,7 +42,7 @@ public abstract class Command {
     /**
      * Provides usage message for help command
      */
-    public String getUsageMessage(){
+    public String getUsageMessage() {
     	return MESSAGE_USAGE;
     }
 

@@ -22,7 +22,7 @@ public interface ReadOnlyTaskManager {
      * This list will not contain any duplicate tags.
      */
     ObservableList<Tag> getTagList();
-    
+
     /**
      * Returns an unmodifiable view of the lists list.
      * This list will not contain any duplicate lists.

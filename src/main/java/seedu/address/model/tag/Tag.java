@@ -2,8 +2,6 @@ package seedu.address.model.tag;
 
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.task.Task;
-import seedu.address.model.tasklist.TaskList;
 
 /**
  * Represents a Tag in the address book.
@@ -42,7 +40,7 @@ public class Tag {
     public String getName() {
         return this.tagName;
     }
-    
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

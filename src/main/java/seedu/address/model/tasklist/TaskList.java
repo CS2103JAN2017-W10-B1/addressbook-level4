@@ -1,9 +1,9 @@
 package seedu.address.model.tasklist;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
-import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a List in Dueue.

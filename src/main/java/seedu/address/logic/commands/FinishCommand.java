@@ -30,7 +30,7 @@ public class FinishCommand extends Command {
     public static final String MESSAGE_FINISH_TASK_SUCCESS = "Mark finished task: %1$s";
     public static final String MESSAGE_FINISH_TASK_MARKED = "Task had been finished: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
-    
+
     public final int targetIndex;
 
     public FinishCommand(int targetIndex) {
@@ -50,7 +50,7 @@ public class FinishCommand extends Command {
         ReadOnlyTask taskToMark = lastShownList.get(targetIndex - 1);
 
         if(taskToMark.isFinished()){
-        	throw new CommandException(MESSAGE_FINISH_TASK_MARKED) ;
+            throw new CommandException(MESSAGE_FINISH_TASK_MARKED) ;
         }
         else{
         	Name updatedName = taskToMark.getName();

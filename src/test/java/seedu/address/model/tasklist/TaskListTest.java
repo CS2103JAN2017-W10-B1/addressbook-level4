@@ -6,12 +6,11 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
 
 public class TaskListTest {
-    
+
     @Test
     public void isValidList() {
         

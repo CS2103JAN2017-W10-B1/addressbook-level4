@@ -13,9 +13,10 @@ import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyTaskManager;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.tasklist.TaskList;
-import seedu.address.model.task.ReadOnlyTask;
+
 
 /**
  * An Immutable AddressBook that is serializable to XML format
@@ -77,7 +78,7 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
 	@Override
 	public ObservableList<TaskList> getListList() {
 		final ObservableList<TaskList> taskLists = this.taskLists.stream().map(l -> {
-            try {
+		    try {
                 return l.toModelType();
             } catch (IllegalValueException e) {
                 e.printStackTrace();

@@ -12,7 +12,7 @@ public class TypicalTestTasks {
 
     public TestTask gym, cs2103;
     public TestTask birthday;
-	public TestTask assignment;
+    public TestTask assignment;
 
     public TypicalTestTasks() {
         try {
