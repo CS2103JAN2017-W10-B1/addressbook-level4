@@ -11,6 +11,7 @@ import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Time;
+import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.model.task.Venue;
 
 
@@ -28,7 +29,8 @@ public class FinishCommand extends Command {
 
     public static final String MESSAGE_FINISH_TASK_SUCCESS = "Mark finished task: %1$s";
     public static final String MESSAGE_FINISH_TASK_MARKED = "Task had been finished: %1$s";
-
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
+    
     public final int targetIndex;
 
     public FinishCommand(int targetIndex) {
@@ -61,7 +63,12 @@ public class FinishCommand extends Command {
 
         	taskToMark  = new Task(updatedName, updatedDate, updatedTime, updatedDescription, updatedTag, updatedVenue, updatedPriority, false,true);
         }
-
+     
+        try {
+			model.updateTask(targetIndex, taskToMark);
+		} catch (DuplicateTaskException e) {
+			throw new CommandException(MESSAGE_DUPLICATE_TASK);
+		}
 
         return new CommandResult(String.format(MESSAGE_FINISH_TASK_SUCCESS, taskToMark));
     }
