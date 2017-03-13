@@ -11,7 +11,14 @@ import java.util.Set;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
 import seedu.address.testutil.TypicalTestTasks;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
+import seedu.address.model.tasklist.TaskList;
+import seedu.address.model.tasklist.UniqueListList.DuplicateListException;
+import seedu.address.testutil.TestTask;
 
 public class ModelManagerTest {
     
@@ -37,7 +44,7 @@ public class ModelManagerTest {
     public void resetData() {
         modelManager.resetData(testUtil.getTypicalTaskManager());
         assertEquals(modelManager.getTaskManager(), testUtil.getTypicalTaskManager());
-        assertEquals(modelManager.getFilteredTaskList().size(), 2);
+        assertEquals(modelManager.getFilteredTaskList().size(), 3);
         assertEquals(modelManager.getFilteredListList().size(), 2);
     }
 
@@ -60,11 +67,11 @@ public class ModelManagerTest {
     @Test
     public void testFilterTag() {
         modelManager.resetData(testUtil.getTypicalTaskManager());
-        assertEquals(modelManager.getFilteredTaskList().size(), 2);
+        assertEquals(modelManager.getFilteredTaskList().size(), 3);
         Set<String> keywords = new HashSet<String>();
         keywords.add("personal");
         modelManager.updateFilteredTaskListGivenListName(keywords);
-        assertEquals(modelManager.getFilteredTaskList().size(), 1);
+        assertEquals(modelManager.getFilteredTaskList().size(), 2);
         assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "gym");
         
         modelManager = new ModelManager();
@@ -81,5 +88,34 @@ public class ModelManagerTest {
         keywords.add("inbox");
         modelManager.updateFilteredTaskList(keywords);
         assertEquals(modelManager.getFilteredTaskList().size(), 0);
+    }
+    
+    @Test
+    public void addTask() throws DuplicateTaskException {
+        modelManager = new ModelManager();
+        Task task1 = new Task(testUtil.gym);
+        Task task2 = new Task(testUtil.cs2103);
+        Task task3 = new Task(testUtil.study);
+        
+        modelManager.addTask(task1);
+        assertEquals(modelManager.getFilteredTaskList().size(), 1);
+        assertEquals(modelManager.getFilteredListList().size(), 1);
+        
+        modelManager.addTask(task3);
+        assertEquals(modelManager.getFilteredTaskList().size(), 2);
+        assertEquals(modelManager.getFilteredListList().size(), 1);
+    }
+    
+    @Test
+    public void addList() throws DuplicateListException, IllegalValueException {
+        modelManager = new ModelManager();
+        Task task1 = new Task(testUtil.gym);
+        Task task2 = new Task(testUtil.cs2103);
+        
+        modelManager.addTask(task1);
+        modelManager.addTask(task2);
+
+        modelManager.addList(new TaskList("inbox"));
+        assertEquals(modelManager.getFilteredListList().size(), 3);
     }
 }
