@@ -130,7 +130,7 @@ public class TaskManager implements ReadOnlyTaskManager {
             listIndex = lists.indexOf(new TaskList(listName));
             lists.get(listIndex).add(p);
         } catch (IllegalValueException e) {
-            assert false : "not possible";
+            //TODO: assert false : listName;
         }
     }
 

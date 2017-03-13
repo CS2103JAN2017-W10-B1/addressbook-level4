@@ -10,7 +10,7 @@ import seedu.address.model.task.UniqueTaskList;
  */
 public class TypicalTestTasks {
 
-    public TestTask gym, cs2103;
+    public TestTask gym, cs2103, study;
     public TestTask birthday;
     public TestTask assignment;
 
@@ -19,6 +19,7 @@ public class TypicalTestTasks {
             gym = new TaskBuilder().withName("gym").withDescription("50min workout").withTag("personal").
                     withPriority("2").withFavorite(true).build();
             cs2103 = new TaskBuilder().withName("cs2103").withTime("16:00").withTag("School").withFavorite(true).build();
+            study = new TaskBuilder().withName("study").withTag("personal").build();
 
         } catch (IllegalValueException e) {
             e.printStackTrace();
@@ -37,7 +38,7 @@ public class TypicalTestTasks {
     }
 
     public TestTask[] getTypicalTasks() {
-        return new TestTask[]{gym, cs2103};
+        return new TestTask[]{gym, cs2103, study};
     }
 
     public TaskManager getTypicalTaskManager() {
