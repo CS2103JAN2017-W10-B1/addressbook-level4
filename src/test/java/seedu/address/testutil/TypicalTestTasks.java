@@ -10,7 +10,7 @@ import seedu.address.model.task.UniqueTaskList;
  */
 public class TypicalTestTasks {
 
-    public TestTask gym;
+    public TestTask gym, cs2103;
     public TestTask birthday;
 	public TestTask assignment;
 
@@ -18,6 +18,7 @@ public class TypicalTestTasks {
         try {
             gym = new TaskBuilder().withName("gym").withDescription("50min workout").withTag("personal").
                     withPriority("2").withFavorite(true).build();
+            cs2103 = new TaskBuilder().withName("cs2103").withTime("16:00").withTag("School").withFavorite(true).build();
 
         } catch (IllegalValueException e) {
             e.printStackTrace();
@@ -31,14 +32,12 @@ public class TypicalTestTasks {
                 ab.addTask(new Task(task));
             } catch (UniqueTaskList.DuplicateTaskException e) {
                 assert false : "not possible";
-            } catch (IllegalValueException e) {
-                assert false : "not possible";
-            }
+            } 
         }
     }
 
     public TestTask[] getTypicalTasks() {
-        return new TestTask[]{gym};
+        return new TestTask[]{gym, cs2103};
     }
 
     public TaskManager getTypicalTaskManager() {
