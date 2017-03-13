@@ -26,13 +26,6 @@ public interface ReadOnlyTask {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                 && other.getName().equals(this.getName())); // state checks here onwards
-                /*&& other.getDate() != null? other.getDate().equals(this.getDate()): this.getDate() == null
-                && other.getTime() != null? other.getTime().equals(this.getTime()): this.getTime() == null
-                && other.getTag() != null? other.getTag().equals(this.getTag()): this.getTag() == null
-                && other.getDescription() != null? other.equals(this.getDescription()): this.getDescription() == null
-                && other.getVenue() != null? other.getVenue().equals(this.getVenue()): this.getVenue() == null
-                && other.getPriority() != null? other.getPriority().equals(this.getPriority()): this.getPriority() == null
-                && other.isFavorite()==this.isFavorite());*/
     }
 
     /**
@@ -41,12 +34,35 @@ public interface ReadOnlyTask {
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
-        if (getDate()!=null){
+        if (getDate() != null) {
             builder.append("  Due Date:");
             builder.append(getDate());
         }
+        if (getTime() != null) {
+            builder.append("  Time:");
+            builder.append(getTime());
+        }
+        if (getDescription() != null) {
+            builder.append("  Description:");
+            builder.append(getDescription());
+        }
+        if (getTag() != null) {
+            builder.append("  List:");
+            builder.append(getTag());
+        }
+        if (getVenue() != null) {
+            builder.append("  Venue:");
+            builder.append(getVenue());
+        }
+        assert getPriority() != null;
+        builder.append("  Priority:");
+        builder.append(getPriority());
+        if (isFavorite()) {
+            builder.append(" favorite");
+        }
+        if (isFinished()) {
+            builder.append(" finished");
+        }
         return builder.toString();
     }
-
-
 }
