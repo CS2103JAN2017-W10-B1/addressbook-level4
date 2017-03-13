@@ -17,6 +17,7 @@ public interface ReadOnlyTask {
     Venue getVenue();
     Priority getPriority();
     boolean isFavorite();
+	boolean isFinished();
 
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)
@@ -46,5 +47,6 @@ public interface ReadOnlyTask {
         }
         return builder.toString();
     }
+
 
 }

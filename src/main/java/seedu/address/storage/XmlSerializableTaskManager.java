@@ -14,6 +14,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyTaskManager;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
+import seedu.address.model.tasklist.TaskList;
 import seedu.address.model.task.ReadOnlyTask;
 
 /**
@@ -70,5 +71,11 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
         }).collect(Collectors.toCollection(FXCollections::observableArrayList));
         return new UnmodifiableObservableList<>(tags);
     }
+
+	@Override
+	public ObservableList<TaskList> getListList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
