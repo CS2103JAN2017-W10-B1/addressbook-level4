@@ -33,6 +33,12 @@ public class HelpCommandParser {
         }
     }
 
+    /**
+     * Parses the given {String} of command in the context of the HelpCommand
+     * and returns the help message of the corresponding command.
+     * 
+     * Considering to make it more generic together with the similar part in Parser.
+     */
 	private String parseCommand(String commandWord) {
 		switch (commandWord) {
             case AddCommand.COMMAND_WORD:
