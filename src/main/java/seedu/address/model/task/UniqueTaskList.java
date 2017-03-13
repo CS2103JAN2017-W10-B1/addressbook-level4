@@ -30,6 +30,15 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
+     * Returns the Task of the given index
+     */
+    public ReadOnlyTask get(int index) {
+        assert internalList.size() >= index + 1;
+        assert index >= 0;
+        return internalList.get(index);
+    }
+    
+    /**
      * Adds a task to the list.
      *
      * @throws DuplicateTaskException if the task to add is a duplicate of an existing task in the list.
@@ -42,6 +51,14 @@ public class UniqueTaskList implements Iterable<Task> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Deletes a task in the list.
+     */
+    public void delete(ReadOnlyTask toDelete) {
+        assert toDelete != null;
+        internalList.remove(toDelete);
+    }
+    
     /**
      * Updates the task in the list at position {@code index} with {@code editedTask}.
      *
@@ -125,6 +142,10 @@ public class UniqueTaskList implements Iterable<Task> {
      * Signals that an operation targeting a specified task in the list would fail because
      * there is no such matching task in the list.
      */
-    public static class TaskNotFoundException extends Exception {}
+    public static class TaskNotFoundException extends Exception {
+        public TaskNotFoundException() {
+            super("The task requested is not found");
+        }
+    }
 
 }

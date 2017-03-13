@@ -68,7 +68,7 @@ public class EditCommand extends Command {
         } catch (UniqueTaskList.DuplicateTaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-        model.updateFilteredListToShowAll();
+        model.updateFilteredListToShowAllTasks();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
@@ -120,7 +120,9 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyPresent(this.name, this.date, this.time, this.description, this.tag, this.venue, this.priority);
+            return CollectionUtil.isAnyPresent(
+                    this.name, this.date, this.time, 
+                    this.description, this.tag, this.venue, this.priority);
         }
 
         public void setName(Optional<Name> name) {

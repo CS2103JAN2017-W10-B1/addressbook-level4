@@ -1,7 +1,5 @@
 package seedu.address.logic.commands;
 
-import java.util.Optional;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;

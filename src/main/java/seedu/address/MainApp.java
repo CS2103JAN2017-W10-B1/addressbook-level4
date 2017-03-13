@@ -16,13 +16,14 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.TaskManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TaskManager;
 import seedu.address.model.ReadOnlyTaskManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
@@ -81,14 +82,16 @@ public class MainApp extends Application {
             if (!taskManagerOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample TaskManager");
             }
-            initialData = taskManagerOptional.orElseGet(SampleDataUtil::getSampleTaskManager);
+            initialData = taskManagerOptional.orElse(SampleDataUtil.getSampleTaskManager());
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty TaskManager");
             initialData = new TaskManager();
+        } catch (IllegalValueException e) {
+        	throw new AssertionError("sample data cannot be invalid", e);
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty TaskManager");
-            initialData = new TaskManager();
-        }
+            initialData = new TaskManager();        
+		}
 
         return new ModelManager(initialData, userPrefs);
     }

@@ -20,7 +20,11 @@ public class TaskManagerBuilder {
     }
 
     public TaskManagerBuilder withTask(Task task) throws UniqueTaskList.DuplicateTaskException {
-        taskManager.addTask(task);
+        try {
+            taskManager.addTask(task);
+        } catch (IllegalValueException e) {
+            assert false : "not possible";
+        }
         return this;
     }
 

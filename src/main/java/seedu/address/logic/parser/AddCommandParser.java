@@ -3,11 +3,11 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -26,7 +26,6 @@ public class AddCommandParser {
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      */
-	
     public Command parse(String args) {
         ArgumentTokenizer argsTokenizer =
                 new ArgumentTokenizer(PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_VENUE,PREFIX_PRIORITY);
@@ -40,7 +39,7 @@ public class AddCommandParser {
             String venue = checkString(argsTokenizer.getValue(PREFIX_VENUE));
             String priority = checkString(argsTokenizer.getValue(PREFIX_PRIORITY));
             return new AddCommand(name, date, time, tag, description, venue, priority);
-        }catch(NoSuchElementException ive){
+        } catch(NoSuchElementException ive){
         	return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());

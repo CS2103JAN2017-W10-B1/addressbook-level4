@@ -4,7 +4,6 @@ import java.util.Objects;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.UniqueTagList;
 
 /**
  * Represents a Task in the address book.
@@ -19,6 +18,7 @@ public class Task implements ReadOnlyTask {
     private Venue venue;
     private Priority priority;
     private boolean isFavorite;
+    private boolean isFinished;
     private Tag tag;
 
     /**
@@ -34,6 +34,20 @@ public class Task implements ReadOnlyTask {
         this.venue = venue;
         this.priority = priority;
         this.isFavorite = isFavorite;
+        this.isFinished = false;
+    }
+    
+    public Task(Name name, Date date, Time time, Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
+        assert !CollectionUtil.isAnyNull(name);
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.description = description;
+        this.tag =  tag;
+        this.venue = venue;
+        this.priority = priority;
+        this.isFavorite = isFavorite;
+        this.isFinished = isFinished;
     }
 
     /**
@@ -55,7 +69,6 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setDate(Date date) {
-        assert date != null;
         this.date = date;
     }
 
@@ -65,7 +78,6 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setTime(Time time) {
-        assert time != null;
         this.time = time;
     }
 
@@ -75,7 +87,6 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setDescription(Description description) {
-        assert description != null;
         this.description = description;
     }
 
@@ -100,7 +111,6 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setVenue(Venue venue){
-        assert venue != null;
         this.venue = venue;
     }
 
@@ -110,7 +120,6 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setPriority(Priority priority){
-        assert priority != null;
         this.priority = priority;
     }
 
@@ -121,6 +130,15 @@ public class Task implements ReadOnlyTask {
 
     public void setFavorite(boolean isFavorite){
         this.isFavorite = isFavorite;
+    }
+    
+    @Override
+    public boolean isFinished() {
+        return isFavorite;
+    }
+    
+    public void setFinish(boolean isFinished) {
+        this.isFinished = isFinished;
     }
 
     /**
@@ -137,6 +155,7 @@ public class Task implements ReadOnlyTask {
         this.setVenue(replacement.getVenue());
         this.setPriority(replacement.getPriority());
         this.setFavorite(replacement.isFavorite());
+        this.setFinish(replacement.isFinished());
     }
 
     @Override
@@ -149,7 +168,7 @@ public class Task implements ReadOnlyTask {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, date, time, description, tag, venue, priority, isFavorite);
+        return Objects.hash(name, date, time, description, tag, venue, priority, isFavorite, isFinished);
     }
 
     @Override
