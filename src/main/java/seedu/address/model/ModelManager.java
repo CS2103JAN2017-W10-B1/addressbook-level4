@@ -130,6 +130,7 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks.setPredicate(expression::satisfies);
     }
 
+    @Override
     public void updateFilteredTaskListGivenListName(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords)));
     }
