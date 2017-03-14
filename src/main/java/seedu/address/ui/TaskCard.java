@@ -36,6 +36,8 @@ public class TaskCard extends UiPart<Region> {
     private Label priority;
     @FXML
     private Label isFavorite;
+    @FXML
+    private Label isFinished;
 
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
@@ -47,6 +49,7 @@ public class TaskCard extends UiPart<Region> {
         venue.setText("Venue: " + task.getVenue().value);
         priority.setText("Priority: " + task.getPriority().value);
         isFavorite.setText("Favorite: " + String.valueOf(task.isFavorite()));
+        isFinished.setText("isFinished: " + String.valueOf(task.isFinished()));
 //     tag.setText(task.getTag().tagName);
     }
 }
