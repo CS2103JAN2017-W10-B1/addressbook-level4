@@ -28,7 +28,7 @@ public class AddCommandParser {
      */
     public Command parse(String args) {
         ArgumentTokenizer argsTokenizer =
-                new ArgumentTokenizer(PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_VENUE,PREFIX_PRIORITY);
+                new ArgumentTokenizer(PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_VENUE, PREFIX_PRIORITY);
         argsTokenizer.tokenize(args);
         try {
             String name = argsTokenizer.getValue(PREFIX_NAME).get();
@@ -39,13 +39,14 @@ public class AddCommandParser {
             String venue = checkString(argsTokenizer.getValue(PREFIX_VENUE));
             String priority = checkString(argsTokenizer.getValue(PREFIX_PRIORITY));
             return new AddCommand(name, date, time, tag, description, venue, priority);
-        } catch(NoSuchElementException ive){
+        } catch (NoSuchElementException ive){
         	return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        }catch (IllegalValueException ive) {
+        } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
     }
-    private String checkString(Optional<String> args){
+
+    private String checkString(Optional<String> args) {
     	return args.orElse("");
     }
 
