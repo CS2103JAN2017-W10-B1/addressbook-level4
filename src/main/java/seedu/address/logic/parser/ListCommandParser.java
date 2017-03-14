@@ -23,7 +23,7 @@ public class ListCommandParser {
         if (args == null) {
             return new ListCommand();
         }
-        
+
         // if not match, show all the unfinished task
         final Matcher matcher = KEYWORDS_ARGS_FORMAT_LIST.matcher(args.trim());
         if (!matcher.matches()) {

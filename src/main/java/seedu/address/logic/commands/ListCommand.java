@@ -11,20 +11,20 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
-    
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks as per the parameters\n"
             + "the specified listname/list index and displays them as a list with index numbers.\n"
             + "Parameters: [LISTNAME/LISTINDEX]\n"
             + "Example: " + COMMAND_WORD + " CS2103";
-    
+
     private static final String LIST_SEPARATOR = ", ";
-    
+
     private final Set<String> keywords;
 
     public ListCommand(Set<String> keywords) {
         this.keywords = keywords;
     }
-    
+
     public ListCommand() {
         this.keywords = null;
     }
@@ -39,7 +39,7 @@ public class ListCommand extends Command {
             return new CommandResult(formatter(keywords));
         }    
     }
-    
+
     private String formatter(Set<String> keywords) {
         String formatted = MESSAGE_SUCCESS + " in list ";
         for (Iterator<String> it = keywords.iterator(); it.hasNext(); ) {
