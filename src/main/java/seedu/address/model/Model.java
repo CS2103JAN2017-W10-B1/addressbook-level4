@@ -9,8 +9,6 @@ import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
-import seedu.address.model.tasklist.TaskList;
-import seedu.address.model.tasklist.UniqueListList;
 
 /**
  * The API of the Model component.
