@@ -8,6 +8,7 @@
         <description></description>
         <venue></venue>
         <priority></priority>
+        <isFinished>true</isFinished>
     </tasks>
     <tasks>
         <name>tutorial</name>
@@ -17,6 +18,7 @@
         <description></description>
         <venue>I3</venue>
         <priority></priority>
+        <isFinished>false</isFinished>
     </tasks>
     <tasks>
         <name>lecture</name>
@@ -26,6 +28,7 @@
         <description>Interesting module</description>
         <venue>I3</venue>
         <priority>3</priority>
+        <isFinished>false</isFinished>
     </tasks>
     <tasks>
         <name>Tutorial</name>
@@ -35,6 +38,7 @@
         <description>Interesting module</description>
         <venue>I3</venue>
         <priority>2</priority>
+        <isFinished>false</isFinished>
     </tasks>
     <tags></tags>
     <tags>CS2103</tags>

@@ -32,6 +32,8 @@ public class XmlAdaptedTask {
     private String venue;
     @XmlElement(required = false)
     private String priority;
+    @XmlElement(required = false)
+    private boolean isFinished;
 
     /**
      * Constructs an XmlAdaptedPerson.
@@ -53,6 +55,7 @@ public class XmlAdaptedTask {
         description = source.getDescription().value;
         venue = source.getVenue().value;
         priority = source.getPriority().value;
+        isFinished = source.isFinished();
     }
 
     /**
@@ -68,6 +71,6 @@ public class XmlAdaptedTask {
         final Tag tag = new Tag(this.tag);
         final Venue venue = new Venue(this.venue);
         final Priority priority = new Priority(this.priority);
-        return new Task(name, date, time, description, tag, venue, priority, false);
+        return new Task(name, date, time, description, tag, venue, priority, false, isFinished);
     }
 }
