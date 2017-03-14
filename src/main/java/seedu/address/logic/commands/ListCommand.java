@@ -37,7 +37,7 @@ public class ListCommand extends Command {
         } else {
             model.updateFilteredTaskListGivenListName(keywords);
             return new CommandResult(formatter(keywords));
-            }    
+        }    
     }
 
     private String formatter(Set<String> keywords) {

@@ -22,7 +22,7 @@ public class PriorityTest {
         assertTrue(Priority.isValidPriority("2")); // 2
         assertTrue(Priority.isValidPriority("3")); // 3
         assertTrue(Priority.isValidPriority("important")); // approved expression with lower case
-        assertTrue(Priority.isValidPriority("trivial")); 
+        assertTrue(Priority.isValidPriority("trivial"));
         assertTrue(Priority.isValidPriority("normal"));
         assertTrue(Priority.isValidPriority("NORMAL")); // approved expression with upper case
         assertTrue(Priority.isValidPriority("TriVAl")); // approved expression with mix case
