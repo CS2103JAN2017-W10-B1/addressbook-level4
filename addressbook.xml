@@ -10,7 +10,7 @@
         <priority></priority>
     </tasks>
     <tasks>
-        <name>CS2103</name>
+        <name>tutorial</name>
         <date></date>
         <time></time>
         <tag></tag>
@@ -18,4 +18,24 @@
         <venue>I3</venue>
         <priority></priority>
     </tasks>
+    <tasks>
+        <name>lecture</name>
+        <date>10/3/2017</date>
+        <time>16:00</time>
+        <tag>CS2103</tag>
+        <description>Interesting module</description>
+        <venue>I3</venue>
+        <priority>3</priority>
+    </tasks>
+    <tasks>
+        <name>Tutorial</name>
+        <date>8/3/2017</date>
+        <time>10:00</time>
+        <tag>CS2103</tag>
+        <description>Interesting module</description>
+        <venue>I3</venue>
+        <priority>2</priority>
+    </tasks>
+    <tags></tags>
+    <tags>CS2103</tags>
 </addressbook>
