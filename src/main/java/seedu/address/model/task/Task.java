@@ -37,7 +37,8 @@ public class Task implements ReadOnlyTask {
         this.isFinished = false;
     }
 
-    public Task(Name name, Date date, Time time, Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
+    public Task(Name name, Date date, Time time, Description description, Tag tag, 
+    		Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
         this.date = date;
@@ -115,20 +116,20 @@ public class Task implements ReadOnlyTask {
     }
 
     @Override
-    public Priority getPriority(){
+    public Priority getPriority() {
         return priority;
     }
 
-    public void setPriority(Priority priority){
+    public void setPriority(Priority priority) {
         this.priority = priority;
     }
 
     @Override
-    public boolean isFavorite(){
+    public boolean isFavorite() {
         return isFavorite;
     }
 
-    public void setFavorite(boolean isFavorite){
+    public void setFavorite(boolean isFavorite) {
         this.isFavorite = isFavorite;
     }
 
