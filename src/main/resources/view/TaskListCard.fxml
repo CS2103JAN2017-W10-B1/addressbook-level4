@@ -42,6 +42,7 @@
                                     <Insets top="3.0" />
                                  </HBox.margin>
                               </Label>
+                              <Label fx:id="isFinished" alignment="BOTTOM_RIGHT" prefHeight="16.0" prefWidth="76.0" styleClass="cell_small_label" text="\\$isFinished" />
                                     <Label fx:id="priority" alignment="BOTTOM_RIGHT" prefHeight="14.0" prefWidth="59.0" styleClass="cell_small_label" text="\$priority" textAlignment="RIGHT">
                                  <HBox.margin>
                                     <Insets top="5.0" />
