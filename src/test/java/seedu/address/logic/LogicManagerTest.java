@@ -100,9 +100,9 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_invalid() {
+    public void executeInvalid() {
         String invalidCommand = "       ";
-        assertCommandFailure(invalidCommand,String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        assertCommandFailure(invalidCommand, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
     }
 
     /**
@@ -157,19 +157,19 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_unknownCommandWord() {
+    public void executeUnknownCommandWord() {
         String unknownCommand = "uicfhmowqewca";
         assertCommandFailure(unknownCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
     @Test
-    public void execute_help() {
+    public void executeHelp() {
         assertCommandSuccess("help", HelpCommand.SHOWING_HELP_MESSAGE, new TaskManager(), Collections.emptyList());
         assertTrue(helpShown);
     }
 
     @Test
-    public void execute_exit() {
+    public void executeExit() {
         assertCommandSuccess("exit", ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT,
                 new TaskManager(), Collections.emptyList());
     }
@@ -186,7 +186,7 @@ public class LogicManagerTest {
 
 
     @Test
-    public void execute_add_invalidArgsFormat() {
+    public void executeAddInvalidArgsFormat() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         assertCommandFailure("add wrong args wrong args", expectedMessage);
         assertCommandFailure("add Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid,address", expectedMessage);
@@ -208,7 +208,7 @@ public class LogicManagerTest {
     }*/
 
     @Test
-    public void execute_add_successful() throws Exception {
+    public void executeAddSuccessful() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
         Task toBeAdded = helper.gym();
@@ -219,7 +219,7 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_addDuplicate_notAllowed() throws Exception {
+    public void executeAddDuplicateNotAllowed() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
         Task toBeAdded = helper.gym();
@@ -234,7 +234,7 @@ public class LogicManagerTest {
 
 
     @Test
-    public void execute_list_showsAllTask() throws Exception {
+    public void executeListShowsAllTask() throws Exception {
         // prepare expectations
         TestDataHelper helper = new TestDataHelper();
         TaskManager expectedAB = helper.generateTaskManager(2);
@@ -286,18 +286,18 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_selectInvalidArgsFormat_errorMessageShown() throws Exception {
+    public void executeSelectInvalidArgsFormatErrorMessageShown() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE);
         assertIncorrectIndexFormatBehaviorForCommand("select", expectedMessage);
     }
 
     @Test
-    public void execute_selectIndexNotFound_errorMessageShown() throws Exception {
+    public void executeSelectIndexNotFoundErrorMessageShown() throws Exception {
         //assertIndexNotFoundBehaviorForCommand("select");
     }
 
     @Test
-    public void execute_select_jumpsToCorrectTask() throws Exception {
+    public void executeSelectJumpsToCorrectTask() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         List<Task> threePersons = helper.generateTaskList(3);
 
@@ -315,18 +315,18 @@ public class LogicManagerTest {
 
 
     @Test
-    public void execute_deleteInvalidArgsFormat_errorMessageShown() throws Exception {
+    public void executeDeleteInvalidArgsFormatErrorMessageShown() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
         assertIncorrectIndexFormatBehaviorForCommand("delete", expectedMessage);
     }
 
     @Test
-    public void execute_deleteIndexNotFound_errorMessageShown() throws Exception {
+    public void executeDeleteIndexNotFoundErrorMessageShown() throws Exception {
         //assertIndexNotFoundBehaviorForCommand("delete");
     }
 
     @Test
-    public void execute_delete_removesCorrectTask() throws Exception {
+    public void executeDeleteRemovesCorrectTask() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         List<Task> threeTasks = helper.generateTaskList(3);
 
@@ -342,7 +342,7 @@ public class LogicManagerTest {
 
 
     @Test
-    public void execute_find_invalidArgsFormat() {
+    public void executeFindInvalidArgsFormat() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
         assertCommandFailure("find ", expectedMessage);
     }

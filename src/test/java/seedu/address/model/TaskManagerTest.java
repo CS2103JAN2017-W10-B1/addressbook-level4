@@ -39,13 +39,13 @@ public class TaskManagerTest {
     }
 
     @Test
-    public void resetData_null_throwsAssertionError() {
+    public void resetDataNullThrowsAssertionError() {
         thrown.expect(AssertionError.class);
         taskManager.resetData(null);
     }
 
     @Test
-    public void resetData_withValidReadOnlyTaskManager_replacesData() {
+    public void resetDataWithValidReadOnlyTaskManagerReplacesData() {
         TaskManager newData = new TypicalTestTasks().getTypicalTaskManager();
         taskManager.resetData(newData);
         assertEquals(newData, taskManager);
@@ -110,7 +110,7 @@ public class TaskManagerTest {
     }
 
     @Test
-    public void resetData_withDuplicateTasks_throwsAssertionError() throws DuplicateTagException {
+    public void resetDataWithDuplicateTasksThrowsAssertionError() throws DuplicateTagException {
         TypicalTestTasks td = new TypicalTestTasks();
         // Repeat td.alice twice
         List<Task> newTasks = Arrays.asList(new Task(td.gym), new Task(td.gym));
@@ -123,7 +123,7 @@ public class TaskManagerTest {
     }
 
     @Test
-    public void resetData_withDuplicateTags_throwsAssertionError() {
+    public void resetDataWithDuplicateTagsThrowsAssertionError() {
         TaskManager typicalTaskManager = new TypicalTestTasks().getTypicalTaskManager();
         List<ReadOnlyTask> newTasks = typicalTaskManager.getTaskList();
         List<Tag> newTags = new ArrayList<>(typicalTaskManager.getTagList());
