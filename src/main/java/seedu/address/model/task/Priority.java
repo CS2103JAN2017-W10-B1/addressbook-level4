@@ -44,9 +44,9 @@ public class Priority {
      * Returns if a given string is a valid priority.
      */
     public static boolean isValidPriority(String test) {
-        return true;
-        //TODO: add REGEX
-        //return test.matches(EMAIL_VALIDATION_REGEX);
+        return test.equalsIgnoreCase(PRIORITY_1) || test.equalsIgnoreCase(PRIORITY_2) ||
+                test.equalsIgnoreCase(PRIORITY_3) || test.equalsIgnoreCase(PRIORITY_TRIVIAL) ||
+                test.equalsIgnoreCase(PRIORITY_NORMAL) || test.equalsIgnoreCase(PRIORITY_IMPORTANT);
     }
 
     /**
