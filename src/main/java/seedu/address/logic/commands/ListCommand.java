@@ -9,7 +9,7 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
-    
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks as per the parameters"
             + "the specified listname/list index and displays them as a list with index numbers.\n"
             + "Parameters: [LISTNAME/LISTINDEX]\n"

@@ -11,7 +11,7 @@ public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "exit";
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Dueue as requested ...";
-    
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exit Dueue immediately \n"
             + "Parameters: Nil\n"
             + "Example: " + COMMAND_WORD;

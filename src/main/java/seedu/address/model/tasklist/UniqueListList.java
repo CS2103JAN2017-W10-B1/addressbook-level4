@@ -176,8 +176,8 @@ public class UniqueListList implements Iterable<TaskList> {
     }
 
     /**
-     * Return the index of the given taskList; 
-     * 
+     * Return the index of the given taskList;
+     *
      * @throws ListNotFoundExceptionWhenAdding if no such list in the list.
      */
     public int indexOf(TaskList list) throws ListNotFoundExceptionWhenAdding {
