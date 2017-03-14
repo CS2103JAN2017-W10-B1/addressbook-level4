@@ -111,7 +111,7 @@ public class MainWindow extends UiPart<Region> {
     }
 
     public void fillInnerParts() {
-        taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getUnfinishedTaskList());
+        taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
         new CommandBox(getCommandBoxPlaceholder(), logic);
