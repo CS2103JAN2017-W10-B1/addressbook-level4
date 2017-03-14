@@ -9,17 +9,17 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" prefHeight="147.0" prefWidth="437.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" prefHeight="142.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <GridPane prefHeight="147.0" prefWidth="437.0" HBox.hgrow="ALWAYS">
+        <GridPane prefHeight="146.0" prefWidth="550.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="336.0" />
-            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="101.0" />
+            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="101.0" />
             </columnConstraints>
             <children>
             <HBox>
                <children>
-                      <VBox alignment="CENTER_LEFT">
+                      <VBox alignment="CENTER_LEFT" prefHeight="147.0" prefWidth="390.0">
                           <stylesheets>
                               <URL value="@MainTheme.css" />
                               <URL value="@Extensions.css" />
@@ -31,18 +31,17 @@
                           <children>
                         <HBox>
                            <children>
-                              <Label fx:id="index" text="\$id">
+                              <Label fx:id="index" prefHeight="17.0" prefWidth="28.0" text="\$id">
                                  <HBox.margin>
                                     <Insets top="2.0" />
                                  </HBox.margin>
                               </Label>
-                                       <Label fx:id="name" alignment="TOP_LEFT" prefHeight="20.0" prefWidth="149.0" styleClass="cell_big_label" text="\$taskName" />
+                                       <Label fx:id="name" alignment="TOP_LEFT" prefHeight="20.0" prefWidth="99.0" styleClass="cell_big_label" text="\$taskName" />
                                     <Label fx:id="isFavorite" alignment="BOTTOM_RIGHT" prefHeight="16.0" prefWidth="76.0" styleClass="cell_small_label" text="\$isFavorite">
                                  <HBox.margin>
                                     <Insets top="3.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="isFinished" alignment="BOTTOM_RIGHT" prefHeight="16.0" prefWidth="76.0" styleClass="cell_small_label" text="\\$isFinished" />
                                     <Label fx:id="priority" alignment="BOTTOM_RIGHT" prefHeight="14.0" prefWidth="59.0" styleClass="cell_small_label" text="\$priority" textAlignment="RIGHT">
                                  <HBox.margin>
                                     <Insets top="5.0" />
@@ -64,14 +63,19 @@
                       </VBox>
                </children>
             </HBox>
-            <VBox alignment="TOP_RIGHT" maxWidth="98.0" prefHeight="147.0" prefWidth="98.0" GridPane.columnIndex="1">
+            <VBox alignment="TOP_RIGHT" maxWidth="159.0" prefHeight="140.0" prefWidth="127.0" GridPane.columnIndex="1">
                <children>
-                        <Label fx:id="time" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="83.0" styleClass="cell_small_label" text="\$time" textAlignment="RIGHT">
+                  <Label fx:id="isFinished" alignment="BOTTOM_RIGHT" prefHeight="17.0" prefWidth="122.0" styleClass="cell_small_label" text="\$isFinished">
                      <VBox.margin>
-                        <Insets top="35.0" />
+                        <Insets top="25.0" />
                      </VBox.margin>
                   </Label>
-                        <Label fx:id="venue" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="69.0" styleClass="cell_small_label" text="\$venue" textAlignment="RIGHT">
+                        <Label fx:id="time" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="121.0" styleClass="cell_small_label" text="\$time" textAlignment="RIGHT">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                        <Label fx:id="venue" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="128.0" styleClass="cell_small_label" text="\$venue" textAlignment="RIGHT">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>

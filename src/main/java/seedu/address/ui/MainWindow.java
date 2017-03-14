@@ -32,11 +32,12 @@ public class MainWindow extends UiPart<Region> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+ //   private ListPanel listPanel;
     private TaskListPanel taskListPanel;
     private Config config;
 
     @FXML
-    private AnchorPane browserPlaceholder;
+    private AnchorPane ListPanelPlaceholder;
 
     @FXML
     private AnchorPane commandBoxPlaceholder;
@@ -111,16 +112,18 @@ public class MainWindow extends UiPart<Region> {
     }
 
     public void fillInnerParts() {
-        taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
+    		//listPanel = new ListPanel(getListPlaceholder(), logic.getFilteredListList());
+    		taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
         new CommandBox(getCommandBoxPlaceholder(), logic);
     }
-
+    private AnchorPane getListPlaceholder() {
+		return this.ListPanelPlaceholder;
+	}
     private AnchorPane getCommandBoxPlaceholder() {
         return commandBoxPlaceholder;
     }
-
     private AnchorPane getStatusbarPlaceholder() {
         return statusbarPlaceholder;
     }
