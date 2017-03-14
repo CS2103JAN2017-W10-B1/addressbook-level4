@@ -3,6 +3,8 @@ package seedu.address.model;
 import java.util.Set;
 
 import seedu.address.commons.core.UnmodifiableObservableList;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
@@ -47,4 +49,13 @@ public interface Model {
     
     /** Updates the filter of the filtered task list to filter by the given list name*/
     void updateFilteredTaskListGivenListName(Set<String> keywords);
+    
+    /** Adds the given list */
+    void addList(Tag tag) throws UniqueTagList.DuplicateTagException;
+    
+    /** Updates the filter of the filtered tag list to show all tasks */
+    void updateFilteredListToShowAllLists();
+
+    /** Updates the filter of the filtered tag list to filter by the given keywords*/
+    void updateFilteredListList(Set<String> keywords);
 }

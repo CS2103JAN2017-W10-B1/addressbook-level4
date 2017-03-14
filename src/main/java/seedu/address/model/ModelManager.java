@@ -11,6 +11,7 @@ import seedu.address.commons.events.model.DueueChangedEvent;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
@@ -62,6 +63,8 @@ public class ModelManager extends ComponentManager implements Model {
         raise(new DueueChangedEvent(taskManager));
     }
 
+    //================== Task Level Operation ===========================================================
+    
     @Override
     public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
         taskManager.removeTask(target);
@@ -81,6 +84,16 @@ public class ModelManager extends ComponentManager implements Model {
 
         int taskManagerIndex = filteredTasks.getSourceIndex(filteredTaskListIndex);
         taskManager.updateTask(taskManagerIndex, editedTask);
+        indicateTaskManagerChanged();
+    }
+    
+  //================== List Level Operation ===========================================================
+    
+    @Override
+    public void addList(Tag list) throws UniqueTagList.DuplicateTagException {
+        assert list != null;
+
+        taskManager.addTag(list);
         indicateTaskManagerChanged();
     }
 
