@@ -8,7 +8,7 @@ import org.junit.Test;
 import seedu.address.model.task.Priority;
 
 public class PriorityTest {
-    
+
     @Test
     public void isValidPriority() {
         // invalid name
@@ -27,5 +27,4 @@ public class PriorityTest {
         assertTrue(Priority.isValidPriority("NORMAL")); // approved expression with upper case
         assertTrue(Priority.isValidPriority("TriVAl")); // approved expression with mix case
     }
-
 }
