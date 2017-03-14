@@ -40,10 +40,8 @@ public class TaskList{
         return true;
     }
 
-    
     public void add(Task task) throws DuplicateTaskException{
         assert task != null;
-        
         tasks.add(task);
     }
     
@@ -79,7 +77,6 @@ public class TaskList{
      */
     public void resetData(TaskList editedList) {
         assert editedList != null;
-        
         this.name = editedList.name;
         this.tasks = editedList.tasks;
     }
