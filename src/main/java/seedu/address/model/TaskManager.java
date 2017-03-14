@@ -71,7 +71,7 @@ public class TaskManager implements ReadOnlyTaskManager {
             assert false : "TaskManagers should not have duplicate tags";
         }
         syncMasterTagListWith(tasks);
-        
+
     }
 
 //// task-level operations
@@ -80,7 +80,7 @@ public class TaskManager implements ReadOnlyTaskManager {
      * Adds a task to the task manager.
      * Also checks the new task's tags and updates {@link #tags} with any new tags found,
      * and updates the Tag objects in the task to point to those in {@link #tags}.
-     * @throws DuplicateTaskException 
+     * @throws DuplicateTaskException
      */
     public void addTask(Task p) throws DuplicateTaskException {
         syncMasterTagListWith(p);
@@ -90,7 +90,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     /**
      * Updates the task in the list at position {@code index} with {@code editedReadOnlyTask}.
      * {@code TaskManager}'s tag list will be updated with the tags of {@code editedReadOnlyTask}.
-     * @throws DuplicateTaskException 
+     * @throws DuplicateTaskException
      * @see #syncMasterTagListWith(Task)
      *
      * @throws IndexOutOfBoundsException if {@code index} < 0 or >= the size of the list.
@@ -100,7 +100,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         assert editedReadOnlyTask != null;
 
         Task editedTask = new Task(editedReadOnlyTask);
-        
+
         syncMasterTagListWith(editedTask);
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any task
@@ -120,7 +120,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         } catch (DuplicateTagException e) {
             //TODO: deal after adding lists features
         }
-        
+
         // Create map with values = tag object references in the master list
         // used for checking task tag references
         final Map<Tag, Tag> masterTagObjects = new HashMap<>();
@@ -140,7 +140,6 @@ public class TaskManager implements ReadOnlyTaskManager {
         tasks.forEach(this::syncMasterTagListWith);
     }
 
-    
     public boolean removeTask(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
         if (tasks.remove(key)) {
             return true;
@@ -154,7 +153,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {
         tags.add(t);
     }
-    
+
 //// util methods
 
     @Override

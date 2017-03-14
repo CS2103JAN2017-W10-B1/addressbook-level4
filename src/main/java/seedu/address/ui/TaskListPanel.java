@@ -19,7 +19,7 @@ import seedu.address.model.task.ReadOnlyTask;
  * Panel containing the list of tasks.
  */
 public class TaskListPanel extends UiPart<Region> {
-   
+
 	private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
     private static final String FXML = "TaskListPanel.fxml";
 

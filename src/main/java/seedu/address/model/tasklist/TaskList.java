@@ -10,13 +10,13 @@ import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
  * Guarantees: name is valid as declared in {@link #isValidListName(String)}
  */
 public class TaskList{
-    
+
     public static final String MESSAGE_LIST_CONSTRAINTS = "List name should not begin with digits.";
     //TODO: public static final String LIST_VALIDATION_REGEX = ;
-    
+
     private String name;
     private UniqueTaskList tasks;
-    
+
     /**
      * Validates given list name.
      *
@@ -44,15 +44,15 @@ public class TaskList{
         assert task != null;
         tasks.add(task);
     }
-    
+
     public String getName(){
         return name;
     }
-    
+
     public UniqueTaskList getTasks() {
         return tasks;
     }
-    
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

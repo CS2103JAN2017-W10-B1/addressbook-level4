@@ -41,19 +41,19 @@ public interface Model {
 
     /** Updates the filter of the filtered task list to show all unfinished tasks */
     void updateFilteredListToShowAllTasks();
-    
+
     /** Updates the filter of the filtered task list to show all tasks */
     void updateFilteredListToShowAllTasksAll();
 
     /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
-    
+
     /** Updates the filter of the filtered task list to filter by the given list name*/
     void updateFilteredTaskListGivenListName(Set<String> keywords);
-    
+
     /** Adds the given list */
     void addList(Tag tag) throws UniqueTagList.DuplicateTagException;
-    
+
     /** Updates the filter of the filtered tag list to show all tasks */
     void updateFilteredListToShowAllLists();
 

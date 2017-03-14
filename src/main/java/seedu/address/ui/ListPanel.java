@@ -19,7 +19,7 @@ import seedu.address.model.tasklist.TaskList;
  * Panel containing the list of tasks.
  */
 public class ListPanel extends UiPart<Region> {
-   
+
 	private final Logger logger = LogsCenter.getLogger(ListPanel.class);
     private static final String FXML = "ListPanel.fxml";
 

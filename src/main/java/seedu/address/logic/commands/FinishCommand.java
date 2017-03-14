@@ -59,7 +59,7 @@ public class FinishCommand extends Command {
             Tag updatedTag = taskToMark.getTag();
             Venue updatedVenue = taskToMark.getVenue();
             Priority updatedPriority = taskToMark.getPriority();
-            
+
             taskToMark  = new Task(
                     updatedName, updatedDate, updatedTime, updatedDescription,
                     updatedTag, updatedVenue, updatedPriority, false, true);

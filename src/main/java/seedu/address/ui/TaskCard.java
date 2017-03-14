@@ -24,7 +24,7 @@ public class TaskCard extends UiPart<Region> {
  //  @FXML
  //   private Label date;
     @FXML
-    private Label time;    
+    private Label time;
     @FXML
     private Label description;
     @FXML

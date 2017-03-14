@@ -73,7 +73,7 @@ public class ParserUtil {
         assert name != null;
         return name.isPresent() ? name : Optional.empty();
     }
-    
+
     /**
      * Parses a {@code Optional<String> name} into an {@code Optional<Name>} if {@code name} is present.
      */

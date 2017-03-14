@@ -13,17 +13,17 @@ public class TaskListTest {
 
     @Test
     public void isValidList() {
-        
+
         assertTrue(TaskList.isValidListName("1"));
     }
-    
+
     @Test
     public void equals() throws IllegalValueException {
         TaskList list1 = new TaskList("a");
         assertFalse(list1.equals(new TaskList("b")));
         assertTrue(list1.equals(new TaskList("a")));
     }
-    
+
     @Test
     public void add() throws IllegalValueException {
         TaskList list1 = new TaskList("a");

@@ -64,7 +64,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     //================== Task Level Operation ===========================================================
-    
+
     @Override
     public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
         taskManager.removeTask(target);
@@ -86,9 +86,9 @@ public class ModelManager extends ComponentManager implements Model {
         taskManager.updateTask(taskManagerIndex, editedTask);
         indicateTaskManagerChanged();
     }
-    
+
   //================== List Level Operation ===========================================================
-    
+
     @Override
     public void addList(Tag list) throws UniqueTagList.DuplicateTagException {
         assert list != null;
@@ -108,28 +108,28 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredListToShowAllTasks() {
         filteredTasks.setPredicate(t -> !t.isFinished());
     }
-    
+
     @Override
     public void updateFilteredListToShowAllTasksAll() {
         filteredTasks.setPredicate(null);
     }
-    
+
     @Override
     public void updateFilteredTaskList(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
     }
-    
+
     @Override
     public void updateFilteredTaskListGivenListName(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords)));
     }
-    
+
     private void updateFilteredTaskList(Expression expression) {
         filteredTasks.setPredicate(expression::satisfies);
     }
 
     //=========== Filtered List Accessors =============================================================
-    
+
     public UnmodifiableObservableList<Tag> getFilteredListList() {
         return new UnmodifiableObservableList<>(filteredLists);
     }
@@ -137,11 +137,11 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredListToShowAllLists() {
         filteredLists.setPredicate(null);
     }
-    
+
     public void updateFilteredListList(Set<String> keywords) {
         updateFilteredListList(new PredicateExpression(new NameQualifier(keywords)));
     }
-    
+
     private void updateFilteredListList(Expression expression) {
         filteredLists.setPredicate(expression::satisfies);
     }
@@ -171,7 +171,7 @@ public class ModelManager extends ComponentManager implements Model {
         public boolean satisfies(Tag list){
             return qualifier.run(list);
         }
-        
+
         @Override
         public String toString() {
             return qualifier.toString();
@@ -198,7 +198,7 @@ public class ModelManager extends ComponentManager implements Model {
                     .findAny()
                     .isPresent();
         }
-        
+
         @Override
         public boolean run(Tag list) {
             return nameKeyWords.stream()
@@ -227,7 +227,7 @@ public class ModelManager extends ComponentManager implements Model {
                     .findAny()
                     .isPresent();
         }
-        
+
         @Override
         public boolean run(Tag list) {
             return false;
