@@ -21,5 +21,9 @@ public class CliSyntax {
     /* Patterns definitions */
     public static final Pattern KEYWORDS_ARGS_FORMAT =
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
+    
+    /* Patterns definitions */
+    public static final Pattern KEYWORDS_ARGS_FORMAT_LIST =
+            Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
 
 }
