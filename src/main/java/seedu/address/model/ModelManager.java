@@ -10,13 +10,12 @@ import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.events.model.DueueChangedEvent;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
-import seedu.address.model.tasklist.TaskList;
-import seedu.address.model.tasklist.UniqueListList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,7 +26,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final TaskManager taskManager;
     private final FilteredList<ReadOnlyTask> filteredTasks;
-    private final FilteredList<TaskList> filteredLists;
+    private final FilteredList<Tag> filteredLists;
 
     /**
      * Initializes a ModelManager with the given taskManager and userPrefs.
@@ -40,7 +39,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         this.taskManager = new TaskManager(taskManager);
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
-        filteredLists = new FilteredList<>(this.taskManager.getListList());
+        filteredLists = new FilteredList<>(this.taskManager.getTagList());
     }
 
     public ModelManager() {
@@ -84,30 +83,6 @@ public class ModelManager extends ComponentManager implements Model {
         taskManager.updateTask(taskManagerIndex, editedTask);
         indicateTaskManagerChanged();
     }
-    
-    @Override
-    public synchronized void addList(TaskList list) throws UniqueListList.DuplicateListException {
-        assert list != null;
-        taskManager.addList(list);
-        updateFilteredListToShowAllLists();
-        indicateTaskManagerChanged();
-    }
-    
-    @Override
-    public synchronized void removeList(TaskList target) throws UniqueListList.ListNotFoundException {
-        taskManager.removeList(target);
-        indicateTaskManagerChanged();
-    }
-    
-    @Override
-    public void updateList(int filteredListListIndex, TaskList editedList) throws
-            UniqueListList.DuplicateListException {
-        assert editedList != null;
-
-        int taskManagerIndex = filteredLists.getSourceIndex(filteredListListIndex);
-        taskManager.updateList(taskManagerIndex, editedList);
-        indicateTaskManagerChanged();
-    }
 
     //=========== Filtered Task List Accessors =============================================================
 
@@ -118,21 +93,11 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateFilteredListToShowAllTasks() {
-        filteredTasks.setPredicate(t -> !t.isFinished());
-    }
-    
-    @Override
-    public void updateFilteredListToShowAllTasksAll() {
         filteredTasks.setPredicate(null);
     }
-
-    @Override
-    public void updateFilteredTaskList(Set<String> keywords) {
-        updateFilteredTaskList(new PredicateExpression(new NameQualifierUnfinished(keywords)));
-    }
     
     @Override
-    public void updateFilteredTaskListAll(Set<String> keywords) {
+    public void updateFilteredTaskList(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
     }
     
@@ -140,40 +105,34 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredTaskListGivenListName(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords)));
     }
-
-    @Override
-    public void updateFilteredTaskListGivenListNameAll(Set<String> keywords) {
-        updateFilteredTaskList(new PredicateExpression(new TagQualifierUnfinished(keywords)));
-    }
     
     private void updateFilteredTaskList(Expression expression) {
         filteredTasks.setPredicate(expression::satisfies);
     }
-    //=========== Filtered List List Accessors ==============================================================
 
-    @Override
-    public UnmodifiableObservableList<TaskList> getFilteredListList() {
+    //=========== Filtered List Accessors =============================================================
+    
+    public UnmodifiableObservableList<Tag> getFilteredListList() {
         return new UnmodifiableObservableList<>(filteredLists);
     }
-    
-    @Override
+
     public void updateFilteredListToShowAllLists() {
         filteredLists.setPredicate(null);
     }
-
-    @Override
+    
     public void updateFilteredListList(Set<String> keywords) {
         updateFilteredListList(new PredicateExpression(new NameQualifier(keywords)));
     }
-
+    
     private void updateFilteredListList(Expression expression) {
         filteredLists.setPredicate(expression::satisfies);
     }
+
     //========== Inner classes/interfaces used for filtering =================================================
 
     interface Expression {
         boolean satisfies(ReadOnlyTask task);
-        boolean satisfies(TaskList list);
+        boolean satisfies(Tag list);
         String toString();
     }
 
@@ -191,7 +150,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
 
         @Override
-        public boolean satisfies(TaskList list){
+        public boolean satisfies(Tag list){
             return qualifier.run(list);
         }
         
@@ -203,40 +162,10 @@ public class ModelManager extends ComponentManager implements Model {
 
     interface Qualifier {
         boolean run(ReadOnlyTask task);
-        boolean run(TaskList list);
+        boolean run(Tag list);
         String toString();
     }
 
-    private class QualifierUnfinished implements Qualifier {
-
-        @Override
-        public boolean run(ReadOnlyTask task) {
-            return !task.isFinished();
-        }
-
-        @Override
-        public boolean run(TaskList list) {
-            // TODO Auto-generated method stub
-            return false;
-        }
-        
-    }
-    private class NameQualifierUnfinished extends NameQualifier {
-        
-        NameQualifierUnfinished(Set<String> nameKeyWords) {
-            super(nameKeyWords);
-        }
-        
-        @Override
-        public boolean run(ReadOnlyTask task) {
-            return nameKeyWords.stream()
-                    .filter(keyword -> StringUtil.containsWordIgnoreCase(task.getName().fullName, keyword))
-                    .filter(keyword -> !task.isFinished())
-                    .findAny()
-                    .isPresent();
-        }
-    }
-    
     private class NameQualifier implements Qualifier {
         protected Set<String> nameKeyWords;
 
@@ -253,7 +182,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
         
         @Override
-        public boolean run(TaskList list) {
+        public boolean run(Tag list) {
             return nameKeyWords.stream()
                     .filter(keyword -> StringUtil.containsWordIgnoreCase(list.getName(), keyword))
                     .findAny()
@@ -266,22 +195,6 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
-    private class TagQualifierUnfinished extends TagQualifier {
-        
-        TagQualifierUnfinished(Set<String> tagKeyWords) {
-            super(tagKeyWords);
-        }
-        
-        @Override
-        public boolean run(ReadOnlyTask task) {
-            return tagKeyWords.stream()
-                    .filter(keyword -> StringUtil.containsWordIgnoreCase(task.getTag().getName(), keyword))
-                    .filter(keyword -> !task.isFinished())
-                    .findAny()
-                    .isPresent();
-        }
-    }
-    
     private class TagQualifier implements Qualifier {
         protected Set<String> tagKeyWords;
 
@@ -298,7 +211,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
         
         @Override
-        public boolean run(TaskList list) {
+        public boolean run(Tag list) {
             return false;
         }
 
