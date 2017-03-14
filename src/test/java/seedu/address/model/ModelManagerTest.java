@@ -31,7 +31,6 @@ public class ModelManagerTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), modelManager.getFilteredTaskList());
-        assertEquals(Collections.emptyList(), modelManager.getFilteredListList());
     }
     
     @Test
@@ -103,7 +102,7 @@ public class ModelManagerTest {
         Task task1 = new Task(testUtil.gym);
         Task task2 = new Task(testUtil.cs2103);
         Task task3 = new Task(testUtil.study);
-        
+ 
         modelManager.addTask(task1);
         assertEquals(modelManager.getFilteredTaskList().size(), 1);
         assertEquals(modelManager.getFilteredListList().size(), 1);
@@ -111,18 +110,5 @@ public class ModelManagerTest {
         modelManager.addTask(task3);
         assertEquals(modelManager.getFilteredTaskList().size(), 2);
         assertEquals(modelManager.getFilteredListList().size(), 1);
-    }
-    
-    @Test
-    public void addList() throws DuplicateListException, IllegalValueException {
-        modelManager = new ModelManager();
-        Task task1 = new Task(testUtil.gym);
-        Task task2 = new Task(testUtil.cs2103);
-        
-        modelManager.addTask(task1);
-        modelManager.addTask(task2);
-
-        modelManager.addList(new TaskList("inbox"));
-        assertEquals(modelManager.getFilteredListList().size(), 3);
     }
 }
