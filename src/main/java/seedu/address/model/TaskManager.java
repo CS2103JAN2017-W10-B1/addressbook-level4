@@ -15,8 +15,6 @@ import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
-import seedu.address.model.tasklist.TaskList;
-import seedu.address.model.tasklist.UniqueListList;
 
 /**
  * Wraps all data at the task-manager level
