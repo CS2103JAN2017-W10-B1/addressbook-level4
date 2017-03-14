@@ -50,24 +50,23 @@ public class FinishCommand extends Command {
         ReadOnlyTask taskToMark = lastShownList.get(targetIndex - 1);
 
         if(taskToMark.isFinished()){
-            throw new CommandException(MESSAGE_FINISH_TASK_MARKED) ;
-        }
-        else{
-        	Name updatedName = taskToMark.getName();
-        	Date updatedDate = taskToMark.getDate();
-        	Time updatedTime = taskToMark.getTime();
-        	Description updatedDescription = taskToMark.getDescription();
-        	Tag updatedTag = taskToMark.getTag();
-        	Venue updatedVenue = taskToMark.getVenue();
-        	Priority updatedPriority = taskToMark.getPriority();
+            throw new CommandException(MESSAGE_FINISH_TASK_MARKED);
+        } else {
+            Name updatedName = taskToMark.getName();
+            Date updatedDate = taskToMark.getDate();
+            Time updatedTime = taskToMark.getTime();
+            Description updatedDescription = taskToMark.getDescription();
+            Tag updatedTag = taskToMark.getTag();
+            Venue updatedVenue = taskToMark.getVenue();
+            Priority updatedPriority = taskToMark.getPriority();
 
-        	taskToMark  = new Task(
-        	        updatedName, updatedDate, updatedTime, updatedDescription, 
-        	        updatedTag, updatedVenue, updatedPriority, false, true);
+            taskToMark  = new Task(
+                    updatedName, updatedDate, updatedTime, updatedDescription,
+                    updatedTag, updatedVenue, updatedPriority, false, true);
         }
-     
+
         try {
-			model.updateTask(targetIndex-1, taskToMark);
+        	model.updateTask(targetIndex - 1, taskToMark);
 		} catch (DuplicateTaskException e) {
 			throw new CommandException(MESSAGE_WRONG_TASK_INDEX);
 		}

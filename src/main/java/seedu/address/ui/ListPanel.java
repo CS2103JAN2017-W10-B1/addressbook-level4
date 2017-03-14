@@ -12,7 +12,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ListPanelSelectionChangedEvent;
-import seedu.address.commons.events.ui.TaskPanelSelectionChangedEvent;
 import seedu.address.commons.util.FxViewUtil;
 import seedu.address.model.tasklist.TaskList;
 
@@ -20,7 +19,7 @@ import seedu.address.model.tasklist.TaskList;
  * Panel containing the list of tasks.
  */
 public class ListPanel extends UiPart<Region> {
-   
+
 	private final Logger logger = LogsCenter.getLogger(ListPanel.class);
     private static final String FXML = "ListPanel.fxml";
 

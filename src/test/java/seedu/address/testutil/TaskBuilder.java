@@ -2,7 +2,6 @@ package seedu.address.testutil;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;

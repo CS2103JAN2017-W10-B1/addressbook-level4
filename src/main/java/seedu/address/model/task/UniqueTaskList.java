@@ -37,7 +37,7 @@ public class UniqueTaskList implements Iterable<Task> {
         assert index >= 0;
         return internalList.get(index);
     }
-    
+
     /**
      * Adds a task to the list.
      *
@@ -58,7 +58,7 @@ public class UniqueTaskList implements Iterable<Task> {
         assert toDelete != null;
         internalList.remove(toDelete);
     }
-    
+
     /**
      * Updates the task in the list at position {@code index} with {@code editedTask}.
      *

@@ -56,7 +56,7 @@ public class TaskManagerTest {
         TaskManager emptyManager = new TaskManager();
         assertEquals(emptyManager.getTagList().size(), 0);
     }
-    
+
     @Test
     public void addTask() throws IllegalValueException {
         TaskManager newManager = new TaskManager();
@@ -74,7 +74,7 @@ public class TaskManagerTest {
         assertEquals(newManager.getTaskList().size(), 3);
         assertEquals(newManager.getTagList().size(), 2);
     }
-    
+
     @Test
     public void deleteTask() throws IllegalValueException, TaskNotFoundException {
         TaskManager newManager = new TaskManager();
@@ -89,7 +89,7 @@ public class TaskManagerTest {
         newManager.removeTask(sample3);
         assertEquals(newManager.getTaskList().size(), 1);
     }
-    
+
     @Test
     public void udpateTask() throws IllegalValueException {
         TaskManager newManager = new TaskManager();
@@ -108,7 +108,7 @@ public class TaskManagerTest {
         assertEquals(newManager.getTaskList().size(), 3);
         assertEquals(newManager.getTagList().size(), 3);
     }
-    
+
     @Test
     public void resetData_withDuplicateTasks_throwsAssertionError() throws DuplicateTagException {
         TypicalTestTasks td = new TypicalTestTasks();
@@ -145,7 +145,7 @@ public class TaskManagerTest {
 
         TaskManagerStub(Collection<? extends ReadOnlyTask> tasks, Collection<? extends Tag> tags) {
             this.tasks.setAll(tasks);
-            this.tags.setAll(tags);           
+            this.tags.setAll(tags);
         }
 
         @Override

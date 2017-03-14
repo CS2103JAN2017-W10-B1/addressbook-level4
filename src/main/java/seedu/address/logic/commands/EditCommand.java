@@ -28,7 +28,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the last task listing. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) n/TASKNAME [due/DUEDATE] [t/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f]"
+            + "Parameters: INDEX (must be a positive integer) n/TASKNAME [due/DUEDATE] [t/TIME] [#LISTNAME] "
+            + "[d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f]"
             + "Example: " + COMMAND_WORD + " 1 due/17/3/2017 #CS2103T";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
@@ -121,7 +122,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyPresent(
-                    this.name, this.date, this.time, 
+                    this.name, this.date, this.time,
                     this.description, this.tag, this.venue, this.priority);
         }
 

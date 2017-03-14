@@ -9,7 +9,7 @@ import seedu.address.model.Model;
  */
 public abstract class Command {
     protected Model model;
-    
+
     public static final String MESSAGE_USAGE = "";
 
     /**
@@ -38,7 +38,7 @@ public abstract class Command {
     public void setData(Model model) {
         this.model = model;
     }
-    
+
     /**
      * Provides usage message for help command
      */

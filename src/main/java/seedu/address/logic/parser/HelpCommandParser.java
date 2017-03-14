@@ -31,38 +31,38 @@ public class HelpCommandParser {
     /**
      * Parses the given {String} of command in the context of the HelpCommand
      * and returns the help message of the corresponding command.
-     * 
+     *
      * Considering to make it more generic together with the similar part in Parser.
      */
 	private String parseCommand(String commandWord) {
 		switch (commandWord) {
             case AddCommand.COMMAND_WORD:
                 return AddCommand.MESSAGE_USAGE;
-        
+
             case EditCommand.COMMAND_WORD:
                 return EditCommand.MESSAGE_USAGE;
-        
+
             case SelectCommand.COMMAND_WORD:
                 return SelectCommand.MESSAGE_USAGE;
-        
+
             case DeleteCommand.COMMAND_WORD:
                 return DeleteCommand.MESSAGE_USAGE;
-        
+
             case ClearCommand.COMMAND_WORD:
                 return ClearCommand.MESSAGE_USAGE;
-        
+
             case FindCommand.COMMAND_WORD:
                 return FindCommand.MESSAGE_USAGE;
-        
+
             case ListCommand.COMMAND_WORD:
                 return ListCommand.MESSAGE_USAGE;
-        
+
             case ExitCommand.COMMAND_WORD:
                 return ExitCommand.MESSAGE_USAGE;
-        
+
             case HelpCommand.COMMAND_WORD:
                 return HelpCommand.MESSAGE_USAGE;
-        
+
             default:
                 return null;
         }

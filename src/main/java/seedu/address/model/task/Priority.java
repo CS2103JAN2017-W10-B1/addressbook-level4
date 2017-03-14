@@ -15,9 +15,9 @@ public class Priority {
     public static final String PRIORITY_TRIVIAL = "trivial";
     public static final String PRIORITY_NORMAL = "normal";
     public static final String PRIORITY_IMPORTANT = "important";
-    
+
     public static final String DEFAULT_PRIORITY = PRIORITY_2;
-    
+
     public static final String MESSAGE_PRIORITY_CONSTRAINTS = "task priority can only be 1, 2, 3, trivial, normal, or important";
     //TODO: public static final String DATE_VALIDATION_REGEX =
 
@@ -63,7 +63,7 @@ public class Priority {
             return value;
         }
     }
-    
+
     @Override
     public String toString() {
         return value;

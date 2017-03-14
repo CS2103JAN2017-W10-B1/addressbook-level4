@@ -112,8 +112,8 @@ public class MainWindow extends UiPart<Region> {
     }
 
     public void fillInnerParts() {
-    		//listPanel = new ListPanel(getListPlaceholder(), logic.getFilteredListList());
-    		taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
+    	//listPanel = new ListPanel(getListPlaceholder(), logic.getFilteredListList());
+    	taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
         new CommandBox(getCommandBoxPlaceholder(), logic);
@@ -133,7 +133,7 @@ public class MainWindow extends UiPart<Region> {
     }
 
     private AnchorPane getTaskListPlaceholder() {
-    		return this.taskListPanelPlaceholder;
+    	return this.taskListPanelPlaceholder;
     }
 
     public void hide() {

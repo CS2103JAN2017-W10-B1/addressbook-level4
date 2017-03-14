@@ -16,13 +16,13 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
-	private String USAGE_MESSAGE = null;
+    private String USAGE_MESSAGE = null;
 
     /**
      * Creates a HelpCommand using one command .
      */
 
-    public HelpCommand(String helpMessage){
+    public HelpCommand(String helpMessage) {
     	super();
     	USAGE_MESSAGE = helpMessage;
     }
