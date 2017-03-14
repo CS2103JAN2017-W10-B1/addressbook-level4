@@ -36,7 +36,7 @@
                                     <Insets top="2.0" />
                                  </HBox.margin>
                               </Label>
-                                       <Label fx:id="name" alignment="TOP_LEFT" prefHeight="20.0" prefWidth="99.0" styleClass="cell_big_label" text="\$taskName" />
+                                       <Label fx:id="name" alignment="TOP_LEFT" prefHeight="20.0" prefWidth="188.0" styleClass="cell_big_label" text="\$taskName" />
                                     <Label fx:id="isFavorite" alignment="BOTTOM_RIGHT" prefHeight="16.0" prefWidth="76.0" styleClass="cell_small_label" text="\$isFavorite">
                                  <HBox.margin>
                                     <Insets top="3.0" />
