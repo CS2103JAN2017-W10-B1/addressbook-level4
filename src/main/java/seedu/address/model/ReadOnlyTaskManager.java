@@ -4,7 +4,6 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.ReadOnlyTask;
-import seedu.address.model.tasklist.TaskList;
 
 /**
  * Unmodifiable view of an address book
@@ -22,11 +21,4 @@ public interface ReadOnlyTaskManager {
      * This list will not contain any duplicate tags.
      */
     ObservableList<Tag> getTagList();
-
-    /**
-     * Returns an unmodifiable view of the lists list.
-     * This list will not contain any duplicate lists.
-     */
-    ObservableList<TaskList> getListList();
-
 }

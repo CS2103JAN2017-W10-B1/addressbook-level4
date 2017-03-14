@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +21,6 @@ import seedu.address.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 import seedu.address.model.tasklist.TaskList;
-import seedu.address.model.tasklist.UniqueListList.ListNotFoundException;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.testutil.TypicalTestTasks;
@@ -56,7 +54,6 @@ public class TaskManagerTest {
     @Test
     public void emptyManager() {
         TaskManager emptyManager = new TaskManager();
-        assertEquals(emptyManager.getListList().size(), 0);
         assertEquals(emptyManager.getTagList().size(), 0);
     }
     
@@ -159,11 +156,6 @@ public class TaskManagerTest {
         @Override
         public ObservableList<Tag> getTagList() {
             return tags;
-        }
-
-        @Override
-        public ObservableList<TaskList> getListList() {
-            return lists;
         }
     }
 

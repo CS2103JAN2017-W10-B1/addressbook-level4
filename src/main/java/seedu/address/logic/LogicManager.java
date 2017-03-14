@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.util.Collections;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -38,12 +39,5 @@ public class LogicManager extends ComponentManager implements Logic {
     @Override
     public ObservableList<ReadOnlyTask> getFilteredTaskList() {
         return model.getFilteredTaskList();
-    }
-
-    @Override
-    public ObservableList<ReadOnlyTask> getUnfinishedTaskList() {
-    	ObservableList<ReadOnlyTask> taskList = model.getFilteredTaskList();
-    	taskList.filtered(t -> !t.isFinished());
-    	return taskList;
     }
 }
