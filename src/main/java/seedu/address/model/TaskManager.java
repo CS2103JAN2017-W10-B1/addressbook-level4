@@ -69,11 +69,6 @@ public class TaskManager implements ReadOnlyTaskManager {
     public void resetData(ReadOnlyTaskManager newData) {
         assert newData != null;
         try {
-            setTags(newData.getTagList());
-        } catch (UniqueTagList.DuplicateTagException e) {
-            assert false : "TaskManagers should not have duplicate tags";
-        }
-        try {
             setTasks(newData.getTaskList());
         } catch (UniqueTaskList.DuplicateTaskException e) {
             assert false : "TaskManagers should not have duplicate tasks";
