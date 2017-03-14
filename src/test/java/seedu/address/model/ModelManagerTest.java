@@ -1,9 +1,7 @@
 package seedu.address.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,12 +11,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.testutil.TypicalTestTasks;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
-import seedu.address.model.tasklist.TaskList;
-import seedu.address.model.tasklist.UniqueListList.DuplicateListException;
-import seedu.address.testutil.TestTask;
 
 public class ModelManagerTest {
 
