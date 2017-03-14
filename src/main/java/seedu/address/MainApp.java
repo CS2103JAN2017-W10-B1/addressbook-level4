@@ -90,7 +90,7 @@ public class MainApp extends Application {
         	throw new AssertionError("sample data cannot be invalid", e);
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty TaskManager");
-            initialData = new TaskManager();        
+            initialData = new TaskManager();
 		}
 
         return new ModelManager(initialData, userPrefs);

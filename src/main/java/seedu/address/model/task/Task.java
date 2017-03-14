@@ -37,7 +37,7 @@ public class Task implements ReadOnlyTask {
         this.isFinished = false;
     }
 
-    public Task(Name name, Date date, Time time, Description description, Tag tag, 
+    public Task(Name name, Date date, Time time, Description description, Tag tag,
     		Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
