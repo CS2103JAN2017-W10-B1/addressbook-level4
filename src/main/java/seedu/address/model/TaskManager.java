@@ -26,7 +26,6 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     private final UniqueTaskList tasks;
     private final UniqueTagList tags;
-    private final UniqueListList lists;
 
     /*
      * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
@@ -38,7 +37,6 @@ public class TaskManager implements ReadOnlyTaskManager {
     {
         tasks = new UniqueTaskList();
         tags = new UniqueTagList();
-        lists = new UniqueListList();
     }
 
     public TaskManager() {}
@@ -60,10 +58,6 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     public void setTags(Collection<Tag> tags) throws UniqueTagList.DuplicateTagException {
         this.tags.setTags(tags);
-    }
-    
-    public void setLists(Collection<TaskList> lists) throws UniqueListList.DuplicateListException {
-        this.lists.setLists(lists);
     }
 
     public void resetData(ReadOnlyTaskManager newData) {
@@ -186,14 +180,13 @@ public class TaskManager implements ReadOnlyTaskManager {
         return other == this // short circuit if same object
                 || (other instanceof TaskManager // instanceof handles nulls
                 && this.tasks.equals(((TaskManager) other).tasks)
-                && this.tags.equalsOrderInsensitive(((TaskManager) other).tags)
-                && this.lists.equalsOrderInsensitive(((TaskManager) other).lists));
+                && this.tags.equalsOrderInsensitive(((TaskManager) other).tags));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(tasks, tags, lists);
+        return Objects.hash(tasks, tags);
     }
 
 

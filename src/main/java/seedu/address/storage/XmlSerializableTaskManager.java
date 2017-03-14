@@ -34,7 +34,7 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
      */
     public XmlSerializableTaskManager() {
         tasks = new ArrayList<>();
-        new ArrayList<>();
+        tags = new ArrayList<>();
     }
 
     /**
@@ -43,6 +43,7 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
     public XmlSerializableTaskManager(ReadOnlyTaskManager src) {
         this();
         tasks.addAll(src.getTaskList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
+        tags.addAll(src.getTagList().stream().map(XmlAdaptedTag::new).collect(Collectors.toList()));
     }
 
     @Override
