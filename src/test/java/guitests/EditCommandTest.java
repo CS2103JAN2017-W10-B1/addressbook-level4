@@ -23,7 +23,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
     private TestTask[] expectedTasksList = td.getTypicalTasks();
 
     @Test
-    public void edit_allFieldsSpecified_success() throws Exception {
+    public void editAllFieldsSpecifiedSuccess() throws Exception {
         String detailsToEdit = "n/Lecture due/10/3/2017 t/16:00 d/Interesting module @I3 p/3 *f";
         int taskManagerIndex = 1;
 
@@ -35,7 +35,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void edit_notAllFieldsSpecified_success() throws Exception {
+    public void editNotAllFieldsSpecifiedSuccess() throws Exception {
         String detailsToEdit = "p/2";
         int taskManagerIndex = 2;
 
@@ -46,7 +46,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void edit_findThenEdit_success() throws Exception {
+    public void editFindThenEditSuccess() throws Exception {
         commandBox.runCommand("find gym");
 
         String detailsToEdit = "gym";
@@ -60,25 +60,25 @@ public class EditCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void edit_missingTaskIndex_failure() {
+    public void editMissingTaskIndexFailure() {
         commandBox.runCommand("edit gym");
         assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void edit_invalidTaskIndex_failure() {
+    public void editInvalidTaskIndexFailure() {
         commandBox.runCommand("edit 8 gym");
         assertResultMessage(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
-    public void edit_noFieldsSpecified_failure() {
+    public void editNoFieldsSpecifiedFailure() {
         commandBox.runCommand("edit 1");
         assertResultMessage(EditCommand.MESSAGE_NOT_EDITED);
     }
 
     @Test
-    public void edit_invalidValues_failure() {
+    public void editInvalidValuesFailure() {
         commandBox.runCommand("edit 1 *&");
         assertResultMessage(Name.MESSAGE_NAME_CONSTRAINTS);
 
@@ -93,7 +93,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void edit_duplicateTask_failure() {
+    public void editDuplicateTaskFailure() {
         commandBox.runCommand("edit n/Lecture due/10/3/2017 t/16:00"
                                 + "d/Interesting module @I3 p/3 *f");
         assertResultMessage(EditCommand.MESSAGE_DUPLICATE_TASK);
