@@ -69,11 +69,6 @@ public class TaskManager implements ReadOnlyTaskManager {
     public void resetData(ReadOnlyTaskManager newData) {
         assert newData != null;
         try {
-            setLists(newData.getListList());
-        } catch (UniqueListList.DuplicateListException e) {
-            assert false : "TaskMangers should not have duplicate lists";
-        }
-        try {
             setTags(newData.getTagList());
         } catch (UniqueTagList.DuplicateTagException e) {
             assert false : "TaskManagers should not have duplicate tags";
@@ -186,10 +181,6 @@ public class TaskManager implements ReadOnlyTaskManager {
         return new UnmodifiableObservableList<>(tags.asObservableList());
     }
 
-    @Override
-    public ObservableList<TaskList> getListList() {
-        return new UnmodifiableObservableList<>(lists.asObservableList());
-    }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

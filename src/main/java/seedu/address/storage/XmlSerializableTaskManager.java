@@ -15,7 +15,6 @@ import seedu.address.model.ReadOnlyTaskManager;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
-import seedu.address.model.tasklist.TaskList;
 
 
 /**
@@ -29,15 +28,13 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
     @XmlElement
     private List<XmlAdaptedTag> tags;
 
-    private List<XmlTaskList> taskLists;
-
     /**
      * Creates an empty XmlSerializableAddressBook.
      * This empty constructor is required for marshalling.
      */
     public XmlSerializableTaskManager() {
         tasks = new ArrayList<>();
-        taskLists = new ArrayList<>();
+        new ArrayList<>();
     }
 
     /**
@@ -75,19 +72,4 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
         }).collect(Collectors.toCollection(FXCollections::observableArrayList));
         return new UnmodifiableObservableList<>(tags);
     }
-
-	@Override
-	public ObservableList<TaskList> getListList() {
-		final ObservableList<TaskList> taskLists = this.taskLists.stream().map(l -> {
-		    try {
-                return l.toModelType();
-            } catch (IllegalValueException e) {
-                e.printStackTrace();
-                //TODO: better error handling
-                return null;
-            }
-        }).collect(Collectors.toCollection(FXCollections::observableArrayList));
-        return new UnmodifiableObservableList<>(taskLists);
-	}
-
 }
