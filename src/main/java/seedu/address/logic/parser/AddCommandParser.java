@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
@@ -28,10 +27,10 @@ public class AddCommandParser {
      */
     public Command parse(String args) {
         ArgumentTokenizer argsTokenizer =
-                new ArgumentTokenizer(PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_VENUE, PREFIX_PRIORITY);
+                new ArgumentTokenizer(PREFIX_DATE, PREFIX_TIME, PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_VENUE, PREFIX_PRIORITY);
         argsTokenizer.tokenize(args);
         try {
-            String name = argsTokenizer.getValue(PREFIX_NAME).get();
+            String name = argsTokenizer.getPreamble().get();
             String date = checkString(argsTokenizer.getValue(PREFIX_DATE));
             String time = checkString(argsTokenizer.getValue(PREFIX_TIME));
             String tag = checkString(argsTokenizer.getValue(PREFIX_TAG));

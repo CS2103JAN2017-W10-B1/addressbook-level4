@@ -20,11 +20,11 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to Dueue. "
-            + "Parameters: n/TASKNAME [due/DUEDATE] [t/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL]\n"
+            + "Parameters: TASKNAME [due/DUEDATE] [t/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL]\n"
             + "Example: " + COMMAND_WORD
-            + " n/CS2103 Lecture due/10/3/2017 t/16:00 #CS2103 d/Interesting module @I3 p/3 \n"
+            + " CS2103 Lecture due/10/3/2017 t/16:00 #CS2103 d/Interesting module @I3 p/3 \n"
     		+ COMMAND_WORD
-    		+ " n/CS2103T Tutorial due/8/3/2017 t/10:00 #CS2103 d/Interesting module @I3 p/2 \n";
+    		+ " CS2103T Tutorial due/8/3/2017 t/10:00 #CS2103 d/Interesting module @I3 p/2 \n";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Dueue";
