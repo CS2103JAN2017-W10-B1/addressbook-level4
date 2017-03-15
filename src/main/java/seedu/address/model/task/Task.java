@@ -129,6 +129,15 @@ public class Task implements ReadOnlyTask {
         return isFavorite;
     }
 
+    @Override
+    public String getFavoriteText() {
+    	if (isFavorite) {
+    		return "Favorite";
+    	} else {
+    		return "";
+    	}
+    }
+
     public void setFavorite(boolean isFavorite) {
         this.isFavorite = isFavorite;
     }
@@ -136,6 +145,15 @@ public class Task implements ReadOnlyTask {
     @Override
     public boolean isFinished() {
         return isFinished;
+    }
+
+    @Override
+    public String getFinishedText() {
+    	if (isFinished) {
+    		return "Finished";
+    	} else {
+    		return "Unfinished";
+    	}
     }
 
     public void setFinish(boolean isFinished) {

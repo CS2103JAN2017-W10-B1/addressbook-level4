@@ -133,4 +133,16 @@ public class TestTask implements ReadOnlyTask {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public String getFavoriteText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getFinishedText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
