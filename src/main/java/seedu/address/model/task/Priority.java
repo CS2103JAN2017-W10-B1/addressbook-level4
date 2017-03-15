@@ -20,9 +20,10 @@ public class Priority {
     public static final String DEFAULT_PRIORITY = PRIORITY_2;
 
     public static final String MESSAGE_PRIORITY_CONSTRAINTS = "task priority can only be 1, 2, 3, trivial, normal, or important";
-    //TODO: public static final String DATE_VALIDATION_REGEX =
+    
+    public static final String PRIORITY_VALIDATION_REGEX = PRIORITY_1 + "|" + PRIORITY_2 + "|" + PRIORITY_3;
 
-    public final String value;
+    private final String value;
 
     /**
      * Validity given priority.
@@ -34,10 +35,11 @@ public class Priority {
             this.value = DEFAULT_PRIORITY;
         } else {
             String trimmedPriority = priority.trim();
-            if (!isValidPriority(trimmedPriority)) {
-                throw new IllegalValueException(MESSAGE_PRIORITY_CONSTRAINTS + " " + trimmedPriority);
+            String convertedPriority = convert(trimmedPriority);
+            if (!isValidPriority(convertedPriority)) {
+                throw new IllegalValueException(MESSAGE_PRIORITY_CONSTRAINTS);
             }
-            this.value = convert(trimmedPriority);
+            this.value = convertedPriority;
         }
     }
 
@@ -45,27 +47,24 @@ public class Priority {
      * Returns if a given string is a valid priority.
      */
     public static boolean isValidPriority(String test) {
-        return test.equalsIgnoreCase(PRIORITY_1) || test.equalsIgnoreCase(PRIORITY_2) ||
-                test.equalsIgnoreCase(PRIORITY_3) || test.equalsIgnoreCase(PRIORITY_TRIVIAL) ||
-                test.equalsIgnoreCase(PRIORITY_NORMAL) || test.equalsIgnoreCase(PRIORITY_IMPORTANT) ||
-                test.equals(PRIORITY_EMPTY);
+        return test.matches(PRIORITY_VALIDATION_REGEX);
     }
 
     /**
      * Convert English expressions into digits expressions
      */
-    public String convert(String value) {
-        if (value.equals(PRIORITY_TRIVIAL)) {
-            return PRIORITY_1;
-        } else if (value.equals(PRIORITY_NORMAL) || value.equals(PRIORITY_EMPTY)) {
-            return PRIORITY_2;
-        } else if (value.equals(PRIORITY_IMPORTANT)) {
-            return PRIORITY_3;
-        } else {
-            return value;
-        }
+    public static String convert(String value) {
+        value = value.equals("")? DEFAULT_PRIORITY: value;
+        value = value.replaceFirst(PRIORITY_IMPORTANT, PRIORITY_3);
+        value = value.replaceFirst("(?i)" + PRIORITY_NORMAL, PRIORITY_2);
+        value = value.replaceFirst("(?i)" + PRIORITY_TRIVIAL, PRIORITY_1);
+        return value;
     }
 
+    public String getValue() {
+        return this.value;
+    }
+    
     @Override
     public String toString() {
         return value;
