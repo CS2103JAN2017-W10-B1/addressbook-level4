@@ -15,6 +15,7 @@ public class Priority {
     public static final String PRIORITY_TRIVIAL = "trivial";
     public static final String PRIORITY_NORMAL = "normal";
     public static final String PRIORITY_IMPORTANT = "important";
+    public static final String PRIORITY_EMPTY = "";
 
     public static final String DEFAULT_PRIORITY = PRIORITY_2;
 
@@ -33,9 +34,9 @@ public class Priority {
             this.value = DEFAULT_PRIORITY;
         } else {
             String trimmedPriority = priority.trim();
-            //if (!isValidPriority(trimmedPriority)) {
-             //   throw new IllegalValueException(MESSAGE_PRIORITY_CONSTRAINTS);
-            //}
+            if (!isValidPriority(trimmedPriority)) {
+                throw new IllegalValueException(MESSAGE_PRIORITY_CONSTRAINTS + " " + trimmedPriority);
+            }
             this.value = convert(trimmedPriority);
         }
     }
@@ -46,7 +47,8 @@ public class Priority {
     public static boolean isValidPriority(String test) {
         return test.equalsIgnoreCase(PRIORITY_1) || test.equalsIgnoreCase(PRIORITY_2) ||
                 test.equalsIgnoreCase(PRIORITY_3) || test.equalsIgnoreCase(PRIORITY_TRIVIAL) ||
-                test.equalsIgnoreCase(PRIORITY_NORMAL) || test.equalsIgnoreCase(PRIORITY_IMPORTANT);
+                test.equalsIgnoreCase(PRIORITY_NORMAL) || test.equalsIgnoreCase(PRIORITY_IMPORTANT) ||
+                test.equals(PRIORITY_EMPTY);
     }
 
     /**
@@ -55,7 +57,7 @@ public class Priority {
     public String convert(String value) {
         if (value.equals(PRIORITY_TRIVIAL)) {
             return PRIORITY_1;
-        } else if (value.equals(PRIORITY_NORMAL)) {
+        } else if (value.equals(PRIORITY_NORMAL) || value.equals(PRIORITY_EMPTY)) {
             return PRIORITY_2;
         } else if (value.equals(PRIORITY_IMPORTANT)) {
             return PRIORITY_3;
@@ -80,5 +82,4 @@ public class Priority {
     public int hashCode() {
         return value.hashCode();
     }
-
 }
