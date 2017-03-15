@@ -17,6 +17,8 @@ public interface ReadOnlyTask {
     Priority getPriority();
     boolean isFavorite();
     boolean isFinished();
+    String getFavoriteText();
+    String getFinishedText();
 
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)

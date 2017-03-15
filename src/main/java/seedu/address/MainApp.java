@@ -23,8 +23,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.TaskManager;
 import seedu.address.model.ReadOnlyTaskManager;
+import seedu.address.model.TaskManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.Storage;
@@ -87,11 +87,11 @@ public class MainApp extends Application {
             logger.warning("Data file not in the correct format. Will be starting with an empty TaskManager");
             initialData = new TaskManager();
         } catch (IllegalValueException e) {
-        	throw new AssertionError("sample data cannot be invalid", e);
+            throw new AssertionError("sample data cannot be invalid", e);
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty TaskManager");
             initialData = new TaskManager();
-		}
+        }
 
         return new ModelManager(initialData, userPrefs);
     }

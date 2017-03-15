@@ -7,7 +7,7 @@
         <tag></tag>
         <description></description>
         <venue></venue>
-        <priority></priority>
+        <priority>2</priority>
         <isFinished>true</isFinished>
     </tasks>
     <tasks>
@@ -17,7 +17,7 @@
         <tag></tag>
         <description></description>
         <venue>I3</venue>
-        <priority></priority>
+        <priority>2</priority>
         <isFinished>false</isFinished>
     </tasks>
     <tasks>
@@ -38,6 +38,16 @@
         <description>Interesting module</description>
         <venue>I3</venue>
         <priority>2</priority>
+        <isFinished>false</isFinished>
+    </tasks>
+    <tasks>
+        <name>Gym</name>
+        <date></date>
+        <time></time>
+        <tag></tag>
+        <description></description>
+        <venue></venue>
+        <priority>1</priority>
         <isFinished>false</isFinished>
     </tasks>
     <tags></tags>

@@ -6,10 +6,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name {
+public class Name implements Field {
 
     public static final String MESSAGE_NAME_CONSTRAINTS =
-            "Task names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Task names should only contain alphanumeric characters and spaces, "
+            + "and it should not be blank, or be [list]";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -29,6 +30,8 @@ public class Name {
         String trimmedName = name.trim();
         if (!isValidName(trimmedName)) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
+        } else if(trimmedName.equalsIgnoreCase("list")) {
+        		throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
         }
         this.fullName = trimmedName;
     }
@@ -58,4 +61,12 @@ public class Name {
         return fullName.hashCode();
     }
 
+	@Override
+	public String getDisplayText() {
+		if ((fullName == null) || (fullName == "")) {
+			return "";
+		} else {
+			return fullName;
+		}
+	}
 }

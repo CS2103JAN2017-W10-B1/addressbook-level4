@@ -39,15 +39,15 @@ public class TaskCard extends UiPart<Region> {
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
         index.setText(displayedIndex + ". ");
-        name.setText(task.getName().fullName);
-        description.setText(task.getDescription().value);
-        time.setText("Time: " + task.getTime().value);
-        date.setText("Date: "+ task.getDate().value);
-        venue.setText("Venue: " + task.getVenue().value);
-        priority.setText("Priority: " + task.getPriority().value);
-        isFavorite.setText("Favorite: " + String.valueOf(task.isFavorite()));
-        isFinished.setText("Finished: " + String.valueOf(task.isFinished()));
-        tag.setText("List:" + task.getTag().getName());
+        name.setText(task.getName().getDisplayText());
+        description.setText(task.getDescription().getDisplayText());
+        time.setText(task.getTime().getDisplayText());
+        date.setText(task.getDate().getDisplayText());
+        venue.setText(task.getVenue().getDisplayText());
+        priority.setText(task.getPriority().getDisplayText());
+        tag.setText(task.getTag().getDisplayText());
+        isFavorite.setText(task.getFavoriteText());
+        isFinished.setText(task.getFinishedText());
     }
 }
 

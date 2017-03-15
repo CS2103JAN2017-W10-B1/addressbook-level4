@@ -7,7 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a task's due time in the task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
-public class Time {
+public class Time implements Field {
 
     public static final String MESSAGE_TIME_CONSTRAINTS =
             "Task time should be the form hh/mm";
@@ -58,4 +58,12 @@ public class Time {
         return value.hashCode();
     }
 
+	@Override
+	public String getDisplayText() {
+		if ((value == null) || (value == "")) {
+			return "";
+		} else {
+			return "Time: " + value;
+		}
+	}
 }

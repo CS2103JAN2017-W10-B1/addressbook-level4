@@ -7,7 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a Task's venue in task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidVenue(String)}
  */
-public class Venue {
+public class Venue implements Field {
 
     public static final String MESSAGE_VENUE_CONSTRAINTS =
             "task venue can be in any form.";
@@ -55,4 +55,12 @@ public class Venue {
         return value.hashCode();
     }
 
+	@Override
+	public String getDisplayText() {
+		if ((value == null) || (value == "")) {
+			return "";
+		} else {
+			return "Venue: " + value;
+		}
+	}
 }
