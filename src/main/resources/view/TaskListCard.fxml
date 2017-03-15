@@ -8,8 +8,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" prefHeight="142.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" prefHeight="139.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <GridPane prefHeight="146.0" prefWidth="550.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
@@ -36,26 +37,30 @@
                                     <Insets top="2.0" />
                                  </HBox.margin>
                               </Label>
-                                       <Label fx:id="name" alignment="TOP_LEFT" prefHeight="20.0" prefWidth="188.0" styleClass="cell_big_label" text="\$taskName" />
-                                    <Label fx:id="isFavorite" alignment="BOTTOM_RIGHT" prefHeight="16.0" prefWidth="76.0" styleClass="cell_small_label" text="\$isFavorite">
+                                       <Label fx:id="name" alignment="TOP_LEFT" prefHeight="20.0" prefWidth="149.0" styleClass="cell_big_label" text="\$taskName" />
+                               <Label fx:id="tag" prefHeight="16.0" prefWidth="55.0" styleClass="cell_small_label" text="\$list">
                                  <HBox.margin>
                                     <Insets top="3.0" />
-                                 </HBox.margin>
-                              </Label>
-                                    <Label fx:id="priority" alignment="BOTTOM_RIGHT" prefHeight="14.0" prefWidth="59.0" styleClass="cell_small_label" text="\$priority" textAlignment="RIGHT">
-                                 <HBox.margin>
-                                    <Insets top="5.0" />
                                  </HBox.margin>
                               </Label>
                            </children>
                         </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="5">
-                                  <children>
-                                      <HBox />
-                                  </children>
+                           <children>
+                                    <Label fx:id="isFavorite" alignment="BOTTOM_RIGHT" prefHeight="16.0" prefWidth="75.0" styleClass="cell_small_label" text="\$isFavorite">
+                                 <HBox.margin>
+                                    <Insets left="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                                    <Label fx:id="priority" alignment="BOTTOM_RIGHT" prefHeight="12.0" prefWidth="95.0" styleClass="cell_small_label" text="\$priority" textAlignment="RIGHT">
+                                 <HBox.margin>
+                                    <Insets top="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
                               </HBox>
 
-                              <Label fx:id="description" prefHeight="66.0" prefWidth="345.0" styleClass="cell_small_label" text="\$description" />
+                              <Label fx:id="description" prefHeight="50.0" prefWidth="345.0" styleClass="cell_small_label" text="\$description" />
                           </children>
                      <HBox.margin>
                         <Insets />
@@ -63,22 +68,39 @@
                       </VBox>
                </children>
             </HBox>
-            <VBox alignment="TOP_RIGHT" maxWidth="159.0" prefHeight="140.0" prefWidth="127.0" GridPane.columnIndex="1">
+            <VBox alignment="TOP_RIGHT" maxWidth="159.0" prefHeight="139.0" prefWidth="146.0" GridPane.columnIndex="1">
                <children>
                   <Label fx:id="isFinished" alignment="BOTTOM_RIGHT" prefHeight="17.0" prefWidth="122.0" styleClass="cell_small_label" text="\$isFinished">
                      <VBox.margin>
                         <Insets top="25.0" />
                      </VBox.margin>
+                     <font>
+                        <Font size="11.0" />
+                     </font>
                   </Label>
                         <Label fx:id="time" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="121.0" styleClass="cell_small_label" text="\$time" textAlignment="RIGHT">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="date" alignment="CENTER_RIGHT" text="\$date" textAlignment="RIGHT">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="11.0" />
+                     </font>
                   </Label>
                         <Label fx:id="venue" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="128.0" styleClass="cell_small_label" text="\$venue" textAlignment="RIGHT">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
+                     <font>
+                        <Font size="11.0" />
+                     </font>
                   </Label>
                </children>
             </VBox>
