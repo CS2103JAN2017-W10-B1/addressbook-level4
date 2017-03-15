@@ -75,6 +75,5 @@ public class ListPanel extends UiPart<Region> {
             }
         }
     }
-
 }
 
