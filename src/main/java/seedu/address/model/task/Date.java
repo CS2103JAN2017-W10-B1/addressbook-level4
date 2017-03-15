@@ -9,7 +9,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  */
 public class Date implements Field {
 
-    public static final String MESSAGE_DATE_CONSTRAINTS = "task due date should be the form dd/mm";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "task due date should be the form dd/mm or dd/mm/yyyy";
     
     public static final String DATE_VALIDATION_REGEX = ".*/.*";
     public static final String DAY_MONTH_SEPARATOR = "/";
