@@ -49,7 +49,7 @@
                            <children>
                                     <Label fx:id="isFavorite" alignment="BOTTOM_RIGHT" prefHeight="16.0" prefWidth="75.0" styleClass="cell_small_label" text="\$isFavorite">
                                  <HBox.margin>
-                                    <Insets left="30.0" />
+                                    <Insets left="28.0" />
                                  </HBox.margin>
                               </Label>
                                     <Label fx:id="priority" alignment="BOTTOM_RIGHT" prefHeight="12.0" prefWidth="95.0" styleClass="cell_small_label" text="\$priority" textAlignment="RIGHT">
@@ -86,13 +86,13 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <Label fx:id="date" alignment="CENTER_RIGHT" text="\$date" textAlignment="RIGHT">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
+                  <Label fx:id="date" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="121.0" styleClass="cell_small_label" text="\$date" textAlignment="RIGHT">
                      <font>
                         <Font size="11.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </Label>
                         <Label fx:id="venue" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="128.0" styleClass="cell_small_label" text="\$venue" textAlignment="RIGHT">
                      <VBox.margin>
