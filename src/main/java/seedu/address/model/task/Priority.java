@@ -33,9 +33,9 @@ public class Priority {
             this.value = DEFAULT_PRIORITY;
         } else {
             String trimmedPriority = priority.trim();
-            if (!isValidPriority(trimmedPriority)) {
-                throw new IllegalValueException(MESSAGE_PRIORITY_CONSTRAINTS);
-            }
+            //if (!isValidPriority(trimmedPriority)) {
+             //   throw new IllegalValueException(MESSAGE_PRIORITY_CONSTRAINTS);
+            //}
             this.value = convert(trimmedPriority);
         }
     }
