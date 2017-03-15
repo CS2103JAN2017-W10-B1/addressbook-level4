@@ -52,7 +52,7 @@ public class XmlAdaptedTask {
         date = source.getDate().getValue();
         time = source.getTime().getValue();
         tag = source.getTag().tagName;
-        description = source.getDescription().value;
+        description = source.getDescription().getValue();
         venue = source.getVenue().value;
         priority = source.getPriority().getValue();
         isFinished = source.isFinished();

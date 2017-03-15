@@ -1,3 +1,4 @@
+//@@author A0147984L
 package seedu.address.model.task;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -9,9 +10,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class Description implements Field{
 
     public static final String MESSAGE_DESCRIPTION_CONSTRAINTS = "Task description can be in any form.";
-    //TODO: public static final String DESCRIPTION_VALIDATION_REGEX = "\\d+";
+    public static final String DESCRIPTION_VALIDATION_REGEX = ".*";
 
-    public final String value;
+    private final String value;
 
     /**
      * Validates given description number.
@@ -31,8 +32,11 @@ public class Description implements Field{
      * Returns true if a given string is a valid person description number.
      */
     public static boolean isValidDescription(String test) {
-        return true;
-        //TODO: return test.matches(PHONE_VALIDATION_REGEX);
+        return test.matches(DESCRIPTION_VALIDATION_REGEX);
+    }
+
+    public String getValue() {
+        return value;
     }
 
     @Override
