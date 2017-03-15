@@ -50,7 +50,7 @@ public class XmlAdaptedTask {
     public XmlAdaptedTask(ReadOnlyTask source) {
         name = source.getName().fullName;
         date = source.getDate().value;
-        time = source.getTime().value;
+        time = source.getTime().getValue();
         tag = source.getTag().tagName;
         description = source.getDescription().value;
         venue = source.getVenue().value;

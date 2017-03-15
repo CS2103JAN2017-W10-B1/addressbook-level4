@@ -20,7 +20,7 @@ public class Time implements Field {
     public static final String TIME_VALIDATION_REGEX = ".*:.*";
     public static final String HOUR_MINUTE_SEPARATOR = ":";
 
-    public final String value;
+    private final String value;
 
     /**
      * Validates given time.
@@ -57,6 +57,10 @@ public class Time implements Field {
 
     private static boolean isValidMinute(String test) {
         return test.matches(MINUTE_VALIDATION_REGEX);
+    }
+
+    public String getValue() {
+        return this.value;
     }
 
     @Override
