@@ -68,7 +68,7 @@ public class TaskCardHandle extends GuiHandle {
                 && getDescription().equals(task.getDescription().value)
                 && getTag().equals(task.getTag())
                 && getVenue().equals(task.getVenue().value)
-                && getPriority().equals(task.getPriority().value)
+                && getPriority().equals(task.getPriority().getValue())
                 && isFavorite().equals(task.isFavorite());
     }
 

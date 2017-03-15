@@ -54,7 +54,7 @@ public class XmlAdaptedTask {
         tag = source.getTag().tagName;
         description = source.getDescription().value;
         venue = source.getVenue().value;
-        priority = source.getPriority().value;
+        priority = source.getPriority().getValue();
         isFinished = source.isFinished();
     }
 
