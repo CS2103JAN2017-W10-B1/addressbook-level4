@@ -21,7 +21,7 @@ public class Priority implements Field {
     public static final String DEFAULT_PRIORITY = PRIORITY_2;
 
     public static final String MESSAGE_PRIORITY_CONSTRAINTS = "task priority can only be 1, 2, 3, trivial, normal, or important";
-    
+
     public static final String PRIORITY_VALIDATION_REGEX = PRIORITY_1 + "|" + PRIORITY_2 + "|" + PRIORITY_3;
 
     private final String value;
@@ -65,7 +65,7 @@ public class Priority implements Field {
     public String getValue() {
         return this.value;
     }
-    
+
     @Override
     public String toString() {
         return value;
