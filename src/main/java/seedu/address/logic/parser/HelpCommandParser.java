@@ -22,7 +22,7 @@ public class HelpCommandParser {
         final String commandWord = args.trim();
         final String helpMessage = parseCommand(commandWord);
         if (helpMessage == null) {
-        	return new HelpCommand();
+            return new HelpCommand();
         } else {
             return new HelpCommand(helpMessage);
         }
@@ -34,8 +34,8 @@ public class HelpCommandParser {
      *
      * Considering to make it more generic together with the similar part in Parser.
      */
-	private String parseCommand(String commandWord) {
-		switch (commandWord) {
+    private String parseCommand(String commandWord) {
+        switch (commandWord) {
             case AddCommand.COMMAND_WORD:
                 return AddCommand.MESSAGE_USAGE;
 
@@ -66,5 +66,5 @@ public class HelpCommandParser {
             default:
                 return null;
         }
-	}
+    }
 }

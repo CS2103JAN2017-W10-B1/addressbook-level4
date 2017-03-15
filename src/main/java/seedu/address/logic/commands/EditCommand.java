@@ -89,7 +89,8 @@ public class EditCommand extends Command {
         Venue updatedVenue = editTaskDescriptor.getVenue().orElseGet(taskToEdit::getVenue);
         Priority updatedPriority = editTaskDescriptor.getPriority().orElseGet(taskToEdit::getPriority);
 
-        return new Task(updatedName, updatedDate, updatedTime, updatedDescription, updatedTag, updatedVenue, updatedPriority, false);
+        return new Task(updatedName, updatedDate, updatedTime, updatedDescription,
+                updatedTag, updatedVenue, updatedPriority, false);
     }
 
     /**

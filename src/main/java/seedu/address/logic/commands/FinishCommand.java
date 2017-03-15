@@ -49,7 +49,7 @@ public class FinishCommand extends Command {
 
         ReadOnlyTask taskToMark = lastShownList.get(targetIndex - 1);
 
-        if(taskToMark.isFinished()){
+        if (taskToMark.isFinished()) {
             throw new CommandException(MESSAGE_FINISH_TASK_MARKED);
         } else {
             Name updatedName = taskToMark.getName();
@@ -66,10 +66,10 @@ public class FinishCommand extends Command {
         }
 
         try {
-        	model.updateTask(targetIndex - 1, taskToMark);
-		} catch (DuplicateTaskException e) {
-			throw new CommandException(MESSAGE_WRONG_TASK_INDEX);
-		}
+            model.updateTask(targetIndex - 1, taskToMark);
+        } catch (DuplicateTaskException e) {
+		    throw new CommandException(MESSAGE_WRONG_TASK_INDEX);
+        }
 
         return new CommandResult(String.format(MESSAGE_FINISH_TASK_SUCCESS, taskToMark));
     }

@@ -23,8 +23,8 @@ public class AddCommand extends Command {
             + "Parameters: TASKNAME [due/DUEDATE] [t/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL]\n"
             + "Example: " + COMMAND_WORD
             + " CS2103 Lecture due/10/3/2017 t/16:00 #CS2103 d/Interesting module @I3 p/3 \n"
-    		+ COMMAND_WORD
-    		+ " CS2103T Tutorial due/8/3/2017 t/10:00 #CS2103 d/Interesting module @I3 p/2 \n";
+            + COMMAND_WORD
+            + " CS2103T Tutorial due/8/3/2017 t/10:00 #CS2103 d/Interesting module @I3 p/2 \n";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Dueue";

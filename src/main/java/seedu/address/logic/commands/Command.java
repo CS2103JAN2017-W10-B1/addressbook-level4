@@ -43,7 +43,6 @@ public abstract class Command {
      * Provides usage message for help command
      */
     public String getUsageMessage() {
-    	return MESSAGE_USAGE;
+        return MESSAGE_USAGE;
     }
-
 }

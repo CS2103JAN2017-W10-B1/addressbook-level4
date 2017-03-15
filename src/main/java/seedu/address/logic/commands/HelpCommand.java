@@ -23,7 +23,7 @@ public class HelpCommand extends Command {
      */
 
     public HelpCommand(String helpMessage) {
-    	super();
+        super();
     	USAGE_MESSAGE = helpMessage;
     }
 
@@ -33,11 +33,11 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute() {
-    	if (USAGE_MESSAGE == null){
-    		EventsCenter.getInstance().post(new ShowHelpRequestEvent());
+    	if (USAGE_MESSAGE == null) {
+    	    EventsCenter.getInstance().post(new ShowHelpRequestEvent());
             return new CommandResult(SHOWING_HELP_MESSAGE);
     	} else {
-    		return new CommandResult(USAGE_MESSAGE);
+    	    return new CommandResult(USAGE_MESSAGE);
     	}
     }
 }

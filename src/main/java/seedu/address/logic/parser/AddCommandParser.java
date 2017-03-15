@@ -39,14 +39,14 @@ public class AddCommandParser {
             String priority = checkString(argsTokenizer.getValue(PREFIX_PRIORITY));
             return new AddCommand(name, date, time, tag, description, venue, priority);
         } catch (NoSuchElementException ive) {
-        	return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
     }
 
     private String checkString(Optional<String> args) {
-    	return args.orElse("");
+        return args.orElse("");
     }
 
 }
