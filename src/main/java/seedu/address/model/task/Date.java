@@ -1,5 +1,5 @@
+//@@author A0147984L
 package seedu.address.model.task;
-
 
 import seedu.address.commons.exceptions.IllegalValueException;
 
@@ -19,7 +19,8 @@ public class Date implements Field {
     public static final String MONTH_VALIDATION_REGEX = MONTH_VALIDATION_REGEX_1 + "|" + MONTH_VALIDATION_REGEX_2 + "|" + MONTH_VALIDATION_REGEX_3;
     public static final String DAY_VALIDATION_REGEX_1 = "([1-9])|(0[1-9])|(1\\d)|(2\\d)|(3[0-1])";
     public static final String DAY_VALIDATION_REGEX_2 = "([1-9])|(0[1-9])|(1\\d)|(2\\d)|(30)";
-    public static final String DAY_VALIDATION_REGEX_3 = "([1-9])|(0[1-9])|(1\\d)|(2\\d)";
+    public static final String DAY_VALIDATION_REGEX_3 = "([1-9])|(0[1-9])|(1\\d)|(2[0-8])";
+    public static final String YEAR_VALIDATION_REGEX = "201[789]";
 
     private final String value;
 
@@ -48,11 +49,20 @@ public class Date implements Field {
             return false;
         }
         String[] dayAndMonth = test.split(DAY_MONTH_SEPARATOR);
+        if (dayAndMonth.length > 3) {
+            return false;
+        }
         String day = dayAndMonth[0];
         String month = dayAndMonth[1];
+        if (dayAndMonth.length == 3) {
+            String year = dayAndMonth[2];
+            if (!isValidYear(year)) {
+                return false;
+            }
+        }
         return isValidMonth(month) && isValidDay(day, month);
     }
-    
+
     private static boolean isValidDay(String test, String month) {
         if (month.matches(MONTH_VALIDATION_REGEX_1)) {
             return test.matches(DAY_VALIDATION_REGEX_1);
@@ -64,9 +74,13 @@ public class Date implements Field {
         assert false;
         return false;
     }
-    
+
     private static boolean isValidMonth(String test) {
         return test.matches(MONTH_VALIDATION_REGEX);
+    }
+
+    private static boolean isValidYear(String test) {
+        return test.matches(YEAR_VALIDATION_REGEX);
     }
 
     public String getValue() {

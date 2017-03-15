@@ -20,8 +20,10 @@ public class DateTest {
         assertFalse(Date.isValidDate("1/0")); // month less than 1
         assertFalse(Date.isValidDate("1/13")); // month more than 12
         assertFalse(Date.isValidDate("32/1")); // day exceeds limit
-        assertFalse(Date.isValidDate("30/2")); // day exceeds limit
+        assertFalse(Date.isValidDate("29/2")); // day exceeds limit
         assertFalse(Date.isValidDate("31/4")); // day exceeds limit
+        assertFalse(Date.isValidDate("20/11/1995")); // invalid year
+        assertFalse(Date.isValidDate("20/12/2020")); // invalid year
 
         // valid date
         assertTrue(Date.isValidDate("")); // empty
@@ -31,6 +33,8 @@ public class DateTest {
         assertTrue(Date.isValidDate("1/12")); // month is 2 digits beginning with 1
         assertTrue(Date.isValidDate("31/1")); // day is 31 for January
         assertTrue(Date.isValidDate("30/11")); // day is 30 for November
-        assertTrue(Date.isValidDate("29/2")); // day is 29 for February
+        assertTrue(Date.isValidDate("28/2")); // day is 28 for February
+        assertTrue(Date.isValidDate("30/11/2017")); // with valid year
+        assertTrue(Date.isValidDate("28/2/2019")); // with valid year
     }
 }
