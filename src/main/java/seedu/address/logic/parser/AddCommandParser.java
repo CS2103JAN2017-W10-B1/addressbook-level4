@@ -25,7 +25,7 @@ public class AddCommandParser {
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      */
-    public Command parse(String args) {
+    public static Command parse(String args) {
         ArgumentTokenizer argsTokenizer =
                 new ArgumentTokenizer(PREFIX_DATE, PREFIX_TIME, PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_VENUE, PREFIX_PRIORITY);
         argsTokenizer.tokenize(args);
@@ -45,7 +45,7 @@ public class AddCommandParser {
         }
     }
 
-    private String checkString(Optional<String> args) {
+    private static String checkString(Optional<String> args) {
         return args.orElse("");
     }
 
