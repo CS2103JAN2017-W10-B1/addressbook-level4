@@ -45,14 +45,18 @@ public class AddCommandParserTest {
         AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture \n");
         Name sampleTask1Name = new Name("CS2103 Lecture"); 
         Task sampleTask1 = new Task(sampleTask1Name, new Date(""), new Time(""), new Description(""), new Tag(""), new Venue(""), new Priority(""), false, false);
-        assertEquals(addCommand.getTask().getName(), sampleTask1.getName());
-        assertEquals(addCommand.getTask().getDate(), sampleTask1.getDate());
-        assertEquals(addCommand.getTask().getTime(), sampleTask1.getTime());
-        assertEquals(addCommand.getTask().getDescription(), sampleTask1.getDescription());
-        assertEquals(addCommand.getTask().getTag(), sampleTask1.getTag());
-        assertEquals(addCommand.getTask().getVenue(), sampleTask1.getVenue());
-        assertEquals(addCommand.getTask().getPriority(), sampleTask1.getPriority());
-        assertEquals(addCommand.getTask().isFavorite(), sampleTask1.isFavorite());
-        assertEquals(addCommand.getTask().isFinished(), sampleTask1.isFinished());
+        assertEqualTasks(addCommand, sampleTask1);
     }
+
+	private void assertEqualTasks(AddCommand addCommand, Task sampleTask) {
+		assertEquals(addCommand.getTask().getName(), sampleTask.getName());
+        assertEquals(addCommand.getTask().getDate(), sampleTask.getDate());
+        assertEquals(addCommand.getTask().getTime(), sampleTask.getTime());
+        assertEquals(addCommand.getTask().getDescription(), sampleTask.getDescription());
+        assertEquals(addCommand.getTask().getTag(), sampleTask.getTag());
+        assertEquals(addCommand.getTask().getVenue(), sampleTask.getVenue());
+        assertEquals(addCommand.getTask().getPriority(), sampleTask.getPriority());
+        assertEquals(addCommand.getTask().isFavorite(), sampleTask.isFavorite());
+        assertEquals(addCommand.getTask().isFinished(), sampleTask.isFinished());
+	}
 }
