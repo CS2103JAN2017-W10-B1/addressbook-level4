@@ -26,6 +26,9 @@ public class AddCommandParser {
      * and returns an AddCommand object for execution.
      */
     public static Command parse(String args) {
+    	if (args == null) {
+    		return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    	}
         ArgumentTokenizer argsTokenizer =
                 new ArgumentTokenizer(PREFIX_DATE, PREFIX_TIME, PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_VENUE, PREFIX_PRIORITY);
         argsTokenizer.tokenize(args);
