@@ -16,10 +16,12 @@ public class TypicalTestTasks {
 
     public TypicalTestTasks() {
         try {
-            gym = new TaskBuilder().withName("gym").withDescription("50min workout").withTag("personal").
-                    withPriority("2").withFavorite(true).build();
-            cs2103 = new TaskBuilder().withName("cs2103").withTime("16:00").withTag("School").withFavorite(true).build();
-            study = new TaskBuilder().withName("study").withTag("personal").build();
+            gym = new TaskBuilder().withName("gym").withDate("20/12").withTime("20:00").withDescription("50min workout").
+                    withTag("personal").withVenue("gym").withPriority("2").withFavorite(true).build();
+            cs2103 = new TaskBuilder().withName("cs2103").withDate("").withTime("16:00").withDescription("").
+                    withTag("School").withVenue("").withPriority("").withFavorite(true).build();
+            study = new TaskBuilder().withName("study").withDate("").withTime("").withDescription("").
+                    withTag("personal").withVenue("").withPriority("").withFavorite(true).build();
 
         } catch (IllegalValueException e) {
             e.printStackTrace();
