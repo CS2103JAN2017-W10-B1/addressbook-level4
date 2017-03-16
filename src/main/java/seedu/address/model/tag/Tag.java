@@ -11,7 +11,7 @@ import seedu.address.model.task.Field;
  */
 public class Tag implements Field {
 
-    public static final String MESSAGE_TAG_CONSTRAINTS_1 = "Tags names should be alphanumeric";
+    public static final String MESSAGE_TAG_CONSTRAINTS_1 = "Tags names should be alphanumeric without space";
     public static final String MESSAGE_TAG_CONSTRAINTS_2 = " is reserved so cannot be used as a tag name";
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
     public static final String TAG_RESERVED_NAME = 

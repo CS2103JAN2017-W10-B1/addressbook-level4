@@ -12,12 +12,12 @@ public class VenueTest {
 
     @Test
     public void isValidVenue() {
-        // invalid date
+        // invalid venue
         assertFalse(Venue.isValidVenue(" ")); // space only
         assertFalse(Venue.isValidVenue(" NUS")); // begin with white space
         assertFalse(Venue.isValidVenue("*NUS*")); // contains illegal punctuation
 
-        // valid date
+        // valid venue
         assertTrue(Venue.isValidVenue("")); // empty
         assertTrue(Venue.isValidVenue("NUS")); // alphabets only
         assertTrue(Venue.isValidVenue("LT27")); // alphabets and digits

@@ -32,14 +32,14 @@ public class PriorityTest {
 
     @Test
     public void isValidPriority() {
-        // invalid name
+        // invalid priority
         assertFalse(Priority.isValidPriority("")); // empty string
         assertFalse(Priority.isValidPriority(" ")); // spaces only
         assertFalse(Priority.isValidPriority("*")); // only non-alphanumeric characters
         assertFalse(Priority.isValidPriority("vital!")); // contains illegal expression
         assertFalse(Priority.isValidPriority("trivial")); // not 1, 2, or 3
 
-        // valid name
+        // valid priority
         assertTrue(Priority.isValidPriority("1")); // 1
         assertTrue(Priority.isValidPriority("2")); // 2
         assertTrue(Priority.isValidPriority("3")); // 3
