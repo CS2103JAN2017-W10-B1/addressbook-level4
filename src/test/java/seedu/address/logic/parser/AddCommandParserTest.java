@@ -1,3 +1,5 @@
+//@@author A0143049J
+
 package seedu.address.logic.parser;
 
 import static org.junit.Assert.assertEquals;
@@ -10,7 +12,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Date;
