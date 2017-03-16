@@ -27,6 +27,6 @@ public class TagTest {
 
         // reserved word
         assertTrue(Tag.isReservedName("list")); // reserved word
-        assertTrue(Tag.isReservedName("favorite")); // reserved word
+        assertTrue(Tag.isReservedName("faVORite")); // reserved word with mixed case
     }
 }

@@ -15,7 +15,8 @@ public class Tag implements Field {
     public static final String MESSAGE_TAG_CONSTRAINTS_2 = " is reserved so cannot be used as a tag name";
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
     public static final String TAG_RESERVED_NAME = 
-            "(list)|(tag)|(task)|(date)|(time)|(venue)|(description)|"
+            "(?i)"
+            + "(list)|(tag)|(task)|(date)|(time)|(venue)|(description)|"
             + "(finished)|(unfinished)|(favorite)|(favourite)|"
             + "(today)|(tomorrow)"
             + "(add)|(delete)|(edit)|(update)|(find)|(help)|(list)|(clear)|(finish)|(select)";
