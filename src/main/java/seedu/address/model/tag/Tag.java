@@ -1,3 +1,4 @@
+//@@author A0147984L
 package seedu.address.model.tag;
 
 
@@ -10,8 +11,14 @@ import seedu.address.model.task.Field;
  */
 public class Tag implements Field {
 
-    public static final String MESSAGE_TAG_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_TAG_CONSTRAINTS_1 = "Tags names should be alphanumeric";
+    public static final String MESSAGE_TAG_CONSTRAINTS_2 = " is reserved so cannot be used as a tag name";
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String TAG_RESERVED_NAME = 
+            "(list)|(tag)|(task)|(date)|(time)|(venue)|(description)|"
+            + "(finished)|(unfinished)|(favorite)|(favourite)|"
+            + "(today)|(tomorrow)"
+            + "(add)|(delete)|(edit)|(update)|(find)|(help)|(list)|(clear)|(finish)|(select)";
 
     public String tagName;
 
@@ -25,17 +32,27 @@ public class Tag implements Field {
         assert name != null;
         String trimmedName = name.trim();
         if (!isValidTagName(trimmedName)) {
-            throw new IllegalValueException(MESSAGE_TAG_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_TAG_CONSTRAINTS_1);
+        }
+        if (isReservedName(trimmedName)) {
+            throw new IllegalValueException(trimmedName + MESSAGE_TAG_CONSTRAINTS_2);
         }
         this.tagName = trimmedName;
     }
 
      /**
      * Returns true if a given string is a valid tag name.
+     * @throws IllegalValueException 
      */
-    public static boolean isValidTagName(String test) {
-        return true;
-    	//return test.matches(TAG_VALIDATION_REGEX);
+    public static boolean isValidTagName(String test) throws IllegalValueException {
+        if (test.equals("")) {
+            return true;
+        }
+        return test.matches(TAG_VALIDATION_REGEX);
+    }
+
+    public static boolean isReservedName(String test) {
+        return test.matches(TAG_RESERVED_NAME);
     }
 
     public String getName() {
