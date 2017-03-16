@@ -15,7 +15,7 @@ public class Venue implements Field {
     // cannot begin with space; can only contains
     public static final String VENUE_VALIDATION_REGEX = "^((\\w)|([-#]))((\\w)|([-#'])|(\\s))*"; 
 
-    public final String value;
+    private final String value;
 
     /**
      * Validity given venue.
@@ -41,6 +41,10 @@ public class Venue implements Field {
         return test.matches(VENUE_VALIDATION_REGEX);
     }
 
+    public String getValue() {
+        return this.value;
+    }
+    
     @Override
     public String toString() {
         return value;
