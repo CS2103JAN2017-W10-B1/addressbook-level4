@@ -10,7 +10,7 @@ public class Name implements Field {
 
     public static final String MESSAGE_NAME_CONSTRAINTS =
             "Task names should only contain alphanumeric characters and spaces, "
-            + "and it should not be blank, or be [list]";
+            + "and it should not be blank, or be 'list' since it is reserved for command";
 
     /*
      * The first character of the address must not be a whitespace,
