@@ -1,5 +1,7 @@
+//@@author A0143049J
+
 package seedu.address.model.task;
 
-public interface Field {
+public interface TaskField {
 	String getDisplayText();
 }
