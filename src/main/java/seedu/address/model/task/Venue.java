@@ -1,5 +1,5 @@
+//@@author A0147984L
 package seedu.address.model.task;
-
 
 import seedu.address.commons.exceptions.IllegalValueException;
 
@@ -10,8 +10,10 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class Venue implements Field {
 
     public static final String MESSAGE_VENUE_CONSTRAINTS =
-            "task venue can be in any form.";
-    //TODO: public static final String DATE_VALIDATION_REGEX =
+            "task venue can only contains alphanumerics and #, -, '.";
+
+    // cannot begin with space; can only contains
+    public static final String VENUE_VALIDATION_REGEX = "^((\\w)|([-#]))((\\w)|([-#'])|(\\s))*"; 
 
     public final String value;
 
@@ -33,9 +35,10 @@ public class Venue implements Field {
      * Returns if a given string is a valid venue.
      */
     public static boolean isValidVenue(String test) {
-        return true;
-        //TODO: add REGEX
-        //return test.matches(EMAIL_VALIDATION_REGEX);
+        if (test.equals("")) {
+            return true;
+        }
+        return test.matches(VENUE_VALIDATION_REGEX);
     }
 
     @Override
