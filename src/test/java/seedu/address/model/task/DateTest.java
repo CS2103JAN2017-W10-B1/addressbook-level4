@@ -24,6 +24,7 @@ public class DateTest {
         assertFalse(Date.isValidDate("31/4")); // day exceeds limit
         assertFalse(Date.isValidDate("20/11/1995")); // invalid year
         assertFalse(Date.isValidDate("20/12/2020")); // invalid year
+        assertFalse(Date.isValidDate("20/12/2017/1111")); // more than 3 parts
 
         // valid date
         assertTrue(Date.isValidDate("")); // empty
