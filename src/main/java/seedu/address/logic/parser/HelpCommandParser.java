@@ -17,7 +17,10 @@ public class HelpCommandParser {
      * Parses the given {String} of arguments in the context of the HelpCommand
      * and returns a HelpCommand object for execution.
      */
-    public Command parse(String args) {
+    public static Command parse(String args) {
+    	if (args == null) {
+    		return new HelpCommand();
+    	}
         // keywords delimited by whitespace
         final String commandWord = args.trim();
         final String helpMessage = parseCommand(commandWord);
@@ -34,7 +37,7 @@ public class HelpCommandParser {
      *
      * Considering to make it more generic together with the similar part in Parser.
      */
-    private String parseCommand(String commandWord) {
+    private static String parseCommand(String commandWord) {
         switch (commandWord) {
             case AddCommand.COMMAND_WORD:
                 return AddCommand.MESSAGE_USAGE;
