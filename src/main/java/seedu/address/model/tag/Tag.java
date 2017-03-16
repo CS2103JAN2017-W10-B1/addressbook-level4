@@ -3,13 +3,13 @@ package seedu.address.model.tag;
 
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.task.Field;
+import seedu.address.model.task.TaskField;
 
 /**
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag implements Field {
+public class Tag implements TaskField {
 
     public static final String MESSAGE_TAG_CONSTRAINTS_1 = "Tags names should be alphanumeric without space";
     public static final String MESSAGE_TAG_CONSTRAINTS_2 = " is reserved so cannot be used as a tag name";

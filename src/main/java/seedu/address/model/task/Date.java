@@ -7,7 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a Task's due date in task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class Date implements Field {
+public class Date implements TaskField {
 
     public static final String MESSAGE_DATE_CONSTRAINTS = "task due date should be the form dd/mm or dd/mm/yyyy";
 
@@ -104,6 +104,7 @@ public class Date implements Field {
         return value.hashCode();
     }
 
+//@@author A0143409J
 	@Override
 	public String getDisplayText() {
 		if ((value == null) || (value == "")) {

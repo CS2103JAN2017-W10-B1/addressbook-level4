@@ -8,7 +8,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a Task's priority in task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidPriority(String)}
  */
-public class Priority implements Field {
+public class Priority implements TaskField {
 
     public static final String PRIORITY_1 = "1";
     public static final String PRIORITY_2 = "2";
@@ -83,6 +83,7 @@ public class Priority implements Field {
         return value.hashCode();
     }
 
+//@@author A0143409J
 	@Override
 	public String getDisplayText() {
 		if ((value == null) || (value == "")) {

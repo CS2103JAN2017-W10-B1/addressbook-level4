@@ -6,7 +6,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name implements Field {
+public class Name implements TaskField {
 
     public static final String MESSAGE_NAME_CONSTRAINTS =
             "Task names should only contain alphanumeric characters and spaces, "
@@ -61,6 +61,7 @@ public class Name implements Field {
         return fullName.hashCode();
     }
 
+//@@author A0143409J
 	@Override
 	public String getDisplayText() {
 		if ((fullName == null) || (fullName == "")) {
