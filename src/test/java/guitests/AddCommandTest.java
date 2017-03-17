@@ -16,7 +16,7 @@ public class AddCommandTest extends TaskManagerGuiTest {
     @Test
     public void add() {
         //add task by name only
-    		TestTask[] currentList = td.getTypicalTasks();
+    	TestTask[] currentList = td.getTypicalTasks();
         TestTask taskToAdd = td.assignment;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
@@ -38,13 +38,14 @@ public class AddCommandTest extends TaskManagerGuiTest {
         //unknown command
         commandBox.runCommand("adds homework");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
-       
+
         //invalid command, task must have a name
         commandBox.runCommand("add p/important");
-        assertResultMessage(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
-      //invalid command, name should be the first field entered
+        assertResultMessage(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        //invalid command, name should be the first field entered
         commandBox.runCommand("add p/important homework");
-        assertResultMessage(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+        assertResultMessage(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 
     private void assertAddSuccess(TestTask taskToAdd, TestTask... currentList) {
