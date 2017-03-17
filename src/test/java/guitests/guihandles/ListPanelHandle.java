@@ -20,14 +20,14 @@ import seedu.address.testutil.TestUtil;
 /**
  * Provides a handle for the panel containing the task list.
  */
-public class TaskListPanelHandle extends GuiHandle {
+public class ListPanelHandle extends GuiHandle {
 
     public static final int NOT_FOUND = -1;
     public static final String CARD_PANE_ID = "#cardPane";
 
-    private static final String PERSON_LIST_VIEW_ID = "#taskListView";
+    private static final String LIST_LIST_VIEW_ID = "#listListView";
 
-    public TaskListPanelHandle(GuiRobot guiRobot, Stage primaryStage) {
+    public ListPanelHandle(GuiRobot guiRobot, Stage primaryStage) {
         super(guiRobot, primaryStage, TestApp.APP_TITLE);
     }
 
@@ -37,7 +37,7 @@ public class TaskListPanelHandle extends GuiHandle {
     }
 
     public ListView<ReadOnlyTask> getListView() {
-        return getNode(PERSON_LIST_VIEW_ID);
+        return getNode(LIST_LIST_VIEW_ID);
     }
 
     /**
@@ -95,6 +95,7 @@ public class TaskListPanelHandle extends GuiHandle {
                 return false;
             }
         }
+
         return true;
     }
 

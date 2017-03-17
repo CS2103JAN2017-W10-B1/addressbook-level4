@@ -10,9 +10,9 @@ import seedu.address.model.task.ReadOnlyTask;
  */
 public class TaskCardHandle extends GuiHandle {
     private static final String NAME_FIELD_ID = "#name";
-    private static final String DATE_FIELD_ID = "#address";
-    private static final String TIME_FIELD_ID = "#phone";
-    private static final String DESCRIPTION_FIELD_ID = "#email";
+    private static final String DATE_FIELD_ID = "#date";
+    private static final String TIME_FIELD_ID = "#time";
+    private static final String DESCRIPTION_FIELD_ID = "#description";
     private static final String TAG_FIELD_ID = "#tag";
     private static final String VENUE_FIELD_ID = "#venue";
     private static final String PRIORITY_FIELD_ID = "#priority";
@@ -61,15 +61,12 @@ public class TaskCardHandle extends GuiHandle {
         return getTextFromLabel(FAVORITE_FIELD_ID);
     }
 
+    //Does not require all fields to be the same 
     public boolean isSameTask(ReadOnlyTask task) {
         return getFullName().equals(task.getName().fullName)
                 && getDate().equals(task.getDate().getValue())
                 && getTime().equals(task.getTime().getValue())
-                && getDescription().equals(task.getDescription().getValue())
-                && getTag().equals(task.getTag())
-                && getVenue().equals(task.getVenue().getValue())
-                && getPriority().equals(task.getPriority().getValue())
-                && isFavorite().equals(task.isFavorite());
+                && getTag().equals(task.getTag());
     }
 
     @Override

@@ -8,9 +8,13 @@ import seedu.address.TestApp;
  * Provides a handle for the main GUI.
  */
 public class MainGuiHandle extends GuiHandle {
-
-    public MainGuiHandle(GuiRobot guiRobot, Stage primaryStage) {
+    
+	public MainGuiHandle(GuiRobot guiRobot, Stage primaryStage) {
         super(guiRobot, primaryStage, TestApp.APP_TITLE);
+    }
+	
+    public ListPanelHandle getListPanel() {
+        return new ListPanelHandle(guiRobot, primaryStage);
     }
 
     public TaskListPanelHandle getTaskListPanel() {
@@ -23,10 +27,6 @@ public class MainGuiHandle extends GuiHandle {
 
     public CommandBoxHandle getCommandBox() {
         return new CommandBoxHandle(guiRobot, primaryStage, TestApp.APP_TITLE);
-    }
-
-    public MainMenuHandle getMainMenu() {
-        return new MainMenuHandle(guiRobot, primaryStage);
     }
 
     public AlertDialogHandle getAlertDialog(String title) {

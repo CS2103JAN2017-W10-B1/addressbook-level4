@@ -13,8 +13,8 @@ import org.junit.rules.TestName;
 import org.testfx.api.FxToolkit;
 
 import guitests.guihandles.CommandBoxHandle;
+import guitests.guihandles.ListPanelHandle;
 import guitests.guihandles.MainGuiHandle;
-import guitests.guihandles.MainMenuHandle;
 import guitests.guihandles.TaskCardHandle;
 import guitests.guihandles.TaskListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
@@ -46,7 +46,7 @@ public abstract class TaskManagerGuiTest {
      *   for easy access from child classes.
      */
     protected MainGuiHandle mainGui;
-    protected MainMenuHandle mainMenu;
+    protected ListPanelHandle listPanel;
     protected TaskListPanelHandle taskListPanel;
     protected ResultDisplayHandle resultDisplay;
     protected CommandBoxHandle commandBox;
@@ -66,8 +66,8 @@ public abstract class TaskManagerGuiTest {
     public void setup() throws Exception {
         FxToolkit.setupStage((stage) -> {
             mainGui = new MainGuiHandle(new GuiRobot(), stage);
-            mainMenu = mainGui.getMainMenu();
             taskListPanel = mainGui.getTaskListPanel();
+            listPanel = mainGui.getListPanel();
             resultDisplay = mainGui.getResultDisplay();
             commandBox = mainGui.getCommandBox();
             this.stage = stage;
@@ -84,9 +84,9 @@ public abstract class TaskManagerGuiTest {
      * Return null to use the data in the file specified in {@link #getDataFileLocation()}
      */
     protected TaskManager getInitialData() {
-    	TaskManager ab = new TaskManager();
-        TypicalTestTasks.loadTaskManagerWithSampleData(ab);
-        return ab;
+    	TaskManager tm = new TaskManager();
+        TypicalTestTasks.loadTaskManagerWithSampleData(tm);
+        return tm;
     }
 
     /**
