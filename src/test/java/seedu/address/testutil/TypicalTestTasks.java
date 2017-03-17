@@ -1,3 +1,4 @@
+//@@author Matilda_yxx A0147996E
 package seedu.address.testutil;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -5,7 +6,6 @@ import seedu.address.model.TaskManager;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
-//@@author Matilda_yxx A0147996E
 public class TypicalTestTasks {
     public TestTask gym, cs2103, study, laundry, birthday, assignment, date, meeting;
 

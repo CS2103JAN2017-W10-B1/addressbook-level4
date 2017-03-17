@@ -9,9 +9,6 @@ import seedu.address.model.task.Priority;
 import seedu.address.model.task.Time;
 import seedu.address.model.task.Venue;
 
-/**
- *
- */
 public class TaskBuilder {
 
     private TestTask task;
@@ -65,5 +62,4 @@ public class TaskBuilder {
     public TestTask build() {
         return this.task;
     }
-
 }
