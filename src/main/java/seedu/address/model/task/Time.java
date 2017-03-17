@@ -29,9 +29,9 @@ public class Time implements TaskField {
      */
     public Time(String time) throws IllegalValueException {
         assert time != null;
-        if (!isValidTime(time)) {
-            throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
-        }
+        //if (!isValidTime(time)) {
+        //    throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
+        //}
         this.value = time;
     }
 
