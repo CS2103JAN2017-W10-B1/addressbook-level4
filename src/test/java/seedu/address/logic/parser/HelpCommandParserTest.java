@@ -1,3 +1,5 @@
+//@@author A0143049J
+
 package seedu.address.logic.parser;
 
 import static org.junit.Assert.assertEquals;
@@ -66,20 +68,4 @@ public class HelpCommandParserTest {
         HelpCommand helpCommandList =  (HelpCommand) HelpCommandParser.parse(ListCommand.COMMAND_WORD);
         assertEquals(field.get(helpCommandList), ListCommand.MESSAGE_USAGE);
     }
-
-    /*@Test
-    public void mfltipleFieldTest() throws Exception {
-
-        Field field = HelpCommand.class.getDeclaredField("keywords");
-        field.setAccessible(true);
-
-        HelpCommandParser tester = new HelpCommandParser();
-        HelpCommand HelpCommand =  (HelpCommand) tester.parse("personal school");
-
-        Set<String> set = new HashSet<String>();
-        set.add("personal");
-        set.add("school");
-
-        assertEquals(field.get(HelpCommand), set);
-    }*/
 }

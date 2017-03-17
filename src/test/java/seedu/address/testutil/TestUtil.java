@@ -76,7 +76,7 @@ public class TestUtil {
         try {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
-                new Task(new Name("Gym"), new Date("20/11"), new Time("18:00"), new Description("50 mins workout"),
+                new Task(new Name("gym"), new Date("10/12"), new Time("18:00"), new Description("50 mins workout"),
                         new Tag("taskal"), new Venue("MPSH"), new Priority("2"), true)};
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {
