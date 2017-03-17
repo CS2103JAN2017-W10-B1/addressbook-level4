@@ -26,9 +26,9 @@ public class EditCommandParserTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-    
+
     public EditTaskDescriptor editTaskDescriptor;
-    
+
     @Before
     public void setUp() {
     	editTaskDescriptor = new EditTaskDescriptor();

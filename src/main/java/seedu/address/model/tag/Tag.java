@@ -14,7 +14,7 @@ public class Tag implements TaskField {
     public static final String MESSAGE_TAG_CONSTRAINTS_1 = "Tags names should be alphanumeric without space";
     public static final String MESSAGE_TAG_CONSTRAINTS_2 = " is reserved so cannot be used as a tag name";
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
-    public static final String TAG_RESERVED_NAME = 
+    public static final String TAG_RESERVED_NAME =
             "(?i)"
             + "(list)|(tag)|(task)|(date)|(time)|(venue)|(description)|"
             + "(finished)|(unfinished)|(favorite)|(favourite)|"
@@ -43,7 +43,7 @@ public class Tag implements TaskField {
 
      /**
      * Returns true if a given string is a valid tag name.
-     * @throws IllegalValueException 
+     * @throws IllegalValueException
      */
     public static boolean isValidTagName(String test) throws IllegalValueException {
         if (test.equals("")) {

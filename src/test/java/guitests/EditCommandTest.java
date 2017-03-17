@@ -44,7 +44,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
-    
+
 /*cannot pass since find command is unfinished yet
     @Test
     public void editFindThenEditSuccess() throws Exception {

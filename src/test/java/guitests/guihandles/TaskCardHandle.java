@@ -61,7 +61,7 @@ public class TaskCardHandle extends GuiHandle {
     public String isFavorite() {
         return getTextFromLabel(FAVORITE_FIELD_ID);
     }
-    
+
     public String isFinished() {
     		return getTextFromLabel(FINISHED_FIELD_ID);
     }
@@ -70,12 +70,12 @@ public class TaskCardHandle extends GuiHandle {
         return getFullName().equals(task.getName().fullName);
                 //&& getDate().equals(task.getDate().getValue())
                 //&& getTime().equals(task.getTime().getValue())
-                //&& getDescription().equals(task.getDescription())              
+                //&& getDescription().equals(task.getDescription())
                 //&& getTag().equals(task.getTag())
                 //&& getVenue().equals(task.getVenue())
                 //&& getPriority().equals(task.getPriority())
                 //&& isFavorite().equals(task.isFavorite())
-                //&& isFinished().equals(task.isFinished()); 
+                //&& isFinished().equals(task.isFinished());
     }
 
     @Override
