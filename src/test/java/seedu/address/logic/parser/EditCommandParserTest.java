@@ -3,7 +3,6 @@
 package seedu.address.logic.parser;
 
 import static org.junit.Assert.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.lang.reflect.Field;
 import java.util.Optional;
@@ -14,14 +13,12 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.Time;
 import seedu.address.model.task.Venue;
 

@@ -432,9 +432,9 @@ public class LogicManagerTest {
             return new Task(
                     new Name("Task " + seed),
                     new Date("" + (Math.abs(seed) % 31 + 1) + "/" + (Math.abs(seed) % 12 + 1)),
-                    new Time("" + (Math.abs(seed) % 24 + 1) + "/" + (Math.abs(seed) % 60 + 1)),
+                    new Time("" + "16" + ":" + "00"),
                     new Description("A valid description" + seed),
-                    new Tag("A valid tag" + seed),
+                    new Tag("Avalidtag" + seed),
                     new Venue("LT" + (seed % 53 + 1)),
                     new Priority("" + (seed % 3 + 1)),
                     true
