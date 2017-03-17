@@ -131,11 +131,11 @@ public class Task implements ReadOnlyTask {
 
     @Override
     public String getFavoriteText() {
-    	if (isFavorite) {
-    		return "Favorite";
-    	} else {
-    		return "";
-    	}
+    		if (isFavorite) {
+    			return "Favorite";
+    		} else {
+    			return "";
+    		}
     }
 
     public void setFavorite(boolean isFavorite) {
@@ -149,11 +149,11 @@ public class Task implements ReadOnlyTask {
 
     @Override
     public String getFinishedText() {
-    	if (isFinished) {
-    		return "Finished";
-    	} else {
-    		return "Unfinished";
-    	}
+    		if (isFinished) {
+    			return "Finished";
+    		} else {
+    			return "Unfinished";
+    		}
     }
 
     public void setFinish(boolean isFinished) {
