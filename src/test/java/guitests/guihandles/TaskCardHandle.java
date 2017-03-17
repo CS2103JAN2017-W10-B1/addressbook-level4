@@ -16,7 +16,8 @@ public class TaskCardHandle extends GuiHandle {
     private static final String TAG_FIELD_ID = "#tag";
     private static final String VENUE_FIELD_ID = "#venue";
     private static final String PRIORITY_FIELD_ID = "#priority";
-    private static final String FAVORITE_FIELD_ID = "#favorite";
+    private static final String FAVORITE_FIELD_ID = "#isFavorite";
+    private static final String FINISHED_FIELD_ID = "#isFinished";
 
     private Node node;
 
@@ -60,13 +61,21 @@ public class TaskCardHandle extends GuiHandle {
     public String isFavorite() {
         return getTextFromLabel(FAVORITE_FIELD_ID);
     }
+    
+    public String isFinished() {
+    		return getTextFromLabel(FINISHED_FIELD_ID);
+    }
 
-    //Does not require all fields to be the same 
     public boolean isSameTask(ReadOnlyTask task) {
-        return getFullName().equals(task.getName().fullName)
-                && getDate().equals(task.getDate().getValue())
-                && getTime().equals(task.getTime().getValue())
-                && getTag().equals(task.getTag());
+        return getFullName().equals(task.getName().fullName);
+                //&& getDate().equals(task.getDate().getValue())
+                //&& getTime().equals(task.getTime().getValue())
+                //&& getDescription().equals(task.getDescription())              
+                //&& getTag().equals(task.getTag())
+                //&& getVenue().equals(task.getVenue())
+                //&& getPriority().equals(task.getPriority())
+                //&& isFavorite().equals(task.isFavorite())
+                //&& isFinished().equals(task.isFinished()); 
     }
 
     @Override
@@ -80,7 +89,8 @@ public class TaskCardHandle extends GuiHandle {
                     && getTag().equals(handle.getTag())
                     && getVenue().equals(handle.getVenue())
                     && getPriority().equals(handle.getPriority())
-                    && isFavorite().equals(handle.isFavorite());
+                    && isFavorite().equals(handle.isFavorite())
+            		   && isFinished().equals(handle.isFinished());
         }
         return super.equals(obj);
     }
