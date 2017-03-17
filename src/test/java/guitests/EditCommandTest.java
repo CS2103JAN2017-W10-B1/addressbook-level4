@@ -24,7 +24,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void editAllFieldsSpecifiedSuccess() throws Exception {
-        String detailsToEdit = "n/Lecture due/10/3/2017 t/16:00 d/Interesting module @I3 p/3 *f";
+        String detailsToEdit = "Lecture due/10/3/2017 t/16:00 d/Interesting module @I3 p/3 *f";
         int taskManagerIndex = 1;
 
         TestTask editedTask = new TaskBuilder().withName("Lecture").withDate("10/3/2017")
