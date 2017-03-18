@@ -38,12 +38,13 @@ public class EditCommandParserTest {
     public void nameOnlyEditTaskTest() throws Exception {
 
         Field field = EditCommand.class.getDeclaredField("editTaskDescriptor");
+        EditCommandParser editCommandParser = new EditCommandParser();
         field.setAccessible(true);
 
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
-        EditCommand editCommand =  (EditCommand) EditCommandParser.parse("1 n/CS2103 Lecture \n");
+        EditCommand editCommand =  (EditCommand) editCommandParser.parse("1 n/CS2103 Lecture \n");
         assertEqualEditTaskDescriptor((EditTaskDescriptor) field.get(editCommand), editTaskDescriptor);
     }
 
@@ -51,9 +52,10 @@ public class EditCommandParserTest {
     public void nameAndDateTaskTest() throws Exception {
 
         Field field = EditCommand.class.getDeclaredField("editTaskDescriptor");
+        EditCommandParser editCommandParser = new EditCommandParser();
         field.setAccessible(true);
 
-        EditCommand editCommand =  (EditCommand) EditCommandParser.parse("1 n/CS2103 Lecture due/10/3 \n");
+        EditCommand editCommand =  (EditCommand) editCommandParser.parse("1 n/CS2103 Lecture due/10/3 \n");
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
@@ -67,9 +69,10 @@ public class EditCommandParserTest {
     public void nameDateTimeTaskTest() throws Exception {
 
         Field field = EditCommand.class.getDeclaredField("editTaskDescriptor");
+        EditCommandParser editCommandParser = new EditCommandParser();
         field.setAccessible(true);
 
-        EditCommand editCommand =  (EditCommand) EditCommandParser.parse("1 n/CS2103 Lecture due/10/3 t/16:00 \n");
+        EditCommand editCommand =  (EditCommand) editCommandParser.parse("1 n/CS2103 Lecture due/10/3 t/16:00 \n");
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
@@ -86,9 +89,10 @@ public class EditCommandParserTest {
     public void nameDateTimeDescriptionTaskTest() throws Exception {
 
         Field field = EditCommand.class.getDeclaredField("editTaskDescriptor");
+        EditCommandParser editCommandParser = new EditCommandParser();
         field.setAccessible(true);
 
-        EditCommand editCommand =  (EditCommand) EditCommandParser.parse("1 n/CS2103 Lecture due/10/3 t/16:00 d/Interesting \n");
+        EditCommand editCommand =  (EditCommand) editCommandParser.parse("1 n/CS2103 Lecture due/10/3 t/16:00 d/Interesting \n");
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
@@ -108,9 +112,10 @@ public class EditCommandParserTest {
     public void nameDateTimeDescriptionTagTaskTest() throws Exception {
 
         Field field = EditCommand.class.getDeclaredField("editTaskDescriptor");
+        EditCommandParser editCommandParser = new EditCommandParser();
         field.setAccessible(true);
 
-        EditCommand editCommand =  (EditCommand) EditCommandParser.parse("1 n/CS2103 Lecture due/10/3 t/16:00 d/Interesting #CS2103 \n");
+        EditCommand editCommand =  (EditCommand) editCommandParser.parse("1 n/CS2103 Lecture due/10/3 t/16:00 d/Interesting #CS2103 \n");
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
@@ -133,9 +138,10 @@ public class EditCommandParserTest {
     public void nameDateTimeDescriptionTagVenueTaskTest() throws Exception {
 
         Field field = EditCommand.class.getDeclaredField("editTaskDescriptor");
+        EditCommandParser editCommandParser = new EditCommandParser();
         field.setAccessible(true);
 
-        EditCommand editCommand =  (EditCommand) EditCommandParser.parse("1 n/CS2103 Lecture due/10/3 t/16:00 d/Interesting #CS2103 @I3 \n");
+        EditCommand editCommand =  (EditCommand) editCommandParser.parse("1 n/CS2103 Lecture due/10/3 t/16:00 d/Interesting #CS2103 @I3 \n");
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
@@ -161,9 +167,10 @@ public class EditCommandParserTest {
     public void nameDateTimeDescriptionTagVenuePriorityTaskTest() throws Exception {
 
         Field field = EditCommand.class.getDeclaredField("editTaskDescriptor");
+        EditCommandParser editCommandParser = new EditCommandParser();
         field.setAccessible(true);
 
-        EditCommand editCommand =  (EditCommand) EditCommandParser.parse("1 n/CS2103 Lecture due/10/3 t/16:00 d/Interesting #CS2103 @I3 p/3 \n");
+        EditCommand editCommand =  (EditCommand) editCommandParser.parse("1 n/CS2103 Lecture due/10/3 t/16:00 d/Interesting #CS2103 @I3 p/3 \n");
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
