@@ -130,7 +130,7 @@ public class ParserUtil {
         return priority.isPresent() ? Optional.of(new Priority(priority.get())) : Optional.empty();
     }
 
-    public static boolean isFravourite(Optional<String> isFravourite) {
+    public static boolean isFavourite(Optional<String> isFravourite) {
         return isFravourite.isPresent();
     }
 }

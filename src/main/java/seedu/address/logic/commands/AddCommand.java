@@ -38,7 +38,7 @@ public class AddCommand extends Command {
      */
 
     public AddCommand(String name, String date, String time,
-            String tag, String description, String venue, String priority, boolean isFravourite)
+            String tag, String description, String venue, String priority, boolean isFavourite)
             throws IllegalValueException {
 
         this.toAdd = new Task(
@@ -49,7 +49,7 @@ public class AddCommand extends Command {
                 new Tag(tag),
                 new Venue(venue),
                 new Priority(priority),
-                isFravourite
+                isFavourite
         );
     }
 
