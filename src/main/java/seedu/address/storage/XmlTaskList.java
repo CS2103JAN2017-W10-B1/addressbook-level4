@@ -37,7 +37,8 @@ public class XmlTaskList {
      */
     public XmlTaskList(TaskList source) {
         taskListName = source.getName();
-        tasksList.addAll(source.getTasks().asObservableList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
+        tasksList.addAll(source.getTasks().asObservableList().stream().map(
+                XmlAdaptedTask::new).collect(Collectors.toList()));
     }
 
     /**

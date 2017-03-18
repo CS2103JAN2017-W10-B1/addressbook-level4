@@ -79,12 +79,12 @@ public class Tag implements TaskField {
         return '[' + tagName + ']';
     }
 
-	@Override
-	public String getDisplayText() {
-		if ((tagName == null) || (tagName == "")) {
-			return "";
-		} else {
-			return tagName;
-		}
-	}
+    @Override
+    public String getDisplayText() {
+        if ((tagName == null) || (tagName == "")) {
+            return "";
+        } else {
+            return tagName;
+        }
+    }
 }

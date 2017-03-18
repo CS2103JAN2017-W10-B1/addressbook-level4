@@ -79,7 +79,8 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask) throws UniqueTaskList.DuplicateTaskException {
+    public void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
+            throws UniqueTaskList.DuplicateTaskException {
         assert editedTask != null;
 
         int taskManagerIndex = filteredTasks.getSourceIndex(filteredTaskListIndex);
@@ -119,13 +120,13 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
     }
 
+    private void updateFilteredTaskList(Expression expression) {
+        filteredTasks.setPredicate(expression::satisfies);
+    }
+
     @Override
     public void updateFilteredTaskListGivenListName(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords)));
-    }
-
-    private void updateFilteredTaskList(Expression expression) {
-        filteredTasks.setPredicate(expression::satisfies);
     }
 
     //=========== Filtered List Accessors =============================================================
@@ -168,7 +169,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
 
         @Override
-        public boolean satisfies(Tag list){
+        public boolean satisfies(Tag list) {
             return qualifier.run(list);
         }
 
