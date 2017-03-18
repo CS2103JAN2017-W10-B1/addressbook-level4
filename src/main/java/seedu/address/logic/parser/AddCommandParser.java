@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FRAVOURITE;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -30,7 +31,7 @@ public class AddCommandParser {
     		return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     	}
         ArgumentTokenizer argsTokenizer =
-                new ArgumentTokenizer(PREFIX_DATE, PREFIX_TIME, PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_VENUE, PREFIX_PRIORITY);
+                new ArgumentTokenizer(PREFIX_DATE, PREFIX_TIME, PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_VENUE, PREFIX_PRIORITY, PREFIX_FRAVOURITE);
         argsTokenizer.tokenize(args);
         try {
             String name = argsTokenizer.getPreamble().get();
@@ -40,7 +41,8 @@ public class AddCommandParser {
             String description = checkString(argsTokenizer.getValue(PREFIX_DESCRIPTION));
             String venue = checkString(argsTokenizer.getValue(PREFIX_VENUE));
             String priority = checkString(argsTokenizer.getValue(PREFIX_PRIORITY));
-            return new AddCommand(name, date, time, tag, description, venue, priority);
+            boolean isFravourite = checkPresent(argsTokenizer.getValue(PREFIX_FRAVOURITE));
+            return new AddCommand(name, date, time, tag, description, venue, priority, isFravourite);
         } catch (NoSuchElementException ive) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         } catch (IllegalValueException ive) {
@@ -48,7 +50,11 @@ public class AddCommandParser {
         }
     }
 
-    private String checkString(Optional<String> args) {
+    private boolean checkPresent(Optional<String> args) {
+		return args.isPresent();
+	}
+
+	private String checkString(Optional<String> args) {
         return args.orElse("");
     }
 

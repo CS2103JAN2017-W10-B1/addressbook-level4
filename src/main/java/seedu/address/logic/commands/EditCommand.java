@@ -88,9 +88,10 @@ public class EditCommand extends Command {
         Tag updatedTag = editTaskDescriptor.getTag().orElseGet(taskToEdit::getTag);
         Venue updatedVenue = editTaskDescriptor.getVenue().orElseGet(taskToEdit::getVenue);
         Priority updatedPriority = editTaskDescriptor.getPriority().orElseGet(taskToEdit::getPriority);
+        boolean isFravourite = editTaskDescriptor.getFravourite();
 
         return new Task(updatedName, updatedDate, updatedTime, updatedDescription,
-                updatedTag, updatedVenue, updatedPriority, false);
+                updatedTag, updatedVenue, updatedPriority, isFravourite);
     }
 
     /**
@@ -105,6 +106,7 @@ public class EditCommand extends Command {
         private Optional<Tag> tag = Optional.empty();
         private Optional<Venue> venue = Optional.empty();
         private Optional<Priority> priority = Optional.empty();
+        private boolean isFravourite;
 
         public EditTaskDescriptor() {}
 
@@ -116,15 +118,16 @@ public class EditCommand extends Command {
             this.tag = toCopy.getTag();
             this.venue = toCopy.getVenue();
             this.priority = toCopy.getPriority();
+            this.isFravourite = toCopy.getFravourite();
         }
 
-        /**
+		/**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyPresent(
                     this.name, this.date, this.time,
-                    this.description, this.tag, this.venue, this.priority);
+                    this.description, this.tag, this.venue, this.priority)||isFravourite;
         }
 
         public void setName(Optional<Name> name) {
@@ -189,5 +192,14 @@ public class EditCommand extends Command {
         public Optional<Priority> getPriority() {
             return priority;
         }
+
+		public void setIsFravourite(boolean isFravourite) {
+			this.isFravourite = isFravourite;
+			
+		}
+		
+		private boolean getFravourite() {
+			return isFravourite;
+		}
     }
 }
