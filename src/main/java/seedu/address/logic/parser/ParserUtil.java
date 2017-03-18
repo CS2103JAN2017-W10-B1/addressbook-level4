@@ -129,4 +129,9 @@ public class ParserUtil {
         assert priority != null;
         return priority.isPresent() ? Optional.of(new Priority(priority.get())) : Optional.empty();
     }
+
+	public static boolean isFravourite(Optional<String> isFravourite) {
+		// TODO Auto-generated method stub
+		return isFravourite.isPresent();
+	}
 }
