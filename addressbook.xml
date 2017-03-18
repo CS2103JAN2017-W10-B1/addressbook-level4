@@ -8,7 +8,8 @@
         <description></description>
         <venue></venue>
         <priority>2</priority>
-        <isFinished>true</isFinished>
+        <isFravourite>true</isFravourite>
+        <isFinished>false</isFinished>
     </tasks>
     <tasks>
         <name>tutorial</name>
@@ -18,6 +19,7 @@
         <description></description>
         <venue>I3</venue>
         <priority>2</priority>
+        <isFravourite>false</isFravourite>
         <isFinished>false</isFinished>
     </tasks>
     <tasks>
@@ -28,6 +30,7 @@
         <description>Interesting module</description>
         <venue>I3</venue>
         <priority>3</priority>
+        <isFravourite>false</isFravourite>
         <isFinished>false</isFinished>
     </tasks>
     <tasks>
@@ -38,6 +41,7 @@
         <description>Interesting module</description>
         <venue>I3</venue>
         <priority>2</priority>
+        <isFravourite>true</isFravourite>
         <isFinished>false</isFinished>
     </tasks>
     <tasks>
@@ -48,6 +52,40 @@
         <description></description>
         <venue></venue>
         <priority>1</priority>
+        <isFravourite>false</isFravourite>
+        <isFinished>false</isFinished>
+    </tasks>
+    <tasks>
+        <name>class</name>
+        <date></date>
+        <time></time>
+        <tag></tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFravourite>false</isFravourite>
+        <isFinished>false</isFinished>
+    </tasks>
+    <tasks>
+        <name>new</name>
+        <date></date>
+        <time></time>
+        <tag></tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFravourite>false</isFravourite>
+        <isFinished>false</isFinished>
+    </tasks>
+    <tasks>
+        <name>new1</name>
+        <date></date>
+        <time></time>
+        <tag></tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFravourite>false</isFravourite>
         <isFinished>false</isFinished>
     </tasks>
     <tags></tags>
