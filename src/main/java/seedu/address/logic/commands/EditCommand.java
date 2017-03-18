@@ -121,13 +121,13 @@ public class EditCommand extends Command {
             this.isFravourite = toCopy.getFravourite();
         }
 
-		/**
+         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyPresent(
                     this.name, this.date, this.time,
-                    this.description, this.tag, this.venue, this.priority)||isFravourite;
+                    this.description, this.tag, this.venue, this.priority) || isFravourite;
         }
 
         public void setName(Optional<Name> name) {
@@ -193,13 +193,12 @@ public class EditCommand extends Command {
             return priority;
         }
 
-		public void setIsFravourite(boolean isFravourite) {
-			this.isFravourite = isFravourite;
-			
-		}
-		
-		private boolean getFravourite() {
-			return isFravourite;
-		}
+        public void setIsFravourite(boolean isFravourite) {
+            this.isFravourite = isFravourite;
+        }
+
+        private boolean getFravourite() {
+            return isFravourite;
+        }
     }
 }
