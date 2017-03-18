@@ -31,9 +31,10 @@ public class AddCommandParserTest {
     public void nullTest() throws Exception{
 
         Field field = AddCommand.class.getDeclaredField("toAdd");
+        AddCommandParser addCommandParser = new AddCommandParser();
         field.setAccessible(true);
 
-        IncorrectCommand incorrectCommand =  (IncorrectCommand) AddCommandParser.parse(null);
+        IncorrectCommand incorrectCommand =  (IncorrectCommand) addCommandParser.parse(null);
         assertEquals(incorrectCommand.feedbackToUser, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 
@@ -41,9 +42,10 @@ public class AddCommandParserTest {
     public void nameOnlyTaskTest() throws Exception {
 
         Field field = AddCommand.class.getDeclaredField("toAdd");
+        AddCommandParser addCommandParser = new AddCommandParser();
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture \n");
+        AddCommand addCommand =  (AddCommand) addCommandParser.parse("CS2103 Lecture \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         Task sampleTask = new Task(sampleTaskName, new Date(""), new Time(""),
         		new Description(""), new Tag(""), new Venue(""), new Priority(""), false, false);
@@ -54,9 +56,10 @@ public class AddCommandParserTest {
     public void nameAndDateTaskTest() throws Exception {
 
         Field field = AddCommand.class.getDeclaredField("toAdd");
+        AddCommandParser addCommandParser = new AddCommandParser();
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 \n");
+        AddCommand addCommand =  (AddCommand) addCommandParser.parse("CS2103 Lecture due/10/3 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         Date sampleTaskDate = new Date("10/3");
         Task sampleTask = new Task(sampleTaskName, sampleTaskDate, new Time(""),
@@ -68,9 +71,10 @@ public class AddCommandParserTest {
     public void nameDateTimeTaskTest() throws Exception {
 
         Field field = AddCommand.class.getDeclaredField("toAdd");
+        AddCommandParser addCommandParser = new AddCommandParser();
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 \n");
+        AddCommand addCommand =  (AddCommand) addCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         Date sampleTaskDate = new Date("10/3");
         Time sampleTaskTime = new Time("16:00");
@@ -83,9 +87,10 @@ public class AddCommandParserTest {
     public void nameDateTimeDescriptionTaskTest() throws Exception {
 
         Field field = AddCommand.class.getDeclaredField("toAdd");
+        AddCommandParser addCommandParser = new AddCommandParser();
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 d/Interesting \n");
+        AddCommand addCommand =  (AddCommand) addCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 d/Interesting \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         Date sampleTaskDate = new Date("10/3");
         Time sampleTaskTime = new Time("16:00");
@@ -99,9 +104,10 @@ public class AddCommandParserTest {
     public void nameDateTimeDescriptionTagTaskTest() throws Exception {
 
         Field field = AddCommand.class.getDeclaredField("toAdd");
+        AddCommandParser addCommandParser = new AddCommandParser();
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 d/Interesting #CS2103 \n");
+        AddCommand addCommand =  (AddCommand) addCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 d/Interesting #CS2103 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         Date sampleTaskDate = new Date("10/3");
         Time sampleTaskTime = new Time("16:00");
@@ -116,9 +122,10 @@ public class AddCommandParserTest {
     public void nameDateTimeDescriptionTagVenueTaskTest() throws Exception {
 
         Field field = AddCommand.class.getDeclaredField("toAdd");
+        AddCommandParser addCommandParser = new AddCommandParser();
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 d/Interesting #CS2103 @I3 \n");
+        AddCommand addCommand =  (AddCommand) addCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 d/Interesting #CS2103 @I3 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         Date sampleTaskDate = new Date("10/3");
         Time sampleTaskTime = new Time("16:00");
@@ -134,9 +141,10 @@ public class AddCommandParserTest {
     public void nameDateTimeDescriptionTagVenuePriorityTaskTest() throws Exception {
 
         Field field = AddCommand.class.getDeclaredField("toAdd");
+        AddCommandParser addCommandParser = new AddCommandParser();
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 d/Interesting #CS2103 @I3 p/3 \n");
+        AddCommand addCommand =  (AddCommand) addCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 d/Interesting #CS2103 @I3 p/3 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         Date sampleTaskDate = new Date("10/3");
         Time sampleTaskTime = new Time("16:00");
