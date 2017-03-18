@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -459,7 +458,7 @@ public class LogicManagerTest {
          * Generates an TaskManager with auto-generated tasks.
          */
         TaskManager generateTaskManager(int numGenerated) throws Exception {
-        	TaskManager taskManager = new TaskManager();
+            TaskManager taskManager = new TaskManager();
             addToTaskManager(taskManager, numGenerated);
             return taskManager;
         }
@@ -468,7 +467,7 @@ public class LogicManagerTest {
          * Generates an TaskManager based on the list of Tasks given.
          */
         TaskManager generateTaskManager(List<Task> tasks) throws Exception {
-        	TaskManager taskManager = new TaskManager();
+            TaskManager taskManager = new TaskManager();
             addToTaskManager(taskManager, tasks);
             return taskManager;
         }

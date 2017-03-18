@@ -63,7 +63,7 @@ public class TaskCardHandle extends GuiHandle {
     }
 
     public String isFinished() {
-    		return getTextFromLabel(FINISHED_FIELD_ID);
+        return getTextFromLabel(FINISHED_FIELD_ID);
     }
 
     public boolean isSameTask(ReadOnlyTask task) {
@@ -90,7 +90,7 @@ public class TaskCardHandle extends GuiHandle {
                     && getVenue().equals(handle.getVenue())
                     && getPriority().equals(handle.getPriority())
                     && isFavorite().equals(handle.isFavorite())
-            		   && isFinished().equals(handle.isFinished());
+                    && isFinished().equals(handle.isFinished());
         }
         return super.equals(obj);
     }

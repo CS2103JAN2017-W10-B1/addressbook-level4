@@ -10,9 +10,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.testutil.TypicalTestTasks;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
+import seedu.address.testutil.TypicalTestTasks;
 
 public class ModelManagerTest {
 

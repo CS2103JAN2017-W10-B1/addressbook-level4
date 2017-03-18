@@ -35,10 +35,10 @@ import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Time;
 import seedu.address.model.task.Venue;
-import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.storage.XmlSerializableTaskManager;
 
 /**
