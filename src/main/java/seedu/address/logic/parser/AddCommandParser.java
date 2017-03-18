@@ -3,11 +3,11 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FRAVOURITE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FRAVOURITE;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -27,11 +27,12 @@ public class AddCommandParser {
      * and returns an AddCommand object for execution.
      */
     public Command parse(String args) {
-    	if (args == null) {
-    		return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-    	}
+        if (args == null) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
         ArgumentTokenizer argsTokenizer =
-                new ArgumentTokenizer(PREFIX_DATE, PREFIX_TIME, PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_VENUE, PREFIX_PRIORITY, PREFIX_FRAVOURITE);
+                new ArgumentTokenizer(PREFIX_DATE, PREFIX_TIME, PREFIX_TAG, PREFIX_DESCRIPTION,
+                        PREFIX_VENUE, PREFIX_PRIORITY, PREFIX_FRAVOURITE);
         argsTokenizer.tokenize(args);
         try {
             String name = argsTokenizer.getPreamble().get();
@@ -51,10 +52,10 @@ public class AddCommandParser {
     }
 
     private boolean checkPresent(Optional<String> args) {
-		return args.isPresent();
-	}
+        return args.isPresent();
+    }
 
-	private String checkString(Optional<String> args) {
+    private String checkString(Optional<String> args) {
         return args.orElse("");
     }
 
