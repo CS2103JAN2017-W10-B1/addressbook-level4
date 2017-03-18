@@ -29,7 +29,7 @@ public interface ReadOnlyTask {
                 && other.getName().equals(this.getName())
                 && other.getDate().equals(this.getDate())
                 && other.getTime().equals(this.getTime())
-                && other.getTag().equals(this.getTag()));// state checks here onwards
+                && other.getTag().equals(this.getTag())); // state checks here onwards
     }
 
     /**

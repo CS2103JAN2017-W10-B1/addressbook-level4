@@ -16,7 +16,8 @@ public class Date implements TaskField {
     public static final String MONTH_VALIDATION_REGEX_1 = "([13578])|(0[13578])|(1[02])";
     public static final String MONTH_VALIDATION_REGEX_2 = "([469])|(0[469])|(11)";
     public static final String MONTH_VALIDATION_REGEX_3 = "(2)|(02)";
-    public static final String MONTH_VALIDATION_REGEX = MONTH_VALIDATION_REGEX_1 + "|" + MONTH_VALIDATION_REGEX_2 + "|" + MONTH_VALIDATION_REGEX_3;
+    public static final String MONTH_VALIDATION_REGEX = MONTH_VALIDATION_REGEX_1 + "|"
+            + MONTH_VALIDATION_REGEX_2 + "|" + MONTH_VALIDATION_REGEX_3;
     public static final String DAY_VALIDATION_REGEX_1 = "([1-9])|(0[1-9])|(1\\d)|(2\\d)|(3[0-1])";
     public static final String DAY_VALIDATION_REGEX_2 = "([1-9])|(0[1-9])|(1\\d)|(2\\d)|(30)";
     public static final String DAY_VALIDATION_REGEX_3 = "([1-9])|(0[1-9])|(1\\d)|(2[0-8])";
@@ -105,12 +106,12 @@ public class Date implements TaskField {
     }
 
 //@@author A0143409J
-	@Override
-	public String getDisplayText() {
-		if ((value == null) || (value == "")) {
-			return "";
-		} else {
-			return "Date: "+ value;
-		}
-	}
+    @Override
+    public String getDisplayText() {
+        if ((value == null) || (value == "")) {
+            return "";
+        } else {
+            return "Date: " + value;
+        }
+    }
 }
