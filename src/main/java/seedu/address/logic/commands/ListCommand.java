@@ -9,6 +9,8 @@ import java.util.Set;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
+    
+    public static final String LIST_ALL = "all";
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 
@@ -34,7 +36,10 @@ public class ListCommand extends Command {
         if (keywords == null) {
             model.updateFilteredListToShowAllTasks();
             return new CommandResult(MESSAGE_SUCCESS);
-        } else {
+        }else if(keywords.contains(LIST_ALL)){
+        	model.updateFilteredListToShowAllTasksAll();
+            return new CommandResult(MESSAGE_SUCCESS);
+        }else {
             model.updateFilteredTaskListGivenListName(keywords);
             return new CommandResult(formatter(keywords));
         }
