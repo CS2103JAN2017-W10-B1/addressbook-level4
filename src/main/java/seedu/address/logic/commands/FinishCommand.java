@@ -68,7 +68,7 @@ public class FinishCommand extends Command {
         try {
             model.updateTask(targetIndex - 1, taskToMark);
         } catch (DuplicateTaskException e) {
-		    throw new CommandException(MESSAGE_WRONG_TASK_INDEX);
+            throw new CommandException(MESSAGE_WRONG_TASK_INDEX);
         }
 
         return new CommandResult(String.format(MESSAGE_FINISH_TASK_SUCCESS, taskToMark));

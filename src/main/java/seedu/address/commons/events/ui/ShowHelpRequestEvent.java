@@ -11,5 +11,4 @@ public class ShowHelpRequestEvent extends BaseEvent {
     public String toString() {
         return this.getClass().getSimpleName();
     }
-
 }

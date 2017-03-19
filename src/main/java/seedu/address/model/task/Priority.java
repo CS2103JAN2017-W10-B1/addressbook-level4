@@ -20,7 +20,8 @@ public class Priority implements TaskField {
 
     public static final String DEFAULT_PRIORITY = PRIORITY_2;
 
-    public static final String MESSAGE_PRIORITY_CONSTRAINTS = "task priority can only be 1, 2, 3, trivial, normal, or important";
+    public static final String MESSAGE_PRIORITY_CONSTRAINTS = "task priority can only be 1, 2, 3,"
+            + "trivial, normal, or important";
 
     public static final String PRIORITY_VALIDATION_REGEX = PRIORITY_1 + "|" + PRIORITY_2 + "|" + PRIORITY_3;
 
@@ -55,7 +56,7 @@ public class Priority implements TaskField {
      * Convert English expressions into digits expressions
      */
     public static String convert(String value) {
-        value = value.equals("")? DEFAULT_PRIORITY: value;
+        value = value.equals("") ? DEFAULT_PRIORITY : value;
         value = value.replaceFirst(PRIORITY_IMPORTANT, PRIORITY_3);
         value = value.replaceFirst("(?i)" + PRIORITY_NORMAL, PRIORITY_2);
         value = value.replaceFirst("(?i)" + PRIORITY_TRIVIAL, PRIORITY_1);
@@ -84,12 +85,12 @@ public class Priority implements TaskField {
     }
 
 //@@author A0143409J
-	@Override
-	public String getDisplayText() {
-		if ((value == null) || (value == "")) {
-			return "";
-		} else {
-			return "Priority: " + value;
-		}
-	}
+    @Override
+    public String getDisplayText() {
+        if ((value == null) || (value == "")) {
+            return "";
+        } else {
+            return "Priority: " + value;
+        }
+    }
 }

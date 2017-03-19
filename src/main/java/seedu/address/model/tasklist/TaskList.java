@@ -9,7 +9,7 @@ import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
  * Represents a List in Dueue.
  * Guarantees: name is valid as declared in {@link #isValidListName(String)}
  */
-public class TaskList{
+public class TaskList {
 
     public static final String MESSAGE_LIST_CONSTRAINTS = "List name should not begin with digits.";
     //TODO: public static final String LIST_VALIDATION_REGEX = ;
@@ -22,7 +22,7 @@ public class TaskList{
      *
      * @throws IllegalValueException if the given list name string is invalid.
      */
-    public TaskList(String name) throws IllegalValueException{
+    public TaskList(String name) throws IllegalValueException {
         assert name != null;
         String trimmedName = name.trim();
         if (!isValidListName(trimmedName)) {
@@ -40,12 +40,12 @@ public class TaskList{
         return true;
     }
 
-    public void add(Task task) throws DuplicateTaskException{
+    public void add(Task task) throws DuplicateTaskException {
         assert task != null;
         tasks.add(task);
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 

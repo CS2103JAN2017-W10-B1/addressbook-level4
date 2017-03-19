@@ -1,3 +1,4 @@
+//@@Author ShermineJong A0138474X
 package seedu.address.storage;
 
 
@@ -37,7 +38,8 @@ public class XmlTaskList {
      */
     public XmlTaskList(TaskList source) {
         taskListName = source.getName();
-        tasksList.addAll(source.getTasks().asObservableList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
+        tasksList.addAll(source.getTasks().asObservableList().stream().map(
+                XmlAdaptedTask::new).collect(Collectors.toList()));
     }
 
     /**

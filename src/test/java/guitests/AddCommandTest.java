@@ -1,3 +1,4 @@
+//@@author Matilda_yxx A0147996E
 package guitests;
 
 import static org.junit.Assert.assertTrue;
@@ -15,7 +16,7 @@ public class AddCommandTest extends TaskManagerGuiTest {
     @Test
     public void add() {
         //add task by name only
-    		TestTask[] currentList = td.getTypicalTasks();
+        TestTask[] currentList = td.getTypicalTasks();
         TestTask taskToAdd = td.assignment;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
@@ -34,11 +35,17 @@ public class AddCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("clear");
         assertAddSuccess(td.gym);
 
-        //invalid command
+        //unknown command
         commandBox.runCommand("adds homework");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
+
+        //invalid command, task must have a name
+        commandBox.runCommand("add p/important");
+        assertResultMessage(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        //invalid command, name should be the first field entered
         commandBox.runCommand("add p/important homework");
-        assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
+        assertResultMessage(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 
     private void assertAddSuccess(TestTask taskToAdd, TestTask... currentList) {
@@ -52,5 +59,4 @@ public class AddCommandTest extends TaskManagerGuiTest {
         TestTask[] expectedList = TestUtil.addTasksToList(currentList, taskToAdd);
         assertTrue(taskListPanel.isListMatching(expectedList));
     }
-
 }

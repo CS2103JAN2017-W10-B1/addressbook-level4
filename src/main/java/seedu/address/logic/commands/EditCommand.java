@@ -1,3 +1,4 @@
+//@@Author ShermineJong A0138474X
 package seedu.address.logic.commands;
 
 import java.util.List;
@@ -88,9 +89,10 @@ public class EditCommand extends Command {
         Tag updatedTag = editTaskDescriptor.getTag().orElseGet(taskToEdit::getTag);
         Venue updatedVenue = editTaskDescriptor.getVenue().orElseGet(taskToEdit::getVenue);
         Priority updatedPriority = editTaskDescriptor.getPriority().orElseGet(taskToEdit::getPriority);
+        boolean isFavourite = editTaskDescriptor.getFavourite();
 
         return new Task(updatedName, updatedDate, updatedTime, updatedDescription,
-                updatedTag, updatedVenue, updatedPriority, false);
+                updatedTag, updatedVenue, updatedPriority, isFavourite);
     }
 
     /**
@@ -105,6 +107,7 @@ public class EditCommand extends Command {
         private Optional<Tag> tag = Optional.empty();
         private Optional<Venue> venue = Optional.empty();
         private Optional<Priority> priority = Optional.empty();
+        private boolean isFavourite;
 
         public EditTaskDescriptor() {}
 
@@ -116,15 +119,16 @@ public class EditCommand extends Command {
             this.tag = toCopy.getTag();
             this.venue = toCopy.getVenue();
             this.priority = toCopy.getPriority();
+            this.isFavourite = toCopy.getFavourite();
         }
 
-        /**
+         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyPresent(
                     this.name, this.date, this.time,
-                    this.description, this.tag, this.venue, this.priority);
+                    this.description, this.tag, this.venue, this.priority) || isFavourite;
         }
 
         public void setName(Optional<Name> name) {
@@ -188,6 +192,14 @@ public class EditCommand extends Command {
 
         public Optional<Priority> getPriority() {
             return priority;
+        }
+
+        public void setIsFavourite(boolean isFavourite) {
+            this.isFavourite = isFavourite;
+        }
+
+        private boolean getFavourite() {
+            return isFavourite;
         }
     }
 }

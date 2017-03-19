@@ -15,9 +15,9 @@ import org.testfx.api.FxToolkit;
 import guitests.guihandles.CommandBoxHandle;
 import guitests.guihandles.ListPanelHandle;
 import guitests.guihandles.MainGuiHandle;
+import guitests.guihandles.ResultDisplayHandle;
 import guitests.guihandles.TaskCardHandle;
 import guitests.guihandles.TaskListPanelHandle;
-import guitests.guihandles.ResultDisplayHandle;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import seedu.address.TestApp;
@@ -84,7 +84,7 @@ public abstract class TaskManagerGuiTest {
      * Return null to use the data in the file specified in {@link #getDataFileLocation()}
      */
     protected TaskManager getInitialData() {
-    	TaskManager tm = new TaskManager();
+        TaskManager tm = new TaskManager();
         TypicalTestTasks.loadTaskManagerWithSampleData(tm);
         return tm;
     }

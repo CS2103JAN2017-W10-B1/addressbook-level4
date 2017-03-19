@@ -29,9 +29,9 @@ public class Time implements TaskField {
      */
     public Time(String time) throws IllegalValueException {
         assert time != null;
-        //if (!isValidTime(time)) {
-        //    throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
-        //}
+        if (!isValidTime(time)) {
+            throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
+        }
         this.value = time;
     }
 
@@ -81,12 +81,12 @@ public class Time implements TaskField {
     }
 
 //@@author A0143409J
-	@Override
-	public String getDisplayText() {
-		if ((value == null) || (value == "")) {
-			return "";
-		} else {
-			return "Time: " + value;
-		}
-	}
+    @Override
+    public String getDisplayText() {
+        if ((value == null) || (value == "")) {
+            return "";
+        } else {
+            return "Time: " + value;
+        }
+    }
 }

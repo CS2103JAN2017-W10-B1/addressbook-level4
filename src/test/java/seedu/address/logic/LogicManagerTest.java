@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -434,7 +433,7 @@ public class LogicManagerTest {
                     new TaskDate("" + (Math.abs(seed) % 31 + 1) + "/" + (Math.abs(seed) % 12 + 1)),
                     new Time("" + (Math.abs(seed) % 24 + 1) + "/" + (Math.abs(seed) % 60 + 1)),
                     new Description("A valid description" + seed),
-                    new Tag("A valid tag" + seed),
+                    new Tag("Avalidtag" + seed),
                     new Venue("LT" + (seed % 53 + 1)),
                     new Priority("" + (seed % 3 + 1)),
                     true
@@ -459,7 +458,7 @@ public class LogicManagerTest {
          * Generates an TaskManager with auto-generated tasks.
          */
         TaskManager generateTaskManager(int numGenerated) throws Exception {
-        	TaskManager taskManager = new TaskManager();
+            TaskManager taskManager = new TaskManager();
             addToTaskManager(taskManager, numGenerated);
             return taskManager;
         }
@@ -468,7 +467,7 @@ public class LogicManagerTest {
          * Generates an TaskManager based on the list of Tasks given.
          */
         TaskManager generateTaskManager(List<Task> tasks) throws Exception {
-        	TaskManager taskManager = new TaskManager();
+            TaskManager taskManager = new TaskManager();
             addToTaskManager(taskManager, tasks);
             return taskManager;
         }

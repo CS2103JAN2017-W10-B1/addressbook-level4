@@ -1,3 +1,4 @@
+//@@author Matilda_yxx A0147996E
 package seedu.address.testutil;
 
 import seedu.address.model.tag.Tag;
@@ -20,11 +21,11 @@ public class TestTask implements ReadOnlyTask {
     private Description description;
     private Venue venue;
     private Priority priority;
-    private boolean isFavorite;
     private Tag tag;
+    private boolean isFavorite;
+    private boolean isFinished;
 
     public TestTask() {}
-
     /**
      * Creates a copy of {@code taskToCopy}.
      */
@@ -37,6 +38,7 @@ public class TestTask implements ReadOnlyTask {
         this.venue = taskToCopy.getVenue();
         this.priority = taskToCopy.getPriority();
         this.isFavorite = taskToCopy.isFavorite();
+        this.isFinished = taskToCopy.isFinished();
     }
 
     public void setName(Name name) {
@@ -90,32 +92,55 @@ public class TestTask implements ReadOnlyTask {
     }
 
     @Override
-    public Venue getVenue(){
+    public Venue getVenue() {
         return venue;
     }
 
-    public void setVenue(Venue venue){
+    public void setVenue(Venue venue) {
         assert venue != null;
         this.venue = venue;
     }
 
     @Override
-    public Priority getPriority(){
+    public Priority getPriority() {
         return priority;
     }
 
-    public void setPriority(Priority priority){
+    public void setPriority(Priority priority) {
         assert priority != null;
         this.priority = priority;
     }
 
     @Override
-    public boolean isFavorite(){
+    public boolean isFavorite() {
         return isFavorite;
     }
 
-    public void setFavorite(boolean isFavorite){
+    public void setFavorite(boolean isFavorite) {
         this.isFavorite = isFavorite;
+    }
+
+    @Override
+    public boolean isFinished() {
+        return isFinished;
+    }
+
+    @Override
+    public String getFavoriteText() {
+        if (isFavorite) {
+            return "Favorite";
+        } else {
+            return "";
+        }
+    }
+
+    @Override
+    public String getFinishedText() {
+        if (isFinished) {
+            return "Finished";
+        } else {
+            return "Unfinished";
+        }
     }
 
     @Override
@@ -124,25 +149,14 @@ public class TestTask implements ReadOnlyTask {
     }
 
     public String getAddCommand() {
-        return null;
-        //TODO: add test cases
+        StringBuilder sb = new StringBuilder();
+        sb.append("add " + this.getName().fullName + " ");
+        sb.append("due/" + this.getDate().getValue() + " ");
+        sb.append("t/" + this.getTime().getValue() + " ");
+        sb.append("d/" + this.getDescription().getValue() + " ");
+        sb.append("#" + this.getTag().getName() + " ");
+        sb.append("@" + this.getVenue().getValue() + " ");
+        sb.append("p/" + this.getPriority().getValue() + " ");
+        return sb.toString();
     }
-
-	@Override
-	public boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public String getFavoriteText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getFinishedText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

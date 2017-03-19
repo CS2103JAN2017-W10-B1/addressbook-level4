@@ -1,3 +1,4 @@
+//@@author Matilda_yxx A0147996E
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
@@ -68,16 +69,16 @@ public class MainWindow extends UiPart<Region> {
     }
 
     public void fillInnerParts() {
-    	//listPanel = new ListPanel(getListPlaceholder(), logic.getFilteredListList());
-    	taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
+        //listPanel = new ListPanel(getListPlaceholder(), logic.getFilteredListList());
+        taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
         new CommandBox(getCommandBoxPlaceholder(), logic);
     }
 
     private AnchorPane getListPlaceholder() {
-		return this.ListPanelPlaceholder;
-	}
+        return this.ListPanelPlaceholder;
+    }
 
     private AnchorPane getCommandBoxPlaceholder() {
         return commandBoxPlaceholder;
@@ -92,7 +93,7 @@ public class MainWindow extends UiPart<Region> {
     }
 
     private AnchorPane getTaskListPlaceholder() {
-    		return this.taskListPanelPlaceholder;
+        return this.taskListPanelPlaceholder;
     }
 
     public void hide() {

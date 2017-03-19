@@ -13,7 +13,7 @@ public class Venue implements TaskField {
             "task venue can only contains alphanumerics and #, -, '.";
 
     // cannot begin with space; can only contains
-    public static final String VENUE_VALIDATION_REGEX = "^((\\w)|([-#]))((\\w)|([-#'])|(\\s))*"; 
+    public static final String VENUE_VALIDATION_REGEX = "^((\\w)|([-#]))((\\w)|([-#'])|(\\s))*";
 
     private final String value;
 
@@ -44,7 +44,7 @@ public class Venue implements TaskField {
     public String getValue() {
         return this.value;
     }
-    
+
     @Override
     public String toString() {
         return value;
@@ -64,11 +64,11 @@ public class Venue implements TaskField {
 
 //@@author A0143409J
     @Override
-	public String getDisplayText() {
-		if ((value == null) || (value == "")) {
-			return "";
-		} else {
-			return "Venue: " + value;
-		}
-	}
+    public String getDisplayText() {
+        if ((value == null) || (value == "")) {
+            return "";
+        } else {
+            return "Venue: " + value;
+        }
+    }
 }

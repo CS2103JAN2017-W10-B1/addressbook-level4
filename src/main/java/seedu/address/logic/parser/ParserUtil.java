@@ -129,4 +129,8 @@ public class ParserUtil {
         assert priority != null;
         return priority.isPresent() ? Optional.of(new Priority(priority.get())) : Optional.empty();
     }
+
+    public static boolean isFavourite(Optional<String> isFravourite) {
+        return isFravourite.isPresent();
+    }
 }

@@ -1,3 +1,4 @@
+//@@Author ShermineJong A0138474X
 package seedu.address.storage;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -33,6 +34,8 @@ public class XmlAdaptedTask {
     @XmlElement(required = false)
     private String priority;
     @XmlElement(required = false)
+    private boolean isFavourite;
+    @XmlElement(required = false)
     private boolean isFinished;
 
     /**
@@ -55,6 +58,7 @@ public class XmlAdaptedTask {
         description = source.getDescription().getValue();
         venue = source.getVenue().getValue();
         priority = source.getPriority().getValue();
+        isFavourite = source.isFavorite();
         isFinished = source.isFinished();
     }
 
@@ -71,6 +75,6 @@ public class XmlAdaptedTask {
         final Tag tag = new Tag(this.tag);
         final Venue venue = new Venue(this.venue);
         final Priority priority = new Priority(this.priority);
-        return new Task(name, date, time, description, tag, venue, priority, false, isFinished);
+        return new Task(name, date, time, description, tag, venue, priority, isFavourite, isFinished);
     }
 }

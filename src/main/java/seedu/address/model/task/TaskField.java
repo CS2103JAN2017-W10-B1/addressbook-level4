@@ -3,5 +3,5 @@
 package seedu.address.model.task;
 
 public interface TaskField {
-	String getDisplayText();
+    String getDisplayText ();
 }
