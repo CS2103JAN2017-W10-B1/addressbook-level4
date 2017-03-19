@@ -17,7 +17,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
@@ -60,8 +60,8 @@ public class EditCommandParserTest {
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
-        Date editTaskDescriptorDate = new Date("10/3");
-        Optional<Date> optionalDate = Optional.of(editTaskDescriptorDate);
+        TaskDate editTaskDescriptorDate = new TaskDate("10/3");
+        Optional<TaskDate> optionalDate = Optional.of(editTaskDescriptorDate);
         editTaskDescriptor.setDate(optionalDate);
         assertEqualEditTaskDescriptor((EditTaskDescriptor) field.get(editCommand), editTaskDescriptor);
     }
@@ -76,8 +76,8 @@ public class EditCommandParserTest {
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
-        Date sampleDate = new Date("10/3");
-        Optional<Date> optionalDate = Optional.of(sampleDate);
+        TaskDate sampleDate = new TaskDate("10/3");
+        Optional<TaskDate> optionalDate = Optional.of(sampleDate);
         editTaskDescriptor.setDate(optionalDate);
         Time sampleTime = new Time("16:00");
         Optional<Time> optionalTime = Optional.of(sampleTime);
@@ -95,8 +95,8 @@ public class EditCommandParserTest {
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
-        Date sampleDate = new Date("10/3");
-        Optional<Date> optionalDate = Optional.of(sampleDate);
+        TaskDate sampleDate = new TaskDate("10/3");
+        Optional<TaskDate> optionalDate = Optional.of(sampleDate);
         editTaskDescriptor.setDate(optionalDate);
         Time sampleTime = new Time("16:00");
         Optional<Time> optionalTime = Optional.of(sampleTime);
@@ -117,8 +117,8 @@ public class EditCommandParserTest {
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
-        Date sampleDate = new Date("10/3");
-        Optional<Date> optionalDate = Optional.of(sampleDate);
+        TaskDate sampleDate = new TaskDate("10/3");
+        Optional<TaskDate> optionalDate = Optional.of(sampleDate);
         editTaskDescriptor.setDate(optionalDate);
         Time sampleTime = new Time("16:00");
         Optional<Time> optionalTime = Optional.of(sampleTime);
@@ -142,8 +142,8 @@ public class EditCommandParserTest {
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
-        Date sampleDate = new Date("10/3");
-        Optional<Date> optionalDate = Optional.of(sampleDate);
+        TaskDate sampleDate = new TaskDate("10/3");
+        Optional<TaskDate> optionalDate = Optional.of(sampleDate);
         editTaskDescriptor.setDate(optionalDate);
         Time sampleTime = new Time("16:00");
         Optional<Time> optionalTime = Optional.of(sampleTime);
@@ -170,8 +170,8 @@ public class EditCommandParserTest {
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
-        Date sampleDate = new Date("10/3");
-        Optional<Date> optionalDate = Optional.of(sampleDate);
+        TaskDate sampleDate = new TaskDate("10/3");
+        Optional<TaskDate> optionalDate = Optional.of(sampleDate);
         editTaskDescriptor.setDate(optionalDate);
         Time sampleTime = new Time("16:00");
         Optional<Time> optionalTime = Optional.of(sampleTime);

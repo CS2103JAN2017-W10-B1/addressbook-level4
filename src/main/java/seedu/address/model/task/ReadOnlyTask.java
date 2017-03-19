@@ -9,7 +9,7 @@ import seedu.address.model.tag.Tag;
 public interface ReadOnlyTask {
 
     Name getName();
-    Date getDate();
+    TaskDate getDate();
     Time getTime();
     Tag getTag();
     Description getDescription();

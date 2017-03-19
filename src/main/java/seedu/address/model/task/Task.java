@@ -12,7 +12,7 @@ import seedu.address.model.tag.Tag;
 public class Task implements ReadOnlyTask {
 
     private Name name;
-    private Date date;
+    private TaskDate date;
     private Time time;
     private Description description;
     private Venue venue;
@@ -24,7 +24,7 @@ public class Task implements ReadOnlyTask {
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Date date, Time time, Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite) {
+    public Task(Name name, TaskDate date, Time time, Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
         this.date = date;
@@ -37,7 +37,7 @@ public class Task implements ReadOnlyTask {
         this.isFinished = false;
     }
 
-    public Task(Name name, Date date, Time time, Description description, Tag tag,
+    public Task(Name name, TaskDate date, Time time, Description description, Tag tag,
     		Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
@@ -69,12 +69,12 @@ public class Task implements ReadOnlyTask {
         return name;
     }
 
-    public void setDate(Date date) {
+    public void setDate(TaskDate date) {
         this.date = date;
     }
 
     @Override
-    public Date getDate() {
+    public TaskDate getDate() {
         return date;
     }
 

@@ -31,7 +31,7 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.XmlUtil;
 import seedu.address.model.TaskManager;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
@@ -76,7 +76,7 @@ public class TestUtil {
         try {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
-                new Task(new Name("gym"), new Date("10/12"), new Time("18:00"), new Description("50 mins workout"),
+                new Task(new Name("gym"), new TaskDate("10/12"), new Time("18:00"), new Description("50 mins workout"),
                         new Tag("taskal"), new Venue("MPSH"), new Priority("2"), true)};
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {

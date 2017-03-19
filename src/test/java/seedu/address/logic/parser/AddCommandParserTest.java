@@ -14,7 +14,7 @@ import org.junit.rules.ExpectedException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
@@ -45,7 +45,7 @@ public class AddCommandParserTest {
 
         AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
-        Task sampleTask = new Task(sampleTaskName, new Date(""), new Time(""),
+        Task sampleTask = new Task(sampleTaskName, new TaskDate(""), new Time(""),
         		new Description(""), new Tag(""), new Venue(""), new Priority(""), false, false);
         assertEqualTasks((Task) field.get(addCommand), sampleTask);
     }
@@ -58,7 +58,7 @@ public class AddCommandParserTest {
 
         AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
-        Date sampleTaskDate = new Date("10/3");
+        TaskDate sampleTaskDate = new TaskDate("10/3");
         Task sampleTask = new Task(sampleTaskName, sampleTaskDate, new Time(""),
         		new Description(""), new Tag(""), new Venue(""), new Priority(""), false, false);
         assertEqualTasks((Task) field.get(addCommand), sampleTask);
@@ -72,7 +72,7 @@ public class AddCommandParserTest {
 
         AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
-        Date sampleTaskDate = new Date("10/3");
+        TaskDate sampleTaskDate = new TaskDate("10/3");
         Time sampleTaskTime = new Time("16:00");
         Task sampleTask = new Task(sampleTaskName, sampleTaskDate, sampleTaskTime,
         		new Description(""), new Tag(""), new Venue(""), new Priority(""), false, false);
@@ -87,7 +87,7 @@ public class AddCommandParserTest {
 
         AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 d/Interesting \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
-        Date sampleTaskDate = new Date("10/3");
+        TaskDate sampleTaskDate = new TaskDate("10/3");
         Time sampleTaskTime = new Time("16:00");
         Description sampleTaskDescription = new Description("Interesting");
         Task sampleTask = new Task(sampleTaskName, sampleTaskDate, sampleTaskTime,
@@ -103,7 +103,7 @@ public class AddCommandParserTest {
 
         AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 d/Interesting #CS2103 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
-        Date sampleTaskDate = new Date("10/3");
+        TaskDate sampleTaskDate = new TaskDate("10/3");
         Time sampleTaskTime = new Time("16:00");
         Description sampleTaskDescription = new Description("Interesting");
         Tag sampleTaskTag = new Tag("CS2103");
@@ -120,7 +120,7 @@ public class AddCommandParserTest {
 
         AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 d/Interesting #CS2103 @I3 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
-        Date sampleTaskDate = new Date("10/3");
+        TaskDate sampleTaskDate = new TaskDate("10/3");
         Time sampleTaskTime = new Time("16:00");
         Description sampleTaskDescription = new Description("Interesting");
         Tag sampleTaskTag = new Tag("CS2103");
@@ -138,7 +138,7 @@ public class AddCommandParserTest {
 
         AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 d/Interesting #CS2103 @I3 p/3 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
-        Date sampleTaskDate = new Date("10/3");
+        TaskDate sampleTaskDate = new TaskDate("10/3");
         Time sampleTaskTime = new Time("16:00");
         Description sampleTaskDescription = new Description("Interesting");
         Tag sampleTaskTag = new Tag("CS2103");

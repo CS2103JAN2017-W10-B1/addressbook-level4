@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
@@ -38,7 +38,7 @@ public class TaskBuilder {
     }
 
     public TaskBuilder withDate(String date) throws IllegalValueException {
-        this.task.setDate(new Date(date));
+        this.task.setDate(new TaskDate(date));
         return this;
     }
 

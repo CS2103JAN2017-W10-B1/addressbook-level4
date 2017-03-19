@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
@@ -65,7 +65,7 @@ public class XmlAdaptedTask {
      */
     public Task toModelType() throws IllegalValueException {
     	final Name name = new Name(this.name);
-        final Date date = new Date(this.date);
+        final TaskDate date = new TaskDate(this.date);
         final Time time = new Time(this.time);
         final Description description = new Description(this.description);
         final Tag tag = new Tag(this.tag);

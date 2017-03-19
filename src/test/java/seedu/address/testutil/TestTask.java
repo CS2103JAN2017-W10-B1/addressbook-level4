@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
@@ -15,7 +15,7 @@ import seedu.address.model.task.Venue;
 public class TestTask implements ReadOnlyTask {
 
     private Name name;
-    private Date date;
+    private TaskDate date;
     private Time time;
     private Description description;
     private Venue venue;
@@ -49,13 +49,13 @@ public class TestTask implements ReadOnlyTask {
         return name;
     }
 
-    public void setDate(Date date) {
+    public void setDate(TaskDate date) {
         assert date != null;
         this.date = date;
     }
 
     @Override
-    public Date getDate() {
+    public TaskDate getDate() {
         return date;
     }
 
