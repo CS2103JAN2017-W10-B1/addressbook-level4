@@ -2,7 +2,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
@@ -16,7 +16,7 @@ import seedu.address.model.task.Venue;
 public class TestTask implements ReadOnlyTask {
 
     private Name name;
-    private Date date;
+    private TaskDate date;
     private Time time;
     private Description description;
     private Venue venue;
@@ -51,13 +51,13 @@ public class TestTask implements ReadOnlyTask {
         return name;
     }
 
-    public void setDate(Date date) {
+    public void setDate(TaskDate date) {
         assert date != null;
         this.date = date;
     }
 
     @Override
-    public Date getDate() {
+    public TaskDate getDate() {
         return date;
     }
 
@@ -92,56 +92,56 @@ public class TestTask implements ReadOnlyTask {
     }
 
     @Override
-    public Venue getVenue(){
+    public Venue getVenue() {
         return venue;
     }
 
-    public void setVenue(Venue venue){
+    public void setVenue(Venue venue) {
         assert venue != null;
         this.venue = venue;
     }
 
     @Override
-    public Priority getPriority(){
+    public Priority getPriority() {
         return priority;
     }
 
-    public void setPriority(Priority priority){
+    public void setPriority(Priority priority) {
         assert priority != null;
         this.priority = priority;
     }
 
     @Override
-    public boolean isFavorite(){
+    public boolean isFavorite() {
         return isFavorite;
     }
 
-    public void setFavorite(boolean isFavorite){
+    public void setFavorite(boolean isFavorite) {
         this.isFavorite = isFavorite;
     }
 
-	@Override
-	public boolean isFinished() {
-		return isFinished;
-	}
+    @Override
+    public boolean isFinished() {
+        return isFinished;
+    }
 
-	@Override
-	public String getFavoriteText() {
-		if (isFavorite) {
-			return "Favorite";
-		} else {
-			return "";
-		}
-	}
+    @Override
+    public String getFavoriteText() {
+        if (isFavorite) {
+            return "Favorite";
+        } else {
+            return "";
+        }
+    }
 
-	@Override
-	public String getFinishedText() {
-		if (isFinished) {
-			return "Finished";
-		} else {
-			return "Unfinished";
-		}
-	}
+    @Override
+    public String getFinishedText() {
+        if (isFinished) {
+            return "Finished";
+        } else {
+            return "Unfinished";
+        }
+    }
 
     @Override
     public String toString() {
@@ -149,14 +149,14 @@ public class TestTask implements ReadOnlyTask {
     }
 
     public String getAddCommand() {
-    		StringBuilder sb = new StringBuilder();
-    		sb.append("add " + this.getName().fullName + " ");
-    		sb.append("due/" + this.getDate().getValue() + " ");
-    		sb.append("t/" + this.getTime().getValue()+ " ");
-    		sb.append("d/" + this.getDescription().getValue() + " ");
-    		sb.append("#" + this.getTag().getName() + " ");
-    		sb.append("@" + this.getVenue().getValue() + " ");
-    		sb.append("p/" + this.getPriority().getValue() + " ");
-    		return sb.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("add " + this.getName().fullName + " ");
+        sb.append("due/" + this.getDate().getValue() + " ");
+        sb.append("t/" + this.getTime().getValue() + " ");
+        sb.append("d/" + this.getDescription().getValue() + " ");
+        sb.append("#" + this.getTag().getName() + " ");
+        sb.append("@" + this.getVenue().getValue() + " ");
+        sb.append("p/" + this.getPriority().getValue() + " ");
+        return sb.toString();
     }
 }

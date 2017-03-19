@@ -1,3 +1,4 @@
+//@@Author ShermineJong A0138474X
 package seedu.address.logic.commands;
 
 import java.util.Iterator;
@@ -9,6 +10,8 @@ import java.util.Set;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
+
+    public static final String LIST_ALL = "all";
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 
@@ -33,6 +36,9 @@ public class ListCommand extends Command {
     public CommandResult execute() {
         if (keywords == null) {
             model.updateFilteredListToShowAllTasks();
+            return new CommandResult(MESSAGE_SUCCESS);
+        } else if (keywords.contains(LIST_ALL)) {
+            model.updateFilteredListToShowAllTasksAll();
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
             model.updateFilteredTaskListGivenListName(keywords);

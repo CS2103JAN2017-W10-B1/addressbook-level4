@@ -1,3 +1,4 @@
+//@@Author ShermineJong A0138474X
 package seedu.address.logic.commands;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
@@ -82,15 +83,16 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
-        Date updatedDate = editTaskDescriptor.getDate().orElseGet(taskToEdit::getDate);
+        TaskDate updatedDate = editTaskDescriptor.getDate().orElseGet(taskToEdit::getDate);
         Time updatedTime = editTaskDescriptor.getTime().orElseGet(taskToEdit::getTime);
         Description updatedDescription = editTaskDescriptor.getDescription().orElseGet(taskToEdit::getDescription);
         Tag updatedTag = editTaskDescriptor.getTag().orElseGet(taskToEdit::getTag);
         Venue updatedVenue = editTaskDescriptor.getVenue().orElseGet(taskToEdit::getVenue);
         Priority updatedPriority = editTaskDescriptor.getPriority().orElseGet(taskToEdit::getPriority);
+        boolean isFavourite = editTaskDescriptor.getFavourite();
 
         return new Task(updatedName, updatedDate, updatedTime, updatedDescription,
-                updatedTag, updatedVenue, updatedPriority, false);
+                updatedTag, updatedVenue, updatedPriority, isFavourite);
     }
 
     /**
@@ -99,12 +101,13 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private Optional<Name> name = Optional.empty();
-        private Optional<Date> date = Optional.empty();
+        private Optional<TaskDate> date = Optional.empty();
         private Optional<Time> time = Optional.empty();
         private Optional<Description> description = Optional.empty();
         private Optional<Tag> tag = Optional.empty();
         private Optional<Venue> venue = Optional.empty();
         private Optional<Priority> priority = Optional.empty();
+        private boolean isFavourite;
 
         public EditTaskDescriptor() {}
 
@@ -116,15 +119,16 @@ public class EditCommand extends Command {
             this.tag = toCopy.getTag();
             this.venue = toCopy.getVenue();
             this.priority = toCopy.getPriority();
+            this.isFavourite = toCopy.getFavourite();
         }
 
-        /**
+         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyPresent(
                     this.name, this.date, this.time,
-                    this.description, this.tag, this.venue, this.priority);
+                    this.description, this.tag, this.venue, this.priority) || isFavourite;
         }
 
         public void setName(Optional<Name> name) {
@@ -136,12 +140,12 @@ public class EditCommand extends Command {
             return name;
         }
 
-        public void setDate(Optional<Date> date) {
+        public void setDate(Optional<TaskDate> date) {
             assert date != null;
             this.date = date;
         }
 
-        public Optional<Date> getDate() {
+        public Optional<TaskDate> getDate() {
             return date;
         }
 
@@ -188,6 +192,14 @@ public class EditCommand extends Command {
 
         public Optional<Priority> getPriority() {
             return priority;
+        }
+
+        public void setIsFavourite(boolean isFavourite) {
+            this.isFavourite = isFavourite;
+        }
+
+        private boolean getFavourite() {
+            return isFavourite;
         }
     }
 }

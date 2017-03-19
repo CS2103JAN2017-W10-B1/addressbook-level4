@@ -9,7 +9,7 @@ import seedu.address.TestApp;
  */
 public class MainGuiHandle extends GuiHandle {
 
-	public MainGuiHandle(GuiRobot guiRobot, Stage primaryStage) {
+    public MainGuiHandle(GuiRobot guiRobot, Stage primaryStage) {
         super(guiRobot, primaryStage, TestApp.APP_TITLE);
     }
 

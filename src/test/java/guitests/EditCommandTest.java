@@ -8,9 +8,9 @@ import org.junit.Test;
 import guitests.guihandles.TaskCardHandle;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.model.task.Date;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Time;
 import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TestTask;
@@ -84,8 +84,8 @@ public class EditCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("edit 1 n/*&");
         assertResultMessage(Name.MESSAGE_NAME_CONSTRAINTS);
 
-        commandBox.runCommand("edit 1 due/32/11");
-        assertResultMessage(Date.MESSAGE_DATE_CONSTRAINTS);
+        commandBox.runCommand("edit 1 due/1111");
+        assertResultMessage(TaskDate.MESSAGE_DATE_CONSTRAINTS);
 
         commandBox.runCommand("edit 1 t/1200");
         assertResultMessage(Time.MESSAGE_TIME_CONSTRAINTS);

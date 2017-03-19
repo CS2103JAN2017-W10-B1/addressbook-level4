@@ -4,7 +4,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyTaskManager;
 import seedu.address.model.TaskManager;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
@@ -17,7 +17,7 @@ public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         try {
             return new Task[] {
-                    new Task(new Name("Gym"), new Date("12/3"), new Time("11:00"), new Description("50 mins workout"),
+                    new Task(new Name("Gym"), new TaskDate("12/3"), new Time("11:00"), new Description("50 mins workout"),
                             new Tag("personal"), new Venue("MPSH"), new Priority("2"), true)
             };
         } catch (IllegalValueException e) {

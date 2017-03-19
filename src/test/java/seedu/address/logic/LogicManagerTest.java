@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -39,7 +38,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTaskManager;
 import seedu.address.model.TaskManager;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
@@ -411,7 +410,7 @@ public class LogicManagerTest {
     class TestDataHelper {
         Task gym() throws Exception {
             Name name = new Name("Homework");
-            Date date = new Date("10/03/2017");
+            TaskDate date = new TaskDate("10/03/2017");
             Time time = new Time("12:00");
             Description description = new Description("IE2100 CTMC");
             Venue venue = new Venue("UTown");
@@ -431,8 +430,8 @@ public class LogicManagerTest {
         Task generateTask(int seed) throws Exception {
             return new Task(
                     new Name("Task " + seed),
-                    new Date("" + (Math.abs(seed) % 31 + 1) + "/" + (Math.abs(seed) % 12 + 1)),
-                    new Time("" + "16" + ":" + "00"),
+                    new TaskDate("" + (Math.abs(seed) % 31 + 1) + "/" + (Math.abs(seed) % 12 + 1)),
+                    new Time("" + (Math.abs(seed) % 24 + 1) + "/" + (Math.abs(seed) % 60 + 1)),
                     new Description("A valid description" + seed),
                     new Tag("Avalidtag" + seed),
                     new Venue("LT" + (seed % 53 + 1)),
@@ -459,7 +458,7 @@ public class LogicManagerTest {
          * Generates an TaskManager with auto-generated tasks.
          */
         TaskManager generateTaskManager(int numGenerated) throws Exception {
-        	TaskManager taskManager = new TaskManager();
+            TaskManager taskManager = new TaskManager();
             addToTaskManager(taskManager, numGenerated);
             return taskManager;
         }
@@ -468,7 +467,7 @@ public class LogicManagerTest {
          * Generates an TaskManager based on the list of Tasks given.
          */
         TaskManager generateTaskManager(List<Task> tasks) throws Exception {
-        	TaskManager taskManager = new TaskManager();
+            TaskManager taskManager = new TaskManager();
             addToTaskManager(taskManager, tasks);
             return taskManager;
         }
@@ -528,7 +527,7 @@ public class LogicManagerTest {
         Task generateTaskWithName(String name) throws Exception {
             return new Task(
                     new Name(name),
-                    new Date("1"),
+                    new TaskDate("1/1"),
                     new Time("17:00"),
                     new Description("This task requires a lot of efforts"),
                     new Tag("Heavy grade"),

@@ -7,7 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a Task's description in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
-public class Description implements TaskField{
+public class Description implements TaskField {
 
     public static final String MESSAGE_DESCRIPTION_CONSTRAINTS = "Task description can be in any form.";
     public static final String DESCRIPTION_VALIDATION_REGEX = ".*";
@@ -57,12 +57,12 @@ public class Description implements TaskField{
     }
 
 //@@author A0143409J
-	@Override
-	public String getDisplayText() {
-		if ((value == null) || (value == "")) {
-			return "";
-		} else {
-			return value;
-		}
-	}
+    @Override
+    public String getDisplayText() {
+        if ((value == null) || (value == "")) {
+            return "";
+        } else {
+            return value;
+        }
+    }
 }

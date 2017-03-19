@@ -1,9 +1,10 @@
+//@@Author ShermineJong A0138474X
 package seedu.address.logic.commands;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
@@ -38,18 +39,18 @@ public class AddCommand extends Command {
      */
 
     public AddCommand(String name, String date, String time,
-    		String tag, String description, String venue, String priority)
+            String tag, String description, String venue, String priority, boolean isFavourite)
             throws IllegalValueException {
 
         this.toAdd = new Task(
                 new Name(name),
-                new Date(date),
+                new TaskDate(date),
                 new Time(time),
                 new Description(description),
                 new Tag(tag),
                 new Venue(venue),
                 new Priority(priority),
-                false
+                isFavourite
         );
     }
 
@@ -65,6 +66,6 @@ public class AddCommand extends Command {
     }
 
     public Task getTask() {
-    	return toAdd;
+        return toAdd;
     }
 }

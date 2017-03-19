@@ -12,7 +12,7 @@ import seedu.address.model.tag.Tag;
 public class Task implements ReadOnlyTask {
 
     private Name name;
-    private Date date;
+    private TaskDate date;
     private Time time;
     private Description description;
     private Venue venue;
@@ -24,7 +24,8 @@ public class Task implements ReadOnlyTask {
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Date date, Time time, Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite) {
+    public Task(Name name, TaskDate date, Time time, Description description, Tag tag,
+            Venue venue, Priority priority, boolean isFavorite) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
         this.date = date;
@@ -37,7 +38,7 @@ public class Task implements ReadOnlyTask {
         this.isFinished = false;
     }
 
-    public Task(Name name, Date date, Time time, Description description, Tag tag,
+    public Task(Name name, TaskDate date, Time time, Description description, Tag tag,
     		Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
@@ -69,12 +70,12 @@ public class Task implements ReadOnlyTask {
         return name;
     }
 
-    public void setDate(Date date) {
+    public void setDate(TaskDate date) {
         this.date = date;
     }
 
     @Override
-    public Date getDate() {
+    public TaskDate getDate() {
         return date;
     }
 
@@ -107,11 +108,11 @@ public class Task implements ReadOnlyTask {
     }
 
     @Override
-    public Venue getVenue(){
+    public Venue getVenue() {
         return venue;
     }
 
-    public void setVenue(Venue venue){
+    public void setVenue(Venue venue) {
         this.venue = venue;
     }
 
@@ -131,11 +132,11 @@ public class Task implements ReadOnlyTask {
 
     @Override
     public String getFavoriteText() {
-    		if (isFavorite) {
-    			return "Favorite";
-    		} else {
-    			return "";
-    		}
+        if (isFavorite) {
+            return "Favorite";
+        } else {
+            return "";
+        }
     }
 
     public void setFavorite(boolean isFavorite) {
@@ -149,11 +150,11 @@ public class Task implements ReadOnlyTask {
 
     @Override
     public String getFinishedText() {
-    		if (isFinished) {
-    			return "Finished";
-    		} else {
-    			return "Unfinished";
-    		}
+        if (isFinished) {
+            return "Finished";
+        } else {
+            return "Unfinished";
+        }
     }
 
     public void setFinish(boolean isFinished) {
@@ -181,7 +182,7 @@ public class Task implements ReadOnlyTask {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ReadOnlyTask // instanceof handles nulls
-                && this.isSameStateAs((ReadOnlyTask) other));
+                        && this.isSameStateAs((ReadOnlyTask) other));
     }
 
     @Override

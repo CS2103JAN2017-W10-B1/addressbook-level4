@@ -18,11 +18,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.tag.UniqueTagList.DuplicateTagException;
+import seedu.address.model.task.Name;
+import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 import seedu.address.model.tasklist.TaskList;
-import seedu.address.model.task.Name;
-import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.testutil.TypicalTestTasks;
 
 public class TaskManagerTest {
@@ -78,7 +78,7 @@ public class TaskManagerTest {
     @Test
     public void deleteTask() throws IllegalValueException, TaskNotFoundException {
         TaskManager newManager = new TaskManager();
-        Task sample1= new Task(new Name("sampleName1"), null, null, null, new Tag("sampleTag1"), null, null, false);
+        Task sample1 = new Task(new Name("sampleName1"), null, null, null, new Tag("sampleTag1"), null, null, false);
         Task sample2 = new Task(new Name("sampleName2"), null, null, null, new Tag("sampleTag1"), null, null, false);
         Task sample3 = new Task(new Name("sampleName3"), null, null, null, new Tag("sampleTag3"), null, null, false);
         newManager.addTask(sample1);
@@ -93,11 +93,13 @@ public class TaskManagerTest {
     @Test
     public void udpateTask() throws IllegalValueException {
         TaskManager newManager = new TaskManager();
-        Task sample1= new Task(new Name("sampleName1"), null, null, null, new Tag("sampleTag1"), null, null, false);
+        Task sample1 = new Task(new Name("sampleName1"), null, null, null, new Tag("sampleTag1"), null, null, false);
         Task sample2 = new Task(new Name("sampleName2"), null, null, null, new Tag("sampleTag1"), null, null, false);
         Task sample3 = new Task(new Name("sampleName3"), null, null, null, new Tag("sampleTag3"), null, null, false);
-        ReadOnlyTask sample4 = new Task(new Name("sampleName4"), null, null, null, new Tag("sampleTag3"), null, null, false);
-        ReadOnlyTask sample5 = new Task(new Name("sampleName5"), null, null, null, new Tag("sampleTag5"), null, null, false);
+        ReadOnlyTask sample4 = new Task(new Name("sampleName4"), null, null, null, new Tag(
+                "sampleTag3"), null, null, false);
+        ReadOnlyTask sample5 = new Task(new Name("sampleName5"), null, null, null, new Tag(
+                "sampleTag5"), null, null, false);
         newManager.addTask(sample1);
         newManager.addTask(sample2);
         newManager.addTask(sample3);

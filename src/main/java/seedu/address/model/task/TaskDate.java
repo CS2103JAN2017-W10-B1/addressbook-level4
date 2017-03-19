@@ -7,7 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a Task's due date in task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class Date implements TaskField {
+public class TaskDate implements TaskField {
 
     public static final String MESSAGE_DATE_CONSTRAINTS = "task due date should be the form dd/mm or dd/mm/yyyy";
 
@@ -16,7 +16,8 @@ public class Date implements TaskField {
     public static final String MONTH_VALIDATION_REGEX_1 = "([13578])|(0[13578])|(1[02])";
     public static final String MONTH_VALIDATION_REGEX_2 = "([469])|(0[469])|(11)";
     public static final String MONTH_VALIDATION_REGEX_3 = "(2)|(02)";
-    public static final String MONTH_VALIDATION_REGEX = MONTH_VALIDATION_REGEX_1 + "|" + MONTH_VALIDATION_REGEX_2 + "|" + MONTH_VALIDATION_REGEX_3;
+    public static final String MONTH_VALIDATION_REGEX = MONTH_VALIDATION_REGEX_1 + "|"
+            + MONTH_VALIDATION_REGEX_2 + "|" + MONTH_VALIDATION_REGEX_3;
     public static final String DAY_VALIDATION_REGEX_1 = "([1-9])|(0[1-9])|(1\\d)|(2\\d)|(3[0-1])";
     public static final String DAY_VALIDATION_REGEX_2 = "([1-9])|(0[1-9])|(1\\d)|(2\\d)|(30)";
     public static final String DAY_VALIDATION_REGEX_3 = "([1-9])|(0[1-9])|(1\\d)|(2[0-8])";
@@ -29,7 +30,7 @@ public class Date implements TaskField {
      *
      * @throws IllegalValueException if given date string is invalid.
      */
-    public Date(String date) throws IllegalValueException {
+    public TaskDate(String date) throws IllegalValueException {
         assert date != null;
         String trimmedDate = date.trim();
         if (!isValidDate(trimmedDate)) {
@@ -95,8 +96,8 @@ public class Date implements TaskField {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Date // instanceof handles nulls
-                && this.value.equals(((Date) other).value)); // state check
+                || (other instanceof TaskDate // instanceof handles nulls
+                && this.value.equals(((TaskDate) other).value)); // state check
     }
 
     @Override
@@ -105,12 +106,12 @@ public class Date implements TaskField {
     }
 
 //@@author A0143409J
-	@Override
-	public String getDisplayText() {
-		if ((value == null) || (value == "")) {
-			return "";
-		} else {
-			return "Date: "+ value;
-		}
-	}
+    @Override
+    public String getDisplayText() {
+        if ((value == null) || (value == "")) {
+            return "";
+        } else {
+            return "Date: " + value;
+        }
+    }
 }

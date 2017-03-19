@@ -4,7 +4,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
@@ -53,7 +53,7 @@ public class FinishCommand extends Command {
             throw new CommandException(MESSAGE_FINISH_TASK_MARKED);
         } else {
             Name updatedName = taskToMark.getName();
-            Date updatedDate = taskToMark.getDate();
+            TaskDate updatedDate = taskToMark.getDate();
             Time updatedTime = taskToMark.getTime();
             Description updatedDescription = taskToMark.getDescription();
             Tag updatedTag = taskToMark.getTag();
@@ -68,7 +68,7 @@ public class FinishCommand extends Command {
         try {
             model.updateTask(targetIndex - 1, taskToMark);
         } catch (DuplicateTaskException e) {
-		    throw new CommandException(MESSAGE_WRONG_TASK_INDEX);
+            throw new CommandException(MESSAGE_WRONG_TASK_INDEX);
         }
 
         return new CommandResult(String.format(MESSAGE_FINISH_TASK_SUCCESS, taskToMark));

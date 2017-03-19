@@ -30,8 +30,8 @@ public class Name implements TaskField {
         String trimmedName = name.trim();
         if (!isValidName(trimmedName)) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
-        } else if(trimmedName.equalsIgnoreCase("list")) {
-        		throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
+        } else if (trimmedName.equalsIgnoreCase("list")) {
+            throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
         }
         this.fullName = trimmedName;
     }
@@ -62,12 +62,12 @@ public class Name implements TaskField {
     }
 
 //@@author A0143409J
-	@Override
-	public String getDisplayText() {
-		if ((fullName == null) || (fullName == "")) {
-			return "";
-		} else {
-			return fullName;
-		}
-	}
+    @Override
+    public String getDisplayText() {
+        if ((fullName == null) || (fullName == "")) {
+            return "";
+        } else {
+            return fullName;
+        }
+    }
 }

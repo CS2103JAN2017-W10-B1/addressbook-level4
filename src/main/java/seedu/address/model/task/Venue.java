@@ -64,11 +64,11 @@ public class Venue implements TaskField {
 
 //@@author A0143409J
     @Override
-	public String getDisplayText() {
-		if ((value == null) || (value == "")) {
-			return "";
-		} else {
-			return "Venue: " + value;
-		}
-	}
+    public String getDisplayText() {
+        if ((value == null) || (value == "")) {
+            return "";
+        } else {
+            return "Venue: " + value;
+        }
+    }
 }

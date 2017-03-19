@@ -18,7 +18,7 @@ public class ListCommandParserTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void nullTest() throws Exception{
+    public void nullTest() throws Exception {
 
         Field field = ListCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
