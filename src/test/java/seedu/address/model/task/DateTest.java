@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -19,21 +18,16 @@ public class DateTest {
 
     @SuppressWarnings("deprecation")
     @Test
-<<<<<<< HEAD
-    public void isValidDate() {
-        Date date = new Date(2010, 12, 20);
-=======
     public void isValidDate() throws ParseException {
-        
+
         SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
-        String inputString1 = "1 2 1996";
-        String inputString2 = "1 3 1996";
+        String inputString1 = "1 1 1996";
+        String inputString2 = "2 1 1996";
         Date date1 = myFormat.parse(inputString1);
         Date date2 = myFormat.parse(inputString2);
         long diff = date2.getTime() - date1.getTime();
         assertEquals(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS),1);
-        
->>>>>>> origin/master
+
         // invalid date
         assertFalse(TaskDate.isValidDate(" ")); // space only
         assertFalse(TaskDate.isValidDate("*")); // non-alphanumeric
