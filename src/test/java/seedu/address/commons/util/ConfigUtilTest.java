@@ -76,7 +76,7 @@ public class ConfigUtilTest {
         config.setAppTitle("Dueue App Title");
         config.setLogLevel(Level.INFO);
         config.setUserPrefsFilePath("C:\\preferences.json");
-        config.setTaskManagerFilePath("data/addressbook.xml");
+        config.setTaskManagerFilePath("data/dueue.xml");
         config.setTaskManagerName("MyTaskManager");
         return config;
     }
@@ -127,6 +127,5 @@ public class ConfigUtilTest {
                                   ? TEST_DATA_FOLDER + configFileInTestDataFolder
                                   : null;
     }
-
 
 }
