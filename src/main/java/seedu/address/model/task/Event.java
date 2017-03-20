@@ -9,9 +9,9 @@ public class Event implements ReadOnlyEvent{
 
     private Name name;
     private TaskDate date;
-    private Time time;
+    private TaskTime time;
     private TaskDate startDate;
-    private Time startTime;
+    private TaskTime startTime;
     private Description description;
     private Venue venue;
     private Priority priority;
@@ -22,7 +22,7 @@ public class Event implements ReadOnlyEvent{
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, TaskDate startDate, Time startTime, TaskDate endDate, Time endTime, 
+    public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime, 
             Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
@@ -41,7 +41,7 @@ public class Event implements ReadOnlyEvent{
     /**
      *  Constructor of event with flag on isFinshed
      */
-    public Event(Name name, TaskDate startDate, Time startTime, TaskDate endDate, Time endTime, 
+    public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime, 
             Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
         this(name, startDate, startTime, endDate, endTime, description, tag, venue,  priority, isFavorite);
         this.isFinished = isFinished;
@@ -75,12 +75,12 @@ public class Event implements ReadOnlyEvent{
         return date;
     }
 
-    public void setTime(Time time) {
+    public void setTime(TaskTime time) {
         this.time = time;
     }
 
     @Override
-    public Time getTime() {
+    public TaskTime getTime() {
         return time;
     }
 
@@ -203,11 +203,11 @@ public class Event implements ReadOnlyEvent{
     }
 
     @Override
-    public Time getStartTime() {
+    public TaskTime getStartTime() {
         return this.startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(TaskTime startTime) {
         this.startTime = startTime;
     }
 }

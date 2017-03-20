@@ -7,7 +7,7 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
-import seedu.address.model.task.Time;
+import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.Venue;
 
 /**
@@ -17,7 +17,7 @@ public class TestTask implements ReadOnlyTask {
 
     private Name name;
     private TaskDate date;
-    private Time time;
+    private TaskTime time;
     private Description description;
     private Venue venue;
     private Priority priority;
@@ -61,13 +61,13 @@ public class TestTask implements ReadOnlyTask {
         return date;
     }
 
-    public void setTime(Time time) {
+    public void setTime(TaskTime time) {
         assert time != null;
         this.time = time;
     }
 
     @Override
-    public Time getTime() {
+    public TaskTime getTime() {
         return time;
     }
 

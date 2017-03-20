@@ -17,7 +17,7 @@ import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
-import seedu.address.model.task.Time;
+import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.Venue;
 
 /**
@@ -93,9 +93,9 @@ public class ParserUtil {
     /**
      * Parses a {@code Optional<String> address} into an {@code Optional<Address>} if {@code address} is present.
      */
-    public static Optional<Time> parseTime(Optional<String> time) throws IllegalValueException {
+    public static Optional<TaskTime> parseTime(Optional<String> time) throws IllegalValueException {
         assert time != null;
-        return time.isPresent() ? Optional.of(new Time(time.get())) : Optional.empty();
+        return time.isPresent() ? Optional.of(new TaskTime(time.get())) : Optional.empty();
     }
 
     /**

@@ -44,7 +44,7 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Time;
+import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.Venue;
 import seedu.address.storage.StorageManager;
 
@@ -411,7 +411,7 @@ public class LogicManagerTest {
         Task gym() throws Exception {
             Name name = new Name("Homework");
             TaskDate date = new TaskDate("10/03/2017");
-            Time time = new Time("12:00");
+            TaskTime time = new TaskTime("12:00");
             Description description = new Description("IE2100 CTMC");
             Venue venue = new Venue("UTown");
             Priority priority = new Priority("1");
@@ -431,7 +431,7 @@ public class LogicManagerTest {
             return new Task(
                     new Name("Task " + seed),
                     new TaskDate("" + (Math.abs(seed) % 31 + 1) + "/" + (Math.abs(seed) % 12 + 1)),
-                    new Time("" + (Math.abs(seed) % 24 + 1) + "/" + (Math.abs(seed) % 60 + 1)),
+                    new TaskTime("" + (Math.abs(seed) % 24 + 1) + "/" + (Math.abs(seed) % 60 + 1)),
                     new Description("A valid description" + seed),
                     new Tag("Avalidtag" + seed),
                     new Venue("LT" + (seed % 53 + 1)),
@@ -528,7 +528,7 @@ public class LogicManagerTest {
             return new Task(
                     new Name(name),
                     new TaskDate("1/1"),
-                    new Time("17:00"),
+                    new TaskTime("17:00"),
                     new Description("This task requires a lot of efforts"),
                     new Tag("Heavy grade"),
                     new Venue("LT52"),

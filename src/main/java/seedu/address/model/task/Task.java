@@ -13,7 +13,7 @@ public class Task implements ReadOnlyTask {
 
     private Name name;
     private TaskDate date;
-    private Time time;
+    private TaskTime time;
     private Description description;
     private Venue venue;
     private Priority priority;
@@ -24,7 +24,7 @@ public class Task implements ReadOnlyTask {
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, TaskDate date, Time time, Description description, Tag tag,
+    public Task(Name name, TaskDate date, TaskTime time, Description description, Tag tag,
             Venue venue, Priority priority, boolean isFavorite) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
@@ -41,7 +41,7 @@ public class Task implements ReadOnlyTask {
     /**
      *  Constructor of task with flag on isFinshed
      */
-    public Task(Name name, TaskDate date, Time time, Description description, Tag tag,
+    public Task(Name name, TaskDate date, TaskTime time, Description description, Tag tag,
     		Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
@@ -82,12 +82,12 @@ public class Task implements ReadOnlyTask {
         return date;
     }
 
-    public void setTime(Time time) {
+    public void setTime(TaskTime time) {
         this.time = time;
     }
 
     @Override
-    public Time getTime() {
+    public TaskTime getTime() {
         return time;
     }
 

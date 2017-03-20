@@ -14,7 +14,7 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Time;
+import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.Venue;
 
@@ -84,7 +84,7 @@ public class EditCommand extends Command {
 
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
         TaskDate updatedDate = editTaskDescriptor.getDate().orElseGet(taskToEdit::getDate);
-        Time updatedTime = editTaskDescriptor.getTime().orElseGet(taskToEdit::getTime);
+        TaskTime updatedTime = editTaskDescriptor.getTime().orElseGet(taskToEdit::getTime);
         Description updatedDescription = editTaskDescriptor.getDescription().orElseGet(taskToEdit::getDescription);
         Tag updatedTag = editTaskDescriptor.getTag().orElseGet(taskToEdit::getTag);
         Venue updatedVenue = editTaskDescriptor.getVenue().orElseGet(taskToEdit::getVenue);
@@ -102,7 +102,7 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         private Optional<Name> name = Optional.empty();
         private Optional<TaskDate> date = Optional.empty();
-        private Optional<Time> time = Optional.empty();
+        private Optional<TaskTime> time = Optional.empty();
         private Optional<Description> description = Optional.empty();
         private Optional<Tag> tag = Optional.empty();
         private Optional<Venue> venue = Optional.empty();
@@ -151,12 +151,12 @@ public class EditCommand extends Command {
             return date;
         }
 
-        public void setTime(Optional<Time> time) {
+        public void setTime(Optional<TaskTime> time) {
             assert time != null;
             this.time = time;
         }
 
-        public Optional<Time> getTime() {
+        public Optional<TaskTime> getTime() {
             return time;
         }
 
