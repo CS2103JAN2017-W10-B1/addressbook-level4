@@ -56,4 +56,9 @@ public class ListCommand extends Command {
         }
         return formatted;
     }
+
+    @Override
+    public boolean isUndoable() {
+        return false;
+    }
 }

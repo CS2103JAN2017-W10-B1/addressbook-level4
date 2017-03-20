@@ -74,5 +74,11 @@ public class FinishCommand extends Command {
         return new CommandResult(String.format(MESSAGE_FINISH_TASK_SUCCESS, taskToMark));
     }
 
+
+    @Override
+    public boolean isUndoable() {
+        return true;
+    }
+
 }
 
