@@ -18,7 +18,7 @@ import seedu.address.model.task.Venue;
 /**
  * Deletes a person identified using it's last displayed index from the address book.
  */
-public class FinishCommand extends Command {
+public class FinishCommand extends UndoCommand {
 
     public static final String COMMAND_WORD = "finish";
 
@@ -32,6 +32,7 @@ public class FinishCommand extends Command {
     public static final String MESSAGE_WRONG_TASK_INDEX = "This task already exists in the task manager.";
 
     public final int targetIndex;
+    public Task task;
 
     public FinishCommand(int targetIndex) {
         this.targetIndex = targetIndex;
@@ -67,6 +68,7 @@ public class FinishCommand extends Command {
 
         try {
             model.updateTask(targetIndex - 1, taskToMark);
+            task = (Task) taskToMark;
         } catch (DuplicateTaskException e) {
             throw new CommandException(MESSAGE_WRONG_TASK_INDEX);
         }
@@ -78,6 +80,19 @@ public class FinishCommand extends Command {
     @Override
     public boolean isUndoable() {
         return true;
+    }
+
+
+    @Override
+    public CommandResult executeUndo() throws CommandException {
+        return null;
+    }
+
+
+    @Override
+    public Command getUndoCommand() {
+        Task newTask = new Task(this.task.getName(),this.task.getDate(),this.task.getTime(),this.task.getDescription(),this.task.getTag(),this.task.getVenue(),this.task.getPriority(),this.task.isFavorite(),false);
+        return new EditCommand(this.task, newTask);
     }
 
 }
