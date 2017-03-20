@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import java.util.Set;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
@@ -10,7 +9,6 @@ import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
-import seedu.address.model.tasklist.TaskList;
 
 /**
  * The API of the Model component.

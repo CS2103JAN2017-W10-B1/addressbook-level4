@@ -79,12 +79,6 @@ public class TaskManager implements ReadOnlyTaskManager {
             assert false : "TaskManagers should not have duplicate tags";
         }
         syncMasterTagListWith(tasks);
-        try {
-            setList(newData.getList());
-        } catch (UniqueListList.DuplicateListException e) {
-            assert false : "TaskManagers should not have duplicate list";
-        }
-
     }
 
 //// task-level operations
