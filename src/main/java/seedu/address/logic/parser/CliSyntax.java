@@ -19,6 +19,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_VENUE = new Prefix("@");
     public static final Prefix PREFIX_PRIORITY = new Prefix("p/");
     public static final Prefix PREFIX_FAVOURITE = new Prefix("*f");
+    public static final Prefix PREFIX_UNFAVOURITE = new Prefix("*u");
 
     /* Patterns definitions */
     public static final Pattern KEYWORDS_ARGS_FORMAT =

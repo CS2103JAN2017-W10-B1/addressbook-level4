@@ -109,6 +109,8 @@ public class EditCommand extends Command {
         private Optional<Priority> priority = Optional.empty();
         private boolean isFavourite;
 
+        private boolean isFavouriteEdited;
+
         public EditTaskDescriptor() {}
 
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
@@ -128,7 +130,7 @@ public class EditCommand extends Command {
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyPresent(
                     this.name, this.date, this.time,
-                    this.description, this.tag, this.venue, this.priority) || isFavourite;
+                    this.description, this.tag, this.venue, this.priority) || isFavouriteEdited;
         }
 
         public void setName(Optional<Name> name) {
@@ -196,6 +198,7 @@ public class EditCommand extends Command {
 
         public void setIsFavourite(boolean isFavourite) {
             this.isFavourite = isFavourite;
+            this.isFavouriteEdited = true;
         }
 
         private boolean getFavourite() {
