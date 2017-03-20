@@ -42,7 +42,6 @@ public class LogicManager extends ComponentManager implements Logic {
                 UndoCommand command = null;
                 try {
                     command = (UndoCommand) commandList.pop().getUndoCommand();
-                    
                 } catch (IllegalValueException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

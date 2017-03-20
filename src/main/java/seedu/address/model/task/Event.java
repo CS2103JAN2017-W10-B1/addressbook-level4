@@ -22,7 +22,7 @@ public class Event implements ReadOnlyEvent{
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime, 
+    public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime,
             Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
@@ -41,7 +41,7 @@ public class Event implements ReadOnlyEvent{
     /**
      *  Constructor of event with flag on isFinshed
      */
-    public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime, 
+    public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime,
             Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
         this(name, startDate, startTime, endDate, endTime, description, tag, venue,  priority, isFavorite);
         this.isFinished = isFinished;

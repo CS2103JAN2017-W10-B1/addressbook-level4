@@ -22,14 +22,14 @@ public class DeleteCommand extends UndoCommand {
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted task: %1$s";
 
     public final int targetIndex;
-    
+
     public ReadOnlyTask task;
 
     public DeleteCommand(int targetIndex) {
         this.targetIndex = targetIndex;
         this.task = null;
     }
-    
+
     public DeleteCommand(ReadOnlyTask task){
         this.targetIndex = 0;
         this.task = task;

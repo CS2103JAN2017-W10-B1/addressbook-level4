@@ -222,7 +222,7 @@ public class EditCommand extends UndoCommand {
     public boolean isUndoable() {
         return true;
     }
-    
+
     public Task getTask(){
         return this.task;
     }

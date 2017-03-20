@@ -133,7 +133,7 @@ public class ParserUtil {
     public static boolean isFavourite(Optional<String> isFavourite) {
         return isFavourite.isPresent();
     }
-    
+
     public static boolean isUnfavourite(Optional<String> isUnfavourite) {
         return isUnfavourite.isPresent();
     }

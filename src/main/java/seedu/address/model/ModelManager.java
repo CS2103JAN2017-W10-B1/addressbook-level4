@@ -29,7 +29,7 @@ public class ModelManager extends ComponentManager implements Model {
     private final TaskManager taskManager;
     private final FilteredList<ReadOnlyTask> filteredTasks;
     private final FilteredList<Tag> filteredTag;
-    
+
     /**
      * Initializes a ModelManager with the given taskManager and userPrefs.
      */

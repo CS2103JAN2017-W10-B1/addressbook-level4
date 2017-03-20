@@ -11,7 +11,7 @@ public abstract class Command {
     protected Model model;
 
     public static final String MESSAGE_USAGE = "";
-    
+
     public static final String COMMAND_WORD = "";
 
     /**
@@ -47,6 +47,6 @@ public abstract class Command {
     public String getUsageMessage() {
         return MESSAGE_USAGE;
     }
-    
+
     public abstract boolean isUndoable();
 }

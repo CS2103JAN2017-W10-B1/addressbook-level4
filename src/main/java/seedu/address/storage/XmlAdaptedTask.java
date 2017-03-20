@@ -77,7 +77,7 @@ public class XmlAdaptedTask {
         final Priority priority = new Priority(this.priority);
         return new Task(name, date, time, description, tag, venue, priority, isFavourite, isFinished);
     }
-    
+
     public String getTagName(){
         return this.tag;
     }

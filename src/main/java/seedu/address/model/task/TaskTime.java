@@ -38,7 +38,6 @@ public class TaskTime implements TaskField {
         if (!isValidTime(time)) {
             throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
         }
-        
         this.value = time;
     }
 

@@ -54,7 +54,7 @@ public class AddCommand extends UndoCommand {
                 isFavourite
         );
     }
-    
+
     public AddCommand(ReadOnlyTask task){
         this.toAdd = (Task) task;
     }
