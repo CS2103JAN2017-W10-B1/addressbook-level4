@@ -64,7 +64,7 @@ public class TaskDate implements TaskField {
         String day = dayMonthYear[0];
         String month = dayMonthYear[1];
         String year = dayMonthYear.length == 3? dayMonthYear[2]: null;
-        return isValidMonth(month) && isValidDay(day, month, year);
+        return isValidMonth(month) && isValidDay(day, month);
     }
 
     private static boolean isValidDay(String test, String month) {
