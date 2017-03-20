@@ -6,7 +6,7 @@ import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
-import seedu.address.model.task.Time;
+import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.Venue;
 
 public class TaskBuilder {
@@ -40,7 +40,7 @@ public class TaskBuilder {
     }
 
     public TaskBuilder withTime(String time) throws IllegalValueException {
-        this.task.setTime(new Time(time));
+        this.task.setTime(new TaskTime(time));
         return this;
     }
 

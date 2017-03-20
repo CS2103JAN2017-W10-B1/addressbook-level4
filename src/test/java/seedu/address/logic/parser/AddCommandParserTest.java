@@ -19,7 +19,7 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Time;
+import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.Venue;
 
 public class AddCommandParserTest {
@@ -48,7 +48,7 @@ public class AddCommandParserTest {
 
         AddCommand addCommand =  (AddCommand) addCommandParser.parse("CS2103 Lecture \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
-        Task sampleTask = new Task(sampleTaskName, new TaskDate(""), new Time(""),
+        Task sampleTask = new Task(sampleTaskName, new TaskDate(""), new TaskTime(""),
         		new Description(""), new Tag(""), new Venue(""), new Priority(""), false, false);
         assertEqualTasks((Task) field.get(addCommand), sampleTask);
     }
@@ -63,7 +63,7 @@ public class AddCommandParserTest {
         AddCommand addCommand =  (AddCommand) addCommandParser.parse("CS2103 Lecture due/10/3 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         TaskDate sampleTaskDate = new TaskDate("10/3");
-        Task sampleTask = new Task(sampleTaskName, sampleTaskDate, new Time(""),
+        Task sampleTask = new Task(sampleTaskName, sampleTaskDate, new TaskTime(""),
                 new Description(""), new Tag(""), new Venue(""), new Priority(""), false, false);
         assertEqualTasks((Task) field.get(addCommand), sampleTask);
     }
@@ -78,7 +78,7 @@ public class AddCommandParserTest {
         AddCommand addCommand =  (AddCommand) addCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         TaskDate sampleTaskDate = new TaskDate("10/3");
-        Time sampleTaskTime = new Time("16:00");
+        TaskTime sampleTaskTime = new TaskTime("16:00");
         Task sampleTask = new Task(sampleTaskName, sampleTaskDate, sampleTaskTime,
                 new Description(""), new Tag(""), new Venue(""), new Priority(""), false, false);
         assertEqualTasks((Task) field.get(addCommand), sampleTask);
@@ -95,7 +95,7 @@ public class AddCommandParserTest {
                 + "d/Interesting \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         TaskDate sampleTaskDate = new TaskDate("10/3");
-        Time sampleTaskTime = new Time("16:00");
+        TaskTime sampleTaskTime = new TaskTime("16:00");
         Description sampleTaskDescription = new Description("Interesting");
         Task sampleTask = new Task(sampleTaskName, sampleTaskDate, sampleTaskTime,
                 sampleTaskDescription, new Tag(""), new Venue(""), new Priority(""), false, false);
@@ -113,7 +113,7 @@ public class AddCommandParserTest {
                 + "t/16:00 d/Interesting #CS2103 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         TaskDate sampleTaskDate = new TaskDate("10/3");
-        Time sampleTaskTime = new Time("16:00");
+        TaskTime sampleTaskTime = new TaskTime("16:00");
         Description sampleTaskDescription = new Description("Interesting");
         Tag sampleTaskTag = new Tag("CS2103");
         Task sampleTask = new Task(sampleTaskName, sampleTaskDate, sampleTaskTime,
@@ -132,7 +132,7 @@ public class AddCommandParserTest {
                 + "t/16:00 d/Interesting #CS2103 @I3 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         TaskDate sampleTaskDate = new TaskDate("10/3");
-        Time sampleTaskTime = new Time("16:00");
+        TaskTime sampleTaskTime = new TaskTime("16:00");
         Description sampleTaskDescription = new Description("Interesting");
         Tag sampleTaskTag = new Tag("CS2103");
         Venue sampleTaskVenue = new Venue("I3");
@@ -152,7 +152,7 @@ public class AddCommandParserTest {
                 + "t/16:00 d/Interesting #CS2103 @I3 p/3 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         TaskDate sampleTaskDate = new TaskDate("10/3");
-        Time sampleTaskTime = new Time("16:00");
+        TaskTime sampleTaskTime = new TaskTime("16:00");
         Description sampleTaskDescription = new Description("Interesting");
         Tag sampleTaskTag = new Tag("CS2103");
         Venue sampleTaskVenue = new Venue("I3");

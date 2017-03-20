@@ -37,7 +37,7 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Time;
+import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.Venue;
 import seedu.address.storage.XmlSerializableTaskManager;
 
@@ -76,7 +76,7 @@ public class TestUtil {
         try {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
-                new Task(new Name("gym"), new TaskDate("10/12"), new Time("18:00"), new Description("50 mins workout"),
+                new Task(new Name("gym"), new TaskDate("10/12"), new TaskTime("18:00"), new Description("50 mins workout"),
                         new Tag("taskal"), new Venue("MPSH"), new Priority("2"), true)};
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {

@@ -5,15 +5,13 @@ import java.util.Objects;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.tag.Tag;
 
-/**
- * Represents a Task in the address book.
- * Guarantees: details are present and not null, field values are validated.
- */
-public class Task implements ReadOnlyTask {
+public class Event implements ReadOnlyEvent{
 
     private Name name;
     private TaskDate date;
     private TaskTime time;
+    private TaskDate startDate;
+    private TaskTime startTime;
     private Description description;
     private Venue venue;
     private Priority priority;
@@ -24,12 +22,14 @@ public class Task implements ReadOnlyTask {
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, TaskDate date, TaskTime time, Description description, Tag tag,
-            Venue venue, Priority priority, boolean isFavorite) {
+    public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime, 
+            Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
-        this.date = date;
-        this.time = time;
+        this.startDate = startDate;
+        this.startTime = startTime;
+        this.date = endDate;
+        this.time = endTime;
         this.description = description;
         this.tag =  tag;
         this.venue = venue;
@@ -39,27 +39,20 @@ public class Task implements ReadOnlyTask {
     }
 
     /**
-     *  Constructor of task with flag on isFinshed
+     *  Constructor of event with flag on isFinshed
      */
-    public Task(Name name, TaskDate date, TaskTime time, Description description, Tag tag,
-    		Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
-        assert !CollectionUtil.isAnyNull(name);
-        this.name = name;
-        this.date = date;
-        this.time = time;
-        this.description = description;
-        this.tag =  tag;
-        this.venue = venue;
-        this.priority = priority;
-        this.isFavorite = isFavorite;
+    public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime, 
+            Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
+        this(name, startDate, startTime, endDate, endTime, description, tag, venue,  priority, isFavorite);
         this.isFinished = isFinished;
     }
 
     /**
      * Creates a copy of the given ReadOnlyTask.
      */
-    public Task(ReadOnlyTask source) {
-        this(source.getName(), source.getDate(), source.getTime(), source.getDescription(),
+    public Event(ReadOnlyEvent source) {
+        this(source.getName(), source.getStartDate(), source.getStartTime(), source.getDate(), source.getTime(),
+                source.getDescription(),
                 source.getTag(), source.getVenue(), source.getPriority(), source.isFavorite(), source.isFinished());
     }
 
@@ -200,4 +193,22 @@ public class Task implements ReadOnlyTask {
         return getAsText();
     }
 
+    @Override
+    public TaskDate getStartDate() {
+        return this.startDate;
+    }
+
+    public void setStartDate(TaskDate startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public TaskTime getStartTime() {
+        return this.startTime;
+    }
+
+    public void setStartTime(TaskTime startTime) {
+        this.startTime = startTime;
+    }
 }
+

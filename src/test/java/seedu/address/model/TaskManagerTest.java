@@ -159,6 +159,11 @@ public class TaskManagerTest {
         public ObservableList<Tag> getTagList() {
             return tags;
         }
+
+        @Override
+        public ObservableList<TaskList> getList() {
+            return lists;
+        }
     }
 
 }

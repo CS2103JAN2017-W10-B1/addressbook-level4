@@ -40,4 +40,9 @@ public class HelpCommand extends Command {
             return new CommandResult(USAGE_MESSAGE);
         }
     }
+
+    @Override
+    public boolean isUndoable() {
+        return false;
+    }
 }

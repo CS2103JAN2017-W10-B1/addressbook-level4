@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UNFAVOURITE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class EditCommandParser {
         assert args != null;
         ArgumentTokenizer argsTokenizer =
                 new ArgumentTokenizer(PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_TAG,
-                        PREFIX_DESCRIPTION, PREFIX_VENUE, PREFIX_PRIORITY, PREFIX_FAVOURITE);
+                        PREFIX_DESCRIPTION, PREFIX_VENUE, PREFIX_PRIORITY, PREFIX_FAVOURITE, PREFIX_UNFAVOURITE);
         argsTokenizer.tokenize(args);
         List<Optional<String>> preambleFields = ParserUtil.splitPreamble(argsTokenizer.getPreamble().orElse(""), 2);
 
@@ -52,6 +53,7 @@ public class EditCommandParser {
             editTaskDescriptor.setVenue(ParserUtil.parseVenue(argsTokenizer.getValue(PREFIX_VENUE)));
             editTaskDescriptor.setPriority(ParserUtil.parsePriority(argsTokenizer.getValue(PREFIX_PRIORITY)));
             editTaskDescriptor.setIsFavourite(ParserUtil.isFavourite(argsTokenizer.getValue(PREFIX_FAVOURITE)));
+            editTaskDescriptor.setIsFavourite(!ParserUtil.isUnfavourite(argsTokenizer.getValue(PREFIX_UNFAVOURITE)));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
