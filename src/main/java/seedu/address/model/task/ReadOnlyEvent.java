@@ -1,49 +1,30 @@
 package seedu.address.model.task;
 
-import seedu.address.model.tag.Tag;
-
-/**
- * A read-only immutable interface for a Task in the addressbook.
- * Implementations should guarantee: details are present and not null, field values are validated.
- */
-public interface ReadOnlyTask {
-
-    Name getName();
-    TaskDate getDate();
-    TaskTime getTime();
-    Tag getTag();
-    Description getDescription();
-    Venue getVenue();
-    Priority getPriority();
-    boolean isFavorite();
-    boolean isFinished();
-    String getFavoriteText();
-    String getFinishedText();
-
-    /**
-     * Returns true if both have the same state. (interfaces cannot override .equals)
-     */
-    default boolean isSameStateAs(ReadOnlyTask other) {
-        return other == this // short circuit if same object
-                || (other != null // this is first to avoid NPE below
-                && other.getName().equals(this.getName())
-                && other.getDate().equals(this.getDate())
-                && other.getTime().equals(this.getTime())
-                && other.getTag().equals(this.getTag())); // state checks here onwards
-    }
-
+public interface ReadOnlyEvent extends ReadOnlyTask{
+    
+    TaskDate getStartDate();
+    TaskTime getStartTime();
+    
     /**
      * Formats the person as text, showing all contact details.
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
+        if (getStartDate() != null) {
+            builder.append("  Start Date:");
+            builder.append(getDate());
+        }
+        if (getStartTime() != null) {
+            builder.append("  Start Time:");
+            builder.append(getTime());
+        }
         if (getDate() != null) {
             builder.append("  Due Date:");
             builder.append(getDate());
         }
         if (getTime() != null) {
-            builder.append("  Time:");
+            builder.append("  Due Time:");
             builder.append(getTime());
         }
         if (getDescription() != null) {

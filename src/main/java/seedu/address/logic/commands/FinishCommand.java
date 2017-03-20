@@ -10,7 +10,7 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Time;
+import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.model.task.Venue;
 
@@ -55,7 +55,7 @@ public class FinishCommand extends UndoCommand {
         } else {
             Name updatedName = taskToMark.getName();
             TaskDate updatedDate = taskToMark.getDate();
-            Time updatedTime = taskToMark.getTime();
+            TaskTime updatedTime = taskToMark.getTime();
             Description updatedDescription = taskToMark.getDescription();
             Tag updatedTag = taskToMark.getTag();
             Venue updatedVenue = taskToMark.getVenue();

@@ -10,7 +10,7 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Time;
+import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.Venue;
 
@@ -46,7 +46,7 @@ public class AddCommand extends UndoCommand {
         this.toAdd = new Task(
                 new Name(name),
                 new TaskDate(date),
-                new Time(time),
+                new TaskTime(time),
                 new Description(description),
                 new Tag(tag),
                 new Venue(venue),

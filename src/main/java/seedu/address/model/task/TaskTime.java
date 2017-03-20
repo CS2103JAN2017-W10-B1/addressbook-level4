@@ -1,12 +1,16 @@
 package seedu.address.model.task;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.concurrent.TimeUnit;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a task's due time in the task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
-public class Time implements TaskField {
+public class TaskTime implements TaskField {
 
     public static final String MESSAGE_TIME_CONSTRAINTS =
             "Task time should be the form hh:mm";
@@ -20,6 +24,8 @@ public class Time implements TaskField {
     public static final String TIME_VALIDATION_REGEX = ".*:.*";
     public static final String HOUR_MINUTE_SEPARATOR = ":";
 
+    SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
+
     private final String value;
 
     /**
@@ -27,11 +33,12 @@ public class Time implements TaskField {
      *
      * @throws IllegalValueException if given time string is invalid.
      */
-    public Time(String time) throws IllegalValueException {
+    public TaskTime(String time) throws IllegalValueException {
         assert time != null;
         if (!isValidTime(time)) {
             throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
         }
+        
         this.value = time;
     }
 
@@ -71,8 +78,8 @@ public class Time implements TaskField {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Time // instanceof handles nulls
-                && this.value.equals(((Time) other).value)); // state check
+                || (other instanceof TaskTime // instanceof handles nulls
+                && this.value.equals(((TaskTime) other).value)); // state check
     }
 
     @Override

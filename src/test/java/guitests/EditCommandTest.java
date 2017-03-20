@@ -11,7 +11,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.TaskDate;
-import seedu.address.model.task.Time;
+import seedu.address.model.task.TaskTime;
 import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TestTask;
 
@@ -88,7 +88,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
         assertResultMessage(TaskDate.MESSAGE_DATE_CONSTRAINTS);
 
         commandBox.runCommand("edit 1 t/1200");
-        assertResultMessage(Time.MESSAGE_TIME_CONSTRAINTS);
+        assertResultMessage(TaskTime.MESSAGE_TIME_CONSTRAINTS);
 
         commandBox.runCommand("edit 1 p/5");
         assertResultMessage(Priority.MESSAGE_PRIORITY_CONSTRAINTS);

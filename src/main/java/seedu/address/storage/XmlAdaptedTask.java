@@ -11,7 +11,7 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Time;
+import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.Venue;
 
 /**
@@ -70,7 +70,7 @@ public class XmlAdaptedTask {
     public Task toModelType() throws IllegalValueException {
     	final Name name = new Name(this.name);
         final TaskDate date = new TaskDate(this.date);
-        final Time time = new Time(this.time);
+        final TaskTime time = new TaskTime(this.time);
         final Description description = new Description(this.description);
         final Tag tag = new Tag(this.tag);
         final Venue venue = new Venue(this.venue);
