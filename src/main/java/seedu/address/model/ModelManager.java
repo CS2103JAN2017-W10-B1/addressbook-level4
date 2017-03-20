@@ -17,6 +17,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
+import seedu.address.model.tasklist.TaskList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,7 +28,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final TaskManager taskManager;
     private final FilteredList<ReadOnlyTask> filteredTasks;
-    private final FilteredList<Tag> filteredLists;
+    private final FilteredList<Tag> filteredTag;
+    private final FilteredList<TaskList> filteredList;
 
     /**
      * Initializes a ModelManager with the given taskManager and userPrefs.
@@ -40,7 +42,8 @@ public class ModelManager extends ComponentManager implements Model {
 
         this.taskManager = new TaskManager(taskManager);
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
-        filteredLists = new FilteredList<>(this.taskManager.getTagList());
+        filteredTag = new FilteredList<>(this.taskManager.getTagList());
+        filteredList = new FilteredList<>(this.taskManager.getList());
     }
 
     public ModelManager() {
@@ -132,11 +135,11 @@ public class ModelManager extends ComponentManager implements Model {
     //=========== Filtered List Accessors =============================================================
 
     public UnmodifiableObservableList<Tag> getFilteredListList() {
-        return new UnmodifiableObservableList<>(filteredLists);
+        return new UnmodifiableObservableList<>(filteredTag);
     }
 
     public void updateFilteredListToShowAllLists() {
-        filteredLists.setPredicate(null);
+        filteredTag.setPredicate(null);
     }
 
     public void updateFilteredListList(Set<String> keywords) {
@@ -144,7 +147,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     private void updateFilteredListList(Expression expression) {
-        filteredLists.setPredicate(expression::satisfies);
+        filteredTag.setPredicate(expression::satisfies);
     }
 
     //========== Inner classes/interfaces used for filtering =================================================
