@@ -2,7 +2,7 @@
 package seedu.address.commons.events.ui;
 
 import seedu.address.commons.events.BaseEvent;
-import seedu.address.model.tasklist.TaskList;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a selection change in the Task List Panel
@@ -10,9 +10,9 @@ import seedu.address.model.tasklist.TaskList;
 public class ListPanelSelectionChangedEvent extends BaseEvent {
 
 
-    private final TaskList newSelection;
+    private final Tag newSelection;
 
-    public ListPanelSelectionChangedEvent(TaskList newSelection) {
+    public ListPanelSelectionChangedEvent(Tag newSelection) {
         this.newSelection = newSelection;
     }
 
@@ -21,7 +21,7 @@ public class ListPanelSelectionChangedEvent extends BaseEvent {
         return this.getClass().getSimpleName();
     }
 
-    public TaskList getNewSelection() {
+    public Tag getNewSelection() {
         return newSelection;
     }
 }

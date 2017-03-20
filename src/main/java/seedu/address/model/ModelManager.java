@@ -29,8 +29,7 @@ public class ModelManager extends ComponentManager implements Model {
     private final TaskManager taskManager;
     private final FilteredList<ReadOnlyTask> filteredTasks;
     private final FilteredList<Tag> filteredTag;
-    private final FilteredList<TaskList> filteredList;
-
+    
     /**
      * Initializes a ModelManager with the given taskManager and userPrefs.
      */
@@ -43,7 +42,6 @@ public class ModelManager extends ComponentManager implements Model {
         this.taskManager = new TaskManager(taskManager);
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
         filteredTag = new FilteredList<>(this.taskManager.getTagList());
-        filteredList = new FilteredList<>(this.taskManager.getList());
     }
 
     public ModelManager() {
