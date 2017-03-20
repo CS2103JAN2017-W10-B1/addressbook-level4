@@ -1,3 +1,4 @@
+
 //@@author Matilda_yxx A0147996E
 package seedu.address.ui;
 
@@ -14,7 +15,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ListPanelSelectionChangedEvent;
 import seedu.address.commons.util.FxViewUtil;
-import seedu.address.model.tasklist.TaskList;
+import seedu.address.model.tag.Tag;
 
 /**
  * Panel containing the list of tasks.
@@ -25,16 +26,16 @@ public class ListPanel extends UiPart<Region> {
     private static final String FXML = "ListPanel.fxml";
 
     @FXML
-    private ListView<TaskList> listListView;
+    private ListView<Tag> listListView;
 
-    public ListPanel(AnchorPane listPlaceholder, ObservableList<TaskList> listList) {
+    public ListPanel(AnchorPane listPlaceholder, ObservableList<Tag> listList) {
         super(FXML);
         setConnections(listList);
         addToPlaceholder(listPlaceholder);
     }
 
-    private void setConnections(ObservableList<TaskList> taskList) {
-        listListView.setItems(taskList);
+    private void setConnections(ObservableList<Tag> Tag) {
+        listListView.setItems(Tag);
         listListView.setCellFactory(listView -> new ListListViewCell());
         setEventHandlerForSelectionChangeEvent();
     }
@@ -62,17 +63,17 @@ public class ListPanel extends UiPart<Region> {
         });
     }
 
-    class ListListViewCell extends ListCell<TaskList> {
+    class ListListViewCell extends ListCell<Tag> {
 
         @Override
-        protected void updateItem(TaskList taskList, boolean empty) {
-            super.updateItem(taskList, empty);
+        protected void updateItem(Tag Tag, boolean empty) {
+            super.updateItem(Tag, empty);
 
-            if (empty || taskList == null) {
+            if (empty || Tag == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ListCard(taskList, getIndex() + 1).getRoot());
+                setGraphic(new ListCard(Tag, getIndex() + 1).getRoot());
             }
         }
     }

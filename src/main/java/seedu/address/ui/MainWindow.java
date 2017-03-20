@@ -28,7 +28,7 @@ public class MainWindow extends UiPart<Region> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
- //   private ListPanel listPanel;
+    private ListPanel listPanel;
     private TaskListPanel taskListPanel;
     private Config config;
 
@@ -69,7 +69,7 @@ public class MainWindow extends UiPart<Region> {
     }
 
     public void fillInnerParts() {
-        //listPanel = new ListPanel(getListPlaceholder(), logic.getFilteredListList());
+        listPanel = new ListPanel(getListPlaceholder(), logic.getFilteredListList());
         taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
