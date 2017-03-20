@@ -1,7 +1,9 @@
 package seedu.address.model.task;
 
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -10,7 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a task's due time in the task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
-public class TaskTime implements TaskField {
+public class TaskTime implements TaskField, Comparable<TaskTime> {
 
     public static final String MESSAGE_TIME_CONSTRAINTS =
             "Task time should be the form hh:mm";
@@ -24,9 +26,10 @@ public class TaskTime implements TaskField {
     public static final String TIME_VALIDATION_REGEX = ".*:.*";
     public static final String HOUR_MINUTE_SEPARATOR = ":";
 
-    SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
+    public static final SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
 
     private final String value;
+    private final Date time;
 
     /**
      * Validates given time.
@@ -38,7 +41,12 @@ public class TaskTime implements TaskField {
         if (!isValidTime(time)) {
             throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
         }
-        
+        try {
+            this.time = formatter.parse(time);
+        } catch (ParseException e) {
+            assert false : "impossible";
+            throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
+        }
         this.value = time;
     }
 
@@ -82,6 +90,12 @@ public class TaskTime implements TaskField {
                 && this.value.equals(((TaskTime) other).value)); // state check
     }
 
+    @Override
+    public int compareTo(TaskTime other) {
+        long diff = this.time.getTime() - other.time.getTime();
+        return (int) TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS);
+    }
+    
     @Override
     public int hashCode() {
         return value.hashCode();

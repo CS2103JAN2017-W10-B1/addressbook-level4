@@ -1,10 +1,13 @@
 //@@author A0147984L
 package seedu.address.model.task;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
 
 public class TimeTest {
 
@@ -25,5 +28,18 @@ public class TimeTest {
         assertTrue(TaskTime.isValidTime("00:00")); // the hour can use 2 digits
         assertTrue(TaskTime.isValidTime("23:59")); // latest time
         assertTrue(TaskTime.isValidTime("19:59")); // hour begins with 1
+    }
+    
+    @Test
+    public void compareTo() throws IllegalValueException {
+        
+        TaskTime tester1 = new TaskTime("8:00");
+        TaskTime tester2 = new TaskTime("18:00");
+        TaskTime tester3 = new TaskTime("23:00");
+        TaskTime tester4 = new TaskTime("08:00");
+        
+        assertTrue(tester1.compareTo(tester2) < 0);
+        assertTrue(tester3.compareTo(tester2) > 0);
+        assertEquals(tester4.compareTo(tester1), 0);
     }
 }

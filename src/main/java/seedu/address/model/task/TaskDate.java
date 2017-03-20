@@ -1,6 +1,9 @@
 //@@author A0147984L
 package seedu.address.model.task;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
@@ -21,8 +24,12 @@ public class TaskDate implements TaskField {
     public static final String DAY_VALIDATION_REGEX_1 = "([1-9])|(0[1-9])|(1\\d)|(2\\d)|(3[0-1])";
     public static final String DAY_VALIDATION_REGEX_2 = "([1-9])|(0[1-9])|(1\\d)|(2\\d)|(30)";
     public static final String DAY_VALIDATION_REGEX_3 = "([1-9])|(0[1-9])|(1\\d)|(2[0-8])";
-    public static final String YEAR_VALIDATION_REGEX = "201[789]";
+    public static final String YEAR_VALIDATION_REGEX = "20(1[789])|([2-9][0-9])";
 
+    public static final SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+
+    private final Calendar today;
+    
     private final String value;
 
     /**
@@ -32,6 +39,7 @@ public class TaskDate implements TaskField {
      */
     public TaskDate(String date) throws IllegalValueException {
         assert date != null;
+        today = Calendar.getInstance();
         String trimmedDate = date.trim();
         if (!isValidDate(trimmedDate)) {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
@@ -49,19 +57,14 @@ public class TaskDate implements TaskField {
         if (!test.matches(DATE_VALIDATION_REGEX)) {
             return false;
         }
-        String[] dayAndMonth = test.split(DAY_MONTH_SEPARATOR);
-        if (dayAndMonth.length > 3) {
+        String[] dayMonthYear = test.split(DAY_MONTH_SEPARATOR);
+        if (dayMonthYear.length > 3) {
             return false;
         }
-        String day = dayAndMonth[0];
-        String month = dayAndMonth[1];
-        if (dayAndMonth.length == 3) {
-            String year = dayAndMonth[2];
-            if (!isValidYear(year)) {
-                return false;
-            }
-        }
-        return isValidMonth(month) && isValidDay(day, month);
+        String day = dayMonthYear[0];
+        String month = dayMonthYear[1];
+        String year = dayMonthYear.length == 3? dayMonthYear[2]: null;
+        return isValidMonth(month) && isValidDay(day, month, year);
     }
 
     private static boolean isValidDay(String test, String month) {
