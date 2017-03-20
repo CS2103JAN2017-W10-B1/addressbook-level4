@@ -7,8 +7,10 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Parser;
 import seedu.address.model.Model;
@@ -24,7 +26,7 @@ public class LogicManager extends ComponentManager implements Logic {
 
     private final Model model;
     private final Parser parser;
-    private final Stack<Command> commandList;
+    private final Stack<UndoCommand> commandList;
 
     public LogicManager(Model model, Storage storage) {
         this.model = model;
@@ -35,9 +37,31 @@ public class LogicManager extends ComponentManager implements Logic {
     @Override
     public CommandResult execute(String commandText) throws CommandException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
-        Command command = parser.parseCommand(commandText);
-        command.setData(model);
-        return command.execute();
+        if(commandText.equals(UndoCommand.UNDO_COMMAND_WORD)){
+            if(!commandList.isEmpty()){
+                UndoCommand command = null;
+                try {
+                    command = (UndoCommand) commandList.pop().getUndoCommand();
+                    
+                } catch (IllegalValueException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                command.setData(model);
+                return command.executeUndo();
+            }
+            else{
+                return new CommandResult(UndoCommand.MESSAGE_UNDO_TASK_NOT_SUCCESS);
+            }
+        }
+        else{
+            Command command = parser.parseCommand(commandText);
+            command.setData(model);
+            if(command.isUndoable()){
+                commandList.push((UndoCommand) command);
+            }
+            return command.execute();
+        }
     }
 
     @Override

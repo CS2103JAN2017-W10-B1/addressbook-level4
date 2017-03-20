@@ -10,7 +10,7 @@ import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 /**
  * Deletes a person identified using it's last displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class DeleteCommand extends UndoCommand {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -22,9 +22,17 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted task: %1$s";
 
     public final int targetIndex;
+    
+    public ReadOnlyTask task;
 
     public DeleteCommand(int targetIndex) {
         this.targetIndex = targetIndex;
+        this.task = null;
+    }
+    
+    public DeleteCommand(ReadOnlyTask task){
+        this.targetIndex = 0;
+        this.task = task;
     }
 
 
@@ -41,6 +49,7 @@ public class DeleteCommand extends Command {
 
         try {
             model.deleteTask(personToDelete);
+            this.task = personToDelete;
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target person cannot be missing";
         }
@@ -51,7 +60,25 @@ public class DeleteCommand extends Command {
 
     @Override
     public boolean isUndoable() {
+        // TODO Auto-generated method stub
         return true;
+    }
+
+    @Override
+    public CommandResult executeUndo() throws CommandException {
+        try {
+            model.deleteTask(task);
+        } catch (TaskNotFoundException pnfe) {
+            assert false : "The target person cannot be missing";
+        }
+
+        return new CommandResult(String.format(MESSAGE_UNDO_TASK_SUCCESS));
+    }
+
+    @Override
+    public Command getUndoCommand() {
+        // TODO Auto-generated method stub
+        return new AddCommand(task);
     }
 
 }
