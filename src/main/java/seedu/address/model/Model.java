@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
@@ -9,6 +10,7 @@ import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
+import seedu.address.model.tasklist.TaskList;
 
 /**
  * The API of the Model component.
@@ -39,7 +41,10 @@ public interface Model {
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
 
-    /** Updates the filter of the filtered task list to show all unfinished tasks */
+    /** Returns the filtered list list as an {@code UnmodifiableObservableList<TaskList>} */
+	UnmodifiableObservableList<Tag> getFilteredListList();
+
+	/** Updates the filter of the filtered task list to show all unfinished tasks */
     void updateFilteredListToShowAllTasks();
 
     /** Updates the filter of the filtered task list to show all tasks */
