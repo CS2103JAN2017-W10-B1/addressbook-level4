@@ -38,17 +38,13 @@ public class Task implements ReadOnlyTask {
         this.isFinished = false;
     }
 
+    /**
+     *  Constructor of task with flag on isFinshed
+     */
     public Task(Name name, TaskDate date, Time time, Description description, Tag tag,
     		Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
         assert !CollectionUtil.isAnyNull(name);
-        this.name = name;
-        this.date = date;
-        this.time = time;
-        this.description = description;
-        this.tag =  tag;
-        this.venue = venue;
-        this.priority = priority;
-        this.isFavorite = isFavorite;
+        new Task(name, date, time, description, tag, venue,  priority, isFavorite);
         this.isFinished = isFinished;
     }
 
@@ -160,6 +156,7 @@ public class Task implements ReadOnlyTask {
     public void setFinish(boolean isFinished) {
         this.isFinished = isFinished;
     }
+
 
     /**
      * Updates this task with the details of {@code replacement}.

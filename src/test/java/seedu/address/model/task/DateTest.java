@@ -1,10 +1,15 @@
 //@@author A0147984L
 package seedu.address.model.task;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 
@@ -12,10 +17,18 @@ import seedu.address.model.task.TaskDate;
 
 public class DateTest {
 
+    @SuppressWarnings("deprecation")
     @Test
-    public void isValidDate() {
+    public void isValidDate() throws ParseException {
         
-        Date date = new Date(2010, 12, 20);
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+        String inputString1 = "1 2 1996";
+        String inputString2 = "1 3 1996";
+        Date date1 = myFormat.parse(inputString1);
+        Date date2 = myFormat.parse(inputString2);
+        long diff = date2.getTime() - date1.getTime();
+        assertEquals(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS),1);
+        
         // invalid date
         assertFalse(TaskDate.isValidDate(" ")); // space only
         assertFalse(TaskDate.isValidDate("*")); // non-alphanumeric
