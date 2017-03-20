@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.tasklist.TaskList;
+import seedu.address.model.tag.Tag;
 
 /**
  * Listcard defines format for individual task view.
@@ -21,7 +21,7 @@ public class ListCard extends UiPart<Region> {
     @FXML
     private Label listName;
 
-    public ListCard(TaskList taskList, int displayedIndex) {
+    public ListCard(Tag taskList, int displayedIndex) {
         super(FXML);
         index.setText(displayedIndex + ". ");
         listName.setText(taskList.getName());
