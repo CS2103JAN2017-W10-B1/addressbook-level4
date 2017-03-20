@@ -14,7 +14,6 @@ public class DateTest {
 
     @Test
     public void isValidDate() {
-        
         Date date = new Date(2010, 12, 20);
         // invalid date
         assertFalse(TaskDate.isValidDate(" ")); // space only
