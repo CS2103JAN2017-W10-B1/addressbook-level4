@@ -11,6 +11,8 @@ public abstract class Command {
     protected Model model;
 
     public static final String MESSAGE_USAGE = "";
+    
+    public static final String COMMAND_WORD = "";
 
     /**
      * Constructs a feedback message to summarise an operation that displayed a listing of persons.
