@@ -205,4 +205,9 @@ public class EditCommand extends Command {
             return isFavourite;
         }
     }
+
+    @Override
+    public boolean isUndoable() {
+        return true;
+    }
 }

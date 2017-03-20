@@ -1,5 +1,7 @@
 package seedu.address.logic;
 
+import java.util.ArrayList;
+import java.util.Stack;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -21,10 +23,12 @@ public class LogicManager extends ComponentManager implements Logic {
 
     private final Model model;
     private final Parser parser;
+    private final Stack<Command> commandList;
 
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.parser = new Parser();
+        this.commandList = new Stack();
     }
 
     @Override

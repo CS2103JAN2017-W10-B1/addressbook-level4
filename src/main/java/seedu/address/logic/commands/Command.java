@@ -45,4 +45,6 @@ public abstract class Command {
     public String getUsageMessage() {
         return MESSAGE_USAGE;
     }
+    
+    public abstract boolean isUndoable();
 }
