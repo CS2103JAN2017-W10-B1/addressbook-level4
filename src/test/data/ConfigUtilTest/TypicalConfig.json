@@ -2,6 +2,6 @@
   "appTitle" : "Dueue App Title",
   "logLevel" : "INFO",
   "userPrefsFilePath" : "C:\\preferences.json",
-  "addressBookFilePath" : "addressbook.xml",
-  "addressBookName" : "TypicalAddressBookName"
+  "dueueFilePath" : "data/dueue.xml",
+  "dueueName" : "MyTaskManager"
 }
