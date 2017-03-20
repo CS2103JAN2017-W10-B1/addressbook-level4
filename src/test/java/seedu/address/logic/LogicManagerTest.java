@@ -431,7 +431,8 @@ public class LogicManagerTest {
             return new Task(
                     new Name("Task " + seed),
                     new TaskDate("" + (Math.abs(seed) % 31 + 1) + "/" + (Math.abs(seed) % 12 + 1)),
-                    new TaskTime("" + (Math.abs(seed) % 24 + 1) + "/" + (Math.abs(seed) % 60 + 1)),
+                    new TaskTime("" + (Math.abs(seed) % 10 + 10) + ":" + (Math.abs(seed) % 50 + 10)),
+                    // TODO: TaskTime may not allow for single digit
                     new Description("A valid description" + seed),
                     new Tag("Avalidtag" + seed),
                     new Venue("LT" + (seed % 53 + 1)),
