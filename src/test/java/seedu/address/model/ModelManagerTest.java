@@ -37,7 +37,7 @@ public class ModelManagerTest {
     public void resetData() {
         modelManager.resetData(testUtil.getTypicalTaskManager());
         assertEquals(modelManager.getTaskManager(), testUtil.getTypicalTaskManager());
-        assertEquals(modelManager.getFilteredTaskList().size(), 3);
+        assertEquals(modelManager.getFilteredTaskList().size(), 5);
         assertEquals(modelManager.getFilteredListList().size(), 2);
     }
 
@@ -51,7 +51,7 @@ public class ModelManagerTest {
         assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "gym");
 
         modelManager.updateFilteredListToShowAllTasks();
-        assertEquals(modelManager.getFilteredTaskList().size(), 3);
+        assertEquals(modelManager.getFilteredTaskList().size(), 5);
 
         keywords.add("cs2103");
         modelManager.updateFilteredTaskList(keywords);
@@ -67,11 +67,11 @@ public class ModelManagerTest {
     @Test
     public void testFilterTag() {
         modelManager.resetData(testUtil.getTypicalTaskManager());
-        assertEquals(modelManager.getFilteredTaskList().size(), 3);
+        assertEquals(modelManager.getFilteredTaskList().size(), 5);
         Set<String> keywords = new HashSet<String>();
         keywords.add("personal");
         modelManager.updateFilteredTaskListGivenListName(keywords);
-        assertEquals(modelManager.getFilteredTaskList().size(), 2);
+        assertEquals(modelManager.getFilteredTaskList().size(), 3);
         assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "gym");
 
         modelManager = new ModelManager();
@@ -79,7 +79,7 @@ public class ModelManagerTest {
         keywords.clear();
         keywords.add("School");
         modelManager.updateFilteredTaskListGivenListName(keywords);
-        assertEquals(modelManager.getFilteredTaskList().size(), 1);
+        assertEquals(modelManager.getFilteredTaskList().size(), 2);
         assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "cs2103");
 
         modelManager = new ModelManager();
@@ -101,10 +101,12 @@ public class ModelManagerTest {
         assertEquals(modelManager.getFilteredTaskList().size(), 1);
         assertEquals(modelManager.getFilteredListList().size(), 1);
 
-        //TODO: add testcases for task2
+        modelManager.addTask(task2);
+        assertEquals(modelManager.getFilteredTaskList().size(), 2);
+        assertEquals(modelManager.getFilteredListList().size(), 2);
 
         modelManager.addTask(task3);
-        assertEquals(modelManager.getFilteredTaskList().size(), 2);
-        assertEquals(modelManager.getFilteredListList().size(), 1);
+        assertEquals(modelManager.getFilteredTaskList().size(), 3);
+        assertEquals(modelManager.getFilteredListList().size(), 2);
     }
 }

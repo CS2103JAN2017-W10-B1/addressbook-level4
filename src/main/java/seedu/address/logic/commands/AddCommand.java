@@ -4,12 +4,12 @@ package seedu.address.logic.commands;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.Venue;
@@ -55,7 +55,7 @@ public class AddCommand extends UndoCommand {
         );
     }
 
-    public AddCommand(ReadOnlyTask task){
+    public AddCommand(ReadOnlyTask task) {
         this.toAdd = (Task) task;
     }
 

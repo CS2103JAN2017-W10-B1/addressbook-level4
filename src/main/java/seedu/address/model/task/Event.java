@@ -5,7 +5,7 @@ import java.util.Objects;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.tag.Tag;
 
-public class Event implements ReadOnlyEvent{
+public class Event implements ReadOnlyEvent {
 
     private Name name;
     private TaskDate date;

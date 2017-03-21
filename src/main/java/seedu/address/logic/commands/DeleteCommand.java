@@ -30,7 +30,7 @@ public class DeleteCommand extends UndoCommand {
         this.task = null;
     }
 
-    public DeleteCommand(ReadOnlyTask task){
+    public DeleteCommand(ReadOnlyTask task) {
         this.targetIndex = 0;
         this.task = task;
     }

@@ -13,8 +13,8 @@ public class MainGuiHandle extends GuiHandle {
         super(guiRobot, primaryStage, TestApp.APP_TITLE);
     }
 
-    public ListPanelHandle getListPanel() {
-        return new ListPanelHandle(guiRobot, primaryStage);
+    public TagListPanelHandle getTagListPanel() {
+        return new TagListPanelHandle(guiRobot, primaryStage);
     }
 
     public TaskListPanelHandle getTaskListPanel() {

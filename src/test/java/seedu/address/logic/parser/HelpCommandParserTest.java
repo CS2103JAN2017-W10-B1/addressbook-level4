@@ -28,7 +28,7 @@ public class HelpCommandParserTest {
     @Test
     public void nullTest() throws Exception {
 
-        Field field = HelpCommand.class.getDeclaredField("USAGE_MESSAGE");
+        Field field = HelpCommand.class.getDeclaredField("usageMessage");
         field.setAccessible(true);
 
         HelpCommand helpCommand =  (HelpCommand) HelpCommandParser.parse(null);
@@ -38,7 +38,7 @@ public class HelpCommandParserTest {
     @Test
     public void singleCommandTest() throws Exception {
 
-        Field field = HelpCommand.class.getDeclaredField("USAGE_MESSAGE");
+        Field field = HelpCommand.class.getDeclaredField("usageMessage");
         field.setAccessible(true);
 
         HelpCommand helpCommandAdd =  (HelpCommand) HelpCommandParser.parse(AddCommand.COMMAND_WORD);

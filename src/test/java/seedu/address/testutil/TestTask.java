@@ -2,11 +2,11 @@
 package seedu.address.testutil;
 
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.Venue;
 
@@ -157,6 +157,9 @@ public class TestTask implements ReadOnlyTask {
         sb.append("#" + this.getTag().getName() + " ");
         sb.append("@" + this.getVenue().getValue() + " ");
         sb.append("p/" + this.getPriority().getValue() + " ");
+        if(this.isFavorite()) {
+        		sb.append("*f");
+        }
         return sb.toString();
     }
 }

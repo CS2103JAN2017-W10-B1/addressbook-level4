@@ -3,13 +3,13 @@ package seedu.address.commons.events.ui;
 import seedu.address.commons.events.BaseEvent;
 
 /**
- * Indicates a request to jump to the list of tasks
+ * Indicates a request to jump to the list of tags
  */
-public class JumpToListRequestEvent extends BaseEvent {
+public class JumpToTagListRequestEvent extends BaseEvent {
 
     public final int targetIndex;
 
-    public JumpToListRequestEvent(int targetIndex) {
+    public JumpToTagListRequestEvent(int targetIndex) {
         this.targetIndex = targetIndex;
     }
 

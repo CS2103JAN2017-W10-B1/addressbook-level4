@@ -14,11 +14,11 @@ import org.junit.rules.ExpectedException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.Venue;
 
@@ -49,7 +49,7 @@ public class AddCommandParserTest {
         AddCommand addCommand =  (AddCommand) addCommandParser.parse("CS2103 Lecture \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         Task sampleTask = new Task(sampleTaskName, new TaskDate(""), new TaskTime(""),
-        		new Description(""), new Tag(""), new Venue(""), new Priority(""), false, false);
+                new Description(""), new Tag(""), new Venue(""), new Priority(""), false, false);
         assertEqualTasks((Task) field.get(addCommand), sampleTask);
     }
 

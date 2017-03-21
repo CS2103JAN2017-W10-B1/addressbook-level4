@@ -25,13 +25,14 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void nullTest() throws Exception{
+    public void nullTest() throws Exception {
 
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
 
         IncorrectCommand incorrectCommand =  (IncorrectCommand) DeleteCommandParser.parse("");
-        assertEquals(field.get(incorrectCommand), String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertEquals(field.get(incorrectCommand),
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -41,6 +42,7 @@ public class DeleteCommandParserTest {
         field.setAccessible(true);
 
         IncorrectCommand incorrectCommand =  (IncorrectCommand) DeleteCommandParser.parse("0\n");
-        assertEquals(field.get(incorrectCommand), String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertEquals(field.get(incorrectCommand),
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }
