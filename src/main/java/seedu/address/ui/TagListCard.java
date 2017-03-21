@@ -10,9 +10,9 @@ import seedu.address.model.tag.Tag;
 /**
  * Listcard defines format for individual task view.
  */
-public class ListCard extends UiPart<Region> {
+public class TagListCard extends UiPart<Region> {
 
-    private static final String FXML = "ListCard.fxml";
+    private static final String FXML = "TagListCard.fxml";
 
     @FXML
     private HBox cardPane;
@@ -21,7 +21,7 @@ public class ListCard extends UiPart<Region> {
     @FXML
     private Label name;
 
-    public ListCard(Tag taskList, int displayedIndex) {
+    public TagListCard(Tag taskList, int displayedIndex) {
         super(FXML);
         index.setText(displayedIndex + ". ");
         name.setText(taskList.getName());
