@@ -47,7 +47,9 @@ public class MainWindow extends UiPart<Region> {
     @FXML
     private AnchorPane statusbarPlaceholder;
 
-    public MainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
+    public static MainWindow mainWindow;
+
+    private MainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
         super(FXML);
 
         // Set dependencies
@@ -62,6 +64,10 @@ public class MainWindow extends UiPart<Region> {
         setWindowDefaultSize(prefs);
         Scene scene = new Scene(getRoot());
         primaryStage.setScene(scene);
+    }
+
+    public static void InitializeMainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
+    	mainWindow = new MainWindow(primaryStage, config, prefs, logic);
     }
 
     public Stage getPrimaryStage() {

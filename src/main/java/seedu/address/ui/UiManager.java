@@ -32,7 +32,6 @@ public class UiManager extends ComponentManager implements Ui {
     private Logic logic;
     private Config config;
     private UserPrefs prefs;
-    private MainWindow mainWindow;
 
     public UiManager(Logic logic, Config config, UserPrefs prefs) {
         super();
@@ -50,9 +49,9 @@ public class UiManager extends ComponentManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, config, prefs, logic);
-            mainWindow.show(); //This should be called before creating other UI parts
-            mainWindow.fillInnerParts();
+        	MainWindow.InitializeMainWindow(primaryStage, config, prefs, logic);
+            MainWindow.mainWindow.show(); //This should be called before creating other UI parts
+            MainWindow.mainWindow.fillInnerParts();
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
@@ -62,8 +61,8 @@ public class UiManager extends ComponentManager implements Ui {
 
     @Override
     public void stop() {
-        prefs.updateLastUsedGuiSetting(mainWindow.getCurrentGuiSetting());
-        mainWindow.hide();
+        prefs.updateLastUsedGuiSetting(MainWindow.mainWindow.getCurrentGuiSetting());
+        MainWindow.mainWindow.hide();
     }
 
     private void showFileOperationAlertAndWait(String description, String details, Throwable cause) {
@@ -76,7 +75,7 @@ public class UiManager extends ComponentManager implements Ui {
     }
 
     void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
-        showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
+        showAlertDialogAndWait(MainWindow.mainWindow.getPrimaryStage(), type, title, headerText, contentText);
     }
 
     private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
@@ -109,7 +108,7 @@ public class UiManager extends ComponentManager implements Ui {
     @Subscribe
     private void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        mainWindow.getTaskListPanel().scrollTo(event.targetIndex);
+        MainWindow.mainWindow.getTaskListPanel().scrollTo(event.targetIndex);
     }
 
     @Subscribe
