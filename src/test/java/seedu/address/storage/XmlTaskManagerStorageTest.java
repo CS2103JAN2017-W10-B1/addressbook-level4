@@ -46,16 +46,17 @@ public class XmlTaskManagerStorageTest {
         assertFalse(readTaskManager("NonExistentFile.xml").isPresent());
     }
 
-    //@Test
-    //public void read_notXmlFormat_exceptionThrown() throws Exception {
+    @Test
+    public void read_notXmlFormat_exceptionThrown() throws Exception {
 
         //thrown.expect(DataConversionException.class);
-        //readTaskManager("NotXmlFormatTaskManager.xml");
+    	//TODO: check why the NotXmlFormatTaskManager.xml is not giving the DataConversionException
+        readTaskManager("NotXmlFormatTaskManager.xml");
 
         /* IMPORTANT: Any code below an exception-throwing line (like the one above) will be ignored.
          * That means you should not have more than one exception test in one method
          */
-    //}
+    }
 
     @Test
     public void readAndSaveTaskManager_allInOrder_success() throws Exception {
