@@ -17,7 +17,7 @@ public class Tag implements TaskField {
     public static final String TAG_RESERVED_NAME =
             "(?i)"
             + "(list)|(tag)|(task)|(date)|(time)|(venue)|(description)|"
-            + "(finished)|(unfinished)|(favorite)|(favourite)|(inbox)|"
+            + "(finished)|(unfinished)|(favorite)|(favourite)|"
             + "(today)|(tomorrow)|"
             + "(add)|(delete)|(edit)|(update)|(find)|(help)|(list)|(clear)|(finish)|(select)";
     public static final String DEFAULT_TAG_NAME = "Inbox";
