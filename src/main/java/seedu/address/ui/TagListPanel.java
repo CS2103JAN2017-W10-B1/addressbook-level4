@@ -19,15 +19,15 @@ import seedu.address.model.tag.Tag;
 /**
  * Panel containing the list of tasks.
  */
-public class ListPanel extends UiPart<Region> {
+public class TagListPanel extends UiPart<Region> {
 
-    private final Logger logger = LogsCenter.getLogger(ListPanel.class);
-    private static final String FXML = "ListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(TagListPanel.class);
+    private static final String FXML = "TagListPanel.fxml";
 
     @FXML
     private ListView<Tag> tagListView;
 
-    public ListPanel(AnchorPane tagListPanelPlaceholder, ObservableList<Tag> tagList) {
+    public TagListPanel(AnchorPane tagListPanelPlaceholder, ObservableList<Tag> tagList) {
         super(FXML);
         setConnections(tagList);
         addToPlaceholder(tagListPanelPlaceholder);

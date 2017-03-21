@@ -131,7 +131,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     //=========== Filtered List Accessors =============================================================
 
-    public UnmodifiableObservableList<Tag> getFilteredListList() {
+    public UnmodifiableObservableList<Tag> getFilteredTagList() {
         return new UnmodifiableObservableList<>(filteredTag);
     }
 
