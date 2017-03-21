@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
@@ -42,6 +43,7 @@ public class EditCommand extends UndoCommand {
     private final EditTaskDescriptor editTaskDescriptor;
     private Task task;
     private Task oldTask;
+    private boolean isSuccess;
 
     /**
      * @param filteredPersonListIndex the index of the person in the filtered person list to edit
@@ -55,6 +57,7 @@ public class EditCommand extends UndoCommand {
         this.filteredTaskListIndex = filteredTaskListIndex - 1;
 
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
+        this.isSuccess = false;
     }
 
     public EditCommand(Task task, Task oldTask) {
@@ -73,17 +76,36 @@ public class EditCommand extends UndoCommand {
         }
 
         ReadOnlyTask taskToEdit = lastShownList.get(filteredTaskListIndex);
-        this.oldTask = (Task) taskToEdit;
+        try {
+            this.oldTask = createTask(taskToEdit);
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
         try {
             model.updateTask(filteredTaskListIndex, editedTask);
             this.task = editedTask;
+            this.isSuccess = true;
         } catch (UniqueTaskList.DuplicateTaskException dpe) {
+            this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
         model.updateFilteredListToShowAllTasks();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
+    }
+
+    private Task createTask(ReadOnlyTask task) throws IllegalValueException {
+        return new Task(new Name(task.getName().fullName),
+                new TaskDate(task.getDate().getValue()),
+                new TaskTime(task.getTime().getValue()),
+                new Description(task.getDescription().getValue()),
+                new Tag(task.getTag().tagName),
+                new Venue(task.getVenue().getValue()),
+                new Priority(task.getPriority().getValue()),
+                task.isFavorite(),
+                task.isFinished());
     }
 
     /**
@@ -102,9 +124,10 @@ public class EditCommand extends UndoCommand {
         Venue updatedVenue = editTaskDescriptor.getVenue().orElseGet(taskToEdit::getVenue);
         Priority updatedPriority = editTaskDescriptor.getPriority().orElseGet(taskToEdit::getPriority);
         boolean isFavourite = editTaskDescriptor.getFavourite();
+        boolean isFinished = taskToEdit.isFinished();
 
         return new Task(updatedName, updatedDate, updatedTime, updatedDescription,
-                updatedTag, updatedVenue, updatedPriority, isFavourite);
+                updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
     }
 
     /**
@@ -243,6 +266,10 @@ public class EditCommand extends UndoCommand {
 
     @Override
     public Command getUndoCommand() {
-        return new EditCommand(this.task, this.oldTask);
+        if(isSuccess){
+            return new EditCommand(this.task, this.oldTask);
+        }else{
+            return new IncorrectCommand(null);
+        }
     }
 }

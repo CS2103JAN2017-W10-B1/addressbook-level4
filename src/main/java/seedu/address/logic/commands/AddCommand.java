@@ -24,14 +24,15 @@ public class AddCommand extends UndoCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to Dueue. "
             + "Parameters: TASKNAME [due/DUEDATE] [t/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL]\n"
             + "Example: " + COMMAND_WORD
-            + " CS2103 Lecture due/10/3 t/16:00 #CS2103 d/Interesting module @I3 p/3 \n"
+            + " CS2103 Lecture due/10/3 t/16:00 #CS2103 d/Interesting module @I3 p/3 *f\n"
             + COMMAND_WORD
-            + " CS2103T Tutorial due/8/3/2017 t/10:00 #CS2103 d/Interesting module @I3 p/2 \n";
+            + " CS2103T Tutorial due/8/3/2017 t/10:00 #CS2103 d/Interesting module @I3 p/2 *f\n";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Dueue";
 
     private final Task toAdd;
+    private boolean isSuccess;
 
     /**
      * Creates an AddCommand using raw values.
@@ -53,6 +54,7 @@ public class AddCommand extends UndoCommand {
                 new Priority(priority),
                 isFavourite
         );
+        this.isSuccess = false;
     }
 
     public AddCommand(ReadOnlyTask task) {
@@ -64,8 +66,10 @@ public class AddCommand extends UndoCommand {
         assert model != null;
         try {
             model.addTask(toAdd);
+            this.isSuccess = true;
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (UniqueTaskList.DuplicateTaskException e) {
+            this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
     }
@@ -93,6 +97,11 @@ public class AddCommand extends UndoCommand {
 
     @Override
     public Command getUndoCommand() {
-        return new DeleteCommand(getTask());
+        if(isSuccess){
+            return new DeleteCommand(getTask());
+        }
+        else{
+            return new IncorrectCommand(null);
+        }
     }
 }
