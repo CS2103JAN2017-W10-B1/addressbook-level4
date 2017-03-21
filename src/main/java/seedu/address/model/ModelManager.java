@@ -111,7 +111,7 @@ public class ModelManager extends ComponentManager implements Model {
         ObservableList<Tag> tagList = taskManager.getTagList();
         for (Tag tag : tagList) {
             if (tag.getName().toString() == listName) {
-        	    return false;
+                return false;
             }
         }
         return true;

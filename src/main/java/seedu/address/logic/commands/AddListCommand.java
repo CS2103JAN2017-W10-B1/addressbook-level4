@@ -37,16 +37,16 @@ public class AddListCommand extends Command {
             return new CommandResult(String.format(MESSAGE_NULL_LISTNAME, MESSAGE_USAGE));
         } else {
             Tag tag;
-		    try {
-			    tag = new Tag(listName);
-		    } catch (IllegalValueException e) {
-			    return new CommandResult(MESSAGE_INVALID_LISTNAME);
-		    }
+            try {
+                tag = new Tag(listName);
+            } catch (IllegalValueException e) {
+                return new CommandResult(MESSAGE_INVALID_LISTNAME);
+            }
             try {
                 model.addList(tag);
             } catch (DuplicateTagException e) {
-			    return new CommandResult(MESSAGE_LISTNAME_TAKEN);
-		    }
+                return new CommandResult(MESSAGE_LISTNAME_TAKEN);
+            }
             return new CommandResult(MESSAGE_SUCCESS);
         }
     }
