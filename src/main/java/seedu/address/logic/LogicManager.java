@@ -9,6 +9,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Parser;
@@ -26,6 +27,7 @@ public class LogicManager extends ComponentManager implements Logic {
     private final Model model;
     private final Parser parser;
     private final Stack<UndoCommand> commandList;
+    private boolean canUndo;
 
     public LogicManager(Model model, Storage storage) {
         this.model = model;
@@ -37,19 +39,25 @@ public class LogicManager extends ComponentManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         if (commandText.equals(UndoCommand.UNDO_COMMAND_WORD)) {
-            if (!commandList.isEmpty()) {
-                UndoCommand command = null;
-                try {
-                    command = (UndoCommand) commandList.pop().getUndoCommand();
-                } catch (IllegalValueException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+            do{
+                if (!commandList.isEmpty()) {
+                    UndoCommand command = null;
+                    try {
+                        command = (UndoCommand) commandList.pop().getUndoCommand();
+                    } catch (IllegalValueException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    if(!command.COMMAND_WORD.equals(IncorrectCommand.COMMAND_WORD)){
+                        command.setData(model);
+                        return command.executeUndo();
+                    }
+                    else{
+                        this.canUndo = true;
+                    }
                 }
-                command.setData(model);
-                return command.executeUndo();
-            } else {
-                return new CommandResult(UndoCommand.MESSAGE_UNDO_TASK_NOT_SUCCESS);
-            }
+            }while(canUndo);
+            return new CommandResult(UndoCommand.MESSAGE_UNDO_TASK_NOT_SUCCESS);
         } else {
             Command command = parser.parseCommand(commandText);
             command.setData(model);
