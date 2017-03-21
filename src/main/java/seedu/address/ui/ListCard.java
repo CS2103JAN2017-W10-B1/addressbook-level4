@@ -19,12 +19,12 @@ public class ListCard extends UiPart<Region> {
     @FXML
     private Label index;
     @FXML
-    private Label listName;
+    private Label name;
 
     public ListCard(Tag taskList, int displayedIndex) {
         super(FXML);
         index.setText(displayedIndex + ". ");
-        listName.setText(taskList.getName());
+        name.setText(taskList.getName());
     }
 }
 
