@@ -15,8 +15,6 @@ import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
-import seedu.address.model.tasklist.TaskList;
-import seedu.address.model.tasklist.UniqueListList;
 
 /**
  * Wraps all data at the task-manager level
@@ -26,7 +24,6 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     private final UniqueTaskList tasks;
     private final UniqueTagList tags;
-    private final UniqueListList list;
 
     /*
      * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
@@ -38,7 +35,6 @@ public class TaskManager implements ReadOnlyTaskManager {
     {
         tasks = new UniqueTaskList();
         tags = new UniqueTagList();
-        list = new UniqueListList();
     }
 
     public TaskManager() {}
@@ -60,10 +56,6 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     public void setTags(Collection<Tag> tags) throws UniqueTagList.DuplicateTagException {
         this.tags.setTags(tags);
-    }
-
-    public void setList(Collection<TaskList> list) throws UniqueListList.DuplicateListException {
-        this.list.setLists(list);
     }
 
     public void resetData(ReadOnlyTaskManager newData) {
@@ -192,11 +184,4 @@ public class TaskManager implements ReadOnlyTaskManager {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(tasks, tags);
     }
-
-    public ObservableList<TaskList> getList() {
-        // TODO Auto-generated method stub
-        return new UnmodifiableObservableList<>(list.asObservableList());
-    }
-
-
 }

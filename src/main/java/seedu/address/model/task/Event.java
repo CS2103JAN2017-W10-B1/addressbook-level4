@@ -2,55 +2,65 @@ package seedu.address.model.task;
 
 import java.util.Objects;
 
-import seedu.address.commons.util.CollectionUtil;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 
-public class Event implements ReadOnlyEvent {
+public class Event extends Task implements ReadOnlyEvent {
 
-    private Name name;
-    private TaskDate date;
-    private TaskTime time;
+    public static final String MESSAGE_EVENT_CONSTRAINT = "End time should be latter than start time";
     private TaskDate startDate;
     private TaskTime startTime;
-    private Description description;
-    private Venue venue;
-    private Priority priority;
-    private boolean isFavorite;
-    private boolean isFinished;
-    private Tag tag;
 
     /**
      * Every field must be present and not null.
+     * @throws IllegalValueException 
      */
     public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime,
-            Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite) {
-        assert !CollectionUtil.isAnyNull(name);
-        this.name = name;
-        this.startDate = startDate;
-        this.startTime = startTime;
-        this.date = endDate;
-        this.time = endTime;
-        this.description = description;
-        this.tag =  tag;
-        this.venue = venue;
-        this.priority = priority;
-        this.isFavorite = isFavorite;
-        this.isFinished = false;
+            Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite)
+                    throws IllegalValueException {
+        super(name, endDate, endTime, description, tag, venue, priority, isFavorite);
+
+        if (startDate.compareTo(endDate) > 0) {
+            throw new IllegalValueException(MESSAGE_EVENT_CONSTRAINT);
+        } else {
+            this.startDate = startDate;
+            this.startTime = startTime;
+        }
+
+        if ((startDate.compareTo(endDate) == 0) && (startTime.compareTo(endTime) >= 0)) {
+            throw new IllegalValueException(MESSAGE_EVENT_CONSTRAINT);
+        } else {
+            this.startDate = startDate;
+            this.startTime = startTime;
+        }
     }
 
     /**
      *  Constructor of event with flag on isFinshed
+     * @throws IllegalValueException 
      */
     public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime,
-            Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
+            Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite, boolean isFinished)
+                    throws IllegalValueException {
         this(name, startDate, startTime, endDate, endTime, description, tag, venue,  priority, isFavorite);
         this.isFinished = isFinished;
     }
 
     /**
-     * Creates a copy of the given ReadOnlyTask.
+     *  Constructor of event with only one date given
+     * @throws IllegalValueException 
      */
-    public Event(ReadOnlyEvent source) {
+    public Event(Name name, TaskDate date, TaskTime startTime, TaskTime endTime,
+            Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite)
+                    throws IllegalValueException {
+        this(name, date, startTime, date, endTime, description, tag, venue,  priority, isFavorite);
+    }
+
+    /**
+     * Creates a copy of the given ReadOnlyTask.
+     * @throws IllegalValueException 
+     */
+    public Event(ReadOnlyEvent source) throws IllegalValueException {
         this(source.getName(), source.getStartDate(), source.getStartTime(), source.getDate(), source.getTime(),
                 source.getDescription(),
                 source.getTag(), source.getVenue(), source.getPriority(), source.isFavorite(), source.isFinished());

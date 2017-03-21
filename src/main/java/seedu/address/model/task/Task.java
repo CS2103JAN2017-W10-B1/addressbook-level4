@@ -11,15 +11,15 @@ import seedu.address.model.tag.Tag;
  */
 public class Task implements ReadOnlyTask {
 
-    private Name name;
-    private TaskDate date;
-    private TaskTime time;
-    private Description description;
-    private Venue venue;
-    private Priority priority;
-    private boolean isFavorite;
-    private boolean isFinished;
-    private Tag tag;
+    protected Name name;
+    protected TaskDate date;
+    protected TaskTime time;
+    protected Description description;
+    protected Venue venue;
+    protected Priority priority;
+    protected boolean isFavorite;
+    protected boolean isFinished;
+    protected Tag tag;
 
     /**
      * Every field must be present and not null.

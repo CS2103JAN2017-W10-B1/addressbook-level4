@@ -85,7 +85,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
         assertResultMessage(Name.MESSAGE_NAME_CONSTRAINTS);
 
         commandBox.runCommand("edit 1 due/1111");
-        assertResultMessage(TaskDate.MESSAGE_DATE_CONSTRAINTS);
+        assertResultMessage(TaskDate.MESSAGE_DATE_CONSTRAINTS_1);
 
         commandBox.runCommand("edit 1 t/1200");
         assertResultMessage(TaskTime.MESSAGE_TIME_CONSTRAINTS);

@@ -110,6 +110,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     }
 
     private String parseDate(String validDate) throws IllegalValueException {
+        // TODO: refactor
         String[] dayMonthYear = validDate.split(DAY_MONTH_SEPARATOR);
         if (dayMonthYear.length == 3) {
             try {

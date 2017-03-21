@@ -22,7 +22,6 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
-import seedu.address.model.tasklist.TaskList;
 import seedu.address.testutil.TypicalTestTasks;
 
 public class TaskManagerTest {
@@ -143,7 +142,6 @@ public class TaskManagerTest {
     private static class TaskManagerStub implements ReadOnlyTaskManager {
         private final ObservableList<ReadOnlyTask> tasks = FXCollections.observableArrayList();
         private final ObservableList<Tag> tags = FXCollections.observableArrayList();
-        private final ObservableList<TaskList> lists = FXCollections.observableArrayList();
 
         TaskManagerStub(Collection<? extends ReadOnlyTask> tasks, Collection<? extends Tag> tags) {
             this.tasks.setAll(tasks);
@@ -158,11 +156,6 @@ public class TaskManagerTest {
         @Override
         public ObservableList<Tag> getTagList() {
             return tags;
-        }
-
-        @Override
-        public ObservableList<TaskList> getList() {
-            return lists;
         }
     }
 
