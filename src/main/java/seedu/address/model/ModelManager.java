@@ -131,10 +131,6 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords), new UnfinishedQualifier()));
     }
 
-    private void updateFilteredTaskList(Expression expression) {
-        filteredTasks.setPredicate(expression::satisfies);
-    }
-
     @Override
     public void updateFilteredTaskListGivenListName(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords), new UnfinishedQualifier()));
@@ -155,6 +151,10 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredTaskList(new PredicateExpression(new DateQualifierOn(days), new UnfinishedQualifier()));
     }
     //@@author
+
+    private void updateFilteredTaskList(Expression expression) {
+        filteredTasks.setPredicate(expression::satisfies);
+    }
 
     //=========== Filtered List Accessors =============================================================
     //@@author A0147984L
