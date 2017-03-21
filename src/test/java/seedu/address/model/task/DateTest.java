@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.task.TaskDate;
 
 public class DateTest {
 
@@ -53,9 +52,11 @@ public class DateTest {
         assertTrue(TaskDate.isValidDate("29/2/2020"));
         TaskDate tester1 = new TaskDate("29/2/2020");
 
-        assertTrue(TaskDate.isValidDate("29/2")); // Feb 29 will pass isValidDate test if no year is given
+        // Feb 29 will pass isValidDate test if no year is given
+        assertTrue(TaskDate.isValidDate("29/2"));
         thrown.expect(IllegalValueException.class);
-        TaskDate tester2 = new TaskDate("29/2"); // but it should throw exception at construction, because next year is 2018
+        // but it should throw exception at construction, because next year is 2018
+        TaskDate tester2 = new TaskDate("29/2"); 
     }
     @Test
     public void testOnBeforeToday() throws IllegalValueException {

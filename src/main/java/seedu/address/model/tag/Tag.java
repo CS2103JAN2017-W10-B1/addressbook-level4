@@ -17,10 +17,10 @@ public class Tag implements TaskField {
     public static final String TAG_RESERVED_NAME =
             "(?i)"
             + "(list)|(tag)|(task)|(date)|(time)|(venue)|(description)|"
-            + "(finished)|(unfinished)|(favorite)|(favourite)|"
+            + "(finished)|(unfinished)|(favorite)|(favourite)|(inbox)|"
             + "(today)|(tomorrow)"
             + "(add)|(delete)|(edit)|(update)|(find)|(help)|(list)|(clear)|(finish)|(select)";
-
+    public static final String DEFAULT_TAG_NAME = "Inbox";
     public String tagName;
 
 
@@ -38,7 +38,7 @@ public class Tag implements TaskField {
         if (isReservedName(trimmedName)) {
             throw new IllegalValueException(trimmedName + MESSAGE_TAG_CONSTRAINTS_2);
         }
-        this.tagName = trimmedName;
+        this.tagName = trimmedName.equals("") ? DEFAULT_TAG_NAME : trimmedName;
     }
 
     /**

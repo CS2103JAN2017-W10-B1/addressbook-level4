@@ -56,7 +56,8 @@ public class TagListPanelHandle extends GuiHandle {
      * @param tags A list of tag in the correct order.
      * @throws IllegalValueException
      */
-    public boolean isListMatching(int startPosition, Tag... tags) throws IllegalArgumentException, IllegalValueException {
+    public boolean isListMatching(int startPosition, Tag... tags) 
+            throws IllegalArgumentException, IllegalValueException {
         if (tags.length + startPosition != getListView().getItems().size()) {
             throw new IllegalArgumentException("List size mismatched\n" +
                     "Expected " + (getListView().getItems().size() - 1) + " tags");
