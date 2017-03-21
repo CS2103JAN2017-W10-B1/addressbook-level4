@@ -26,6 +26,8 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
     public static final String HOUR_MINUTE_SEPARATOR = ":";
 
     public static final SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
+    
+    public static final int INF = 1000000000;
 
     private final String value;
     private final Date time;
@@ -41,7 +43,7 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
             throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
         }
         try {
-            this.time = formatter.parse(time);
+            this.time = time.equals("")? null: formatter.parse(time);
         } catch (ParseException e) {
             assert false : "impossible";
             throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
@@ -91,8 +93,20 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
 
     @Override
     public int compareTo(TaskTime other) {
-        long diff = this.time.getTime() - other.time.getTime();
-        return (int) TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS);
+        if (this.time == null) {
+            if (other.time == null) {
+                return 0;
+            } else {
+                return INF;
+            }
+        } else {
+            if (other.time == null) {
+                return -INF;
+            } else {
+                long diff = this.time.getTime() - other.time.getTime();
+                return (int) TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS);
+            }
+        }
     }
     
     @Override

@@ -32,6 +32,8 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     public static final String YEAR_VALIDATION_REGEX = "(201[789])|(20[2-9]\\d)";
 
     public static final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    
+    public static final int INF = 1000000000;
 
     private final Calendar today;
     
@@ -51,7 +53,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
         }
         try {
-            this.date = formatter.parse(parseDate(trimmedDate));
+            this.date = trimmedDate.equals("")? null: formatter.parse(parseDate(trimmedDate));
         } catch (ParseException e) {
             assert false : "impossble";
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
@@ -177,8 +179,20 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     @Override
     public int compareTo(TaskDate other) {
-        long diff = this.date.getTime() - other.date.getTime();
-        return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        if (this.date == null) {
+            if (other.date == null) {
+                return 0;
+            } else {
+                return INF;
+            }
+        } else {
+            if (other.date == null) {
+                return -INF;
+            } else {
+                long diff = this.date.getTime() - other.date.getTime();
+                return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+            }
+        }
     }
 
 //@@author A0143409J

@@ -76,16 +76,24 @@ public class DateTest {
         assertTrue(TaskDate.isValidDate("20/09/2017")); // with valid year after;
         TaskDate tester2 = new TaskDate("20/09/2017");
         assertEquals(tester2.date.getYear() + 1900, 2017);
+
+        assertTrue(TaskDate.isValidDate("20/09/2017")); // with space;
+        TaskDate testerNull = new TaskDate("");
+        assertEquals(testerNull.date, null);
     }
 
     @Test
     public void compareTo() throws IllegalValueException {
 
+        TaskDate testerNull = new TaskDate("");
         TaskDate tester1 = new TaskDate("20/3/2018");
         TaskDate tester2 = new TaskDate("20/3/2019");
         TaskDate tester3 = new TaskDate("20/3");
         TaskDate tester4 = new TaskDate("20/3/2020");
 
+        assertEquals(testerNull.compareTo(tester1), TaskDate.INF);
+        assertEquals(testerNull.compareTo(testerNull), 0);
+        assertEquals(tester1.compareTo(testerNull), -TaskDate.INF);
         assertEquals(tester2.compareTo(tester1), 365);
         assertEquals(tester1.compareTo(tester3), 0);
         assertEquals(tester1.compareTo(tester2), -365);

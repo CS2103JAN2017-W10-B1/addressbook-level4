@@ -33,13 +33,18 @@ public class TimeTest {
     @Test
     public void compareTo() throws IllegalValueException {
         
+        TaskTime testerNull = new TaskTime("");
         TaskTime tester1 = new TaskTime("8:00");
         TaskTime tester2 = new TaskTime("18:00");
         TaskTime tester3 = new TaskTime("23:00");
         TaskTime tester4 = new TaskTime("08:00");
-        
+
+        assertTrue(testerNull.compareTo(tester2) > 0);
+        assertTrue(tester2.compareTo(testerNull) < 0);
+        assertEquals(testerNull.compareTo(testerNull), 0);
         assertTrue(tester1.compareTo(tester2) < 0);
         assertTrue(tester3.compareTo(tester2) > 0);
+        assertEquals(tester4.compareTo(tester4), 0);
         assertEquals(tester4.compareTo(tester1), 0);
     }
 }
