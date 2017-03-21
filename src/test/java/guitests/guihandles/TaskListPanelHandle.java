@@ -25,7 +25,7 @@ public class TaskListPanelHandle extends GuiHandle {
     public static final int NOT_FOUND = -1;
     public static final String CARD_PANE_ID = "#cardPane";
 
-    private static final String PERSON_LIST_VIEW_ID = "#taskListView";
+    private static final String TASK_LIST_VIEW_ID = "#taskListView";
 
     public TaskListPanelHandle(GuiRobot guiRobot, Stage primaryStage) {
         super(guiRobot, primaryStage, TestApp.APP_TITLE);
@@ -37,7 +37,7 @@ public class TaskListPanelHandle extends GuiHandle {
     }
 
     public ListView<ReadOnlyTask> getListView() {
-        return getNode(PERSON_LIST_VIEW_ID);
+        return getNode(TASK_LIST_VIEW_ID);
     }
 
     /**
@@ -101,12 +101,11 @@ public class TaskListPanelHandle extends GuiHandle {
     public TaskCardHandle navigateToTask(String name) {
         guiRobot.sleep(500); //Allow a bit of time for the list to be updated
         final Optional<ReadOnlyTask> task = getListView().getItems().stream()
-                                                    .filter(p -> p.getName().fullName.equals(name))
+                                                    .filter(p -> p.getName().toString().equals(name))
                                                     .findAny();
         if (!task.isPresent()) {
             throw new IllegalStateException("Name not found: " + name);
         }
-
         return navigateToTask(task.get());
     }
 

@@ -150,7 +150,7 @@ public class TestTask implements ReadOnlyTask {
 
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();
-        sb.append("add " + this.getName().fullName + " ");
+        sb.append("add " + this.getName().toString() + " ");
         sb.append("due/" + this.getDate().getValue() + " ");
         sb.append("t/" + this.getTime().getValue() + " ");
         sb.append("d/" + this.getDescription().getValue() + " ");
@@ -158,7 +158,7 @@ public class TestTask implements ReadOnlyTask {
         sb.append("@" + this.getVenue().getValue() + " ");
         sb.append("p/" + this.getPriority().getValue() + " ");
         if(this.isFavorite()) {
-        		sb.append("*f");
+        		sb.append("*f" + " ");
         }
         return sb.toString();
     }
