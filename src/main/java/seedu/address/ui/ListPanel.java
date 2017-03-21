@@ -1,4 +1,3 @@
-
 //@@author Matilda_yxx A0147996E
 package seedu.address.ui;
 
@@ -26,17 +25,17 @@ public class ListPanel extends UiPart<Region> {
     private static final String FXML = "ListPanel.fxml";
 
     @FXML
-    private ListView<Tag> listListView;
+    private ListView<Tag> tagListView;
 
-    public ListPanel(AnchorPane listPlaceholder, ObservableList<Tag> listList) {
+    public ListPanel(AnchorPane tagListPanelPlaceholder, ObservableList<Tag> tagList) {
         super(FXML);
-        setConnections(listList);
-        addToPlaceholder(listPlaceholder);
+        setConnections(tagList);
+        addToPlaceholder(tagListPanelPlaceholder);
     }
 
-    private void setConnections(ObservableList<Tag> Tag) {
-        listListView.setItems(Tag);
-        listListView.setCellFactory(listView -> new ListListViewCell());
+    private void setConnections(ObservableList<Tag> tagList) {
+        tagListView.setItems(tagList);
+        tagListView.setCellFactory(listView -> new ListListViewCell());
         setEventHandlerForSelectionChangeEvent();
     }
 
@@ -47,7 +46,7 @@ public class ListPanel extends UiPart<Region> {
     }
 
     private void setEventHandlerForSelectionChangeEvent() {
-        listListView.getSelectionModel().selectedItemProperty()
+        tagListView.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
                         logger.fine("Selection in task list panel changed to : '" + newValue + "'");
@@ -58,13 +57,12 @@ public class ListPanel extends UiPart<Region> {
 
     public void scrollTo(int index) {
         Platform.runLater(() -> {
-            listListView.scrollTo(index);
-            listListView.getSelectionModel().clearAndSelect(index);
+            tagListView.scrollTo(index);
+            tagListView.getSelectionModel().clearAndSelect(index);
         });
     }
 
     class ListListViewCell extends ListCell<Tag> {
-
         @Override
         protected void updateItem(Tag Tag, boolean empty) {
             super.updateItem(Tag, empty);
