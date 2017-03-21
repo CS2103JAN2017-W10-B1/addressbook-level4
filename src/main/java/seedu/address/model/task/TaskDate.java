@@ -31,7 +31,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     public static final String DAY_VALIDATION_REGEX_4 = "([1-9])|(0[1-9])|(1\\d)|(2[0-9])";
     public static final String YEAR_VALIDATION_REGEX = "(201[789])|(20[2-9]\\d)";
 
-    public static final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    public static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd/MM/yyyy");
 
     public static final int INF = 1000000000;
 
@@ -53,7 +53,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
         }
         try {
-            this.date = trimmedDate.equals("")? null: formatter.parse(parseDate(trimmedDate));
+            this.date = trimmedDate.equals("") ? null : FORMATTER.parse(parseDate(trimmedDate));
         } catch (ParseException e) {
             assert false : "impossble";
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
@@ -77,7 +77,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         }
         String day = dayMonthYear[0];
         String month = dayMonthYear[1];
-        String year = dayMonthYear.length == 3? dayMonthYear[2]: null;
+        String year = dayMonthYear.length == 3 ? dayMonthYear[2] : null;
         return isValidMonth(month) && isValidDay(day, month, year) && isValidYear(year);
     }
 
@@ -116,7 +116,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         String[] dayMonthYear = validDate.split(DAY_MONTH_SEPARATOR);
         if (dayMonthYear.length == 3) {
             try {
-                Date date = formatter.parse(validDate);
+                Date date = FORMATTER.parse(validDate);
                 if (date.compareTo(today.getTime()) < 0) {
                     throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_2);
                 } else {
@@ -131,7 +131,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
             String year = Integer.toString(today.get(Calendar.YEAR));
             try {
                 String returnDate = day + DAY_MONTH_SEPARATOR + month + DAY_MONTH_SEPARATOR + year;
-                Date date = formatter.parse(returnDate);
+                Date date = FORMATTER.parse(returnDate);
                 if (date.compareTo(today.getTime()) < 0) {
                     year = Integer.toString(today.get(Calendar.YEAR) + 1);
                 } else {
@@ -142,7 +142,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
                     }
                 }
                 returnDate = day + DAY_MONTH_SEPARATOR + month + DAY_MONTH_SEPARATOR + year;
-                date = formatter.parse(returnDate);
+                date = FORMATTER.parse(returnDate);
                 if (!isValidDay(day, month, year)) {
                     throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
                 } else {
