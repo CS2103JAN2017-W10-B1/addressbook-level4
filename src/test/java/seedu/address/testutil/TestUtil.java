@@ -328,7 +328,7 @@ public class TestUtil {
     }
 
     public static boolean compareCardAndTask(TaskCardHandle card, ReadOnlyTask task) {
-        return card.isSameTask(task);
+    		return card.isSameTask(task);
     }
 
     public static boolean compareCardAndTag(TagCardHandle card, Tag tag) {

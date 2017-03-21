@@ -1,4 +1,3 @@
-//@@author Matilda_yxx A0147996E
 package seedu.address.testutil;
 
 import seedu.address.model.tag.Tag;
@@ -27,6 +26,7 @@ public class TestTask implements ReadOnlyTask {
     private boolean isFinished;
 
     public TestTask() {}
+    
     /**
      * Creates a copy of {@code taskToCopy}.
      */
@@ -143,7 +143,7 @@ public class TestTask implements ReadOnlyTask {
             return "Unfinished";
         }
     }
-    //@@author
+
     @Override
     public String toString() {
         return getAsText();

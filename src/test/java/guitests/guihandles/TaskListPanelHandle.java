@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import seedu.address.TestApp;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
+import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
 /**
@@ -98,13 +99,13 @@ public class TaskListPanelHandle extends GuiHandle {
         return true;
     }
 
-    public TaskCardHandle navigateToTask(String name) {
+    public TaskCardHandle navigateToTask(TestTask name) {
         guiRobot.sleep(500); //Allow a bit of time for the list to be updated
         final Optional<ReadOnlyTask> task = getListView().getItems().stream()
-                                                    .filter(p -> p.getName().toString().equals(name))
+                                                    .filter(p -> p.isSameStateAs(name))
                                                     .findAny();
         if (!task.isPresent()) {
-            throw new IllegalStateException("Name not found: " + name);
+            throw new IllegalStateException("Name not found: " + name.getName().toString());
         }
         return navigateToTask(task.get());
     }
