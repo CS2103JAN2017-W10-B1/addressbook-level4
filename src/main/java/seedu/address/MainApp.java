@@ -47,7 +47,6 @@ public class MainApp extends Application {
     protected Config config;
     protected UserPrefs userPrefs;
 
-
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing TaskManager ]===========================");
@@ -92,7 +91,6 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty TaskManager");
             initialData = new TaskManager();
         }
-
         return new ModelManager(initialData, userPrefs);
     }
 
@@ -156,7 +154,6 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
         }
-
         return initializedPrefs;
     }
 

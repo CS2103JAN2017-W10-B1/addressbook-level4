@@ -26,7 +26,7 @@ public class TestTask implements ReadOnlyTask {
     private boolean isFinished;
 
     public TestTask() {}
-    
+
     /**
      * Creates a copy of {@code taskToCopy}.
      */
