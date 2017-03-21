@@ -1,3 +1,4 @@
+//@@Author ShermineJong A0138474X
 package seedu.address.logic.commands;
 
 import seedu.address.commons.core.Messages;
@@ -23,11 +24,14 @@ public class DeleteCommand extends UndoCommand {
 
     public final int targetIndex;
 
-    public ReadOnlyTask task;
+    private ReadOnlyTask task;
+
+    private boolean isSuccess;
 
     public DeleteCommand(int targetIndex) {
         this.targetIndex = targetIndex;
         this.task = null;
+        this.isSuccess = false;
     }
 
     public DeleteCommand(ReadOnlyTask task) {
@@ -50,6 +54,7 @@ public class DeleteCommand extends UndoCommand {
         try {
             model.deleteTask(personToDelete);
             this.task = personToDelete;
+            this.isSuccess = true;
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target person cannot be missing";
         }
@@ -77,8 +82,11 @@ public class DeleteCommand extends UndoCommand {
 
     @Override
     public Command getUndoCommand() {
-        // TODO Auto-generated method stub
-        return new AddCommand(task);
+        if (isSuccess) {
+            return new AddCommand(task);
+        } else {
+            return new IncorrectCommand(null);
+        }
     }
 
 }

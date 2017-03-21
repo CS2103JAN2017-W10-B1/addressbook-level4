@@ -8,6 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 public class IncorrectCommand extends Command {
 
     public final String feedbackToUser;
+    public static final String COMMAND_WORD = "incorrect";
 
     public IncorrectCommand(String feedbackToUser) {
         this.feedbackToUser = feedbackToUser;

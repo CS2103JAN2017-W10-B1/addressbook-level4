@@ -9,6 +9,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -409,7 +410,7 @@ public class LogicManagerTest {
     class TestDataHelper {
         Task gym() throws Exception {
             Name name = new Name("Homework");
-            TaskDate date = new TaskDate("10/03/2017");
+            TaskDate date = new TaskDate("21/3/2019");
             TaskTime time = new TaskTime("12:00");
             Description description = new Description("IE2100 CTMC");
             Venue venue = new Venue("UTown");

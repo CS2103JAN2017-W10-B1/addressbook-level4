@@ -63,8 +63,8 @@ public class TaskBuilder {
         return this.task;
     }
 
-	public TaskBuilder withFavorite(boolean isFavorite) throws IllegalValueException {
-		this.task.setFavorite(isFavorite);
+    public TaskBuilder withFavorite(boolean isFavorite) throws IllegalValueException {
+        this.task.setFavorite(isFavorite);
         return this;
-	}
+    }
 }

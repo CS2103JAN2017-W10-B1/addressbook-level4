@@ -32,10 +32,12 @@ public class FinishCommand extends UndoCommand {
     public static final String MESSAGE_WRONG_TASK_INDEX = "This task already exists in the task manager.";
 
     public final int targetIndex;
-    public Task task;
+    private Task task;
+    private boolean isSuccess;
 
     public FinishCommand(int targetIndex) {
         this.targetIndex = targetIndex;
+        this.isSuccess = false;
     }
 
 
@@ -69,7 +71,9 @@ public class FinishCommand extends UndoCommand {
         try {
             model.updateTask(targetIndex - 1, taskToMark);
             task = (Task) taskToMark;
+            isSuccess = true;
         } catch (DuplicateTaskException e) {
+            this.isSuccess = false;
             throw new CommandException(MESSAGE_WRONG_TASK_INDEX);
         }
 
@@ -91,9 +95,13 @@ public class FinishCommand extends UndoCommand {
 
     @Override
     public Command getUndoCommand() {
-        Task newTask = new Task(task.getName(), task.getDate(), task.getTime(), task.getDescription(),
-                task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(), false);
-        return new EditCommand(task, newTask);
+        if (isSuccess) {
+            Task newTask = new Task(task.getName(), task.getDate(), task.getTime(), task.getDescription(),
+                    task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(), false);
+            return new EditCommand(task, newTask);
+        } else {
+            return new IncorrectCommand(null);
+        }
     }
 
 }

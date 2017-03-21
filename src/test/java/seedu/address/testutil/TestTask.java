@@ -157,8 +157,13 @@ public class TestTask implements ReadOnlyTask {
         sb.append("#" + this.getTag().getName() + " ");
         sb.append("@" + this.getVenue().getValue() + " ");
         sb.append("p/" + this.getPriority().getValue() + " ");
+<<<<<<< HEAD
         if(this.isFavorite()) {
         		sb.append("*f" + " ");
+=======
+        if (this.isFavorite()) {
+            sb.append("*f");
+>>>>>>> origin/master
         }
         return sb.toString();
     }
