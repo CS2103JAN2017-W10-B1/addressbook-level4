@@ -13,7 +13,7 @@ public class Event extends Task implements ReadOnlyEvent {
 
     /**
      * Every field must be present and not null.
-     * @throws IllegalValueException 
+     * @throws IllegalValueException
      */
     public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime,
             Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite)
@@ -27,7 +27,7 @@ public class Event extends Task implements ReadOnlyEvent {
             this.startTime = startTime;
         }
 
-        if ((startDate.compareTo(endDate) == 0) && (startTime.compareTo(endTime) >= 0)) {
+        if ((startDate.compareTo(endDate) == 0) && (startTime.compareTo(endTime) > 0)) {
             throw new IllegalValueException(MESSAGE_EVENT_CONSTRAINT);
         } else {
             this.startDate = startDate;
@@ -37,7 +37,7 @@ public class Event extends Task implements ReadOnlyEvent {
 
     /**
      *  Constructor of event with flag on isFinshed
-     * @throws IllegalValueException 
+     * @throws IllegalValueException
      */
     public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime,
             Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite, boolean isFinished)
@@ -48,7 +48,7 @@ public class Event extends Task implements ReadOnlyEvent {
 
     /**
      *  Constructor of event with only one date given
-     * @throws IllegalValueException 
+     * @throws IllegalValueException
      */
     public Event(Name name, TaskDate date, TaskTime startTime, TaskTime endTime,
             Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite)
@@ -58,7 +58,7 @@ public class Event extends Task implements ReadOnlyEvent {
 
     /**
      * Creates a copy of the given ReadOnlyTask.
-     * @throws IllegalValueException 
+     * @throws IllegalValueException
      */
     public Event(ReadOnlyEvent source) throws IllegalValueException {
         this(source.getName(), source.getStartDate(), source.getStartTime(), source.getDate(), source.getTime(),

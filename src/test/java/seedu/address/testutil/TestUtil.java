@@ -353,5 +353,4 @@ public class TestUtil {
 
         return collect.toArray(new Tag[split.length]);
     }
-    
 }

@@ -37,8 +37,8 @@ public class AddCommandParser {
         argsTokenizer.tokenize(args);
         try {
             String name = argsTokenizer.getPreamble().get();
-            String date = checkDate(argsTokenizer.getValue(PREFIX_DATE));
-            String time = checkTime(argsTokenizer.getValue(PREFIX_TIME));
+            String date = checkString(argsTokenizer.getValue(PREFIX_DATE));
+            String time = checkString(argsTokenizer.getValue(PREFIX_TIME));
             String tag = checkString(argsTokenizer.getValue(PREFIX_TAG));
             String description = checkString(argsTokenizer.getValue(PREFIX_DESCRIPTION));
             String venue = checkString(argsTokenizer.getValue(PREFIX_VENUE));
@@ -50,15 +50,6 @@ public class AddCommandParser {
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
-    }
-
-    private String checkTime(Optional<String> args) {
-        return args.orElse("00:00");
-    }
-
-    private String checkDate(Optional<String> args) {
-        // TODO Auto-generated method stub
-        return args.orElse("01/01/2020");
     }
 
     private boolean checkPresent(Optional<String> args) {

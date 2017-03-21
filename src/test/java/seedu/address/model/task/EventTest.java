@@ -29,8 +29,11 @@ public class EventTest {
         assertEquals(tester2.getStartDate().getValue(), "20/12/2017");
         assertEquals(tester2.getTime().getValue(), "7:00");
         assertEquals(tester2.getStartTime().getValue(), "6:00");
+
+        Event tester3 = new Event(new Name("tester2"), new TaskDate("20/12/2017"), new TaskTime("6:00"),
+                new TaskDate("20/12/2017"), new TaskTime("6:00"), null, null, null, null, false);
     }
-    
+
     @Test
     public void constructorInvalid1() throws IllegalValueException {
         thrown.expect(IllegalValueException.class);

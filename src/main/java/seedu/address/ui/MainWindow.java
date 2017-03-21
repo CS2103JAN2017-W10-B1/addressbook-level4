@@ -28,15 +28,15 @@ public class MainWindow extends UiPart<Region> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private ListPanel tagListPanel;
+    private TagListPanel tagListPanel;
     private TaskListPanel taskListPanel;
     private Config config;
 
     @FXML
-    private AnchorPane tagListPanelPlaceholder;
+    private AnchorPane commandBoxPlaceholder;
 
     @FXML
-    private AnchorPane commandBoxPlaceholder;
+    private AnchorPane tagListPanelPlaceholder;
 
     @FXML
     private AnchorPane taskListPanelPlaceholder;
@@ -69,7 +69,7 @@ public class MainWindow extends UiPart<Region> {
     }
 
     public void fillInnerParts() throws NullPointerException {
-        tagListPanel = new ListPanel(getTaskListPlaceholder(), logic.getFilteredListList());
+        tagListPanel = new TagListPanel(getTagListPlaceholder(), logic.getFilteredTagList());
         taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
@@ -95,7 +95,6 @@ public class MainWindow extends UiPart<Region> {
     private AnchorPane getTagListPlaceholder() {
         return tagListPanelPlaceholder;
     }
-
     public void hide() {
         primaryStage.hide();
     }
@@ -150,10 +149,10 @@ public class MainWindow extends UiPart<Region> {
     }
 
     public TaskListPanel getTaskListPanel() {
-        return this.taskListPanel;
+        return taskListPanel;
     }
 
-    public ListPanel getTagListPanel() {
-        return this.tagListPanel;
+    public TagListPanel getTagListPanel() {
+        return tagListPanel;
     }
 }

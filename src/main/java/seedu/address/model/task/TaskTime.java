@@ -25,8 +25,8 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
     public static final String TIME_VALIDATION_REGEX = ".*:.*";
     public static final String HOUR_MINUTE_SEPARATOR = ":";
 
-    public static final SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
-    
+    public static final SimpleDateFormat FORMATTER = new SimpleDateFormat("hh:mm");
+
     public static final int INF = 1000000000;
 
     private final String value;
@@ -43,7 +43,7 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
             throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
         }
         try {
-            this.time = time.equals("")? null: formatter.parse(time);
+            this.time = time.equals("") ? null : FORMATTER.parse(time);
         } catch (ParseException e) {
             assert false : "impossible";
             throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
@@ -108,7 +108,7 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
             }
         }
     }
-    
+
     @Override
     public int hashCode() {
         return value.hashCode();
