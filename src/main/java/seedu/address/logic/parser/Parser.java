@@ -49,6 +49,9 @@ public class Parser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
@@ -69,9 +72,6 @@ public class Parser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return HelpCommandParser.parse(arguments);
