@@ -101,10 +101,12 @@ public class ModelManagerTest {
         assertEquals(modelManager.getFilteredTaskList().size(), 1);
         assertEquals(modelManager.getFilteredListList().size(), 1);
 
-        //TODO: add testcases for task2
+        modelManager.addTask(task2);
+        assertEquals(modelManager.getFilteredTaskList().size(), 2);
+        assertEquals(modelManager.getFilteredListList().size(), 2);
 
         modelManager.addTask(task3);
-        assertEquals(modelManager.getFilteredTaskList().size(), 2);
+        assertEquals(modelManager.getFilteredTaskList().size(), 3);
         assertEquals(modelManager.getFilteredListList().size(), 2);
     }
 }
