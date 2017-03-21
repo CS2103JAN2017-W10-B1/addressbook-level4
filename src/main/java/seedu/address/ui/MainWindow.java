@@ -28,12 +28,12 @@ public class MainWindow extends UiPart<Region> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private ListPanel listPanel;
+    private ListPanel tagListPanel;
     private TaskListPanel taskListPanel;
     private Config config;
 
     @FXML
-    private AnchorPane ListPanelPlaceholder;
+    private AnchorPane tagListPanelPlaceholder;
 
     @FXML
     private AnchorPane commandBoxPlaceholder;
@@ -68,16 +68,12 @@ public class MainWindow extends UiPart<Region> {
         return primaryStage;
     }
 
-    public void fillInnerParts() {
-        listPanel = new ListPanel(getListPlaceholder(), logic.getFilteredListList());
+    public void fillInnerParts() throws NullPointerException {
+    		tagListPanel = new ListPanel(getTaskListPlaceholder(), logic.getFilteredListList());
         taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
         new CommandBox(getCommandBoxPlaceholder(), logic);
-    }
-
-    private AnchorPane getListPlaceholder() {
-        return this.ListPanelPlaceholder;
     }
 
     private AnchorPane getCommandBoxPlaceholder() {
@@ -93,7 +89,11 @@ public class MainWindow extends UiPart<Region> {
     }
 
     private AnchorPane getTaskListPlaceholder() {
-        return this.taskListPanelPlaceholder;
+        return taskListPanelPlaceholder;
+    }
+
+    private AnchorPane getTagListPlaceholder() {
+        return tagListPanelPlaceholder;
     }
 
     public void hide() {
@@ -151,5 +151,9 @@ public class MainWindow extends UiPart<Region> {
 
     public TaskListPanel getTaskListPanel() {
         return this.taskListPanel;
+    }
+
+    public ListPanel getTagListPanel() {
+        return this.tagListPanel;
     }
 }
