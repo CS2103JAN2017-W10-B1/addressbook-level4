@@ -56,7 +56,7 @@ public class Parser {
             return EditCommandParser.parse(arguments);
 
         case SelectCommand.COMMAND_WORD:
-            return new SelectCommandParser().parse(arguments);
+            return SelectCommandParser.parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return DeleteCommandParser.parse(arguments);
