@@ -33,9 +33,15 @@ public class ListPanel extends UiPart<Region> {
         addToPlaceholder(tagListPanelPlaceholder);
     }
 
+<<<<<<< HEAD
     private void setConnections(ObservableList<Tag> tagList) {
         tagListView.setItems(tagList);
         tagListView.setCellFactory(listView -> new ListListViewCell());
+=======
+    private void setConnections(ObservableList<Tag> Tags) {
+        listListView.setItems(Tags);
+        listListView.setCellFactory(listView -> new ListListViewCell());
+>>>>>>> origin/master
         setEventHandlerForSelectionChangeEvent();
     }
 

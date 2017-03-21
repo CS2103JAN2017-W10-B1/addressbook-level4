@@ -1,10 +1,10 @@
 package seedu.address.model.task;
 
 public interface ReadOnlyEvent extends ReadOnlyTask{
-    
+
     TaskDate getStartDate();
     TaskTime getStartTime();
-    
+
     /**
      * Formats the person as text, showing all contact details.
      */

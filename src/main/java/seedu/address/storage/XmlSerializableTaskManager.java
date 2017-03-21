@@ -75,7 +75,7 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
         }).collect(Collectors.toCollection(FXCollections::observableArrayList));
         return new UnmodifiableObservableList<>(tags);
     }
-    
+
     public ObservableList<TaskList> getList() {
         ArrayList<TaskList> list = new ArrayList<>();
         try{

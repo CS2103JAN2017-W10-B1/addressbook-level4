@@ -12,6 +12,8 @@ public abstract class Command {
 
     public static final String MESSAGE_USAGE = "";
 
+    public static final String COMMAND_WORD = "";
+
     /**
      * Constructs a feedback message to summarise an operation that displayed a listing of persons.
      *
@@ -45,6 +47,6 @@ public abstract class Command {
     public String getUsageMessage() {
         return MESSAGE_USAGE;
     }
-    
+
     public abstract boolean isUndoable();
 }
