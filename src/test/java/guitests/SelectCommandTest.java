@@ -55,5 +55,4 @@ public class SelectCommandTest extends TaskManagerGuiTest {
     private void assertNotaskSelected() {
         assertEquals(taskListPanel.getSelectedTasks().size(), 0);
     }
-
 }

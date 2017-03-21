@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import seedu.address.model.tag.Tag;
 
 /**
- * Provides a handle to a task card in the task list panel.
+ * Provides a handle to a tag card in the tag list panel.
  */
 public class TagCardHandle extends GuiHandle {
     private static final String NAME_FIELD_ID = "#name";
