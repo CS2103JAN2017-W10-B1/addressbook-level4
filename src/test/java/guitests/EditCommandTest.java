@@ -40,7 +40,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
         TestTask taskToEdit = expectedTasksList[taskManagerIndex - 1];
         TestTask editedTask = new TaskBuilder(taskToEdit).withPriority("2").build();
-
+        //TODO: pass this testcase
         //assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
 

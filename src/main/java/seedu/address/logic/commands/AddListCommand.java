@@ -18,11 +18,11 @@ public class AddListCommand extends Command {
             + "Parameter: [LISTNAME]\n"
             + "Example: " + COMMAND_WORD + " CS2103";
 
-	private static final String MESSAGE_NULL_LISTNAME = "The listname should not be null.";
+    private static final String MESSAGE_NULL_LISTNAME = "The listname should not be null.";
 
-	private static final String MESSAGE_LISTNAME_TAKEN = "Ths listname has already been used.";
+    private static final String MESSAGE_LISTNAME_TAKEN = "Ths listname has already been used.";
 
-	private static final String MESSAGE_INVALID_LISTNAME = "Ths listname is not in the valid format.";
+    private static final String MESSAGE_INVALID_LISTNAME = "Ths listname is not in the valid format.";
 
     private final String listName;
 
@@ -36,17 +36,17 @@ public class AddListCommand extends Command {
             model.updateFilteredListToShowAllTasks();
             return new CommandResult(String.format(MESSAGE_NULL_LISTNAME, MESSAGE_USAGE));
         } else {
-        	Tag tag;
-			try {
-				tag = new Tag(listName);
-			} catch (IllegalValueException e) {
-				return new CommandResult(MESSAGE_INVALID_LISTNAME);
-			}
+            Tag tag;
+		    try {
+			    tag = new Tag(listName);
+		    } catch (IllegalValueException e) {
+			    return new CommandResult(MESSAGE_INVALID_LISTNAME);
+		    }
             try {
-				model.addList(tag);
-			} catch (DuplicateTagException e) {
-				return new CommandResult(MESSAGE_LISTNAME_TAKEN);
-			}
+                model.addList(tag);
+            } catch (DuplicateTagException e) {
+			    return new CommandResult(MESSAGE_LISTNAME_TAKEN);
+		    }
             return new CommandResult(MESSAGE_SUCCESS);
         }
     }
