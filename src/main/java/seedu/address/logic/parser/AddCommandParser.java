@@ -24,7 +24,7 @@ import seedu.address.logic.commands.IncorrectCommand;
 public class AddCommandParser {
 
     private AddCommandParser() {
-	}
+    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

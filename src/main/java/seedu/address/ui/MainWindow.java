@@ -66,7 +66,7 @@ public class MainWindow extends UiPart<Region> {
         primaryStage.setScene(scene);
     }
 
-    public static void InitializeMainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
+    public static void initializeMainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
         mainWindow = new MainWindow(primaryStage, config, prefs, logic);
     }
 
