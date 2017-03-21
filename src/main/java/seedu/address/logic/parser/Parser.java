@@ -52,7 +52,7 @@ public class Parser {
 
         case AddListCommand.COMMAND_WORD:
             return new AddListCommand(arguments);
-  
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 

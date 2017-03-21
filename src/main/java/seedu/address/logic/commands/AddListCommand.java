@@ -19,7 +19,7 @@ public class AddListCommand extends Command {
             + "Example: " + COMMAND_WORD + " CS2103";
 
 	private static final String MESSAGE_NULL_LISTNAME = "The listname should not be null.";
-	
+
 	private static final String MESSAGE_LISTNAME_TAKEN = "Ths listname has already been used.";
 
 	private static final String MESSAGE_INVALID_LISTNAME = "Ths listname is not in the valid format.";
