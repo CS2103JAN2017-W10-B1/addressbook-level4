@@ -93,7 +93,8 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
             //TODO: better error handling
             return null;
         }
-        final ObservableList<TaskList> lists = list.stream().collect(Collectors.toCollection(FXCollections::observableArrayList));;
+        final ObservableList<TaskList> lists = list.stream().collect(
+                Collectors.toCollection(FXCollections::observableArrayList));;
         return new UnmodifiableObservableList<>(lists);
     }
 }

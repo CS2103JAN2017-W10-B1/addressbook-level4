@@ -36,8 +36,8 @@ public class LogicManager extends ComponentManager implements Logic {
     @Override
     public CommandResult execute(String commandText) throws CommandException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
-        if (commandText.equals(UndoCommand.UNDO_COMMAND_WORD)){
-            if (!commandList.isEmpty()){
+        if (commandText.equals(UndoCommand.UNDO_COMMAND_WORD)) {
+            if (!commandList.isEmpty()) {
                 UndoCommand command = null;
                 try {
                     command = (UndoCommand) commandList.pop().getUndoCommand();
@@ -53,7 +53,7 @@ public class LogicManager extends ComponentManager implements Logic {
         } else {
             Command command = parser.parseCommand(commandText);
             command.setData(model);
-            if (command.isUndoable()){
+            if (command.isUndoable()) {
                 commandList.push((UndoCommand) command);
             }
             return command.execute();

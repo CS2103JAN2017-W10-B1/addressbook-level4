@@ -69,7 +69,7 @@ public class MainWindow extends UiPart<Region> {
     }
 
     public void fillInnerParts() throws NullPointerException {
-    		tagListPanel = new ListPanel(getTaskListPlaceholder(), logic.getFilteredListList());
+        tagListPanel = new ListPanel(getTaskListPlaceholder(), logic.getFilteredListList());
         taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());

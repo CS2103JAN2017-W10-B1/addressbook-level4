@@ -42,7 +42,7 @@ public class Task implements ReadOnlyTask {
      *  Constructor of task with flag on isFinshed
      */
     public Task(Name name, TaskDate date, TaskTime time, Description description, Tag tag,
-    		Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
+            Venue venue, Priority priority, boolean isFavorite, boolean isFinished) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
         this.date = date;

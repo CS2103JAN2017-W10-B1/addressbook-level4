@@ -17,8 +17,9 @@ public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         try {
             return new Task[] {
-                new Task(new Name("Gym"), new TaskDate("12/3"), new TaskTime("11:00"), new Description("50 mins workout"),
-                		new Tag("personal"), new Venue("MPSH"), new Priority("2"), true)
+                new Task(new Name("Gym"), new TaskDate("12/3"), new TaskTime("11:00"),
+                        new Description("50 mins workout"), new Tag("personal"),
+                        new Venue("MPSH"), new Priority("2"), true)
             };
         } catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);

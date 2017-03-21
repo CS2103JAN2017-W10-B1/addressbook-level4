@@ -16,8 +16,8 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
-import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.TaskDate;
+import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.Venue;
 
 /**
