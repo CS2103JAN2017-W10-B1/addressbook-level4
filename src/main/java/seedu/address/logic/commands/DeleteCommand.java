@@ -25,7 +25,7 @@ public class DeleteCommand extends UndoCommand {
     public final int targetIndex;
 
     private ReadOnlyTask task;
-    
+
     private boolean isSuccess;
 
     public DeleteCommand(int targetIndex) {
