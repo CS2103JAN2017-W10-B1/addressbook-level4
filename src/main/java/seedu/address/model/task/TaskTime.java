@@ -26,7 +26,7 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
     public static final String HOUR_MINUTE_SEPARATOR = ":";
 
     public static final SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
-    
+
     public static final int INF = 1000000000;
 
     private final String value;
@@ -108,7 +108,7 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
             }
         }
     }
-    
+
     @Override
     public int hashCode() {
         return value.hashCode();

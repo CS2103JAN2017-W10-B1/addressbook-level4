@@ -26,7 +26,7 @@ public class TagCardHandle extends GuiHandle {
     public String getFullName() {
         return getTextFromLabel(NAME_FIELD_ID);
     }
-    
+
     public boolean isSameTag(Tag tag) {
         return getFullName().equals(tag.getName());
     }

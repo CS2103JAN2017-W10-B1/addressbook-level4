@@ -49,7 +49,7 @@ public class DateTest {
 
     @Test
     public void testOnFeb29() throws IllegalValueException {
-        
+
         assertTrue(TaskDate.isValidDate("29/2/2020"));
         TaskDate tester1 = new TaskDate("29/2/2020");
 
@@ -64,15 +64,15 @@ public class DateTest {
         thrown.expect(IllegalValueException.class);
         TaskDate tester1 = new TaskDate("20/3/2017");
     }
-    
+
     @SuppressWarnings("deprecation")
     @Test
     public void testOnValidYear() throws IllegalValueException {
-        
+
         assertTrue(TaskDate.isValidDate("20/3")); // with valid year without year;
         TaskDate tester1 = new TaskDate("20/3");
         assertEquals(tester1.date.getYear() + 1900, 2018);
-        
+
         assertTrue(TaskDate.isValidDate("20/09/2017")); // with valid year after;
         TaskDate tester2 = new TaskDate("20/09/2017");
         assertEquals(tester2.date.getYear() + 1900, 2017);

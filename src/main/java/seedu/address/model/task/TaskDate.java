@@ -32,11 +32,11 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     public static final String YEAR_VALIDATION_REGEX = "(201[789])|(20[2-9]\\d)";
 
     public static final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-    
+
     public static final int INF = 1000000000;
 
     private final Calendar today;
-    
+
     private final String value;
     public final Date date;
 
@@ -102,7 +102,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     private static boolean isValidYear(String test) {
         return test == null || test.matches(YEAR_VALIDATION_REGEX);
     }
-    
+
     private static boolean isLeapYear(String test) {
         if (test == null) {
             return true;
@@ -155,7 +155,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         assert false : "impossible";
         return validDate;
     }
-    
+
     public String getValue() {
         return value;
     }

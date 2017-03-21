@@ -43,8 +43,8 @@ public class TagListPanelHandle extends GuiHandle {
     /**
      * Returns true if the list is showing the tag details correctly and in correct order.
      * @param tags A list of tag in the correct order.
-     * @throws IllegalValueException 
-     * @throws IllegalArgumentException 
+     * @throws IllegalValueException
+     * @throws IllegalArgumentException
      */
     public boolean isListMatching(Tag... tags) throws IllegalArgumentException, IllegalValueException {
         return this.isListMatching(0, tags);
@@ -54,7 +54,7 @@ public class TagListPanelHandle extends GuiHandle {
      * Returns true if the list is showing the tag details correctly and in correct order.
      * @param startPosition The starting position of the sub list.
      * @param tags A list of tag in the correct order.
-     * @throws IllegalValueException 
+     * @throws IllegalValueException
      */
     public boolean isListMatching(int startPosition, Tag... tags) throws IllegalArgumentException, IllegalValueException {
         if (tags.length + startPosition != getListView().getItems().size()) {

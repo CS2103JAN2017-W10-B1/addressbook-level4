@@ -33,7 +33,7 @@ public class EventTest {
         Event tester3 = new Event(new Name("tester2"), new TaskDate("20/12/2017"), new TaskTime("6:00"),
                 new TaskDate("20/12/2017"), new TaskTime("6:00"), null, null, null, null, false);
     }
-    
+
     @Test
     public void constructorInvalid1() throws IllegalValueException {
         thrown.expect(IllegalValueException.class);

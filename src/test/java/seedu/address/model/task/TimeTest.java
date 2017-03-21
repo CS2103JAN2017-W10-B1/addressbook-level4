@@ -29,10 +29,10 @@ public class TimeTest {
         assertTrue(TaskTime.isValidTime("23:59")); // latest time
         assertTrue(TaskTime.isValidTime("19:59")); // hour begins with 1
     }
-    
+
     @Test
     public void compareTo() throws IllegalValueException {
-        
+
         TaskTime testerNull = new TaskTime("");
         TaskTime tester1 = new TaskTime("8:00");
         TaskTime tester2 = new TaskTime("18:00");
