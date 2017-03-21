@@ -10,12 +10,12 @@ import seedu.address.model.task.ReadOnlyTask;
 /**
  * Taskcard defines format for individual task view.
  */
-public class TaskCard extends UiPart<Region> {
+public class TaskListCard extends UiPart<Region> {
 
     private static final String FXML = "TaskListCard.fxml";
 
     @FXML
-    private HBox cardPane;
+    private HBox taskCardPane;
     @FXML
     private Label tag;
     @FXML
@@ -37,7 +37,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label isFinished;
 
-    public TaskCard(ReadOnlyTask task, int displayedIndex) {
+    public TaskListCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
         index.setText(displayedIndex + ". ");
         name.setText(task.getName().getDisplayText());
