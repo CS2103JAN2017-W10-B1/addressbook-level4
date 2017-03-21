@@ -16,13 +16,14 @@ import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.UniqueTaskList;
+import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 import seedu.address.model.task.Venue;
 
 
 /**
  * Edits the details of an existing person in the address book.
  */
-public class EditCommand extends Command {
+public class EditCommand extends UndoCommand {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -39,6 +40,8 @@ public class EditCommand extends Command {
 
     private final int filteredTaskListIndex;
     private final EditTaskDescriptor editTaskDescriptor;
+    private Task task;
+    private Task oldTask;
 
     /**
      * @param filteredPersonListIndex the index of the person in the filtered person list to edit
@@ -54,6 +57,13 @@ public class EditCommand extends Command {
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
 
+    public EditCommand(Task task, Task oldTask) {
+        this.task = task;
+        this.oldTask = oldTask;
+        this.filteredTaskListIndex = 0;
+        this.editTaskDescriptor = null;
+    }
+
     @Override
     public CommandResult execute() throws CommandException {
         List<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
@@ -63,10 +73,12 @@ public class EditCommand extends Command {
         }
 
         ReadOnlyTask taskToEdit = lastShownList.get(filteredTaskListIndex);
-        Task editedPerson = createEditedTask(taskToEdit, editTaskDescriptor);
+        this.oldTask = (Task) taskToEdit;
+        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
         try {
-            model.updateTask(filteredTaskListIndex, editedPerson);
+            model.updateTask(filteredTaskListIndex, editedTask);
+            this.task = editedTask;
         } catch (UniqueTaskList.DuplicateTaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
@@ -209,5 +221,28 @@ public class EditCommand extends Command {
     @Override
     public boolean isUndoable() {
         return true;
+    }
+
+    public Task getTask(){
+        return this.task;
+    }
+
+    @Override
+    public CommandResult executeUndo() throws CommandException {
+        try {
+            model.deleteTask(task);
+            model.addTask(oldTask);
+        } catch (UniqueTaskList.DuplicateTaskException dpe) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        } catch (TaskNotFoundException e) {
+            assert false : "The target person cannot be missing";
+        }
+        model.updateFilteredListToShowAllTasks();
+        return new CommandResult(MESSAGE_UNDO_TASK_SUCCESS);
+    }
+
+    @Override
+    public Command getUndoCommand() {
+        return new EditCommand(this.task, this.oldTask);
     }
 }

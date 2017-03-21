@@ -61,7 +61,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     public void setTags(Collection<Tag> tags) throws UniqueTagList.DuplicateTagException {
         this.tags.setTags(tags);
     }
-    
+
     public void setList(Collection<TaskList> list) throws UniqueListList.DuplicateListException {
         this.list.setLists(list);
     }

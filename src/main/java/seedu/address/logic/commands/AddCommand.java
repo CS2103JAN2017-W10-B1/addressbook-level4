@@ -8,6 +8,7 @@ import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.UniqueTaskList;
@@ -16,7 +17,7 @@ import seedu.address.model.task.Venue;
 /**
  * Adds a person to the address book.
  */
-public class AddCommand extends Command {
+public class AddCommand extends UndoCommand {
 
     public static final String COMMAND_WORD = "add";
 
@@ -54,6 +55,10 @@ public class AddCommand extends Command {
         );
     }
 
+    public AddCommand(ReadOnlyTask task){
+        this.toAdd = (Task) task;
+    }
+
     @Override
     public CommandResult execute() throws CommandException {
         assert model != null;
@@ -71,6 +76,23 @@ public class AddCommand extends Command {
 
     @Override
     public boolean isUndoable() {
+        // TODO Auto-generated method stub
         return true;
+    }
+
+    @Override
+    public CommandResult executeUndo() throws CommandException {
+        assert model != null;
+        try {
+            model.addTask(toAdd);
+            return new CommandResult(String.format(MESSAGE_UNDO_TASK_SUCCESS));
+        } catch (UniqueTaskList.DuplicateTaskException e) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+    }
+
+    @Override
+    public Command getUndoCommand() {
+        return new DeleteCommand(getTask());
     }
 }

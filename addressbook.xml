@@ -1,39 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addressbook>
     <tasks>
-        <name>GYM</name>
-        <date></date>
-        <time></time>
-        <tag></tag>
-        <description></description>
-        <venue></venue>
-        <priority>2</priority>
-        <isFravourite>true</isFravourite>
-        <isFinished>false</isFinished>
-    </tasks>
-    <tasks>
-        <name>tutorial</name>
-        <date></date>
-        <time></time>
-        <tag></tag>
-        <description></description>
-        <venue>I3</venue>
-        <priority>2</priority>
-        <isFravourite>false</isFravourite>
-        <isFinished>false</isFinished>
-    </tasks>
-    <tasks>
-        <name>lecture</name>
-        <date>10/3/2017</date>
-        <time>16:00</time>
-        <tag>CS2103</tag>
-        <description>Interesting module</description>
-        <venue>I3</venue>
-        <priority>3</priority>
-        <isFravourite>false</isFravourite>
-        <isFinished>false</isFinished>
-    </tasks>
-    <tasks>
         <name>Tutorial</name>
         <date>8/3/2017</date>
         <time>10:00</time>
@@ -41,51 +8,73 @@
         <description>Interesting module</description>
         <venue>I3</venue>
         <priority>2</priority>
-        <isFravourite>true</isFravourite>
+        <isFavourite>false</isFavourite>
+        <isFinished>true</isFinished>
+    </tasks>
+    <tasks>
+        <name>CS2103T Tutorial</name>
+        <date>8/3/2017</date>
+        <time>10:00</time>
+        <tag>CS2103</tag>
+        <description>Interesting module</description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
         <isFinished>false</isFinished>
     </tasks>
     <tasks>
-        <name>Gym</name>
+        <name>GYM</name>
         <date></date>
         <time></time>
         <tag></tag>
         <description></description>
         <venue></venue>
         <priority>1</priority>
-        <isFravourite>false</isFravourite>
-        <isFinished>false</isFinished>
+        <isFavourite>false</isFavourite>
+        <isFinished>true</isFinished>
     </tasks>
     <tasks>
-        <name>class</name>
+        <name>3</name>
         <date></date>
         <time></time>
         <tag></tag>
         <description></description>
         <venue></venue>
         <priority>2</priority>
-        <isFravourite>false</isFravourite>
+        <isFavourite>false</isFavourite>
         <isFinished>false</isFinished>
     </tasks>
     <tasks>
-        <name>new</name>
+        <name>4</name>
         <date></date>
         <time></time>
         <tag></tag>
         <description></description>
         <venue></venue>
         <priority>2</priority>
-        <isFravourite>false</isFravourite>
+        <isFavourite>false</isFavourite>
         <isFinished>false</isFinished>
     </tasks>
     <tasks>
-        <name>new1</name>
+        <name>001</name>
         <date></date>
         <time></time>
         <tag></tag>
         <description></description>
         <venue></venue>
         <priority>2</priority>
-        <isFravourite>false</isFravourite>
+        <isFavourite>false</isFavourite>
+        <isFinished>false</isFinished>
+    </tasks>
+    <tasks>
+        <name>002</name>
+        <date></date>
+        <time></time>
+        <tag></tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
         <isFinished>false</isFinished>
     </tasks>
     <tags></tags>
