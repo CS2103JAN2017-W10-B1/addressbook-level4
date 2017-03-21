@@ -150,15 +150,20 @@ public class TestTask implements ReadOnlyTask {
 
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();
-        sb.append("add " + this.getName().fullName + " ");
+        sb.append("add " + this.getName().toString() + " ");
         sb.append("due/" + this.getDate().getValue() + " ");
         sb.append("t/" + this.getTime().getValue() + " ");
         sb.append("d/" + this.getDescription().getValue() + " ");
         sb.append("#" + this.getTag().getName() + " ");
         sb.append("@" + this.getVenue().getValue() + " ");
         sb.append("p/" + this.getPriority().getValue() + " ");
+<<<<<<< HEAD
+        if(this.isFavorite()) {
+        		sb.append("*f" + " ");
+=======
         if (this.isFavorite()) {
             sb.append("*f");
+>>>>>>> origin/master
         }
         return sb.toString();
     }
