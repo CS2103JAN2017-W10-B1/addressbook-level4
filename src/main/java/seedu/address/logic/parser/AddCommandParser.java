@@ -23,7 +23,7 @@ import seedu.address.logic.commands.IncorrectCommand;
  */
 public class AddCommandParser {
 
-	private AddCommandParser() {
+    private AddCommandParser() {
 	}
 
     /**

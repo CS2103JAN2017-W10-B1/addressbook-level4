@@ -67,7 +67,7 @@ public class MainWindow extends UiPart<Region> {
     }
 
     public static void InitializeMainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
-    	mainWindow = new MainWindow(primaryStage, config, prefs, logic);
+        mainWindow = new MainWindow(primaryStage, config, prefs, logic);
     }
 
     public Stage getPrimaryStage() {
