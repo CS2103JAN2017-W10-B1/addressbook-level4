@@ -27,7 +27,7 @@ public class Event extends Task implements ReadOnlyEvent {
             this.startTime = startTime;
         }
 
-        if ((startDate.compareTo(endDate) == 0) && (startTime.compareTo(endTime) >= 0)) {
+        if ((startDate.compareTo(endDate) == 0) && (startTime.compareTo(endTime) > 0)) {
             throw new IllegalValueException(MESSAGE_EVENT_CONSTRAINT);
         } else {
             this.startDate = startDate;
