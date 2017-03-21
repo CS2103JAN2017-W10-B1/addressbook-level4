@@ -33,6 +33,7 @@ public class AddCommand extends UndoCommand {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Dueue";
 
     private final Task toAdd;
+    private boolean isSuccess;
 
     /**
      * Creates an AddCommand using raw values.
@@ -54,6 +55,7 @@ public class AddCommand extends UndoCommand {
                 new Priority(priority),
                 isFavourite
         );
+        this.isSuccess = false;
     }
 
     public AddCommand(ReadOnlyTask task) {
@@ -65,8 +67,10 @@ public class AddCommand extends UndoCommand {
         assert model != null;
         try {
             model.addTask(toAdd);
+            this.isSuccess = true;
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (UniqueTaskList.DuplicateTaskException e) {
+            this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
     }
@@ -94,6 +98,11 @@ public class AddCommand extends UndoCommand {
 
     @Override
     public Command getUndoCommand() {
-        return new DeleteCommand(getTask());
+        if(isSuccess){
+            return new DeleteCommand(getTask());
+        }
+        else{
+            return new IncorrectCommand(null);
+        }
     }
 }
