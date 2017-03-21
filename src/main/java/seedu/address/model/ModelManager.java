@@ -90,6 +90,7 @@ public class ModelManager extends ComponentManager implements Model {
 
   //================== List Level Operation ===========================================================
 
+    //@@author A0147984L
     @Override
     public void addList(Tag list) throws UniqueTagList.DuplicateTagException {
         assert list != null;
@@ -97,6 +98,7 @@ public class ModelManager extends ComponentManager implements Model {
         taskManager.addTag(list);
         indicateTaskManagerChanged();
     }
+    //@@author
 
     //=========== Filtered Task List Accessors =============================================================
 
@@ -105,6 +107,7 @@ public class ModelManager extends ComponentManager implements Model {
         return new UnmodifiableObservableList<>(filteredTasks);
     }
 
+    //@@author A0147984L
     @Override
     public void updateFilteredListToShowAllTasks() {
         filteredTasks.setPredicate(t -> !t.isFinished());
@@ -114,6 +117,7 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredListToShowAllTasksAll() {
         filteredTasks.setPredicate(null);
     }
+    //@@author
 
     @Override
     public void updateFilteredTaskList(Set<String> keywords) {
@@ -124,13 +128,15 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks.setPredicate(expression::satisfies);
     }
 
+    //@@author A0147984L
     @Override
     public void updateFilteredTaskListGivenListName(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords)));
     }
+    //@@author
 
     //=========== Filtered List Accessors =============================================================
-
+    //@@author A0147984L
     public UnmodifiableObservableList<Tag> getFilteredTagList() {
         return new UnmodifiableObservableList<>(filteredTag);
     }
@@ -146,6 +152,7 @@ public class ModelManager extends ComponentManager implements Model {
     private void updateFilteredListList(Expression expression) {
         filteredTag.setPredicate(expression::satisfies);
     }
+    //@@author
 
     //========== Inner classes/interfaces used for filtering =================================================
 
@@ -214,6 +221,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
+    //@@author A0147984L
     private class TagQualifier implements Qualifier {
         protected Set<String> tagKeyWords;
 
@@ -239,5 +247,4 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + String.join(", ", tagKeyWords);
         }
     }
-
 }

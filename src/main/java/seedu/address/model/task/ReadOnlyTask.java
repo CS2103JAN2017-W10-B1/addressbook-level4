@@ -3,7 +3,7 @@ package seedu.address.model.task;
 import seedu.address.model.tag.Tag;
 
 /**
- * A read-only immutable interface for a Task in the addressbook.
+ * A read-only immutable interface for a Task in the TaskManager.
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
 public interface ReadOnlyTask {
@@ -20,6 +20,7 @@ public interface ReadOnlyTask {
     String getFavoriteText();
     String getFinishedText();
 
+    //@@author A0147984L
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)
      */

@@ -1,3 +1,4 @@
+//@@author A0147984L
 package seedu.address.model.task;
 
 import static org.junit.Assert.assertFalse;
@@ -18,10 +19,10 @@ public class NameTest {
         //assertFalse(Name.isValidName("List")); // list should be case insensitive
 
         // valid name
-        assertTrue(Name.isValidName("peter jack")); // alphabets only
-        assertTrue(Name.isValidName("12345")); // numbers only
-        assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
-        assertTrue(Name.isValidName("Capital Tan")); // with capital letters
-        assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Name.isValidName("cs")); // alphabets only
+        assertTrue(Name.isValidName("2103")); // numbers only
+        assertTrue(Name.isValidName("cs 2103")); // alphanumeric characters
+        assertTrue(Name.isValidName("Cs 2103")); // with capital letters
+        assertTrue(Name.isValidName("Cs 2103 at Icube")); // long names
     }
 }

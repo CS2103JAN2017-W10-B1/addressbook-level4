@@ -67,6 +67,7 @@ public class Tag implements TaskField {
     public String getName() {
         return this.tagName;
     }
+    //@@author
 
     @Override
     public boolean equals(Object other) {

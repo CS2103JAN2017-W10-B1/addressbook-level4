@@ -15,6 +15,7 @@ import seedu.address.model.task.Venue;
  */
 public class TestTask implements ReadOnlyTask {
 
+    //@@author A0147984L
     private Name name;
     private TaskDate date;
     private TaskTime time;
@@ -142,7 +143,7 @@ public class TestTask implements ReadOnlyTask {
             return "Unfinished";
         }
     }
-
+    //@@author
     @Override
     public String toString() {
         return getAsText();

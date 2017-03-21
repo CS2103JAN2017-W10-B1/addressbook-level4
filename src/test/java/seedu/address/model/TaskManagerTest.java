@@ -1,3 +1,4 @@
+//@@author A0147984L
 package seedu.address.model;
 
 import static org.junit.Assert.assertEquals;
@@ -59,16 +60,22 @@ public class TaskManagerTest {
     @Test
     public void addTask() throws IllegalValueException {
         TaskManager newManager = new TaskManager();
-        Task sample = new Task(new Name("sampleName"), null, null, null, new Tag("sampleTag"), null, null, false);
+        Task sample = new Task(new Name("sampleName"), null, null,
+                null, new Tag("sampleTag"), null, null, false);
+        Task sample2 = new Task(new Name("2"), null, null, null,
+                new Tag("sampleTag"), null, null, false);
+        Task sample3 = new Task(new Name("3"), null, null, null,
+                new Tag("sampleTag2"), null, null, false);
+
         newManager.addTask(sample);
         assertEquals(newManager.getTaskList().size(), 1);
         assertEquals(newManager.getTagList().size(), 1);
         assertEquals(newManager.getTaskList().get(0), sample);
-        Task sample2 = new Task(new Name("2"), null, null, null, new Tag("sampleTag"), null, null, false);
+
         newManager.addTask(sample2);
         assertEquals(newManager.getTaskList().size(), 2);
         assertEquals(newManager.getTagList().size(), 1);
-        Task sample3 = new Task(new Name("3"), null, null, null, new Tag("sampleTag2"), null, null, false);
+
         newManager.addTask(sample3);
         assertEquals(newManager.getTaskList().size(), 3);
         assertEquals(newManager.getTagList().size(), 2);
@@ -77,14 +84,19 @@ public class TaskManagerTest {
     @Test
     public void deleteTask() throws IllegalValueException, TaskNotFoundException {
         TaskManager newManager = new TaskManager();
-        Task sample1 = new Task(new Name("sampleName1"), null, null, null, new Tag("sampleTag1"), null, null, false);
-        Task sample2 = new Task(new Name("sampleName2"), null, null, null, new Tag("sampleTag1"), null, null, false);
-        Task sample3 = new Task(new Name("sampleName3"), null, null, null, new Tag("sampleTag3"), null, null, false);
+        Task sample1 = new Task(new Name("sampleName1"), null, null, null,
+                new Tag("sampleTag1"), null, null, false);
+        Task sample2 = new Task(new Name("sampleName2"), null, null, null,
+                new Tag("sampleTag1"), null, null, false);
+        Task sample3 = new Task(new Name("sampleName3"), null, null, null,
+                new Tag("sampleTag3"), null, null, false);
+
         newManager.addTask(sample1);
         newManager.addTask(sample2);
         newManager.addTask(sample3);
         newManager.removeTask(sample1);
         assertEquals(newManager.getTaskList().size(), 2);
+
         newManager.removeTask(sample3);
         assertEquals(newManager.getTaskList().size(), 1);
     }
@@ -92,24 +104,30 @@ public class TaskManagerTest {
     @Test
     public void udpateTask() throws IllegalValueException {
         TaskManager newManager = new TaskManager();
-        Task sample1 = new Task(new Name("sampleName1"), null, null, null, new Tag("sampleTag1"), null, null, false);
-        Task sample2 = new Task(new Name("sampleName2"), null, null, null, new Tag("sampleTag1"), null, null, false);
-        Task sample3 = new Task(new Name("sampleName3"), null, null, null, new Tag("sampleTag3"), null, null, false);
-        ReadOnlyTask sample4 = new Task(new Name("sampleName4"), null, null, null, new Tag(
-                "sampleTag3"), null, null, false);
-        ReadOnlyTask sample5 = new Task(new Name("sampleName5"), null, null, null, new Tag(
-                "sampleTag5"), null, null, false);
+        Task sample1 = new Task(new Name("sampleName1"), null, null, null,
+                new Tag("sampleTag1"), null, null, false);
+        Task sample2 = new Task(new Name("sampleName2"), null, null, null,
+                new Tag("sampleTag1"), null, null, false);
+        Task sample3 = new Task(new Name("sampleName3"), null, null, null,
+                new Tag("sampleTag3"), null, null, false);
+        ReadOnlyTask sample4 = new Task(new Name("sampleName4"), null, null,
+                null, new Tag("sampleTag3"), null, null, false);
+        ReadOnlyTask sample5 = new Task(new Name("sampleName5"), null, null,
+                null, new Tag("sampleTag5"), null, null, false);
+
         newManager.addTask(sample1);
         newManager.addTask(sample2);
         newManager.addTask(sample3);
         newManager.updateTask(1, sample4);
         assertEquals(newManager.getTaskList().size(), 3);
         assertEquals(newManager.getTagList().size(), 2);
+
         newManager.updateTask(1, sample5);
         assertEquals(newManager.getTaskList().size(), 3);
         assertEquals(newManager.getTagList().size(), 3);
     }
 
+    //@@author
     @Test
     public void resetDataWithDuplicateTasksThrowsAssertionError() throws DuplicateTagException {
         TypicalTestTasks td = new TypicalTestTasks();
@@ -158,5 +176,4 @@ public class TaskManagerTest {
             return tags;
         }
     }
-
 }

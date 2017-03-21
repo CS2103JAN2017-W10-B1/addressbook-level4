@@ -14,6 +14,8 @@ import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.model.task.Venue;
 
 public class SampleDataUtil {
+
+    //@@author A0147984L
     public static Task[] getSampleTasks() {
         try {
             return new Task[] {
@@ -26,6 +28,7 @@ public class SampleDataUtil {
         }
     }
 
+    //@@author
     public static ReadOnlyTaskManager getSampleTaskManager() throws IllegalValueException {
         try {
             TaskManager sampleAB = new TaskManager();
