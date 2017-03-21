@@ -7,11 +7,11 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
 public class TypicalTestTasks {
-    public TestTask gym, cs2103, study, laundry, birthday, assignment, date, meeting;
+    public TestTask gym, cs2103, study, laundry, birthday, assignment, date, meeting, familyDinner;
 
     public TypicalTestTasks() {
         try {
-            gym = new TaskBuilder().withName("gym").withDate("20/12").withTime(
+            gym = new TaskBuilder().withName("gym").withDate("20/12/2018").withTime(
                     "20:00").withDescription("50min workout").
                     withTag("personal").withVenue("gym").withPriority("2").withFavorite(true).build();
             cs2103 = new TaskBuilder().withName("cs2103").withDate("01/01").withTime(
@@ -26,15 +26,18 @@ public class TypicalTestTasks {
             birthday = new TaskBuilder().withName("birthday").withDate("04/09").withTime(
                     "14:00").withDescription("Bf's birthday").
                     withTag("personal").withVenue("home").withPriority("3").withFavorite(true).build();
-            assignment = new TaskBuilder().withName("assignment").withDate("10/12").withTime(
+            assignment = new TaskBuilder().withName("assignment").withDate("10/12/2018").withTime(
                     "10:00").withDescription("IE2150").
                     withTag("study").withVenue("Utown").withPriority("2").withFavorite(true).build();
-            date  = new TaskBuilder().withName("date").withDate("14/02").withTime(
+            date  = new TaskBuilder().withName("date").withDate("14/02/2020").withTime(
                     "12:00").withDescription("Most important day").
                     withTag("personal").withVenue("Gardens by the bay").withPriority("3").withFavorite(false).build();
             meeting = new TaskBuilder().withName("meeting").withDate("01/01").withTime(
                     "12:00").withDescription("Meeting old friends").
                     withTag("school").withVenue("PGP").withPriority("2").withFavorite(false).build();
+            familyDinner = new TaskBuilder().withName("family dinner").withDate("20/11").withTime(
+                    "20:00").withDescription("Meeting families").
+                    withTag("family").withVenue("home").withPriority("important").withFavorite(true).build();
 
         } catch (IllegalValueException e) {
             e.printStackTrace();

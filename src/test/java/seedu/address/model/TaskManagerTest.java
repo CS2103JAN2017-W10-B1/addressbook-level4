@@ -31,6 +31,7 @@ public class TaskManagerTest {
     public ExpectedException thrown = ExpectedException.none();
 
     private final TaskManager taskManager = new TaskManager();
+    private final TypicalTestTasks testUtil = new TypicalTestTasks();
 
     @Test
     public void constructor() {
@@ -60,23 +61,20 @@ public class TaskManagerTest {
     @Test
     public void addTask() throws IllegalValueException {
         TaskManager newManager = new TaskManager();
-        Task sample = new Task(new Name("sampleName"), null, null,
-                null, new Tag("sampleTag"), null, null, false);
-        Task sample2 = new Task(new Name("2"), null, null, null,
-                new Tag("sampleTag"), null, null, false);
-        Task sample3 = new Task(new Name("3"), null, null, null,
-                new Tag("sampleTag2"), null, null, false);
+        Task gym = new Task(testUtil.gym);
+        Task cs2103 = new Task(testUtil.cs2103);
+        Task birthday = new Task(testUtil.birthday);
 
-        newManager.addTask(sample);
+        newManager.addTask(gym);
         assertEquals(newManager.getTaskList().size(), 1);
         assertEquals(newManager.getTagList().size(), 1);
-        assertEquals(newManager.getTaskList().get(0), sample);
+        assertEquals(newManager.getTaskList().get(0), gym);
 
-        newManager.addTask(sample2);
+        newManager.addTask(birthday);
         assertEquals(newManager.getTaskList().size(), 2);
         assertEquals(newManager.getTagList().size(), 1);
 
-        newManager.addTask(sample3);
+        newManager.addTask(cs2103);
         assertEquals(newManager.getTaskList().size(), 3);
         assertEquals(newManager.getTagList().size(), 2);
     }
@@ -84,45 +82,37 @@ public class TaskManagerTest {
     @Test
     public void deleteTask() throws IllegalValueException, TaskNotFoundException {
         TaskManager newManager = new TaskManager();
-        Task sample1 = new Task(new Name("sampleName1"), null, null, null,
-                new Tag("sampleTag1"), null, null, false);
-        Task sample2 = new Task(new Name("sampleName2"), null, null, null,
-                new Tag("sampleTag1"), null, null, false);
-        Task sample3 = new Task(new Name("sampleName3"), null, null, null,
-                new Tag("sampleTag3"), null, null, false);
+        Task gym = new Task(testUtil.gym);
+        Task cs2103 = new Task(testUtil.cs2103);
+        Task birthday = new Task(testUtil.birthday);
 
-        newManager.addTask(sample1);
-        newManager.addTask(sample2);
-        newManager.addTask(sample3);
-        newManager.removeTask(sample1);
+        newManager.addTask(gym);
+        newManager.addTask(cs2103);
+        newManager.addTask(birthday);
+        newManager.removeTask(gym);
         assertEquals(newManager.getTaskList().size(), 2);
 
-        newManager.removeTask(sample3);
+        newManager.removeTask(birthday);
         assertEquals(newManager.getTaskList().size(), 1);
     }
 
     @Test
     public void udpateTask() throws IllegalValueException {
         TaskManager newManager = new TaskManager();
-        Task sample1 = new Task(new Name("sampleName1"), null, null, null,
-                new Tag("sampleTag1"), null, null, false);
-        Task sample2 = new Task(new Name("sampleName2"), null, null, null,
-                new Tag("sampleTag1"), null, null, false);
-        Task sample3 = new Task(new Name("sampleName3"), null, null, null,
-                new Tag("sampleTag3"), null, null, false);
-        ReadOnlyTask sample4 = new Task(new Name("sampleName4"), null, null,
-                null, new Tag("sampleTag3"), null, null, false);
-        ReadOnlyTask sample5 = new Task(new Name("sampleName5"), null, null,
-                null, new Tag("sampleTag5"), null, null, false);
+        Task gym = new Task(testUtil.gym);
+        Task cs2103 = new Task(testUtil.cs2103);
+        Task birthday = new Task(testUtil.birthday);
+        ReadOnlyTask date = new Task(testUtil.date);
+        ReadOnlyTask familyDinner = new Task(testUtil.familyDinner);
 
-        newManager.addTask(sample1);
-        newManager.addTask(sample2);
-        newManager.addTask(sample3);
-        newManager.updateTask(1, sample4);
+        newManager.addTask(gym);
+        newManager.addTask(cs2103);
+        newManager.addTask(birthday);
+        newManager.updateTask(1, date);
         assertEquals(newManager.getTaskList().size(), 3);
         assertEquals(newManager.getTagList().size(), 2);
 
-        newManager.updateTask(1, sample5);
+        newManager.updateTask(1, familyDinner);
         assertEquals(newManager.getTaskList().size(), 3);
         assertEquals(newManager.getTagList().size(), 3);
     }

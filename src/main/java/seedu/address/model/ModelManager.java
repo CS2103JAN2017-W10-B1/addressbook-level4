@@ -1,6 +1,8 @@
 package seedu.address.model;
 
+import java.util.Calendar;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import javafx.collections.transformation.FilteredList;
@@ -133,6 +135,11 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredTaskListGivenListName(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords)));
     }
+
+    @Override
+    public void updateFilteredTaskListGivenDaysToDue(String days) {
+        updateFilteredTaskList(new PredicateExpression(new DateQualifier(days)));
+    }
     //@@author
 
     //=========== Filtered List Accessors =============================================================
@@ -245,6 +252,34 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
         public String toString() {
             return "name=" + String.join(", ", tagKeyWords);
+        }
+    }
+
+    private class DateQualifier implements Qualifier {
+        protected int daysToDue;
+        protected Calendar today;
+
+        DateQualifier(String days) {
+            this.daysToDue = Integer.parseInt(days);
+            today = Calendar.getInstance();
+        }
+
+        @Override
+        public boolean run(ReadOnlyTask task) {
+            long diff = task.getDate().date.getTime() - today.getTime().getTime();
+            return (daysToDue >= TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS))
+                    &&
+                    (0 <= TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+        }
+
+        @Override
+        public boolean run(Tag list) {
+            return false;
+        }
+
+        @Override
+        public String toString() {
+            return "daysToDue=" + daysToDue;
         }
     }
 }
