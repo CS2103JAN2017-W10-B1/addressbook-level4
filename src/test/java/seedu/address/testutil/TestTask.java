@@ -158,7 +158,7 @@ public class TestTask implements ReadOnlyTask {
         sb.append("@" + this.getVenue().getValue() + " ");
         sb.append("p/" + this.getPriority().getValue() + " ");
         if (this.isFavorite()) {
-            sb.append("*f");
+        		sb.append("*f" + " ");
         }
         return sb.toString();
     }
