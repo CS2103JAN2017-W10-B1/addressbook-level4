@@ -41,19 +41,18 @@ public class ListCommandParserTest {
         assertEquals(field.get(listCommand), set);
     }
 
-    /*@Test
-    public void nultipleieldTest() throws Exception {
+    @Test
+    public void multipleFieldTest() throws Exception {
 
         Field field = ListCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
 
-        ListCommandParser tester = new ListCommandParser();
-        ListCommand listCommand =  (ListCommand) tester.parse("personal school");
+        ListCommand listCommand =  (ListCommand) ListCommandParser.parse("personal school");
 
         Set<String> set = new HashSet<String>();
         set.add("personal");
         set.add("school");
 
         assertEquals(field.get(listCommand), set);
-    }*/
+    }
 }
