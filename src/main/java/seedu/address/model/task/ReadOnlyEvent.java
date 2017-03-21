@@ -1,6 +1,6 @@
 package seedu.address.model.task;
 
-public interface ReadOnlyEvent extends ReadOnlyTask{
+public interface ReadOnlyEvent extends ReadOnlyTask {
 
     TaskDate getStartDate();
     TaskTime getStartTime();

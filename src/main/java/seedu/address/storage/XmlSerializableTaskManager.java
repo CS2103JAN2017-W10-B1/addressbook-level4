@@ -78,17 +78,17 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
 
     public ObservableList<TaskList> getList() {
         ArrayList<TaskList> list = new ArrayList<>();
-        try{
-            for(XmlAdaptedTag tag : this.tags){
+        try {
+            for (XmlAdaptedTag tag : this.tags) {
                 TaskList taskList = new TaskList(tag.tagName);
-                for(XmlAdaptedTask t: this.tasks){
-                    if(t.getTagName().equals(tag.tagName)){
+                for (XmlAdaptedTask t: this.tasks) {
+                    if (t.getTagName().equals(tag.tagName)) {
                         taskList.add(t.toModelType());
                     }
                 }
                 list.add(taskList);
             }
-        }catch (IllegalValueException e) {
+        } catch (IllegalValueException e) {
             e.printStackTrace();
             //TODO: better error handling
             return null;

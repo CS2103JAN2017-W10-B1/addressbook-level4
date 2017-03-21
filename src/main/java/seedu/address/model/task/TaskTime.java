@@ -1,8 +1,6 @@
 package seedu.address.model.task;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.concurrent.TimeUnit;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 

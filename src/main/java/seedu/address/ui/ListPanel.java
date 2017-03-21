@@ -34,8 +34,8 @@ public class ListPanel extends UiPart<Region> {
         addToPlaceholder(listPlaceholder);
     }
 
-    private void setConnections(ObservableList<Tag> Tags) {
-        listListView.setItems(Tags);
+    private void setConnections(ObservableList<Tag> tagList) {
+        listListView.setItems(tagList);
         listListView.setCellFactory(listView -> new ListListViewCell());
         setEventHandlerForSelectionChangeEvent();
     }
@@ -66,16 +66,15 @@ public class ListPanel extends UiPart<Region> {
     class ListListViewCell extends ListCell<Tag> {
 
         @Override
-        protected void updateItem(Tag Tag, boolean empty) {
-            super.updateItem(Tag, empty);
+        protected void updateItem(Tag tag, boolean empty) {
+            super.updateItem(tag, empty);
 
-            if (empty || Tag == null) {
+            if (empty || tag == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ListCard(Tag, getIndex() + 1).getRoot());
+                setGraphic(new ListCard(tag, getIndex() + 1).getRoot());
             }
         }
     }
 }
-

@@ -16,7 +16,7 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
-    private String USAGE_MESSAGE = null;
+    private String usageMessage;
 
     /**
      * Creates a HelpCommand using one command .
@@ -24,7 +24,7 @@ public class HelpCommand extends Command {
 
     public HelpCommand(String helpMessage) {
         super();
-        USAGE_MESSAGE = helpMessage;
+        usageMessage = helpMessage;
     }
 
     public HelpCommand() {
@@ -33,11 +33,11 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        if (USAGE_MESSAGE == null) {
+        if (usageMessage == null) {
             EventsCenter.getInstance().post(new ShowHelpRequestEvent());
             return new CommandResult(SHOWING_HELP_MESSAGE);
         } else {
-            return new CommandResult(USAGE_MESSAGE);
+            return new CommandResult(usageMessage);
         }
     }
 

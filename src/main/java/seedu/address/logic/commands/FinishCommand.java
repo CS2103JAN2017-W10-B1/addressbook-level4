@@ -4,13 +4,13 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskTime;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.model.task.Venue;
 
@@ -91,7 +91,8 @@ public class FinishCommand extends UndoCommand {
 
     @Override
     public Command getUndoCommand() {
-        Task newTask = new Task(this.task.getName(),this.task.getDate(),this.task.getTime(),this.task.getDescription(),this.task.getTag(),this.task.getVenue(),this.task.getPriority(),this.task.isFavorite(),false);
+        Task newTask = new Task(this.task.getName(), this.task.getDate(), this.task.getTime(),
+        		this.task.getDescription(), this.task.getTag(), this.task.getVenue(), this.task.getPriority(), this.task.isFavorite(),false);
         return new EditCommand(this.task, newTask);
     }
 

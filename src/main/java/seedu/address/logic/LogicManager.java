@@ -1,6 +1,5 @@
 package seedu.address.logic;
 
-import java.util.ArrayList;
 import java.util.Stack;
 import java.util.logging.Logger;
 
@@ -37,8 +36,8 @@ public class LogicManager extends ComponentManager implements Logic {
     @Override
     public CommandResult execute(String commandText) throws CommandException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
-        if(commandText.equals(UndoCommand.UNDO_COMMAND_WORD)){
-            if(!commandList.isEmpty()){
+        if (commandText.equals(UndoCommand.UNDO_COMMAND_WORD)){
+            if (!commandList.isEmpty()){
                 UndoCommand command = null;
                 try {
                     command = (UndoCommand) commandList.pop().getUndoCommand();
@@ -48,15 +47,13 @@ public class LogicManager extends ComponentManager implements Logic {
                 }
                 command.setData(model);
                 return command.executeUndo();
-            }
-            else{
+            } else {
                 return new CommandResult(UndoCommand.MESSAGE_UNDO_TASK_NOT_SUCCESS);
             }
-        }
-        else{
+        } else {
             Command command = parser.parseCommand(commandText);
             command.setData(model);
-            if(command.isUndoable()){
+            if (command.isUndoable()){
                 commandList.push((UndoCommand) command);
             }
             return command.execute();

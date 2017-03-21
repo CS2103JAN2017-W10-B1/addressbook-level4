@@ -5,13 +5,13 @@ import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskTime;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Venue;
 
 /**
@@ -68,7 +68,7 @@ public class XmlAdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
     public Task toModelType() throws IllegalValueException {
-    	final Name name = new Name(this.name);
+        final Name name = new Name(this.name);
         final TaskDate date = new TaskDate(this.date);
         final TaskTime time = new TaskTime(this.time);
         final Description description = new Description(this.description);
@@ -78,7 +78,7 @@ public class XmlAdaptedTask {
         return new Task(name, date, time, description, tag, venue, priority, isFavourite, isFinished);
     }
 
-    public String getTagName(){
+    public String getTagName() {
         return this.tag;
     }
 }
