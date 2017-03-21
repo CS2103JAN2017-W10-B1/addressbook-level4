@@ -58,7 +58,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
             assert false : "impossble";
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
         }
-        this.value = trimmedDate;
+        this.value = trimmedDate.equals("") ? trimmedDate : parseDate(trimmedDate);
     }
 
     /**

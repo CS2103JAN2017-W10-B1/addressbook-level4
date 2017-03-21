@@ -72,6 +72,7 @@ public class DateTest {
         assertTrue(TaskDate.isValidDate("20/3")); // with valid year without year;
         TaskDate tester1 = new TaskDate("20/3");
         assertEquals(tester1.date.getYear() + 1900, 2018);
+        assertEquals(tester1.getValue(), "20/3/2018");
 
         assertTrue(TaskDate.isValidDate("20/09/2017")); // with valid year after;
         TaskDate tester2 = new TaskDate("20/09/2017");
