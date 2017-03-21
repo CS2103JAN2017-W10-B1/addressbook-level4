@@ -17,11 +17,13 @@ import seedu.address.logic.commands.IncorrectCommand;
  */
 public class FindCommandParser {
 
+    private FindCommandParser() {
+    }
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns an FindCommand object for execution.
      */
-    public Command parse(String args) {
+    public static Command parse(String args) {
         final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(

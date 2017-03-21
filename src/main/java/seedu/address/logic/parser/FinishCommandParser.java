@@ -14,11 +14,13 @@ import seedu.address.logic.commands.IncorrectCommand;
  */
 public class FinishCommandParser {
 
+    private FinishCommandParser() {
+    }
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns an DeleteCommand object for execution.
      */
-    public Command parse(String args) {
+    public static Command parse(String args) {
 
         Optional<Integer> index = ParserUtil.parseIndex(args);
         if (!index.isPresent()) {

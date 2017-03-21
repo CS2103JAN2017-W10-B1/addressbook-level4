@@ -23,8 +23,7 @@ public class ListCommandParserTest {
         Field field = ListCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
 
-        ListCommandParser tester = new ListCommandParser();
-        ListCommand listCommand =  (ListCommand) tester.parse(null);
+        ListCommand listCommand =  (ListCommand) ListCommandParser.parse(null);
         assertEquals(field.get(listCommand), null);
     }
 
@@ -34,8 +33,7 @@ public class ListCommandParserTest {
         Field field = ListCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
 
-        ListCommandParser tester = new ListCommandParser();
-        ListCommand listCommand =  (ListCommand) tester.parse("personal");
+        ListCommand listCommand =  (ListCommand) ListCommandParser.parse("personal");
 
         Set<String> set = new HashSet<String>();
         set.add("personal");
