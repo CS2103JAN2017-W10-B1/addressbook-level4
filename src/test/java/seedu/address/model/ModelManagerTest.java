@@ -71,7 +71,7 @@ public class ModelManagerTest {
         modelManager = new ModelManager();
         modelManager.resetData(testUtil.getTypicalTaskManager());
     }
-    
+
     @Test
     public void testFilterTag() {
         modelManager.resetData(testUtil.getTypicalTaskManager());
