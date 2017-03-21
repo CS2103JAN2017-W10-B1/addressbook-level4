@@ -137,8 +137,13 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void updateFilteredTaskListGivenDaysToDue(String days) {
+    public void updateFilteredTaskListGivenDaysToDueBy(String days) {
         updateFilteredTaskList(new PredicateExpression(new DateQualifier(days)));
+    }
+
+    @Override
+    public void updateFilteredTaskListGivenDaysToDueOn(String days) {
+        updateFilteredTaskList(new PredicateExpression(new DateQualifierOn(days)));
     }
     //@@author
 
@@ -280,6 +285,21 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
         public String toString() {
             return "daysToDue=" + daysToDue;
+        }
+    }
+
+    private class DateQualifierOn extends DateQualifier implements Qualifier {
+        protected int daysToDue;
+        protected Calendar today;
+
+        DateQualifierOn(String days) {
+            super(days);
+        }
+
+        @Override
+        public boolean run(ReadOnlyTask task) {
+            long diff = task.getDate().date.getTime() - today.getTime().getTime();
+            return daysToDue == TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
         }
     }
 }

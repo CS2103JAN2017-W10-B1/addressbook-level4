@@ -67,31 +67,33 @@ public class ModelManagerTest {
         assertEquals(modelManager.getFilteredTaskList().size(), 2);
     }
 
+    private void initModelManager() {
+        modelManager = new ModelManager();
+        modelManager.resetData(testUtil.getTypicalTaskManager());
+    }
+    
     @Test
     public void testFilterTag() {
         modelManager.resetData(testUtil.getTypicalTaskManager());
         assertEquals(modelManager.getFilteredTaskList().size(), 5);
 
-        modelManager.updateFilteredTaskListGivenDaysToDue("0");
+        modelManager.updateFilteredTaskListGivenDaysToDueBy("0");
         assertEquals(modelManager.getFilteredTaskList().size(), 0);
 
-        modelManager = new ModelManager();
-        modelManager.resetData(testUtil.getTypicalTaskManager());
+        initModelManager();
 
-        modelManager.updateFilteredTaskListGivenDaysToDue("100");
+        modelManager.updateFilteredTaskListGivenDaysToDueBy("100");
         assertEquals(modelManager.getFilteredTaskList().size(), 1);
         assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "laundry");
 
-        modelManager = new ModelManager();
-        modelManager.resetData(testUtil.getTypicalTaskManager());
+        initModelManager();
 
-        modelManager.updateFilteredTaskListGivenDaysToDue("365");
+        modelManager.updateFilteredTaskListGivenDaysToDueBy("365");
         assertEquals(modelManager.getFilteredTaskList().size(), 4);
 
-        modelManager = new ModelManager();
-        modelManager.resetData(testUtil.getTypicalTaskManager());
+        initModelManager();
 
-        modelManager.updateFilteredTaskListGivenDaysToDue("700");
+        modelManager.updateFilteredTaskListGivenDaysToDueBy("700");
         assertEquals(modelManager.getFilteredTaskList().size(), 5);
     }
 

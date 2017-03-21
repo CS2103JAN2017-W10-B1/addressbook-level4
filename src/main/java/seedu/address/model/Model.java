@@ -55,7 +55,10 @@ public interface Model {
     void updateFilteredTaskListGivenListName(Set<String> keywords);
 
     /** Updates the filter of the filtered task list to filter by the days to due*/
-    void updateFilteredTaskListGivenDaysToDue(String days);
+    void updateFilteredTaskListGivenDaysToDueBy(String days);
+
+    /** Updates the filter of the filtered task list to filter on the days to due*/
+    void updateFilteredTaskListGivenDaysToDueOn(String days);
 
     /** Adds the given list */
     void addList(Tag tag) throws UniqueTagList.DuplicateTagException;
