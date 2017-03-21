@@ -41,6 +41,14 @@ public class Tag implements TaskField {
         this.tagName = trimmedName;
     }
 
+    /**
+     * Creates a copy of the given Tag.
+     */
+
+    public Tag(Tag source) throws IllegalValueException {
+        this(source.getName());
+    }
+
      /**
      * Returns true if a given string is a valid tag name.
      * @throws IllegalValueException
