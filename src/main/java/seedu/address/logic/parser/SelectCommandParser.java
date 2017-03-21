@@ -13,11 +13,13 @@ import seedu.address.logic.commands.SelectCommand;
  */
 public class SelectCommandParser {
 
+    private SelectCommandParser() {
+    }
     /**
      * Parses the given {@code String} of arguments in the context of the SelectCommand
      * and returns an SelectCommand object for execution.
      */
-    public Command parse(String args) {
+    public static Command parse(String args) {
         Optional<Integer> index = ParserUtil.parseIndex(args);
         if (!index.isPresent()) {
             return new IncorrectCommand(

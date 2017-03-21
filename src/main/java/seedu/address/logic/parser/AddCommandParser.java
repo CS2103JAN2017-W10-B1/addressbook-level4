@@ -23,11 +23,14 @@ import seedu.address.logic.commands.IncorrectCommand;
  */
 public class AddCommandParser {
 
+	private AddCommandParser() {
+	}
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      */
-    public Command parse(String args) {
+    public static Command parse(String args) {
         if (args == null) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -52,11 +55,11 @@ public class AddCommandParser {
         }
     }
 
-    private boolean checkPresent(Optional<String> args) {
+    private static boolean checkPresent(Optional<String> args) {
         return args.isPresent();
     }
 
-    private String checkString(Optional<String> args) {
+    private static String checkString(Optional<String> args) {
         return args.orElse("");
     }
 

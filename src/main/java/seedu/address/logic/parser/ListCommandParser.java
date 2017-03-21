@@ -15,11 +15,13 @@ import seedu.address.logic.commands.ListCommand;
  */
 public class ListCommandParser {
 
+    private ListCommandParser() {
+    }
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns an FindCommand object for execution.
      */
-    public Command parse(String args) {
+    public static Command parse(String args) {
         if (args == null) {
             return new ListCommand();
         }
