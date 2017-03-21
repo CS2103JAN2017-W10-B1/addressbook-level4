@@ -15,7 +15,7 @@ public class TagListCard extends UiPart<Region> {
     private static final String FXML = "TagListCard.fxml";
 
     @FXML
-    private HBox cardPane;
+    private HBox tagCardPane;
     @FXML
     private Label index;
     @FXML
