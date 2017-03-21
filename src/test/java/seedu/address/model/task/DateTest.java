@@ -12,8 +12,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 
-import seedu.address.model.task.TaskDate;
-
 public class DateTest {
 
     @SuppressWarnings("deprecation")
@@ -26,7 +24,7 @@ public class DateTest {
         Date date1 = myFormat.parse(inputString1);
         Date date2 = myFormat.parse(inputString2);
         long diff = date2.getTime() - date1.getTime();
-        assertEquals(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS),1);
+        assertEquals(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS), 1);
 
         // invalid date
         assertFalse(TaskDate.isValidDate(" ")); // space only
