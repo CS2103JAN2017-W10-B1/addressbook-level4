@@ -68,4 +68,7 @@ public interface Model {
 
     /** Updates the filter of the filtered tag list to filter by the given keywords*/
     void updateFilteredListList(Set<String> keywords);
+
+    /** Check whether the listname has already been taken*/
+	boolean isListExist(String listName);
 }

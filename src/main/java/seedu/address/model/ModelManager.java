@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
@@ -100,7 +101,22 @@ public class ModelManager extends ComponentManager implements Model {
         taskManager.addTag(list);
         indicateTaskManagerChanged();
     }
-    //@@author
+
+    //@@author A0143409J
+    @Override
+    public boolean isListExist(String listName) {
+        assert listName != null;
+
+        ObservableList<Tag> tagList = taskManager.getTagList();
+        for (Tag tag : tagList) {
+        	if (tag.getName().toString() == listName) {
+        		return false;
+        	}
+        }
+        return true;
+    }
+
+    //@@authorA0147984L
 
     //=========== Filtered Task List Accessors =============================================================
 
