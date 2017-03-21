@@ -43,6 +43,6 @@ public class DeleteCommandParserTest {
 
         IncorrectCommand incorrectCommand =  (IncorrectCommand) DeleteCommandParser.parse("0\n");
         assertEquals(field.get(incorrectCommand),
-        		String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }
