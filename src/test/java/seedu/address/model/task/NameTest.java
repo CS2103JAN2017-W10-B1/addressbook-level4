@@ -22,7 +22,7 @@ public class NameTest {
         assertTrue(Name.isValidName("cs 2103")); // alphanumeric characters
         assertTrue(Name.isValidName("Cs 2103")); // with capital letters
         assertTrue(Name.isValidName("Cs 2103 at Icube")); // long names
-        
+
         // reserved name
         assertTrue(Name.isValidName("list")); // reserved name
         assertTrue(Name.isReservedName("list")); // list is a reserved key word
