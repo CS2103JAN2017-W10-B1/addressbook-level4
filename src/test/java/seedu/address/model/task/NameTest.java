@@ -15,8 +15,6 @@ public class NameTest {
         assertFalse(Name.isValidName(" ")); // spaces only
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
         assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
-        //assertFalse(Name.isValidName("list")); // list is a reserved key word
-        //assertFalse(Name.isValidName("List")); // list should be case insensitive
 
         // valid name
         assertTrue(Name.isValidName("cs")); // alphabets only
@@ -24,5 +22,10 @@ public class NameTest {
         assertTrue(Name.isValidName("cs 2103")); // alphanumeric characters
         assertTrue(Name.isValidName("Cs 2103")); // with capital letters
         assertTrue(Name.isValidName("Cs 2103 at Icube")); // long names
+
+        // reserved name
+        assertTrue(Name.isValidName("list")); // reserved name
+        assertTrue(Name.isReservedName("list")); // list is a reserved key word
+        assertTrue(Name.isReservedName("List")); // list should be case insensitive
     }
 }

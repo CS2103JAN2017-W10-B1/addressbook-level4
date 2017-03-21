@@ -8,15 +8,19 @@ import seedu.address.commons.exceptions.IllegalValueException;
  */
 public class Name implements TaskField {
 
-    public static final String MESSAGE_NAME_CONSTRAINTS =
+    public static final String MESSAGE_NAME_CONSTRAINTS_1 =
             "Task names should only contain alphanumeric characters and spaces, "
             + "and it should not be blank, or be 'list' since it is reserved for command";
+    public static final String MESSAGE_NAME_CONSTRAINTS_2 =
+            " is a reserved name.";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String NAME_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String RESERVED_NAME = "(?i)"
+            + "(list)";
 
     public final String fullName;
 
@@ -29,9 +33,9 @@ public class Name implements TaskField {
         assert name != null;
         String trimmedName = name.trim();
         if (!isValidName(trimmedName)) {
-            throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
-        } else if (trimmedName.equalsIgnoreCase("list")) {
-            throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS_1);
+        } else if (isReservedName(trimmedName)) {
+            throw new IllegalValueException(trimmedName + MESSAGE_NAME_CONSTRAINTS_2);
         }
         this.fullName = trimmedName;
     }
@@ -43,6 +47,9 @@ public class Name implements TaskField {
         return test.matches(NAME_VALIDATION_REGEX);
     }
 
+    public static boolean isReservedName(String test) {
+        return test.matches(RESERVED_NAME);
+    }
 
     @Override
     public String toString() {

@@ -81,7 +81,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
     @Test
     public void editInvalidValuesFailure() {
         commandBox.runCommand("edit 1 n/*&");
-        assertResultMessage(Name.MESSAGE_NAME_CONSTRAINTS);
+        assertResultMessage(Name.MESSAGE_NAME_CONSTRAINTS_1);
 
         commandBox.runCommand("edit 1 due/1111");
         assertResultMessage(TaskDate.MESSAGE_DATE_CONSTRAINTS_1);

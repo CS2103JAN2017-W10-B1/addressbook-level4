@@ -48,11 +48,17 @@ public interface Model {
     /** Updates the filter of the filtered task list to show all tasks */
     void updateFilteredListToShowAllTasksAll();
 
-    /** Updates the filter of the filtered task list to filter by the given keywords*/
+    /** Updates the filter of the unfinished filtered task list to filter by the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
 
-    /** Updates the filter of the filtered task list to filter by the given list name*/
+    /** Updates the filter of the filtered task list to filter by the given keywords*/
+    void updateFilteredTaskListAll(Set<String> keywords);
+
+    /** Updates the filter of the unfinished filtered task list to filter by the given list name*/
     void updateFilteredTaskListGivenListName(Set<String> keywords);
+
+    /** Updates the filter of the filtered task list to filter by the given list name*/
+    void updateFilteredTaskListGivenListNameAll(Set<String> keywords);
 
     /** Updates the filter of the filtered task list to filter by the days to due*/
     void updateFilteredTaskListGivenDaysToDueBy(String days);

@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
@@ -128,14 +129,13 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author A0147984L
     @Override
     public void updateFilteredListToShowAllTasks() {
-        filteredTasks.setPredicate(t -> !t.isFinished());
+        updateFilteredTaskList(new PredicateExpression(new UnfinishedQualifier()));
     }
 
     @Override
     public void updateFilteredListToShowAllTasksAll() {
         filteredTasks.setPredicate(null);
     }
-    //@@author
 
     @Override
     public void updateFilteredTaskList(Set<String> keywords) {
@@ -146,20 +146,29 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks.setPredicate(expression::satisfies);
     }
 
-    //@@author A0147984L
+    @Override
+    public void updateFilteredTaskListAll(Set<String> keywords) {
+        updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords), new UnfinishedQualifier()));
+    }
+
     @Override
     public void updateFilteredTaskListGivenListName(Set<String> keywords) {
+        updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords), new UnfinishedQualifier()));
+    }
+
+    @Override
+    public void updateFilteredTaskListGivenListNameAll(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords)));
     }
 
     @Override
     public void updateFilteredTaskListGivenDaysToDueBy(String days) {
-        updateFilteredTaskList(new PredicateExpression(new DateQualifier(days)));
+        updateFilteredTaskList(new PredicateExpression(new DateQualifier(days), new UnfinishedQualifier()));
     }
 
     @Override
     public void updateFilteredTaskListGivenDaysToDueOn(String days) {
-        updateFilteredTaskList(new PredicateExpression(new DateQualifierOn(days)));
+        updateFilteredTaskList(new PredicateExpression(new DateQualifierOn(days), new UnfinishedQualifier()));
     }
     //@@author
 
@@ -192,25 +201,36 @@ public class ModelManager extends ComponentManager implements Model {
 
     private class PredicateExpression implements Expression {
 
-        private final Qualifier qualifier;
+        private final HashSet<Qualifier> qualifiers;
 
-        PredicateExpression(Qualifier qualifier) {
-            this.qualifier = qualifier;
+        PredicateExpression(Qualifier...qualifiers) {
+            this.qualifiers = new HashSet<>();
+            for (Qualifier qualifier : qualifiers) {
+                this.qualifiers.add(qualifier);
+            }
         }
 
         @Override
         public boolean satisfies(ReadOnlyTask task) {
-            return qualifier.run(task);
+            return qualifiers.stream().
+                    filter(qualifier -> qualifier.run(task)).count()
+                    == this.qualifiers.size();
         }
 
         @Override
         public boolean satisfies(Tag list) {
-            return qualifier.run(list);
+            return qualifiers.stream().
+                    filter(qualifier -> qualifier.run(list)).count()
+                    == this.qualifiers.size();
         }
 
         @Override
         public String toString() {
-            return qualifier.toString();
+            String returnString = "";
+            for (Qualifier qualifier : this.qualifiers) {
+                returnString += qualifier.toString();
+            }
+            return returnString;
         }
     }
 
@@ -250,6 +270,26 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     //@@author A0147984L
+    private class UnfinishedQualifier implements Qualifier {
+
+        UnfinishedQualifier() {}
+
+        @Override
+        public boolean run(ReadOnlyTask task) {
+            return !task.isFinished();
+        }
+
+        @Override
+        public boolean run(Tag list) {
+            return false;
+        }
+
+        @Override
+        public String toString() {
+            return "name=" + "unfinished";
+        }
+    }
+
     private class TagQualifier implements Qualifier {
         protected Set<String> tagKeyWords;
 
