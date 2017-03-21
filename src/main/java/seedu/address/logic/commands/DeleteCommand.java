@@ -82,9 +82,9 @@ public class DeleteCommand extends UndoCommand {
 
     @Override
     public Command getUndoCommand() {
-        if(isSuccess){
+        if (isSuccess) {
             return new AddCommand(task);
-        }else{
+        } else {
             return new IncorrectCommand(null);
         }
     }

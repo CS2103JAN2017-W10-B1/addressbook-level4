@@ -39,7 +39,7 @@ public class LogicManager extends ComponentManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         if (commandText.equals(UndoCommand.UNDO_COMMAND_WORD)) {
-            do{
+            do {
                 if (!commandList.isEmpty()) {
                     UndoCommand command = null;
                     try {
@@ -48,15 +48,14 @@ public class LogicManager extends ComponentManager implements Logic {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                    if(!command.COMMAND_WORD.equals(IncorrectCommand.COMMAND_WORD)){
+                    if (!command.COMMAND_WORD.equals(IncorrectCommand.COMMAND_WORD)) {
                         command.setData(model);
                         return command.executeUndo();
-                    }
-                    else{
+                    } else {
                         this.canUndo = true;
                     }
                 }
-            }while(canUndo);
+            } while(canUndo);
             return new CommandResult(UndoCommand.MESSAGE_UNDO_TASK_NOT_SUCCESS);
         } else {
             Command command = parser.parseCommand(commandText);

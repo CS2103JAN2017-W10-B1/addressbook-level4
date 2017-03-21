@@ -266,9 +266,9 @@ public class EditCommand extends UndoCommand {
 
     @Override
     public Command getUndoCommand() {
-        if(isSuccess){
+        if (isSuccess) {
             return new EditCommand(this.task, this.oldTask);
-        }else{
+        } else {
             return new IncorrectCommand(null);
         }
     }

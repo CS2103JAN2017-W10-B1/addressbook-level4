@@ -95,12 +95,11 @@ public class FinishCommand extends UndoCommand {
 
     @Override
     public Command getUndoCommand() {
-        if(isSuccess){
+        if (isSuccess) {
             Task newTask = new Task(task.getName(), task.getDate(), task.getTime(), task.getDescription(),
                     task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(), false);
             return new EditCommand(task, newTask);
-        }
-        else{
+        } else {
             return new IncorrectCommand(null);
         }
     }
