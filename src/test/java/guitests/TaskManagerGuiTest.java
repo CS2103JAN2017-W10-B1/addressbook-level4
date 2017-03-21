@@ -13,9 +13,9 @@ import org.junit.rules.TestName;
 import org.testfx.api.FxToolkit;
 
 import guitests.guihandles.CommandBoxHandle;
-import guitests.guihandles.ListPanelHandle;
 import guitests.guihandles.MainGuiHandle;
 import guitests.guihandles.ResultDisplayHandle;
+import guitests.guihandles.TagListPanelHandle;
 import guitests.guihandles.TaskCardHandle;
 import guitests.guihandles.TaskListPanelHandle;
 import javafx.application.Platform;
@@ -46,7 +46,7 @@ public abstract class TaskManagerGuiTest {
      *   for easy access from child classes.
      */
     protected MainGuiHandle mainGui;
-    protected ListPanelHandle listPanel;
+    protected TagListPanelHandle tagListPanel;
     protected TaskListPanelHandle taskListPanel;
     protected ResultDisplayHandle resultDisplay;
     protected CommandBoxHandle commandBox;
@@ -67,7 +67,7 @@ public abstract class TaskManagerGuiTest {
         FxToolkit.setupStage((stage) -> {
             mainGui = new MainGuiHandle(new GuiRobot(), stage);
             taskListPanel = mainGui.getTaskListPanel();
-            listPanel = mainGui.getListPanel();
+            tagListPanel = mainGui.getTagListPanel();
             resultDisplay = mainGui.getResultDisplay();
             commandBox = mainGui.getCommandBox();
             this.stage = stage;
