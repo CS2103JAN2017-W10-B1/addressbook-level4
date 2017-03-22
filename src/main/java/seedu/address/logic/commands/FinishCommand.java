@@ -88,7 +88,7 @@ public class FinishCommand extends AbleUndoCommand {
 
 
     @Override
-    public CommandResult executeUndo() throws CommandException {
+    public CommandResult executeUndo(String message) throws CommandException {
         return null;
     }
 

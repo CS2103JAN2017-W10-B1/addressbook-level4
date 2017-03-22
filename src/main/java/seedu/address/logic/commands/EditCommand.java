@@ -272,7 +272,7 @@ public class EditCommand extends AbleUndoCommand {
     }
 
     @Override
-    public CommandResult executeUndo() throws CommandException {
+    public CommandResult executeUndo(String message) throws CommandException {
         try {
             model.deleteTask(task);
             model.addTask(oldTask);
@@ -282,7 +282,8 @@ public class EditCommand extends AbleUndoCommand {
             assert false : "The target person cannot be missing";
         }
         model.updateFilteredListToShowAllTasks();
-        return new CommandResult(MESSAGE_UNDO_TASK_SUCCESS);
+        this.isSuccess = true;
+        return new CommandResult(message);
     }
 
     @Override

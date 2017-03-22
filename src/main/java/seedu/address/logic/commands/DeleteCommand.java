@@ -70,14 +70,15 @@ public class DeleteCommand extends AbleUndoCommand {
     }
 
     @Override
-    public CommandResult executeUndo() throws CommandException {
+    public CommandResult executeUndo(String message) throws CommandException {
         try {
             model.deleteTask(task);
+            this.isSuccess = true;
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target person cannot be missing";
         }
 
-        return new CommandResult(String.format(MESSAGE_UNDO_TASK_SUCCESS));
+        return new CommandResult(String.format(message));
     }
 
     @Override

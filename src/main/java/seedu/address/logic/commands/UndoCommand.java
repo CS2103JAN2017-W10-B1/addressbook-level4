@@ -28,12 +28,14 @@ public class UndoCommand extends Command {
     
     private AbleUndoCommand undoCommand;
     private boolean canUndo = false;
+    Stack<AbleUndoCommand> undoCommandList;
 
-    public UndoCommand(Stack<AbleUndoCommand> commandList) {
+    public UndoCommand(Stack<AbleUndoCommand> commandList, Stack<AbleUndoCommand> undoCommandList) {
         do{        
             if (!commandList.isEmpty()) {
                 try {
                     this.undoCommand = (AbleUndoCommand) commandList.pop().getUndoCommand();
+                    this.undoCommandList = undoCommandList;
                 } catch (IllegalValueException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -51,10 +53,11 @@ public class UndoCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException {
         if(this.undoCommand == null){
-            throw new CommandException(MESSAGE_UNSUCCESSFUL);
+            throw new CommandException(MESSAGE_UNSUCCESS);
         }else{
             this.undoCommand.setData(model);
-            return this.undoCommand.executeUndo();
+            this.undoCommandList.push(this.undoCommand);
+            return this.undoCommand.executeUndo(MESSAGE_SUCCESS);
         }
     }
 

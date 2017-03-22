@@ -85,11 +85,12 @@ public class AddCommand extends AbleUndoCommand {
     }
 
     @Override
-    public CommandResult executeUndo() throws CommandException {
+    public CommandResult executeUndo(String message) throws CommandException {
         assert model != null;
         try {
             model.addTask(toAdd);
-            return new CommandResult(String.format(MESSAGE_UNDO_TASK_SUCCESS));
+            this.isSuccess = true;
+            return new CommandResult(String.format(message));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
