@@ -2,6 +2,7 @@
 package seedu.address.model.task;
 
 import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;

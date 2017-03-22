@@ -8,7 +8,7 @@ import seedu.address.model.task.UniqueTaskList;
 
 public class TypicalTestTasks {
     public TestTask gym, cs2103, study, laundry, birthday, assignment, date, meeting,
-    familyDinner, travel, shopping;
+        familyDinner, travel, shopping;
 
     public TypicalTestTasks() {
         try {
