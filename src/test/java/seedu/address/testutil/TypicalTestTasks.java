@@ -7,7 +7,8 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
 public class TypicalTestTasks {
-    public TestTask gym, cs2103, study, laundry, birthday, assignment, date, meeting, familyDinner;
+    public TestTask gym, cs2103, study, laundry, birthday, assignment, date, meeting,
+    familyDinner, travel, shopping;
 
     public TypicalTestTasks() {
         try {
@@ -35,10 +36,15 @@ public class TypicalTestTasks {
             meeting = new TaskBuilder().withName("meeting").withDate("01/01").withTime(
                     "12:00").withDescription("Meeting old friends").
                     withTag("school").withVenue("PGP").withPriority("2").withFavorite(false).build();
-            familyDinner = new TaskBuilder().withName("family dinner").withDate("20/11").withTime(
+            familyDinner = new TaskBuilder().withName("family dinner").withDate("1/1").withTime(
                     "20:00").withDescription("Meeting families").
                     withTag("family").withVenue("home").withPriority("important").withFavorite(true).build();
-
+            travel = new TaskBuilder().withName("travel").withDate("1/01").withTime(
+                    "21:00").withDescription("To Africa").
+                    withTag("personal").withVenue("Africa").withPriority("important").withFavorite(true).build();
+            shopping = new TaskBuilder().withName("shopping").withDate("1/01").withTime(
+                    "21:00").withDescription("Shopping in Airport").
+                    withTag("personal").withVenue("Airport").withPriority("3").withFavorite(true).build();
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";
