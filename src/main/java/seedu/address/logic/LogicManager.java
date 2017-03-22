@@ -10,7 +10,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.IncorrectCommand;
-import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.AbleUndoCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Parser;
 import seedu.address.model.Model;
@@ -26,7 +26,7 @@ public class LogicManager extends ComponentManager implements Logic {
 
     private final Model model;
     private final Parser parser;
-    private final Stack<UndoCommand> commandList;
+    private final Stack<AbleUndoCommand> commandList;
     private boolean canUndo;
 
     public LogicManager(Model model, Storage storage) {
@@ -38,12 +38,12 @@ public class LogicManager extends ComponentManager implements Logic {
     @Override
     public CommandResult execute(String commandText) throws CommandException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
-        if (commandText.equals(UndoCommand.UNDO_COMMAND_WORD)) {
+        if (commandText.equals(AbleUndoCommand.UNDO_COMMAND_WORD)) {
             do {
                 if (!commandList.isEmpty()) {
-                    UndoCommand command = null;
+                    AbleUndoCommand command = null;
                     try {
-                        command = (UndoCommand) commandList.pop().getUndoCommand();
+                        command = (AbleUndoCommand) commandList.pop().getUndoCommand();
                     } catch (IllegalValueException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -56,12 +56,12 @@ public class LogicManager extends ComponentManager implements Logic {
                     }
                 }
             } while(canUndo);
-            return new CommandResult(UndoCommand.MESSAGE_UNDO_TASK_NOT_SUCCESS);
+            return new CommandResult(AbleUndoCommand.MESSAGE_UNDO_TASK_NOT_SUCCESS);
         } else {
             Command command = parser.parseCommand(commandText);
             command.setData(model);
             if (command.isUndoable()) {
-                commandList.push((UndoCommand) command);
+                commandList.push((AbleUndoCommand) command);
             }
             return command.execute();
         }

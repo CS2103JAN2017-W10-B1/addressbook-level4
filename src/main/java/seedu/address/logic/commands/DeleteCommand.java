@@ -11,7 +11,7 @@ import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 /**
  * Deletes a person identified using it's last displayed index from the address book.
  */
-public class DeleteCommand extends UndoCommand {
+public class DeleteCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "delete";
 

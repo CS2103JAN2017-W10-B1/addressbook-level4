@@ -17,7 +17,7 @@ import seedu.address.model.task.Venue;
 /**
  * Adds a person to the address book.
  */
-public class AddCommand extends UndoCommand {
+public class AddCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "add";
 

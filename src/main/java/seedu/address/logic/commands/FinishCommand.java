@@ -18,7 +18,7 @@ import seedu.address.model.task.Venue;
 /**
  * Deletes a person identified using it's last displayed index from the address book.
  */
-public class FinishCommand extends UndoCommand {
+public class FinishCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "finish";
 

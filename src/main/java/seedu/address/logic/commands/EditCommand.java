@@ -24,7 +24,7 @@ import seedu.address.model.task.Venue;
 /**
  * Edits the details of an existing person in the address book.
  */
-public class EditCommand extends UndoCommand {
+public class EditCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "edit";
 
