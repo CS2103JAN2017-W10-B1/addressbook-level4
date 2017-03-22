@@ -20,6 +20,7 @@ import seedu.address.logic.commands.FinishCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.UndoCommand;
 
@@ -39,7 +40,7 @@ public class Parser {
      * @param userInput full user input string
      * @return the command based on the user input
      */
-    public Command parseCommand(String userInput, Stack<AbleUndoCommand> commandList) {
+    public Command parseCommand(String userInput, Stack<AbleUndoCommand> commandList, Stack<AbleUndoCommand> undoCommandList) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -50,27 +51,37 @@ public class Parser {
         switch (commandWord) {
 
         case UndoCommand.COMMAND_WORD:
-            return new UndoCommand(commandList);
+            return new UndoCommand(commandList, undoCommandList);
+            
+        case RedoCommand.COMMAND_WORD:
+            commandList.clear();
+            return new RedoCommand(undoCommandList);
             
         case AddCommand.COMMAND_WORD:
+            undoCommandList.clear();
             return AddCommandParser.parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case EditCommand.COMMAND_WORD:
+            undoCommandList.clear();
             return EditCommandParser.parse(arguments);
 
         case SelectCommand.COMMAND_WORD:
             return SelectCommandParser.parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
+            undoCommandList.clear();
             return DeleteCommandParser.parse(arguments);
 
         case FinishCommand.COMMAND_WORD:
+            undoCommandList.clear();
             return FinishCommandParser.parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
+            commandList.clear();
+            undoCommandList.clear();
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:

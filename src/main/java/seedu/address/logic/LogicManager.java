@@ -27,18 +27,19 @@ public class LogicManager extends ComponentManager implements Logic {
     private final Model model;
     private final Parser parser;
     private final Stack<AbleUndoCommand> commandList;
-    private boolean canUndo;
+    private final Stack<AbleUndoCommand> redoCommandList;
 
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.parser = new Parser();
         this.commandList = new Stack<AbleUndoCommand>();
+        this.redoCommandList = new Stack<AbleUndoCommand>();
     }
     //@@Author ShermineJong A0138474X
     @Override
     public CommandResult execute(String commandText) throws CommandException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
-        Command command = parser.parseCommand(commandText,commandList);
+        Command command = parser.parseCommand(commandText,commandList,redoCommandList);
         command.setData(model);
         if (command.isUndoable()) {
             commandList.push((AbleUndoCommand) command);
