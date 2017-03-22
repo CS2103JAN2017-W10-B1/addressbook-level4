@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -110,6 +111,20 @@ public class UniqueTaskList implements Iterable<Task> {
     public UnmodifiableObservableList<Task> asObservableList() {
         return new UnmodifiableObservableList<>(internalList);
     }
+
+    //@@author A0147984L
+    /**
+     * Sort the UniqueTaskList. In the priority of 
+     * due date > priority > due time > name > tag
+     */
+    public void sort() {
+        Collections.sort(internalList, (Task t1, Task t2) -> t1.getTag().compareTo(t2.getTag()));
+        Collections.sort(internalList, (Task t1, Task t2) -> t1.getName().compareTo(t2.getName()));
+        Collections.sort(internalList, (Task t1, Task t2) -> t1.getTime().compareTo(t2.getTime()));
+        Collections.sort(internalList, (Task t1, Task t2) -> -t1.getPriority().compareTo(t2.getPriority()));
+        Collections.sort(internalList, (Task t1, Task t2) -> t1.getDate().compareTo(t2.getDate()));
+    }
+    //@@author
 
     @Override
     public Iterator<Task> iterator() {
