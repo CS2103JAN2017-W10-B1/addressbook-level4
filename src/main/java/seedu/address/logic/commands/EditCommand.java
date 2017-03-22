@@ -123,7 +123,13 @@ public class EditCommand extends UndoCommand {
         Tag updatedTag = editTaskDescriptor.getTag().orElseGet(taskToEdit::getTag);
         Venue updatedVenue = editTaskDescriptor.getVenue().orElseGet(taskToEdit::getVenue);
         Priority updatedPriority = editTaskDescriptor.getPriority().orElseGet(taskToEdit::getPriority);
-        boolean isFavourite = editTaskDescriptor.getFavourite();
+        boolean isFavourite;
+        if(editTaskDescriptor.getIsFavouriteEdited()){
+            isFavourite = editTaskDescriptor.getFavourite();
+        }
+        else{
+            isFavourite = taskToEdit.isFavorite();
+        }
         boolean isFinished = taskToEdit.isFinished();
 
         return new Task(updatedName, updatedDate, updatedTime, updatedDescription,
@@ -157,6 +163,7 @@ public class EditCommand extends UndoCommand {
             this.venue = toCopy.getVenue();
             this.priority = toCopy.getPriority();
             this.isFavourite = toCopy.getFavourite();
+            this.isFavouriteEdited = toCopy.getIsFavouriteEdited();
         }
 
          /**
@@ -165,7 +172,7 @@ public class EditCommand extends UndoCommand {
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyPresent(
                     this.name, this.date, this.time,
-                    this.description, this.tag, this.venue, this.priority) || isFavouriteEdited;
+                    this.description, this.tag, this.venue, this.priority) || this.isFavouriteEdited;
         }
 
         public void setName(Optional<Name> name) {
@@ -232,13 +239,27 @@ public class EditCommand extends UndoCommand {
         }
 
         public void setIsFavourite(boolean isFavourite) {
-            this.isFavourite = isFavourite;
-            this.isFavouriteEdited = true;
+            if(isFavourite) {
+                this.isFavouriteEdited = true;
+                this.isFavourite = true;
+            }
         }
 
         private boolean getFavourite() {
-            return isFavourite;
+            return this.isFavourite;
         }
+        
+        private boolean getIsFavouriteEdited() {
+            return this.isFavouriteEdited;
+        }
+        
+        public void setIsUnfavourite(boolean isUnFavourite) {
+            if(isUnFavourite){
+                this.isFavouriteEdited = true;
+                this.isFavourite = false;
+            }
+        }
+
     }
 
     @Override

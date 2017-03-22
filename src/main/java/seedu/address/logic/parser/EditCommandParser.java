@@ -1,4 +1,4 @@
-//@@Author ShermineJong A0138474X
+//@@ author A0138474X
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -55,7 +55,7 @@ public class EditCommandParser {
             editTaskDescriptor.setVenue(ParserUtil.parseVenue(argsTokenizer.getValue(PREFIX_VENUE)));
             editTaskDescriptor.setPriority(ParserUtil.parsePriority(argsTokenizer.getValue(PREFIX_PRIORITY)));
             editTaskDescriptor.setIsFavourite(ParserUtil.isFavourite(argsTokenizer.getValue(PREFIX_FAVOURITE)));
-            editTaskDescriptor.setIsFavourite(!ParserUtil.isUnfavourite(argsTokenizer.getValue(PREFIX_UNFAVOURITE)));
+            editTaskDescriptor.setIsUnfavourite(ParserUtil.isUnfavourite(argsTokenizer.getValue(PREFIX_UNFAVOURITE)));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }

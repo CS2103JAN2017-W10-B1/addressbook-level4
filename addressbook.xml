@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addressbook>
     <tasks>
-        <name>CS2103 Lecture</name>
-        <date>10/3</date>
+        <name>CS2103 lecture</name>
+        <date>10/3/2018</date>
         <time>16:00</time>
         <tag>CS2103</tag>
         <description>Interesting module</description>
         <venue>I3</venue>
         <priority>3</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>false</isFinished>
+    </tasks>
+    <tasks>
+        <name>GYM</name>
+        <date>01/01/2020</date>
+        <time>00:00</time>
+        <tag>Inbox</tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
         <isFavourite>false</isFavourite>
         <isFinished>false</isFinished>
     </tasks>
     <tasks>
-        <name>gym</name>
-        <date>01/01/2020</date>
-        <time>00:00</time>
-        <tag></tag>
+        <name>class</name>
+        <date></date>
+        <time></time>
+        <tag>Inbox</tag>
         <description></description>
         <venue></venue>
         <priority>2</priority>
@@ -23,5 +34,5 @@
         <isFinished>false</isFinished>
     </tasks>
     <tags>CS2103</tags>
-    <tags></tags>
+    <tags>Inbox</tags>
 </addressbook>
