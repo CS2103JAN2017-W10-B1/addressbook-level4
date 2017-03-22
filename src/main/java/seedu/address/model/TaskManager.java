@@ -84,6 +84,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     public void addTask(Task p) throws DuplicateTaskException {
         syncMasterTagListWith(p);
         tasks.add(p);
+        tasks.sort();
     }
 
     /**
@@ -105,6 +106,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         // This can cause the tags master list to have additional tags that are not tagged to any task
         // in the task list.
         tasks.updateTask(index, editedTask);
+        tasks.sort();
     }
 
     /**
