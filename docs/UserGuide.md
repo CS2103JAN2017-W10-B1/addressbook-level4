@@ -73,11 +73,14 @@ Examples:
 
 Shows a list of all tasks in Dueue in a specific list and/or favourite and switch to that list and/or favourite<br>
 Format: `list [favourite]`<br>
-Format: `list list LISTINDEX [favourite]`<br>
-Format: `list list LISTNAME [favourite]`
+Format: `list LISTINDEX [favourite]`<br>
+Format: `list LISTNAME [favourite]`
 
 Shows all unfinished tasks in Dueue and unswitch<br>
 Format: `list`
+
+Shows all finished tasks in Dueue and unswitch<br>
+Format: `list finished`
 
 Shows all tasks in Dueue (finished and unfinished) and unswitch<br>
 Format: `list all`
