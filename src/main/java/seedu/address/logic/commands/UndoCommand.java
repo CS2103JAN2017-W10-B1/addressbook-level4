@@ -14,7 +14,7 @@ public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
 
     public static final String MESSAGE_SUCCESS = "Undo last task successfully.";
-    
+
     public static final String MESSAGE_UNSUCCESS = "No task to undo";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks as per the parameters\n"
@@ -25,13 +25,13 @@ public class UndoCommand extends Command {
     private static final String LIST_SEPARATOR = ", ";
 
     private static final String MESSAGE_UNSUCCESSFUL = null;
-    
+
     private AbleUndoCommand undoCommand;
     private boolean canUndo = false;
     Stack<AbleUndoCommand> undoCommandList;
 
     public UndoCommand(Stack<AbleUndoCommand> commandList, Stack<AbleUndoCommand> undoCommandList) {
-        do{        
+        do {
             if (!commandList.isEmpty()) {
                 try {
                     this.undoCommand = (AbleUndoCommand) commandList.pop().getUndoCommand();
@@ -52,9 +52,9 @@ public class UndoCommand extends Command {
 
     @Override
     public CommandResult execute() throws CommandException {
-        if(this.undoCommand == null){
+        if (this.undoCommand == null) {
             throw new CommandException(MESSAGE_UNSUCCESS);
-        }else{
+        } else {
             this.undoCommand.setData(model);
             this.undoCommandList.push(this.undoCommand);
             return this.undoCommand.executeUndo(MESSAGE_SUCCESS);

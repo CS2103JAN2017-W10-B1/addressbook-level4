@@ -124,10 +124,9 @@ public class EditCommand extends AbleUndoCommand {
         Venue updatedVenue = editTaskDescriptor.getVenue().orElseGet(taskToEdit::getVenue);
         Priority updatedPriority = editTaskDescriptor.getPriority().orElseGet(taskToEdit::getPriority);
         boolean isFavourite;
-        if(editTaskDescriptor.getIsFavouriteEdited()){
+        if (editTaskDescriptor.getIsFavouriteEdited()) {
             isFavourite = editTaskDescriptor.getFavourite();
-        }
-        else{
+        } else {
             isFavourite = taskToEdit.isFavorite();
         }
         boolean isFinished = taskToEdit.isFinished();
@@ -239,7 +238,7 @@ public class EditCommand extends AbleUndoCommand {
         }
 
         public void setIsFavourite(boolean isFavourite) {
-            if(isFavourite) {
+            if (isFavourite) {
                 this.isFavouriteEdited = true;
                 this.isFavourite = true;
             }
@@ -248,13 +247,13 @@ public class EditCommand extends AbleUndoCommand {
         private boolean getFavourite() {
             return this.isFavourite;
         }
-        
+
         private boolean getIsFavouriteEdited() {
             return this.isFavouriteEdited;
         }
-        
+
         public void setIsUnfavourite(boolean isUnFavourite) {
-            if(isUnFavourite){
+            if (isUnFavourite) {
                 this.isFavouriteEdited = true;
                 this.isFavourite = false;
             }
