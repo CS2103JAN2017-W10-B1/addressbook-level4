@@ -3,13 +3,14 @@ package seedu.address.model.tag;
 
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.TaskField;
 
 /**
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag implements TaskField {
+public class Tag implements TaskField, Comparable<Tag> {
 
     public static final String MESSAGE_TAG_CONSTRAINTS_1 = "Tags names should be alphanumeric without space";
     public static final String MESSAGE_TAG_CONSTRAINTS_2 = " is reserved so cannot be used as a tag name";
@@ -86,6 +87,11 @@ public class Tag implements TaskField {
      */
     public String toString() {
         return '[' + tagName + ']';
+    }
+
+    @Override
+    public int compareTo(Tag other) {
+        return this.tagName.compareTo(other.tagName);
     }
 
     @Override
