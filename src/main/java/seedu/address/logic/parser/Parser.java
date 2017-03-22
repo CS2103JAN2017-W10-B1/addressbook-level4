@@ -4,9 +4,11 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.AbleUndoCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -19,6 +21,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.UndoCommand;
 
 /**
  * Parses user input.
@@ -36,7 +39,7 @@ public class Parser {
      * @param userInput full user input string
      * @return the command based on the user input
      */
-    public Command parseCommand(String userInput) {
+    public Command parseCommand(String userInput, Stack<AbleUndoCommand> commandList) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -46,6 +49,9 @@ public class Parser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand(commandList);
+            
         case AddCommand.COMMAND_WORD:
             return AddCommandParser.parse(arguments);
 

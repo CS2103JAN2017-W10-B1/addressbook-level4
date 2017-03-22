@@ -33,6 +33,28 @@
         <isFavourite>false</isFavourite>
         <isFinished>false</isFinished>
     </tasks>
+    <tasks>
+        <name>4</name>
+        <date></date>
+        <time></time>
+        <tag>Inbox</tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>false</isFinished>
+    </tasks>
+    <tasks>
+        <name>3</name>
+        <date></date>
+        <time></time>
+        <tag>Inbox</tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>false</isFinished>
+    </tasks>
     <tags>CS2103</tags>
     <tags>Inbox</tags>
 </addressbook>
