@@ -1,4 +1,4 @@
-//@@author Matilda_yxx A0147996E
+//@@author A0147996E
 package seedu.address.ui;
 
 import java.util.logging.Logger;
@@ -56,7 +56,6 @@ public class CommandBox extends UiPart<Region> {
             raise(new NewResultAvailableEvent(e.getMessage()));
         }
     }
-
 
     /**
      * Sets the command box style to indicate a successful command.

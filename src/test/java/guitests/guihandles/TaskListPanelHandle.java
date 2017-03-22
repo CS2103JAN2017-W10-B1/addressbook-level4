@@ -1,4 +1,4 @@
-//@@author Matilda_yxx A0147996E
+//@@author A0147996E
 package guitests.guihandles;
 
 import static org.junit.Assert.assertTrue;
@@ -24,7 +24,7 @@ import seedu.address.testutil.TestUtil;
 public class TaskListPanelHandle extends GuiHandle {
 
     public static final int NOT_FOUND = -1;
-    public static final String CARD_PANE_ID = "#taskCardPane";
+    public static final String CARD_PANE_ID = "taskCardPane";
 
     private static final String TASK_LIST_VIEW_ID = "#taskListView";
 
@@ -153,7 +153,7 @@ public class TaskListPanelHandle extends GuiHandle {
     public TaskCardHandle getTaskCardHandle(ReadOnlyTask task) {
         Set<Node> nodes = getAllCardNodes();
         Optional<Node> taskCardNode = nodes.stream()
-                .filter(n -> new TaskCardHandle(guiRobot, primaryStage, n).isSameTask(task))
+                .filter(n -> new TaskCardHandle(guiRobot, primaryStage, n).isSameStateAs(task))
                 .findFirst();
         if (taskCardNode.isPresent()) {
             return new TaskCardHandle(guiRobot, primaryStage, taskCardNode.get());
