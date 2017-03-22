@@ -114,7 +114,7 @@ public class UniqueTaskList implements Iterable<Task> {
 
     //@@author A0147984L
     /**
-     * Sort the UniqueTaskList. In the priority of 
+     * Sort the UniqueTaskList. In the priority of
      * due date > priority > due time > name > tag
      */
     public void sort() {
