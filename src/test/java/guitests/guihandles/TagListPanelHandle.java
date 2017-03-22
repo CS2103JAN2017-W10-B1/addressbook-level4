@@ -1,4 +1,4 @@
-//@@author Matilda_yxx A0147996E
+//@@author A0147996E
 package guitests.guihandles;
 
 import static org.junit.Assert.assertTrue;
@@ -23,7 +23,7 @@ import seedu.address.testutil.TestUtil;
 public class TagListPanelHandle extends GuiHandle {
 
     public static final int NOT_FOUND = -1;
-    public static final String CARD_PANE_ID = "#tagCardPane";
+    public static final String CARD_PANE_ID = "tagCardPane";
 
     private static final String TAG_LIST_VIEW_ID = "#tagListView";
 
