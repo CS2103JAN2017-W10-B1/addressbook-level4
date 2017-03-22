@@ -16,7 +16,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     public static final String MESSAGE_DATE_CONSTRAINTS_1 = "task due date should be the form dd/mm or dd/mm/yyyy";
-    public static final String MESSAGE_DATE_CONSTRAINTS_2 = "task due date should not be before today";
 
     public static final String DATE_VALIDATION_REGEX = ".*/.*";
     public static final String DAY_MONTH_SEPARATOR = "/";
@@ -112,45 +111,28 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     }
 
     private String parseDate(String validDate) throws IllegalValueException {
-        // TODO: refactor
         String[] dayMonthYear = validDate.split(DAY_MONTH_SEPARATOR);
         if (dayMonthYear.length == 3) {
-            try {
-                Date date = FORMATTER.parse(validDate);
-                if (date.compareTo(today.getTime()) < 0) {
-                    throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_2);
-                } else {
-                    return validDate;
-                }
-            } catch (ParseException e) {
-                assert false : "impossible";
-            }
-        } else {
-            String day = dayMonthYear[0];
-            String month = dayMonthYear[1];
-            String year = Integer.toString(today.get(Calendar.YEAR));
-            try {
-                String returnDate = day + DAY_MONTH_SEPARATOR + month + DAY_MONTH_SEPARATOR + year;
-                Date date = FORMATTER.parse(returnDate);
-                if (date.compareTo(today.getTime()) < 0) {
-                    year = Integer.toString(today.get(Calendar.YEAR) + 1);
-                } else {
-                    if (!isValidDay(day, month, year)) {
-                        throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
-                    } else {
-                        return returnDate;
-                    }
-                }
+            return validDate;
+        }
+        String day = dayMonthYear[0];
+        String month = dayMonthYear[1];
+        String year = Integer.toString(today.get(Calendar.YEAR));
+        try {
+            String returnDate = day + DAY_MONTH_SEPARATOR + month + DAY_MONTH_SEPARATOR + year;
+            Date date = FORMATTER.parse(returnDate);
+            if (date.compareTo(today.getTime()) < 0) {
+                year = Integer.toString(today.get(Calendar.YEAR) + 1);
                 returnDate = day + DAY_MONTH_SEPARATOR + month + DAY_MONTH_SEPARATOR + year;
-                date = FORMATTER.parse(returnDate);
-                if (!isValidDay(day, month, year)) {
-                    throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
-                } else {
-                    return returnDate;
-                }
-            } catch (ParseException e) {
-                assert false : "impossible";
             }
+            date = FORMATTER.parse(returnDate);
+            if (!isValidDay(day, month, year)) {
+                throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
+            } else {
+                return returnDate;
+            }
+        } catch (ParseException e) {
+            assert false : "impossible";
         }
         assert false : "impossible";
         return validDate;

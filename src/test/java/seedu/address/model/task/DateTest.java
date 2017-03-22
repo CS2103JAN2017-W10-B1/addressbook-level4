@@ -58,13 +58,6 @@ public class DateTest {
         // but it should throw exception at construction, because next year is 2018
         TaskDate tester2 = new TaskDate("29/2");
     }
-    @Test
-    public void testOnBeforeToday() throws IllegalValueException {
-
-        assertTrue(TaskDate.isValidDate("20/3/2017")); // with valid year but before today
-        thrown.expect(IllegalValueException.class);
-        TaskDate tester1 = new TaskDate("20/3/2017");
-    }
 
     @SuppressWarnings("deprecation")
     @Test
