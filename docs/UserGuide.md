@@ -103,17 +103,17 @@ Examples:
 * `list lists`<br>
   List all listname with list indices
 
-### 2.4. Adding a new list : `add list`
+### 2.4. Adding a new list : `addlist`
 
 Add a new list in Dueue<br>
-Format: `add list LISTNAME`
+Format: `addlist LISTNAME`
 
 > * Listname cannot be the same as other existing lists
 > * Listname cannot begin with numbers
 
 Examples:
 
-* `add list school`
+* `addlist school`
 
 ### 2.5. Updating a list : `update list`
 
