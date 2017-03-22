@@ -258,7 +258,6 @@ public class EditCommand extends AbleUndoCommand {
                 this.isFavourite = false;
             }
         }
-
     }
 
     @Override
