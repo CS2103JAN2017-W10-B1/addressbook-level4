@@ -1,6 +1,8 @@
 //@@author A0147996E
 package guitests.guihandles;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -58,7 +60,7 @@ public class TaskListPanelHandle extends GuiHandle {
                     "Expected " + (getListView().getItems().size() - 1) + " tasks\n");
         }
         //The order of the task list should be ordered first by date then by priority
-        /*assertTrue(this.containsInOrder(startPosition, tasks));
+        assertTrue(this.containsInOrder(startPosition, tasks));
         for (int i = 0; i < tasks.length; i++) {
             final int scrollTo = i + startPosition;
             guiRobot.interact(() -> getListView().scrollTo(scrollTo));
@@ -66,7 +68,7 @@ public class TaskListPanelHandle extends GuiHandle {
             if (!TestUtil.compareCardAndTask(getTaskCardHandle(startPosition + i), tasks[i])) {
                 return false;
             }
-        }*/
+        }
         return true;
     }
 
@@ -139,7 +141,6 @@ public class TaskListPanelHandle extends GuiHandle {
 
     public TaskCardHandle getTaskCardHandle(ReadOnlyTask task) {
         Set<Node> nodes = getAllCardNodes();
-        //if(nodes.stream() != null) throw new IllegalStateException("Nodes are present");
         Optional<Node> taskCardNode = nodes.stream()
                 .filter(n -> new TaskCardHandle(guiRobot, primaryStage, n).isSameStateAs(task))
                 .findAny();

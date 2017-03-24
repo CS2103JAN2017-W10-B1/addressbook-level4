@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
@@ -86,7 +87,6 @@ public class TestUtil {
             return null;
         }
     }
-
 
     private static Tag[] getSampleTagData() {
         try {
@@ -273,6 +273,7 @@ public class TestUtil {
         return list.get(list.size() - 1);
     }
 
+//@@ author A0147996E
     /**
      * Removes a subset from the list of tasks.
      * @param tasks The list of tasks
@@ -316,7 +317,17 @@ public class TestUtil {
     public static TestTask[] addTasksToList(final TestTask[] tasks, TestTask... tasksToAdd) {
         List<TestTask> listOfTasks = asList(tasks);
         listOfTasks.addAll(asList(tasksToAdd));
+        listOfTasks = sort(listOfTasks);
         return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
+    }
+
+    public static List<TestTask> sort(List<TestTask> list) {
+        Collections.sort(list, (TestTask t1, TestTask t2) -> t1.getTag().compareTo(t2.getTag()));
+        Collections.sort(list, (TestTask t1, TestTask t2) -> t1.getName().compareTo(t2.getName()));
+        Collections.sort(list, (TestTask t1, TestTask t2) -> t1.getTime().compareTo(t2.getTime()));
+        Collections.sort(list, (TestTask t1, TestTask t2) -> -t1.getPriority().compareTo(t2.getPriority()));
+        Collections.sort(list, (TestTask t1, TestTask t2) -> t1.getDate().compareTo(t2.getDate()));
+        return list;
     }
 
     private static <T> List<T> asList(T[] objs) {
@@ -334,23 +345,5 @@ public class TestUtil {
     public static boolean compareCardAndTag(TagCardHandle card, Tag tag) {
         return card.isSameTag(tag);
     }
-    public static Tag[] getTagList(String tags) {
-        if ("".equals(tags)) {
-            return new Tag[]{};
-        }
-
-        final String[] split = tags.split(", ");
-
-        final List<Tag> collect = Arrays.asList(split).stream().map(e -> {
-            try {
-                return new Tag(e.replaceFirst("Tag: ", ""));
-            } catch (IllegalValueException e1) {
-                //not possible
-                assert false;
-                return null;
-            }
-        }).collect(Collectors.toList());
-
-        return collect.toArray(new Tag[split.length]);
-    }
+//@@ author
 }
