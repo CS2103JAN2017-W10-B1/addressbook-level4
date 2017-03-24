@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.ClearCommand.MESSAGE_SUCCESS;
 import org.junit.Test;
 
 public class ClearCommandTest extends TaskManagerGuiTest {
-    
+
     @Test
     public void clear() {
         //verify a non-empty list can be cleared
@@ -17,7 +17,7 @@ public class ClearCommandTest extends TaskManagerGuiTest {
         //verify other commands can work after a clear command
         commandBox.runCommand(td.gym.getAddCommand());
         assertTrue(taskListPanel.isListMatching(td.gym));
-        
+
         commandBox.runCommand("delete 1");
         assertListSize(0);
 
