@@ -1,7 +1,6 @@
 package seedu.address.model.task;
 
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.TestTask;
 
 /**
  * A read-only immutable interface for a Task in the TaskManager.
