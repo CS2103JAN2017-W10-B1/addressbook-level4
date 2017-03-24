@@ -58,7 +58,7 @@ public class TaskListPanelHandle extends GuiHandle {
                     "Expected " + (getListView().getItems().size() - 1) + " tasks\n" +
             	        "Real length is " + tasks.length);
         }
-        //The order of the task list should be ordered first by date then by priority 
+        //The order of the task list should be ordered first by date then by priority
         /*assertTrue(this.containsInOrder(startPosition, tasks));
         for (int i = 0; i < tasks.length; i++) {
             final int scrollTo = i + startPosition;
@@ -104,7 +104,7 @@ public class TaskListPanelHandle extends GuiHandle {
      */
     public TaskCardHandle navigateToTask(TestTask testTask) {
         guiRobot.sleep(500); //Allow a bit of time for the list to be updated
-       
+
         List<ReadOnlyTask> tasksInList = getListView().getItems();
         for (int i = 0; i <= tasksInList.size(); i++) {
             if (tasksInList.size() == i) throw new IllegalStateException ("Matched task not found");

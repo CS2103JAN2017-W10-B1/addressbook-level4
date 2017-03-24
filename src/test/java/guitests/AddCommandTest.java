@@ -22,7 +22,7 @@ public class AddCommandTest extends TaskManagerGuiTest {
         TestTask taskToAdd = td.assignment;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
- 
+
         //add another task
         taskToAdd = td.date;
         assertAddSuccess(taskToAdd, currentList);
