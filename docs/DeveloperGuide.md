@@ -361,6 +361,7 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | mark a task as favorite | maintain a favorite category across different lists
 `* * *` | user | unfavorite a task | no longer want to mark the task as finished
 `* * *` | user | view the help message for a specific feature | know how to use a command
+`* *` | user | find specific tasks with name containing given keywords | easily organize my tasks
 `* *` | first-time user | view the entire help messages | get to know various commands
 `* *` | user | list all finished and unfinised tasks sorted by date first then by priority| manage all tasks 
 `* *` | user | view next n days' tasks | know what to do in n days' time

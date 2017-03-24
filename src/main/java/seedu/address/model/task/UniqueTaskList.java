@@ -162,5 +162,4 @@ public class UniqueTaskList implements Iterable<Task> {
             super("The task requested is not found");
         }
     }
-
 }
