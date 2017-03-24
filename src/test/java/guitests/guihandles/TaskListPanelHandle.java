@@ -55,8 +55,7 @@ public class TaskListPanelHandle extends GuiHandle {
     public boolean isListMatching(int startPosition, ReadOnlyTask... tasks) throws IllegalArgumentException {
         if (tasks.length + startPosition != getListView().getItems().size()) {
             throw new IllegalArgumentException("List size mismatched\n" +
-                    "Expected " + (getListView().getItems().size() - 1) + " tasks\n" +
-            	        "Real length is " + tasks.length);
+                    "Expected " + (getListView().getItems().size() - 1) + " tasks\n");
         }
         //The order of the task list should be ordered first by date then by priority
         /*assertTrue(this.containsInOrder(startPosition, tasks));
@@ -144,7 +143,6 @@ public class TaskListPanelHandle extends GuiHandle {
         Optional<Node> taskCardNode = nodes.stream()
                 .filter(n -> new TaskCardHandle(guiRobot, primaryStage, n).isSameStateAs(task))
                 .findAny();
-        if(!taskCardNode.isPresent()) throw new IllegalStateException("No node present");
         if (taskCardNode.isPresent()) {
             return new TaskCardHandle(guiRobot, primaryStage, taskCardNode.get());
         } else {

@@ -55,7 +55,6 @@ public class AddCommandTest extends TaskManagerGuiTest {
 
         //confirm the new card contains the right data
         TaskCardHandle addedCard = taskListPanel.navigateToTask(taskToAdd);
-        if(addedCard == null) throw new IllegalArgumentException("Card is not defined");
         assertMatching(taskToAdd, addedCard);
 
         //confirm the list now contains all previous persons plus the new person
