@@ -328,7 +328,8 @@ public class TestUtil {
     }
 
     public static boolean compareCardAndTask(TaskCardHandle card, ReadOnlyTask task) {
-        return card.isSameStateAs(task);
+        if(card == null) throw new IllegalArgumentException("Card is not defined");
+    		return card.isSameStateAs(task);
     }
 
     public static boolean compareCardAndTag(TagCardHandle card, Tag tag) {
