@@ -125,7 +125,7 @@ public class TestTask implements ReadOnlyTask {
     public boolean isFinished() {
         return isFinished;
     }
-
+//@@ author A0147996E
     @Override
     public String getFavoriteText() {
         if (isFavorite) {
