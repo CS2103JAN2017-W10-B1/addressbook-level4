@@ -84,7 +84,7 @@ public class TaskCardHandle extends GuiHandle {
             	    tagEq = false;
             }
         }
-    	return ((other != null) 
+    	return ((other != null)
                 && (other.getName().getDisplayText().equals(this.getName()))
                 && dateEq && timeEq && tagEq);
     }
