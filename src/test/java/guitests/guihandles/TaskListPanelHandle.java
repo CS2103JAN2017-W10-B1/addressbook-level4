@@ -99,6 +99,9 @@ public class TaskListPanelHandle extends GuiHandle {
         return true;
     }
 
+    /**
+     * Navigates the listview to display and select the task.
+     */
     public TaskCardHandle navigateToTask(TestTask testTask) {
         guiRobot.sleep(500); //Allow a bit of time for the list to be updated
        
@@ -110,22 +113,6 @@ public class TaskListPanelHandle extends GuiHandle {
             }
         } return null;
     }
-
-    /**
-     * Navigates the listview to display and select the task.
-     */
-    public TaskCardHandle navigateToTask(ReadOnlyTask task) {
-        int index = getTaskIndex(task);
-
-        guiRobot.interact(() -> {
-            getListView().scrollTo(index);
-            guiRobot.sleep(150);
-            getListView().getSelectionModel().select(index);
-        });
-        guiRobot.sleep(100);
-        return getTaskCardHandle(task);
-    }
-
 
     /**
      * Returns the position of the task given, {@code NOT_FOUND} if not found in the list.
