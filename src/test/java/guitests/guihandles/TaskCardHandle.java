@@ -32,7 +32,6 @@ public class TaskCardHandle extends GuiHandle {
     }
 
     public String getName() {
-    		if(getTextFromLabel(NAME_FIELD_ID) != null) throw new IllegalStateException("Name is found " + getTextFromLabel(NAME_FIELD_ID));
         return getTextFromLabel(NAME_FIELD_ID);
     }
 
@@ -69,13 +68,12 @@ public class TaskCardHandle extends GuiHandle {
     }
 
     public boolean isSameStateAs(ReadOnlyTask other) {
-        return true;
-        /*other != null // this is first to avoid NPE below
-                && true || other.getName().toString().equals(this.getName());
-                && other.getDate().toString().equals(this.getDate())
-                && other.getTime().toString().equals(this.getTime())
-                && other.getTag().toString().equals(this.getTag())); // state checks here onwards
-    */}
+        return other != null // this is first to avoid NPE below
+                && other.getName().getDisplayText().equals(this.getName())
+                && other.getDate().getDisplayText().equals(this.getDate())
+                && other.getTime().getDisplayText().equals(this.getTime())
+                && other.getTag().getDisplayText().equals(this.getTag()); // state checks here onwards
+    }
 
     @Override
     public boolean equals(Object obj) {
