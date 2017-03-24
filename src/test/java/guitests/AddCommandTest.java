@@ -8,8 +8,6 @@ import org.junit.Test;
 import guitests.guihandles.TaskCardHandle;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommand;
-//import seedu.address.commons.core.Messages;
-//import seedu.address.logic.commands.AddCommand;
 import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
@@ -17,7 +15,7 @@ public class AddCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void add() {
-        //*TO DO*: add a floating task with name only
+        //TODO: add a floating task with name only
         TestTask[] currentList = td.getTypicalTasks();
         TestTask taskToAdd = td.cs2103;
         assertAddSuccess(taskToAdd, currentList);
