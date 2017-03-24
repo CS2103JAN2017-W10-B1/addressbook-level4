@@ -17,25 +17,43 @@ public class AddCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void add() {
-        //add task by name only
+        //*TO DO*: add a floating task with name only
         TestTask[] currentList = td.getTypicalTasks();
-        TestTask taskToAdd = td.assignment;
+        TestTask taskToAdd = td.cs2103;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
-        //add another task
+        //add a task with other fields other than name
         taskToAdd = td.date;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
-        //add duplicate task
+        //add an invalid duplicate task
         commandBox.runCommand(td.date.getAddCommand());
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
         assertTrue(taskListPanel.isListMatching(currentList));
 
+        //add a task with duplicate name with existing unfinished task under different lists
+        taskToAdd = td.date2;
+        commandBox.runCommand(td.date2.getAddCommand());
+        assertAddSuccess(taskToAdd, currentList);
+        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
+
+        //add a task with duplicate name and list but different date
+        taskToAdd = td.date3;
+        commandBox.runCommand(td.date3.getAddCommand());
+        assertAddSuccess(taskToAdd, currentList);
+        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
+
+        //add a task with duplicate name, list, date but different time
+        taskToAdd = td.date4;
+        commandBox.runCommand(td.date4.getAddCommand());
+        assertAddSuccess(taskToAdd, currentList);
+        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
+
         //add to empty list
         commandBox.runCommand("clear");
-        assertAddSuccess(td.gym);
+        assertAddSuccess(td.assignment);
 
         //unknown command
         commandBox.runCommand("adds homework");

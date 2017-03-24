@@ -7,7 +7,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
 public class TypicalTestTasks {
-    public TestTask gym, cs2103, study, laundry, birthday, assignment, date, meeting,
+    public TestTask gym, cs2103, study, laundry, birthday, assignment, date, date2, date3, date4, meeting,
         familyDinner, travel, shopping;
 
     public TypicalTestTasks() {
@@ -30,9 +30,20 @@ public class TypicalTestTasks {
             assignment = new TaskBuilder().withName("assignment").withDate("10/12/2018").withTime(
                     "10:00").withDescription("IE2150").
                     withTag("study").withVenue("Utown").withPriority("2").withFavorite(true).build();
+            //The test tasks below are for duplicate task testing
             date  = new TaskBuilder().withName("date").withDate("14/02/2020").withTime(
                     "12:00").withDescription("Most important day").
                     withTag("personal").withVenue("Gardens by the bay").withPriority("3").withFavorite(false).build();
+            date2  = new TaskBuilder().withName("date").withDate("14/02/2020").withTime(
+                    "12:00").withDescription("Most important day").
+                    withTag("private").withVenue("Gardens by the bay").withPriority("3").withFavorite(false).build();
+            date3  = new TaskBuilder().withName("date").withDate("15/02/2020").withTime(
+                    "12:00").withDescription("Most important day").
+                    withTag("personal").withVenue("Gardens by the bay").withPriority("3").withFavorite(false).build();
+            date4  = new TaskBuilder().withName("date").withDate("14/02/2020").withTime(
+                    "13:00").withDescription("Most important day").
+                    withTag("personal").withVenue("Gardens by the bay").withPriority("3").withFavorite(false).build();
+          //The test tasks above are for duplicate task testing
             meeting = new TaskBuilder().withName("meeting").withDate("01/01").withTime(
                     "12:00").withDescription("Meeting old friends").
                     withTag("school").withVenue("PGP").withPriority("2").withFavorite(false).build();
