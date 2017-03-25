@@ -172,6 +172,9 @@ Format: `view dueon/DATE`
 View tasks due by a specified date.<br>
 Format: `view dueby/DATE`
 
+View tasks due within the next n days.<br>
+Format: `view dueby/NUMBEROFDAYS`
+
 > * The date has to be specified in a certain format.<br>
 
 Examples:
@@ -180,6 +183,8 @@ Examples:
   Returns a list of tasks due on 10/04
 * `view dueby/10/04`<br>
   Returns a list of tasks due by 10/04
+* `view next/10`<br>
+  Returns a list of tasks due within the next 10 days
 
 ### 2.8. Deleting task(s) or list(s) : `delete`
 
