@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
@@ -44,9 +45,9 @@ public class TestTask implements ReadOnlyTask {
         this.isEvent = taskToCopy.isEvent();
     }
 
-    public void setName(Name name) {
+    public void setName(String name) throws IllegalValueException {
         assert name != null;
-        this.name = name;
+        this.name = new Name(name);
     }
 
     @Override
@@ -54,9 +55,9 @@ public class TestTask implements ReadOnlyTask {
         return name;
     }
 
-    public void setDate(TaskDate date) {
+    public void setDate(String date) throws IllegalValueException {
         assert date != null;
-        this.date = date;
+        this.date = new TaskDate(date);
     }
 
     @Override
@@ -64,9 +65,9 @@ public class TestTask implements ReadOnlyTask {
         return date;
     }
 
-    public void setTime(TaskTime time) {
+    public void setTime(String time) throws IllegalValueException {
         assert time != null;
-        this.time = time;
+        this.time = new TaskTime(time);
     }
 
     @Override
@@ -74,9 +75,9 @@ public class TestTask implements ReadOnlyTask {
         return time;
     }
 
-    public void setDescription(Description description) {
+    public void setDescription(String description) throws IllegalValueException {
         assert description != null;
-        this.description = description;
+        this.description = new Description(description);
     }
 
     @Override
@@ -89,9 +90,9 @@ public class TestTask implements ReadOnlyTask {
         return tag;
     }
 
-    public void setTag(Tag tag) {
+    public void setTag(String tag) throws IllegalValueException {
         assert tag != null;
-        this.tag = tag;
+        this.tag = new Tag(tag);
     }
 
     @Override
@@ -99,9 +100,9 @@ public class TestTask implements ReadOnlyTask {
         return venue;
     }
 
-    public void setVenue(Venue venue) {
+    public void setVenue(String venue) throws IllegalValueException {
         assert venue != null;
-        this.venue = venue;
+        this.venue = new Venue(venue);
     }
 
     @Override
@@ -109,9 +110,9 @@ public class TestTask implements ReadOnlyTask {
         return priority;
     }
 
-    public void setPriority(Priority priority) {
+    public void setPriority(String priority) throws IllegalValueException {
         assert priority != null;
-        this.priority = priority;
+        this.priority = new Priority(priority);
     }
 
     @Override

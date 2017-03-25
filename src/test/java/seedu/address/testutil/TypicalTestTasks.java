@@ -11,12 +11,19 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
 public class TypicalTestTasks {
-    public TestTask gym, cs2103, study, assignment, date, date2, date3, date4, meeting,
+    public TestTask gym, gym2, gym3, cs2103, study, assignment, date, date2, date3, date4, meeting,
         familyDinner, travel, shopping;
 
     public TypicalTestTasks() {
         try {
             gym = new TaskBuilder().withName("gym").withDate("20/12/2018").withTime(
+                    "20:00").withDescription("50min workout").
+                    withTag("personal").withVenue("gym").withPriority("2").withFavorite(true).build();
+            //gym2 and gym3 are built for findCommandTest
+            gym2 = new TaskBuilder().withName("gym").withDate("21/12/2018").withTime(
+                    "20:00").withDescription("50min workout").
+                    withTag("personal").withVenue("gym").withPriority("2").withFavorite(true).build();
+            gym3 = new TaskBuilder().withName("gym").withDate("22/12/2018").withTime(
                     "20:00").withDescription("50min workout").
                     withTag("personal").withVenue("gym").withPriority("2").withFavorite(true).build();
             cs2103 = new TaskBuilder().withName("cs2103").withDate("01/01").withTime(
@@ -71,7 +78,7 @@ public class TypicalTestTasks {
     }
 
     public TestTask[] getTypicalTasks() {
-        TestTask[] tasks = {gym, cs2103, study, assignment, date};
+        TestTask[] tasks = {gym, gym2, gym3, cs2103, study, assignment};
         List<TestTask> listOfTasks = asList(tasks);
         listOfTasks = sort(listOfTasks);
         return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
