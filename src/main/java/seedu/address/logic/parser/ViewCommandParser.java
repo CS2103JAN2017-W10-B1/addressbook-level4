@@ -26,7 +26,7 @@ public class ViewCommandParser {
 
         // if matching the format for view next n days, show all the tasks due within the next n days
         String[] parameters = formatter(args);
-        if (parameters[0] == "next") {
+        if (parameters[0].equals("next")) {
             try {
                 return new ViewCommand(Integer.valueOf(parameters[1]));
             } catch (NumberFormatException nfe) {
@@ -36,7 +36,7 @@ public class ViewCommandParser {
         }
 
         // if matching the format for view due on date, show all the tasks due on that day
-        if (parameters[0] == "on") {
+        if (parameters[0].equals("on")) {
             try {
                 return new ViewOnCommand(Integer.valueOf(parameters[1]));
             } catch (NumberFormatException nfe) {
@@ -50,7 +50,7 @@ public class ViewCommandParser {
                 MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
     }
 
-    private static String[] formatter(String args) {
+    public static String[] formatter(String args) {
         String argument = args.trim();
         String[] parameters = argument.split("/");
         return parameters;
