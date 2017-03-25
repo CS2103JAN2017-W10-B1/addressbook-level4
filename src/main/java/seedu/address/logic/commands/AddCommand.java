@@ -42,11 +42,11 @@ public class AddCommand extends AbleUndoCommand {
      * @throws IllegalValueException if any of the raw values are invalid
      */
 
-    public AddCommand(String name, String date, String start,String time, String startTime,
+    public AddCommand(String name, String date, String start, String time, String startTime,
             String tag, String description, String venue, String priority, boolean isFavourite, boolean isEvent)
             throws IllegalValueException {
 
-        if(isEvent){
+        if (isEvent) {
             this.toAdd = new Event(
                     new Name(name),
                     new TaskDate(start),

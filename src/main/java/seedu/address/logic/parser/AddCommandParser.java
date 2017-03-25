@@ -52,7 +52,8 @@ public class AddCommandParser {
             String priority = checkString(argsTokenizer.getValue(PREFIX_PRIORITY));
             boolean isEvent = checkStart(start);
             boolean isFavourite = checkPresent(argsTokenizer.getValue(PREFIX_FAVOURITE));
-            return new AddCommand(name, date, start, time, startTime, tag, description, venue, priority, isFavourite, isEvent);
+            return new AddCommand(name, date, start, time, startTime, tag,
+                    description, venue, priority, isFavourite, isEvent);
         } catch (NoSuchElementException ive) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         } catch (IllegalValueException ive) {
