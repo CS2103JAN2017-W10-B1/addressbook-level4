@@ -1,5 +1,9 @@
-//@@author Matilda_yxx A0147996E
+//@@author A0147996E
 package seedu.address.testutil;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.TaskManager;
@@ -7,7 +11,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
 public class TypicalTestTasks {
-    public TestTask gym, cs2103, study, laundry, birthday, assignment, date, date2, date3, date4, meeting,
+    public TestTask gym, cs2103, study, assignment, date, date2, date3, date4, meeting,
         familyDinner, travel, shopping;
 
     public TypicalTestTasks() {
@@ -20,13 +24,7 @@ public class TypicalTestTasks {
                     withTag("school").withVenue("icube").withPriority("1").withFavorite(true).build();
             study = new TaskBuilder().withName("study").withDate("31/12").withTime(
                     "15:34").withDescription("Study for MTE").
-                    withTag("school").withVenue("Central lib").withPriority("2").withFavorite(false).build();
-            laundry = new TaskBuilder().withName("laundry").withDate("03/04").withTime(
-                    "13:00").withDescription("Weekly task").
-                    withTag("personal").withVenue("home").withPriority("2").withFavorite(false).build();
-            birthday = new TaskBuilder().withName("birthday").withDate("04/09").withTime(
-                    "14:00").withDescription("Bf's birthday").
-                    withTag("personal").withVenue("home").withPriority("3").withFavorite(true).build();
+                    withTag("school").withVenue("Central lib").withPriority("2").withFavorite(true).build();
             assignment = new TaskBuilder().withName("assignment").withDate("10/12/2018").withTime(
                     "10:00").withDescription("IE2150").
                     withTag("study").withVenue("Utown").withPriority("2").withFavorite(true).build();
@@ -73,7 +71,27 @@ public class TypicalTestTasks {
     }
 
     public TestTask[] getTypicalTasks() {
-        return new TestTask[]{gym, cs2103};
+        TestTask[] tasks = {gym, cs2103, study, assignment, date};
+        List<TestTask> listOfTasks = asList(tasks);
+        listOfTasks = sort(listOfTasks);
+        return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
+    }
+
+    private <T> List<T> asList(T[] objs) {
+        List<T> list = new ArrayList<>();
+        for (T obj : objs) {
+            list.add(obj);
+        }
+        return list;
+    }
+
+    private static List<TestTask> sort(List<TestTask> list) {
+        Collections.sort(list, (TestTask t1, TestTask t2) -> t1.getTag().compareTo(t2.getTag()));
+        Collections.sort(list, (TestTask t1, TestTask t2) -> t1.getName().compareTo(t2.getName()));
+        Collections.sort(list, (TestTask t1, TestTask t2) -> t1.getTime().compareTo(t2.getTime()));
+        Collections.sort(list, (TestTask t1, TestTask t2) -> -t1.getPriority().compareTo(t2.getPriority()));
+        Collections.sort(list, (TestTask t1, TestTask t2) -> t1.getDate().compareTo(t2.getDate()));
+        return list;
     }
 
     public TaskManager getTypicalTaskManager() {
