@@ -1,4 +1,4 @@
-//@@Author ShermineJong A0138474X
+//@@author A0138474X
 package seedu.address.logic.commands;
 
 import java.util.Stack;

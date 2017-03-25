@@ -1,4 +1,4 @@
-//@@Author ShermineJong A0138474X
+//@@author A0138474X
 package seedu.address.storage;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-//@@Author ShermineJong A0138474X
+//@@author A0138474X
 package seedu.address.logic.commands;
 
 import java.util.Stack;
@@ -21,10 +21,6 @@ public class RedoCommand extends Command {
             + "the specified listname/list index and displays them as a list with index numbers.\n"
             + "Parameters: [LISTNAME/LISTINDEX]\n"
             + "Example: " + COMMAND_WORD + " CS2103";
-
-    private static final String LIST_SEPARATOR = ", ";
-
-    private static final String MESSAGE_UNSUCCESSFUL = null;
 
     private AbleUndoCommand undoCommand;
     private boolean canUndo = false;
