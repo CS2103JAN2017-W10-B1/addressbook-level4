@@ -57,7 +57,8 @@ public class AddCommand extends AbleUndoCommand {
                     new Tag(tag),
                     new Venue(venue),
                     new Priority(priority),
-                    isFavourite
+                    isFavourite,
+                    true
             );
         } else {
             this.toAdd = new Task(
@@ -68,7 +69,8 @@ public class AddCommand extends AbleUndoCommand {
                     new Tag(tag),
                     new Venue(venue),
                     new Priority(priority),
-                    isFavourite
+                    isFavourite,
+                    false
                     );
             this.isSuccess = false;
         }

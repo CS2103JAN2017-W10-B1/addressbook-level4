@@ -61,7 +61,7 @@ public class AddCommandParser {
     }
 
     private static boolean checkStart(String start) {
-        return start.equals("");
+        return !start.isEmpty();
     }
 
     private static boolean checkPresent(Optional<String> args) {
