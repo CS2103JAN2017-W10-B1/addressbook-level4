@@ -16,13 +16,9 @@ public class AddCommandTest extends TaskManagerGuiTest {
     @Test
     public void add() {
         //TODO: add a floating task with name only
-        TestTask[] currentList = td.getTypicalTasks();
-        TestTask taskToAdd = td.cs2103;
-        assertAddSuccess(taskToAdd, currentList);
-        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
-
         //add a task with other fields other than name
-        taskToAdd = td.date;
+        TestTask[] currentList = td.getTypicalTasks();
+        TestTask taskToAdd = td.meeting;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 

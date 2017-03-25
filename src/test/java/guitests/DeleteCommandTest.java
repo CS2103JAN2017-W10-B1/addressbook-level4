@@ -12,7 +12,6 @@ public class DeleteCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void delete() {
-
         //delete the first in the list
         TestTask[] currentList = td.getTypicalTasks();
         int targetIndex = 1;
