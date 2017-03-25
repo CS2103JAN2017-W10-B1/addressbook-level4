@@ -167,7 +167,7 @@ Examples:
 ### 2.7. View certain tasks: `view`
 
 View tasks due on a specified date.<br>
-Format: `view dueon/DATE`
+Format: `view on/NUMBEROFDAYS`
 
 View tasks due by a specified date.<br>
 Format: `view dueby/DATE`
@@ -179,8 +179,8 @@ Format: `view dueby/NUMBEROFDAYS`
 
 Examples:
 
-* `view dueon/10/04`<br>
-  Returns a list of tasks due on 10/04
+* `view on/10`<br>
+  Returns a list of tasks due on that day from 10 days later
 * `view dueby/10/04`<br>
   Returns a list of tasks due by 10/04
 * `view next/10`<br>
