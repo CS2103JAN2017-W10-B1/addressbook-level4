@@ -53,7 +53,7 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
         final ObservableList<Task> task = this.tasks.stream().map(p -> {
             try {
                 if(p.isEvent == true){
-                    
+
                 }
                 return p.toModelType();
             } catch (IllegalValueException e) {

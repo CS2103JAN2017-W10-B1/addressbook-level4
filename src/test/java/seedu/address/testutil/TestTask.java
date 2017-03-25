@@ -166,7 +166,6 @@ public class TestTask implements ReadOnlyTask {
         }
         return sb.toString();
     }
-    
     //@@author A0138474X
     @Override
     public boolean isEvent() {
