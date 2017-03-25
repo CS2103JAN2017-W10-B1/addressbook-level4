@@ -19,7 +19,7 @@ public class FinishCommandTest extends TaskManagerGuiTest {
         //cannot finish finished task
         //invalid command, index must be positive integer and must not exceed current list length
         //invalid command, command word must be valid
-        //invalid command, 
+        //invalid command,
     }
 
     private void assertFinishSuccess(TestTask taskToAdd, TestTask... currentList) {
