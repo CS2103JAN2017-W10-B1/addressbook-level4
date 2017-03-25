@@ -41,7 +41,8 @@ public class Event extends Task implements ReadOnlyEvent {
      * @throws IllegalValueException
      */
     public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime,
-            Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite, boolean isFinished, boolean isEvent)
+            Description description, Tag tag, Venue venue, 
+            Priority priority, boolean isFavorite, boolean isFinished, boolean isEvent)
                     throws IllegalValueException {
         this(name, startDate, startTime, endDate, endTime, description, tag, venue,  priority, isFavorite, isEvent);
         this.isFinished = isFinished;
