@@ -24,6 +24,7 @@ public class TestTask implements ReadOnlyTask {
     private Tag tag;
     private boolean isFavorite;
     private boolean isFinished;
+    private boolean isEvent;
 
     public TestTask() {}
 
@@ -40,6 +41,7 @@ public class TestTask implements ReadOnlyTask {
         this.priority = taskToCopy.getPriority();
         this.isFavorite = taskToCopy.isFavorite();
         this.isFinished = taskToCopy.isFinished();
+        this.isEvent = taskToCopy.isEvent();
     }
 
     public void setName(Name name) {
@@ -162,5 +164,11 @@ public class TestTask implements ReadOnlyTask {
             sb.append("*f" + " ");
         }
         return sb.toString();
+    }
+    
+    //@@author A0138474X
+    @Override
+    public boolean isEvent() {
+        return isEvent;
     }
 }
