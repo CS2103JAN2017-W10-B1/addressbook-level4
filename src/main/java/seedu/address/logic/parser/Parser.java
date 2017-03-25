@@ -23,6 +23,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.ViewCommand;
 
 /**
  * Parses user input.
@@ -93,6 +94,9 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD:
             return HelpCommandParser.parse(arguments);
+        
+        case ViewCommand.COMMAND_WORD:
+        	return ViewCommandParser.parse(arguments);
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
