@@ -69,24 +69,23 @@ public class TaskCardHandle extends GuiHandle {
 
     public boolean isSameStateAs(ReadOnlyTask other) {
         boolean dateEq = true, timeEq = true, tagEq = true;
-        if(other.getDate() != null) {
-            if(!other.getDate().getDisplayText().equals(this.getDate())) {
+        if (other.getDate() != null) {
+            if (!other.getDate().getDisplayText().equals(this.getDate())) {
             	    dateEq = false;
             }
         }
-        if(other.getTime() != null) {
-            if(!other.getTime().getDisplayText().equals(this.getTime())) {
-            	    timeEq = false;
+        if (other.getTime() != null) {
+        	    if (!other.getTime().getDisplayText().equals(this.getTime())) {
+        	    	    timeEq = false;
             }
         }
-        if(other.getTag() != null) {
-            if(!other.getTag().getDisplayText().equals(this.getTag())) {
-            	    tagEq = false;
+        if (other.getTag() != null) {
+        	    if (!other.getTag().getDisplayText().equals(this.getTag())) {
+        	    	    tagEq = false;
             }
         }
-    	return ((other != null)
-                && (other.getName().getDisplayText().equals(this.getName()))
-                && dateEq && timeEq && tagEq);
+    	return ((other != null) && (other.getName().getDisplayText().equals(this.getName()))
+    			    && dateEq && timeEq && tagEq);
     }
 
     @Override
