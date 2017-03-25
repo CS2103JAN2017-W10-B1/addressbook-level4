@@ -1,8 +1,8 @@
 package guitests;
 
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.FinishCommand.MESSAGE_FINISH_TASK_SUCCESS;
 import static seedu.address.logic.commands.FinishCommand.MESSAGE_FINISH_TASK_MARKED;
+import static seedu.address.logic.commands.FinishCommand.MESSAGE_FINISH_TASK_SUCCESS;
 
 import org.junit.Test;
 
