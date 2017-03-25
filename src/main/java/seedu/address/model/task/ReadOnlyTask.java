@@ -19,6 +19,7 @@ public interface ReadOnlyTask {
     boolean isFinished();
     String getFavoriteText();
     String getFinishedText();
+    boolean isEvent();
 
     //@@author A0147984L
     /**
