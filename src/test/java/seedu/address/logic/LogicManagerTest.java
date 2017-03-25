@@ -416,7 +416,7 @@ public class LogicManagerTest {
             Priority priority = new Priority("1");
             boolean isFavorite = false;
             Tag tag = new Tag("sweet");
-            return new Task(name, date, time, description, tag, venue, priority, isFavorite,false);
+            return new Task(name, date, time, description, tag, venue, priority, isFavorite, false);
         }
 
         /**

@@ -6,8 +6,6 @@ import static org.junit.Assert.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.lang.reflect.Field;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.Rule;
 import org.junit.Test;
