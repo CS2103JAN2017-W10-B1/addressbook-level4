@@ -6,8 +6,10 @@ import javax.xml.bind.annotation.XmlElement;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Event;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.ReadOnlyEvent;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
@@ -20,23 +22,29 @@ import seedu.address.model.task.Venue;
 public class XmlAdaptedTask {
 
     @XmlElement(required = true)
-    private String name;
+    protected String name;
     @XmlElement(required = false)
-    private String date;
+    protected String date;
     @XmlElement(required = false)
-    private String time;
+    protected String time;
     @XmlElement(required = false)
-    private String tag;
+    protected String tag;
     @XmlElement(required = false)
-    private String description;
+    protected String description;
     @XmlElement(required = false)
-    private String venue;
+    protected String venue;
     @XmlElement(required = false)
-    private String priority;
+    protected String priority;
+    @XmlElement(required = true)
+    protected boolean isFavourite;
+    @XmlElement(required = true)
+    protected boolean isFinished;
+    @XmlElement(required = true)
+    protected boolean isEvent;
     @XmlElement(required = false)
-    private boolean isFavourite;
+    private String startDate;
     @XmlElement(required = false)
-    private boolean isFinished;
+    private String startTime;
 
     /**
      * Constructs an XmlAdaptedPerson.
@@ -60,6 +68,11 @@ public class XmlAdaptedTask {
         priority = source.getPriority().getValue();
         isFavourite = source.isFavorite();
         isFinished = source.isFinished();
+        isEvent = source.isEvent();
+        if(isEvent){
+            startDate = ((ReadOnlyEvent)source).getStartDate().getValue();
+            startTime = ((ReadOnlyEvent)source).getStartTime().getValue();
+        }
     }
 
     /**
@@ -75,7 +88,16 @@ public class XmlAdaptedTask {
         final Tag tag = new Tag(this.tag);
         final Venue venue = new Venue(this.venue);
         final Priority priority = new Priority(this.priority);
-        return new Task(name, date, time, description, tag, venue, priority, isFavourite, isFinished);
+        if(isEvent){
+            final TaskDate startDate = new TaskDate(this.startDate);
+            final TaskTime startTime = new TaskTime(this.startTime);
+            Event event = new Event(name, startDate, startTime,date, time, description, tag, venue, priority, 
+                    isFavourite, isFinished, isEvent);
+            return event;
+        }
+        else{
+            return new Task(name, date, time, description, tag, venue, priority, isFavourite, isFinished, isEvent);
+        }
     }
 
     public String getTagName() {
