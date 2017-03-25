@@ -15,6 +15,7 @@ public class FinishCommandTest extends TaskManagerGuiTest {
         TestTask taskToAdd = td.meeting;
         assertFinishSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
+
         //cannot finish finished task
         //invalid command, index must be positive integer and must not exceed current list length
         //invalid command, command word must be valid

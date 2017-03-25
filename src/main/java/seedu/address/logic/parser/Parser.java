@@ -94,9 +94,9 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD:
             return HelpCommandParser.parse(arguments);
-        
+
         case ViewCommand.COMMAND_WORD:
-        	return ViewCommandParser.parse(arguments);
+            return ViewCommandParser.parse(arguments);
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
