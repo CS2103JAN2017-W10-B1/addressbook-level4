@@ -29,7 +29,7 @@ public class FinishCommand extends AbleUndoCommand {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_FINISH_TASK_SUCCESS = "Mark finished task: %1$s";
-    public static final String MESSAGE_FINISH_TASK_MARKED = "Task had been finished: %1$s";
+    public static final String MESSAGE_FINISH_TASK_MARKED = "Task had already been finished";
     public static final String MESSAGE_WRONG_TASK_INDEX = "This task already exists in the task manager.";
 
     public final int targetIndex;
