@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.FinishCommand.MESSAGE_FINISH_TASK_MAR
 import org.junit.Test;
 
 import seedu.address.testutil.TestTask;
-import seedu.address.testutil.TestUtil;
 
 public class FinishCommandTest extends TaskManagerGuiTest {
     @Test
