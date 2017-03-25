@@ -63,10 +63,11 @@ public class FinishCommand extends AbleUndoCommand {
             Tag updatedTag = taskToMark.getTag();
             Venue updatedVenue = taskToMark.getVenue();
             Priority updatedPriority = taskToMark.getPriority();
+            boolean updatedFavorite = taskToMark.isFavorite();
 
             taskToMark  = new Task(
                     updatedName, updatedDate, updatedTime, updatedDescription,
-                    updatedTag, updatedVenue, updatedPriority, false, true);
+                    updatedTag, updatedVenue, updatedPriority, updatedFavorite, true);
         }
 
         try {
