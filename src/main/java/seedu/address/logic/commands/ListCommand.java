@@ -42,11 +42,11 @@ public class ListCommand extends Command {
         if (keywords == null) {
             model.updateFilteredListToShowAllTasks();
             return new CommandResult(MESSAGE_SUCCESS);
-        } else if (!isKeywordMatchingTaglist()) {
-            return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         } else if (keywords.contains(LIST_ALL)) {
             model.updateFilteredListToShowAllTasksAll();
             return new CommandResult(MESSAGE_SUCCESS);
+        } else if (!isKeywordMatchingTaglist()) {
+            return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         } else {
             model.updateFilteredTaskListGivenListName(keywords);
             return new CommandResult(formatter(keywords));
