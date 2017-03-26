@@ -16,27 +16,27 @@ public class TypicalTestTasks {
 
     public TypicalTestTasks() {
         try {
-            gym = new TaskBuilder().withName("gym").withDate("20/12/2018").withTime(
+            gym = new TaskBuilder().withName("gym").withDate("20/12/2017").withTime(
                     "20:00").withDescription("50min workout").
                     withTag("personal").withVenue("gym").withPriority("2").withFavorite(true).build();
             //gym2 and gym3 are built for findCommandTest
-            gym2 = new TaskBuilder().withName("gym").withDate("21/12/2018").withTime(
+            gym2 = new TaskBuilder().withName("gym").withDate("21/12/2017").withTime(
                     "20:00").withDescription("50min workout").
                     withTag("personal").withVenue("gym").withPriority("2").withFavorite(false).build();
-            gym3 = new TaskBuilder().withName("gym").withDate("22/12/2018").withTime(
+            gym3 = new TaskBuilder().withName("gym").withDate("22/12/2017").withTime(
                     "20:00").withDescription("50min workout").
                     withTag("personal").withVenue("gym").withPriority("2").withFavorite(false).build();
-            cs2103 = new TaskBuilder().withName("cs2103").withDate("01/01").withTime(
+            cs2103 = new TaskBuilder().withName("cs2103").withDate("01/02").withTime(
                     "16:00").withDescription("Crazy but useful mod").
                     withTag("school").withVenue("icube").withPriority("1").withFavorite(true).build();
-            study = new TaskBuilder().withName("study").withDate("31/12").withTime(
+            study = new TaskBuilder().withName("study").withDate("21/03").withTime(
                     "15:34").withDescription("Study for MTE").
                     withTag("school").withVenue("Central lib").withPriority("2").withFavorite(true).build();
-            assignment = new TaskBuilder().withName("assignment").withDate("10/12/2018").withTime(
+            assignment = new TaskBuilder().withName("assignment").withDate("10/12/2017").withTime(
                     "10:00").withDescription("IE2150").
                     withTag("study").withVenue("Utown").withPriority("2").withFavorite(true).build();
             //The test tasks below are for duplicate task testing
-            date  = new TaskBuilder().withName("date").withDate("14/02/2020").withTime(
+            date  = new TaskBuilder().withName("date").withDate("14/02/2018").withTime(
                     "12:00").withDescription("Most important day").
                     withTag("personal").withVenue("Gardens by the bay").withPriority("3").withFavorite(false).build();
             date2  = new TaskBuilder().withName("date").withDate("14/02/2020").withTime(
@@ -78,7 +78,7 @@ public class TypicalTestTasks {
     }
 
     public TestTask[] getTypicalTasks() {
-        TestTask[] tasks = {gym, gym2, gym3, date, cs2103, study, assignment};
+        TestTask[] tasks = {gym, gym2, gym3, cs2103, study, assignment, date};
         List<TestTask> listOfTasks = asList(tasks);
         listOfTasks = sort(listOfTasks);
         return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
