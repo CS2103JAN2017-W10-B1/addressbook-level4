@@ -1,6 +1,8 @@
 //@@author A0147996E
 package guitests;
 
+import org.junit.Test;
+
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -8,8 +10,6 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FinishCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ViewCommand;
-
-import org.junit.Test;
 
 public class HelpCommandTest extends TaskManagerGuiTest {
     @Test
