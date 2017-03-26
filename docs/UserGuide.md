@@ -273,7 +273,7 @@ There is no need to save manually.
 * **Help** : `help COMMAND_KEYWORD` <br>
   e.g. `help add`
 
-* **List** : `list [LIST_INDEX/LIST_NAME] [all/favorite/finished]` <br>
+* **List** : `list [all/favorite/finished] [LIST_NAME]` <br>
   e.g. `list work favorite`
 
 * **Redo** : `redo` <br>
