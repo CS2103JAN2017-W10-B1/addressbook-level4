@@ -170,8 +170,18 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public void updateFilteredTaskListFinished(Set<String> keywords) {
+        updateFilteredTaskList(keywords, null, FinishedState.FINISHED, false, null, null);
+    }
+
+    @Override
     public void updateFilteredTaskListAll(Set<String> keywords) {
         updateFilteredTaskList(keywords, null, FinishedState.ALL, false, null, null);
+    }
+
+    @Override
+    public void updateFilteredTaskListFavorite(Set<String> keywords) {
+        updateFilteredTaskList(keywords, null, FinishedState.UNFINISHED, true, null, null);
     }
 
     @Override
@@ -438,4 +448,5 @@ public class ModelManager extends ComponentManager implements Model {
                     (0 <= TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
         }
     }
+
 }

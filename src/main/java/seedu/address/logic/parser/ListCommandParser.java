@@ -17,6 +17,8 @@ public class ListCommandParser {
 
     private ListCommandParser() {
     }
+
+    private static final String LIST_SEPARATOR = "\\s+";
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns an FindCommand object for execution.
@@ -33,7 +35,7 @@ public class ListCommandParser {
         }
 
         // keywords delimited by whitespace
-        final String[] keywords = matcher.group("keywords").split("\\s+");
+        final String[] keywords = matcher.group("keywords").split(LIST_SEPARATOR);
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new ListCommand(keywordSet);
     }

@@ -170,7 +170,7 @@ public class Task implements ReadOnlyTask {
     }
 
     @Override
-    public Boolean isFinished() {
+    public boolean isFinished() {
         return isFinished == FinishProperty.Finished;
     }
 

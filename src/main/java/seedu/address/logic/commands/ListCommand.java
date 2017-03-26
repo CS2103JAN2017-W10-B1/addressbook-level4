@@ -4,9 +4,6 @@ package seedu.address.logic.commands;
 import java.util.Iterator;
 import java.util.Set;
 
-import seedu.address.commons.core.UnmodifiableObservableList;
-import seedu.address.model.tag.Tag;
-
 /**
  * Lists all persons in the address book to the user.
  */
@@ -20,9 +17,10 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_LIST_SUCCESS = "Listed unfinished tasks";
     public static final String MESSAGE_LIST_ALL_SUCCESS = "Listed all tasks";
+    public static final String MESSAGE_LIST_ALL_LIST_SUCCESS = "Listed all tasks in the list";
     public static final String MESSAGE_LIST_FINISHED_SUCCESS = "Listed all finished tasks";
     public static final String MESSAGE_LIST_FAVORITE_SUCCESS = "Listed all favorite tasks";
-    public static final String MESSAGE_LIST_DOES_NOT_EXIST= "Given list name does not exist";
+    public static final String MESSAGE_LIST_DOES_NOT_EXIST = "Given list name does not exist";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks as per the parameters\n"
             + "the specified listname and displays them as a list with index numbers.\n"
@@ -50,38 +48,44 @@ public class ListCommand extends Command {
             model.updateFilteredListToShowAllUnfinishedTasks();
             return new CommandResult(MESSAGE_LIST_SUCCESS);
         } else if (keywords.contains(LIST_ALL)) {
-            model.updateFilteredListToShowAllTasks();
-            return new CommandResult(MESSAGE_LIST_ALL_SUCCESS);
+            keywords.remove(LIST_ALL);
+            if (model.isListExist(keywords)) {
+                model.updateFilteredTaskListAll(keywords);
+                return new CommandResult(formatter(MESSAGE_LIST_ALL_SUCCESS, keywords));
+            } else {
+                model.updateFilteredListToShowAllTasks();
+                return new CommandResult(MESSAGE_LIST_ALL_SUCCESS);
+            }
         } else if (keywords.contains(LIST_FINISHED)) {
-            model.updateFilteredListToShowAllFinishedTasks();
-            return new CommandResult(MESSAGE_LIST_FINISHED_SUCCESS);
+            keywords.remove(LIST_FINISHED);
+            if (model.isListExist(keywords)) {
+                model.updateFilteredTaskListFinished(keywords);
+                return new CommandResult(formatter(MESSAGE_LIST_FINISHED_SUCCESS, keywords));
+            } else {
+                model.updateFilteredListToShowAllFinishedTasks();
+                return new CommandResult(MESSAGE_LIST_FINISHED_SUCCESS);
+            }
         } else if (keywords.contains(LIST_FAVORITE)) {
-            model.updateFilteredListToShowAllFavoriteTasks();
-            return new CommandResult(MESSAGE_LIST_FAVORITE_SUCCESS);
-        } else if (!isKeywordMatchingTaglist()) {
+            keywords.remove(LIST_FAVORITE);
+            if (model.isListExist(keywords)) {
+                model.updateFilteredTaskListFavorite(keywords);
+                return new CommandResult(formatter(MESSAGE_LIST_FAVORITE_SUCCESS, keywords));
+            } else {
+                model.updateFilteredListToShowAllFavoriteTasks();
+                return new CommandResult(MESSAGE_LIST_FAVORITE_SUCCESS);
+            }
+        } else if (!model.isListExist(keywords)) {
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         } else {
             model.updateFilteredTaskListGivenListName(keywords);
-            return new CommandResult(formatter(keywords));
+            return new CommandResult(formatter(MESSAGE_LIST_SUCCESS, keywords));
         }
     }
 
-//@@author A0147996E
-    private boolean isKeywordMatchingTaglist () {
-        boolean hasMatch = false;
-        UnmodifiableObservableList<Tag> tagList = model.getFilteredTagList();
-        for(String keyword : keywords) {
-            for(Tag tag : tagList) {
-                if(tag.getName().equalsIgnoreCase(keyword)) {
-                    hasMatch = true;
-                }
-            }
-        } return hasMatch;
-    }
 //@@author
 
-    private String formatter(Set<String> keywords) {
-        String formatted = MESSAGE_LIST_ALL_SUCCESS + " in list ";
+    private String formatter(String message, Set<String> keywords) {
+        String formatted = message + " in list ";
         for (Iterator<String> it = keywords.iterator(); it.hasNext(); ) {
             formatted += it.next();
             if (it.hasNext()) {
