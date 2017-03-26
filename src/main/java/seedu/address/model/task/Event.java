@@ -164,7 +164,7 @@ public class Event extends Task implements ReadOnlyEvent {
     }
 
     @Override
-    public Boolean isFinished() {
+    public boolean isFinished() {
         return isFinished == FinishProperty.Finished;
     }
 

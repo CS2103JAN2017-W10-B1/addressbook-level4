@@ -19,7 +19,7 @@ public interface ReadOnlyTask {
     Venue getVenue();
     Priority getPriority();
     boolean isFavorite();
-    Boolean isFinished();
+    boolean isFinished();
     String getFavoriteText();
     String getFinishedText();
     boolean isEvent();

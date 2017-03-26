@@ -17,7 +17,6 @@ import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
-// TODO: reduce GUI tests by transferring some tests to be covered by lower level tests.
 public class EditCommandTest extends TaskManagerGuiTest {
 
     // The list of Tasks in the Task list panel is expected to match this list.
