@@ -33,6 +33,11 @@ public class LogicManager extends ComponentManager implements Logic {
         this.parser = new Parser();
         this.commandList = new Stack<AbleUndoCommand>();
         this.redoCommandList = new Stack<AbleUndoCommand>();
+        try {
+            execute("list all");
+        } catch (CommandException e) {
+            e.printStackTrace();
+        }
     }
     //@@Author ShermineJong A0138474X
     @Override
