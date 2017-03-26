@@ -134,7 +134,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void updateFilteredListToShowAllTasksAll() {
+    public void updateFilteredListToShowAllTasks() {
         filteredTasks.setPredicate(null);
     }
 

@@ -50,7 +50,7 @@ public class ListCommand extends Command {
             model.updateFilteredListToShowAllUnfinishedTasks();
             return new CommandResult(MESSAGE_LIST_SUCCESS);
         } else if (keywords.contains(LIST_ALL)) {
-            model.updateFilteredListToShowAllTasksAll();
+            model.updateFilteredListToShowAllTasks();
             return new CommandResult(MESSAGE_LIST_ALL_SUCCESS);
         } else if (keywords.contains(LIST_FINISHED)) {
             model.updateFilteredListToShowAllFinishedTasks();
