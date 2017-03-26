@@ -12,10 +12,10 @@ public class ListCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void list_nonEmptyList() {
-        
+
         //list all tasks in Dueue
-        assertListResult("list all", td.gym, td.gym2, td.gym3, td.date, 
-                td.cs2103, td.study, td.assignment); 
+        assertListResult("list all", td.gym, td.gym2, td.gym3, td.date,
+                td.cs2103, td.study, td.assignment);
         //list multiple tasks by list name
         assertListResult("list personal", td.gym, td.gym2, td.gym3, td.date);
         //list single task by list name
@@ -26,10 +26,9 @@ public class ListCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("finish 2");
         commandBox.runCommand("finish 3");
         assertListResult("list finished", td.gym, td.gym2, td.gym3);
-        
+
         //list favorite tasks in Dueue
         assertListResult("list favorite", td.assignment);
-        
     }
 
     @Test
