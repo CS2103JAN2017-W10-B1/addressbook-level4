@@ -20,7 +20,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_LIST_ALL_LIST_SUCCESS = "Listed all tasks in the list";
     public static final String MESSAGE_LIST_FINISHED_SUCCESS = "Listed all finished tasks";
     public static final String MESSAGE_LIST_FAVORITE_SUCCESS = "Listed all favorite tasks";
-    public static final String MESSAGE_LIST_DOES_NOT_EXIST= "Given list name does not exist";
+    public static final String MESSAGE_LIST_DOES_NOT_EXIST = "Given list name does not exist";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks as per the parameters\n"
             + "the specified listname and displays them as a list with index numbers.\n"
