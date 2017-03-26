@@ -7,8 +7,12 @@ import seedu.address.model.tag.Tag;
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
 public interface ReadOnlyTask {
-    public enum FinishProperty {FINISHED, UNFINISHED}
-    public enum EventProperty {EVENT, NON_EVENT}
+    public enum FinishProperty {
+        FINISHED, UNFINISHED
+        }
+    public enum EventProperty {
+        EVENT, NON_EVENT
+        }
 
     Name getName();
     TaskDate getDate();
