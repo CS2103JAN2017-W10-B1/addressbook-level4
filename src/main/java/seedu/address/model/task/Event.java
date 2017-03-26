@@ -70,7 +70,6 @@ public class Event extends Task implements ReadOnlyEvent {
         this(name, date, startTime, date, endTime, description, tag, venue,  priority, isFavorite, isEvent);
     }
 
-    
     /**
      * Creates a copy of the given ReadOnlyTask.
      * @throws IllegalValueException

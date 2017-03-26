@@ -32,7 +32,6 @@ public class ListCommand extends Command {
             + COMMAND_WORD + " all study\n"
             + COMMAND_WORD + " finished\n"
             + COMMAND_WORD + "study work\n";
-    
 
     private static final String LIST_SEPARATOR = ", ";
 
