@@ -50,7 +50,7 @@ public class AddCommandParser {
             String description = checkString(argsTokenizer.getValue(PREFIX_DESCRIPTION));
             String venue = checkString(argsTokenizer.getValue(PREFIX_VENUE));
             String priority = checkString(argsTokenizer.getValue(PREFIX_PRIORITY));
-            boolean isEvent = checkStart(startDate);
+            boolean isEvent = checkStart(startDate) || checkStart(startTime);
             boolean isFavourite = checkPresent(argsTokenizer.getValue(PREFIX_FAVOURITE));
             return new AddCommand(name, date, startDate, time, startTime, tag,
                     description, venue, priority, isFavourite, isEvent);

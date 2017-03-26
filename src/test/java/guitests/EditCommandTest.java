@@ -20,7 +20,7 @@ import seedu.address.testutil.TestUtil;
 public class EditCommandTest extends TaskManagerGuiTest {
 
     private TestTask[] expectedTasksList = td.getTypicalTasks();
-     
+
     @Test
     public void editAllFieldsSpecifiedSuccess() throws Exception {
         String detailsToEdit = "n/lecture due/10/05/2017 dueT/16:00 #study d/Interesting module @I3 p/3 *u";

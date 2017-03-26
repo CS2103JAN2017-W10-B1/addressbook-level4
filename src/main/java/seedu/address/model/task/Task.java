@@ -212,7 +212,7 @@ public class Task implements ReadOnlyTask {
 
     private void setIsEvent(EventProperty isEvent) {
         this.isEvent = isEvent;
-        
+
     }
 
     @Override

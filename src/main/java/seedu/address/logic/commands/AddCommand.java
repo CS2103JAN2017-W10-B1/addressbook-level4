@@ -47,18 +47,32 @@ public class AddCommand extends AbleUndoCommand {
             throws IllegalValueException {
 
         if (isEvent) {
-            this.toAdd = new Event(
-                    new Name(name),
-                    new TaskDate(startDate),
-                    new TaskTime (startTime),
-                    new TaskDate(date),
-                    new TaskTime(time),
-                    new Description(description),
-                    new Tag(tag),
-                    new Venue(venue),
-                    new Priority(priority),
-                    isFavourite
-            );
+            if (startDate != null) {
+                this.toAdd = new Event(
+                        new Name(name),
+                        new TaskDate(startDate),
+                        new TaskTime (startTime),
+                        new TaskDate(date),
+                        new TaskTime(time),
+                        new Description(description),
+                        new Tag(tag),
+                        new Venue(venue),
+                        new Priority(priority),
+                        isFavourite
+                );
+            } else {
+                this.toAdd = new Event(
+                        new Name(name),
+                        new TaskDate(date),
+                        new TaskTime (startTime),
+                        new TaskTime(time),
+                        new Description(description),
+                        new Tag(tag),
+                        new Venue(venue),
+                        new Priority(priority),
+                        isFavourite
+                    );
+            }
         } else {
             this.toAdd = new Task(
                     new Name(name),

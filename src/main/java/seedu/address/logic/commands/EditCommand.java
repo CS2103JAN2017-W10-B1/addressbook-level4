@@ -101,7 +101,7 @@ public class EditCommand extends AbleUndoCommand {
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
-     * @throws IllegalValueException 
+     * @throws IllegalValueException
      */
     private static Task createEditedTask(ReadOnlyTask taskToEdit,
                                              EditTaskDescriptor editTaskDescriptor) throws IllegalValueException {
@@ -195,7 +195,7 @@ public class EditCommand extends AbleUndoCommand {
             assert due != null;
             this.due = due;
         }
-        
+
         public void setStart(Optional<TaskDate> start) {
             assert start != null;
             this.start = start;
@@ -213,7 +213,7 @@ public class EditCommand extends AbleUndoCommand {
             assert dueTime != null;
             this.dueTime = dueTime;
         }
-        
+
         public void setStartTime(Optional<TaskTime> startTime) {
             assert startTime != null;
             this.startTime = startTime;
@@ -222,7 +222,7 @@ public class EditCommand extends AbleUndoCommand {
         public Optional<TaskTime> getDueTime() {
             return dueTime;
         }
-        
+
         public Optional<TaskTime> getStartTime() {
             return startTime;
         }
@@ -284,7 +284,7 @@ public class EditCommand extends AbleUndoCommand {
                 this.isFavourite = false;
             }
         }
-        
+
         public boolean updatedEvent(Optional<TaskDate> start){
             return start.isPresent();
         }

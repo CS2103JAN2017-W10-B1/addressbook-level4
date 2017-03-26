@@ -70,9 +70,9 @@ public class FinishCommand extends AbleUndoCommand {
             Priority updatedPriority = taskToMark.getPriority();
             boolean updatedFavorite = taskToMark.isFavorite();
             FinishProperty updatedFinish = FinishProperty.FINISHED;
-            
+
             if (taskToMark.isEvent()) {
-                TaskDate updatedStartDate = ((Event)taskToMark).getStartDate(); 
+                TaskDate updatedStartDate = ((Event)taskToMark).getStartDate();
                 TaskTime updatedStartTime = ((Event)taskToMark).getStartTime();
                 try {
                     taskToMark = new Event(updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
