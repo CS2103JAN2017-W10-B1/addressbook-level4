@@ -29,8 +29,8 @@ public class TaskListTest {
         TaskList list1 = new TaskList("a");
         assertFalse(list1.getTasks() == null);
         assertTrue(list1.getTasks().asObservableList().size() == 0);
-        Task task1 = new Task(new Name("task1"), null, null, null, null, null, null, false, false);
-        Task task2 = new Task(new Name("task2"), null, null, null, null, null, null, false, false);
+        Task task1 = new Task(new Name("task1"), null, null, null, null, null, null, false);
+        Task task2 = new Task(new Name("task2"), null, null, null, null, null, null, false);
         list1.add(task1);
         list1.add(task2);
         assertTrue(list1.getTasks().asObservableList().size() == 2);

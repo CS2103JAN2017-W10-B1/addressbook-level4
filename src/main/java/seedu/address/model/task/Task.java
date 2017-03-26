@@ -21,13 +21,13 @@ public class Task implements ReadOnlyTask {
     protected boolean isFavorite;
     protected FinishProperty isFinished;
     protected Tag tag;
-    protected boolean isEvent;
+    protected EventProperty isEvent;
 
     /**
      * Every field must be present and not null.
      */
     public Task(Name name, TaskDate date, TaskTime time, Description description, Tag tag,
-            Venue venue, Priority priority, boolean isFavorite, boolean isEvent) {
+            Venue venue, Priority priority, boolean isFavorite) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
         this.date = date;
@@ -37,8 +37,8 @@ public class Task implements ReadOnlyTask {
         this.venue = venue;
         this.priority = priority;
         this.isFavorite = isFavorite;
-        this.isFinished = FinishProperty.Unfinished;
-        this.isEvent = isEvent;
+        this.isFinished = FinishProperty.UNFINISHED;
+        this.isEvent = EventProperty.NON_EVENT;
     }
 
     /**
@@ -56,14 +56,14 @@ public class Task implements ReadOnlyTask {
         this.priority = priority;
         this.isFavorite = isFavorite;
         this.isFinished = isFinished;
-        this.isEvent = false;
+        this.isEvent = EventProperty.NON_EVENT;
     }
 
     /**
      *  Constructor of task with flag on isFinshed
      */
     public Task(Name name, TaskDate date, TaskTime time, Description description, Tag tag,
-            Venue venue, Priority priority, boolean isFavorite, FinishProperty isFinished, boolean isEvent) {
+            Venue venue, Priority priority, boolean isFavorite, FinishProperty isFinished, EventProperty isEvent) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
         this.date = date;
@@ -83,7 +83,7 @@ public class Task implements ReadOnlyTask {
     public Task(ReadOnlyTask source) {
         this(source.getName(), source.getDate(), source.getTime(), source.getDescription(),
                 source.getTag(), source.getVenue(), source.getPriority(),
-                source.isFavorite(), source.getFinished(), source.isEvent());
+                source.isFavorite(), source.getFinished(), source.getEventProperty());
     }
 
     public void setName(Name name) {
@@ -171,7 +171,7 @@ public class Task implements ReadOnlyTask {
 
     @Override
     public boolean isFinished() {
-        return isFinished == FinishProperty.Finished;
+        return isFinished == FinishProperty.FINISHED;
     }
 
     @Override
@@ -185,9 +185,9 @@ public class Task implements ReadOnlyTask {
 
     public void setFinish(Boolean isFinished) {
         if (isFinished) {
-            this.isFinished = FinishProperty.Finished;
+            this.isFinished = FinishProperty.FINISHED;
         } else {
-            this.isFinished = FinishProperty.Unfinished;
+            this.isFinished = FinishProperty.UNFINISHED;
         }
     }
 
@@ -207,10 +207,10 @@ public class Task implements ReadOnlyTask {
         this.setPriority(replacement.getPriority());
         this.setFavorite(replacement.isFavorite());
         this.setFinish(replacement.isFinished());
-        this.setIsEvent(replacement.isEvent());
+        this.setIsEvent(replacement.getEventProperty());
     }
 
-    private void setIsEvent(boolean isEvent) {
+    private void setIsEvent(EventProperty isEvent) {
         this.isEvent = isEvent;
         
     }
@@ -235,12 +235,17 @@ public class Task implements ReadOnlyTask {
 
     @Override
     public boolean isEvent() {
-        return this.isEvent;
+        return this.isEvent == EventProperty.EVENT;
     }
 
     @Override
     public FinishProperty getFinished() {
         return this.isFinished;
+    }
+
+    @Override
+    public EventProperty getEventProperty() {
+        return this.isEvent;
     }
 
 }

@@ -83,18 +83,18 @@ public class ModelManagerTest {
         initModelManager();
 
         modelManager.updateFilteredTaskListGivenDaysToDueBy("300");
-        assertEquals(modelManager.getFilteredTaskList().size(), 2);
-        assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "study");
+        assertEquals(modelManager.getFilteredTaskList().size(), 4);
+        assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "assignment");
 
         initModelManager();
 
         modelManager.updateFilteredTaskListGivenDaysToDueBy("365");
-        assertEquals(modelManager.getFilteredTaskList().size(), 2);
+        assertEquals(modelManager.getFilteredTaskList().size(), 7);
 
         initModelManager();
 
         modelManager.updateFilteredTaskListGivenDaysToDueBy("700");
-        assertEquals(modelManager.getFilteredTaskList().size(), 6);
+        assertEquals(modelManager.getFilteredTaskList().size(), 7);
     }
 
     @Test
@@ -116,7 +116,7 @@ public class ModelManagerTest {
 
         modelManager.updateFilteredTaskListGivenListName(keywords);
         assertEquals(modelManager.getFilteredTaskList().size(), 2);
-        assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "study");
+        assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "cs2103");
 
         modelManager = new ModelManager();
         modelManager.resetData(testUtil.getTypicalTaskManager());

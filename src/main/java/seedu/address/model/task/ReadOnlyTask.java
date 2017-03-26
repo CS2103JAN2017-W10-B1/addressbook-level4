@@ -8,8 +8,11 @@ import seedu.address.model.tag.Tag;
  */
 public interface ReadOnlyTask {
     public enum FinishProperty {
-        Finished, Unfinished
-    }
+        FINISHED, UNFINISHED
+        }
+    public enum EventProperty {
+        EVENT, NON_EVENT
+        }
 
     Name getName();
     TaskDate getDate();
@@ -44,6 +47,7 @@ public interface ReadOnlyTask {
      * Get the FinishProperty instead of boolean
      */
     FinishProperty getFinished();
+    EventProperty getEventProperty();
 
     /**
      * Formats the person as text, showing all contact details.

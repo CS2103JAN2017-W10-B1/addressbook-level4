@@ -1,4 +1,4 @@
-//@@author A0138474X
+///@@author A0138474X
 package seedu.address.logic.commands;
 
 import java.util.List;
@@ -97,6 +97,7 @@ public class EditCommand extends AbleUndoCommand {
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
+
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
@@ -125,16 +126,16 @@ public class EditCommand extends AbleUndoCommand {
                 TaskDate updatedStartDate = editTaskDescriptor.getStart().orElseGet(taskToEdit::getDate);
                 TaskTime updatedStartTime = editTaskDescriptor.getStartTime().orElseGet(taskToEdit::getTime);
                 return new Event(updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
-                        updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished, true);
+                        updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
             }
             else{
                 return new Task(updatedName, updatedDueDate, updatedDueTime, updatedDescription,
-                        updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished, false);
+                        updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
             }
         }
         else{
             return new Task(updatedName, updatedDueDate, updatedDueTime, updatedDescription,
-                updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished, false);
+                updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
         }
     }
 

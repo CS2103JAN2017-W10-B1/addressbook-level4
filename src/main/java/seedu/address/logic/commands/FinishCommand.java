@@ -65,7 +65,7 @@ public class FinishCommand extends AbleUndoCommand {
             Venue updatedVenue = taskToMark.getVenue();
             Priority updatedPriority = taskToMark.getPriority();
             boolean updatedFavorite = taskToMark.isFavorite();
-            FinishProperty updatedFinish = FinishProperty.Finished;
+            FinishProperty updatedFinish = FinishProperty.FINISHED;
 
             taskToMark  = new Task(
                     updatedName, updatedDate, updatedTime, updatedDescription,
@@ -98,7 +98,7 @@ public class FinishCommand extends AbleUndoCommand {
     public Command getUndoCommand() {
         if (isSuccess) {
             Task newTask = new Task(task.getName(), task.getDate(), task.getTime(), task.getDescription(),
-                    task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(), false);
+                    task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(), FinishProperty.UNFINISHED);
             return new EditCommand(task, newTask);
         } else {
             return new IncorrectCommand(null);

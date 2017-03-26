@@ -25,7 +25,7 @@ public class TestTask implements ReadOnlyTask {
     private Tag tag;
     private boolean isFavorite;
     private FinishProperty isFinished;
-    private boolean isEvent;
+    private EventProperty isEvent;
 
     public TestTask() {}
 
@@ -42,7 +42,7 @@ public class TestTask implements ReadOnlyTask {
         this.priority = taskToCopy.getPriority();
         this.isFavorite = taskToCopy.isFavorite();
         this.isFinished = taskToCopy.getFinished();
-        this.isEvent = taskToCopy.isEvent();
+        this.isEvent = taskToCopy.getEventProperty();
     }
 
     public void setName(String name) throws IllegalValueException {
@@ -126,7 +126,7 @@ public class TestTask implements ReadOnlyTask {
 
     @Override
     public boolean isFinished() {
-        return isFinished == FinishProperty.Finished;
+        return isFinished == FinishProperty.FINISHED;
     }
 //@@ author A0147996E
     @Override
@@ -140,7 +140,7 @@ public class TestTask implements ReadOnlyTask {
 
     @Override
     public String getFinishedText() {
-        if (isFinished == FinishProperty.Finished) {
+        if (isFinished == FinishProperty.FINISHED) {
             return "Finished";
         } else {
             return "Unfinished";
@@ -169,11 +169,16 @@ public class TestTask implements ReadOnlyTask {
     //@@author A0138474X
     @Override
     public boolean isEvent() {
-        return isEvent;
+        return isEvent == EventProperty.EVENT;
     }
 
     @Override
     public FinishProperty getFinished() {
         return this.isFinished;
+    }
+
+    @Override
+    public EventProperty getEventProperty() {
+        return this.isEvent;
     }
 }

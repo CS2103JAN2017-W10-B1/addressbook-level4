@@ -20,7 +20,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_LIST_ALL_LIST_SUCCESS = "Listed all tasks in the list";
     public static final String MESSAGE_LIST_FINISHED_SUCCESS = "Listed all finished tasks";
     public static final String MESSAGE_LIST_FAVORITE_SUCCESS = "Listed all favorite tasks";
-    public static final String MESSAGE_LIST_DOES_NOT_EXIST= "Given list name does not exist";
+    public static final String MESSAGE_LIST_DOES_NOT_EXIST = "Given list name does not exist";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks as per the parameters\n"
             + "the specified listname and displays them as a list with index numbers.\n"
@@ -66,8 +66,14 @@ public class ListCommand extends Command {
                 return new CommandResult(MESSAGE_LIST_FINISHED_SUCCESS);
             }
         } else if (keywords.contains(LIST_FAVORITE)) {
-            model.updateFilteredListToShowAllFavoriteTasks();
-            return new CommandResult(MESSAGE_LIST_FAVORITE_SUCCESS);
+            keywords.remove(LIST_FAVORITE);
+            if (model.isListExist(keywords)) {
+                model.updateFilteredTaskListFavorite(keywords);
+                return new CommandResult(formatter(MESSAGE_LIST_FAVORITE_SUCCESS, keywords));
+            } else {
+                model.updateFilteredListToShowAllFavoriteTasks();
+                return new CommandResult(MESSAGE_LIST_FAVORITE_SUCCESS);
+            }
         } else if (!model.isListExist(keywords)) {
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         } else {

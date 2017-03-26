@@ -70,7 +70,7 @@ public class HelpCommandParser {
 
         case FinishCommand.COMMAND_WORD:
             return FinishCommand.MESSAGE_USAGE;
-            
+
         case ViewCommand.COMMAND_WORD:
             return ViewCommand.MESSAGE_USAGE;
 

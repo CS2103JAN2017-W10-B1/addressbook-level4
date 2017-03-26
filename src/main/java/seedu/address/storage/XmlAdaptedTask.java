@@ -11,6 +11,7 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyEvent;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.ReadOnlyTask.EventProperty;
 import seedu.address.model.task.ReadOnlyTask.FinishProperty;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
@@ -92,11 +93,12 @@ public class XmlAdaptedTask {
         if (this.isEvent) {
             final TaskDate startDate = new TaskDate(this.startDate);
             final TaskTime startTime = new TaskTime(this.startTime);
+
             return new Event(name, startDate, startTime, date, time, description, tag, venue, priority,
-                    isFavourite, isFinished, isEvent);
+                    isFavourite, isFinished);
         } else {
             return new Task(name, date, time, description, tag,
-                    venue, priority, isFavourite, isFinished, isEvent);
+                    venue, priority, isFavourite, isFinished);
         }
     }
 

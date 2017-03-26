@@ -73,9 +73,9 @@ public class DateTest {
         assertTrue(TaskDate.isValidDate("20/09/2017")); // with valid year after;
         TaskDate tester2 = new TaskDate("20/09/2017");
         assertEquals(tester2.date.getYear() + 1900, 2017);
+        assertTrue(TaskDate.isValidDate("20/09/2017"));
 
-        assertTrue(TaskDate.isValidDate("20/09/2017")); // with space;
-        TaskDate testerNull = new TaskDate("");
+        TaskDate testerNull = new TaskDate(""); // with space;
         assertEquals(testerNull.date, TaskDate.FORMATTER.parse(TaskDate.INF_DATE));
     }
 
@@ -95,5 +95,13 @@ public class DateTest {
         assertEquals(tester1.compareTo(tester3), 0);
         assertEquals(tester1.compareTo(tester2), -365);
         assertEquals(tester1.compareTo(tester4), -731); // handle leap year
+    }
+
+    @Test
+    public void isPastDue() throws IllegalValueException {
+        TaskDate tester1 = new TaskDate("25/3/2017");
+        TaskDate tester2 = new TaskDate("20/3/2019");
+        assertTrue(tester1.isPastDue());
+        assertFalse(tester2.isPastDue());
     }
 }
