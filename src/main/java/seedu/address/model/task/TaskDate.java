@@ -39,6 +39,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     private final String value;
     public final Date date;
+    public final boolean isPastDue;
 
     /**
      * Validates given date.
@@ -55,11 +56,14 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         try {
             this.date = trimmedDate.equals("") ?
                     FORMATTER.parse(INF_DATE) :
-                        FORMATTER.parse(parseDate(trimmedDate));
+                    FORMATTER.parse(parseDate(trimmedDate));
         } catch (ParseException e) {
             assert false : "impossble";
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
         }
+        this.isPastDue = TimeUnit.DAYS.convert(
+                this.date.getTime() - today.getTime().getTime(), TimeUnit.MILLISECONDS)
+                < 0;
         this.value = trimmedDate.equals("") ? trimmedDate : parseDate(trimmedDate);
     }
 
@@ -143,6 +147,10 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     public String getValue() {
         return value;
+    }
+
+    public boolean isPastDue() {
+        return isPastDue;
     }
 
     @Override

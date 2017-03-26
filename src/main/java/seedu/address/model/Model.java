@@ -45,6 +45,16 @@ public interface Model {
     UnmodifiableObservableList<Tag> getFilteredTagList();
 
     // Task-level filter
+    /**
+     * Update the filter of the filter task given specific fields
+     * 
+     * @param nameKeywords indicates the name field
+     * @param tagKeywords indicates the tag search field
+     * @param finishedState indicates the finished search field (ALL/UNFINISHED/FINISHED)
+     * @param isFavorite indicates the favorite search field
+     * @param dueMode indicates the view mode on due (ON/BY)
+     * @param days indicates the days until due
+     */
     void updateFilteredTaskList(Set<String> nameKeywords, Set<String> tagKeywords,
             FinishedState finishedState, boolean isFavorite,
             DueMode dueMode, String days);
