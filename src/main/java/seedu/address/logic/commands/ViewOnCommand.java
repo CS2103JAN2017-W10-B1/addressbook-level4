@@ -10,9 +10,9 @@ public class ViewOnCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "View all tasks";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": View tasks due on \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks due on "
             + "the specified date and displays them as a list with index numbers.\n"
-            + "Parameters: [next]/[number of days from today]\n"
+            + "Parameters: [on/[number of days from today]\n"
             + "Example: " + COMMAND_WORD + " on/10";
 
     private final String messageDisplay;
@@ -20,8 +20,8 @@ public class ViewOnCommand extends Command {
     private final String numberOfDays;
 
     public ViewOnCommand(int numberDays) {
-        numberOfDays = String.valueOf(numberDays);
-        messageDisplay = MESSAGE_SUCCESS + " due in " + numberOfDays + " days later\n";
+        numberOfDays = String.valueOf(numberDays - 1);
+        messageDisplay = MESSAGE_SUCCESS + " due in " + numberDays + " days later\n";
     }
 
     @Override

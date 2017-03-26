@@ -12,6 +12,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.ViewOnCommand;
 
 public class HelpCommandParser {
 
@@ -72,7 +73,7 @@ public class HelpCommandParser {
             return FinishCommand.MESSAGE_USAGE;
 
         case ViewCommand.COMMAND_WORD:
-            return ViewCommand.MESSAGE_USAGE;
+            return ViewCommand.MESSAGE_USAGE + "\n" + ViewOnCommand.MESSAGE_USAGE;
 
         default:
             return null;
