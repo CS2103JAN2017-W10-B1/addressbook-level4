@@ -33,6 +33,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     public static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd/MM/yyyy");
 
     public static final int INF = 1000000000;
+    public static final String INF_DATE = "1/1/2100";
 
     private final Calendar today;
 
@@ -52,7 +53,9 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
         }
         try {
-            this.date = trimmedDate.equals("") ? null : FORMATTER.parse(parseDate(trimmedDate));
+            this.date = trimmedDate.equals("") ?
+                    FORMATTER.parse(INF_DATE) :
+                        FORMATTER.parse(parseDate(trimmedDate));
         } catch (ParseException e) {
             assert false : "impossble";
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
@@ -161,14 +164,14 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     @Override
     public int compareTo(TaskDate other) {
-        if (this.date == null) {
-            if (other.date == null) {
+        if (this.value.equals("")) {
+            if (other.value.equals("")) {
                 return 0;
             } else {
                 return INF;
             }
         } else {
-            if (other.date == null) {
+            if (other.value.equals("")) {
                 return -INF;
             } else {
                 long diff = this.date.getTime() - other.date.getTime();
