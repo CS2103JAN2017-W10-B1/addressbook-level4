@@ -102,11 +102,15 @@ public class TaskManager implements ReadOnlyTaskManager {
         Task editedTask = new Task(editedReadOnlyTask);
 
         syncMasterTagListWith(editedTask);
-        // TODO: the tags master list will be updated even though the below line fails.
-        // This can cause the tags master list to have additional tags that are not tagged to any task
-        // in the task list.
+        Tag oldTaskTag = tasks.get(index).getTag();
         tasks.updateTask(index, editedTask);
         tasks.sort();
+        if (isEmptyTag(oldTaskTag)) {
+            tags.remove(oldTaskTag);
+        }
+        if (isEmptyTag(editedTask.getTag())) {
+            tags.remove(editedTask.getTag());
+        }
     }
 
     /**
@@ -143,10 +147,22 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     public boolean removeTask(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
         if (tasks.remove(key)) {
+            if (isEmptyTag(key.getTag())) {
+                tags.remove(key.getTag());
+            }
             return true;
         } else {
             throw new UniqueTaskList.TaskNotFoundException();
         }
+    }
+
+    private boolean isEmptyTag(Tag keyTag) {
+        for (Task t : tasks) {
+            if (t.getTag().equals(keyTag)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 //// tag-level operations
@@ -155,12 +171,15 @@ public class TaskManager implements ReadOnlyTaskManager {
         tags.add(t);
     }
 
+    public void removeTag(Tag t) {
+        tags.remove(t);
+    }
+
 //// util methods
 
     @Override
     public String toString() {
         return tasks.asObservableList().size() + " tasks, " + tags.asObservableList().size() +  " tags, ";
-        // TODO: refine later
     }
 
     @Override
