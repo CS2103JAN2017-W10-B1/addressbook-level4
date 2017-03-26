@@ -24,7 +24,7 @@ public class AddCommand extends AbleUndoCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to Dueue. "
             + "Parameters: TASKNAME [due/DUEDATE] [dueT/DUETIME] [start/STARTDATE] [startT/STARTTIME]"
-            + " [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL]\n"
+            + " [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL][*f]\n"
             + "Example: " + COMMAND_WORD
             + " CS2103 Lecture due/24/3 start/24/3 startT/16:00 dueT/18:00 #CS2103 d/Interesting module @I3 p/3 *f\n"
             + COMMAND_WORD

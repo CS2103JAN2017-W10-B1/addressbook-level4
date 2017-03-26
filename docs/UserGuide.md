@@ -57,13 +57,14 @@ Examples:
 ### 2.2. Adding a typical task: `add`
 
 Add a task to Dueue<br>
-Format: `add n/TASKNAME [due/DATE] [t/TIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f]`
+Format: `add n/TASKNAME [due/DATE] [dueT/TIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f]`
 
 > * Tasks cannot be categorized under multiple LISTs.
 > * Tasks must be added with TASKNAME.
 > * The required field for a task is TASKNAME, which must be entered as the first field, while other fields are optional and can be entered in random sequence.
 > * TIME of each task can only be one time point, e.g. 16:00.
 > * DATE must be in the format of dd/mm/yyyy or dd/mm.
+> * When task is past due, a red label will be displayed below the task name.
 > * PRIORITY will determine the sequence of the tasks displayed.
 > * LIST will be automatically created if it is non-existent.
 > * By default, task will be added to default list `Inbox`, unless [#LIST] is specified.
@@ -72,13 +73,23 @@ Format: `add n/TASKNAME [due/DATE] [t/TIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/
 
 Examples:
 
-* `add n/laundry due/every sunday #personal d/wash clothes @B1 *f`<br>
-  Add a task with taskname `laundry` due `every sunday` under the list `personal` with description `wash clothes` at the venue `B1` and mark it as favourite.
-* `add n/2103lecture due/every friday t/4pm #study d/go for lecture p/3 @iCube`<br>
-  Add a task with taskname `2103lecture` due `every friday` at time `4pm` under the list `study` with description `go for lecture` at the venue `iCube` with priority level `IMPORTANT`.
+* `add n/laundry due/01/01 #personal d/wash clothes @B1 *f`<br>
+  Add a task with taskname `laundry` dues on `01/01` under the list `personal` with description `wash clothes` at the venue `B1` and mark it as favourite.
+* `add n/2103lecture due/01/02 t/4pm #study d/go for lecture p/3 @iCube`<br>
+  Add a task with taskname `2103lecture` due on `01/02` at time `4pm` under the list `study` with description `go for lecture` at the venue `iCube` with priority level `IMPORTANT`.
 
 ### 2.3. Adding an event: `add`
-//TO DO
+
+Add an event to Dueue<br>
+Format: `add TASKNAME [due/DUEDATE] [dueT/DUETIME] [start/STARTDATE] [startT/STARTTIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f]`
+
+> * All constraints applied to adding a task also applies to adding an event.
+> * Starting point (as determined starting time and date) must not be later than due point.
+
+Examples:
+
+* `add CS2103 Lecture due/24/3 start/24/3 startT/16:00 dueT/18:00 #CS2103 d/Interesting module @I3 p/3 *f`<br>
+  Add a task with taskname `CS2103 Lecture` on `03/24` with starting time `16:00` to ending time `18:00` under the list `CS2103` with description `Interesting module` at the venue `I3` and mark it as favourite.
 
 ### 2.4. Finishing task(s) : `finish`
 
@@ -87,19 +98,15 @@ Format: `finish TASK_INDEX...`
 
 > * Finishes the task(s) at the specified `TASKINDEX`. <br>
 > * The index refers to the index number shown in current list view.<br>
-> * To finish multiple tasks, indices must be seperated by whitespaces.
 > * Each index **must be a positive integer** 1, 2, 3, ...
 > * A finished task will automatically dissappeared from curret list view.
-> * Finished tasks can be viewed under the "list [LIST_INDEX/LIST_NAME] finished" command.
-> * Finished tasks can be viewed together with unfinished tasks under the "list [LIST_INDEX/LIST_NAME] all" command.
+> * Finished tasks can be viewed under the "list finished [LIST_INDEX]" command.
+> * Finished tasks can also be viewed together with unfinished tasks under the "list [LIST_INDEX] all" command.
 
 Examples:
 
 * `finish 1`<br>
   Mark the task with index 1 under current list view as finished.
-
-* `finish 2 3 5`<br>
-  Mark the tasks with index 2,3 and 5 under current list view as finished.
 
 ### 2.5. Listing all tasks : `list`
 
@@ -144,7 +151,7 @@ Examples:
 ### 2.6. Editing task(s) : `edit`
 
 Edits existing task(s) in Dueue<br>
-Format: `edit TASKINDEX ... [n/NAME] [due/DUEDATE] [t/TIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f/*u]`
+Format: `edit TASKINDEX [n/NAME] [due/DUEDATE] [dueT/TIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f/*u]`
 
 > * Edits the task at the specified `INDEX`.
 > * The index refers to the index number shown in the current list view.<br>
@@ -153,7 +160,6 @@ Format: `edit TASKINDEX ... [n/NAME] [due/DUEDATE] [t/TIME] [#LIST] [d/DESCRIPTI
 > * For the field "favorite", use "*f" to mark as favorte and use "*u" to unfavorite a task.
 > * Existing values will be edited to the input values.
 > * You can remove details by typing the field prefix only, e.g.`edit TASK_INDEX due/`.
-> * To edit multiple entries, indices must be seperated by whitespaces.
 > * Specifications of fields for task can be entered in any order.
 
 Examples:
@@ -169,40 +175,31 @@ Examples:
 View tasks due on a specified date.<br>
 Format: `view on/NUMBEROFDAYS`
 
-View tasks due by a specified date.<br>
-Format: `view dueby/DATE`
-
 View tasks due within the next n days.<br>
 Format: `view dueby/NUMBEROFDAYS`
 
-> * The date has to be specified in a certain format.<br>
+> * NUMBEROFDAYS must be a positive integer.<br>
 
 Examples:
 
 * `view on/10`<br>
   Returns a list of tasks due on that day from 10 days later
-* `view dueby/10/04`<br>
-  Returns a list of tasks due by 10/04
 * `view next/10`<br>
   Returns a list of tasks due within the next 10 days
 
 ### 2.8. Deleting task(s) or list(s) : `delete`
 
 Deletes the specified task(s) from Dueue.<br>
-Format: `delete TASKINDEX...`
+Format: `delete TASKINDEX`
 
-> * Deletes the task at the specified `TASKINDEX` or `LISTINDEX`. <br>
+> * Deletes the task at the specified `TASKINDEX`. <br>
 > * The index refers to the index number shown in the most recent listing.<br>
-> * To delete multiple entries, indices must be seperated by whitespaces.
 > * Each index **must be a positive integer** 1, 2, 3, ...
-> * When a repeated task is deleted, user will need to confirm whether it should be deleted for once or deleted forever (stop repeating).
 
 Examples:
 
 * `delete 2`<br>
   Deletes the 2nd task/list in current list view.
-* `delete 1 2 3`<br>
-  Deletes the 1st, 2nd and 3rd tasks/lists in current list view.
 
 ### 2.10. Undo latest command: `undo`
 
@@ -255,8 +252,8 @@ There is no need to save manually.
 
 ## 4. Command Summary
 
-* **Add**  `add n/TASKNAME [due/DUEDATE] [t/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [FAVOURITE]` <br>
-  e.g. `add n/laundry due/every sunday #personal d/wash clothes @B1 p/IMPORTANT *f`
+* **Add**  `add n/TASKNAME [due/DUEDATE] [dueT/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f]` <br>
+  e.g. `add n/laundry due/01/01 dueT/10:00 #personal d/wash clothes @B1 p/IMPORTANT *f`
 
 * **Clear** : `clear`
   e.g. `clear`
@@ -264,7 +261,7 @@ There is no need to save manually.
 * **Delete** : `delete TASKINDEX...` <br>
    e.g. `delete 3`
 
-* **Edit** : `edit TASKINDEX ... [n/NAME] [due/DUEDATE] [t/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f/*u]` <br>
+* **Edit** : `edit TASKINDEX ... [n/NAME] [due/DUEDATE] [dueT/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f/*u]` <br>
   e.g.`update 1 Laundry due/every sunday @`
 
 * **Finish** : `finish TASKINDEX...` <br>
@@ -282,5 +279,5 @@ There is no need to save manually.
 * **Undo** : `undo` <br>
   e.g. `undo`
 
-* **View** : `view DUETYPE/DUEDATE`<br>
-  e.g. `view dueon/today`
+* **View** : `view DUETYPE/NUMBEROFDAYS`<br>
+  e.g. `view dueby/10`
