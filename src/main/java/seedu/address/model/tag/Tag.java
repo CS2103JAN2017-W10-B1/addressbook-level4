@@ -98,7 +98,7 @@ public class Tag implements TaskField, Comparable<Tag> {
         if (tagName.equals(" ") || tagName.equals("")) {
             return "";
         } else {
-            return tagName;
+            return "[" + tagName + "]";
         }
     }
 }

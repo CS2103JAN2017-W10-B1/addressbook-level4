@@ -32,6 +32,8 @@ public class TaskListCard extends UiPart<Region> {
     @FXML
     private Label startTime;
     @FXML
+    private Label pastDue;
+    @FXML
     private Label description;
     @FXML
     private Label venue;
@@ -54,6 +56,13 @@ public class TaskListCard extends UiPart<Region> {
         tag.setText(task.getTag().getDisplayText());
         isFavorite.setText(task.getFavoriteText());
         isFinished.setText(task.getFinishedText());
+        if(task.getDate().isPastDue()) {
+            pastDue.setText("Task is past due!");
+        } else {
+            pastDue.setText("");
+        }
+        startTime.setText("");
+        startDate.setText("");
         /*if (task.isEvent()) {
             startDate.setText(((ReadOnlyEvent) task).getStartDate().getDisplayText());
             startTime.setText(((ReadOnlyEvent) task).getStartTime().getDisplayText());

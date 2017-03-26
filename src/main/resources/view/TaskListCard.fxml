@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="taskCardPane" fx:id="taskCardPane" prefHeight="139.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="taskCardPane" fx:id="taskCardPane" prefHeight="111.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <GridPane prefHeight="146.0" prefWidth="550.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
@@ -22,7 +23,7 @@
                <children>
                       <VBox alignment="CENTER_LEFT" prefHeight="147.0" prefWidth="346.0">
                           <stylesheets>
-                              <URL value="@MainTheme.css" />
+                              
                               <URL value="@Extensions.css" />
                           </stylesheets>
                           <padding>
@@ -36,31 +37,56 @@
                                  <HBox.margin>
                                     <Insets top="2.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font name="Avenir Roman" size="14.0" />
+                                 </font>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
                               </Label>
-                                       <Label fx:id="name" alignment="TOP_LEFT" prefHeight="20.0" prefWidth="149.0" styleClass="cell_big_label" text="\$taskName" />
+                                       <Label fx:id="name" prefHeight="20.0" prefWidth="149.0" styleClass="cell_big_label" text="\$taskName">
+                                 <font>
+                                    <Font name="Avenir Roman" size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="2.0" />
+                                 </HBox.margin>
+                                 <effect>
+                                    <Glow />
+                                 </effect></Label>
                                <Label fx:id="tag" prefHeight="16.0" prefWidth="55.0" styleClass="cell_small_label" text="\$list">
                                  <HBox.margin>
                                     <Insets top="3.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font name="Avenir Roman" size="14.0" />
+                                 </font>
                               </Label>
                            </children>
                         </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="5">
                            <children>
-                                    <Label fx:id="priority" alignment="BOTTOM_RIGHT" prefHeight="12.0" prefWidth="95.0" styleClass="cell_small_label" text="\$priority" textAlignment="RIGHT">
+                                    <Label fx:id="priority" prefHeight="12.0" prefWidth="95.0" styleClass="cell_small_label" text="\$priority">
                                  <HBox.margin>
                                     <Insets top="5.0" />
                                  </HBox.margin>
                               </Label>
-                                    <Label fx:id="isFavorite" alignment="BOTTOM_RIGHT" prefHeight="16.0" prefWidth="75.0" styleClass="cell_small_label" text="\$isFavorite">
+                                    <Label fx:id="isFavorite" prefHeight="16.0" prefWidth="75.0" styleClass="cell_small_label" text="\$isFavorite">
                                  <HBox.margin>
-                                    <Insets left="28.0" />
+                                    <Insets left="28.0" top="5.0" />
                                  </HBox.margin>
                               </Label>
                            </children>
                               </HBox>
+                        <Label fx:id="pastDue" text="\$pastDue" textFill="#f20000">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font></Label>
 
-                              <Label fx:id="description" prefHeight="50.0" prefWidth="345.0" styleClass="cell_small_label" text="\$description" />
+                              <Label fx:id="description" alignment="TOP_LEFT" prefHeight="46.0" prefWidth="297.0" styleClass="cell_small_label" text="\$description" />
                           </children>
                      <HBox.margin>
                         <Insets />
@@ -72,7 +98,7 @@
                <children>
                   <Label fx:id="isFinished" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="122.0" styleClass="cell_small_label" text="\$isFinished">
                      <VBox.margin>
-                        <Insets top="25.0" />
+                        <Insets top="8.0" />
                      </VBox.margin>
                      <font>
                         <Font size="11.0" />
@@ -100,7 +126,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="startDate" prefHeight="17.0" prefWidth="81.0" text="\$startDate">
+                        <Label fx:id="startDate" prefHeight="17.0" prefWidth="112.0" text="\$startDate">
                            <font>
                               <Font size="11.0" />
                            </font>
