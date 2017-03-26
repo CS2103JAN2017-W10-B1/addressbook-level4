@@ -20,7 +20,7 @@ public interface ReadOnlyTask {
     Venue getVenue();
     Priority getPriority();
     boolean isFavorite();
-    FinishProperty isFinished();
+    Boolean isFinished();
     String getFavoriteText();
     String getFinishedText();
     boolean isEvent();
@@ -37,6 +37,12 @@ public interface ReadOnlyTask {
                 && other.getTime().equals(this.getTime())
                 && other.getTag().equals(this.getTag())); // state checks here onwards
     }
+    
+    //@@ author A0143409J
+    /*
+     * Get the FinishProperty instead of boolean
+     */
+    FinishProperty getFinished();
 
     /**
      * Formats the person as text, showing all contact details.
@@ -70,7 +76,7 @@ public interface ReadOnlyTask {
         if (isFavorite()) {
             builder.append(" favorite");
         }
-        if (isFinished() == FinishProperty.Finished) {
+        if (isFinished()) {
             builder.append(" finished");
         }
         return builder.toString();

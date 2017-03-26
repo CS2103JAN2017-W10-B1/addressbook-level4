@@ -54,7 +54,7 @@ public class FinishCommand extends AbleUndoCommand {
 
         ReadOnlyTask taskToMark = lastShownList.get(targetIndex - 1);
 
-        if (taskToMark.isFinished() == FinishProperty.Finished) {
+        if (taskToMark.isFinished()) {
             throw new CommandException(MESSAGE_FINISH_TASK_MARKED);
         } else {
             Name updatedName = taskToMark.getName();

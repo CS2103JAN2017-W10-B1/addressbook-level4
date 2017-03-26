@@ -78,7 +78,7 @@ public class TypicalTestTasks {
     }
 
     public TestTask[] getTypicalTasks() {
-        TestTask[] tasks = {gym, gym2, gym3, cs2103, study, assignment};
+        TestTask[] tasks = {gym, gym2, gym3, date, cs2103, study, assignment};
         List<TestTask> listOfTasks = asList(tasks);
         listOfTasks = sort(listOfTasks);
         return listOfTasks.toArray(new TestTask[listOfTasks.size()]);

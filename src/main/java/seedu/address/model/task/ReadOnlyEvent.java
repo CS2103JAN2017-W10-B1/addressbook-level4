@@ -46,7 +46,7 @@ public interface ReadOnlyEvent extends ReadOnlyTask {
         if (isFavorite()) {
             builder.append(" favorite");
         }
-        if (isFinished() == FinishProperty.Finished) {
+        if (isFinished()) {
             builder.append(" finished");
         }
         return builder.toString();
