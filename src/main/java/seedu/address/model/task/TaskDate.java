@@ -149,6 +149,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         return value;
     }
 
+    /** return if the task has past due*/
     public boolean isPastDue() {
         return isPastDue;
     }
