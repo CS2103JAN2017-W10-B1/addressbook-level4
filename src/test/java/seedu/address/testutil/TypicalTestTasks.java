@@ -49,7 +49,7 @@ public class TypicalTestTasks {
                     "13:00").withDescription("Most important day").
                     withTag("personal").withVenue("Gardens by the bay").withPriority("3").withFavorite(false).build();
           //The test tasks above are for duplicate task testing
-            meeting = new TaskBuilder().withName("meeting").withDate("01/01").withTime(
+            meeting = new TaskBuilder().withName("meeting").withDate("27/04").withTime(
                     "12:00").withDescription("Meeting old friends").
                     withTag("school").withVenue("PGP").withPriority("2").withFavorite(false).build();
             familyDinner = new TaskBuilder().withName("family dinner").withDate("1/1").withTime(
