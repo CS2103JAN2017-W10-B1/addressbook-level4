@@ -10,9 +10,11 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Event;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.ReadOnlyEvent;
 import seedu.address.model.task.ReadOnlyTask.FinishProperty;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
@@ -77,68 +79,63 @@ public class EditCommand extends AbleUndoCommand {
         }
 
         ReadOnlyTask taskToEdit = lastShownList.get(filteredTaskListIndex);
-        try {
-            this.oldTask = createTask(taskToEdit);
-        } catch (IllegalValueException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        this.oldTask = (Task) taskToEdit;
 
         try {
+            Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
             model.updateTask(filteredTaskListIndex, editedTask);
             this.task = editedTask;
             this.isSuccess = true;
         } catch (UniqueTaskList.DuplicateTaskException dpe) {
             this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         model.updateFilteredListToShowAllUnfinishedTasks();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
-    private Task createTask(ReadOnlyTask task) throws IllegalValueException {
-        return new Task(new Name(task.getName().fullName),
-                new TaskDate(task.getDate().getValue()),
-                new TaskTime(task.getTime().getValue()),
-                new Description(task.getDescription().getValue()),
-                new Tag(task.getTag().tagName),
-                new Venue(task.getVenue().getValue()),
-                new Priority(task.getPriority().getValue()),
-                task.isFavorite(),
-                task.isFinished());
-    }
-
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
+     * @throws IllegalValueException 
      */
     private static Task createEditedTask(ReadOnlyTask taskToEdit,
-                                             EditTaskDescriptor editTaskDescriptor) {
+                                             EditTaskDescriptor editTaskDescriptor) throws IllegalValueException {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
-        TaskDate updatedDate = editTaskDescriptor.getDate().orElseGet(taskToEdit::getDate);
-        TaskTime updatedTime = editTaskDescriptor.getTime().orElseGet(taskToEdit::getTime);
+        TaskDate updatedDueDate = editTaskDescriptor.getDue().orElseGet(taskToEdit::getDate);
+        TaskTime updatedDueTime = editTaskDescriptor.getDueTime().orElseGet(taskToEdit::getTime);
         Description updatedDescription = editTaskDescriptor.getDescription().orElseGet(taskToEdit::getDescription);
         Tag updatedTag = editTaskDescriptor.getTag().orElseGet(taskToEdit::getTag);
         Venue updatedVenue = editTaskDescriptor.getVenue().orElseGet(taskToEdit::getVenue);
         Priority updatedPriority = editTaskDescriptor.getPriority().orElseGet(taskToEdit::getPriority);
+        FinishProperty isFinished = taskToEdit.getFinished();
         boolean isFavourite;
         if (editTaskDescriptor.getIsFavouriteEdited()) {
             isFavourite = editTaskDescriptor.getFavourite();
         } else {
             isFavourite = taskToEdit.isFavorite();
         }
-        FinishProperty isFinished;
-        if (taskToEdit.isFinished()) {
-            isFinished = FinishProperty.Finished;
-        } else {
-            isFinished = FinishProperty.Unfinished;
+        if(editTaskDescriptor.updatedEvent(editTaskDescriptor.getStart()) || taskToEdit.isEvent()){
+            if(taskToEdit.isEvent() || (editTaskDescriptor.getStart().isPresent() && !editTaskDescriptor.getStart().get().getValue().isEmpty())){
+                TaskDate updatedStartDate = editTaskDescriptor.getStart().orElseGet(taskToEdit::getDate);
+                TaskTime updatedStartTime = editTaskDescriptor.getStartTime().orElseGet(taskToEdit::getTime);
+                return new Event(updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
+                        updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished, true);
+            }
+            else{
+                return new Task(updatedName, updatedDueDate, updatedDueTime, updatedDescription,
+                        updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished, false);
+            }
         }
-
-        return new Task(updatedName, updatedDate, updatedTime, updatedDescription,
-                updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
+        else{
+            return new Task(updatedName, updatedDueDate, updatedDueTime, updatedDescription,
+                updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished, false);
+        }
     }
 
     /**
@@ -147,8 +144,10 @@ public class EditCommand extends AbleUndoCommand {
      */
     public static class EditTaskDescriptor {
         private Optional<Name> name = Optional.empty();
-        private Optional<TaskDate> date = Optional.empty();
-        private Optional<TaskTime> time = Optional.empty();
+        private Optional<TaskDate> due = Optional.empty();
+        private Optional<TaskTime> dueTime = Optional.empty();
+        private Optional<TaskDate> start = Optional.empty();
+        private Optional<TaskTime> startTime = Optional.empty();
         private Optional<Description> description = Optional.empty();
         private Optional<Tag> tag = Optional.empty();
         private Optional<Venue> venue = Optional.empty();
@@ -161,8 +160,10 @@ public class EditCommand extends AbleUndoCommand {
 
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             this.name = toCopy.getName();
-            this.date = toCopy.getDate();
-            this.time = toCopy.getTime();
+            this.due = toCopy.getDue();
+            this.dueTime = toCopy.getDueTime();
+            this.start = toCopy.getStart();
+            this.startTime = toCopy.getStartTime();
             this.description = toCopy.getDescription();
             this.tag = toCopy.getTag();
             this.venue = toCopy.getVenue();
@@ -176,7 +177,7 @@ public class EditCommand extends AbleUndoCommand {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyPresent(
-                    this.name, this.date, this.time,
+                    this.name, this.due, this.dueTime, this.start, this.startTime,
                     this.description, this.tag, this.venue, this.priority) || this.isFavouriteEdited;
         }
 
@@ -189,22 +190,40 @@ public class EditCommand extends AbleUndoCommand {
             return name;
         }
 
-        public void setDate(Optional<TaskDate> date) {
-            assert date != null;
-            this.date = date;
+        public void setDue(Optional<TaskDate> due) {
+            assert due != null;
+            this.due = due;
+        }
+        
+        public void setStart(Optional<TaskDate> start) {
+            assert start != null;
+            this.start = start;
         }
 
-        public Optional<TaskDate> getDate() {
-            return date;
+        public Optional<TaskDate> getDue() {
+            return due;
+        }
+        
+        public Optional<TaskDate> getStart() {
+            return start;
         }
 
-        public void setTime(Optional<TaskTime> time) {
-            assert time != null;
-            this.time = time;
+        public void setDueTime(Optional<TaskTime> dueTime) {
+            assert dueTime != null;
+            this.dueTime = dueTime;
+        }
+        
+        public void setStartTime(Optional<TaskTime> startTime) {
+            assert startTime != null;
+            this.startTime = startTime;
         }
 
-        public Optional<TaskTime> getTime() {
-            return time;
+        public Optional<TaskTime> getDueTime() {
+            return dueTime;
+        }
+        
+        public Optional<TaskTime> getStartTime() {
+            return startTime;
         }
 
         public void setDescription(Optional<Description> description) {
@@ -263,6 +282,10 @@ public class EditCommand extends AbleUndoCommand {
                 this.isFavouriteEdited = true;
                 this.isFavourite = false;
             }
+        }
+        
+        public boolean updatedEvent(Optional<TaskDate> start){
+            return start.isPresent();
         }
     }
 
