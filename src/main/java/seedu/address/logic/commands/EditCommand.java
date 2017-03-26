@@ -25,7 +25,7 @@ import seedu.address.model.task.Venue;
 
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing task in the address book.
  */
 public class EditCommand extends AbleUndoCommand {
 
@@ -34,7 +34,8 @@ public class EditCommand extends AbleUndoCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the last task listing. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) n/TASKNAME [due/DUEDATE] [t/TIME] [#LISTNAME] "
+            + "Parameters: INDEX (must be a positive integer) n/TASKNAME [due/DUEDATE] [dueT/DUETIME] "
+            + "[start/STARTDATE] [startT/STARTTIME] [#LISTNAME] "
             + "[d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f]"
             + "Example: " + COMMAND_WORD + " 1 due/17/3/2017 #CS2103T";
 
@@ -49,8 +50,8 @@ public class EditCommand extends AbleUndoCommand {
     private boolean isSuccess;
 
     /**
-     * @param filteredPersonListIndex the index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param filteredPersonListIndex the index of the task in the filtered task list to edit
+     * @param editPersonDescriptor details to edit the task with
      */
     public EditCommand(int filteredTaskListIndex, EditTaskDescriptor editTaskDescriptor) {
         assert filteredTaskListIndex > 0;
@@ -90,7 +91,6 @@ public class EditCommand extends AbleUndoCommand {
             this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (IllegalValueException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         model.updateFilteredListToShowAllUnfinishedTasks();
@@ -99,7 +99,7 @@ public class EditCommand extends AbleUndoCommand {
 
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Person} with the details of {@code taskToEdit}
      * edited with {@code editPersonDescriptor}.
      * @throws IllegalValueException
      */
@@ -140,8 +140,8 @@ public class EditCommand extends AbleUndoCommand {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the task with. Each non-empty field value will replace the
+     * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
         private Optional<Name> name = Optional.empty();
@@ -307,7 +307,7 @@ public class EditCommand extends AbleUndoCommand {
         } catch (UniqueTaskList.DuplicateTaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (TaskNotFoundException e) {
-            assert false : "The target person cannot be missing";
+            assert false : "The target task cannot be missing";
         }
         model.updateFilteredListToShowAllUnfinishedTasks();
         this.isSuccess = true;
