@@ -144,6 +144,11 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public void updateFilteredListToShowAllFavoriteTasks() {
+        updateFilteredTaskList(new PredicateExpression(new FavoriteQualifier()));
+    }
+
+    @Override
     public void updateFilteredTaskList(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
     }
@@ -314,6 +319,26 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
         public String toString() {
             return "name=" + "finished";
+        }
+    }
+
+    private class FavoriteQualifier implements Qualifier {
+
+        FavoriteQualifier() {}
+
+        @Override
+        public boolean run(ReadOnlyTask task) {
+            return task.isFavorite();
+        }
+
+        @Override
+        public boolean run(Tag list) {
+            return false;
+        }
+
+        @Override
+        public String toString() {
+            return "name=" + "favorite";
         }
     }
 //@@ author

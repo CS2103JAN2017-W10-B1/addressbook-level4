@@ -17,10 +17,12 @@ public class ListCommand extends Command {
 
     public static final String LIST_ALL = "all";
     public static final String LIST_FINISHED = "finished";
+    public static final String LIST_FAVORITE = "favorite";
 
     public static final String MESSAGE_LIST_SUCCESS = "Listed unfinished tasks";
     public static final String MESSAGE_LIST_ALL_SUCCESS = "Listed all tasks";
     public static final String MESSAGE_LIST_FINISHED_SUCCESS = "Listed all finished tasks";
+    public static final String MESSAGE_LIST_FAVORITE_SUCCESS = "Listed all favorite tasks";
     public static final String MESSAGE_LIST_DOES_NOT_EXIST= "Given list name does not exist";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks as per the parameters\n"
@@ -55,6 +57,9 @@ public class ListCommand extends Command {
         } else if (keywords.contains(LIST_FINISHED)) {
             model.updateFilteredListToShowAllFinishedTasks();
             return new CommandResult(MESSAGE_LIST_FINISHED_SUCCESS);
+        } else if (keywords.contains(LIST_FAVORITE)) {
+            model.updateFilteredListToShowAllFavoriteTasks();
+            return new CommandResult(MESSAGE_LIST_FAVORITE_SUCCESS);
         } else if (!isKeywordMatchingTaglist()) {
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         } else {
