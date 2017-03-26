@@ -26,7 +26,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void editAllFieldsSpecifiedSuccess() throws Exception {
-        String detailsToEdit = "n/lecture due/10/04/2018 t/16:00 #study d/Interesting module @I3 p/3 *u";
+        String detailsToEdit = "n/lecture due/10/04/2018 dueT/16:00 #study d/Interesting module @I3 p/3 *u";
         int taskManagerIndex = 1;
 
         TestTask editedTask = new TaskBuilder().withName("lecture").withDate("10/04/2018").withTag("study")
@@ -37,7 +37,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void editSomeFieldsSpecifiedSuccess() throws Exception {
-        String detailsToEdit = "due/10/04/2018 #newlist t/16:35 d/Random description p/trivial";
+        String detailsToEdit = "due/10/04/2018 #newlist dueT/16:35 d/Random description p/trivial";
         int taskManagerIndex = 2;
         TestTask editedTask = new TestTask(expectedTasksList[taskManagerIndex - 1]);
 
@@ -99,7 +99,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("edit 1 due/1111");
         assertResultMessage(TaskDate.MESSAGE_DATE_CONSTRAINTS_1);
 
-        commandBox.runCommand("edit 1 t/1200");
+        commandBox.runCommand("edit 1 dueT/1200");
         assertResultMessage(TaskTime.MESSAGE_TIME_CONSTRAINTS);
 
         commandBox.runCommand("edit 1 p/5");
