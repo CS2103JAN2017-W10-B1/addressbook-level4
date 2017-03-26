@@ -12,37 +12,24 @@ public class ViewCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void view () {
-        //view all tasks in Dueue
-        assertViewResult("view ", td.gym, td.gym2, td.gym3, td.date,
-                td.cs2103, td.study, td.assignment);
-        //view multiple tasks by view name
-        assertViewResult("view personal", td.gym, td.gym2, td.gym3, td.date);
-        //view single task by view name
-        assertViewResult("view study", td.assignment);
-
-        //view finished tasks in Dueue
-        commandBox.runCommand("finish 1");
-        commandBox.runCommand("finish 2");
-        commandBox.runCommand("finish 3");
-        assertViewResult("view finished", td.gym, td.gym2, td.gym3);
-
-        //view favorite tasks in Dueue
-        assertViewResult("view favorite", td.assignment);
+        assertViewResult("view next/270",  td.assignment, td.gym, td.gym2, td.gym3);
+        assertViewResult("view next/1");
+        assertViewResult("view next/1000", td.assignment, td.gym, td.gym2, td.gym3,
+                td.cs2103, td.date, td.study);
     }
 
     @Test
     public void view_invalidCommand_fail() {
-        commandBox.runCommand("views study");
+        commandBox.runCommand("views next/10");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
 
-        commandBox.runCommand("viewstudy");
+        commandBox.runCommand("viewnext /10");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
     }
 
     private void assertViewResult(String command, TestTask... expectedHits) {
         commandBox.runCommand(command);
         assertListSize(expectedHits.length);
-        assertResultMessage(expectedHits.length + " tasks found!");
         assertTrue(taskListPanel.isListMatching(expectedHits));
     }
 }
