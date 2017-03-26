@@ -47,7 +47,7 @@ public interface Model {
     // Task-level filter
     /**
      * Update the filter of the filter task given specific fields
-     * 
+     *
      * @param nameKeywords indicates the name field
      * @param tagKeywords indicates the tag search field
      * @param finishedState indicates the finished search field (ALL/UNFINISHED/FINISHED)
