@@ -39,10 +39,6 @@ public interface ReadOnlyTask {
                 && other.getTime().equals(this.getTime())
                 && other.getTag().equals(this.getTag())); // state checks here onwards
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
     //@@ author A0143409J
     /*
      * Get the FinishProperty instead of boolean
