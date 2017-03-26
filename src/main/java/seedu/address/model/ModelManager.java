@@ -150,6 +150,11 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public void updateFilteredTaskListFavorite(Set<String> keywords) {
+        updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords), new FavoriteQualifier()));
+    }
+
+    @Override
     public void updateFilteredTaskListGivenListName(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords), new UnfinishedQualifier()));
     }
