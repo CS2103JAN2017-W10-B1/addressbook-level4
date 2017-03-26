@@ -64,7 +64,7 @@ public class Description implements TaskField, Comparable<Description> {
 //@@author A0143409J
     @Override
     public String getDisplayText() {
-        if ((value == null) || (value == "")) {
+        if ((value.equals(" ")) || (value.equals(""))) {
             return "";
         } else {
             return value;
