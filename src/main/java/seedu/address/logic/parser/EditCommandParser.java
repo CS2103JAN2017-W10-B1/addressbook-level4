@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FAVOURITE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UNFAVOURITE;
@@ -36,7 +38,7 @@ public class EditCommandParser {
         assert args != null;
         ArgumentTokenizer argsTokenizer =
                 new ArgumentTokenizer(PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_TAG,
-                        PREFIX_DESCRIPTION, PREFIX_VENUE, PREFIX_PRIORITY, PREFIX_FAVOURITE, PREFIX_UNFAVOURITE);
+                        PREFIX_DESCRIPTION, PREFIX_VENUE, PREFIX_PRIORITY, PREFIX_FAVOURITE, PREFIX_UNFAVOURITE, PREFIX_START, PREFIX_STARTTIME);
         argsTokenizer.tokenize(args);
         List<Optional<String>> preambleFields = ParserUtil.splitPreamble(argsTokenizer.getPreamble().orElse(""), 2);
 
@@ -47,9 +49,11 @@ public class EditCommandParser {
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         try {
-            editTaskDescriptor.setDate(ParserUtil.parseDate(argsTokenizer.getValue(PREFIX_DATE)));
+            editTaskDescriptor.setDue(ParserUtil.parseDate(argsTokenizer.getValue(PREFIX_DATE)));
+            editTaskDescriptor.setStart(ParserUtil.parseDate(argsTokenizer.getValue(PREFIX_START)));
             editTaskDescriptor.setName(ParserUtil.parseName(argsTokenizer.getValue(PREFIX_NAME)));
-            editTaskDescriptor.setTime(ParserUtil.parseTime(argsTokenizer.getValue(PREFIX_TIME)));
+            editTaskDescriptor.setDueTime(ParserUtil.parseTime(argsTokenizer.getValue(PREFIX_TIME)));
+            editTaskDescriptor.setStartTime(ParserUtil.parseTime(argsTokenizer.getValue(PREFIX_STARTTIME)));
             editTaskDescriptor.setTag(ParserUtil.parseTag(argsTokenizer.getValue(PREFIX_TAG)));
             editTaskDescriptor.setDescription(ParserUtil.parseDescription(argsTokenizer.getValue(PREFIX_DESCRIPTION)));
             editTaskDescriptor.setVenue(ParserUtil.parseVenue(argsTokenizer.getValue(PREFIX_VENUE)));
