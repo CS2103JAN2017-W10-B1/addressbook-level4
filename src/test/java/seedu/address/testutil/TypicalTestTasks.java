@@ -22,10 +22,10 @@ public class TypicalTestTasks {
             //gym2 and gym3 are built for findCommandTest
             gym2 = new TaskBuilder().withName("gym").withDate("21/12/2018").withTime(
                     "20:00").withDescription("50min workout").
-                    withTag("personal").withVenue("gym").withPriority("2").withFavorite(true).build();
+                    withTag("personal").withVenue("gym").withPriority("2").withFavorite(false).build();
             gym3 = new TaskBuilder().withName("gym").withDate("22/12/2018").withTime(
                     "20:00").withDescription("50min workout").
-                    withTag("personal").withVenue("gym").withPriority("2").withFavorite(true).build();
+                    withTag("personal").withVenue("gym").withPriority("2").withFavorite(false).build();
             cs2103 = new TaskBuilder().withName("cs2103").withDate("01/01").withTime(
                     "16:00").withDescription("Crazy but useful mod").
                     withTag("school").withVenue("icube").withPriority("1").withFavorite(true).build();
