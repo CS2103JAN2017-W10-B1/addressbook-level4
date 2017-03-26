@@ -102,14 +102,7 @@ public abstract class TaskManagerGuiTest {
     }
 
     /**
-     * Asserts the person shown in the card is same as the given person
-     */
-    public void assertMatching(ReadOnlyTask task, TaskCardHandle card) {
-        assertTrue(TestUtil.compareCardAndTask(card, task));
-    }
-
-    /**
-     * Asserts the size of the person list is equal to the given number.
+     * Asserts the size of the task list is equal to the given number.
      */
     protected void assertListSize(int size) {
         int numberOfTasks = taskListPanel.getNumberOfTasks();

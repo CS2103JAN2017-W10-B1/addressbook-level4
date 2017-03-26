@@ -12,7 +12,7 @@ import seedu.address.model.task.UniqueTaskList;
 
 public class TypicalTestTasks {
     public TestTask gym, gym2, gym3, cs2103, study, assignment, date, date2, date3, date4, meeting,
-        familyDinner, travel, shopping;
+        familyDinner, travel, shopping, shopping2;
 
     public TypicalTestTasks() {
         try {
@@ -42,10 +42,10 @@ public class TypicalTestTasks {
             date2  = new TaskBuilder().withName("date").withDate("14/02/2020").withTime(
                     "12:00").withDescription("Most important day").
                     withTag("private").withVenue("Gardens by the bay").withPriority("3").withFavorite(false).build();
-            date3  = new TaskBuilder().withName("date").withDate("15/02/2020").withTime(
+            date3  = new TaskBuilder().withName("date").withDate("15/04/2017").withTime(
                     "12:00").withDescription("Most important day").
                     withTag("personal").withVenue("Gardens by the bay").withPriority("3").withFavorite(false).build();
-            date4  = new TaskBuilder().withName("date").withDate("14/02/2020").withTime(
+            date4  = new TaskBuilder().withName("date").withDate("14/04/2017").withTime(
                     "13:00").withDescription("Most important day").
                     withTag("personal").withVenue("Gardens by the bay").withPriority("3").withFavorite(false).build();
           //The test tasks above are for duplicate task testing
@@ -61,6 +61,9 @@ public class TypicalTestTasks {
             shopping = new TaskBuilder().withName("shopping").withDate("1/01").withTime(
                     "21:00").withDescription("Shopping in Airport").
                     withTag("personal").withVenue("Airport").withPriority("3").withFavorite(true).build();
+            //floating task test
+            shopping2 = new TaskBuilder().withName("shopping").withDate("26/04").withTime("")
+                    .withDescription("").withTag("Inbox").withVenue("").withPriority("2").withFavorite(false).build();
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";

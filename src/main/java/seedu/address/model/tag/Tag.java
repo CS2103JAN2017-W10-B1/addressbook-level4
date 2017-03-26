@@ -95,7 +95,7 @@ public class Tag implements TaskField, Comparable<Tag> {
 
     @Override
     public String getDisplayText() {
-        if ((tagName == null) || (tagName == "")) {
+        if (tagName.equals(" ") || tagName.equals("")) {
             return "";
         } else {
             return tagName;

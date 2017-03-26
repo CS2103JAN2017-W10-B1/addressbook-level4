@@ -94,7 +94,7 @@ public class Priority implements TaskField, Comparable<Priority> {
 //@@author A0143409J
     @Override
     public String getDisplayText() {
-        if ((value == null) || (value == "")) {
+        if (value.equals(" ") || value.equals("")) {
             return "";
         } else {
             return "Priority: " + value;
