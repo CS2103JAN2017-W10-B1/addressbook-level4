@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.task.ReadOnlyEvent;
 import seedu.address.model.task.ReadOnlyTask;
 
 /**
@@ -26,6 +27,10 @@ public class TaskListCard extends UiPart<Region> {
     private Label date;
     @FXML
     private Label time;
+    @FXML
+    private Label startDate;
+    @FXML
+    private Label startTime;
     @FXML
     private Label description;
     @FXML
@@ -49,6 +54,10 @@ public class TaskListCard extends UiPart<Region> {
         tag.setText(task.getTag().getDisplayText());
         isFavorite.setText(task.getFavoriteText());
         isFinished.setText(task.getFinishedText());
+        /*if (task.isEvent()) {
+            startDate.setText(((ReadOnlyEvent) task).getStartDate().getDisplayText());
+            startTime.setText(((ReadOnlyEvent) task).getStartTime().getDisplayText());
+        }*/
     }
 }
 
