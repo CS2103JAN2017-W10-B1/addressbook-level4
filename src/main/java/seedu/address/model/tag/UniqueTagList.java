@@ -3,6 +3,7 @@ package seedu.address.model.tag;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -143,6 +144,10 @@ public class UniqueTagList implements Iterable<Tag> {
     public void remove(Tag toRemove) {
         assert toRemove != null;
         internalList.remove(toRemove);
+    }
+
+    public void sort() {
+        Collections.sort(internalList);
     }
 
     @Override

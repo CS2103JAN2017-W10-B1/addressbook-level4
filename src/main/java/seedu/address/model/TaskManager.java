@@ -85,6 +85,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         syncMasterTagListWith(p);
         tasks.add(p);
         tasks.sort();
+        tags.sort();
     }
 
     /**
@@ -111,6 +112,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         if (isEmptyTag(editedTask.getTag())) {
             tags.remove(editedTask.getTag());
         }
+        tags.sort();
     }
 
     /**
@@ -149,6 +151,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         if (tasks.remove(key)) {
             if (isEmptyTag(key.getTag())) {
                 tags.remove(key.getTag());
+                tags.sort();
             }
             return true;
         } else {
