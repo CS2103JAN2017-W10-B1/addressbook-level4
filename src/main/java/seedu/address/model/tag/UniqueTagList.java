@@ -25,7 +25,7 @@ import seedu.address.commons.util.CollectionUtil;
  */
 public class UniqueTagList implements Iterable<Tag> {
 
-    private final ObservableList<Tag> internalList = FXCollections.observableArrayList();
+    private static final ObservableList<Tag> internalList = FXCollections.observableArrayList();
 
     /**
      * Constructs empty TagList.
@@ -142,7 +142,7 @@ public class UniqueTagList implements Iterable<Tag> {
         return internalList.iterator();
     }
 
-    public UnmodifiableObservableList<Tag> asObservableList() {
+    public static UnmodifiableObservableList<Tag> asObservableList() {
         return new UnmodifiableObservableList<>(internalList);
     }
 
