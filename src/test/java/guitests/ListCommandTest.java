@@ -52,5 +52,4 @@ public class ListCommandTest extends TaskManagerGuiTest {
         assertResultMessage(expectedHits.length + " tasks found!");
         assertTrue(taskListPanel.isListMatching(expectedHits));
     }
-
 }

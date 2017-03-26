@@ -8,9 +8,9 @@ public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
-    public static final String MESSAGE_SUCCESS = "Listed all tasks";
+    public static final String MESSAGE_SUCCESS = "View all tasks";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks due by \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": View tasks due by \n"
             + "the specified date and displays them as a list with index numbers.\n"
             + "Parameters: [next]/[number of days from today]\n"
             + "Example: " + COMMAND_WORD + " next/10";
