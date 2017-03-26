@@ -78,8 +78,7 @@ public class Event extends Task implements ReadOnlyEvent {
      */
     public Event(ReadOnlyTask source) throws IllegalValueException{
         this(source.getName(), ((ReadOnlyEvent)source).getStartDate(), ((ReadOnlyEvent)source).getStartTime(), source.getDate(), source.getTime(),
-                source.getDescription(),
-                source.getTag(), source.getVenue(), source.getPriority(), source.isFavorite(), source.getFinished());
+                source.getDescription(), source.getTag(), source.getVenue(), source.getPriority(), source.isFavorite(), source.getFinished());
     }
 
     public void setName(Name name) {

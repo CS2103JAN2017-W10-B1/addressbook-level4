@@ -1,11 +1,15 @@
 //@@author A0138474X
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.UnmodifiableObservableList;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Event;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
@@ -46,7 +50,7 @@ public class FinishCommand extends AbleUndoCommand {
     @Override
     public CommandResult execute() throws CommandException {
 
-        UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
+        List<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
 
         if (lastShownList.size() < targetIndex) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -58,18 +62,30 @@ public class FinishCommand extends AbleUndoCommand {
             throw new CommandException(MESSAGE_FINISH_TASK_MARKED);
         } else {
             Name updatedName = taskToMark.getName();
-            TaskDate updatedDate = taskToMark.getDate();
-            TaskTime updatedTime = taskToMark.getTime();
+            TaskDate updatedDueDate = taskToMark.getDate();
+            TaskTime updatedDueTime = taskToMark.getTime();
             Description updatedDescription = taskToMark.getDescription();
             Tag updatedTag = taskToMark.getTag();
             Venue updatedVenue = taskToMark.getVenue();
             Priority updatedPriority = taskToMark.getPriority();
             boolean updatedFavorite = taskToMark.isFavorite();
             FinishProperty updatedFinish = FinishProperty.FINISHED;
-
-            taskToMark  = new Task(
-                    updatedName, updatedDate, updatedTime, updatedDescription,
-                    updatedTag, updatedVenue, updatedPriority, updatedFavorite, updatedFinish);
+            
+            if (taskToMark.isEvent()) {
+                TaskDate updatedStartDate = ((Event)taskToMark).getStartDate(); 
+                TaskTime updatedStartTime = ((Event)taskToMark).getStartTime();
+                try {
+                    taskToMark = new Event(updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
+                            updatedDescription, updatedTag, updatedVenue, updatedPriority, updatedFavorite, updatedFinish);
+                } catch (IllegalValueException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            } else {
+                taskToMark  = new Task(
+                        updatedName, updatedDueDate, updatedDueTime, updatedDescription,
+                        updatedTag, updatedVenue, updatedPriority, updatedFavorite, updatedFinish);
+            }
         }
 
         try {
@@ -97,8 +113,19 @@ public class FinishCommand extends AbleUndoCommand {
     @Override
     public Command getUndoCommand() {
         if (isSuccess) {
-            Task newTask = new Task(task.getName(), task.getDate(), task.getTime(), task.getDescription(),
-                    task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(), FinishProperty.UNFINISHED);
+            Task newTask = null;
+            if (task.isEvent()) {
+                try {
+                    newTask = new Event(task.getName(), ((Event)task).getStartDate(), ((Event)task).getStartTime(), task.getDate(), task.getTime(), task.getDescription(),
+                            task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(), FinishProperty.UNFINISHED);
+                } catch (IllegalValueException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            } else {
+                newTask = new Task(task.getName(), task.getDate(), task.getTime(), task.getDescription(),
+                        task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(), FinishProperty.UNFINISHED);
+            }
             return new EditCommand(task, newTask);
         } else {
             return new IncorrectCommand(null);
