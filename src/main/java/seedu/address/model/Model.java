@@ -82,6 +82,6 @@ public interface Model {
     void updateFilteredListList(Set<String> keywords);
 
     /** Check whether the listname has already been taken*/
-    boolean isListExist(String listName);
+    boolean isListExist(Set<String> listNames);
 
 }

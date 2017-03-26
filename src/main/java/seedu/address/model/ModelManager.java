@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
@@ -186,8 +185,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     //@@author A0143409J
     @Override
-    public boolean isListExist(String listName) {
-        updateFilteredListList(new PredicateExpression(new NameQualifierExact(listName)));
+    public boolean isListExist(Set<String> listNames) {
+        updateFilteredListList(new PredicateExpression(new NameQualifier(listNames)));
         boolean isListExist = filteredTag.size() > 0;
         updateFilteredTagListToShowAllTags();
         return isListExist;
@@ -274,29 +273,6 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     //@@author A0147984L
-    private class NameQualifierExact implements Qualifier {
-        protected String keyword;
-
-        NameQualifierExact(String keyword) {
-            this.keyword = keyword;
-        }
-
-        @Override
-        public boolean run(ReadOnlyTask task) {
-            return task.getName().fullName.equals(keyword);
-        }
-
-        @Override
-        public boolean run(Tag list) {
-            return list.getName().equals(keyword);
-        }
-
-        @Override
-        public String toString() {
-            return "name=" + String.join(", ", keyword);
-        }
-    }
-
     private class UnfinishedQualifier implements Qualifier {
 
         UnfinishedQualifier() {}
@@ -409,8 +385,6 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     private class DateQualifierOn extends DateQualifier {
-        protected int daysToDue;
-        protected Calendar today;
 
         DateQualifierOn(String days) {
             super(days);
@@ -424,8 +398,6 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     private class DateQualifierBy extends DateQualifier {
-        protected int daysToDue;
-        protected Calendar today;
 
         DateQualifierBy(String days) {
             super(days);
