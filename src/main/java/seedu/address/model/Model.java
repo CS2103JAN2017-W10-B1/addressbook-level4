@@ -3,8 +3,6 @@ package seedu.address.model;
 import java.util.Set;
 
 import seedu.address.commons.core.UnmodifiableObservableList;
-import seedu.address.model.ModelManager.DueMode;
-import seedu.address.model.ModelManager.FinishedState;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.task.ReadOnlyTask;
@@ -16,6 +14,10 @@ import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
  * The API of the Model component.
  */
 public interface Model {
+
+    public enum FinishedState {ALL, FINISHED, UNFINISHED}
+    public enum DueMode {BY, ON}
+
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyTaskManager newData);
 

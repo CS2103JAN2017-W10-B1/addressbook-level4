@@ -32,14 +32,6 @@ public class ModelManager extends ComponentManager implements Model {
     private final FilteredList<ReadOnlyTask> filteredTasks;
     private final FilteredList<Tag> filteredTag;
 
-    public enum FinishedState {
-        ALL, FINISHED, UNFINISHED;
-    }
-
-    public enum DueMode {
-        BY, ON;
-    }
-
     /**
      * Initializes a ModelManager with the given taskManager and userPrefs.
      */
