@@ -137,6 +137,14 @@ public class UniqueTagList implements Iterable<Tag> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Removes a Tag in the list
+     */
+    public void remove(Tag toRemove) {
+        assert toRemove != null;
+        internalList.remove(toRemove);
+    }
+
     @Override
     public Iterator<Tag> iterator() {
         return internalList.iterator();

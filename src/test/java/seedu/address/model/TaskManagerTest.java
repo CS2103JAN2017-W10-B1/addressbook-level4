@@ -109,11 +109,11 @@ public class TaskManagerTest {
         newManager.addTask(assignment);
         newManager.updateTask(1, date);
         assertEquals(newManager.getTaskList().size(), 3);
-        assertEquals(newManager.getTagList().size(), 3);
+        assertEquals(newManager.getTagList().size(), 2);
 
         newManager.updateTask(1, familyDinner);
         assertEquals(newManager.getTaskList().size(), 3);
-        assertEquals(newManager.getTagList().size(), 4);
+        assertEquals(newManager.getTagList().size(), 3);
     }
 
     //@@author

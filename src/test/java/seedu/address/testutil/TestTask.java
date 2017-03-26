@@ -125,7 +125,7 @@ public class TestTask implements ReadOnlyTask {
     }
 
     @Override
-    public Boolean isFinished() {
+    public boolean isFinished() {
         return isFinished == FinishProperty.Finished;
     }
 //@@ author A0147996E
