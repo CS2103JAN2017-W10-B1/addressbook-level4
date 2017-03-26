@@ -59,7 +59,7 @@ public class ListCommand extends Command {
         UnmodifiableObservableList<Tag> tagList = UniqueTagList.asObservableList();
         for(String keyword : keywords) {
             for(Tag tag : tagList) {
-                if(tag.getName().equals(keyword)) {
+                if(tag.getName().equalsIgnoreCase(keyword)) {
                     hasMatch = true;
                 }
             }
