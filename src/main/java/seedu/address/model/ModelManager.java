@@ -132,7 +132,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateFilteredTaskList(Set<String> keywords) {
-        updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
+        updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords)));
     }
 
     private void updateFilteredTaskList(Expression expression) {
@@ -140,8 +140,13 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public void updateFilteredTaskListFinished(Set<String> keywords) {
+        updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords), new FinishedQualifier()));
+    }
+
+    @Override
     public void updateFilteredTaskListAll(Set<String> keywords) {
-        updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords), new FinishedQualifier()));
+        updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords)));
     }
 
     @Override
@@ -411,4 +416,5 @@ public class ModelManager extends ComponentManager implements Model {
                     (0 <= TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
         }
     }
+
 }

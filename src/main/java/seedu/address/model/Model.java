@@ -58,6 +58,9 @@ public interface Model {
     void updateFilteredTaskList(Set<String> keywords);
 
     /** Updates the filter of the filtered task list to filter by the given keywords*/
+    void updateFilteredTaskListFinished(Set<String> keywords);
+
+    /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredTaskListAll(Set<String> keywords);
 
     /** Updates the filter of the unfinished filtered task list to filter by the given list name*/
@@ -81,7 +84,7 @@ public interface Model {
     /** Updates the filter of the filtered tag list to filter by the given keywords*/
     void updateFilteredListList(Set<String> keywords);
 
-    /** Check whether the listname has already been taken*/
+    /** Check whether the listname exist*/
     boolean isListExist(Set<String> listNames);
 
 }
