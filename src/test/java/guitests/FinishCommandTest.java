@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.FinishCommand.MESSAGE_FINISH_TASK_SUC
 import org.junit.Test;
 
 import seedu.address.testutil.TestTask;
+import seedu.address.testutil.TestUtil;
 
 public class FinishCommandTest extends TaskManagerGuiTest {
     @Test
@@ -23,7 +24,9 @@ public class FinishCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("list all");
         commandBox.runCommand("finish " + targetIndex);
         assertResultMessage(MESSAGE_FINISH_TASK_MARKED);
+
         //invalid command, index must be positive integer and must not exceed current list length
+
         //invalid command, command word must be valid
         //invalid command,
     }
