@@ -7,16 +7,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<HBox id="cardPane" fx:id="tagCardPane" prefHeight="35.0" prefWidth="144.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="tagCardPane" prefHeight="45.0" prefWidth="168.0" style="-fx-background-color: LAVENDERBLUSH; -fx-border-color: SALMON; -fx-border-width: 2; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <GridPane prefHeight="146.0" prefWidth="550.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="39.0" />
-            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="250.0" minWidth="0.0" prefWidth="105.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="22.0" />
+            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="250.0" minWidth="0.0" prefWidth="122.0" />
             </columnConstraints>
             <children>
-            <Label fx:id="index" text="\$id" />
-            <Label fx:id="name" prefHeight="17.0" prefWidth="58.0" text="\$tag" GridPane.columnIndex="1" />
+            <Label fx:id="index" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="\$id">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Label>
+            <Label fx:id="name" style="-fx-font-size: 16; -fx-font-family: Avenir;" text="\$tag" GridPane.columnIndex="1" />
             </children>
          <rowConstraints>
             <RowConstraints />

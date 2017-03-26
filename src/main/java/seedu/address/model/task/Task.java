@@ -159,7 +159,7 @@ public class Task implements ReadOnlyTask {
     @Override
     public String getFavoriteText() {
         if (isFavorite) {
-            return "Favorite";
+            return "Favorite \u2764";
         } else {
             return "";
         }
