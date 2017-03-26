@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
@@ -23,7 +24,8 @@ public class TestTask implements ReadOnlyTask {
     private Priority priority;
     private Tag tag;
     private boolean isFavorite;
-    private boolean isFinished;
+    private FinishProperty isFinished;
+    private boolean isEvent;
 
     public TestTask() {}
 
@@ -40,11 +42,12 @@ public class TestTask implements ReadOnlyTask {
         this.priority = taskToCopy.getPriority();
         this.isFavorite = taskToCopy.isFavorite();
         this.isFinished = taskToCopy.isFinished();
+        this.isEvent = taskToCopy.isEvent();
     }
 
-    public void setName(Name name) {
+    public void setName(String name) throws IllegalValueException {
         assert name != null;
-        this.name = name;
+        this.name = new Name(name);
     }
 
     @Override
@@ -52,9 +55,9 @@ public class TestTask implements ReadOnlyTask {
         return name;
     }
 
-    public void setDate(TaskDate date) {
+    public void setDate(String date) throws IllegalValueException {
         assert date != null;
-        this.date = date;
+        this.date = new TaskDate(date);
     }
 
     @Override
@@ -62,9 +65,9 @@ public class TestTask implements ReadOnlyTask {
         return date;
     }
 
-    public void setTime(TaskTime time) {
+    public void setTime(String time) throws IllegalValueException {
         assert time != null;
-        this.time = time;
+        this.time = new TaskTime(time);
     }
 
     @Override
@@ -72,9 +75,9 @@ public class TestTask implements ReadOnlyTask {
         return time;
     }
 
-    public void setDescription(Description description) {
+    public void setDescription(String description) throws IllegalValueException {
         assert description != null;
-        this.description = description;
+        this.description = new Description(description);
     }
 
     @Override
@@ -87,9 +90,9 @@ public class TestTask implements ReadOnlyTask {
         return tag;
     }
 
-    public void setTag(Tag tag) {
+    public void setTag(String tag) throws IllegalValueException {
         assert tag != null;
-        this.tag = tag;
+        this.tag = new Tag(tag);
     }
 
     @Override
@@ -97,9 +100,9 @@ public class TestTask implements ReadOnlyTask {
         return venue;
     }
 
-    public void setVenue(Venue venue) {
+    public void setVenue(String venue) throws IllegalValueException {
         assert venue != null;
-        this.venue = venue;
+        this.venue = new Venue(venue);
     }
 
     @Override
@@ -107,9 +110,9 @@ public class TestTask implements ReadOnlyTask {
         return priority;
     }
 
-    public void setPriority(Priority priority) {
+    public void setPriority(String priority) throws IllegalValueException {
         assert priority != null;
-        this.priority = priority;
+        this.priority = new Priority(priority);
     }
 
     @Override
@@ -122,10 +125,10 @@ public class TestTask implements ReadOnlyTask {
     }
 
     @Override
-    public boolean isFinished() {
+    public FinishProperty isFinished() {
         return isFinished;
     }
-
+//@@ author A0147996E
     @Override
     public String getFavoriteText() {
         if (isFavorite) {
@@ -137,7 +140,7 @@ public class TestTask implements ReadOnlyTask {
 
     @Override
     public String getFinishedText() {
-        if (isFinished) {
+        if (isFinished == FinishProperty.Finished) {
             return "Finished";
         } else {
             return "Unfinished";
@@ -162,5 +165,10 @@ public class TestTask implements ReadOnlyTask {
             sb.append("*f" + " ");
         }
         return sb.toString();
+    }
+    //@@author A0138474X
+    @Override
+    public boolean isEvent() {
+        return isEvent;
     }
 }

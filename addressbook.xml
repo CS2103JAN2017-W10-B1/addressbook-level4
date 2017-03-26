@@ -12,6 +12,17 @@
         <isFinished>false</isFinished>
     </tasks>
     <tasks>
+        <name>CS2103 Lecture</name>
+        <date>24/3/2018</date>
+        <time>18:00</time>
+        <tag>CS2103</tag>
+        <description>Interesting module</description>
+        <venue>I3</venue>
+        <priority>3</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>false</isFinished>
+    </tasks>
+    <tasks>
         <name>GYM</name>
         <date>01/01/2020</date>
         <time>00:00</time>
@@ -23,7 +34,7 @@
         <isFinished>false</isFinished>
     </tasks>
     <tasks>
-        <name>class</name>
+        <name>3</name>
         <date></date>
         <time></time>
         <tag>Inbox</tag>
@@ -45,7 +56,7 @@
         <isFinished>false</isFinished>
     </tasks>
     <tasks>
-        <name>3</name>
+        <name>class</name>
         <date></date>
         <time></time>
         <tag>Inbox</tag>

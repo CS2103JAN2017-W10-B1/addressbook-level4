@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
@@ -78,7 +79,7 @@ public class TestUtil {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
                 new Task(new Name("gym"), new TaskDate("10/12"), new TaskTime("18:00"), new Description("50 mins workout"),
-                        new Tag("taskal"), new Venue("MPSH"), new Priority("2"), true)};
+                        new Tag("taskal"), new Venue("MPSH"), new Priority("2"), true, false)};
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {
             assert false;
@@ -86,7 +87,6 @@ public class TestUtil {
             return null;
         }
     }
-
 
     private static Tag[] getSampleTagData() {
         try {
@@ -273,6 +273,7 @@ public class TestUtil {
         return list.get(list.size() - 1);
     }
 
+//@@ author A0147996E
     /**
      * Removes a subset from the list of tasks.
      * @param tasks The list of tasks
@@ -282,7 +283,7 @@ public class TestUtil {
     public static TestTask[] removeTasksFromList(final TestTask[] tasks, TestTask... tasksToRemove) {
         List<TestTask> listOfTasks = asList(tasks);
         listOfTasks.removeAll(asList(tasksToRemove));
-        return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
+        return sort(listOfTasks.toArray(new TestTask[listOfTasks.size()]));
     }
 
 
@@ -292,7 +293,7 @@ public class TestUtil {
      * @param targetIndexInOneIndexedFormat e.g. index 1 if the first element is to be removed
      */
     public static TestTask[] removeTaskFromList(final TestTask[] list, int targetIndexInOneIndexedFormat) {
-        return removeTasksFromList(list, list[targetIndexInOneIndexedFormat - 1]);
+        return sort(removeTasksFromList(list, list[targetIndexInOneIndexedFormat - 1]));
     }
 
     /**
@@ -304,7 +305,7 @@ public class TestUtil {
      */
     public static TestTask[] replaceTaskFromList(TestTask[] tasks, TestTask task, int index) {
         tasks[index] = task;
-        return tasks;
+        return sort(tasks);
     }
 
     /**
@@ -316,7 +317,17 @@ public class TestUtil {
     public static TestTask[] addTasksToList(final TestTask[] tasks, TestTask... tasksToAdd) {
         List<TestTask> listOfTasks = asList(tasks);
         listOfTasks.addAll(asList(tasksToAdd));
-        return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
+        return sort(listOfTasks.toArray(new TestTask[listOfTasks.size()]));
+    }
+
+    public static TestTask[] sort(TestTask[] taskArray) {
+        List<TestTask> list = asList(taskArray);
+        Collections.sort(list, (TestTask t1, TestTask t2) -> t1.getTag().compareTo(t2.getTag()));
+        Collections.sort(list, (TestTask t1, TestTask t2) -> t1.getName().compareTo(t2.getName()));
+        Collections.sort(list, (TestTask t1, TestTask t2) -> t1.getTime().compareTo(t2.getTime()));
+        Collections.sort(list, (TestTask t1, TestTask t2) -> -t1.getPriority().compareTo(t2.getPriority()));
+        Collections.sort(list, (TestTask t1, TestTask t2) -> t1.getDate().compareTo(t2.getDate()));
+        return list.toArray(new TestTask[list.size()]);
     }
 
     private static <T> List<T> asList(T[] objs) {
@@ -328,29 +339,11 @@ public class TestUtil {
     }
 
     public static boolean compareCardAndTask(TaskCardHandle card, ReadOnlyTask task) {
-        return card.isSameTask(task);
+        return card.isSameStateAs(task);
     }
 
     public static boolean compareCardAndTag(TagCardHandle card, Tag tag) {
         return card.isSameTag(tag);
     }
-    public static Tag[] getTagList(String tags) {
-        if ("".equals(tags)) {
-            return new Tag[]{};
-        }
-
-        final String[] split = tags.split(", ");
-
-        final List<Tag> collect = Arrays.asList(split).stream().map(e -> {
-            try {
-                return new Tag(e.replaceFirst("Tag: ", ""));
-            } catch (IllegalValueException e1) {
-                //not possible
-                assert false;
-                return null;
-            }
-        }).collect(Collectors.toList());
-
-        return collect.toArray(new Tag[split.length]);
-    }
+//@@ author
 }

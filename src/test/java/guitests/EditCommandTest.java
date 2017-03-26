@@ -1,3 +1,4 @@
+//@@ author A0147996E
 package guitests;
 
 import static org.junit.Assert.assertTrue;
@@ -14,6 +15,7 @@ import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
 import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TestTask;
+import seedu.address.testutil.TestUtil;
 
 // TODO: reduce GUI tests by transferring some tests to be covered by lower level tests.
 public class EditCommandTest extends TaskManagerGuiTest {
@@ -24,13 +26,27 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void editAllFieldsSpecifiedSuccess() throws Exception {
-        String detailsToEdit = "n/lecture due/10/04/2017 t/16:00 #study d/Interesting module @I3 p/3";
+        String detailsToEdit = "n/lecture due/10/04/2018 t/16:00 #study d/Interesting module @I3 p/3 *u";
         int taskManagerIndex = 1;
 
-        TestTask editedTask = new TaskBuilder().withName("lecture").withDate("10/04/2017").withTag("study")
+        TestTask editedTask = new TaskBuilder().withName("lecture").withDate("10/04/2018").withTag("study")
                 .withTime("16:00").withDescription("Interesting module").
-                withVenue("I3").withPriority("3").build();
-        //TO BE UPDATED assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
+                withVenue("I3").withPriority("3").withFavorite(false).build();
+        assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
+    }
+
+    @Test
+    public void editSomeFieldsSpecifiedSuccess() throws Exception {
+        String detailsToEdit = "due/10/04/2018 #newlist t/16:35 d/Random description p/trivial";
+        int taskManagerIndex = 2;
+        TestTask editedTask = new TestTask(expectedTasksList[taskManagerIndex - 1]);
+
+        editedTask.setDate("10/04/2018");
+        editedTask.setTag("newlist");
+        editedTask.setTime("16:35");
+        editedTask.setDescription("Random description");
+        editedTask.setPriority("trivial");
+        assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
 
     @Test
@@ -40,25 +56,22 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
         TestTask taskToEdit = expectedTasksList[taskManagerIndex - 1];
         TestTask editedTask = new TaskBuilder(taskToEdit).withPriority("2").build();
-        //TODO: pass this testcase
-        //assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
+        assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
 
-/*cannot pass since find command is unfinished yet
     @Test
     public void editFindThenEditSuccess() throws Exception {
-        commandBox.runCommand("find gym");
+        commandBox.runCommand("find study");
 
-        String detailsToEdit = "gym";
+        String detailsToEdit = "n/gym";
         int filteredTaskListIndex = 1;
-        int taskManagerIndex = 5;
+        int taskManagerIndex = 1;
 
-        TestTask TaskToEdit = expectedTasksList[taskManagerIndex - 1];
-        TestTask editedTask = new TaskBuilder(TaskToEdit).withName("gym").build();
+        TestTask taskToEdit = expectedTasksList[taskManagerIndex - 1];
+        TestTask editedTask = new TaskBuilder(taskToEdit).withName("gym").build();
 
         assertEditSuccess(filteredTaskListIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
-*/
 
     @Test
     public void editMissingTaskIndexFailure() {
@@ -75,7 +88,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
     @Test
     public void editNoFieldsSpecifiedFailure() {
         commandBox.runCommand("edit 1");
-        //TO BE UPDATED assertResultMessage(EditCommand.MESSAGE_NOT_EDITED);
+        assertResultMessage(EditCommand.MESSAGE_NOT_EDITED);
     }
 
     @Test
@@ -108,10 +121,10 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
         // confirm the new card contains the right data
         TaskCardHandle editedCard = taskListPanel.navigateToTask(editedTask);
-        //TO BE UPDATED assertMatching(editedTask, editedCard);
+        assertMatching(editedTask, editedCard);
 
         // confirm the list now contains all previous Tasks plus the Task with updated details
-        expectedTasksList[taskManagerIndex - 1] = editedTask;
+        expectedTasksList = TestUtil.replaceTaskFromList(expectedTasksList, editedTask, taskManagerIndex - 1);
         assertTrue(taskListPanel.isListMatching(expectedTasksList));
         assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }

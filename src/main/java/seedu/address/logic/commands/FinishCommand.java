@@ -1,3 +1,4 @@
+//@@author A0138474X
 package seedu.address.logic.commands;
 
 import seedu.address.commons.core.Messages;
@@ -8,6 +9,7 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.ReadOnlyTask.FinishProperty;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
@@ -28,12 +30,12 @@ public class FinishCommand extends AbleUndoCommand {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_FINISH_TASK_SUCCESS = "Mark finished task: %1$s";
-    public static final String MESSAGE_FINISH_TASK_MARKED = "Task had been finished: %1$s";
+    public static final String MESSAGE_FINISH_TASK_MARKED = "Task had already been finished";
     public static final String MESSAGE_WRONG_TASK_INDEX = "This task already exists in the task manager.";
 
     public final int targetIndex;
-    private Task task;
     private boolean isSuccess;
+    private Task task;
 
     public FinishCommand(int targetIndex) {
         this.targetIndex = targetIndex;
@@ -52,7 +54,7 @@ public class FinishCommand extends AbleUndoCommand {
 
         ReadOnlyTask taskToMark = lastShownList.get(targetIndex - 1);
 
-        if (taskToMark.isFinished()) {
+        if (taskToMark.isFinished() == FinishProperty.Finished) {
             throw new CommandException(MESSAGE_FINISH_TASK_MARKED);
         } else {
             Name updatedName = taskToMark.getName();
@@ -62,10 +64,11 @@ public class FinishCommand extends AbleUndoCommand {
             Tag updatedTag = taskToMark.getTag();
             Venue updatedVenue = taskToMark.getVenue();
             Priority updatedPriority = taskToMark.getPriority();
+            boolean updatedFavorite = taskToMark.isFavorite();
 
             taskToMark  = new Task(
                     updatedName, updatedDate, updatedTime, updatedDescription,
-                    updatedTag, updatedVenue, updatedPriority, false, true);
+                    updatedTag, updatedVenue, updatedPriority, updatedFavorite, FinishProperty.Finished);
         }
 
         try {

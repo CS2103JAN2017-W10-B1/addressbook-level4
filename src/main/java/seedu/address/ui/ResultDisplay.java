@@ -21,8 +21,11 @@ public class ResultDisplay extends UiPart<Region> {
 
     private static final Logger logger = LogsCenter.getLogger(ResultDisplay.class);
     private static final String FXML = "ResultDisplay.fxml";
+    private static final String INIT_HELP_MESSAGE = "Welcome to Dueue. \nThe basic command words are as "
+            + "following: add, clear, delete, edit, find, finish, list, view, undo and redo.\n"
+            + "To view the help message of any command, enter 'help + Command_Keyword'.";
 
-    private final StringProperty displayed = new SimpleStringProperty("");
+    private final StringProperty displayed = new SimpleStringProperty(INIT_HELP_MESSAGE);
 
     @FXML
     private AnchorPane mainPane;
@@ -44,5 +47,4 @@ public class ResultDisplay extends UiPart<Region> {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         displayed.setValue(event.message);
     }
-
 }

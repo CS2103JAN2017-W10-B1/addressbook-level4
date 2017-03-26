@@ -62,20 +62,20 @@ public class TaskManagerTest {
         TaskManager newManager = new TaskManager();
         Task gym = new Task(testUtil.gym);
         Task cs2103 = new Task(testUtil.cs2103);
-        Task birthday = new Task(testUtil.birthday);
+        Task assignment = new Task(testUtil.assignment);
 
         newManager.addTask(gym);
         assertEquals(newManager.getTaskList().size(), 1);
         assertEquals(newManager.getTagList().size(), 1);
         assertEquals(newManager.getTaskList().get(0), gym);
 
-        newManager.addTask(birthday);
+        newManager.addTask(assignment);
         assertEquals(newManager.getTaskList().size(), 2);
-        assertEquals(newManager.getTagList().size(), 1);
+        assertEquals(newManager.getTagList().size(), 2);
 
         newManager.addTask(cs2103);
         assertEquals(newManager.getTaskList().size(), 3);
-        assertEquals(newManager.getTagList().size(), 2);
+        assertEquals(newManager.getTagList().size(), 3);
     }
 
     @Test
@@ -83,15 +83,15 @@ public class TaskManagerTest {
         TaskManager newManager = new TaskManager();
         Task gym = new Task(testUtil.gym);
         Task cs2103 = new Task(testUtil.cs2103);
-        Task birthday = new Task(testUtil.birthday);
+        Task assignment = new Task(testUtil.assignment);
 
         newManager.addTask(gym);
         newManager.addTask(cs2103);
-        newManager.addTask(birthday);
+        newManager.addTask(assignment);
         newManager.removeTask(gym);
         assertEquals(newManager.getTaskList().size(), 2);
 
-        newManager.removeTask(birthday);
+        newManager.removeTask(assignment);
         assertEquals(newManager.getTaskList().size(), 1);
     }
 
@@ -100,20 +100,20 @@ public class TaskManagerTest {
         TaskManager newManager = new TaskManager();
         Task gym = new Task(testUtil.gym);
         Task cs2103 = new Task(testUtil.cs2103);
-        Task birthday = new Task(testUtil.birthday);
+        Task assignment = new Task(testUtil.assignment);
         ReadOnlyTask date = new Task(testUtil.date);
         ReadOnlyTask familyDinner = new Task(testUtil.familyDinner);
 
         newManager.addTask(gym);
         newManager.addTask(cs2103);
-        newManager.addTask(birthday);
+        newManager.addTask(assignment);
         newManager.updateTask(1, date);
         assertEquals(newManager.getTaskList().size(), 3);
-        assertEquals(newManager.getTagList().size(), 2);
+        assertEquals(newManager.getTagList().size(), 3);
 
         newManager.updateTask(1, familyDinner);
         assertEquals(newManager.getTaskList().size(), 3);
-        assertEquals(newManager.getTagList().size(), 3);
+        assertEquals(newManager.getTagList().size(), 4);
     }
 
     //@@author

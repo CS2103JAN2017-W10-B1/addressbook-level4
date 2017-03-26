@@ -17,6 +17,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.ReadOnlyTask.FinishProperty;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
@@ -78,7 +79,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public synchronized void addTask(Task task) throws DuplicateTaskException {
         taskManager.addTask(task);
-        updateFilteredListToShowAllTasks();
+        updateFilteredListToShowAllUnfinishedTasks();
         indicateTaskManagerChanged();
     }
 
@@ -128,13 +129,23 @@ public class ModelManager extends ComponentManager implements Model {
 
     //@@author A0147984L
     @Override
-    public void updateFilteredListToShowAllTasks() {
+    public void updateFilteredListToShowAllUnfinishedTasks() {
         updateFilteredTaskList(new PredicateExpression(new UnfinishedQualifier()));
     }
 
     @Override
-    public void updateFilteredListToShowAllTasksAll() {
+    public void updateFilteredListToShowAllTasks() {
         filteredTasks.setPredicate(null);
+    }
+
+    @Override
+    public void updateFilteredListToShowAllFinishedTasks() {
+        updateFilteredTaskList(new PredicateExpression(new FinishedQualifier()));
+    }
+
+    @Override
+    public void updateFilteredListToShowAllFavoriteTasks() {
+        updateFilteredTaskList(new PredicateExpression(new FavoriteQualifier()));
     }
 
     @Override
@@ -148,7 +159,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateFilteredTaskListAll(Set<String> keywords) {
-        updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords), new UnfinishedQualifier()));
+        updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords), new FinishedQualifier()));
     }
 
     @Override
@@ -178,7 +189,7 @@ public class ModelManager extends ComponentManager implements Model {
         return new UnmodifiableObservableList<>(filteredTag);
     }
 
-    public void updateFilteredListToShowAllLists() {
+    public void updateFilteredTagListToShowAllTags() {
         filteredTag.setPredicate(null);
     }
 
@@ -276,7 +287,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         @Override
         public boolean run(ReadOnlyTask task) {
-            return !task.isFinished();
+            return task.isFinished() == FinishProperty.Unfinished;
         }
 
         @Override
@@ -289,6 +300,48 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + "unfinished";
         }
     }
+
+    //@@ author A0147996E
+    private class FinishedQualifier implements Qualifier {
+
+        FinishedQualifier() {}
+
+        @Override
+        public boolean run(ReadOnlyTask task) {
+            return task.isFinished() == FinishProperty.Finished;
+        }
+
+        @Override
+        public boolean run(Tag list) {
+            return false;
+        }
+
+        @Override
+        public String toString() {
+            return "name=" + "finished";
+        }
+    }
+
+    private class FavoriteQualifier implements Qualifier {
+
+        FavoriteQualifier() {}
+
+        @Override
+        public boolean run(ReadOnlyTask task) {
+            return task.isFavorite();
+        }
+
+        @Override
+        public boolean run(Tag list) {
+            return false;
+        }
+
+        @Override
+        public String toString() {
+            return "name=" + "favorite";
+        }
+    }
+//@@ author
 
     private class TagQualifier implements Qualifier {
         protected Set<String> tagKeyWords;

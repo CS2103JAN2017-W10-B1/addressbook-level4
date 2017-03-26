@@ -16,7 +16,6 @@ public class UniqueTaskListTest {
     @Test
     public void sort() throws DuplicateTaskException {
 
-        tester.add(new Task(testUtil.birthday));
         tester.add(new Task(testUtil.familyDinner));
         tester.add(new Task(testUtil.meeting));
         tester.add(new Task(testUtil.travel));
@@ -24,10 +23,9 @@ public class UniqueTaskListTest {
 
         tester.sort();
 
-        assertEquals(tester.get(0).getName().fullName, "birthday");
-        assertEquals(tester.get(1).getName().fullName, "family dinner");
-        assertEquals(tester.get(2).getName().fullName, "shopping");
-        assertEquals(tester.get(3).getName().fullName, "travel");
-        assertEquals(tester.get(4).getName().fullName, "meeting");
+        assertEquals(tester.get(0).getName().fullName, "family dinner");
+        assertEquals(tester.get(1).getName().fullName, "shopping");
+        assertEquals(tester.get(2).getName().fullName, "travel");
+        assertEquals(tester.get(3).getName().fullName, "meeting");
     }
 }

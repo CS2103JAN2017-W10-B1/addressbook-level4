@@ -1,6 +1,8 @@
+//@@author A0147996E
 package guitests;
 
-//import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
+import static seedu.address.logic.commands.ClearCommand.MESSAGE_SUCCESS;
 
 import org.junit.Test;
 
@@ -8,15 +10,14 @@ public class ClearCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void clear() {
-
         //verify a non-empty list can be cleared
-        //TO BE UPDATED assertTrue(taskListPanel.isListMatching(td.getTypicalTasks()));
+        assertTrue(taskListPanel.isListMatching(td.getTypicalTasks()));
         assertClearCommandSuccess();
 
         //verify other commands can work after a clear command
         commandBox.runCommand(td.gym.getAddCommand());
-        //TODO: remove nullpointerexception
-        //assertTrue(taskListPanel.isListMatching(td.gym));
+        assertTrue(taskListPanel.isListMatching(td.gym));
+
         commandBox.runCommand("delete 1");
         assertListSize(0);
 
@@ -27,6 +28,6 @@ public class ClearCommandTest extends TaskManagerGuiTest {
     private void assertClearCommandSuccess() {
         commandBox.runCommand("clear");
         assertListSize(0);
-        assertResultMessage("Dueue has been cleared!");
+        assertResultMessage(MESSAGE_SUCCESS);
     }
 }

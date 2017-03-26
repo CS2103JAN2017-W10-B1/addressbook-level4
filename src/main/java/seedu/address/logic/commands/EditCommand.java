@@ -1,4 +1,4 @@
-//@@Author ShermineJong A0138474X
+//@@author A0138474X
 package seedu.address.logic.commands;
 
 import java.util.List;
@@ -13,6 +13,7 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.ReadOnlyTask.FinishProperty;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
@@ -92,7 +93,7 @@ public class EditCommand extends AbleUndoCommand {
             this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-        model.updateFilteredListToShowAllTasks();
+        model.updateFilteredListToShowAllUnfinishedTasks();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
@@ -129,7 +130,7 @@ public class EditCommand extends AbleUndoCommand {
         } else {
             isFavourite = taskToEdit.isFavorite();
         }
-        boolean isFinished = taskToEdit.isFinished();
+        FinishProperty isFinished = taskToEdit.isFinished();
 
         return new Task(updatedName, updatedDate, updatedTime, updatedDescription,
                 updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
@@ -258,7 +259,6 @@ public class EditCommand extends AbleUndoCommand {
                 this.isFavourite = false;
             }
         }
-
     }
 
     @Override
@@ -280,7 +280,7 @@ public class EditCommand extends AbleUndoCommand {
         } catch (TaskNotFoundException e) {
             assert false : "The target person cannot be missing";
         }
-        model.updateFilteredListToShowAllTasks();
+        model.updateFilteredListToShowAllUnfinishedTasks();
         this.isSuccess = true;
         return new CommandResult(message);
     }

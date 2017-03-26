@@ -1,3 +1,4 @@
+//@@author A0147996E
 package guitests.guihandles;
 
 import guitests.GuiRobot;
@@ -66,16 +67,13 @@ public class TaskCardHandle extends GuiHandle {
         return getTextFromLabel(FINISHED_FIELD_ID);
     }
 
-    public boolean isSameTask(ReadOnlyTask task) {
-        return getName().equals(task.getName())
-                && getDate().equals(task.getDate().getValue())
-                && getTime().equals(task.getTime().getValue())
-                && getDescription().equals(task.getDescription())
-                && getTag().equals(task.getTag())
-                && getVenue().equals(task.getVenue())
-                && getPriority().equals(task.getPriority())
-                && isFavorite().equals(task.isFavorite())
-                && isFinished().equals(task.isFinished());
+    public boolean isSameStateAs(ReadOnlyTask other) {
+        return other == this // short circuit if same object
+                || (other != null // this is first to avoid NPE below
+                && other.getName().getDisplayText().equals(this.getName())
+                && other.getDate().getDisplayText().equals(this.getDate())
+                && other.getTime().getDisplayText().equals(this.getTime())
+                && other.getTag().getDisplayText().equals(this.getTag())); // state checks here onwards
     }
 
     @Override

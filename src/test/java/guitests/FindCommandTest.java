@@ -1,6 +1,7 @@
+//@@ author A0147996E
 package guitests;
 
-//import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -11,30 +12,35 @@ public class FindCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void find_nonEmptyList() {
-        assertFindResult("find gym"); // no results
-        assertFindResult("find assignment", td.gym, td.birthday); // multiple results
+        assertFindResult("find birthday"); // no results
+        assertFindResult("find CS2103", td.cs2103); //find command is case insensitive
+        // multiple results with duplicate task names but different taskStates
+        assertFindResult("find gym", td.gym, td.gym2, td.gym3);
 
         //find after deleting one result
         commandBox.runCommand("delete 1");
-        assertFindResult("find birthday", td.assignment);
+        assertFindResult("find assignment", td.assignment);
     }
 
     @Test
     public void find_emptyList() {
         commandBox.runCommand("clear");
-        assertFindResult("find Jean"); // no results
+        assertFindResult("find exercise"); // no results
     }
 
     @Test
     public void find_invalidCommand_fail() {
-        commandBox.runCommand("findgeorge");
+        commandBox.runCommand("finds study");
+        assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
+
+        commandBox.runCommand("findstudy");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
     }
 
     private void assertFindResult(String command, TestTask... expectedHits) {
         commandBox.runCommand(command);
-        //assertListSize(expectedHits.length);
-        //assertResultMessage(expectedHits.length + " tasks listed!");
-        //TO BE UPDATED assertTrue(taskListPanel.isListMatching(expectedHits));
+        assertListSize(expectedHits.length);
+        assertResultMessage(expectedHits.length + " tasks found!");
+        assertTrue(taskListPanel.isListMatching(expectedHits));
     }
 }

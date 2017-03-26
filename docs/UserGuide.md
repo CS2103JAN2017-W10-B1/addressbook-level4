@@ -104,7 +104,7 @@ Examples:
 ### 2.5. Listing all tasks : `list`
 
 Shows a list of tasks in Dueue filtered by specifications given<br>
-Format: `list [LIST_INDEX/LIST_NAME] [all/favorite/finished]`<br>
+Format: `list [all/favorite/finished] [LIST_NAME]`<br>
 
 Shows all unfinished tasks in Dueue<br>
 Format: `list`
@@ -115,14 +115,14 @@ Format: `list finished`
 Shows all tasks in Dueue (finished and unfinished)<br>
 Format: `list all`
 
-Shows all tasks in LIST (finished and unfinished)<br>
-Format: `list LIST_INDEX/LIST_NAME all`
+Shows all tasks in Dueue (finished and unfinished)<br>
+Format: `list all LIST_NAME`
 
-Shows all unfinished tasks in LIST<br>
-Format: `list LIST_INDEX/LIST_NAME`
+Shows all unfinished tasks in Dueue<br>
+Format: `list LIST_NAME`
 
-Shows all finished tasks in LIST<br>
-Format: `list LIST_INDEX/LIST_NAME finished`
+Shows all finished tasks in Dueue<br>
+Format: `list finished LIST_NAME`
 
 > * Specification parameters must be entered following the defined sequence.
 
@@ -134,11 +134,11 @@ Examples:
   Lists all unfinished and finished tasks
 * `list work`<br>
   List all unfinished tasks in list `work`
-* `list work all`<br>
+* `list all work`<br>
   List all unfinished and finished tasks in list `work`
-* `list inbox finished`<br>
+* `list finished inbox`<br>
   List all finished tasks in list `inbox`
-* `list study favourite`<br>
+* `list favourite study`<br>
   List all favourite tasks in list `study`
 
 ### 2.6. Editing task(s) : `edit`
@@ -167,19 +167,24 @@ Examples:
 ### 2.7. View certain tasks: `view`
 
 View tasks due on a specified date.<br>
-Format: `view dueon/DATE`
+Format: `view on/NUMBEROFDAYS`
 
 View tasks due by a specified date.<br>
 Format: `view dueby/DATE`
+
+View tasks due within the next n days.<br>
+Format: `view dueby/NUMBEROFDAYS`
 
 > * The date has to be specified in a certain format.<br>
 
 Examples:
 
-* `view dueon/10/04`<br>
-  Returns a list of tasks due on 10/04
+* `view on/10`<br>
+  Returns a list of tasks due on that day from 10 days later
 * `view dueby/10/04`<br>
   Returns a list of tasks due by 10/04
+* `view next/10`<br>
+  Returns a list of tasks due within the next 10 days
 
 ### 2.8. Deleting task(s) or list(s) : `delete`
 

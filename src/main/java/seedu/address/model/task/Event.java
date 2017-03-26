@@ -17,9 +17,9 @@ public class Event extends Task implements ReadOnlyEvent {
      * @throws IllegalValueException
      */
     public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime,
-            Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite)
+            Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite, boolean isEvent)
                     throws IllegalValueException {
-        super(name, endDate, endTime, description, tag, venue, priority, isFavorite);
+        super(name, endDate, endTime, description, tag, venue, priority, isFavorite, isEvent);
 
         if (startDate.compareTo(endDate) > 0) {
             throw new IllegalValueException(MESSAGE_EVENT_CONSTRAINT);
@@ -41,9 +41,22 @@ public class Event extends Task implements ReadOnlyEvent {
      * @throws IllegalValueException
      */
     public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime,
-            Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite, boolean isFinished)
+            Description description, Tag tag, Venue venue,
+            Priority priority, boolean isFavorite, FinishProperty isFinished, boolean isEvent)
                     throws IllegalValueException {
-        this(name, startDate, startTime, endDate, endTime, description, tag, venue,  priority, isFavorite);
+        this(name, startDate, startTime, endDate, endTime, description, tag, venue,  priority, isFavorite, isEvent);
+        this.isFinished = isFinished;
+    }
+
+    /**
+     *  Constructor of event with flag on isFinshed
+     * @throws IllegalValueException
+     */
+    public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime,
+            Description description, Tag tag, Venue venue,
+            Priority priority, boolean isFavorite, FinishProperty isFinished)
+                    throws IllegalValueException {
+        this(name, startDate, startTime, endDate, endTime, description, tag, venue,  priority, isFavorite, true);
         this.isFinished = isFinished;
     }
 
@@ -52,11 +65,12 @@ public class Event extends Task implements ReadOnlyEvent {
      * @throws IllegalValueException
      */
     public Event(Name name, TaskDate date, TaskTime startTime, TaskTime endTime,
-            Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite)
+            Description description, Tag tag, Venue venue, Priority priority, boolean isFavorite, boolean isEvent)
                     throws IllegalValueException {
-        this(name, date, startTime, date, endTime, description, tag, venue,  priority, isFavorite);
+        this(name, date, startTime, date, endTime, description, tag, venue,  priority, isFavorite, isEvent);
     }
 
+    
     /**
      * Creates a copy of the given ReadOnlyTask.
      * @throws IllegalValueException
@@ -151,20 +165,20 @@ public class Event extends Task implements ReadOnlyEvent {
     }
 
     @Override
-    public boolean isFinished() {
+    public FinishProperty isFinished() {
         return isFinished;
     }
 
     @Override
     public String getFinishedText() {
-        if (isFinished) {
+        if (isFinished == FinishProperty.Finished) {
             return "Finished";
         } else {
             return "Unfinished";
         }
     }
 
-    public void setFinish(boolean isFinished) {
+    public void setFinish(FinishProperty isFinished) {
         this.isFinished = isFinished;
     }
 

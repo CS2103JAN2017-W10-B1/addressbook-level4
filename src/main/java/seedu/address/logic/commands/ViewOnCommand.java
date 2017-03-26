@@ -4,7 +4,7 @@ package seedu.address.logic.commands;
 /**
  * Lists all persons in the address book to the user.
  */
-public class ViewCommand extends Command {
+public class ViewOnCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
@@ -19,14 +19,14 @@ public class ViewCommand extends Command {
 
     private final String numberOfDays;
 
-    public ViewCommand(int numberDays) {
+    public ViewOnCommand(int numberDays) {
         numberOfDays = String.valueOf(numberDays);
         messageDisplay = MESSAGE_SUCCESS + " in the next " + numberOfDays + " days\n";
     }
 
     @Override
     public CommandResult execute() {
-        model.updateFilteredTaskListGivenDaysToDueBy(numberOfDays);
+        model.updateFilteredTaskListGivenDaysToDueOn(numberOfDays);
         return new CommandResult(messageDisplay);
     }
 
