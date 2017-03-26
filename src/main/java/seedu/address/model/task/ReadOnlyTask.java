@@ -7,7 +7,6 @@ import seedu.address.model.tag.Tag;
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
 public interface ReadOnlyTask {
-
     public enum FinishProperty {
         Finished, Unfinished
     }
@@ -40,7 +39,6 @@ public interface ReadOnlyTask {
                 && other.getTime().equals(this.getTime())
                 && other.getTag().equals(this.getTag())); // state checks here onwards
     }
-
     //@@ author A0143409J
     /*
      * Get the FinishProperty instead of boolean

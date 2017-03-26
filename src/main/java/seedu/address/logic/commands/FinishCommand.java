@@ -65,10 +65,11 @@ public class FinishCommand extends AbleUndoCommand {
             Venue updatedVenue = taskToMark.getVenue();
             Priority updatedPriority = taskToMark.getPriority();
             boolean updatedFavorite = taskToMark.isFavorite();
+            FinishProperty updatedFinish = FinishProperty.Finished;
 
             taskToMark  = new Task(
                     updatedName, updatedDate, updatedTime, updatedDescription,
-                    updatedTag, updatedVenue, updatedPriority, updatedFavorite, FinishProperty.Finished);
+                    updatedTag, updatedVenue, updatedPriority, updatedFavorite, updatedFinish);
         }
 
         try {
@@ -83,18 +84,15 @@ public class FinishCommand extends AbleUndoCommand {
         return new CommandResult(String.format(MESSAGE_FINISH_TASK_SUCCESS, taskToMark));
     }
 
-
     @Override
     public boolean isUndoable() {
         return true;
     }
 
-
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
         return null;
     }
-
 
     @Override
     public Command getUndoCommand() {
@@ -106,6 +104,5 @@ public class FinishCommand extends AbleUndoCommand {
             return new IncorrectCommand(null);
         }
     }
-
 }
 

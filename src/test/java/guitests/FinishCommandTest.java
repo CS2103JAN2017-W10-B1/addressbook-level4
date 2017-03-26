@@ -23,9 +23,11 @@ public class FinishCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("list all");
         commandBox.runCommand("finish " + targetIndex);
         assertResultMessage(MESSAGE_FINISH_TASK_MARKED);
+
         //invalid command, index must be positive integer and must not exceed current list length
+
         //invalid command, command word must be valid
-        //invalid command,
+        //invalid command
     }
 
     /**
