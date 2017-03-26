@@ -8,9 +8,11 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.UnmodifiableObservableList;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.tag.UniqueTagList.DuplicateTagException;
+import seedu.address.model.task.Event;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
@@ -98,8 +100,17 @@ public class TaskManager implements ReadOnlyTaskManager {
     public void updateTask(int index, ReadOnlyTask editedReadOnlyTask)
             throws DuplicateTaskException {
         assert editedReadOnlyTask != null;
-
-        Task editedTask = new Task(editedReadOnlyTask);
+        Task editedTask = null;
+        if(editedReadOnlyTask.isEvent()){
+            try {
+                editedTask = new Event(editedReadOnlyTask);
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }else{
+            editedTask = new Task(editedReadOnlyTask);
+        }
 
         syncMasterTagListWith(editedTask);
         Tag oldTaskTag = tasks.get(index).getTag();

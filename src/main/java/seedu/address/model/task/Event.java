@@ -72,10 +72,10 @@ public class Event extends Task implements ReadOnlyEvent {
 
     /**
      * Creates a copy of the given ReadOnlyTask.
-     * @throws IllegalValueException
+     * @throws IllegalValueException 
      */
-    public Event(ReadOnlyEvent source) throws IllegalValueException {
-        this(source.getName(), source.getStartDate(), source.getStartTime(), source.getDate(), source.getTime(),
+    public Event(ReadOnlyTask source) throws IllegalValueException{
+        this(source.getName(), ((ReadOnlyEvent)source).getStartDate(), ((ReadOnlyEvent)source).getStartTime(), source.getDate(), source.getTime(),
                 source.getDescription(),
                 source.getTag(), source.getVenue(), source.getPriority(), source.isFavorite(), source.isFinished());
     }
@@ -181,22 +181,16 @@ public class Event extends Task implements ReadOnlyEvent {
         this.isFinished = isFinished;
     }
 
-
+    @Override
     /**
      * Updates this task with the details of {@code replacement}.
      */
     public void resetData(ReadOnlyTask replacement) {
         assert replacement != null;
 
-        this.setName(replacement.getName());
-        this.setDate(replacement.getDate());
-        this.setTime(replacement.getTime());
-        this.setDescription(replacement.getDescription());
-        this.setTag(replacement.getTag());
-        this.setVenue(replacement.getVenue());
-        this.setPriority(replacement.getPriority());
-        this.setFavorite(replacement.isFavorite());
-        this.setFinish(replacement.isFinished());
+        super.resetData(replacement);
+        this.setStartTime(((ReadOnlyEvent)replacement).getStartTime());
+        this.setStartDate(((ReadOnlyEvent)replacement).getStartDate());
     }
 
     @Override
