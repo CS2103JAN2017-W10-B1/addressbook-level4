@@ -27,11 +27,11 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks as per the parameters\n"
             + "the specified listname and displays them as a list with index numbers.\n"
-            + "Parameters: [LISTNAME]\n"
+            + "Parameters: [all/favorite/finished] [LIST_NAME]\n"
             + "Example: " + COMMAND_WORD + "\n"
-            + COMMAND_WORD + " all\n"
+            + COMMAND_WORD + " all study\n"
             + COMMAND_WORD + " finished\n"
-            + COMMAND_WORD + "study work\n";;
+            + COMMAND_WORD + "study work\n";
     
 
     private static final String LIST_SEPARATOR = ", ";

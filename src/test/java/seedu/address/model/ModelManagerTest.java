@@ -73,7 +73,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void testFilterTag() {
+    public void testFilterDate() {
         modelManager.resetData(testUtil.getTypicalTaskManager());
         assertEquals(modelManager.getFilteredTaskList().size(), 5);
 
@@ -98,7 +98,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void testFilterDate() {
+    public void testFilterTag() {
         modelManager.resetData(testUtil.getTypicalTaskManager());
         assertEquals(modelManager.getFilteredTaskList().size(), 5);
 
@@ -107,7 +107,7 @@ public class ModelManagerTest {
 
         modelManager.updateFilteredTaskListGivenListName(keywords);
         assertEquals(modelManager.getFilteredTaskList().size(), 3);
-        assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "gym");
+        assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "laundry");
 
         modelManager = new ModelManager();
         modelManager.resetData(testUtil.getTypicalTaskManager());
@@ -116,7 +116,7 @@ public class ModelManagerTest {
 
         modelManager.updateFilteredTaskListGivenListName(keywords);
         assertEquals(modelManager.getFilteredTaskList().size(), 2);
-        assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "cs2103");
+        assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "study");
 
         modelManager = new ModelManager();
         modelManager.resetData(testUtil.getTypicalTaskManager());
