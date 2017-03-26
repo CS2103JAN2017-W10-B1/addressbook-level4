@@ -29,6 +29,9 @@ public interface ReadOnlyTask {
      * Returns true if both have the same state. (interfaces cannot override equals)
      */
     default boolean isSameStateAs(ReadOnlyTask other) {
+        if (other.isFinished() == true || this.isFinished() == true) {
+            return false;
+        } // finished task are always treated as different
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                 && other.getName().equals(this.getName())
@@ -36,6 +39,10 @@ public interface ReadOnlyTask {
                 && other.getTime().equals(this.getTime())
                 && other.getTag().equals(this.getTag())); // state checks here onwards
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
     //@@ author A0143409J
     /*
      * Get the FinishProperty instead of boolean

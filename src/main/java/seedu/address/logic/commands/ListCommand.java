@@ -70,7 +70,7 @@ public class ListCommand extends Command {
 //@@author A0147996E
     private boolean isKeywordMatchingTaglist () {
         boolean hasMatch = false;
-        UnmodifiableObservableList<Tag> tagList = UniqueTagList.asObservableList();
+        UnmodifiableObservableList<Tag> tagList = model.getFilteredTagList();
         for(String keyword : keywords) {
             for(Tag tag : tagList) {
                 if(tag.getName().equalsIgnoreCase(keyword)) {

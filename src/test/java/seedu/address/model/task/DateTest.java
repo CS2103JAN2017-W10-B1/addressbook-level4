@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.text.ParseException;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -61,7 +63,7 @@ public class DateTest {
 
     @SuppressWarnings("deprecation")
     @Test
-    public void testOnValidYear() throws IllegalValueException {
+    public void testOnValidYear() throws IllegalValueException, ParseException {
 
         assertTrue(TaskDate.isValidDate("20/3")); // with valid year without year;
         TaskDate tester1 = new TaskDate("20/3");
@@ -74,7 +76,7 @@ public class DateTest {
 
         assertTrue(TaskDate.isValidDate("20/09/2017")); // with space;
         TaskDate testerNull = new TaskDate("");
-        assertEquals(testerNull.date, null);
+        assertEquals(testerNull.date, TaskDate.FORMATTER.parse(TaskDate.INF_DATE));
     }
 
     @Test
