@@ -93,11 +93,11 @@ public class XmlAdaptedTask {
             final TaskDate startDate = new TaskDate(this.startDate);
             final TaskTime startTime = new TaskTime(this.startTime);
             Event event = new Event(name, startDate, startTime, date, time, description, tag, venue, priority,
-                    isFavourite, isFinished, isEvent);
+                    isFavourite, isFinished);
             return event;
         } else {
             return new Task(name, date, time, description, tag,
-                    venue, priority, isFavourite, isFinished, isEvent);
+                    venue, priority, isFavourite, isFinished);
         }
     }
 

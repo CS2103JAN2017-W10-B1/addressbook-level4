@@ -106,7 +106,7 @@ public class EditCommand extends AbleUndoCommand {
                 new Venue(task.getVenue().getValue()),
                 new Priority(task.getPriority().getValue()),
                 task.isFavorite(),
-                task.isFinished());
+                task.getFinished());
     }
 
     /**
@@ -132,9 +132,9 @@ public class EditCommand extends AbleUndoCommand {
         }
         FinishProperty isFinished;
         if (taskToEdit.isFinished()) {
-            isFinished = FinishProperty.Finished;
+            isFinished = FinishProperty.FINISHED;
         } else {
-            isFinished = FinishProperty.Unfinished;
+            isFinished = FinishProperty.UNFINISHED;
         }
 
         return new Task(updatedName, updatedDate, updatedTime, updatedDescription,

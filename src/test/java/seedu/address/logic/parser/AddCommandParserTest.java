@@ -47,7 +47,7 @@ public class AddCommandParserTest {
         AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         Task sampleTask = new Task(sampleTaskName, new TaskDate(""), new TaskTime(""),
-                new Description(""), new Tag(""), new Venue(""), new Priority(""), false, false);
+                new Description(""), new Tag(""), new Venue(""), new Priority(""), false);
         assertEqualTasks((Task) field.get(addCommand), sampleTask);
     }
 
@@ -61,7 +61,7 @@ public class AddCommandParserTest {
         Name sampleTaskName = new Name("CS2103 Lecture");
         TaskDate sampleTaskDate = new TaskDate("10/3");
         Task sampleTask = new Task(sampleTaskName, sampleTaskDate, new TaskTime(""),
-                new Description(""), new Tag(""), new Venue(""), new Priority(""), false, false);
+                new Description(""), new Tag(""), new Venue(""), new Priority(""), false);
         assertEqualTasks((Task) field.get(addCommand), sampleTask);
     }
 
@@ -76,7 +76,7 @@ public class AddCommandParserTest {
         TaskDate sampleTaskDate = new TaskDate("30/3");
         TaskTime sampleTaskTime = new TaskTime("16:00");
         Task sampleTask = new Task(sampleTaskName, sampleTaskDate, sampleTaskTime,
-                new Description(""), new Tag(""), new Venue(""), new Priority(""), false, false);
+                new Description(""), new Tag(""), new Venue(""), new Priority(""), false);
         assertEqualTasks((Task) field.get(addCommand), sampleTask);
     }
 
@@ -93,7 +93,7 @@ public class AddCommandParserTest {
         TaskTime sampleTaskTime = new TaskTime("16:00");
         Description sampleTaskDescription = new Description("Interesting");
         Task sampleTask = new Task(sampleTaskName, sampleTaskDate, sampleTaskTime,
-                sampleTaskDescription, new Tag(""), new Venue(""), new Priority(""), false, false);
+                sampleTaskDescription, new Tag(""), new Venue(""), new Priority(""), false);
         assertEqualTasks((Task) field.get(addCommand), sampleTask);
     }
 
@@ -111,7 +111,7 @@ public class AddCommandParserTest {
         Description sampleTaskDescription = new Description("Interesting");
         Tag sampleTaskTag = new Tag("CS2103");
         Task sampleTask = new Task(sampleTaskName, sampleTaskDate, sampleTaskTime,
-                sampleTaskDescription, sampleTaskTag, new Venue(""), new Priority(""), false, false);
+                sampleTaskDescription, sampleTaskTag, new Venue(""), new Priority(""), false);
         assertEqualTasks((Task) field.get(addCommand), sampleTask);
     }
 
@@ -130,7 +130,7 @@ public class AddCommandParserTest {
         Tag sampleTaskTag = new Tag("CS2103");
         Venue sampleTaskVenue = new Venue("I3");
         Task sampleTask = new Task(sampleTaskName, sampleTaskDate, sampleTaskTime,
-                sampleTaskDescription, sampleTaskTag, sampleTaskVenue, new Priority(""), false, false);
+                sampleTaskDescription, sampleTaskTag, sampleTaskVenue, new Priority(""), false);
         assertEqualTasks((Task) field.get(addCommand), sampleTask);
     }
 
@@ -150,7 +150,7 @@ public class AddCommandParserTest {
         Venue sampleTaskVenue = new Venue("I3");
         Priority sampleTaskPriority = new Priority("3");
         Task sampleTask = new Task(sampleTaskName, sampleTaskDate, sampleTaskTime,
-                sampleTaskDescription, sampleTaskTag, sampleTaskVenue, sampleTaskPriority, false, false);
+                sampleTaskDescription, sampleTaskTag, sampleTaskVenue, sampleTaskPriority, false);
         assertEqualTasks((Task) field.get(addCommand), sampleTask);
     }
 
