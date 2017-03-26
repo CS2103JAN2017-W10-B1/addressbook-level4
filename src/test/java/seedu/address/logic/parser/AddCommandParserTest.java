@@ -71,9 +71,9 @@ public class AddCommandParserTest {
         Field field = AddCommand.class.getDeclaredField("toAdd");
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 t/16:00 \n");
+        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/30/3 dueT/16:00 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
-        TaskDate sampleTaskDate = new TaskDate("10/3");
+        TaskDate sampleTaskDate = new TaskDate("30/3");
         TaskTime sampleTaskTime = new TaskTime("16:00");
         Task sampleTask = new Task(sampleTaskName, sampleTaskDate, sampleTaskTime,
                 new Description(""), new Tag(""), new Venue(""), new Priority(""), false, false);
@@ -86,10 +86,10 @@ public class AddCommandParserTest {
         Field field = AddCommand.class.getDeclaredField("toAdd");
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 t/16:00"
+        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/30/3 dueT/16:00"
                 + "d/Interesting \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
-        TaskDate sampleTaskDate = new TaskDate("10/3");
+        TaskDate sampleTaskDate = new TaskDate("30/3");
         TaskTime sampleTaskTime = new TaskTime("16:00");
         Description sampleTaskDescription = new Description("Interesting");
         Task sampleTask = new Task(sampleTaskName, sampleTaskDate, sampleTaskTime,
@@ -103,10 +103,10 @@ public class AddCommandParserTest {
         Field field = AddCommand.class.getDeclaredField("toAdd");
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 "
-                + "t/16:00 d/Interesting #CS2103 \n");
+        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/30/03 "
+                + "dueT/16:00 d/Interesting #CS2103 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
-        TaskDate sampleTaskDate = new TaskDate("10/3");
+        TaskDate sampleTaskDate = new TaskDate("30/03");
         TaskTime sampleTaskTime = new TaskTime("16:00");
         Description sampleTaskDescription = new Description("Interesting");
         Tag sampleTaskTag = new Tag("CS2103");
@@ -121,10 +121,10 @@ public class AddCommandParserTest {
         Field field = AddCommand.class.getDeclaredField("toAdd");
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 "
-                + "t/16:00 d/Interesting #CS2103 @I3 \n");
+        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/30/3 "
+                + "dueT/16:00 d/Interesting #CS2103 @I3 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
-        TaskDate sampleTaskDate = new TaskDate("10/3");
+        TaskDate sampleTaskDate = new TaskDate("30/3");
         TaskTime sampleTaskTime = new TaskTime("16:00");
         Description sampleTaskDescription = new Description("Interesting");
         Tag sampleTaskTag = new Tag("CS2103");
@@ -140,10 +140,10 @@ public class AddCommandParserTest {
         Field field = AddCommand.class.getDeclaredField("toAdd");
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 "
-                + "t/16:00 d/Interesting #CS2103 @I3 p/3 \n");
+        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/30/3 "
+                + "dueT/16:00 d/Interesting #CS2103 @I3 p/3 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
-        TaskDate sampleTaskDate = new TaskDate("10/3");
+        TaskDate sampleTaskDate = new TaskDate("30/3");
         TaskTime sampleTaskTime = new TaskTime("16:00");
         Description sampleTaskDescription = new Description("Interesting");
         Tag sampleTaskTag = new Tag("CS2103");

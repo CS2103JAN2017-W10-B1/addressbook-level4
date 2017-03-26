@@ -69,7 +69,7 @@ public class EditCommandParserTest {
         Field field = EditCommand.class.getDeclaredField("editTaskDescriptor");
         field.setAccessible(true);
 
-        EditCommand editCommand =  (EditCommand) EditCommandParser.parse("1 n/CS2103 Lecture due/10/3 t/16:00 \n");
+        EditCommand editCommand =  (EditCommand) EditCommandParser.parse("1 n/CS2103 Lecture due/10/3 dueT/16:00 \n");
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
@@ -89,7 +89,7 @@ public class EditCommandParserTest {
         field.setAccessible(true);
 
         EditCommand editCommand =  (EditCommand) EditCommandParser.parse("1 n/CS2103 Lecture "
-                + "due/10/3 t/16:00 d/Interesting \n");
+                + "due/10/3 dueT/16:00 d/Interesting \n");
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
@@ -112,7 +112,7 @@ public class EditCommandParserTest {
         field.setAccessible(true);
 
         EditCommand editCommand =  (EditCommand) EditCommandParser.parse("1 n/CS2103 Lecture "
-                + "due/10/3 t/16:00 d/Interesting #CS2103 \n");
+                + "due/10/3 dueT/16:00 d/Interesting #CS2103 \n");
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
@@ -138,7 +138,7 @@ public class EditCommandParserTest {
         field.setAccessible(true);
 
         EditCommand editCommand =  (EditCommand) EditCommandParser.parse("1 n/CS2103 Lecture "
-                + "due/10/3 t/16:00 d/Interesting #CS2103 @I3 \n");
+                + "due/10/3 dueT/16:00 d/Interesting #CS2103 @I3 \n");
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
@@ -167,7 +167,7 @@ public class EditCommandParserTest {
         field.setAccessible(true);
 
         EditCommand editCommand =  (EditCommand) EditCommandParser.parse("1 n/CS2103 Lecture "
-                + "due/10/3 t/16:00 d/Interesting #CS2103 @I3 p/3 \n");
+                + "due/10/3 dueT/16:00 d/Interesting #CS2103 @I3 p/3 \n");
         Name sampleName = new Name("CS2103 Lecture");
         Optional<Name> optionalName = Optional.of(sampleName);
         editTaskDescriptor.setName(optionalName);
