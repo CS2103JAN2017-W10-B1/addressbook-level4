@@ -19,7 +19,7 @@ public class Task implements ReadOnlyTask {
     protected Venue venue;
     protected Priority priority;
     protected boolean isFavorite;
-    protected boolean isFinished;
+    protected FinishProperty isFinished;
     protected Tag tag;
     protected boolean isEvent;
 
@@ -37,15 +37,33 @@ public class Task implements ReadOnlyTask {
         this.venue = venue;
         this.priority = priority;
         this.isFavorite = isFavorite;
-        this.isFinished = false;
+        this.isFinished = FinishProperty.Unfinished;
         this.isEvent = isEvent;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Task(Name name, TaskDate date, TaskTime time, Description description, Tag tag,
+            Venue venue, Priority priority, boolean isFavorite, FinishProperty isFinished) {
+        assert !CollectionUtil.isAnyNull(name);
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.description = description;
+        this.tag =  tag;
+        this.venue = venue;
+        this.priority = priority;
+        this.isFavorite = isFavorite;
+        this.isFinished = isFinished;
+        this.isEvent = false;
     }
 
     /**
      *  Constructor of task with flag on isFinshed
      */
     public Task(Name name, TaskDate date, TaskTime time, Description description, Tag tag,
-            Venue venue, Priority priority, boolean isFavorite, boolean isFinished, boolean isEvent) {
+            Venue venue, Priority priority, boolean isFavorite, FinishProperty isFinished, boolean isEvent) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
         this.date = date;
@@ -152,20 +170,20 @@ public class Task implements ReadOnlyTask {
     }
 
     @Override
-    public boolean isFinished() {
+    public FinishProperty isFinished() {
         return isFinished;
     }
 
     @Override
     public String getFinishedText() {
-        if (isFinished) {
+        if (isFinished == FinishProperty.Finished) {
             return "Finished";
         } else {
             return "Unfinished";
         }
     }
 
-    public void setFinish(boolean isFinished) {
+    public void setFinish(FinishProperty isFinished) {
         this.isFinished = isFinished;
     }
 

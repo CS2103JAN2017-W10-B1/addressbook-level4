@@ -8,6 +8,10 @@ import seedu.address.model.tag.Tag;
  */
 public interface ReadOnlyTask {
 
+    public enum FinishProperty {
+        Finished, Unfinished
+    }
+
     Name getName();
     TaskDate getDate();
     TaskTime getTime();
@@ -16,7 +20,7 @@ public interface ReadOnlyTask {
     Venue getVenue();
     Priority getPriority();
     boolean isFavorite();
-    boolean isFinished();
+    FinishProperty isFinished();
     String getFavoriteText();
     String getFinishedText();
     boolean isEvent();
@@ -66,7 +70,7 @@ public interface ReadOnlyTask {
         if (isFavorite()) {
             builder.append(" favorite");
         }
-        if (isFinished()) {
+        if (isFinished() == FinishProperty.Finished) {
             builder.append(" finished");
         }
         return builder.toString();

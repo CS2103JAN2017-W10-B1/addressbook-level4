@@ -11,6 +11,7 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyEvent;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.ReadOnlyTask.FinishProperty;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
@@ -38,7 +39,7 @@ public class XmlAdaptedTask {
     @XmlElement(required = true)
     protected boolean isFavourite;
     @XmlElement(required = true)
-    protected boolean isFinished;
+    protected FinishProperty isFinished;
     @XmlElement(required = true)
     protected boolean isEvent;
     @XmlElement(required = false)

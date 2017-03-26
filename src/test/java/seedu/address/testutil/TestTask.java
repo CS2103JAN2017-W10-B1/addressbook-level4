@@ -24,7 +24,7 @@ public class TestTask implements ReadOnlyTask {
     private Priority priority;
     private Tag tag;
     private boolean isFavorite;
-    private boolean isFinished;
+    private FinishProperty isFinished;
     private boolean isEvent;
 
     public TestTask() {}
@@ -125,7 +125,7 @@ public class TestTask implements ReadOnlyTask {
     }
 
     @Override
-    public boolean isFinished() {
+    public FinishProperty isFinished() {
         return isFinished;
     }
 //@@ author A0147996E
@@ -140,7 +140,7 @@ public class TestTask implements ReadOnlyTask {
 
     @Override
     public String getFinishedText() {
-        if (isFinished) {
+        if (isFinished == FinishProperty.Finished) {
             return "Finished";
         } else {
             return "Unfinished";

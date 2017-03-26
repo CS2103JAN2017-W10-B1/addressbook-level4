@@ -13,6 +13,7 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.ReadOnlyTask.FinishProperty;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
@@ -129,7 +130,7 @@ public class EditCommand extends AbleUndoCommand {
         } else {
             isFavourite = taskToEdit.isFavorite();
         }
-        boolean isFinished = taskToEdit.isFinished();
+        FinishProperty isFinished = taskToEdit.isFinished();
 
         return new Task(updatedName, updatedDate, updatedTime, updatedDescription,
                 updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
