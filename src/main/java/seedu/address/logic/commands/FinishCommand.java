@@ -84,18 +84,15 @@ public class FinishCommand extends AbleUndoCommand {
         return new CommandResult(String.format(MESSAGE_FINISH_TASK_SUCCESS, taskToMark));
     }
 
-
     @Override
     public boolean isUndoable() {
         return true;
     }
 
-
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
         return null;
     }
-
 
     @Override
     public Command getUndoCommand() {
@@ -107,6 +104,5 @@ public class FinishCommand extends AbleUndoCommand {
             return new IncorrectCommand(null);
         }
     }
-
 }
 
