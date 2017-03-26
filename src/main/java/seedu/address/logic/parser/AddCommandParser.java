@@ -43,16 +43,16 @@ public class AddCommandParser {
         try {
             String name = argsTokenizer.getPreamble().get();
             String date = checkString(argsTokenizer.getValue(PREFIX_DATE));
-            String start = checkString(argsTokenizer.getValue(PREFIX_START));
+            String startDate = checkString(argsTokenizer.getValue(PREFIX_START));
             String time = checkString(argsTokenizer.getValue(PREFIX_TIME));
             String startTime = checkString(argsTokenizer.getValue(PREFIX_STARTTIME));
             String tag = checkString(argsTokenizer.getValue(PREFIX_TAG));
             String description = checkString(argsTokenizer.getValue(PREFIX_DESCRIPTION));
             String venue = checkString(argsTokenizer.getValue(PREFIX_VENUE));
             String priority = checkString(argsTokenizer.getValue(PREFIX_PRIORITY));
-            boolean isEvent = checkStart(start);
+            boolean isEvent = checkStart(startDate);
             boolean isFavourite = checkPresent(argsTokenizer.getValue(PREFIX_FAVOURITE));
-            return new AddCommand(name, date, start, time, startTime, tag,
+            return new AddCommand(name, date, startDate, time, startTime, tag,
                     description, venue, priority, isFavourite, isEvent);
         } catch (NoSuchElementException ive) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
