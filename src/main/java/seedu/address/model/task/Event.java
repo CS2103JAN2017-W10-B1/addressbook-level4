@@ -165,13 +165,13 @@ public class Event extends Task implements ReadOnlyEvent {
     }
 
     @Override
-    public FinishProperty isFinished() {
-        return isFinished;
+    public Boolean isFinished() {
+        return isFinished == FinishProperty.Finished;
     }
 
     @Override
     public String getFinishedText() {
-        if (isFinished == FinishProperty.Finished) {
+        if (isFinished()) {
             return "Finished";
         } else {
             return "Unfinished";

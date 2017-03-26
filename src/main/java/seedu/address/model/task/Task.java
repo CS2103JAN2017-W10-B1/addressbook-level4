@@ -83,7 +83,7 @@ public class Task implements ReadOnlyTask {
     public Task(ReadOnlyTask source) {
         this(source.getName(), source.getDate(), source.getTime(), source.getDescription(),
                 source.getTag(), source.getVenue(), source.getPriority(),
-                source.isFavorite(), source.isFinished(), source.isEvent());
+                source.isFavorite(), source.getFinished(), source.isEvent());
     }
 
     public void setName(Name name) {
@@ -170,21 +170,25 @@ public class Task implements ReadOnlyTask {
     }
 
     @Override
-    public FinishProperty isFinished() {
-        return isFinished;
+    public Boolean isFinished() {
+        return isFinished == FinishProperty.Finished;
     }
 
     @Override
     public String getFinishedText() {
-        if (isFinished == FinishProperty.Finished) {
+        if (isFinished()) {
             return "Finished";
         } else {
             return "Unfinished";
         }
     }
 
-    public void setFinish(FinishProperty isFinished) {
-        this.isFinished = isFinished;
+    public void setFinish(Boolean isFinished) {
+        if (isFinished) {
+            this.isFinished = FinishProperty.Finished;
+        } else {
+            this.isFinished = FinishProperty.Unfinished;
+        }
     }
 
 
@@ -226,6 +230,11 @@ public class Task implements ReadOnlyTask {
     @Override
     public boolean isEvent() {
         return this.isEvent;
+    }
+
+    @Override
+    public FinishProperty getFinished() {
+        return this.isFinished;
     }
 
 }

@@ -41,7 +41,7 @@ public class TestTask implements ReadOnlyTask {
         this.venue = taskToCopy.getVenue();
         this.priority = taskToCopy.getPriority();
         this.isFavorite = taskToCopy.isFavorite();
-        this.isFinished = taskToCopy.isFinished();
+        this.isFinished = taskToCopy.getFinished();
         this.isEvent = taskToCopy.isEvent();
     }
 
@@ -125,8 +125,8 @@ public class TestTask implements ReadOnlyTask {
     }
 
     @Override
-    public FinishProperty isFinished() {
-        return isFinished;
+    public Boolean isFinished() {
+        return isFinished == FinishProperty.Finished;
     }
 //@@ author A0147996E
     @Override
@@ -170,5 +170,10 @@ public class TestTask implements ReadOnlyTask {
     @Override
     public boolean isEvent() {
         return isEvent;
+    }
+
+    @Override
+    public FinishProperty getFinished() {
+        return this.isFinished;
     }
 }

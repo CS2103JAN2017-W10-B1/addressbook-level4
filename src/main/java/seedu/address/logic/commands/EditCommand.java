@@ -130,7 +130,12 @@ public class EditCommand extends AbleUndoCommand {
         } else {
             isFavourite = taskToEdit.isFavorite();
         }
-        FinishProperty isFinished = taskToEdit.isFinished();
+        FinishProperty isFinished;
+        if (taskToEdit.isFinished()) {
+            isFinished = FinishProperty.Finished;
+        } else {
+            isFinished = FinishProperty.Unfinished;
+        }
 
         return new Task(updatedName, updatedDate, updatedTime, updatedDescription,
                 updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);

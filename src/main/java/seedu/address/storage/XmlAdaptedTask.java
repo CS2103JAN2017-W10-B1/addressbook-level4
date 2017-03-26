@@ -68,7 +68,7 @@ public class XmlAdaptedTask {
         venue = source.getVenue().getValue();
         priority = source.getPriority().getValue();
         isFavourite = source.isFavorite();
-        isFinished = source.isFinished();
+        isFinished = source.getFinished();
         isEvent = source.isEvent();
         if (isEvent) {
             startDate = ((ReadOnlyEvent) source).getStartDate().getValue();
