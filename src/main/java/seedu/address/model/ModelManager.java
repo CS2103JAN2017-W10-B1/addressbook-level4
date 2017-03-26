@@ -104,22 +104,6 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
-    //@@author A0143409J
-    @Override
-    public boolean isListExist(String listName) {
-        assert listName != null;
-
-        ObservableList<Tag> tagList = taskManager.getTagList();
-        for (Tag tag : tagList) {
-            if (tag.getName().toString() == listName) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    //@@authorA0147984L
-
     //=========== Filtered Task List Accessors =============================================================
 
     @Override
@@ -145,7 +129,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateFilteredListToShowAllFavoriteTasks() {
-        updateFilteredTaskList(new PredicateExpression(new FavoriteQualifier()));
+        updateFilteredTaskList(new PredicateExpression(new FavoriteQualifier(), new UnfinishedQualifier()));
     }
 
     @Override
@@ -174,7 +158,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateFilteredTaskListGivenDaysToDueBy(String days) {
-        updateFilteredTaskList(new PredicateExpression(new DateQualifier(days), new UnfinishedQualifier()));
+        updateFilteredTaskList(new PredicateExpression(new DateQualifierBy(days), new UnfinishedQualifier()));
     }
 
     @Override
@@ -200,7 +184,15 @@ public class ModelManager extends ComponentManager implements Model {
     private void updateFilteredListList(Expression expression) {
         filteredTag.setPredicate(expression::satisfies);
     }
-    //@@author
+
+    //@@author A0143409J
+    @Override
+    public boolean isListExist(String listName) {
+        updateFilteredListList(new PredicateExpression(new NameQualifierExact(listName)));
+        boolean isListExist = filteredTag.size() > 0;
+        updateFilteredTagListToShowAllTags();
+        return isListExist;
+    }
 
     //========== Inner classes/interfaces used for filtering =================================================
 
@@ -210,6 +202,7 @@ public class ModelManager extends ComponentManager implements Model {
         String toString();
     }
 
+    //@@author A0147974L
     private class PredicateExpression implements Expression {
 
         private final HashSet<Qualifier> qualifiers;
@@ -244,6 +237,7 @@ public class ModelManager extends ComponentManager implements Model {
             return returnString;
         }
     }
+    //@@author
 
     interface Qualifier {
         boolean run(ReadOnlyTask task);
@@ -281,6 +275,29 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     //@@author A0147984L
+    private class NameQualifierExact implements Qualifier {
+        protected String keyword;
+
+        NameQualifierExact(String keyword) {
+            this.keyword = keyword;
+        }
+
+        @Override
+        public boolean run(ReadOnlyTask task) {
+            return task.getName().fullName.equals(keyword);
+        }
+
+        @Override
+        public boolean run(Tag list) {
+            return list.getName().equals(keyword);
+        }
+
+        @Override
+        public String toString() {
+            return "name=" + String.join(", ", keyword);
+        }
+    }
+
     private class UnfinishedQualifier implements Qualifier {
 
         UnfinishedQualifier() {}
@@ -341,7 +358,7 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + "favorite";
         }
     }
-//@@ author
+//@@author
 
     private class TagQualifier implements Qualifier {
         protected Set<String> tagKeyWords;
@@ -369,7 +386,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
-    private class DateQualifier implements Qualifier {
+    private abstract class DateQualifier implements Qualifier {
         protected int daysToDue;
         protected Calendar today;
 
@@ -379,12 +396,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
 
         @Override
-        public boolean run(ReadOnlyTask task) {
-            long diff = task.getDate().date.getTime() - today.getTime().getTime();
-            return (daysToDue >= TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS))
-                    &&
-                    (0 <= TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
-        }
+        public abstract boolean run(ReadOnlyTask task);
 
         @Override
         public boolean run(Tag list) {
@@ -397,7 +409,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
-    private class DateQualifierOn extends DateQualifier implements Qualifier {
+    private class DateQualifierOn extends DateQualifier {
         protected int daysToDue;
         protected Calendar today;
 
@@ -409,6 +421,23 @@ public class ModelManager extends ComponentManager implements Model {
         public boolean run(ReadOnlyTask task) {
             long diff = task.getDate().date.getTime() - today.getTime().getTime();
             return daysToDue == TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        }
+    }
+
+    private class DateQualifierBy extends DateQualifier {
+        protected int daysToDue;
+        protected Calendar today;
+
+        DateQualifierBy(String days) {
+            super(days);
+        }
+
+        @Override
+        public boolean run(ReadOnlyTask task) {
+            long diff = task.getDate().date.getTime() - today.getTime().getTime();
+            return (daysToDue >= TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS))
+                    &&
+                    (0 <= TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
         }
     }
 }
