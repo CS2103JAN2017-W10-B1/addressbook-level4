@@ -204,7 +204,7 @@ public class EditCommand extends AbleUndoCommand {
         public Optional<TaskDate> getDue() {
             return due;
         }
-        
+
         public Optional<TaskDate> getStart() {
             return start;
         }

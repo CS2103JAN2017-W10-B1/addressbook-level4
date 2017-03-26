@@ -74,7 +74,7 @@ public class Event extends Task implements ReadOnlyEvent {
 
     /**
      * Creates a copy of the given ReadOnlyTask.
-     * @throws IllegalValueException 
+     * @throws IllegalValueException
      */
     public Event(ReadOnlyTask source) throws IllegalValueException{
         this(source.getName(), ((ReadOnlyEvent)source).getStartDate(), ((ReadOnlyEvent)source).getStartTime(), source.getDate(), source.getTime(),
