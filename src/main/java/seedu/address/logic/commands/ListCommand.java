@@ -4,7 +4,6 @@ package seedu.address.logic.commands;
 import java.util.Iterator;
 import java.util.Set;
 
-import seedu.address.model.tag.UniqueTagList;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.model.tag.Tag;
 
