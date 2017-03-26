@@ -104,7 +104,7 @@ Examples:
 ### 2.5. Listing all tasks : `list`
 
 Shows a list of tasks in Dueue filtered by specifications given<br>
-Format: `list [LIST_INDEX/LIST_NAME] [all/favorite/finished]`<br>
+Format: `list [LIST_NAME] [all/favorite/finished]`<br>
 
 Shows all unfinished tasks in Dueue<br>
 Format: `list`
@@ -116,13 +116,13 @@ Shows all tasks in Dueue (finished and unfinished)<br>
 Format: `list all`
 
 Shows all tasks in LIST (finished and unfinished)<br>
-Format: `list LIST_INDEX/LIST_NAME all`
+Format: `list LIST_NAME all`
 
 Shows all unfinished tasks in LIST<br>
-Format: `list LIST_INDEX/LIST_NAME`
+Format: `list LIST_NAME`
 
 Shows all finished tasks in LIST<br>
-Format: `list LIST_INDEX/LIST_NAME finished`
+Format: `list LIST_NAME finished`
 
 > * Specification parameters must be entered following the defined sequence.
 
