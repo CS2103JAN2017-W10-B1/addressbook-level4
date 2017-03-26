@@ -3,6 +3,8 @@ package seedu.address.model;
 import java.util.Set;
 
 import seedu.address.commons.core.UnmodifiableObservableList;
+import seedu.address.model.ModelManager.DueMode;
+import seedu.address.model.ModelManager.FinishedState;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.task.ReadOnlyTask;
@@ -42,6 +44,11 @@ public interface Model {
     /** Returns the filtered list list as an {@code UnmodifiableObservableList<TaskList>} */
     UnmodifiableObservableList<Tag> getFilteredTagList();
 
+    // Task-level filter
+    void updateFilteredTaskList(Set<String> nameKeywords, Set<String> tagKeywords,
+            FinishedState finishedState, boolean isFavorite,
+            DueMode dueMode, String days);
+
     /** Updates the filter of the filtered task list to show all unfinished tasks */
     void updateFilteredListToShowAllUnfinishedTasks();
 
@@ -71,6 +78,8 @@ public interface Model {
 
     /** Updates the filter of the filtered task list to filter on the days to due*/
     void updateFilteredTaskListGivenDaysToDueOn(String days);
+
+    // Tag-level filter
 
     /** Adds the given list */
     void addList(Tag tag) throws UniqueTagList.DuplicateTagException;

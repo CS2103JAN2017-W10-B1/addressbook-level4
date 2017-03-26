@@ -32,6 +32,14 @@ public class ModelManager extends ComponentManager implements Model {
     private final FilteredList<ReadOnlyTask> filteredTasks;
     private final FilteredList<Tag> filteredTag;
 
+    public enum FinishedState {
+        ALL, FINISHED, UNFINISHED;
+    }
+
+    public enum DueMode {
+        BY, ON;
+    }
+
     /**
      * Initializes a ModelManager with the given taskManager and userPrefs.
      */
@@ -111,8 +119,30 @@ public class ModelManager extends ComponentManager implements Model {
 
     //@@author A0147984L
     @Override
+    public void updateFilteredTaskList(Set<String> nameKeywords, Set<String> tagKeywords,
+            FinishedState finishedState, boolean isFavorite,
+            DueMode dueMode, String days) {
+        NameQualifier nameQualifier = nameKeywords == null ? null : new NameQualifier(nameKeywords);
+        TagQualifier tagQualifier = tagKeywords == null ? null : new TagQualifier(tagKeywords);
+        FinishedQualifier finishedQualifier = new FinishedQualifier(finishedState);
+        FavoriteQualifier favoriteQualifier = isFavorite ? new FavoriteQualifier() : null;
+        DateQualifier dateQualifier;
+        if (dueMode == null) {
+            dateQualifier = null;
+        } else if (dueMode.equals(DueMode.BY)) {
+            dateQualifier = new DateQualifierBy(days);
+        } else if (dueMode.equals(DueMode.ON)) {
+            dateQualifier = new DateQualifierOn(days);
+        } else {
+            dateQualifier = null;
+        }
+        updateFilteredTaskList(new PredicateExpression(
+                nameQualifier, tagQualifier, finishedQualifier, favoriteQualifier, dateQualifier));
+    }
+
+    @Override
     public void updateFilteredListToShowAllUnfinishedTasks() {
-        updateFilteredTaskList(new PredicateExpression(new UnfinishedQualifier()));
+        updateFilteredTaskList(null, null, FinishedState.UNFINISHED, false, null, null);
     }
 
     @Override
@@ -122,17 +152,17 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateFilteredListToShowAllFinishedTasks() {
-        updateFilteredTaskList(new PredicateExpression(new FinishedQualifier()));
+        updateFilteredTaskList(null, null, FinishedState.FINISHED, false, null, null);
     }
 
     @Override
     public void updateFilteredListToShowAllFavoriteTasks() {
-        updateFilteredTaskList(new PredicateExpression(new FavoriteQualifier(), new UnfinishedQualifier()));
+        updateFilteredTaskList(null, null, FinishedState.ALL, true, null, null);
     }
 
     @Override
     public void updateFilteredTaskList(Set<String> keywords) {
-        updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
+        updateFilteredTaskList(keywords, null, FinishedState.UNFINISHED, false, null, null);
     }
 
     private void updateFilteredTaskList(Expression expression) {
@@ -141,27 +171,27 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateFilteredTaskListAll(Set<String> keywords) {
-        updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords), new FinishedQualifier()));
+        updateFilteredTaskList(keywords, null, FinishedState.ALL, false, null, null);
     }
 
     @Override
     public void updateFilteredTaskListGivenListName(Set<String> keywords) {
-        updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords), new UnfinishedQualifier()));
+        updateFilteredTaskList(null, keywords, FinishedState.UNFINISHED, false, null, null);
     }
 
     @Override
     public void updateFilteredTaskListGivenListNameAll(Set<String> keywords) {
-        updateFilteredTaskList(new PredicateExpression(new TagQualifier(keywords)));
+        updateFilteredTaskList(null, keywords, FinishedState.ALL, false, null, null);
     }
 
     @Override
     public void updateFilteredTaskListGivenDaysToDueBy(String days) {
-        updateFilteredTaskList(new PredicateExpression(new DateQualifierBy(days), new UnfinishedQualifier()));
+        updateFilteredTaskList(null, null, FinishedState.UNFINISHED, false, DueMode.BY, days);
     }
 
     @Override
     public void updateFilteredTaskListGivenDaysToDueOn(String days) {
-        updateFilteredTaskList(new PredicateExpression(new DateQualifierOn(days), new UnfinishedQualifier()));
+        updateFilteredTaskList(null, null, FinishedState.UNFINISHED, false, DueMode.ON, days);
     }
     //@@author
 
@@ -208,7 +238,9 @@ public class ModelManager extends ComponentManager implements Model {
         PredicateExpression(Qualifier...qualifiers) {
             this.qualifiers = new HashSet<>();
             for (Qualifier qualifier : qualifiers) {
-                this.qualifiers.add(qualifier);
+                if (qualifier != null) {
+                    this.qualifiers.add(qualifier);
+                }
             }
         }
 
@@ -273,36 +305,25 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     //@@author A0147984L
-    private class UnfinishedQualifier implements Qualifier {
-
-        UnfinishedQualifier() {}
-
-        @Override
-        public boolean run(ReadOnlyTask task) {
-            return !task.isFinished();
-        }
-
-        @Override
-        public boolean run(Tag list) {
-            return false;
-        }
-
-        @Override
-        public String toString() {
-            return "name=" + "unfinished";
-        }
-    }
-
-    //@@ author A0147996E
     private class FinishedQualifier implements Qualifier {
+        protected FinishedState state;
 
-        FinishedQualifier() {}
+        FinishedQualifier(FinishedState state) {
+            this.state = state;
+        }
 
         @Override
         public boolean run(ReadOnlyTask task) {
-            return task.isFinished();
+            if (state.equals(FinishedState.FINISHED)) {
+                return task.isFinished();
+            } else if (state.equals(FinishedState.UNFINISHED)) {
+                return !task.isFinished();
+            } else {
+                return true;
+            }
         }
 
+        //@@ author A0147996E
         @Override
         public boolean run(Tag list) {
             return false;
@@ -310,7 +331,13 @@ public class ModelManager extends ComponentManager implements Model {
 
         @Override
         public String toString() {
-            return "name=" + "finished";
+            if (state.equals(FinishedState.FINISHED)) {
+                return "name=" + " finished";
+            } else if (state.equals(FinishedState.UNFINISHED)) {
+                return "name=" + " unfinished";
+            } else {
+                return "name=" + " all";
+            }
         }
     }
 
