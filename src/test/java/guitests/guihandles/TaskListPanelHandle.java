@@ -61,14 +61,6 @@ public class TaskListPanelHandle extends GuiHandle {
         }
         //The order of the task list should be ordered first by date then by priority
         assertTrue(this.containsInOrder(startPosition, tasks));
-        for (int i = 0; i < tasks.length; i++) {
-            final int scrollTo = i + startPosition;
-            guiRobot.interact(() -> getListView().scrollTo(scrollTo));
-            guiRobot.sleep(200);
-            if (!TestUtil.compareCardAndTask(getTaskCardHandle(startPosition + i), tasks[i])) {
-                return false;
-            }
-        }
         return true;
     }
 
@@ -93,7 +85,7 @@ public class TaskListPanelHandle extends GuiHandle {
 
         // Return false if any of the tasks doesn't match
         for (int i = 0; i < tasks.length; i++) {
-            if (!tasksInList.get(startPosition + i).getName().fullName.equals(tasks[i].getName().fullName)) {
+            if (!tasksInList.get(startPosition + i).isSameStateAs(tasks[i])) {
                 return false;
             }
         }
@@ -108,6 +100,7 @@ public class TaskListPanelHandle extends GuiHandle {
 
         List<ReadOnlyTask> tasksInList = getListView().getItems();
         for (int i = 0; i < tasksInList.size(); i++) {
+            System.out.println(tasksInList.size() + "\n");
             if (tasksInList.get(i).isSameStateAs(testTask)) {
                 return getTaskCardHandle(i);
             }

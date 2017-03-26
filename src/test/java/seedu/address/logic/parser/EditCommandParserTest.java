@@ -59,7 +59,7 @@ public class EditCommandParserTest {
         editTaskDescriptor.setName(optionalName);
         TaskDate editTaskDescriptorDate = new TaskDate("10/3");
         Optional<TaskDate> optionalDate = Optional.of(editTaskDescriptorDate);
-        editTaskDescriptor.setDate(optionalDate);
+        editTaskDescriptor.setDue(optionalDate);
         assertEqualEditTaskDescriptor((EditTaskDescriptor) field.get(editCommand), editTaskDescriptor);
     }
 
@@ -75,10 +75,10 @@ public class EditCommandParserTest {
         editTaskDescriptor.setName(optionalName);
         TaskDate sampleDate = new TaskDate("10/3");
         Optional<TaskDate> optionalDate = Optional.of(sampleDate);
-        editTaskDescriptor.setDate(optionalDate);
+        editTaskDescriptor.setDue(optionalDate);
         TaskTime sampleTime = new TaskTime("16:00");
         Optional<TaskTime> optionalTime = Optional.of(sampleTime);
-        editTaskDescriptor.setTime(optionalTime);
+        editTaskDescriptor.setDueTime(optionalTime);
         assertEqualEditTaskDescriptor((EditTaskDescriptor) field.get(editCommand), editTaskDescriptor);
     }
 
@@ -95,10 +95,10 @@ public class EditCommandParserTest {
         editTaskDescriptor.setName(optionalName);
         TaskDate sampleDate = new TaskDate("10/3");
         Optional<TaskDate> optionalDate = Optional.of(sampleDate);
-        editTaskDescriptor.setDate(optionalDate);
+        editTaskDescriptor.setDue(optionalDate);
         TaskTime sampleTime = new TaskTime("16:00");
         Optional<TaskTime> optionalTime = Optional.of(sampleTime);
-        editTaskDescriptor.setTime(optionalTime);
+        editTaskDescriptor.setDueTime(optionalTime);
         Description sampleDescription = new Description("Interesting");
         Optional<Description> optionalDescription = Optional.of(sampleDescription);
         editTaskDescriptor.setDescription(optionalDescription);
@@ -118,10 +118,10 @@ public class EditCommandParserTest {
         editTaskDescriptor.setName(optionalName);
         TaskDate sampleDate = new TaskDate("10/3");
         Optional<TaskDate> optionalDate = Optional.of(sampleDate);
-        editTaskDescriptor.setDate(optionalDate);
+        editTaskDescriptor.setDue(optionalDate);
         TaskTime sampleTime = new TaskTime("16:00");
         Optional<TaskTime> optionalTime = Optional.of(sampleTime);
-        editTaskDescriptor.setTime(optionalTime);
+        editTaskDescriptor.setDueTime(optionalTime);
         Description sampleDescription = new Description("Interesting");
         Optional<Description> optionalDescription = Optional.of(sampleDescription);
         editTaskDescriptor.setDescription(optionalDescription);
@@ -144,10 +144,10 @@ public class EditCommandParserTest {
         editTaskDescriptor.setName(optionalName);
         TaskDate sampleDate = new TaskDate("10/3");
         Optional<TaskDate> optionalDate = Optional.of(sampleDate);
-        editTaskDescriptor.setDate(optionalDate);
+        editTaskDescriptor.setDue(optionalDate);
         TaskTime sampleTime = new TaskTime("16:00");
         Optional<TaskTime> optionalTime = Optional.of(sampleTime);
-        editTaskDescriptor.setTime(optionalTime);
+        editTaskDescriptor.setDueTime(optionalTime);
         Description sampleDescription = new Description("Interesting");
         Optional<Description> optionalDescription = Optional.of(sampleDescription);
         editTaskDescriptor.setDescription(optionalDescription);
@@ -173,10 +173,10 @@ public class EditCommandParserTest {
         editTaskDescriptor.setName(optionalName);
         TaskDate sampleDate = new TaskDate("10/3");
         Optional<TaskDate> optionalDate = Optional.of(sampleDate);
-        editTaskDescriptor.setDate(optionalDate);
+        editTaskDescriptor.setDue(optionalDate);
         TaskTime sampleTime = new TaskTime("16:00");
         Optional<TaskTime> optionalTime = Optional.of(sampleTime);
-        editTaskDescriptor.setTime(optionalTime);
+        editTaskDescriptor.setDueTime(optionalTime);
         Description sampleDescription = new Description("Interesting");
         Optional<Description> optionalDescription = Optional.of(sampleDescription);
         editTaskDescriptor.setDescription(optionalDescription);
@@ -194,8 +194,8 @@ public class EditCommandParserTest {
 
     private void assertEqualEditTaskDescriptor(EditTaskDescriptor descriptor1, EditTaskDescriptor descriptor2) {
         assertEquals(descriptor1.getName(), descriptor2.getName());
-        assertEquals(descriptor1.getDate(), descriptor2.getDate());
-        assertEquals(descriptor1.getTime(), descriptor2.getTime());
+        assertEquals(descriptor1.getDue(), descriptor2.getDue());
+        assertEquals(descriptor1.getDueTime(), descriptor2.getDueTime());
         assertEquals(descriptor1.getDescription(), descriptor2.getDescription());
         assertEquals(descriptor1.getTag(), descriptor2.getTag());
         assertEquals(descriptor1.getVenue(), descriptor2.getVenue());

@@ -76,7 +76,7 @@ public class Name implements TaskField, Comparable<Name> {
 //@@author A0143409J
     @Override
     public String getDisplayText() {
-        if ((fullName == null) || (fullName == "")) {
+        if ((fullName.equals(" ")) || (fullName.equals(""))) {
             return "";
         } else {
             return fullName;

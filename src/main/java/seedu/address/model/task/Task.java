@@ -74,7 +74,7 @@ public class Task implements ReadOnlyTask {
         this.priority = priority;
         this.isFavorite = isFavorite;
         this.isFinished = isFinished;
-        this.isEvent = EventProperty.NON_EVENT;
+        this.isEvent = isEvent;
     }
 
     /**
@@ -207,6 +207,12 @@ public class Task implements ReadOnlyTask {
         this.setPriority(replacement.getPriority());
         this.setFavorite(replacement.isFavorite());
         this.setFinish(replacement.isFinished());
+        this.setIsEvent(replacement.getEventProperty());
+    }
+
+    private void setIsEvent(EventProperty isEvent) {
+        this.isEvent = isEvent;
+        
     }
 
     @Override
