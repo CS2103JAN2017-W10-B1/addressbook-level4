@@ -93,7 +93,7 @@ public class EditCommand extends AbleUndoCommand {
             this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-        model.updateFilteredListToShowAllTasks();
+        model.updateFilteredListToShowAllUnfinishedTasks();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
@@ -280,7 +280,7 @@ public class EditCommand extends AbleUndoCommand {
         } catch (TaskNotFoundException e) {
             assert false : "The target person cannot be missing";
         }
-        model.updateFilteredListToShowAllTasks();
+        model.updateFilteredListToShowAllUnfinishedTasks();
         this.isSuccess = true;
         return new CommandResult(message);
     }

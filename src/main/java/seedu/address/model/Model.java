@@ -43,10 +43,13 @@ public interface Model {
     UnmodifiableObservableList<Tag> getFilteredTagList();
 
     /** Updates the filter of the filtered task list to show all unfinished tasks */
-    void updateFilteredListToShowAllTasks();
+    void updateFilteredListToShowAllUnfinishedTasks();
 
     /** Updates the filter of the filtered task list to show all tasks */
     void updateFilteredListToShowAllTasksAll();
+
+    /** Updates the filter of the filtered tag list to show all tasks */
+    void updateFilteredListToShowAllFinishedTasks();
 
     /** Updates the filter of the unfinished filtered task list to filter by the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
@@ -70,11 +73,12 @@ public interface Model {
     void addList(Tag tag) throws UniqueTagList.DuplicateTagException;
 
     /** Updates the filter of the filtered tag list to show all tasks */
-    void updateFilteredListToShowAllLists();
+    void updateFilteredTagListToShowAllTags();
 
     /** Updates the filter of the filtered tag list to filter by the given keywords*/
     void updateFilteredListList(Set<String> keywords);
 
     /** Check whether the listname has already been taken*/
     boolean isListExist(String listName);
+
 }
