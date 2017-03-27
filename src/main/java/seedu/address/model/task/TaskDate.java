@@ -84,7 +84,8 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         } else if (isTodayOrTomorrow(trimmedDate)) {
             int incre = todayOrTomorrow(trimmedDate);
             Calendar current = Calendar.getInstance();
-            while (incre --> 0) {
+            while (incre >= 0) {
+                incre = incre - 1;
                 current.add(Calendar.DATE, 1);
             }
             this.date = current.getTime();
