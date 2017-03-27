@@ -8,6 +8,8 @@ public class CommandFormatter {
 
     private static final String LIST_SEPARATOR = ", ";
 
+    private CommandFormatter() {};
+
     public static String listFormatter(String message, Set<String> keywords) {
         String formatted = message + " in list ";
         for (Iterator<String> it = keywords.iterator(); it.hasNext(); ) {
