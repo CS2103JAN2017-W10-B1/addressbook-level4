@@ -49,30 +49,36 @@ public class ListCommand extends Command {
             return new CommandResult(MESSAGE_LIST_SUCCESS);
         } else if (keywords.contains(LIST_ALL)) {
             keywords.remove(LIST_ALL);
-            if (model.isListExist(keywords)) {
-                model.updateFilteredTaskListAll(keywords);
-                return new CommandResult(formatter(MESSAGE_LIST_ALL_SUCCESS, keywords));
-            } else {
+            if (keywords.isEmpty()) {
                 model.updateFilteredListToShowAllTasks();
                 return new CommandResult(MESSAGE_LIST_ALL_SUCCESS);
+            } else if (model.isListExist(keywords)) {
+                model.updateFilteredTaskListGivenListNameAll(keywords);
+                return new CommandResult(formatter(MESSAGE_LIST_ALL_SUCCESS, keywords));
+            } else {
+                return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
             }
         } else if (keywords.contains(LIST_FINISHED)) {
             keywords.remove(LIST_FINISHED);
-            if (model.isListExist(keywords)) {
+            if (keywords.isEmpty()) {
+                model.updateFilteredListToShowAllFinishedTasks();
+                return new CommandResult(MESSAGE_LIST_FINISHED_SUCCESS);
+            } else if (model.isListExist(keywords)) {
                 model.updateFilteredTaskListFinished(keywords);
                 return new CommandResult(formatter(MESSAGE_LIST_FINISHED_SUCCESS, keywords));
             } else {
-                model.updateFilteredListToShowAllFinishedTasks();
-                return new CommandResult(MESSAGE_LIST_FINISHED_SUCCESS);
+                return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
             }
         } else if (keywords.contains(LIST_FAVORITE)) {
             keywords.remove(LIST_FAVORITE);
-            if (model.isListExist(keywords)) {
+            if (keywords.isEmpty()) {
+                model.updateFilteredListToShowAllFavoriteTasks();
+                return new CommandResult(MESSAGE_LIST_FAVORITE_SUCCESS);
+            } else if (model.isListExist(keywords)) {
                 model.updateFilteredTaskListFavorite(keywords);
                 return new CommandResult(formatter(MESSAGE_LIST_FAVORITE_SUCCESS, keywords));
             } else {
-                model.updateFilteredListToShowAllFavoriteTasks();
-                return new CommandResult(MESSAGE_LIST_FAVORITE_SUCCESS);
+                return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
             }
         } else if (!model.isListExist(keywords)) {
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
