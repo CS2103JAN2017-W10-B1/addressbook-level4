@@ -11,15 +11,12 @@ public class Config {
 
     public static final String DEFAULT_CONFIG_FILE = "config.json";
 
-    //@@author A0143409J
     // Config values customizable through config file
     private String appTitle = "Dueue App";
     private Level logLevel = Level.INFO;
     private String userPrefsFilePath = "preferences.json";
     private String dueueFilePath = "data/dueue.xml";
     private String dueueName = "MyTaskManager";
-    
-    //@@author A0143409J-reused
 
     public String getAppTitle() {
         return appTitle;
