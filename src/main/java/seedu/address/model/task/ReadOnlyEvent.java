@@ -14,11 +14,11 @@ public interface ReadOnlyEvent extends ReadOnlyTask {
         builder.append(getName());
         if (getStartDate() != null) {
             builder.append("  Start Date:");
-            builder.append(getDate());
+            builder.append(getStartDate());
         }
         if (getStartTime() != null) {
             builder.append("  Start Time:");
-            builder.append(getTime());
+            builder.append(getStartTime());
         }
         if (getDate() != null) {
             builder.append("  Due Date:");
