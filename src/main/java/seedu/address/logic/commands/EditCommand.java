@@ -14,7 +14,6 @@ import seedu.address.model.task.Event;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyTask;
-import seedu.address.model.task.ReadOnlyEvent;
 import seedu.address.model.task.ReadOnlyTask.FinishProperty;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
@@ -121,20 +120,18 @@ public class EditCommand extends AbleUndoCommand {
         } else {
             isFavourite = taskToEdit.isFavorite();
         }
-        if(editTaskDescriptor.updatedEvent(editTaskDescriptor.getStart()) || taskToEdit.isEvent()){
-            if(taskToEdit.isEvent() || (editTaskDescriptor.getStart().isPresent() && !editTaskDescriptor.getStart().get().getValue().isEmpty())){
+        if (editTaskDescriptor.updatedEvent(editTaskDescriptor.getStart()) || taskToEdit.isEvent()) {
+            if (taskToEdit.isEvent() || (editTaskDescriptor.getStart().isPresent() && !editTaskDescriptor.getStart().get().getValue().isEmpty())) {
                 TaskDate updatedStartDate = editTaskDescriptor.getStart().orElseGet(taskToEdit::getDate);
                 TaskTime updatedStartTime = editTaskDescriptor.getStartTime().orElseGet(taskToEdit::getTime);
-                return new Event(updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
+                return new Event (updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
                         updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
-            }
-            else{
-                return new Task(updatedName, updatedDueDate, updatedDueTime, updatedDescription,
+            } else {
+                return new Task (updatedName, updatedDueDate, updatedDueTime, updatedDescription,
                         updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
             }
-        }
-        else{
-            return new Task(updatedName, updatedDueDate, updatedDueTime, updatedDescription,
+        } else {
+            return new Task (updatedName, updatedDueDate, updatedDueTime, updatedDescription,
                 updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
         }
     }
@@ -278,14 +275,14 @@ public class EditCommand extends AbleUndoCommand {
             return this.isFavouriteEdited;
         }
 
-        public void setIsUnfavourite(boolean isUnFavourite) {
+        public void setIsUnfavourite (boolean isUnFavourite) {
             if (isUnFavourite) {
                 this.isFavouriteEdited = true;
                 this.isFavourite = false;
             }
         }
 
-        public boolean updatedEvent(Optional<TaskDate> start){
+        public boolean updatedEvent(Optional<TaskDate> start) {
             return start.isPresent();
         }
     }

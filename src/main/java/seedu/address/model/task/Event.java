@@ -76,9 +76,10 @@ public class Event extends Task implements ReadOnlyEvent {
      * Creates a copy of the given ReadOnlyTask.
      * @throws IllegalValueException
      */
-    public Event(ReadOnlyTask source) throws IllegalValueException{
-        this(source.getName(), ((ReadOnlyEvent)source).getStartDate(), ((ReadOnlyEvent)source).getStartTime(), source.getDate(), source.getTime(),
-                source.getDescription(), source.getTag(), source.getVenue(), source.getPriority(), source.isFavorite(), source.getFinished());
+    public Event(ReadOnlyTask source) throws IllegalValueException {
+        this(source.getName(), ((ReadOnlyEvent) source).getStartDate(), ((ReadOnlyEvent) source).getStartTime(),
+                source.getDate(), source.getTime(), source.getDescription(), source.getTag(),
+                source.getVenue(), source.getPriority(), source.isFavorite(), source.getFinished());
     }
 
     public void setName(Name name) {
@@ -190,8 +191,8 @@ public class Event extends Task implements ReadOnlyEvent {
         assert replacement != null;
 
         super.resetData(replacement);
-        this.setStartTime(((ReadOnlyEvent)replacement).getStartTime());
-        this.setStartDate(((ReadOnlyEvent)replacement).getStartDate());
+        this.setStartTime(((ReadOnlyEvent) replacement).getStartTime());
+        this.setStartDate(((ReadOnlyEvent) replacement).getStartDate());
     }
 
     @Override

@@ -102,14 +102,14 @@ public class TaskManager implements ReadOnlyTaskManager {
             throws DuplicateTaskException {
         assert editedReadOnlyTask != null;
         Task editedTask = null;
-        if(editedReadOnlyTask.isEvent()){
+        if (editedReadOnlyTask.isEvent()) {
             try {
                 editedTask = new Event(editedReadOnlyTask);
             } catch (IllegalValueException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-        }else{
+        } else {
             editedTask = new Task(editedReadOnlyTask);
         }
 

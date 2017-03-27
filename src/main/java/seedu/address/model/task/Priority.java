@@ -101,7 +101,7 @@ public class Priority implements TaskField, Comparable<Priority> {
         } else if (value.equals("2")) {
             return "Priority: " + "\u25CF \u25CF";
         } else if (value.equals("3")) {
-            return "Priority: " + "\u25CF  \u25CF \u25CF";
+            return "Priority: " + "\u25CF \u25CF \u25CF";
         } else  {
             throw new IllegalStateException("Priority is illegal\n");
         }

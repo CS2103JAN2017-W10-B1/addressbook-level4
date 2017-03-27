@@ -4,7 +4,6 @@ package seedu.address.logic.commands;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
@@ -72,11 +71,12 @@ public class FinishCommand extends AbleUndoCommand {
             FinishProperty updatedFinish = FinishProperty.FINISHED;
 
             if (taskToMark.isEvent()) {
-                TaskDate updatedStartDate = ((Event)taskToMark).getStartDate();
-                TaskTime updatedStartTime = ((Event)taskToMark).getStartTime();
+                TaskDate updatedStartDate = ((Event) taskToMark).getStartDate();
+                TaskTime updatedStartTime = ((Event) taskToMark).getStartTime();
                 try {
-                    taskToMark = new Event(updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
-                            updatedDescription, updatedTag, updatedVenue, updatedPriority, updatedFavorite, updatedFinish);
+                    taskToMark = new Event(updatedName, updatedStartDate, updatedStartTime,
+                            updatedDueDate, updatedDueTime, updatedDescription, updatedTag,
+                            updatedVenue, updatedPriority, updatedFavorite, updatedFinish);
                 } catch (IllegalValueException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -116,7 +116,8 @@ public class FinishCommand extends AbleUndoCommand {
             Task newTask = null;
             if (task.isEvent()) {
                 try {
-                    newTask = new Event(task.getName(), ((Event)task).getStartDate(), ((Event)task).getStartTime(), task.getDate(), task.getTime(), task.getDescription(),
+                    newTask = new Event(task.getName(), ((Event) task).getStartDate(),
+                            ((Event) task).getStartTime(), task.getDate(), task.getTime(), task.getDescription(),
                             task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(), FinishProperty.UNFINISHED);
                 } catch (IllegalValueException e) {
                     // TODO Auto-generated catch block

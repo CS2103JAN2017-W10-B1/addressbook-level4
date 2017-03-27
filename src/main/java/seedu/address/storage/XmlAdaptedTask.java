@@ -11,7 +11,6 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyEvent;
 import seedu.address.model.task.ReadOnlyTask;
-import seedu.address.model.task.ReadOnlyTask.EventProperty;
 import seedu.address.model.task.ReadOnlyTask.FinishProperty;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;

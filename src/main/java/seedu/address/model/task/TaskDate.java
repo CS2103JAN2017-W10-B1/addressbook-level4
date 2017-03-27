@@ -62,7 +62,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
         }
         this.isPastDue = TimeUnit.DAYS.convert(
-                this.date.getTime() - today.getTime().getTime(), TimeUnit.MILLISECONDS)< 0;
+                this.date.getTime() - today.getTime().getTime(), TimeUnit.MILLISECONDS) < 0;
         this.value = trimmedDate.equals("") ? trimmedDate : parseDate(trimmedDate);
     }
 
