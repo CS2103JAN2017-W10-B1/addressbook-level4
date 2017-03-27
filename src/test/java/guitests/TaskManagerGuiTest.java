@@ -1,7 +1,6 @@
 package guitests;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.TimeoutException;
 
@@ -16,7 +15,6 @@ import guitests.guihandles.CommandBoxHandle;
 import guitests.guihandles.MainGuiHandle;
 import guitests.guihandles.ResultDisplayHandle;
 import guitests.guihandles.TagListPanelHandle;
-import guitests.guihandles.TaskCardHandle;
 import guitests.guihandles.TaskListPanelHandle;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -24,8 +22,6 @@ import seedu.address.TestApp;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.events.BaseEvent;
 import seedu.address.model.TaskManager;
-import seedu.address.model.task.ReadOnlyTask;
-import seedu.address.testutil.TestUtil;
 import seedu.address.testutil.TypicalTestTasks;
 
 /**

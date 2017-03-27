@@ -18,8 +18,9 @@ public class EventTest {
     @Test
     public void constructor() throws IllegalValueException {
 
-        Event tester1 = new Event(new Name("tester1"), new TaskDate("20/12/2017"), new TaskTime("6:00"),
-                new TaskDate("21/12/2017"), new TaskTime("6:00"), null, null, null, null, false, FinishProperty.UNFINISHED);
+        Event tester1 = new Event(new Name("tester1"), new TaskDate("20/12/2017"),
+                new TaskTime("6:00"), new TaskDate("21/12/2017"), new TaskTime("6:00"),
+                null, null, null, null, false, FinishProperty.UNFINISHED);
         assertEquals(tester1.getDate().getValue(), "21/12/2017");
         assertEquals(tester1.getStartDate().getValue(), "20/12/2017");
         assertEquals(tester1.getTime().getValue(), "6:00");
