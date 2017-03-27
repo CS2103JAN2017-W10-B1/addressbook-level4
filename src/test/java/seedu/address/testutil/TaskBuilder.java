@@ -61,4 +61,9 @@ public class TaskBuilder {
         this.task.setFavorite(isFavorite);
         return this;
     }
+
+    public TaskBuilder withFinished(boolean isFinished) throws IllegalValueException {
+        this.task.setFinished(isFinished);
+        return this;
+    }
 }

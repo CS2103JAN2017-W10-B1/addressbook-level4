@@ -12,23 +12,20 @@ public class ListCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void list_nonEmptyList() {
-
         //list all tasks in Dueue
-        assertListResult("list all", td.gym, td.gym2, td.gym3, td.date,
-                td.cs2103, td.study, td.assignment);
+        assertListResult("list all", td.assignment, td.gym, td.gym2, td.gym3, td.cs2103,
+                td.date, td.study);
         //list multiple tasks by list name
         assertListResult("list personal", td.gym, td.gym2, td.gym3, td.date);
         //list single task by list name
         assertListResult("list study", td.assignment);
-
-        //list finished tasks in Dueue
-        commandBox.runCommand("finish 1");
-        commandBox.runCommand("finish 2");
-        commandBox.runCommand("finish 3");
-        assertListResult("list finished", td.gym, td.gym2, td.gym3);
-
         //list favorite tasks in Dueue
-        assertListResult("list favorite", td.assignment);
+        assertListResult("list favorite", td.assignment, td.gym, td.cs2103, td.study);
+        //TODO: uncomment tests below when list command is finalized
+        //list favorite tasks in study
+        assertListResult("list favorite study", td.assignment);
+        //list favorite tasks in personal
+        assertListResult("list favorite personal", td.gym);
     }
 
     @Test
@@ -49,7 +46,6 @@ public class ListCommandTest extends TaskManagerGuiTest {
     private void assertListResult(String command, TestTask... expectedHits) {
         commandBox.runCommand(command);
         assertListSize(expectedHits.length);
-        assertResultMessage(expectedHits.length + " tasks found!");
         assertTrue(taskListPanel.isListMatching(expectedHits));
     }
 }

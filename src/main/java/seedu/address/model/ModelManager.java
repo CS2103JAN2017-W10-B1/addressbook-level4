@@ -187,6 +187,16 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public void updateFilteredTaskListGivenListNameFinished(Set<String> keywords) {
+        updateFilteredTaskList(null, keywords, FinishedState.FINISHED, false, null, null);
+    }
+
+    @Override
+    public void updateFilteredTaskListGivenListNameAllFavorite(Set<String> keywords) {
+        updateFilteredTaskList(null, keywords, FinishedState.ALL, true, null, null);
+    }
+
+    @Override
     public void updateFilteredTaskListGivenDaysToDueBy(String days) {
         updateFilteredTaskList(null, null, FinishedState.UNFINISHED, false, DueMode.BY, days);
     }
@@ -228,7 +238,7 @@ public class ModelManager extends ComponentManager implements Model {
         String toString();
     }
 
-    //@@author A0147974L
+    //@@author A0147984L
     private class PredicateExpression implements Expression {
 
         private final HashSet<Qualifier> qualifiers;

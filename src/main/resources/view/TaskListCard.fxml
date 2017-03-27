@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- @@author A0147996E -->
+
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -11,12 +13,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="taskCardPane" fx:id="taskCardPane" opacity="0.75" prefHeight="123.0" prefWidth="358.0" style="-fx-border-radius: 5; -fx-border-width: 3; -fx-border-color: DARKSALMON; -fx-background-radius: 5; -fx-background-color: LAVENDERBLUSH;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="taskCardPane" fx:id="taskCardPane" opacity="0.75" prefHeight="123.0" prefWidth="425.0" style="-fx-border-radius: 5; -fx-border-width: 3; -fx-border-color: DARKSALMON; -fx-background-radius: 5; -fx-background-color: LAVENDERBLUSH;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <GridPane prefHeight="146.0" prefWidth="420.0" HBox.hgrow="ALWAYS">
+        <GridPane prefHeight="117.0" prefWidth="357.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="375.0" minWidth="10.0" prefWidth="171.0" />
-            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="177.0" minWidth="150.0" prefWidth="177.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="375.0" minWidth="10.0" prefWidth="201.0" />
+            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="218.0" minWidth="150.0" prefWidth="218.0" />
             </columnConstraints>
             <children>
             <HBox prefHeight="136.0" prefWidth="334.0">
@@ -94,7 +96,7 @@
                       </VBox>
                </children>
             </HBox>
-            <VBox alignment="TOP_RIGHT" maxWidth="209.0" prefHeight="114.0" prefWidth="166.0" GridPane.columnIndex="1">
+            <VBox alignment="TOP_RIGHT" maxWidth="221.0" prefHeight="117.0" prefWidth="221.0" GridPane.columnIndex="1">
                <children>
                   <Label fx:id="isFinished" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="122.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$isFinished">
                      <VBox.margin>
@@ -109,7 +111,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="startTime" prefHeight="17.0" prefWidth="96.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startTime">
+                        <Label fx:id="startTime" prefHeight="19.0" prefWidth="106.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startTime">
                            <font>
                               <Font name="Avenir Roman" size="11.0" />
                            </font>
@@ -126,15 +128,18 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="startDate" prefHeight="19.0" prefWidth="65.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startDate">
+                        <Label fx:id="startDate" prefHeight="19.0" prefWidth="116.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startDate">
                            <font>
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <Label fx:id="date" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="112.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$date">
+                        <Label fx:id="date" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="107.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$date">
                            <font>
                               <Font size="11.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
                         </Label>
                      </children>
                   </HBox>

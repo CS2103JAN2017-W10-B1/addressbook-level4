@@ -1,4 +1,4 @@
-//@@author A0138474X
+//@@author A0143409J
 package seedu.address.logic.commands;
 
 import java.util.Set;
@@ -6,14 +6,14 @@ import java.util.Set;
 /**
  * Lists all persons in the address book to the user.
  */
-public class ListCommand extends Command {
+public class ListFavoriteCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_LIST_SUCCESS = "Listed unfinished tasks";
-    public static final String MESSAGE_LIST_ALL_SUCCESS = "Listed all tasks";
-    public static final String MESSAGE_LIST_ALL_LIST_SUCCESS = "Listed all tasks in the list";
-    public static final String MESSAGE_LIST_FINISHED_SUCCESS = "Listed all finished tasks";
+    public static final String LIST_ALL = "all";
+    public static final String LIST_FINISHED = "finished";
+    public static final String LIST_FAVORITE = "favorite";
+
     public static final String MESSAGE_LIST_FAVORITE_SUCCESS = "Listed all favorite tasks";
     public static final String MESSAGE_LIST_DOES_NOT_EXIST = "Given list name does not exist";
 
@@ -27,28 +27,27 @@ public class ListCommand extends Command {
 
     private final Set<String> keywords;
 
-    public ListCommand(Set<String> keywords) {
+    public ListFavoriteCommand(Set<String> keywords) {
         this.keywords = keywords;
     }
 
-    public ListCommand() {
+    public ListFavoriteCommand() {
         this.keywords = null;
     }
 
     @Override
     public CommandResult execute() {
-        if (keywords == null) {
-            model.updateFilteredListToShowAllUnfinishedTasks();
-            return new CommandResult(MESSAGE_LIST_SUCCESS);
-        } else if (!model.isListExist(keywords)) {
-            return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
+        if (keywords.isEmpty()) {
+            model.updateFilteredListToShowAllFavoriteTasks();
+            return new CommandResult(MESSAGE_LIST_FAVORITE_SUCCESS);
+        } else if (model.isListExist(keywords)) {
+            model.updateFilteredTaskListGivenListNameAllFavorite(keywords);
+            return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_FAVORITE_SUCCESS, keywords));
         } else {
-            model.updateFilteredTaskListGivenListName(keywords);
-            return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_SUCCESS, keywords));
+            return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         }
     }
 
-  //@@author A0138474X
     @Override
     public boolean isUndoable() {
         return false;
