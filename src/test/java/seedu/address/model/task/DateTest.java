@@ -6,6 +6,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
+import java.util.Calendar;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -33,6 +34,7 @@ public class DateTest {
         assertFalse(TaskDate.isValidDate("29/2/2021")); // invalid year
         assertFalse(TaskDate.isValidDate("29/2/2021")); // invalid year
         assertFalse(TaskDate.isValidDate("20/12/2017/1111")); // more than 3 parts
+        assertFalse(TaskDate.isValidDate("mond")); // invalid name in a week
 
         // valid date
         assertTrue(TaskDate.isValidDate("")); // empty
@@ -46,6 +48,8 @@ public class DateTest {
         assertTrue(TaskDate.isValidDate("30/11/2017")); // with valid year
         assertTrue(TaskDate.isValidDate("28/2/2019")); // with valid year
         assertTrue(TaskDate.isValidDate("29/2/2020")); // with valid year
+        assertTrue(TaskDate.isValidDate("Monday")); // day in a week
+        assertTrue(TaskDate.isValidDate("mon")); // day in a week in short
     }
 
     @Test

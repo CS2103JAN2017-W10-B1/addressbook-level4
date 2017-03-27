@@ -30,7 +30,16 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     public static final String DAY_VALIDATION_REGEX_4 = "([1-9])|(0[1-9])|(1\\d)|(2[0-9])";
     public static final String YEAR_VALIDATION_REGEX = "(201[789])|(20[2-9]\\d)";
 
+    public static final String DAY_VALIDATION_MONDAY = "(?i)(monday)|(mon)";
+    public static final String DAY_VALIDATION_TUESDAY = "(?i)(tuesday)|(tue)";
+    public static final String DAY_VALIDATION_WEDNESDAY = "(?i)(wednesday)|(wed)";
+    public static final String DAY_VALIDATION_THURSDAY = "(?i)(thursday)|(thu)|(thur)|(thurs)";
+    public static final String DAY_VALIDATION_FRIDAY = "(?i)(friday)|(fri)";
+    public static final String DAY_VALIDATION_SATURDAY = "(?i)(saturday)|(sat)";
+    public static final String DAY_VALIDATION_SUNDAY = "(?i)(sunday)|(sun)";
+
     public static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd/MM/yyyy");
+
 
     public static final int INF = 1000000000;
     public static final String INF_DATE = "1/1/2100";
@@ -53,17 +62,35 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         if (!isValidDate(trimmedDate)) {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
         }
-        try {
-            this.date = trimmedDate.equals("") ?
-                    FORMATTER.parse(INF_DATE) :
-                    FORMATTER.parse(parseDate(trimmedDate));
-        } catch (ParseException e) {
-            assert false : "impossble";
-            throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
+        if (isDayInWeek(trimmedDate)) {
+            int day = dayInWeek(trimmedDate);
+            int incre = 0;
+            Calendar current = Calendar.getInstance();
+            while ((current.get(Calendar.DAY_OF_WEEK) != day)) {
+                current.add(Calendar.DATE, 1);
+                incre += 1;
+                if (incre >= 7) {
+                    assert false;
+                }
+            }
+            this.date = current.getTime();
+            this.isPastDue = false;
+            this.value = current.get(Calendar.DAY_OF_MONTH) + "/"
+                    + (current.get(Calendar.MONTH) + 1) + "/"
+                    + current.get(Calendar.YEAR);
+        } else {
+            try {
+                this.date = trimmedDate.equals("") ?
+                        FORMATTER.parse(INF_DATE) :
+                        FORMATTER.parse(parseDate(trimmedDate));
+            } catch (ParseException e) {
+                assert false : "impossble";
+                throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
+            }
+            this.isPastDue = TimeUnit.DAYS.convert(
+                    this.date.getTime() - today.getTime().getTime(), TimeUnit.MILLISECONDS) < 0;
+            this.value = trimmedDate.equals("") ? trimmedDate : parseDate(trimmedDate);
         }
-        this.isPastDue = TimeUnit.DAYS.convert(
-                this.date.getTime() - today.getTime().getTime(), TimeUnit.MILLISECONDS) < 0;
-        this.value = trimmedDate.equals("") ? trimmedDate : parseDate(trimmedDate);
     }
 
     /**
@@ -71,6 +98,9 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
      */
     public static boolean isValidDate(String test) {
         if (test.equals("")) {
+            return true;
+        }
+        if (isDayInWeek(test)) {
             return true;
         }
         if (!test.matches(DATE_VALIDATION_REGEX)) {
@@ -84,6 +114,30 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         String month = dayMonthYear[1];
         String year = dayMonthYear.length == 3 ? dayMonthYear[2] : null;
         return isValidMonth(month) && isValidDay(day, month, year) && isValidYear(year);
+    }
+
+    private static boolean isDayInWeek(String test) {
+        return (dayInWeek(test) <= 7) && (dayInWeek(test) >= 1);
+    }
+
+    private static int dayInWeek(String test) {
+        if (test.matches(DAY_VALIDATION_SUNDAY)) {
+            return 1;
+        } else if (test.matches(DAY_VALIDATION_MONDAY)) {
+            return 2;
+        } else if (test.matches(DAY_VALIDATION_TUESDAY)) {
+            return 3;
+        } else if (test.matches(DAY_VALIDATION_WEDNESDAY)) {
+            return 4;
+        } else if (test.matches(DAY_VALIDATION_THURSDAY)) {
+            return 5;
+        } else if (test.matches(DAY_VALIDATION_FRIDAY)) {
+            return 6;
+        } else if (test.matches(DAY_VALIDATION_SATURDAY)) {
+            return 7;
+        } else {
+            return -1;
+        }
     }
 
     private static boolean isValidDay(String test, String month, String year) {
