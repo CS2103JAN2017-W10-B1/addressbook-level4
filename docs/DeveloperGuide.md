@@ -349,17 +349,14 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | add a new task by specifying a task name only | add a floating task
 `* * *` | user | add a task by specifying a task name together with its other fields as optional (Date, Time, Description, List, Venue, Priority, isFavorite)  | record tasks with various details
 `* * *` | user | add a new event | add a task with duration instead of due date
-`* * *` | user | add a task that has duplicate names but with different due date/time | create similar tasks due on different dates and times
-`* * *` | user | add a task that has duplicate names but under different lists | create similar tasks under different categories
-`* * *` | user | add a task without specifying its list | task added without list will be put into default list called _Inbox_
+`* * *` | user | add a task that has duplicate names but with different due date/time and/or under different lists | create similar tasks
+`* * *` | user | add an event that has duplicate names but with different starting and/or due date/time | create similar events due on different starting and ending dates and times and/or under different lists
 `* * *` | user | delete task(s) | remove task(s) that is/are no longer useful or created by mistake
 `* * *` | user | mark a task as finished | know the task is done
 `* * *` | user | list tasks under a specific list | view my tasks by categories
 `* * *` | user | edit the Name/Date/Time/Description/Venue/Priority/isFavorite... of a task | change its content
 `* * *` | user | recategorize a task under a different list | change its category
-`* * *` | user | change the priority of a task | change its level of importance
-`* * *` | user | mark a task as favorite | maintain a favorite category across different lists
-`* * *` | user | unfavorite a task | no longer want to mark the task as finished
+`* * *` | user | mark a task as favorite/unfavorite | maintain a favorite category across different lists
 `* * *` | user | view the help message for a specific feature | know how to use a command
 `* *` | user | find specific tasks with name containing given keywords | easily organize my tasks
 `* *` | first-time user | view the entire help messages | get to know various commands
@@ -368,7 +365,6 @@ Priority | As a ... | I want to ... | So that I can...
 `* *` | user | list all finished tasks | manage finished tasks
 `* *` | user | list all unfinished tasks | manage unfinished tasks
 `* *` | user | list all favorite tasks | manage favorite tasks
-`* *` | user | view next n days' tasks | know what to do in n days' time
 `* *` | user | view the list of tasks by due date | view the tasks due from today to that day
 `* *` | user | view the list of tasks on an exact date | view the tasks due on that day
 `* *` | user | undo my latest edit command | undo when I regret my latest edit
@@ -392,7 +388,7 @@ Priority | As a ... | I want to ... | So that I can...
 
 **MSS**
 1. User requests to add task by specifying the name only
-2. Dueue shows the added task by name
+2. Dueue shows the added task by name<br>
 Use case ends.
 
 **Extensions**
@@ -412,12 +408,12 @@ Use case ends.
 **MSS**
 
 1. User requests to add task by specifying the name and other fields
-2. Dueue shows the added task by name and other fields
+2. Dueue shows the added task by name and other fields<br>
 Use case ends.
 
 **Extensions**
 
-1a. The given add command input is invalid
+1a. The given add command format is invalid
 
 > 1a1. Dueue shows an error and a help message on how to add a task<br>
   Use case resumes at step 1
@@ -427,50 +423,211 @@ Use case ends.
 > 1b1. Dueue shows an error message<br>
   Use case resumes at step 1
 
+1c. The field(s) provided violate relevant contraints
+
+> 1c1. Dueue shows an error message on the field(s) that violate constraints<br>
+  Use case resumes at step 1
+
 #### Use case: Add an event
 
 **MSS**
 
-1. User requests to add an event by specifying its name, the due date and time in the format of time period, and other fields as optional
-2. Dueue shows the added event by name and other fields
+1. User requests to add an event by specifying its name, the starting and ending due dates, and other fields as optional
+2. Dueue shows the added event by name and other fields<br>
 Use case ends.
 
 **Extensions**
 
-1a. The given add command input is invalid
+1a. The given add command input format is invalid
 
 > 1a1. Dueue shows an error and a help message on how to add an event<br>
   Use case resumes at step 1
 
-#### Use case: Delete task(s)
+1b. The given starting due date is later than ending due date
+
+> 1b1. Dueue shows an error and a help message on how to properly set due dates for the event<br>
+  Use case resumes at step 1
+
+1c. The field(s) provided violate relevant contraints
+
+> 1c1. Dueue shows an error message on the field(s) that violate constraints<br>
+  Use case resumes at step 1
+
+#### Use case: Add a task that has duplicate names but with different due date/time and/or under different lists
 
 **MSS**
 
-1. User requests to delete tasks by task index/indices
-2. Dueue displays the successul message and update current list view
+1. User requests to add a task with duplicate name as current unfinished tasks
+2. Dueue displays the successul message and update current list view<br>
 Use case ends.
 
 **Extensions**
 
-1a. User input task index/indices contain undefined items.
->1a1. Dueue shows an error message<br>
- Use case resumes at step 1.
+1a. The given add command input format is invalid
 
-#### Use case: Mark task(s) as finished
+> 1a1. Dueue shows an error and a help message on how to add an event<br>
+  Use case resumes at step 1
+
+1b. The given task already has an exact unfinished duplicate
+
+> 1b1. Dueue shows an error of failure of adding a duplicate task<br>
+  Use case resumes at step 1
+
+#### Use case: Add an event that has duplicate names but with different starting and/or ending due date/time and/or under different lists
 
 **MSS**
 
-1. User requests to mark task(s) as finished
-2. Dueue displays the successul message and update current list view
+1. User requests to add an event with duplicate name as current unfinished tasks
+2. Dueue displays the successul message and update current list view<br>
 Use case ends.
 
 **Extensions**
 
-1a. User input task index/indices contain undefined items.
->1a1. Dueue shows an error message<br>
+1a. The given add command input format is invalid
+
+> 1a1. Dueue shows an error and a help message on how to add an event<br>
+  Use case resumes at step 1
+
+1b. The given event already has an exact unfinished duplicate
+
+> 1b1. Dueue shows an error of failure of adding a duplicate task<br>
+  Use case resumes at step 1
+
+
+#### Use case: Delete task
+
+**MSS**
+
+1. User requests to delete a task by task index
+2. Dueue displays the successul message and update current list view<br>
+Use case ends.
+
+**Extensions**
+
+1a. The given delete command input format is invalid
+
+> 1a1. Dueue shows an error and a help message on how to add an event<br>
+  Use case resumes at step 1
+
+1b. User input task index contain undefined items.
+
+>1b1. Dueue shows an error message<br>
  Use case resumes at step 1.
 
+#### Use case: Mark task as finished
 
+**MSS**
+
+1. User requests to mark task as finished
+2. Dueue displays the successul message and update current list view<br>
+Use case ends.
+
+**Extensions**
+
+1a. The given finish command input format is invalid
+
+> 1a1. Dueue shows an error and a help message on how to add an event<br>
+  Use case resumes at step 1
+
+1b. User input task index contain undefined items.
+
+>1b1. Dueue shows an error message<br>
+ Use case resumes at step 1.
+
+#### Use case: List tasks by list name
+
+**MSS**
+
+1. User requests to display tasks under a specific list by providing the list name (case-insensitive)
+2. Dueue shows a list of tasks with task indices<br>
+Use case ends.
+
+**Extensions**
+
+1a. The given list command input format is invalid
+
+> 1a1. Dueue shows an error and a help message on how to add an event<br>
+  Use case resumes at step 1
+
+1b. The given list name does not exist
+
+> 1b1. Dueue shows an error message <br>
+  Use case resumes at step 1
+
+#### Use case: Edit the fields of a task
+
+**MSS**
+
+1. User requests to edit a task specified by the given task index and provide the details to edit, including Name/Date/Time/Description/Venue/Priority
+2. Dueue shows success message upon editing and update current list view<br>
+Use case ends.
+
+**Extensions**
+
+1a. The given edit command input format is invalid
+
+> 1a1. Dueue shows an error and a help message on how to add an event<br>
+  Use case resumes at step 1
+
+1b. The given task index is out of range
+
+> 1b1. Dueue shows an error message <br>
+  Use case resumes at step 1
+
+1c. The details to edit is invaid (e.g. starting date later than ending date)
+
+> 1c1. Dueue shows an error message<br>
+  Use case resumes at step 1
+
+#### Use case: Recategorize a task under another list
+
+**MSS**
+
+1. User requests to edit a task specified by the given task index into another list as given by the list name
+2. Dueue shows success message and update current list view<br>
+Use case ends.
+
+**Extensions**
+
+1a. The given edit command input format is invalid
+
+> 1a1. Dueue shows an error and a help message on how to add an event<br>
+  Use case resumes at step 1
+
+1b. The given task index is out of range
+
+> 1b1. Dueue shows an error message <br>
+  Use case resumes at step 1
+
+1c. The given list name is a new list
+
+> 1c1. Dueue automatically create a new list and put the task inside<br>
+> Use case ends.
+
+1d. The given list name violates the reserved keywords (e.g. list, favorite, all...)
+
+> 1d1. Dueue shows an error message<br>
+  Use case resumes at step 1
+
+#### Use case: Mark a task as favorite/unfavorite
+
+**MSS**
+
+1. User requests to mark a task specified by the given task index as favorite/unfavorite
+2. Dueue shows success message and update current list view<br>
+Use case ends.
+
+**Extensions**
+
+1a. The given edit command input format is invalid
+
+> 1a1. Dueue shows an error and a help message on how to add an event<br>
+  Use case resumes at step 1
+
+1b. The given task index is out of range
+
+> 1b1. Dueue shows an error message<br>
+  Use case resumes at step 1
 
 #### Use case: View help message
 
@@ -482,211 +639,78 @@ Use case ends.
 
 **Extensions**
 
-1a. The given command keyword is undefined.
+1a. The given help command input format is invalid
 
-> 1a1. Dueue shows an error message<br>
+> 1a1. Dueue shows an error and a help message<br>
   Use case resumes at step 1
 
-#### Use case: View tasks due today
+1b. The given command keyword is undefined
 
-**MSS**
-
-1. User requests to list tasks due today
-2. Dueue shows a list of tasks<br>
-Use case ends.
-
-**Extensions**
-
-2a. There is not task due today
-
-> 2a1. Dueue shows message "You are done for today!"<br>
-  Use case ends.
-
-#### Use case: View tasks by list
-
-**MSS**
-
-1. User requests to display all list names
-2. Dueue shows a list of list names with list indices
-3. User requests to display all tasks of one list specified by list index
-4. Dueue display the tasks of that list <br>
-Use case ends.
-
-**Extensions**
-
-3a. The given list index is invalid
-
-> 3a1. Dueue shows an error message <br>
-  Use case resumes at step 2
-
-4a. The list is empty
-
-> 4a1. Dueue shows message "This list is currently empty."<br>
-  Use case ends.
-
-#### Use case: View finished tasks by list
-
-1. User requests to display all lists name with finished tasks
-2. Dueue displays a list of lists
-3. User requests to view the finished tasks under a list specified with list index
-4. Dueue displays the finished tasks under this list <br>
-
-**Extensions**
-
-2a. The list is empty
-
-> 2a1. Dueue shows the message "There is no finished task."<br>
-  Use case ends.
-
-3a. The given list index is invalid
-
-> 3a1. Dueue shows an error message <br>
-  Use case resumes at step 2
-
-#### Use case: View by due date
-
-**MSS**
-
-1. User requests to view all tasks due by a specified date
-2. Dueue shows a list of tasks due that date<br>
-Use case ends.
-
-**Extensions**
-
-1a. The given date is invalid
-
-> 1a1. Dueue shows an error message<br>
-  1a2. Dueue shows a list of allowed format for specifying dates<br>
+> 1b1. Dueue shows an error message<br>
   Use case resumes at step 1
 
-2a. The list is empty
+#### Use case: Find tasks by searching for keyword in task names
 
-> 2a1. Dueue shows message "You have no task due on that date."<br>
-  Use case ends.
+**MSS***
 
-#### Use case: Delete one most recent occurrence of repeating task
-
-**MSS**
-
-1. User requests to list all repeating tasks
-2. Dueue shows a list of repeating tasks
-3. User requests to delete one most recent occurrence of a task in the list
-4. Dueue deletes the occurrence <br>
+1. User requests to find tasks whose names contain the keyword provided
+2. Dueue displays the list of tasks found<br>
 Use case ends.
 
 **Extensions**
 
-2a. The list is empty
+1a. The given find command input format is invalid
 
-> 2a1. Dueue shows message "You have no repeating tasks."<br>
-  Use case ends.
-
-3a. The given task index is invalid
-
-> 3a1. Dueue shows an error message <br>
-  Use case resumes at step 2
-
-#### Use case: Delete list
-
-**MSS**
-
-1. User requests to display all the list names and indices
-2. Dueue shows a list of list names and indices
-3. User requests to delete a specific list
-4. Dueue deletes the list <br>
-Use case ends.
-
-**Extensions**
-
-2a. The list is empty
-
-> 2a1. Dueue shows message "There are no lists."<br>
-  Use case ends.
-
-3a. The given index is invalid
-
-> 3a1. Dueue shows an error message <br>
-  Use case resumes at step 2
-
-3b. The specified list still has unfinished tasks
-
-> 3b1. Dueue prompts the user to decide whether to move the unfinished tasks to the Personal list<br>
-  3b2. User requests to move to the Personal list or just delete<br>
-  3b3. Dueue moves all unfinished tasks to Personal list or delete all unfinished tasks and deletes the list<br>
-  Use case ends.
-
-#### Use case: View different colors for different priority levels
-
-**MSS**
-
-1. User requests to display different colors for different priority levels
-2. Dueue displays priority levels with different colors <br>
-Use case ends.
-
-#### Use case: View the same colors for different priority levels
-
-**MSS**
-
-1. User requests not to display different colors for diffrent priority levels.
-2. Dueue displays priority levels with same color <br>
-Use case ends.
-
-#### Use case: Set priority level for a task
-
-**MSS**
-
-1. User requests to change priority of a certain task
-2. Dueue asks for new priority level
-3. User types in the new level
-4. Dueue display this tasks with new level <br>
-Use case ends.
-
-**Extensions**
-
-1a. The given index is invalid
-
-> 1a1. Dueue shows an error message <br>
+> 1a1. Dueue shows an error and a help message<br>
   Use case resumes at step 1
 
-3a. The priority level is invalid
+#### Use case: View the entire help message when opening Dueue
 
-> 3a1. Dueue shows an error message <br>
-  Use case resums at step 2
+**MSS***
 
-#### Use case: "Star" a task to be favorite
+1. User launches Dueue app
+2. Dueue displays the summary of all help messages<br>
+Use case ends.
+
+#### Use case: View task lists as sorted
+
+**MSS***
+
+1. User requests to list/view task(s) as specified by the command
+2. Dueue displays the required task lists displayed as sorted, based firstly on due date and time, priority and lastly lexicographic order<br>
+Use case ends.
+
+#### Use case: List all tasks including finished and unfinished ones
 
 **MSS**
 
-1. User requests to "star" a certain task
-2. Dueue displays the task with star <br>
+1. User requests to list all finished and unfinished tasks
+2. Dueue shows a list of all finished and unfinished tasks<br>
 Use case ends.
 
-**Extension**
+**Extensions**
 
-1a. The given index is invalid
+1a. The given list command input format is invalid
 
-> 1a1. Dueue shows an error message <br>
+> 1a1. Dueue shows an error and a help message<br>
   Use case resumes at step 1
 
-1b. The task is already "starred"
-
-> 1b1. Dueue shows an error message "This task is already starred." <br>
-Use case ends.
-
-#### Use case: View all starred tasks
+#### Use case: List all finished/unfinished/favorite tasks
 
 **MSS**
 
-1. User requests to view all starred tasks
-2. Dueue displays all tasks being starred <br>
-Use case ends
+1. User requests to list all finished/unfinished/favorite tasks
+2. Dueue shows a list of all finished/unfinished/favorite tasks<br>
+Use case ends.
 
-**Extension**
+**Extensions**
 
-1a. There is no starred task.
+1a. The given list command input format is invalid
 
-> 1a1. Dueue displays an error message "There is no task being starred." <br>
-  Use case ends.
+> 1a1. Dueue shows an error and a help message<br>
+  Use case resumes at step 1
+
+
 #### Use case: View all tasks due in the next n days
 
 **MSS**
@@ -702,172 +726,94 @@ Use case ends.
 > 1a1. Dueue shows an error message <br>
 Use case resumes at step 1
 
-2a. The list is empty
 
-> 2a1. Dueue shows message "You have no tasks during that period."<br>
-  Use case ends
-
-#### Use case: See autocomplete messages when typing
+#### Use case: View on due date
 
 **MSS**
 
-1. User requests to list all tasks
-2. Dueue shows a list of tasks
-3. User types "finish" and types part of the name of a very long task name
-4. Dueue displays all the possible tasks <br>
+1. User requests to view all tasks due on a specific date
+2. Dueue shows a list of tasks due that date<br>
 Use case ends.
 
 **Extensions**
 
-2a. The list is empty
+1a. The given date is invalid
 
-> Use case ends
+> 1a1. Dueue shows an error message adn the standard format for specifying dates<br>
+  Use case resumes at step 1
 
-3a. The given name is not part of any task name
-
-> 3a1. Dueue shows message "There is no matching task name" <br>
-  3a2. User edits the name<br>
-  Use case resumes at step 3
-
-#### Use case: Change user interface
-
-**MSS**
-
-1. Advanced user requests to go into settings
-2. Dueue shows a menu of settings
-3. Advanced user requests to go into appearance
-4. Dueue shows a list of commands you can use in appearance
-5. Advanced user requests to change background color of UI to blue
-6. Dueue changes the background color to blue <br>
-Use case ends.
-
-**Extensions**
-
-6a. The RGB code of blue entered is invalid
-
-> 6a1. Dueue shows message "RGB code entered is invalid"<br>
-  Use case resumes at step 5
-
-#### Use case: Change the list of a task
-
-**MSS**
-
-1. User requests to change the list of a task
-2. Dueue ask the user for a list
-3. User type in the name of the list
-4. Dueue shows the tasks in the list
-  Use case ends.
-
-**Extension**
-
-1a. The given task is invalid
-
-> 1a1. Dueue shows an error message and ask for a task<br>
-  Use case resumes at step 2
-
-3a. The user wants to create a new list for the task
-
-> 3a1. Dueue shows an error message and ask whether the user wants to create a new list<br>
-> 3a2. User indicate yes<br>
-  Use case resume at step 4
-
-3b. The list name does not exist
-
-> 3b1. Dueue shows an error message and ask whether the user wants to create a new list<br>
-> 3b2. User indicate No<br>
-> 3b3. Dueue ask the user for a new list name<br>
-  Use case resume at step 3
-
-#### Use case: Mark task as finished
-
-**MSS**
-
-1. User requests to mark a task as finished
-2. Dueue show the current unfinished task
-Use case ends.
-
-**Extension**
-
-1a. Task does not exist
-> 1a1. Dueue shows an error message<br>
-  Use case resume at step 1
-
-1b. The task had been marked as finished
-> 1b1. Dueue inform the User that the task had been marked<br>
-  Use case ends.
-
-#### Use case: Change details of a task
-
-**MSS**
-
-1. User requests to change details of the task
-2. Dueue ask for the details to be change
-3. User type in the details to be changed
-4. Dueue shows the changes
-Use case ends.
-
-**Extension**
-
-1a. Task does not exist
-> 1a1. Dueue shows an error message<br>
-Use case resume at step 1
-
-#### Use case: View help message when entering the system.
-
-**MSS**
-
-1. User starts the system
-2. Dueue display the help message
-Use case ends
-
-#### Use case: Add a task with priority level
-
-**MSS**
-
-1. User request for to add a task with priority level
-2. Dueue shows the created task
-Use case ends
-
-**Extension**
-
-1a. Priority level does not exist
-> 1a1. Dueue shows an error message<br>
-Use case resume at step 1
-
-#### Use case: Undo previous command
+#### Use case: Undo previous edit/add/delete/finish command
 
 **MSS**
 
 1. User request to undo previous command
-2. Dueue display a successful undo message
-Use case ends
-
-#### Use case: View all past due task
-
-**MSS**
-
-1. User request to view all past due task
-2. Dueue display all the past due task.
+2. Dueue display a successful undo message<br>
 Use case ends
 
 **Extension**
 
-1a. There is no past due task
+1a. Previous command is undoable
+
 > 1a1. Dueue shows an error message<br>
+  Use case ends
+
+#### Use case: Redo previous undo command
+
+**MSS**
+
+1. User request to redo previous undo command
+2. Dueue display a successful redo message<br>
 Use case ends
 
-{More to be added}
+**Extension**
 
-## Appendix C : Non Functional Requirements
+1a. Previous command is not an undo command
 
-1. Should work on any [mainstream OS](#mainstream-os) as long as it has Java `1.8.0_60` or higher installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
-   should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should be able to respond for any command within 0.5 second.
+> 1a1. Dueue shows an error message<br>
+  Use case ends
 
 
-## Appendix D : Product Survey
+#### Use case: Create a new list
+
+**MSS**
+
+1. User create a new list by adding a new task under that list
+2. Dueue display a successful message upon addition and update the names of lists<br>
+Use case ends
+
+#### Use case: Remove an empty list with no more tasks
+
+**MSS**
+
+1. User deletes the last tasks inside the list
+2. Dueue display a successful message upon deletion and update the names of lists<br>
+Use case ends
+
+#### Use case: List the finished/unfinished/favorite tasks under a specific list
+
+**MSS**
+
+1. User requests to list the finished/unfinished/favorite tasks under a specific list by providing the list name
+2. Dueue shows a list of the finished/unfinished/favorite tasks under a specific list<br>
+Use case ends.
+
+**Extensions**
+
+1a. The given list command input format is invalid
+
+> 1a1. Dueue shows an error and a help message<br>
+  Use case resumes at step 1
+
+#### Use case: View past due tasks
+
+**MSS**
+
+1. User views a specific list of tasks
+2. Dueue display a red label below the task name of the past due tasks<br>
+Use case ends
+
+
+## Appendix C : Product Survey
 
 **Wunderlist**
 
