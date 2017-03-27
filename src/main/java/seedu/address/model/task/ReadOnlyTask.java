@@ -9,10 +9,10 @@ import seedu.address.model.tag.Tag;
 public interface ReadOnlyTask {
     public enum FinishProperty {
         FINISHED, UNFINISHED
-        }
+    }
     public enum EventProperty {
         EVENT, NON_EVENT
-        }
+    }
 
     Name getName();
     TaskDate getDate();

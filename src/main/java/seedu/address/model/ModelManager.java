@@ -137,6 +137,10 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredTaskList(keywords, null, FinishedState.UNFINISHED, false, null, null);
     }
 
+    private void updateFilteredTaskList(Expression expression) {
+        filteredTasks.setPredicate(expression::satisfies);
+    }
+
     @Override
     public void updateFilteredListToShowAllUnfinishedTasks() {
         updateFilteredTaskList(null, null, FinishedState.UNFINISHED, false, null, null);
@@ -201,10 +205,6 @@ public class ModelManager extends ComponentManager implements Model {
 
     public void updateFilteredTagListToShowAllTags() {
         filteredTag.setPredicate(null);
-    }
-
-    private void updateFilteredTaskList(Expression expression) {
-        filteredTasks.setPredicate(expression::satisfies);
     }
 
     private void updateFilteredTagList(Expression expression) {

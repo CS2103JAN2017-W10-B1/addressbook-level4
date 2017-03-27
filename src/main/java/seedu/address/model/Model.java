@@ -65,6 +65,9 @@ public interface Model {
             FinishedState finishedState, boolean isFavorite,
             DueMode dueMode, String days);
 
+    /** Updates the filter of the unfinished filtered task list to filter by the given keywords*/
+    void updateFilteredTaskList(Set<String> keywords);
+
     /** Updates the filter of the filtered task list to show all favorite tasks */
     void updateFilteredListToShowAllFavoriteTasks();
 
@@ -76,9 +79,6 @@ public interface Model {
 
     /** Updates the filter of the filtered task list to show all finished tasks */
     void updateFilteredListToShowAllFinishedTasks();
-
-    /** Updates the filter of the unfinished filtered task list to filter by the given keywords*/
-    void updateFilteredTaskList(Set<String> keywords);
 
     /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredTaskListFinished(Set<String> keywords);

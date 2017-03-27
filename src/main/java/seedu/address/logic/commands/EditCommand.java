@@ -121,7 +121,8 @@ public class EditCommand extends AbleUndoCommand {
             isFavourite = taskToEdit.isFavorite();
         }
         if (editTaskDescriptor.updatedEvent(editTaskDescriptor.getStart()) || taskToEdit.isEvent()) {
-            if (taskToEdit.isEvent() || (editTaskDescriptor.getStart().isPresent() && !editTaskDescriptor.getStart().get().getValue().isEmpty())) {
+            if (taskToEdit.isEvent() || (editTaskDescriptor.getStart().isPresent() &&
+                    !editTaskDescriptor.getStart().get().getValue().isEmpty())) {
                 TaskDate updatedStartDate = editTaskDescriptor.getStart().orElseGet(taskToEdit::getDate);
                 TaskTime updatedStartTime = editTaskDescriptor.getStartTime().orElseGet(taskToEdit::getTime);
                 return new Event (updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
