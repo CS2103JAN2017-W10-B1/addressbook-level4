@@ -1,25 +1,6 @@
-//@@author A0143409J-reused
-package seedu.address.commons.core;
-
-import java.util.Objects;
-import java.util.logging.Level;
-
-/**
- * Config values used by the app
- */
-public class Config {
-
-    public static final String DEFAULT_CONFIG_FILE = "config.json";
-
-    //@@author A0143409J
-    // Config values customizable through config file
-    private String appTitle = "Dueue App";
-    private Level logLevel = Level.INFO;
-    private String userPrefsFilePath = "preferences.json";
-    private String dueueFilePath = "data/dueue.xml";
-    private String dueueName = "MyTaskManager";
-    
-    //@@author A0143409J-reused
+# given
+###### /java/seedu/address/commons/core/Config.java
+``` java
 
     public String getAppTitle() {
         return appTitle;
@@ -97,3 +78,4 @@ public class Config {
     }
 
 }
+```

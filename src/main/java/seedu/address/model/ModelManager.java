@@ -238,7 +238,7 @@ public class ModelManager extends ComponentManager implements Model {
         String toString();
     }
 
-    //@@author A0147974L
+    //@@author A0147984L
     private class PredicateExpression implements Expression {
 
         private final HashSet<Qualifier> qualifiers;
