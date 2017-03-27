@@ -53,7 +53,7 @@
                                  <effect>
                                     <Glow />
                                  </effect></Label>
-                               <Label fx:id="tag" prefHeight="16.0" prefWidth="55.0" style="-fx-font-family: Avenir; -fx-font-size: 14;" styleClass="cell_small_label" text="\$list">
+                               <Label fx:id="tag" prefHeight="20.0" prefWidth="80.0" style="-fx-font-family: Avenir; -fx-font-size: 14;" styleClass="cell_small_label" text="\$list">
                                  <HBox.margin>
                                     <Insets top="3.0" />
                                  </HBox.margin>
