@@ -1,3 +1,4 @@
+//@@author A0143409J-reused
 package seedu.address.commons.events.model;
 
 import seedu.address.commons.events.BaseEvent;
