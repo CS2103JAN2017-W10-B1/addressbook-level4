@@ -128,7 +128,13 @@ public class TestTask implements ReadOnlyTask {
     public boolean isFinished() {
         return isFinished == FinishProperty.FINISHED;
     }
+
 //@@ author A0147996E
+
+    public void setFinished(boolean isFinished) {
+        this.isFinished = FinishProperty.FINISHED;
+    }
+
     @Override
     public String getFavoriteText() {
         if (isFavorite) {
