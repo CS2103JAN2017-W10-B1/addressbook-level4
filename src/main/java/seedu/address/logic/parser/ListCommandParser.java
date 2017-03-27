@@ -19,13 +19,13 @@ import seedu.address.logic.commands.ListFinishedCommand;
  */
 public class ListCommandParser {
 
-    private ListCommandParser() {
-    }
-
     private static final String LIST_SEPARATOR = "\\s+";
     public static final String LIST_ALL = "all";
     public static final String LIST_FINISHED = "finished";
     public static final String LIST_FAVORITE = "favorite";
+
+    private ListCommandParser() {
+    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
