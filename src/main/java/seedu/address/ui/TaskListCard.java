@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.task.ReadOnlyEvent;
 import seedu.address.model.task.ReadOnlyTask;
 
 /**
@@ -56,8 +55,8 @@ public class TaskListCard extends UiPart<Region> {
         tag.setText(task.getTag().getDisplayText());
         isFavorite.setText(task.getFavoriteText());
         isFinished.setText(task.getFinishedText());
-        if(task.getDate().isPastDue()) {
-            pastDue.setText("Task is past due!");
+        if (task.getDate().isPastDue()) {
+            pastDue.setText("Past due!");
         } else {
             pastDue.setText("");
         }
