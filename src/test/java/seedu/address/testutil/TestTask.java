@@ -129,7 +129,7 @@ public class TestTask implements ReadOnlyTask {
         return isFinished == FinishProperty.FINISHED;
     }
 
-//@@ author A0147996E
+//@@author A0147996E
 
     public void setFinished(boolean isFinished) {
         this.isFinished = FinishProperty.FINISHED;

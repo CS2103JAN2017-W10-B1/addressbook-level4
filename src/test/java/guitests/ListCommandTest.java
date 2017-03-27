@@ -22,10 +22,10 @@ public class ListCommandTest extends TaskManagerGuiTest {
         //list favorite tasks in Dueue
         assertListResult("list favorite", td.assignment, td.gym, td.cs2103, td.study);
         //TODO: uncomment tests below when list command is finalized
-        /*//list favorite tasks in study
+        //list favorite tasks in study
         assertListResult("list favorite study", td.assignment);
         //list favorite tasks in personal
-        assertListResult("list favorite personal", td.gym, td.gym2, td.gym3, td.date);*/
+        assertListResult("list favorite personal", td.gym);
     }
 
     @Test
