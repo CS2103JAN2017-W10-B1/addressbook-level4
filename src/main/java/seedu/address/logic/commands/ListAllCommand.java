@@ -1,4 +1,4 @@
-//@@author A0138474X
+//@@author A0143409J
 package seedu.address.logic.commands;
 
 import java.util.Iterator;
@@ -7,15 +7,13 @@ import java.util.Set;
 /**
  * Lists all persons in the address book to the user.
  */
-public class ListCommand extends Command {
+public class ListAllCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_LIST_SUCCESS = "Listed unfinished tasks";
     public static final String MESSAGE_LIST_ALL_SUCCESS = "Listed all tasks";
     public static final String MESSAGE_LIST_ALL_LIST_SUCCESS = "Listed all tasks in the list";
-    public static final String MESSAGE_LIST_FINISHED_SUCCESS = "Listed all finished tasks";
-    public static final String MESSAGE_LIST_FAVORITE_SUCCESS = "Listed all favorite tasks";
     public static final String MESSAGE_LIST_DOES_NOT_EXIST = "Given list name does not exist";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks as per the parameters\n"
@@ -30,28 +28,27 @@ public class ListCommand extends Command {
 
     private final Set<String> keywords;
 
-    public ListCommand(Set<String> keywords) {
+    public ListAllCommand(Set<String> keywords) {
         this.keywords = keywords;
     }
 
-    public ListCommand() {
+    public ListAllCommand() {
         this.keywords = null;
     }
 
     @Override
     public CommandResult execute() {
-        if (keywords == null) {
-            model.updateFilteredListToShowAllUnfinishedTasks();
-            return new CommandResult(MESSAGE_LIST_SUCCESS);
-        } else if (!model.isListExist(keywords)) {
-            return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
+        if (keywords.isEmpty()) {
+            model.updateFilteredListToShowAllTasks();
+            return new CommandResult(MESSAGE_LIST_ALL_SUCCESS);
+        } else if (model.isListExist(keywords)) {
+            model.updateFilteredTaskListGivenListNameAll(keywords);
+            return new CommandResult(formatter(MESSAGE_LIST_ALL_SUCCESS, keywords));
         } else {
-            model.updateFilteredTaskListGivenListName(keywords);
-            return new CommandResult(formatter(MESSAGE_LIST_SUCCESS, keywords));
+            return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         }
     }
 
-//@@author A0143409J
     private String formatter(String message, Set<String> keywords) {
         String formatted = message + " in list ";
         for (Iterator<String> it = keywords.iterator(); it.hasNext(); ) {
@@ -63,7 +60,6 @@ public class ListCommand extends Command {
         return formatted;
     }
 
-  //@@author A0138474X
     @Override
     public boolean isUndoable() {
         return false;
