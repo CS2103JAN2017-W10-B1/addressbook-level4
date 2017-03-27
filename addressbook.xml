@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addressbook>
+<taskmanager>
     <tasks>
         <name>CS2103T Tutorial</name>
         <date>8/3/2017</date>
@@ -9,6 +9,7 @@
         <venue>I3</venue>
         <priority>2</priority>
         <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
         <isEvent>false</isEvent>
     </tasks>
     <tasks>
@@ -25,16 +26,5 @@
         <startDate>24/3/2018</startDate>
         <startTime>18:00</startTime>
     </tasks>
-    <tasks>
-        <name>add CS2103 Lecture</name>
-        <date>24/3/2018</date>
-        <time>18:00</time>
-        <tag>CS2103</tag>
-        <description>Interesting module</description>
-        <venue>I3</venue>
-        <priority>3</priority>
-        <isFavourite>false</isFavourite>
-        <isEvent>false</isEvent>
-    </tasks>
     <tags>CS2103</tags>
-</addressbook>
+</taskmanager>

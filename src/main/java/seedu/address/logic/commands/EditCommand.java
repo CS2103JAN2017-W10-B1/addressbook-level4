@@ -91,8 +91,6 @@ public class EditCommand extends AbleUndoCommand {
                 model.updateTask(filteredTaskListIndex, editedTask);
                 this.task = editedTask;
             }
-            //model.updateTask(filteredTaskListIndex, editedTask);
-            //this.task = editedTask;
             this.isSuccess = true;
         } catch (UniqueTaskList.DuplicateTaskException dpe) {
             this.isSuccess = false;
