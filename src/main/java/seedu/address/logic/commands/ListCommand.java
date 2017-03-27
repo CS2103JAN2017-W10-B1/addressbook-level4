@@ -64,7 +64,7 @@ public class ListCommand extends Command {
                 model.updateFilteredListToShowAllFinishedTasks();
                 return new CommandResult(MESSAGE_LIST_FINISHED_SUCCESS);
             } else if (model.isListExist(keywords)) {
-                model.updateFilteredTaskListFinished(keywords);
+                model.updateFilteredTaskListGivenListNameFinished(keywords);
                 return new CommandResult(formatter(MESSAGE_LIST_FINISHED_SUCCESS, keywords));
             } else {
                 return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
@@ -75,7 +75,7 @@ public class ListCommand extends Command {
                 model.updateFilteredListToShowAllFavoriteTasks();
                 return new CommandResult(MESSAGE_LIST_FAVORITE_SUCCESS);
             } else if (model.isListExist(keywords)) {
-                model.updateFilteredTaskListFavorite(keywords);
+                model.updateFilteredTaskListGivenListNameAllFavorite(keywords);
                 return new CommandResult(formatter(MESSAGE_LIST_FAVORITE_SUCCESS, keywords));
             } else {
                 return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
