@@ -137,10 +137,6 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredTaskList(keywords, null, FinishedState.UNFINISHED, false, null, null);
     }
 
-    private void updateFilteredTaskList(Expression expression) {
-        filteredTasks.setPredicate(expression::satisfies);
-    }
-
     @Override
     public void updateFilteredListToShowAllUnfinishedTasks() {
         updateFilteredTaskList(null, null, FinishedState.UNFINISHED, false, null, null);
@@ -207,18 +203,18 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTag.setPredicate(null);
     }
 
-    public void updateFilteredListList(Set<String> keywords) {
-        updateFilteredListList(new PredicateExpression(new NameQualifier(keywords)));
+    private void updateFilteredTaskList(Expression expression) {
+        filteredTasks.setPredicate(expression::satisfies);
     }
 
-    private void updateFilteredListList(Expression expression) {
+    private void updateFilteredTagList(Expression expression) {
         filteredTag.setPredicate(expression::satisfies);
     }
 
     //@@author A0143409J
     @Override
     public boolean isListExist(Set<String> listNames) {
-        updateFilteredListList(new PredicateExpression(new NameQualifier(listNames)));
+        updateFilteredTagList(new PredicateExpression(new NameQualifier(listNames)));
         boolean isListExist = filteredTag.size() > 0;
         updateFilteredTagListToShowAllTags();
         return isListExist;

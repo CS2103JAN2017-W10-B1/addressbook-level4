@@ -17,10 +17,10 @@ public interface Model {
 
     public enum FinishedState {
         ALL, FINISHED, UNFINISHED
-        }
+    }
     public enum DueMode {
         BY, ON
-        }
+    }
 
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyTaskManager newData);
@@ -108,9 +108,6 @@ public interface Model {
 
     /** Updates the filter of the filtered tag list to show all tasks */
     void updateFilteredTagListToShowAllTags();
-
-    /** Updates the filter of the filtered tag list to filter by the given keywords*/
-    void updateFilteredListList(Set<String> keywords);
 
     /** Check whether the listname exist*/
     boolean isListExist(Set<String> listNames);
