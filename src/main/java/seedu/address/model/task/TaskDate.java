@@ -211,9 +211,11 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         String month = dayMonthYear[1];
         String year = Integer.toString(today.get(Calendar.YEAR));
         try {
+            Calendar yesterday = Calendar.getInstance();
+            yesterday.add(Calendar.DATE, -1);
             String returnDate = day + DAY_MONTH_SEPARATOR + month + DAY_MONTH_SEPARATOR + year;
             Date date = FORMATTER.parse(returnDate);
-            if (date.compareTo(today.getTime()) < 0) {
+            if (date.compareTo(yesterday.getTime()) < 0) {
                 year = Integer.toString(today.get(Calendar.YEAR) + 1);
                 returnDate = day + DAY_MONTH_SEPARATOR + month + DAY_MONTH_SEPARATOR + year;
             }
