@@ -35,6 +35,8 @@ public class EventTest {
 
         Event tester3 = new Event(new Name("tester2"), new TaskDate("20/12/2017"), new TaskTime("6:00"),
                 new TaskDate("20/12/2017"), new TaskTime("6:00"), null, null, null, null, false);
+        Event tester4 = new Event(new Name("tester2"), new TaskDate("20/12/2017"), new TaskTime("6:00"),
+                new TaskTime("6:00"), null, null, null, null, false);
     }
 
     @Test
@@ -49,5 +51,12 @@ public class EventTest {
         thrown.expect(IllegalValueException.class);
         Event tester3 = new Event(new Name("tester3"), new TaskDate("20/12/2017"), new TaskTime("7:00"),
                 new TaskDate("20/12/2017"), new TaskTime("6:00"), null, null, null, null, false);
+    }
+
+    @Test
+    public void constructorInvalid3() throws IllegalValueException {
+        thrown.expect(IllegalValueException.class);
+        Event tester3 = new Event(new Name("tester3"), new TaskDate("20/12/2017"), new TaskTime("7:00"),
+                new TaskTime("6:00"), null, null, null, null, false);
     }
 }
