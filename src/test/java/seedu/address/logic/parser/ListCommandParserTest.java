@@ -38,7 +38,7 @@ public class ListCommandParserTest {
         Field field = ListCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
 
-        ListCommand listCommand =  (ListCommand) ListCommandParser.parse("personal");
+        ListCommand listCommand = (ListCommand) ListCommandParser.parse("personal");
 
         Set<String> set = new HashSet<String>();
         set.add("personal");
@@ -52,7 +52,7 @@ public class ListCommandParserTest {
         Field field = ListCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
 
-        ListCommand listCommand =  (ListCommand) ListCommandParser.parse("personal school");
+        ListCommand listCommand = (ListCommand) ListCommandParser.parse("personal school");
 
         Set<String> set = new HashSet<String>();
         set.add("personal");
@@ -67,7 +67,8 @@ public class ListCommandParserTest {
         Field field = ListFinishedCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
 
-        ListFinishedCommand listFinishedCommand =  (ListFinishedCommand) ListCommandParser.parse("finished personal");
+        ListFinishedCommand listFinishedCommand =
+                (ListFinishedCommand) ListCommandParser.parse("finished personal");
 
         Set<String> set = new HashSet<String>();
         set.add("personal");
@@ -81,7 +82,8 @@ public class ListCommandParserTest {
         Field field = ListFinishedCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
 
-        ListFinishedCommand listFinishedCommand =  (ListFinishedCommand) ListCommandParser.parse("finished personal school");
+        ListFinishedCommand listFinishedCommand =
+                (ListFinishedCommand) ListCommandParser.parse("finished personal school");
 
         Set<String> set = new HashSet<String>();
         set.add("personal");
@@ -96,7 +98,8 @@ public class ListCommandParserTest {
         Field field = ListAllCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
 
-        ListAllCommand listAllCommand =  (ListAllCommand) ListCommandParser.parse("all personal");
+        ListAllCommand listAllCommand =
+                (ListAllCommand) ListCommandParser.parse("all personal");
 
         Set<String> set = new HashSet<String>();
         set.add("personal");
@@ -110,7 +113,8 @@ public class ListCommandParserTest {
         Field field = ListAllCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
 
-        ListAllCommand listAllCommand =  (ListAllCommand) ListCommandParser.parse("all personal school");
+        ListAllCommand listAllCommand =
+                (ListAllCommand) ListCommandParser.parse("all personal school");
 
         Set<String> set = new HashSet<String>();
         set.add("personal");
@@ -125,7 +129,8 @@ public class ListCommandParserTest {
         Field field = ListFavoriteCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
 
-        ListFavoriteCommand listFavoriteCommand =  (ListFavoriteCommand) ListCommandParser.parse("favorite personal");
+        ListFavoriteCommand listFavoriteCommand =
+                (ListFavoriteCommand) ListCommandParser.parse("favorite personal");
 
         Set<String> set = new HashSet<String>();
         set.add("personal");
@@ -139,7 +144,8 @@ public class ListCommandParserTest {
         Field field = ListFavoriteCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
 
-        ListFavoriteCommand listFavoriteCommand =  (ListFavoriteCommand) ListCommandParser.parse("favorite personal school");
+        ListFavoriteCommand listFavoriteCommand =
+                (ListFavoriteCommand) ListCommandParser.parse("favorite personal school");
 
         Set<String> set = new HashSet<String>();
         set.add("personal");
