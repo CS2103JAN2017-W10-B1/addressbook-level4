@@ -82,9 +82,17 @@ public class EditCommand extends AbleUndoCommand {
         this.oldTask = (Task) taskToEdit;
 
         try {
-            Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
-            model.updateTask(filteredTaskListIndex, editedTask);
-            this.task = editedTask;
+            if (taskToEdit.isEvent()) {
+                Event editedTask = (Event) createEditedTask(taskToEdit, editTaskDescriptor);
+                model.updateTask(filteredTaskListIndex, editedTask);
+                this.task = editedTask;
+            } else {
+                Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+                model.updateTask(filteredTaskListIndex, editedTask);
+                this.task = editedTask;
+            }
+            //model.updateTask(filteredTaskListIndex, editedTask);
+            //this.task = editedTask;
             this.isSuccess = true;
         } catch (UniqueTaskList.DuplicateTaskException dpe) {
             this.isSuccess = false;
@@ -93,6 +101,9 @@ public class EditCommand extends AbleUndoCommand {
             e.printStackTrace();
         }
         model.updateFilteredListToShowAllUnfinishedTasks();
+        if (taskToEdit.isEvent()) {
+            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, (Event) taskToEdit));
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 

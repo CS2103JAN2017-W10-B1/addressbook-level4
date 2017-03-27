@@ -47,7 +47,7 @@ public class AddCommand extends AbleUndoCommand {
             throws IllegalValueException {
 
         if (isEvent) {
-            if (startDate != null) {
+            if (!startDate.isEmpty()) {
                 this.toAdd = new Event(
                         new Name(name),
                         new TaskDate(startDate),
