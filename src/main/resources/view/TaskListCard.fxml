@@ -66,25 +66,26 @@
                         </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="5">
                            <children>
-                                    <Label fx:id="priority" prefHeight="12.0" prefWidth="95.0" style="-fx-font-family: Avenir; -fx-font-size: 13;" styleClass="cell_small_label" text="\$priority">
+                                    <Label fx:id="priority" prefHeight="12.0" prefWidth="95.0" style="-fx-font-family: Avenir; -fx-font-size: 13; -fx-text-fill: MEDIUMBLUE; -fx-font-weight: bold;" styleClass="cell_small_label" text="\$priority">
                                  <HBox.margin>
                                     <Insets top="5.0" />
                                  </HBox.margin>
                               </Label>
-                                    <Label fx:id="isFavorite" prefHeight="16.0" prefWidth="75.0" style="-fx-font-size: 13; -fx-text-fill: red; -fx-font-family: Avenir;" styleClass="cell_small_label" text="\$isFavorite">
+                                    <Label fx:id="isFavorite" prefHeight="12.0" prefWidth="75.0" style="-fx-font-size: 13; -fx-text-fill: red; -fx-font-family: Avenir;" styleClass="cell_small_label" text="\$isFavorite">
                                  <HBox.margin>
                                     <Insets left="28.0" top="5.0" />
                                  </HBox.margin>
                               </Label>
+                              <Label fx:id="pastDue" prefHeight="12.0" style="-fx-text-fill: red; -fx-font-size: 14; -fx-font-family: Avenir;" text="\$pastDue" textFill="#f20000">
+                                 <font>
+                                    <Font name="System Bold" size="11.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="5.0" />
+                                 </HBox.margin>
+                              </Label>
                            </children>
                               </HBox>
-                        <Label fx:id="pastDue" style="-fx-text-fill: red; -fx-font-size: 14; -fx-font-family: Avenir;" text="\$pastDue" textFill="#f20000">
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Bold" size="11.0" />
-                           </font></Label>
 
                               <Label fx:id="description" alignment="TOP_LEFT" prefHeight="46.0" prefWidth="297.0" style="-fx-font-size: 14; -fx-font-family: Avenir;" styleClass="cell_small_label" text="\$description" />
                           </children>
