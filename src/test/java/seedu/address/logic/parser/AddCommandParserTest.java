@@ -30,11 +30,11 @@ public class AddCommandParserTest {
     @Test
     public void nullTest() throws Exception {
 
-        Field field = AddCommand.class.getDeclaredField("toAdd");
+        Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
 
         IncorrectCommand incorrectCommand =  (IncorrectCommand) AddCommandParser.parse(null);
-        assertEquals(incorrectCommand.feedbackToUser, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertEquals(field.get(incorrectCommand), String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddCommand.MESSAGE_USAGE));
     }
 
