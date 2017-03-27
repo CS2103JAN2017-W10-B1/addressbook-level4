@@ -23,7 +23,6 @@
                <children>
                       <VBox alignment="CENTER_LEFT" prefHeight="147.0" prefWidth="346.0">
                           <stylesheets>
-                              
                               <URL value="@Extensions.css" />
                           </stylesheets>
                           <padding>
