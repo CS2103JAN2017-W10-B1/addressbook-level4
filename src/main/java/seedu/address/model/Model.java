@@ -50,6 +50,7 @@ public interface Model {
     /** Returns the filtered list list as an {@code UnmodifiableObservableList<TaskList>} */
     UnmodifiableObservableList<Tag> getFilteredTagList();
 
+    //@@author A0147984L
     // Task-level filter
     /**
      * Update the filter of the filter task given specific fields
@@ -115,7 +116,7 @@ public interface Model {
     /** Updates the filter of the filtered tag list to show all tasks */
     void updateFilteredTagListToShowAllTags();
 
-    /** Check whether the listname exist*/
+    /** Check whether the list name exist*/
     boolean isListExist(Set<String> listNames);
 
 }
