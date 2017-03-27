@@ -6,8 +6,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
-import java.util.Calendar;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -50,6 +48,7 @@ public class DateTest {
         assertTrue(TaskDate.isValidDate("29/2/2020")); // with valid year
         assertTrue(TaskDate.isValidDate("Monday")); // day in a week
         assertTrue(TaskDate.isValidDate("mon")); // day in a week in short
+        assertTrue(TaskDate.isValidDate("ToDay")); // today
     }
 
     @Test

@@ -38,6 +38,9 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     public static final String DAY_VALIDATION_SATURDAY = "(?i)(saturday)|(sat)";
     public static final String DAY_VALIDATION_SUNDAY = "(?i)(sunday)|(sun)";
 
+    public static final String DAY_VALIDATION_TODAY = "(?i)(today)";
+    public static final String DAY_VALIDATION_TOMORROW = "(?i)(tomorrow)|(tmr)";
+
     public static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd/MM/yyyy");
 
 
@@ -78,6 +81,17 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
             this.value = current.get(Calendar.DAY_OF_MONTH) + "/"
                     + (current.get(Calendar.MONTH) + 1) + "/"
                     + current.get(Calendar.YEAR);
+        } else if (isTodayOrTomorrow(trimmedDate)) {
+            int incre = todayOrTomorrow(trimmedDate);
+            Calendar current = Calendar.getInstance();
+            while (incre --> 0) {
+                current.add(Calendar.DATE, 1);
+            }
+            this.date = current.getTime();
+            this.isPastDue = false;
+            this.value = current.get(Calendar.DAY_OF_MONTH) + "/"
+                    + (current.get(Calendar.MONTH) + 1) + "/"
+                    + current.get(Calendar.YEAR);
         } else {
             try {
                 this.date = trimmedDate.equals("") ?
@@ -103,6 +117,9 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         if (isDayInWeek(test)) {
             return true;
         }
+        if (isTodayOrTomorrow(test)) {
+            return true;
+        }
         if (!test.matches(DATE_VALIDATION_REGEX)) {
             return false;
         }
@@ -114,6 +131,20 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         String month = dayMonthYear[1];
         String year = dayMonthYear.length == 3 ? dayMonthYear[2] : null;
         return isValidMonth(month) && isValidDay(day, month, year) && isValidYear(year);
+    }
+
+    private static boolean isTodayOrTomorrow(String test) {
+        return todayOrTomorrow(test) != -1;
+    }
+
+    private static int todayOrTomorrow(String test) {
+        if (test.matches(DAY_VALIDATION_TODAY)) {
+            return 0;
+        } else if (test.matches(DAY_VALIDATION_TOMORROW)) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 
     private static boolean isDayInWeek(String test) {
