@@ -351,7 +351,7 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | add a new event | add a task with duration instead of due date
 `* * *` | user | add a task that has duplicate names but with different due date/time | create similar tasks due on different dates and times
 `* * *` | user | add a task that has duplicate names but under different lists | create similar tasks under different categories
-`* * *` | user | add a task without specifying its list | task added without list will be put into defalut list called _Inbox_
+`* * *` | user | add a task without specifying its list | task added without list will be put into default list called _Inbox_
 `* * *` | user | delete task(s) | remove task(s) that is/are no longer useful or created by mistake
 `* * *` | user | mark a task as finished | know the task is done
 `* * *` | user | list tasks under a specific list | view my tasks by categories
@@ -363,7 +363,11 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | view the help message for a specific feature | know how to use a command
 `* *` | user | find specific tasks with name containing given keywords | easily organize my tasks
 `* *` | first-time user | view the entire help messages | get to know various commands
-`* *` | user | list all finished and unfinised tasks sorted by date first then by priority| manage all tasks
+`* *` | user | list required task lists displayed as sorted based on due date and time, priority and lastly lexicographic order | manage all tasks more efficiently
+`* *` | user | list all finished and unfinished tasks | manage all tasks
+`* *` | user | list all finished tasks | manage finished tasks
+`* *` | user | list all unfinished tasks | manage unfinished tasks
+`* *` | user | list all favorite tasks | manage favorite tasks
 `* *` | user | view next n days' tasks | know what to do in n days' time
 `* *` | user | view the list of tasks by due date | view the tasks due from today to that day
 `* *` | user | view the list of tasks on an exact date | view the tasks due on that day
@@ -373,14 +377,12 @@ Priority | As a ... | I want to ... | So that I can...
 `* *` | user | undo my latest finish command | undo when I regret my latest finish command
 `* *` | user | redo my undone command | redo when I regret my previous undo command
 `* *` | user | create a new list by adding a new task under that list | add a customized list
-`* *` | user | remove a list when all tasks in the list is deleted | automatically remove unused list(s)
-`*` | user | view the finished tasks under each list | see what I have already completed
-`*` | user | view all the starred tasks using a "favourite" command | view all my favourite tasks
-`*` | user | view all the past due tasks | get to know what task is left undone
-`*` | user | see different colors for different priority levels | know which one is more urgent
-`*` | user | see the autocomplete messages when I type | know what I can type
-`*` | advanced user | change the appearance of the user interface | personalize the view
-{More to be added}
+`*` | user | remove a list when all tasks in the list is deleted | automatically remove unused list(s)
+`*` | user | list all finished and unfinished tasks under a specific list | manage all tasks under a specific list
+`*` | user | list all finished tasks under a specific list | manage finished tasks under a specific list
+`*` | user | list all unfinished tasks under a specific list | manage unfinished tasks under a specific list
+`*` | user | list all favorite tasks under a specific list | manage favorite tasks under a specific list
+`*` | user | know which tasks are past due | get to know what task is left undone
 
 ## Appendix B : Use Cases
 
@@ -864,29 +866,8 @@ Use case ends
    should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be able to respond for any command within 0.5 second.
 
-{More to be added}
 
-## Appendix D : Glossary
-
-##### Mainstream OS
-
-> Windows, Linux, Unix, OS-X
-
-##### Private contact detail
-
-> A contact detail that is not meant to be shared with others
-
-##### switch
-
-> A functionality of certain `list` commands<br>
-  All the tasks added after switching will be automatically added to the current list (favourite) unless otherwise stated
-
-##### unswitch
-
-> A functionality of certain `list` commands<br>
-  After switching back to main, the tasks added will not be automatically added to this list (favourite)
-
-## Appendix E : Product Survey
+## Appendix D : Product Survey
 
 **Wunderlist**
 
