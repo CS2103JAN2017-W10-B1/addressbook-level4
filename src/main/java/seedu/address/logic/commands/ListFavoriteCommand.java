@@ -1,7 +1,6 @@
 //@@author A0143409J
 package seedu.address.logic.commands;
 
-import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -26,8 +25,6 @@ public class ListFavoriteCommand extends Command {
             + COMMAND_WORD + " finished\n"
             + COMMAND_WORD + "study work\n";
 
-    private static final String LIST_SEPARATOR = ", ";
-
     private final Set<String> keywords;
 
     public ListFavoriteCommand(Set<String> keywords) {
@@ -45,21 +42,10 @@ public class ListFavoriteCommand extends Command {
             return new CommandResult(MESSAGE_LIST_FAVORITE_SUCCESS);
         } else if (model.isListExist(keywords)) {
             model.updateFilteredTaskListGivenListNameAllFavorite(keywords);
-            return new CommandResult(formatter(MESSAGE_LIST_FAVORITE_SUCCESS, keywords));
+            return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_FAVORITE_SUCCESS, keywords));
         } else {
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         }
-    }
-
-    private String formatter(String message, Set<String> keywords) {
-        String formatted = message + " in list ";
-        for (Iterator<String> it = keywords.iterator(); it.hasNext(); ) {
-            formatted += it.next();
-            if (it.hasNext()) {
-                formatted += LIST_SEPARATOR;
-            }
-        }
-        return formatted;
     }
 
     @Override
