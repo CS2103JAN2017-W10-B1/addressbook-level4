@@ -10,6 +10,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FinishCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.ViewOnCommand;
 
 public class HelpCommandTest extends TaskManagerGuiTest {
     @Test
@@ -38,7 +39,7 @@ public class HelpCommandTest extends TaskManagerGuiTest {
         } else if (commandWord.equalsIgnoreCase("list")) {
             assertResultMessage(ListCommand.MESSAGE_USAGE);
         } else if (commandWord.equalsIgnoreCase("view")) {
-            assertResultMessage(ViewCommand.MESSAGE_USAGE);
+            assertResultMessage(ViewCommand.MESSAGE_USAGE + "\n" +  ViewOnCommand.MESSAGE_USAGE);
         }
     }
 }
