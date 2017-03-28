@@ -29,7 +29,7 @@ public class FinishCommandParserTest {
     public void validTest() throws Exception {
         Field field = FinishCommand.class.getDeclaredField("targetIndex");
         field.setAccessible(true);
-        
+
         FinishCommand finishCommand = (FinishCommand) FinishCommandParser.parse("1");
         assertEquals(field.get(finishCommand), 1);
     }
@@ -38,7 +38,7 @@ public class FinishCommandParserTest {
     public void invalidTest() throws Exception {
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
-        
+
         IncorrectCommand incorrectCommand = (IncorrectCommand) FinishCommandParser.parse("+");
         assertEquals(field.get(incorrectCommand),
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FinishCommand.MESSAGE_USAGE));
