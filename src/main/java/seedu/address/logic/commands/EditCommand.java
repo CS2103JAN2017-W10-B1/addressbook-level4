@@ -13,6 +13,7 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Event;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.ReadOnlyEvent;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.FinishProperty;
 import seedu.address.model.task.Task;
@@ -96,11 +97,11 @@ public class EditCommand extends AbleUndoCommand {
             this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (IllegalValueException e) {
-            e.printStackTrace();
+            throw new CommandException(e.getMessage());
         }
         model.updateFilteredListToShowAllUnfinishedTasks();
         if (taskToEdit.isEvent()) {
-            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, (Event) taskToEdit));
+            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
         }
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
@@ -132,8 +133,8 @@ public class EditCommand extends AbleUndoCommand {
         if (editTaskDescriptor.updatedEvent(editTaskDescriptor.getStart()) || taskToEdit.isEvent()) {
             if (taskToEdit.isEvent() || (editTaskDescriptor.getStart().isPresent() &&
                     !editTaskDescriptor.getStart().get().getValue().isEmpty())) {
-                TaskDate updatedStartDate = editTaskDescriptor.getStart().orElseGet(taskToEdit::getDate);
-                TaskTime updatedStartTime = editTaskDescriptor.getStartTime().orElseGet(taskToEdit::getTime);
+                TaskDate updatedStartDate = editTaskDescriptor.getStart().orElseGet(((ReadOnlyEvent)taskToEdit)::getStartDate);
+                TaskTime updatedStartTime = editTaskDescriptor.getStartTime().orElseGet(((ReadOnlyEvent)taskToEdit)::getStartTime);
                 return new Event (updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
                         updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
             } else {
