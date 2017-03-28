@@ -49,11 +49,12 @@ public interface ReadOnlyTask {
     default boolean isSameCardAs(ReadOnlyTask other) {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
-                && other.getName().equals(this.getName())
-                && other.getDate().equals(this.getDate())
-                && other.getTime().equals(this.getTime())
-                && other.getTag().equals(this.getTag()))
-                && other.getFinished().equals(this.getFinished());
+                && checkEqual(this.getName(), other.getName())
+                && checkEqual(this.getDate(), other.getDate())
+                && checkEqual(this.getTime(), other.getTime())
+                && checkEqual(this.getTag(), other.getTag())
+                && ((other.getFinished() == null && this.getFinished() == null)
+                        || (other.getFinished() != null && other.getFinished().equals(this.getFinished()))));
     }
 
     //@@ author A0143409J
@@ -63,6 +64,9 @@ public interface ReadOnlyTask {
     FinishProperty getFinished();
     EventProperty getEventProperty();
 
+    /*
+     * To ensure there is no null pointer exception when comparing two TaskFields
+     */
     default boolean checkEqual(TaskField mine, TaskField other) {
         if (mine == null) {
             return other == null;
