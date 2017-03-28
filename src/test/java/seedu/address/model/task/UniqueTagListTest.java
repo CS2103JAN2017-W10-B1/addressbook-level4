@@ -1,22 +1,20 @@
-//@@author A0147984L
+//@@author A0143049J
 package seedu.address.model.task;
 
 import static org.junit.Assert.assertTrue;
 
 import java.util.Set;
-//@@author A0143049J
+
 import org.junit.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.tag.UniqueTagList.DuplicateTagException;
-import seedu.address.testutil.TypicalTestTasks;
 
 public class UniqueTagListTest {
 
     private UniqueTagList tester = new UniqueTagList();
-    private final TypicalTestTasks testUtil = new TypicalTestTasks();
 
     @Test
     public void sort() throws DuplicateTagException, IllegalValueException {
