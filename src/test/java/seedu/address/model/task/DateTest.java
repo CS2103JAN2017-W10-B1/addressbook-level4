@@ -95,10 +95,10 @@ public class DateTest {
         assertEquals(testerNull.compareTo(tester1), TaskDate.INF);
         assertEquals(testerNull.compareTo(testerNull), 0);
         assertEquals(tester1.compareTo(testerNull), -TaskDate.INF);
-        assertEquals(tester2.compareTo(tester1), 365);
+        assertEquals(tester2.compareTo(tester1), 365 * 24);
         assertEquals(tester1.compareTo(tester3), 0);
-        assertEquals(tester1.compareTo(tester2), -365);
-        assertEquals(tester1.compareTo(tester4), -731); // handle leap year
+        assertEquals(tester1.compareTo(tester2), -365 * 24);
+        assertEquals(tester1.compareTo(tester4), -731 * 24); // handle leap year
     }
 
     @Test
