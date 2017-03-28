@@ -29,16 +29,12 @@ public class LogicManager extends ComponentManager implements Logic {
     private final Stack<AbleUndoCommand> commandList;
     private final Stack<AbleUndoCommand> redoCommandList;
 
-    public LogicManager(Model model, Storage storage) {
+    public LogicManager(Model model, Storage storage) throws CommandException {
         this.model = model;
         this.parser = new Parser();
         this.commandList = new Stack<AbleUndoCommand>();
         this.redoCommandList = new Stack<AbleUndoCommand>();
-        try {
-            execute("list");
-        } catch (CommandException e) {
-            e.printStackTrace();
-        }
+        execute("list");
     }
 
     @Override
