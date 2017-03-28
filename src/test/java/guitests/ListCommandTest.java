@@ -27,7 +27,7 @@ public class ListCommandTest extends TaskManagerGuiTest {
         //list favorite tasks in personal
         assertListResult("list favorite personal", td.gym);
     }
-    
+
     @Test
     public void list_finishedList () {
         commandBox.runCommand("list all");
