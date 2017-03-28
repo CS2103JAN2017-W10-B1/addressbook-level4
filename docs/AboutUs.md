@@ -11,10 +11,18 @@ Responsibilities: Testing, backup for Integration and Code quality, in charge of
 
 -----
 
-#### [Yan Xiaoxuan](https://github.com/Matilda-Yxx)
+#### [Yan Xiaoxuan][Matilda-Yxx](https://github.com/Matilda-Yxx)
 <img src="images/matilda-yxx.jpg" width="150"><br>
 Role: Developer <br>
-Responsibilities: Documentation, backup for testing, in charge of UI
+
+* Components in charge of: [UI](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#UI-component)
+* Aspects/tools in charge of: GUITesting, SceneBuilder, Documentation
+* Features implemented:
+   * [List persons](https://github.com/se-edu/addressbook-level4/blob/master/docs/UserGuide.md#listing-all-persons--list)
+   * [Delete person](https://github.com/se-edu/addressbook-level4/blob/master/docs/UserGuide.md#deleting-a-person--delete)
+* Code written: [[functional code](A0147996E.md)][[test code](A0147996E.md)]
+* Other major contributions:
+  * Update UserGuide and Developer Guide [[#133](https://github.com/se-edu/addressbook-level4/pull/152) ]
 
 -----
 
