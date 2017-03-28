@@ -42,8 +42,6 @@ public interface ReadOnlyTask {
                 && checkEqual(this.getTime(), other.getTime())
                 && checkEqual(this.getTag(), other.getTag())); // state checks here onwards
     }
-<<<<<<< HEAD
-    
     //@@ author A0147996E
     /**
      * For comparing two tasks in GUItests, to check if the list view matches desired list view.
@@ -57,9 +55,7 @@ public interface ReadOnlyTask {
                 && other.getTag().equals(this.getTag()))
                 && other.getFinished().equals(this.getFinished());
     }
-=======
 
->>>>>>> origin/master
     //@@ author A0143409J
     /*
      * Get the FinishProperty instead of boolean
