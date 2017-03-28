@@ -1,4 +1,7 @@
 //@@author A0143409J
+/*
+ * A formatter class doing formatting for all commands output messages
+ */
 package seedu.address.logic.commands;
 
 import java.util.Iterator;

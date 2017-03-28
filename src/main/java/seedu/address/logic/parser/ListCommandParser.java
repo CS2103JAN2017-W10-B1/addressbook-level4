@@ -15,7 +15,7 @@ import seedu.address.logic.commands.ListFavoriteCommand;
 import seedu.address.logic.commands.ListFinishedCommand;
 
 /**
- * Parses input arguments and creates a new ListCommand object
+ * Parses input arguments and creates a new ListCommand/ListAllCommand/ListFinishedCommand/ListFavoriteCommand object
  */
 public class ListCommandParser {
 
@@ -28,8 +28,8 @@ public class ListCommandParser {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns an FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ListCommand
+     * and returns a ListCommand/ListAllCommand/ListFinishedCommand/ListFavoriteCommand object for execution.
      */
     public static Command parse(String args) {
         if (args == null) {
@@ -46,6 +46,7 @@ public class ListCommandParser {
         final String[] keywords = matcher.group("keywords").split(LIST_SEPARATOR);
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
 
+        // check for the indicator words in the keywords
         if (keywordSet.contains(LIST_ALL)) {
             keywordSet.remove(LIST_ALL);
             return new ListAllCommand(keywordSet);

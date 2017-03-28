@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.exceptions.DuplicateDataException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 
 /**
@@ -74,8 +75,18 @@ public class UniqueTaskList implements Iterable<Task> {
         if (!taskToUpdate.equals(editedTask) && internalList.contains(editedTask)) {
             throw new DuplicateTaskException();
         }
-
-        taskToUpdate.resetData(editedTask);
+        if (!taskToUpdate.isEvent() && editedTask.isEvent()) {
+            try {
+                taskToUpdate = new Event(editedTask);
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } else if (taskToUpdate.isEvent() && !editedTask.isEvent()) {
+            taskToUpdate = new Task(editedTask);
+        } else {
+            taskToUpdate.resetData(editedTask);
+        }
         // TODO: The code below is just a workaround to notify observers of the updated task.
         // The right way is to implement observable properties in the Task class.
         // Then, TaskCard should then bind its text labels to those observable properties.
@@ -103,7 +114,16 @@ public class UniqueTaskList implements Iterable<Task> {
     public void setTasks(List<? extends ReadOnlyTask> tasks) throws DuplicateTaskException {
         final UniqueTaskList replacement = new UniqueTaskList();
         for (final ReadOnlyTask task : tasks) {
-            replacement.add(new Task(task));
+            if (task.isEvent()) {
+                try {
+                    replacement.add(new Event(task));
+                } catch (IllegalValueException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            } else {
+                replacement.add(new Task(task));
+            }
         }
         setTasks(replacement);
     }
