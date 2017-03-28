@@ -57,7 +57,7 @@ public class EditCommand extends AbleUndoCommand {
         assert filteredTaskListIndex > 0;
         assert editTaskDescriptor != null;
 
-        // converts filteredPersonListIndex from one-based to zero-based.
+        // converts filteredTaskListIndex from one-based to zero-based.
         this.filteredTaskListIndex = filteredTaskListIndex - 1;
 
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
