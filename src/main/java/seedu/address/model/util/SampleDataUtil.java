@@ -20,9 +20,9 @@ public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         try {
             return new Task[] {
-                new Task(new Name("Gym"), new TaskDate("12/3"), new TaskTime("11:00"),
-                        new Description("50 mins workout"), new Tag("personal"),
-                        new Venue("MPSH"), new Priority("2"), true),
+                new Task(new Name("pay tuition fee"), new TaskDate("25/3/2017"), new TaskTime(""),
+                        new Description("don't forget!!!!"), new Tag(""),
+                        new Venue(""), new Priority("3"), false),
                 new Task(new Name("cs 2103"), new TaskDate("today"), new TaskTime("9:00"),
                         new Description("demo"), new Tag("study"),
                         new Venue("COM1"), new Priority("3"), true),
@@ -32,9 +32,9 @@ public class SampleDataUtil {
                 new Task(new Name("clean up room"), new TaskDate("4/5"), new TaskTime("9:00"),
                         new Description("get ready to go home"), new Tag("personal"),
                         new Venue(""), new Priority("1"), false),
-                new Task(new Name("pay tuition fee"), new TaskDate("25/3/2017"), new TaskTime(""),
-                        new Description("don't forget!!!!"), new Tag(""),
-                        new Venue(""), new Priority("3"), false),
+                new Task(new Name("Gym"), new TaskDate("12/3"), new TaskTime("11:00"),
+                        new Description("50 mins workout"), new Tag("personal"),
+                        new Venue("MPSH"), new Priority("2"), true),
                 new Task(new Name("study hard"), new TaskDate(""), new TaskTime(""),
                         new Description("goal in my life"), new Tag("study"),
                         new Venue(""), new Priority("3"), true)
