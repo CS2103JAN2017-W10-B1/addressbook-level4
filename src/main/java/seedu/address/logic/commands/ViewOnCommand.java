@@ -20,7 +20,7 @@ public class ViewOnCommand extends Command {
     private final String numberOfDays;
 
     public ViewOnCommand(int numberDays) {
-        numberOfDays = String.valueOf(numberDays - 1);
+        numberOfDays = String.valueOf(numberDays);
         messageDisplay = MESSAGE_SUCCESS + " due in " + numberDays + " days later\n";
     }
 

@@ -434,7 +434,7 @@ public class ModelManager extends ComponentManager implements Model {
         public boolean run(ReadOnlyTask task) {
             long diff = task.getDate().date.getTime() - today.getTime().getTime();
             // TODO: need test
-            return daysToDue + 1 == TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+            return daysToDue == TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
         }
     }
 
