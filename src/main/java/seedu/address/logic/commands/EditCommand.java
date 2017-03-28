@@ -126,7 +126,7 @@ public class EditCommand extends AbleUndoCommand {
      * @throws IllegalValueException
      */
     private static Task createEditedTask(ReadOnlyTask taskToEdit,
-                                             EditTaskDescriptor editTaskDescriptor) throws IllegalValueException {
+            EditTaskDescriptor editTaskDescriptor) throws IllegalValueException {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
@@ -152,19 +152,19 @@ public class EditCommand extends AbleUndoCommand {
                         .orElseGet(((ReadOnlyEvent) taskToEdit)::getStartTime);
                 return new Event (updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
                         updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
-            } else if(!taskToEdit.isEvent() && (editTaskDescriptor.getStart().isPresent() &&
-                    !editTaskDescriptor.getStart().get().getValue().isEmpty())){
-                    TaskDate updatedStartDate = editTaskDescriptor.getStart().orElse(new TaskDate(""));
-                    TaskTime updatedStartTime = editTaskDescriptor.getStartTime().orElse(new TaskTime(""));
-                    return new Event (updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
-                            updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
+            } else if (!taskToEdit.isEvent() && (editTaskDescriptor.getStart().isPresent() &&
+                    !editTaskDescriptor.getStart().get().getValue().isEmpty())) {
+                TaskDate updatedStartDate = editTaskDescriptor.getStart().orElse(new TaskDate(""));
+                TaskTime updatedStartTime = editTaskDescriptor.getStartTime().orElse(new TaskTime(""));
+                return new Event (updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
+                        updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
             } else {
                 return new Task (updatedName, updatedDueDate, updatedDueTime, updatedDescription,
                         updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
             }
         } else {
             return new Task (updatedName, updatedDueDate, updatedDueTime, updatedDescription,
-                updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
+                    updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
         }
     }
 
@@ -202,7 +202,7 @@ public class EditCommand extends AbleUndoCommand {
             this.isFavouriteEdited = toCopy.getIsFavouriteEdited();
         }
 
-         /**
+        /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {

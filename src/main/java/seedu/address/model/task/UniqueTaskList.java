@@ -82,7 +82,7 @@ public class UniqueTaskList implements Iterable<Task> {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-        } else if(taskToUpdate.isEvent() && !editedTask.isEvent()) {
+        } else if (taskToUpdate.isEvent() && !editedTask.isEvent()) {
             taskToUpdate = new Task(editedTask);
         } else {
             taskToUpdate.resetData(editedTask);

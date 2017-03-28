@@ -40,13 +40,13 @@ public class LogicManager extends ComponentManager implements Logic {
             e.printStackTrace();
         }
     }
-    //@@Author ShermineJong A0138474X
+
     @Override
     public CommandResult execute(String commandText) throws CommandException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         Command command = parser.parseCommand(commandText, commandList, redoCommandList);
         command.setData(model);
-        if (command.COMMAND_WORD.equals(FinishCommand.COMMAND_WORD)){
+        if (command.COMMAND_WORD.equals(FinishCommand.COMMAND_WORD)) {
             commandList.clear();
         }
         if (command.isUndoable()) {
