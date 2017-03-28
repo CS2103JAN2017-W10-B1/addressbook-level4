@@ -17,8 +17,8 @@
     <children>
         <GridPane prefHeight="117.0" prefWidth="357.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="375.0" minWidth="10.0" prefWidth="201.0" />
-            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="218.0" minWidth="150.0" prefWidth="218.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="375.0" minWidth="10.0" prefWidth="186.0" />
+            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="233.0" minWidth="150.0" prefWidth="233.0" />
             </columnConstraints>
             <children>
             <HBox prefHeight="136.0" prefWidth="334.0">
@@ -96,7 +96,7 @@
                       </VBox>
                </children>
             </HBox>
-            <VBox alignment="TOP_RIGHT" maxWidth="221.0" prefHeight="117.0" prefWidth="221.0" GridPane.columnIndex="1">
+            <VBox alignment="TOP_RIGHT" maxWidth="239.0" prefHeight="117.0" prefWidth="239.0" GridPane.columnIndex="1">
                <children>
                   <Label fx:id="isFinished" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="122.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$isFinished">
                      <VBox.margin>
@@ -111,12 +111,12 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="startTime" prefHeight="19.0" prefWidth="106.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startTime">
+                        <Label fx:id="startTime" prefHeight="19.0" prefWidth="140.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startTime">
                            <font>
                               <Font name="Avenir Roman" size="11.0" />
                            </font>
                         </Label>
-                              <Label fx:id="time" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="121.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$time">
+                              <Label fx:id="time" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="100.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$time">
                            <font>
                               <Font name="Avenir Roman" size="11.0" />
                            </font>
@@ -128,12 +128,12 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="startDate" prefHeight="19.0" prefWidth="116.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startDate">
+                        <Label fx:id="startDate" prefHeight="19.0" prefWidth="140.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startDate">
                            <font>
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <Label fx:id="date" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="107.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$date">
+                        <Label fx:id="date" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="120.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$date">
                            <font>
                               <Font size="11.0" />
                            </font>
