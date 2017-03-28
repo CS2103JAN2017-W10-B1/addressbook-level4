@@ -15,11 +15,11 @@ public class AddCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void add() {
-        //gym, gym2, gym3, cs2103, study, assignment, date
+        //Start testing with an empty list
         TestTask[] currentList = {};
         commandBox.runCommand("clear");
 
-        //TODO: add a floating task with name only
+        //add a floating task with name only
         TestTask taskToAdd = td.shopping2;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
@@ -72,8 +72,9 @@ public class AddCommandTest extends TaskManagerGuiTest {
     private void assertAddSuccess(TestTask taskToAdd, TestTask... currentList) {
         commandBox.runCommand(taskToAdd.getAddCommand());
 
-        //confirm the new card contains the right data
+        //try to navigate to the target task
         TaskCardHandle addedCard = taskListPanel.navigateToTask(taskToAdd);
+        //AssertTrue if target card is found
         assertTrue(addedCard != null);
 
         //confirm the list now contains all previous persons plus the new person
