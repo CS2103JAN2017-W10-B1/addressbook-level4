@@ -44,9 +44,12 @@ public class Config {
 
     public static final String DEFAULT_CONFIG_FILE = "config.json";
 
-```
-###### /java/seedu/address/commons/core/Config.java
-``` java
+    // Config values customizable through config file
+    private String appTitle = "Dueue App";
+    private Level logLevel = Level.INFO;
+    private String userPrefsFilePath = "preferences.json";
+    private String dueueFilePath = "data/dueue.xml";
+    private String dueueName = "MyTaskManager";
 
     public String getAppTitle() {
         return appTitle;
@@ -964,5 +967,567 @@ public class ShowHelpRequestEvent extends BaseEvent {
     public String toString() {
         return this.getClass().getSimpleName();
     }
+}
+```
+###### /java/seedu/address/commons/exceptions/DataConversionException.java
+``` java
+package seedu.address.commons.exceptions;
+
+/**
+ * Represents an error during conversion of data from one format to another
+ */
+public class DataConversionException extends Exception {
+    public DataConversionException(Exception cause) {
+        super(cause);
+    }
+
+}
+```
+###### /java/seedu/address/commons/exceptions/DuplicateDataException.java
+``` java
+package seedu.address.commons.exceptions;
+
+/**
+ * Signals an error caused by duplicate data where there should be none.
+ */
+public abstract class DuplicateDataException extends IllegalValueException {
+    public DuplicateDataException(String message) {
+        super(message);
+    }
+}
+```
+###### /java/seedu/address/commons/exceptions/IllegalValueException.java
+``` java
+package seedu.address.commons.exceptions;
+
+/**
+ * Signals that some given data does not fulfill some constraints.
+ */
+public class IllegalValueException extends Exception {
+    /**
+     * @param message should contain relevant information on the failed constraint(s)
+     */
+    public IllegalValueException(String message) {
+        super(message);
+    }
+}
+```
+###### /java/seedu/address/commons/util/AppUtil.java
+``` java
+package seedu.address.commons.util;
+
+import javafx.scene.image.Image;
+import seedu.address.MainApp;
+
+/**
+ * A container for App specific utility functions
+ */
+public class AppUtil {
+
+    public static Image getImage(String imagePath) {
+        assert imagePath != null;
+        return new Image(MainApp.class.getResourceAsStream(imagePath));
+    }
+
+}
+```
+###### /java/seedu/address/commons/util/CollectionUtil.java
+``` java
+package seedu.address.commons.util;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Stream;
+
+/**
+ * Utility methods related to Collections
+ */
+public class CollectionUtil {
+
+    /** @see #isAnyNull(Collection) */
+    public static boolean isAnyNull(Object... items) {
+        return Stream.of(items).anyMatch(Objects::isNull);
+    }
+
+    /**
+     * Returns true if any element of {@code items} is null.
+     * @throws NullPointerException if {@code items} itself is null.
+     */
+    public static boolean isAnyNull(Collection<?> items) {
+        return items.stream().anyMatch(Objects::isNull);
+    }
+
+    /**
+     * Returns true is any of the given items are present.
+     */
+    public static boolean isAnyPresent(Optional<?>... items) {
+        return Stream.of(items).anyMatch(Optional::isPresent);
+    }
+
+    /**
+     * Returns true if every element in a collection are unique by {@link Object#equals(Object)}.
+     */
+    public static boolean elementsAreUnique(Collection<?> items) {
+        final Set<Object> testSet = new HashSet<>();
+        for (Object item : items) {
+            final boolean itemAlreadyExists = !testSet.add(item); // see Set documentation
+            if (itemAlreadyExists) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+```
+###### /java/seedu/address/commons/util/ConfigUtil.java
+``` java
+package seedu.address.commons.util;
+
+import java.io.IOException;
+import java.util.Optional;
+
+import seedu.address.commons.core.Config;
+import seedu.address.commons.exceptions.DataConversionException;
+
+/**
+ * A class for accessing the Config File.
+ */
+public class ConfigUtil {
+
+    public static Optional<Config> readConfig(String configFilePath) throws DataConversionException {
+        return JsonUtil.readJsonFile(configFilePath, Config.class);
+    }
+
+    public static void saveConfig(Config config, String configFilePath) throws IOException {
+        JsonUtil.saveJsonFile(config, configFilePath);
+    }
+
+}
+```
+###### /java/seedu/address/commons/util/FileUtil.java
+``` java
+package seedu.address.commons.util;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+
+/**
+ * Writes and reads files
+ */
+public class FileUtil {
+
+    private static final String CHARSET = "UTF-8";
+
+    public static boolean isFileExists(File file) {
+        return file.exists() && file.isFile();
+    }
+
+    public static void createIfMissing(File file) throws IOException {
+        if (!isFileExists(file)) {
+            createFile(file);
+        }
+    }
+
+    /**
+     * Creates a file if it does not exist along with its missing parent directories
+     *
+     * @return true if file is created, false if file already exists
+     */
+    public static boolean createFile(File file) throws IOException {
+        if (file.exists()) {
+            return false;
+        }
+
+        createParentDirsOfFile(file);
+
+        return file.createNewFile();
+    }
+
+    /**
+     * Creates the given directory along with its parent directories
+     *
+     * @param dir the directory to be created; assumed not null
+     * @throws IOException if the directory or a parent directory cannot be created
+     */
+    public static void createDirs(File dir) throws IOException {
+        if (!dir.exists() && !dir.mkdirs()) {
+            throw new IOException("Failed to make directories of " + dir.getName());
+        }
+    }
+
+    /**
+     * Creates parent directories of file if it has a parent directory
+     */
+    public static void createParentDirsOfFile(File file) throws IOException {
+        File parentDir = file.getParentFile();
+
+        if (parentDir != null) {
+            createDirs(parentDir);
+        }
+    }
+
+    /**
+     * Assumes file exists
+     */
+    public static String readFromFile(File file) throws IOException {
+        return new String(Files.readAllBytes(file.toPath()), CHARSET);
+    }
+
+    /**
+     * Writes given string to a file.
+     * Will create the file if it does not exist yet.
+     */
+    public static void writeToFile(File file, String content) throws IOException {
+        Files.write(file.toPath(), content.getBytes(CHARSET));
+    }
+
+    /**
+     * Converts a string to a platform-specific file path
+     * @param pathWithForwardSlash A String representing a file path but using '/' as the separator
+     * @return {@code pathWithForwardSlash} but '/' replaced with {@code File.separator}
+     */
+    public static String getPath(String pathWithForwardSlash) {
+        assert pathWithForwardSlash != null;
+        assert pathWithForwardSlash.contains("/");
+        return pathWithForwardSlash.replace("/", File.separator);
+    }
+
+}
+```
+###### /java/seedu/address/commons/util/FxViewUtil.java
+``` java
+package seedu.address.commons.util;
+
+import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+/**
+ * Contains utility methods for JavaFX views
+ */
+public class FxViewUtil {
+
+    public static void applyAnchorBoundaryParameters(Node node, double left, double right, double top, double bottom) {
+        AnchorPane.setBottomAnchor(node, bottom);
+        AnchorPane.setLeftAnchor(node, left);
+        AnchorPane.setRightAnchor(node, right);
+        AnchorPane.setTopAnchor(node, top);
+    }
+
+    /**
+     * Sets the given image as the icon for the given stage.
+     * @param iconSource e.g. {@code "/images/help_icon.png"}
+     */
+    public static void setStageIcon(Stage stage, String iconSource) {
+        stage.getIcons().setAll(AppUtil.getImage(iconSource));
+    }
+
+}
+```
+###### /java/seedu/address/commons/util/JsonUtil.java
+``` java
+package seedu.address.commons.util;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
+
+/**
+ * Converts a Java object instance to JSON and vice versa
+ */
+public class JsonUtil {
+
+    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
+
+    private static ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules()
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE)
+            .setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
+            .registerModule(new SimpleModule("SimpleModule")
+                    .addSerializer(Level.class, new ToStringSerializer())
+                    .addDeserializer(Level.class, new LevelDeserializer(Level.class)));
+
+    static <T> void serializeObjectToJsonFile(File jsonFile, T objectToSerialize) throws IOException {
+        FileUtil.writeToFile(jsonFile, toJsonString(objectToSerialize));
+    }
+
+    static <T> T deserializeObjectFromJsonFile(File jsonFile, Class<T> classOfObjectToDeserialize)
+            throws IOException {
+        return fromJsonString(FileUtil.readFromFile(jsonFile), classOfObjectToDeserialize);
+    }
+
+    /**
+     * Returns the Json object from the given file or {@code Optional.empty()} object if the file is not found.
+     * If any values are missing from the file, default values will be used, as long as the file is a valid json file.
+     * @param filePath cannot be null.
+     * @param classOfObjectToDeserialize Json file has to correspond to the structure in the class given here.
+     * @throws DataConversionException if the file format is not as expected.
+     */
+    public static <T> Optional<T> readJsonFile(
+            String filePath, Class<T> classOfObjectToDeserialize) throws DataConversionException {
+
+        assert filePath != null;
+
+        File file = new File(filePath);
+
+        if (!file.exists()) {
+            logger.info("Json file "  + file + " not found");
+            return Optional.empty();
+        }
+
+        T jsonFile;
+
+        try {
+            jsonFile = deserializeObjectFromJsonFile(file, classOfObjectToDeserialize);
+        } catch (IOException e) {
+            logger.warning("Error reading from jsonFile file " + file + ": " + e);
+            throw new DataConversionException(e);
+        }
+
+        return Optional.of(jsonFile);
+    }
+
+    /**
+     * Saves the Json object to the specified file.
+     * Overwrites existing file if it exists, creates a new file if it doesn't.
+     * @param jsonFile cannot be null
+     * @param filePath cannot be null
+     * @throws IOException if there was an error during writing to the file
+     */
+    public static <T> void saveJsonFile(T jsonFile, String filePath) throws IOException {
+        assert jsonFile != null;
+        assert filePath != null;
+
+        serializeObjectToJsonFile(new File(filePath), jsonFile);
+    }
+
+
+    /**
+     * Converts a given string representation of a JSON data to instance of a class
+     * @param <T> The generic type to create an instance of
+     * @return The instance of T with the specified values in the JSON string
+     */
+    public static <T> T fromJsonString(String json, Class<T> instanceClass) throws IOException {
+        return objectMapper.readValue(json, instanceClass);
+    }
+
+    /**
+     * Converts a given instance of a class into its JSON data string representation
+     * @param instance The T object to be converted into the JSON string
+     * @param <T> The generic type to create an instance of
+     * @return JSON data representation of the given class instance, in string
+     */
+    public static <T> String toJsonString(T instance) throws JsonProcessingException {
+        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(instance);
+    }
+
+
+    private static class LevelDeserializer extends FromStringDeserializer<Level> {
+
+        protected LevelDeserializer(Class<?> vc) {
+            super(vc);
+        }
+
+        @Override
+        protected Level _deserialize(String value, DeserializationContext ctxt) throws IOException {
+            return getLoggingLevel(value);
+        }
+
+        /**
+         * Gets the logging level that matches loggingLevelString
+         * <p>
+         * Returns null if there are no matches
+         *
+         */
+        private Level getLoggingLevel(String loggingLevelString) {
+            return Level.parse(loggingLevelString);
+        }
+
+        @Override
+        public Class<Level> handledType() {
+            return Level.class;
+        }
+    }
+
+}
+```
+###### /java/seedu/address/commons/util/StringUtil.java
+``` java
+package seedu.address.commons.util;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
+/**
+ * Helper functions for handling strings.
+ */
+public class StringUtil {
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code word}.
+     *   Ignores case, but a full word match is required.
+     *   <br>examples:<pre>
+     *       containsWordIgnoreCase("ABc def", "abc") == true
+     *       containsWordIgnoreCase("ABc def", "DEF") == true
+     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       </pre>
+     * @param sentence cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsWordIgnoreCase(String sentence, String word) {
+        assert word != null : "Word parameter cannot be null";
+        assert sentence != null : "Sentence parameter cannot be null";
+
+        String preppedWord = word.trim();
+        assert !preppedWord.isEmpty() : "Word parameter cannot be empty";
+        assert preppedWord.split("\\s+").length == 1 : "Word parameter should be a single word";
+
+        String preppedSentence = sentence;
+        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+
+        for (String wordInSentence: wordsInPreppedSentence) {
+            if (wordInSentence.equalsIgnoreCase(preppedWord)) return true;
+        }
+        return false;
+    }
+
+    /**
+     * Returns a detailed message of the t, including the stack trace.
+     */
+    public static String getDetails(Throwable t) {
+        assert t != null;
+        StringWriter sw = new StringWriter();
+        t.printStackTrace(new PrintWriter(sw));
+        return t.getMessage() + "\n" + sw.toString();
+    }
+
+    /**
+     * Returns true if s represents an unsigned integer e.g. 1, 2, 3, ... <br>
+     * Will return false if the string is:
+     * null, empty string, "-1", "0", "+1", and " 2 " (untrimmed) "3 0" (contains whitespace).
+     * @param s Should be trimmed.
+     */
+    public static boolean isUnsignedInteger(String s) {
+        return s != null && s.matches("^0*[1-9]\\d*$");
+    }
+}
+```
+###### /java/seedu/address/commons/util/UrlUtil.java
+``` java
+package seedu.address.commons.util;
+
+import java.net.URL;
+
+/**
+ * A utility class for URL
+ */
+public class UrlUtil {
+
+    /**
+     * Returns true if both URLs have the same base URL
+     */
+    public static boolean compareBaseUrls(URL url1, URL url2) {
+
+        if (url1 == null || url2 == null) {
+            return false;
+        }
+        return url1.getHost().toLowerCase().replaceFirst("www.", "")
+                .equalsIgnoreCase(url2.getHost().replaceFirst("www.", ""))
+                && url1.getPath().replaceAll("/", "")
+                .equalsIgnoreCase(url2.getPath().replaceAll("/", ""));
+    }
+
+}
+```
+###### /java/seedu/address/commons/util/XmlUtil.java
+``` java
+package seedu.address.commons.util;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+
+/**
+ * Helps with reading from and writing to XML files.
+ */
+public class XmlUtil {
+
+    /**
+     * Returns the xml data in the file as an object of the specified type.
+     *
+     * @param file           Points to a valid xml file containing data that match the {@code classToConvert}.
+     *                       Cannot be null.
+     * @param classToConvert The class corresponding to the xml data.
+     *                       Cannot be null.
+     * @throws FileNotFoundException Thrown if the file is missing.
+     * @throws JAXBException         Thrown if the file is empty or does not have the correct format.
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T getDataFromFile(File file, Class<T> classToConvert)
+            throws FileNotFoundException, JAXBException {
+
+        assert file != null;
+        assert classToConvert != null;
+
+        if (!FileUtil.isFileExists(file)) {
+            throw new FileNotFoundException("File not found : " + file.getAbsolutePath());
+        }
+
+        JAXBContext context = JAXBContext.newInstance(classToConvert);
+        Unmarshaller um = context.createUnmarshaller();
+
+        return ((T) um.unmarshal(file));
+    }
+
+    /**
+     * Saves the data in the file in xml format.
+     *
+     * @param file Points to a valid xml file containing data that match the {@code classToConvert}.
+     *             Cannot be null.
+     * @throws FileNotFoundException Thrown if the file is missing.
+     * @throws JAXBException         Thrown if there is an error during converting the data
+     *                               into xml and writing to the file.
+     */
+    public static <T> void saveDataToFile(File file, T data) throws FileNotFoundException, JAXBException {
+
+        assert file != null;
+        assert data != null;
+
+        if (!file.exists()) {
+            throw new FileNotFoundException("File not found : " + file.getAbsolutePath());
+        }
+
+        JAXBContext context = JAXBContext.newInstance(data.getClass());
+        Marshaller m = context.createMarshaller();
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+        m.marshal(data, file);
+    }
+
 }
 ```
