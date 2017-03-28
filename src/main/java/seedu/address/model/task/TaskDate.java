@@ -15,7 +15,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
  */
 public class TaskDate implements TaskField, Comparable<TaskDate> {
 
-    public static final String MESSAGE_DATE_CONSTRAINTS_1 = "task due date should be the form dd/mm, dd/mm/yyyy or Monday, tomorrow, etc.";
+    public static final String MESSAGE_DATE_CONSTRAINTS_1 =
+            "task due date should be the form dd/mm, dd/mm/yyyy or Monday, tomorrow, etc.";
 
     public static final String DATE_VALIDATION_REGEX = ".*/.*";
     public static final String DAY_MONTH_SEPARATOR = "/";

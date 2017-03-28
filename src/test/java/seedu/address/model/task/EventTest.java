@@ -88,7 +88,7 @@ public class EventTest {
         assertEquals(tester8.getFavoriteText(), "Favorite");
         assertTrue(tester8.equals(tester7));
     }
-    
+
     @Test
     public void resetTest() throws IllegalValueException {
         Event tester1 = new Event(new Name("tester1"), new TaskDate("20/12/2017"), new TaskTime("6:00"),

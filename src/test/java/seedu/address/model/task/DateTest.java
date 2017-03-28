@@ -62,7 +62,7 @@ public class DateTest {
         assertTrue(TaskDate.isValidDate("29/2"));
         thrown.expect(IllegalValueException.class);
         // but it should throw exception at construction, because next year is 2018
-        TaskDate tester2 = new TaskDate("29/2");
+        new TaskDate("29/2");
     }
 
     @SuppressWarnings("deprecation")
