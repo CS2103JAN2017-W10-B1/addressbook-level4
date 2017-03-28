@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -61,7 +62,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
      */
     public TaskDate(String date) throws IllegalValueException {
         assert date != null;
-        today = Calendar.getInstance();
+        today = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
         String trimmedDate = date.trim();
         if (!isValidDate(trimmedDate)) {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
@@ -84,8 +85,8 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
                     + current.get(Calendar.YEAR);
         } else if (isTodayOrTomorrow(trimmedDate)) {
             int incre = todayOrTomorrow(trimmedDate);
-            Calendar current = Calendar.getInstance();
-            while (incre >= 0) {
+            Calendar current = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
+            while (incre > 0) {
                 incre = incre - 1;
                 current.add(Calendar.DATE, 1);
             }
@@ -272,7 +273,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
                 return -INF;
             } else {
                 long diff = this.date.getTime() - other.date.getTime();
-                return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+                return (int) TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS);
             }
         }
     }
