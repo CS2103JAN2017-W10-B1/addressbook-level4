@@ -69,4 +69,21 @@ public class UniqueTagListTest {
 
         assertTrue(newTester.equals(tester));
     }
+
+    @Test
+    public void mergeTest() throws IllegalValueException {
+        Tag tag1 = new Tag("abc");
+        Tag tag2 = new Tag("test");
+        Tag tag3 = new Tag("lala");
+        Tag tag4 = new Tag("xx");
+        tester = new UniqueTagList(tag1, tag2);
+        UniqueTagList newTester = new UniqueTagList(tag3, tag4);
+        tester.mergeFrom(newTester);
+        Set<Tag> tags1 = tester.toSet();
+
+        assertTrue(tags1.contains(tag1));
+        assertTrue(tags1.contains(tag2));
+        assertTrue(tags1.contains(tag3));
+        assertTrue(tags1.contains(tag4));
+    }
 }
