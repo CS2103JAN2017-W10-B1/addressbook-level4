@@ -193,18 +193,18 @@ public class LogicManagerTest {
         assertCommandFailure("add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address", expectedMessage);
     }*/
 
-    /*@Test
+    @Test
     public void execute_add_invalidPersonData() {
         assertCommandFailure("add []\\[;] p/12345 e/valid@e.mail a/valid, address",
-                Name.MESSAGE_NAME_CONSTRAINTS);
-        assertCommandFailure("add Valid Name p/not_numbers e/valid@e.mail a/valid, address",
-                Date.MESSAGE_DATE_CONSTRAINTS);
-        assertCommandFailure("add Valid Name p/12345 e/notAnEmail a/valid, address",
-                Time.MESSAGE_TIME_CONSTRAINTS);
-        assertCommandFailure("add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag",
-                Tag.MESSAGE_TAG_CONSTRAINTS);
+                Name.MESSAGE_NAME_CONSTRAINTS_1);
+        assertCommandFailure("add Valid Name due/abc",
+                TaskDate.MESSAGE_DATE_CONSTRAINTS_1);
+        assertCommandFailure("add Valid Name due/10/4 dueT/abc",
+                TaskTime.MESSAGE_TIME_CONSTRAINTS);
+        assertCommandFailure("add Valid Name due/10/4 dueT/10:00 #$#$@",
+                Tag.MESSAGE_TAG_CONSTRAINTS_1);
 
-    }*/
+    }
 
     @Test
     public void executeAddSuccessful() throws Exception {
