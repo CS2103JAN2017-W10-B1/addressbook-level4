@@ -11,8 +11,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.logic.commands.FinishCommand;
+import seedu.address.logic.commands.IncorrectCommand;
 
 public class FinishCommandParserTest {
 
