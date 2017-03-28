@@ -10,6 +10,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AbleUndoCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.FinishCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Parser;
 import seedu.address.model.Model;
@@ -39,12 +40,15 @@ public class LogicManager extends ComponentManager implements Logic {
             e.printStackTrace();
         }
     }
-    //@@Author ShermineJong A0138474X
+
     @Override
     public CommandResult execute(String commandText) throws CommandException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         Command command = parser.parseCommand(commandText, commandList, redoCommandList);
         command.setData(model);
+        if (command.COMMAND_WORD.equals(FinishCommand.COMMAND_WORD)) {
+            commandList.clear();
+        }
         if (command.isUndoable()) {
             commandList.push((AbleUndoCommand) command);
         }

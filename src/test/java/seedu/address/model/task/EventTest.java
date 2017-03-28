@@ -59,7 +59,8 @@ public class EventTest {
         assertEquals(tester5.getStartTime().getValue(), "6:00");
 
         Event tester6 = new Event(new Name("tester6"), new TaskDate("20/12/2017"), new TaskTime("6:00"),
-                new TaskDate("20/12/2017"), new TaskTime("7:00"), null, null, null, null, false, FinishProperty.UNFINISHED);
+                new TaskDate("20/12/2017"), new TaskTime("7:00"), null, null, null, null, false,
+                FinishProperty.UNFINISHED);
         assertEquals(tester6.getDate().getValue(), "20/12/2017");
         assertEquals(tester6.getStartDate().getValue(), "20/12/2017");
         assertEquals(tester6.getTime().getValue(), "7:00");
@@ -69,7 +70,8 @@ public class EventTest {
         assertEquals(tester6.getFavoriteText(), "Favorite");
 
         Event tester7 = new Event(new Name("tester7"), new TaskDate("20/12/2017"), new TaskTime("6:00"),
-                new TaskDate("20/12/2017"), new TaskTime("7:00"), null, null, null, null, true, FinishProperty.UNFINISHED);
+                new TaskDate("20/12/2017"), new TaskTime("7:00"), null, null, null, null, true,
+                FinishProperty.UNFINISHED);
         assertEquals(tester7.getDate().getValue(), "20/12/2017");
         assertEquals(tester7.getStartDate().getValue(), "20/12/2017");
         assertEquals(tester7.getTime().getValue(), "7:00");

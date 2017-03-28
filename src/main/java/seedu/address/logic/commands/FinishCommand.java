@@ -23,7 +23,7 @@ import seedu.address.model.task.Venue;
 /**
  * Deletes a person identified using it's last displayed index from the address book.
  */
-public class FinishCommand extends AbleUndoCommand {
+public class FinishCommand extends Command {
 
     public static final String COMMAND_WORD = "finish";
 
@@ -102,37 +102,7 @@ public class FinishCommand extends AbleUndoCommand {
 
     @Override
     public boolean isUndoable() {
-        return true;
-    }
-
-    @Override
-    public CommandResult executeUndo(String message) throws CommandException {
-        return null;
-    }
-
-    @Override
-    public Command getUndoCommand() {
-        if (isSuccess) {
-            Task newTask = null;
-            if (task.isEvent()) {
-                try {
-                    newTask = new Event(task.getName(), ((Event) task).getStartDate(),
-                            ((Event) task).getStartTime(), task.getDate(), task.getTime(), task.getDescription(),
-                            task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(),
-                            FinishProperty.UNFINISHED);
-                } catch (IllegalValueException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            } else {
-                newTask = new Task(task.getName(), task.getDate(), task.getTime(), task.getDescription(),
-                        task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(),
-                        FinishProperty.UNFINISHED);
-            }
-            return new EditCommand(task, newTask);
-        } else {
-            return new IncorrectCommand(null);
-        }
+        return false;
     }
 }
 

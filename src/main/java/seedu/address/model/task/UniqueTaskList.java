@@ -75,8 +75,18 @@ public class UniqueTaskList implements Iterable<Task> {
         if (!taskToUpdate.equals(editedTask) && internalList.contains(editedTask)) {
             throw new DuplicateTaskException();
         }
-
-        taskToUpdate.resetData(editedTask);
+        if (!taskToUpdate.isEvent() && editedTask.isEvent()) {
+            try {
+                taskToUpdate = new Event(editedTask);
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } else if (taskToUpdate.isEvent() && !editedTask.isEvent()) {
+            taskToUpdate = new Task(editedTask);
+        } else {
+            taskToUpdate.resetData(editedTask);
+        }
         // TODO: The code below is just a workaround to notify observers of the updated task.
         // The right way is to implement observable properties in the Task class.
         // Then, TaskCard should then bind its text labels to those observable properties.
