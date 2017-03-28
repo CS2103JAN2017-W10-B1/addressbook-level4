@@ -37,7 +37,7 @@ public class ListCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("list");
         commandBox.runCommand("finish 1");
         commandBox.runCommand("finish 1");
-        commandBox.runCommand("finish 1");//finish gym, gym2, gym3
+        commandBox.runCommand("finish 1"); //finish gym, gym2, gym3
         td.gym.setFinished(true);
         td.gym2.setFinished(true);
         td.gym3.setFinished(true);
