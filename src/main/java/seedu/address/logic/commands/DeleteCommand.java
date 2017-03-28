@@ -49,17 +49,17 @@ public class DeleteCommand extends AbleUndoCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        ReadOnlyTask personToDelete = lastShownList.get(targetIndex - 1);
+        ReadOnlyTask taskToDelete = lastShownList.get(targetIndex - 1);
 
         try {
-            model.deleteTask(personToDelete);
-            this.task = personToDelete;
+            model.deleteTask(taskToDelete);
+            this.task = taskToDelete;
             this.isSuccess = true;
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target person cannot be missing";
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, personToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
 
 
