@@ -45,7 +45,7 @@ public class EditCommand extends AbleUndoCommand {
 
     private final int filteredTaskListIndex;
     private final EditTaskDescriptor editTaskDescriptor;
-    private Task task;
+    private ReadOnlyTask task;
     private Task oldTask;
     private boolean isSuccess;
 
@@ -64,7 +64,7 @@ public class EditCommand extends AbleUndoCommand {
         this.isSuccess = false;
     }
 
-    public EditCommand(Task task, Task oldTask) {
+    public EditCommand(ReadOnlyTask task, Task oldTask) {
         this.task = task;
         this.oldTask = oldTask;
         this.filteredTaskListIndex = 0;
@@ -80,10 +80,10 @@ public class EditCommand extends AbleUndoCommand {
         }
 
         ReadOnlyTask taskToEdit = lastShownList.get(filteredTaskListIndex);
-        this.oldTask = (Task) taskToEdit;
+        this.oldTask = createTask(taskToEdit);
 
         try {
-            if (taskToEdit.isEvent()) {
+            if (taskToEdit.isEvent() || editTaskDescriptor.updatedEvent(editTaskDescriptor.getStart())) {
                 Event editedTask = (Event) createEditedTask(taskToEdit, editTaskDescriptor);
                 model.updateTask(filteredTaskListIndex, editedTask);
                 this.task = editedTask;
@@ -106,6 +106,26 @@ public class EditCommand extends AbleUndoCommand {
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
+
+    private Task createTask(ReadOnlyTask task) {
+        Task newTask = null;
+        if (task.isEvent()) {
+            try {
+                newTask = new Event(task.getName(), ((Event) task).getStartDate(),
+                        ((Event) task).getStartTime(), task.getDate(), task.getTime(), task.getDescription(),
+                        task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(),
+                        FinishProperty.UNFINISHED);
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } else {
+            newTask = new Task(task.getName(), task.getDate(), task.getTime(), task.getDescription(),
+                    task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(),
+                    FinishProperty.UNFINISHED);
+        }
+        return newTask;
+    }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code taskToEdit}
@@ -301,10 +321,6 @@ public class EditCommand extends AbleUndoCommand {
     @Override
     public boolean isUndoable() {
         return true;
-    }
-
-    public Task getTask() {
-        return this.task;
     }
 
     @Override
