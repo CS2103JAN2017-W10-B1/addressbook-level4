@@ -13,6 +13,7 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Event;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.ReadOnlyEvent;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.FinishProperty;
 import seedu.address.model.task.Task;
@@ -44,7 +45,7 @@ public class EditCommand extends AbleUndoCommand {
 
     private final int filteredTaskListIndex;
     private final EditTaskDescriptor editTaskDescriptor;
-    private Task task;
+    private ReadOnlyTask task;
     private Task oldTask;
     private boolean isSuccess;
 
@@ -56,14 +57,14 @@ public class EditCommand extends AbleUndoCommand {
         assert filteredTaskListIndex > 0;
         assert editTaskDescriptor != null;
 
-        // converts filteredPersonListIndex from one-based to zero-based.
+        // converts filteredTaskListIndex from one-based to zero-based.
         this.filteredTaskListIndex = filteredTaskListIndex - 1;
 
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
         this.isSuccess = false;
     }
 
-    public EditCommand(Task task, Task oldTask) {
+    public EditCommand(ReadOnlyTask task, Task oldTask) {
         this.task = task;
         this.oldTask = oldTask;
         this.filteredTaskListIndex = 0;
@@ -79,10 +80,10 @@ public class EditCommand extends AbleUndoCommand {
         }
 
         ReadOnlyTask taskToEdit = lastShownList.get(filteredTaskListIndex);
-        this.oldTask = (Task) taskToEdit;
+        this.oldTask = createTask(taskToEdit);
 
         try {
-            if (taskToEdit.isEvent()) {
+            if (taskToEdit.isEvent() || editTaskDescriptor.updatedEvent(editTaskDescriptor.getStart())) {
                 Event editedTask = (Event) createEditedTask(taskToEdit, editTaskDescriptor);
                 model.updateTask(filteredTaskListIndex, editedTask);
                 this.task = editedTask;
@@ -96,15 +97,35 @@ public class EditCommand extends AbleUndoCommand {
             this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (IllegalValueException e) {
-            e.printStackTrace();
+            throw new CommandException(e.getMessage());
         }
         model.updateFilteredListToShowAllUnfinishedTasks();
         if (taskToEdit.isEvent()) {
-            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, (Event) taskToEdit));
+            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
         }
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
+
+    private Task createTask(ReadOnlyTask task) {
+        Task newTask = null;
+        if (task.isEvent()) {
+            try {
+                newTask = new Event(task.getName(), ((Event) task).getStartDate(),
+                        ((Event) task).getStartTime(), task.getDate(), task.getTime(), task.getDescription(),
+                        task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(),
+                        FinishProperty.UNFINISHED);
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } else {
+            newTask = new Task(task.getName(), task.getDate(), task.getTime(), task.getDescription(),
+                    task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(),
+                    FinishProperty.UNFINISHED);
+        }
+        return newTask;
+    }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code taskToEdit}
@@ -132,8 +153,8 @@ public class EditCommand extends AbleUndoCommand {
         if (editTaskDescriptor.updatedEvent(editTaskDescriptor.getStart()) || taskToEdit.isEvent()) {
             if (taskToEdit.isEvent() || (editTaskDescriptor.getStart().isPresent() &&
                     !editTaskDescriptor.getStart().get().getValue().isEmpty())) {
-                TaskDate updatedStartDate = editTaskDescriptor.getStart().orElseGet(taskToEdit::getDate);
-                TaskTime updatedStartTime = editTaskDescriptor.getStartTime().orElseGet(taskToEdit::getTime);
+                TaskDate updatedStartDate = editTaskDescriptor.getStart().orElseGet(((ReadOnlyEvent)taskToEdit)::getStartDate);
+                TaskTime updatedStartTime = editTaskDescriptor.getStartTime().orElseGet(((ReadOnlyEvent)taskToEdit)::getStartTime);
                 return new Event (updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
                         updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
             } else {
@@ -300,10 +321,6 @@ public class EditCommand extends AbleUndoCommand {
     @Override
     public boolean isUndoable() {
         return true;
-    }
-
-    public Task getTask() {
-        return this.task;
     }
 
     @Override
