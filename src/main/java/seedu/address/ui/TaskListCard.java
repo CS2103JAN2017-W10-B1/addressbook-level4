@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.task.Event;
 import seedu.address.model.task.ReadOnlyTask;
 
 /**
@@ -62,10 +63,10 @@ public class TaskListCard extends UiPart<Region> {
         }
         startTime.setText("");
         startDate.setText("");
-        /*if (task instanceof Event) {
-            startDate.setText("Start " + ((Event) task).getStartDate().getDisplayText());
+        if (task instanceof Event) {
+            startDate.setText("Start" + ((Event) task).getStartDate().getDisplayText());
             startTime.setText("Start" + ((Event) task).getStartTime().getDisplayText());
-        }*/
+        }
     }
 }
 

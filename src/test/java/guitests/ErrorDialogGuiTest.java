@@ -1,3 +1,4 @@
+//@@author A0147996E-reused
 package guitests;
 
 import static junit.framework.TestCase.assertTrue;
