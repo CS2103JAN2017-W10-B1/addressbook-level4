@@ -26,9 +26,10 @@ public class AddCommand extends AbleUndoCommand {
             + "Parameters: TASKNAME [due/DUEDATE] [dueT/DUETIME] [start/STARTDATE] [startT/STARTTIME]"
             + " [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL][*f]\n"
             + "Example: " + COMMAND_WORD
-            + " CS2103 Lecture due/24/3 start/24/3 startT/16:00 dueT/18:00 #CS2103 d/Interesting module @I3 p/3 *f\n"
+            + " CS2103 Lecture due/24/3/2017 start/24/3 startT/16:00"
+            + " dueT/18:00 #CS2103 d/Interesting module @I3 p/3 *f\n"
             + COMMAND_WORD
-            + " CS2103T Tutorial due/8/3/2017 dueT/10:00 #CS2103 d/Interesting module @I3 p/2 *f\n";
+            + " CS2103T Tutorial due/tomorrow dueT/10:00 #CS2103 d/Interesting module @I3 p/2 *f\n";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Dueue";

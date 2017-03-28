@@ -37,11 +37,12 @@ public interface ReadOnlyTask {
         } // finished task are always treated as different
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
-                && other.getName().equals(this.getName())
-                && other.getDate().equals(this.getDate())
-                && other.getTime().equals(this.getTime())
-                && other.getTag().equals(this.getTag())); // state checks here onwards
+                && checkEqual(this.getName(), other.getName())
+                && checkEqual(this.getDate(), other.getDate())
+                && checkEqual(this.getTime(), other.getTime())
+                && checkEqual(this.getTag(), other.getTag())); // state checks here onwards
     }
+<<<<<<< HEAD
     
     //@@ author A0147996E
     /**
@@ -56,6 +57,9 @@ public interface ReadOnlyTask {
                 && other.getTag().equals(this.getTag()))
                 && other.getFinished().equals(this.getFinished());
     }
+=======
+
+>>>>>>> origin/master
     //@@ author A0143409J
     /*
      * Get the FinishProperty instead of boolean
@@ -63,6 +67,13 @@ public interface ReadOnlyTask {
     FinishProperty getFinished();
     EventProperty getEventProperty();
 
+    default boolean checkEqual(TaskField mine, TaskField other) {
+        if (mine == null) {
+            return other == null;
+        } else {
+            return mine.equals(other);
+        }
+    }
     /**
      * Formats the person as text, showing all contact details.
      */
