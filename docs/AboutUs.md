@@ -27,7 +27,7 @@ Role: Developer <br>
 <img src="images/matilda-yxx.jpg" width="150"><br>
 Role: Developer <br>
 
-* Components in charge of: [UI](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#UI-component)
+* Components in charge of: [UI](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#22-ui-component)
 * Aspects/tools in charge of: GUITesting, SceneBuilder, Documentation
 * Features implemented:
    * [List persons](https://github.com/se-edu/addressbook-level4/blob/master/docs/UserGuide.md#listing-all-persons--list)
@@ -35,6 +35,8 @@ Role: Developer <br>
 * Code written: [[functional code](A0147996E.md)][[test code](A0147996E.md)]
 * Other major contributions:
   * Update UserGuide and Developer Guide [[#133](https://github.com/se-edu/addressbook-level4/pull/152) ]
+  * Set up collation[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/657cf3157bac077ae0ebe8c36bfe68d632a02063)]
+  * Generate jar file for V0.3 [[release](https://github.com/CS2103JAN2017-W10-B1/main/releases/tag/v0.3)]
 
 -----
 
