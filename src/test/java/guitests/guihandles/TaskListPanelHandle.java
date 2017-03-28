@@ -85,7 +85,7 @@ public class TaskListPanelHandle extends GuiHandle {
 
         // Return false if any of the tasks doesn't match
         for (int i = 0; i < tasks.length; i++) {
-            if (!tasksInList.get(startPosition + i).isSameStateAs(tasks[i])) {
+            if (!tasksInList.get(startPosition + i).isSameCardAs(tasks[i])) {
                 return false;
             }
         }
@@ -100,8 +100,8 @@ public class TaskListPanelHandle extends GuiHandle {
 
         List<ReadOnlyTask> tasksInList = getListView().getItems();
         for (int i = 0; i < tasksInList.size(); i++) {
-            System.out.println(tasksInList.size() + "\n");
-            if (tasksInList.get(i).isSameStateAs(testTask)) {
+            System.out.println(testTask.getFinishedText() + " compared to " + tasksInList.get(i).getFinishedText());
+            if (tasksInList.get(i).isSameCardAs(testTask)) {
                 return getTaskCardHandle(i);
             }
         } return null;
@@ -113,7 +113,7 @@ public class TaskListPanelHandle extends GuiHandle {
     public int getTaskIndex(ReadOnlyTask targetTask) {
         List<ReadOnlyTask> tasksInList = getListView().getItems();
         for (int i = 0; i < tasksInList.size(); i++) {
-            if (tasksInList.get(i).isSameStateAs(targetTask)) {
+            if (tasksInList.get(i).isSameCardAs(targetTask)) {
                 return i;
             }
         }
