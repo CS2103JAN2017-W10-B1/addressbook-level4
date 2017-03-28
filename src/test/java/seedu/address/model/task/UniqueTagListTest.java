@@ -26,13 +26,13 @@ public class UniqueTagListTest {
         tester.add(tag2);
 
         tester.sort();
-        
+
         Set<Tag> tags = tester.toSet();
 
         assertTrue(tags.contains(tag1));
         assertTrue(tags.contains(tag2));
     }
-    
+
     @Test
     public void constructorTest() throws DuplicateTagException, IllegalValueException {
         Tag tag1 = new Tag("abc");
