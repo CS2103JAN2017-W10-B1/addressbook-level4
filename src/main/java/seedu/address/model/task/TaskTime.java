@@ -125,7 +125,7 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
         }
     }
  //@@author A0147996E
-    public String getDisplayStartText() {
+    public String getStartDisplayText() {
         if ((value.equals(" ")) || (value.equals(""))) {
             return "";
         } else {

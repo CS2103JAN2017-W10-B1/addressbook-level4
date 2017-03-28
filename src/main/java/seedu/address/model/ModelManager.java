@@ -3,6 +3,7 @@ package seedu.address.model;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -368,7 +369,7 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + "favorite";
         }
     }
-//@@author
+//@@author A0147984L
 
     private class TagQualifier implements Qualifier {
         protected Set<String> tagKeyWords;
@@ -402,7 +403,11 @@ public class ModelManager extends ComponentManager implements Model {
 
         DateQualifier(String days) {
             this.daysToDue = Integer.parseInt(days);
-            today = Calendar.getInstance();
+            today = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
+            today.set(Calendar.HOUR_OF_DAY, 0);
+            today.set(Calendar.MINUTE, 0);
+            today.set(Calendar.SECOND, 0);
+            today.set(Calendar.MILLISECOND, 0);
         }
 
         @Override
@@ -428,9 +433,8 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
         public boolean run(ReadOnlyTask task) {
             long diff = task.getDate().date.getTime() - today.getTime().getTime();
-            return (0 >= TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS))
-                    &&
-                    (0 <= TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+            // TODO: need test
+            return daysToDue + 1 == TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
         }
     }
 
