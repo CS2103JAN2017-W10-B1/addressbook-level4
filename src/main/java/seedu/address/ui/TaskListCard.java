@@ -64,8 +64,8 @@ public class TaskListCard extends UiPart<Region> {
         startTime.setText("");
         startDate.setText("");
         if (task instanceof Event) {
-            startDate.setText("Start" + ((Event) task).getStartDate().getDisplayText());
-            startTime.setText("Start" + ((Event) task).getStartTime().getDisplayText());
+            startDate.setText(((Event) task).getStartDate().getDisplayText());
+            startTime.setText(((Event) task).getStartTime().getDisplayText());
         }
     }
 }

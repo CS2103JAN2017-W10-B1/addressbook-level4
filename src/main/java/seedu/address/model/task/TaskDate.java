@@ -285,4 +285,12 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
             return "Date: " + value;
         }
     }
+    //@@author A0147996E
+    public String getStartDisplayText() {
+        if (value.equals(" ") || value.equals("")) {
+            return "";
+        } else {
+            return "StartDate: " + value;
+        }
+    }
 }
