@@ -130,9 +130,12 @@ public class TestTask implements ReadOnlyTask {
     }
 
 //@@author A0147996E
-
     public void setFinished(boolean isFinished) {
-        this.isFinished = FinishProperty.FINISHED;
+        if (isFinished) {
+            this.isFinished = FinishProperty.FINISHED;
+        } else {
+            this.isFinished = FinishProperty.UNFINISHED;
+        }
     }
 
     @Override

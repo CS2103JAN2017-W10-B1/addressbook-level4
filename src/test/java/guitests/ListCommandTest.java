@@ -27,11 +27,21 @@ public class ListCommandTest extends TaskManagerGuiTest {
         //list favorite tasks in personal
         assertListResult("list favorite personal", td.gym);
     }
-
+    
     @Test
-    public void list_emptyList() {
-        commandBox.runCommand("clear");
-        assertListResult("list exercise"); // no results
+    public void list_finishedList () {
+        commandBox.runCommand("list all");
+        commandBox.runCommand("finish 1"); //finish assignment
+        td.assignment.setFinished(true);
+        assertListResult("list finished", td.assignment);
+        commandBox.runCommand("list");
+        commandBox.runCommand("finish 1");
+        commandBox.runCommand("finish 1");
+        commandBox.runCommand("finish 1");//finish gym, gym2, gym3
+        td.gym.setFinished(true);
+        td.gym2.setFinished(true);
+        td.gym3.setFinished(true);
+        assertListResult("list finished personal", td.gym, td.gym2, td.gym3);
     }
 
     @Test
@@ -41,6 +51,12 @@ public class ListCommandTest extends TaskManagerGuiTest {
 
         commandBox.runCommand("liststudy");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
+    }
+
+    @Test
+    public void list_emptyList() {
+        commandBox.runCommand("clear");
+        assertListResult("list exercise"); // no results
     }
 
     private void assertListResult(String command, TestTask... expectedHits) {
