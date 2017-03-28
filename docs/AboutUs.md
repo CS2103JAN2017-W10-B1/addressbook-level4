@@ -12,7 +12,7 @@ Role: Developer <br>
 * Aspects/tools in charge of: JUnit testing, Code quality
 * Features implemented:
    * [View tasks due within n days or due on the day after n days](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#27-view-certain-tasks-view)
-   * [List tasks ](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#25-listing-all-tasks--list)
+   * [List tasks](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#25-listing-all-tasks--list)
    * [Display help messages for commands](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#21-viewing-help--help)
 * Code written: [[functional code](A0143409J.md)][[test code](A0143409J.md)]
 * Other major contributions:
@@ -29,14 +29,13 @@ Role: Developer <br>
 
 * Components in charge of: [UI](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#22-ui-component)
 * Aspects/tools in charge of: GUITesting, SceneBuilder, Documentation
-* Features implemented:
-   * [List persons](https://github.com/se-edu/addressbook-level4/blob/master/docs/UserGuide.md#listing-all-persons--list)
-   * [Delete person](https://github.com/se-edu/addressbook-level4/blob/master/docs/UserGuide.md#deleting-a-person--delete)
+edu/addressbook-level4/blob/master/docs/UserGuide.md#deleting-a-person--delete)
 * Code written: [[functional code](A0147996E.md)][[test code](A0147996E.md)]
-* Other major contributions:
-  * Update UserGuide and Developer Guide [[#133](https://github.com/se-edu/addressbook-level4/pull/152) ]
+* Major contributions:
+  * Designer of UI and maintain all UI components
+  * Maintainer of UserGuide and Developer Guide
   * Set up collation[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/657cf3157bac077ae0ebe8c36bfe68d632a02063)]
-  * Generate jar file for V0.3 [[release](https://github.com/CS2103JAN2017-W10-B1/main/releases/tag/v0.3)]
+  * Generate jar file for V0.3 and V0.4 [[release](https://github.com/CS2103JAN2017-W10-B1/main/releases/tag/v0.3)][[release](https://github.com/CS2103JAN2017-W10-B1/main/releases/tag/v0.4)]
 
 -----
 
