@@ -42,7 +42,7 @@ public class UniqueTagListTest {
 
         assertTrue(tags1.contains(tag1));
         assertTrue(tags1.contains(tag2));
-        
+
         UniqueTagList newTester = new UniqueTagList(tester);
         Set<Tag> tags2 = newTester.toSet();
 
@@ -53,5 +53,20 @@ public class UniqueTagListTest {
 
         assertTrue(tags3.contains(tag1));
         assertTrue(tags3.contains(tag2));
+    }
+
+    @Test
+    public void equalTest() throws IllegalValueException {
+        Tag tag1 = new Tag("abc");
+        Tag tag2 = new Tag("test");
+        tester = new UniqueTagList(tag1, tag2);
+        Set<Tag> tags1 = tester.toSet();
+
+        assertTrue(tags1.contains(tag1));
+        assertTrue(tags1.contains(tag2));
+
+        UniqueTagList newTester = new UniqueTagList(tester);
+
+        assertTrue(newTester.equals(tester));
     }
 }
