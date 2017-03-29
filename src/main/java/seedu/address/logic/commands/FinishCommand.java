@@ -37,12 +37,9 @@ public class FinishCommand extends Command {
     public static final String MESSAGE_WRONG_TASK_INDEX = "This task already exists in the task manager.";
 
     public final int targetIndex;
-    private boolean isSuccess;
-    private Task task;
 
     public FinishCommand(int targetIndex) {
         this.targetIndex = targetIndex;
-        this.isSuccess = false;
     }
 
 
@@ -90,10 +87,7 @@ public class FinishCommand extends Command {
 
         try {
             model.updateTask(targetIndex - 1, taskToMark);
-            task = (Task) taskToMark;
-            isSuccess = true;
         } catch (DuplicateTaskException e) {
-            this.isSuccess = false;
             throw new CommandException(MESSAGE_WRONG_TASK_INDEX);
         }
 
