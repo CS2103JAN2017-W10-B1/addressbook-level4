@@ -138,14 +138,6 @@ public class TaskManager implements ReadOnlyTaskManager {
         } catch (DuplicateTagException e) {
             //TODO: deal after adding lists features
         }
-
-        // Create map with values = tag object references in the master list
-        // used for checking task tag references
-        final Map<Tag, Tag> masterTagObjects = new HashMap<>();
-        tags.forEach(tag -> masterTagObjects.put(tag, tag));
-
-        // Rebuild the list of task tags to point to the relevant tags in the master tag list.
-        task.setTag(masterTagObjects.get(task.getTag()));
     }
 
     /**

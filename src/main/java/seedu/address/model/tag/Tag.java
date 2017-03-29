@@ -73,7 +73,7 @@ public class Tag implements TaskField, Comparable<Tag> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Tag // instanceof handles nulls
-                && this.tagName.equals(((Tag) other).tagName)); // state check
+                && this.tagName.equalsIgnoreCase(((Tag) other).tagName)); // state check
     }
 
     @Override
@@ -90,7 +90,7 @@ public class Tag implements TaskField, Comparable<Tag> {
 
     @Override
     public int compareTo(Tag other) {
-        return this.tagName.compareTo(other.tagName);
+        return this.tagName.compareToIgnoreCase(other.tagName);
     }
 
     @Override
