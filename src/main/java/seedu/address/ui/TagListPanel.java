@@ -12,7 +12,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.events.ui.ListPanelSelectionChangedEvent;
+import seedu.address.commons.events.ui.TagPanelSelectionChangedEvent;
 import seedu.address.commons.util.FxViewUtil;
 import seedu.address.model.tag.Tag;
 
@@ -50,7 +50,7 @@ public class TagListPanel extends UiPart<Region> {
                 .addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
                         logger.fine("Selection in task list panel changed to : '" + newValue + "'");
-                        raise(new ListPanelSelectionChangedEvent(newValue));
+                        raise(new TagPanelSelectionChangedEvent(newValue));
                     }
                 });
     }

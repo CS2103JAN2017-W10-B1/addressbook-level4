@@ -12,5 +12,4 @@ public class CommandResult {
         assert feedbackToUser != null;
         this.feedbackToUser = feedbackToUser;
     }
-
 }
