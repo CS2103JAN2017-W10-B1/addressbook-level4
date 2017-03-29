@@ -24,7 +24,7 @@ public class UndoCommand extends Command {
 
     private AbleUndoCommand undoCommand;
     private boolean canUndo = false;
-    Stack<AbleUndoCommand> undoCommandList;
+    private Stack<AbleUndoCommand> undoCommandList;
 
     public UndoCommand(Stack<AbleUndoCommand> commandList, Stack<AbleUndoCommand> undoCommandList) {
         do {
