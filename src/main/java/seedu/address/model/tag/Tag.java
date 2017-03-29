@@ -1,8 +1,8 @@
 //@@author A0147984L
 package seedu.address.model.tag;
 
-
 import seedu.address.commons.exceptions.IllegalValueException;
+
 import seedu.address.model.task.TaskField;
 
 /**

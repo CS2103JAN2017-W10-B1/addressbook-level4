@@ -20,7 +20,6 @@ import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 import seedu.address.model.task.Venue;
 
-
 /**
  * Deletes a person identified using it's last displayed index from the address book.
  */
@@ -95,13 +94,13 @@ public class FinishCommand extends AbleUndoCommand {
 
         try {
             model.updateTask(targetIndex - 1, editedTask);
-            task = (Task)editedTask;
+            task = (Task) editedTask;
             isSuccess = true;
         } catch (DuplicateTaskException e) {
             this.isSuccess = false;
             try {
                 model.deleteTask(taskToMark);
-                task = (Task)editedTask;
+                task = (Task) editedTask;
                 isSuccess = true;
                 isDeleted = true;
             } catch (TaskNotFoundException e1) {

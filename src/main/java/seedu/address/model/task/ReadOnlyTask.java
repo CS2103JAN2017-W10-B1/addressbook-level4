@@ -39,7 +39,8 @@ public interface ReadOnlyTask {
                 && checkEqual(this.getTime(), other.getTime())
                 && checkEqual(this.getTag(), other.getTag())
                 && ((other.getFinished() == null && this.getFinished() == null)
-                        || (other.getFinished() != null && other.getFinished().equals(this.getFinished())))); // state checks here onwards
+                        || (other.getFinished() != null && other.getFinished().equals(this.getFinished()))));
+                // state checks here onwards
     }
     //@@ author A0147996E
     /**
@@ -64,7 +65,7 @@ public interface ReadOnlyTask {
     EventProperty getEventProperty();
 
     /*
-     * To ensure there is no null pointer exception when comparing two TaskFields
+     * Ensure there is no null pointer exception when comparing two TaskFields
      */
     default boolean checkEqual(TaskField mine, TaskField other) {
         if (mine == null) {
@@ -73,6 +74,7 @@ public interface ReadOnlyTask {
             return mine.equals(other);
         }
     }
+
     /**
      * Formats the person as text, showing all contact details.
      */

@@ -1,7 +1,6 @@
 //@@author A0147984L
 package seedu.address.model.task;
 
-
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
