@@ -38,12 +38,7 @@ public class SelectCommand extends Command {
         }
 
         EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex - 1));
-<<<<<<< HEAD
-        return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, targetIndex));
-=======
         return new CommandResult(String.format(MESSAGE_SELECT_TASK_SUCCESS, targetIndex));
-
->>>>>>> origin/master
     }
 
     @Override
