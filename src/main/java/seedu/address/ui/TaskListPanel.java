@@ -72,6 +72,7 @@ public class TaskListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
+                taskListView.scrollTo(getIndex() + 1);
                 setGraphic(new TaskListCard(task, getIndex() + 1).getRoot());
             }
         }

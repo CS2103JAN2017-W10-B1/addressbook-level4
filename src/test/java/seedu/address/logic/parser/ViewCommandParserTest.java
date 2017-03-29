@@ -13,6 +13,7 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.ViewOnCommand;
 
 public class ViewCommandParserTest {
 
@@ -36,11 +37,44 @@ public class ViewCommandParserTest {
         Field field = ViewCommand.class.getDeclaredField("numberOfDays");
         field.setAccessible(true);
 
-        System.out.println(Integer.valueOf("10"));
-
         ViewCommand viewCommand =  (ViewCommand) ViewCommandParser.parse("next/10");
 
         assertEquals(field.get(viewCommand), "10");
+    }
+
+    @Test
+    public void viewNextInvalidIntTest() throws Exception {
+
+        Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
+        field.setAccessible(true);
+
+        IncorrectCommand incorrectCommand =  (IncorrectCommand) ViewCommandParser.parse("next/abc");
+
+        assertEquals(field.get(incorrectCommand), String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void viewOnValidIntTest() throws Exception {
+
+        Field field = ViewOnCommand.class.getDeclaredField("numberOfDays");
+        field.setAccessible(true);
+
+        ViewOnCommand viewOnCommand =  (ViewOnCommand) ViewCommandParser.parse("on/10");
+
+        assertEquals(field.get(viewOnCommand), "10");
+    }
+
+    @Test
+    public void viewOnInvalidIntTest() throws Exception {
+
+        Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
+        field.setAccessible(true);
+
+        IncorrectCommand incorrectCommand =  (IncorrectCommand) ViewCommandParser.parse("on/abc");
+
+        assertEquals(field.get(incorrectCommand), String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
     }
 
     @Test

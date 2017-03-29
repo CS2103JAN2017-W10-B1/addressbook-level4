@@ -1,3 +1,4 @@
+//@@author A0147984L
 package seedu.address.model.task;
 
 import seedu.address.model.tag.Tag;
@@ -27,20 +28,19 @@ public interface ReadOnlyTask {
     String getFinishedText();
     boolean isEvent();
 
-    //@@author A0147984L
     /**
      * Returns true if both have the same state. (interfaces cannot override equals)
      */
     default boolean isSameStateAs(ReadOnlyTask other) {
-        if (other.isFinished() == true || this.isFinished() == true) {
-            return false;
-        } // finished task are always treated as different
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                 && checkEqual(this.getName(), other.getName())
                 && checkEqual(this.getDate(), other.getDate())
                 && checkEqual(this.getTime(), other.getTime())
-                && checkEqual(this.getTag(), other.getTag())); // state checks here onwards
+                && checkEqual(this.getTag(), other.getTag())
+                && ((other.getFinished() == null && this.getFinished() == null)
+                        || (other.getFinished() != null && other.getFinished().equals(this.getFinished()))));
+                // state checks here onwards
     }
     //@@ author A0147996E
     /**
@@ -65,7 +65,7 @@ public interface ReadOnlyTask {
     EventProperty getEventProperty();
 
     /*
-     * To ensure there is no null pointer exception when comparing two TaskFields
+     * Ensure there is no null pointer exception when comparing two TaskFields
      */
     default boolean checkEqual(TaskField mine, TaskField other) {
         if (mine == null) {
@@ -74,6 +74,7 @@ public interface ReadOnlyTask {
             return mine.equals(other);
         }
     }
+
     /**
      * Formats the person as text, showing all contact details.
      */

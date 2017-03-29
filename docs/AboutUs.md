@@ -9,12 +9,12 @@ We are a team based in the [School of Computing, National University of Singapor
 Role: Developer <br>
 
 * Components in charge of: [Commons](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#26-common-classes)
-* Aspects/tools in charge of: JUnit testing, Code quality
+* Aspects/tools in charge of: JUnit testing, Travis, Codacy, Coveralls
 * Features implemented:
    * [View tasks due within n days or due on the day after n days](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#27-view-certain-tasks-view)
    * [List tasks](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#25-listing-all-tasks--list)
    * [Display help messages for commands](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#21-viewing-help--help)
-* Code written: [[functional code](A0143409J.md)][[test code](A0143409J.md)]
+* Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/collated/main/A0143409J.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0143409J.md)]
 * Other major contributions:
   * Apply Dependency Inversion Principle by TaskField inteface[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/cf16109842cf3476b1111f9fab33de78976f2980)]
   * Apply Singleton to commandParsers[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/cfe0a0c5bb6462e30a509931db307d4391709353)]
@@ -29,8 +29,7 @@ Role: Developer <br>
 
 * Components in charge of: [UI](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#22-ui-component)
 * Aspects/tools in charge of: GUITesting, SceneBuilder, Documentation
-edu/addressbook-level4/blob/master/docs/UserGuide.md#deleting-a-person--delete)
-* Code written: [[functional code](A0147996E.md)][[test code](A0147996E.md)]
+* Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/main/A0147996E.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/testA0147996E.md)]
 * Major contributions:
   * Designer of UI and maintain all UI components
   * Maintainer of UserGuide and Developer Guide
@@ -42,14 +41,30 @@ edu/addressbook-level4/blob/master/docs/UserGuide.md#deleting-a-person--delete)
 #### [Jong Xue Min Shermine Ruth](https://github.com/ShermineJong)
 <img src="images/sherminejong.jpg" width="150"><br>
 Role: Developer <br>
-Responsibilities: Scheduling and deadlines checking, in charge of Logic and Storage
+
+* Components in charge of: [Logic](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#23-logic-component)[Storage](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#25-storage-component)
+* Aspects/tools in charge of: Github, Eclipse
+* Features implemented:
+   * [Adding a typical task](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#22-adding-a-typical-task-add)
+   * [Edit task(s)](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#26-editing-tasks--edit)
+   * [Delete task(s)](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#28-deleting-tasks-or-lists--delete)
+   * [Finish task(s)](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#24-finishing-tasks--finish)
+   * [Undo latest command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#210-undo-latest-command-undo)
+   * [Redo previous `undo` command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#211-reverse-previous-undo-command-redo)
+* Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/main/A0138474X.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0138474X.md)]
 
 -----
 
 #### [Mou Ziyang](http://github.com/mouziyanglovestudy)
 <img src="images/MouZiyang.jpg" width="150"><br>
 Role: Developer <br>
-Responsibilities: Integration and Code quality, in charge of Model
+
+* Components in charge of: [Model](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#23-logic-component)
+* Aspects/tools in charge of: Github, Eclipse
+* Features implemented:
+   * [Add an event](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#23-adding-an-event-add)
+   * [Allow user to enter date in variable manners](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#22-adding-a-typical-task-add)
+* Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/main/A0147984L.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0147984L.md)]
 
 -----
 

@@ -14,7 +14,7 @@ import seedu.address.testutil.TestUtil;
 public class AddCommandTest extends TaskManagerGuiTest {
 
     @Test
-    public void add() {
+    public void add_task() {
         //Start testing with an empty list
         TestTask[] currentList = {};
         commandBox.runCommand("clear");
@@ -55,7 +55,17 @@ public class AddCommandTest extends TaskManagerGuiTest {
         //add to empty list
         commandBox.runCommand("clear");
         assertAddSuccess(td.assignment);
-
+    }
+/*
+    @Test
+    public void add_event() {
+      //Start testing with an empty list
+        TestEvent[] currentList = {};
+        commandBox.runCommand("clear");
+    }
+*/
+    @Test
+    public void invalid_command () {
         //unknown command
         commandBox.runCommand("adds homework");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);

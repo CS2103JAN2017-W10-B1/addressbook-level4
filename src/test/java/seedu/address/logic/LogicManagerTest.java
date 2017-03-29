@@ -30,6 +30,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -242,10 +243,10 @@ public class LogicManagerTest {
         // prepare address book state
         helper.addToModel(model, 2);
 
-        /*assertCommandSuccess("list",
-                ListCommand.MESSAGE_SUCCESS,
+        assertCommandSuccess("list",
+                ListCommand.MESSAGE_LIST_SUCCESS,
                 expectedAB,
-                expectedList);*/
+                expectedList);
     }
 
 
@@ -303,9 +304,8 @@ public class LogicManagerTest {
         TaskManager expectedAB = helper.generateTaskManager(threePersons);
         helper.addToModel(model, threePersons);
 
-
         /*assertCommandSuccess("select 2",
-                String.format(SelectCommand.MESSAGE_SELECT_PERSON_SUCCESS, 2),
+                String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, 2),
                 expectedAB,
                 expectedAB.getTaskList());
         assertEquals(1, targetedJumpIndex);

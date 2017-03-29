@@ -14,10 +14,15 @@ import seedu.address.testutil.TestUtil;
 public class FinishCommandTest extends TaskManagerGuiTest {
     @Test
     public void finish() {
-        //finish unfinished task
+        //finish unfinished task in list all
         TestTask[] currentList = td.getTypicalTasks();
         int targetIndex = 1;
         assertFinishSuccess(targetIndex, currentList);
+
+        //finish tasks under a specific list
+        commandBox.runCommand("list personal");
+        targetIndex = 1;
+        assertFinishSuccess(targetIndex, new TestTask[] {td.gym, td.gym2, td.gym3, td.date});
 
         //cannot finish task that has already been marked as finished
         currentList = td.getTypicalTasks();

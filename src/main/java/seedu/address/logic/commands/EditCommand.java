@@ -34,9 +34,9 @@ public class EditCommand extends AbleUndoCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the last task listing. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) n/TASKNAME [due/DUEDATE] [dueT/DUETIME] "
+            + "Parameters: INDEX (must be a positive integer) n/TASKNAME [due/DUEDATE] [dueT/DUETIME]\n"
             + "[start/STARTDATE] [startT/STARTTIME] [#LISTNAME] "
-            + "[d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f]"
+            + "[d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f]\n"
             + "Example: " + COMMAND_WORD + " 1 due/17/3/2017 #CS2103T";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
@@ -85,6 +85,7 @@ public class EditCommand extends AbleUndoCommand {
         try {
             Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
             model.updateTask(filteredTaskListIndex, editedTask);
+            this.isSuccess = true;
             this.task = editedTask;
         } catch (UniqueTaskList.DuplicateTaskException dpe) {
             this.isSuccess = false;
@@ -144,8 +145,8 @@ public class EditCommand extends AbleUndoCommand {
             isFavourite = taskToEdit.isFavorite();
         }
         if (editTaskDescriptor.updatedEvent(editTaskDescriptor.getStart()) || taskToEdit.isEvent()) {
-            if (taskToEdit.isEvent() && (editTaskDescriptor.getStart().isPresent() &&
-                    !editTaskDescriptor.getStart().get().getValue().isEmpty())) {
+            if (taskToEdit.isEvent() && !(editTaskDescriptor.getStart().isPresent() &&
+                    editTaskDescriptor.getStart().get().getValue().isEmpty())) {
                 TaskDate updatedStartDate = editTaskDescriptor.getStart()
                         .orElseGet(((ReadOnlyEvent) taskToEdit)::getStartDate);
                 TaskTime updatedStartTime = editTaskDescriptor.getStartTime()

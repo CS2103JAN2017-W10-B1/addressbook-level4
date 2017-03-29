@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -89,7 +88,7 @@ public class JsonUserPrefsStorageTest {
     }
 
     @Test
-    public void saveUserPrefs_nullFilePath_assertionFailure() throws IOException {
+    public void saveUserPrefsNullFilePathAssertionFailure() throws IOException {
         thrown.expect(AssertionError.class);
         saveUserPrefs(new UserPrefs(), null);
     }

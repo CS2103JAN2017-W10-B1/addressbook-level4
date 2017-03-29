@@ -46,6 +46,7 @@ public class AddCommand extends AbleUndoCommand {
     public AddCommand(String name, String date, String startDate, String time, String startTime,
             String tag, String description, String venue, String priority, boolean isFavourite, boolean isEvent)
             throws IllegalValueException {
+        //TODO: avoid long parameter list
 
         if (isEvent) {
             if (!startDate.isEmpty()) {

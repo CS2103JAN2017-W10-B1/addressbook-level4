@@ -7,12 +7,12 @@ import seedu.address.model.tag.Tag;
 /**
  * Represents a selection change in the Task List Panel
  */
-public class ListPanelSelectionChangedEvent extends BaseEvent {
+public class TagPanelSelectionChangedEvent extends BaseEvent {
 
 
     private final Tag newSelection;
 
-    public ListPanelSelectionChangedEvent(Tag newSelection) {
+    public TagPanelSelectionChangedEvent(Tag newSelection) {
         this.newSelection = newSelection;
     }
 

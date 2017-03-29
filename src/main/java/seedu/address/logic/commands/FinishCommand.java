@@ -17,13 +17,13 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
+import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 import seedu.address.model.task.Venue;
-
 
 /**
  * Deletes a person identified using it's last displayed index from the address book.
  */
-public class FinishCommand extends Command {
+public class FinishCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "finish";
 
@@ -38,11 +38,13 @@ public class FinishCommand extends Command {
 
     public final int targetIndex;
     private boolean isSuccess;
+    private boolean isDeleted;
     private Task task;
 
     public FinishCommand(int targetIndex) {
         this.targetIndex = targetIndex;
         this.isSuccess = false;
+        this.isDeleted = false;
     }
 
 
@@ -56,6 +58,8 @@ public class FinishCommand extends Command {
         }
 
         ReadOnlyTask taskToMark = lastShownList.get(targetIndex - 1);
+
+        ReadOnlyTask editedTask = null;
 
         if (taskToMark.isFinished()) {
             throw new CommandException(MESSAGE_FINISH_TASK_MARKED);
@@ -74,7 +78,7 @@ public class FinishCommand extends Command {
                 TaskDate updatedStartDate = ((Event) taskToMark).getStartDate();
                 TaskTime updatedStartTime = ((Event) taskToMark).getStartTime();
                 try {
-                    taskToMark = new Event(updatedName, updatedStartDate, updatedStartTime,
+                    editedTask = new Event(updatedName, updatedStartDate, updatedStartTime,
                             updatedDueDate, updatedDueTime, updatedDescription, updatedTag,
                             updatedVenue, updatedPriority, updatedFavorite, updatedFinish);
                 } catch (IllegalValueException e) {
@@ -82,19 +86,26 @@ public class FinishCommand extends Command {
                     e.printStackTrace();
                 }
             } else {
-                taskToMark  = new Task(
+                editedTask  = new Task(
                         updatedName, updatedDueDate, updatedDueTime, updatedDescription,
                         updatedTag, updatedVenue, updatedPriority, updatedFavorite, updatedFinish);
             }
         }
 
         try {
-            model.updateTask(targetIndex - 1, taskToMark);
-            task = (Task) taskToMark;
+            model.updateTask(targetIndex - 1, editedTask);
+            task = (Task) editedTask;
             isSuccess = true;
         } catch (DuplicateTaskException e) {
             this.isSuccess = false;
-            throw new CommandException(MESSAGE_WRONG_TASK_INDEX);
+            try {
+                model.deleteTask(taskToMark);
+                task = (Task) editedTask;
+                isSuccess = true;
+                isDeleted = true;
+            } catch (TaskNotFoundException e1) {
+                assert false : "The target person cannot be missing";
+            }
         }
 
         return new CommandResult(String.format(MESSAGE_FINISH_TASK_SUCCESS, taskToMark));
@@ -102,7 +113,58 @@ public class FinishCommand extends Command {
 
     @Override
     public boolean isUndoable() {
-        return false;
+        return true;
+    }
+
+
+    @Override
+    public CommandResult executeUndo(String message) throws CommandException {
+        if (!isDeleted) {
+            try {
+                model.deleteTask(task);
+            } catch (TaskNotFoundException e) {
+                assert false : "The target task cannot be missing";
+            }
+        }
+        Task oldTask = null;
+        FinishProperty finish;
+        if (task.isFinished()) {
+            finish = FinishProperty.UNFINISHED;
+        } else {
+            finish = FinishProperty.FINISHED;
+        }
+        if (task.isEvent()) {
+            try {
+                oldTask = new Event(task.getName(), ((Event) task).getStartDate(), ((Event) task).getStartTime(),
+                        task.getDate(), task.getTime(), task.getDescription(), task.getTag(), task.getVenue(),
+                        task.getPriority(), task.isFavorite(), finish);
+            } catch (IllegalValueException e) {
+                assert false : "The event must be valid";
+            }
+        } else {
+            oldTask = new Task(task.getName(), task.getDate(), task.getTime(), task.getDescription(), task.getTag(),
+                    task.getVenue(), task.getPriority(), task.isFavorite(), finish);
+        }
+        try {
+            model.addTask(oldTask);
+            isDeleted = false;
+            task = oldTask;
+        } catch (DuplicateTaskException e) {
+            assert false : "There must not be duplicated task";
+        }
+        model.updateFilteredListToShowAllUnfinishedTasks();
+        this.isSuccess = true;
+        return new CommandResult(message);
+    }
+
+
+    @Override
+    public Command getUndoCommand() throws IllegalValueException {
+        if (isSuccess) {
+            return this;
+        } else {
+            return new IncorrectCommand(null);
+        }
     }
 }
 

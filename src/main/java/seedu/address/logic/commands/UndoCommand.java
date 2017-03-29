@@ -22,13 +22,9 @@ public class UndoCommand extends Command {
             + "Parameters: [LISTNAME/LISTINDEX]\n"
             + "Example: " + COMMAND_WORD + " CS2103";
 
-    private static final String LIST_SEPARATOR = ", ";
-
-    private static final String MESSAGE_UNSUCCESSFUL = null;
-
     private AbleUndoCommand undoCommand;
     private boolean canUndo = false;
-    Stack<AbleUndoCommand> undoCommandList;
+    private Stack<AbleUndoCommand> undoCommandList;
 
     public UndoCommand(Stack<AbleUndoCommand> commandList, Stack<AbleUndoCommand> undoCommandList) {
         do {
@@ -47,7 +43,6 @@ public class UndoCommand extends Command {
                 }
             }
         } while(canUndo);
-
     }
 
     @Override
