@@ -23,7 +23,7 @@ public class FinishCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("list personal");
         targetIndex = 1;
         assertFinishSuccess(targetIndex, new TestTask[] {td.gym, td.gym2, td.gym3, td.date});
-        
+
         //cannot finish task that has already been marked as finished
         currentList = td.getTypicalTasks();
         targetIndex = 1;
