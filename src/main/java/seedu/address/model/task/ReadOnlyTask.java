@@ -1,3 +1,4 @@
+//@@author A0147984L
 package seedu.address.model.task;
 
 import seedu.address.model.tag.Tag;
@@ -27,7 +28,6 @@ public interface ReadOnlyTask {
     String getFinishedText();
     boolean isEvent();
 
-    //@@author A0147984L
     /**
      * Returns true if both have the same state. (interfaces cannot override equals)
      */
