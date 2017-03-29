@@ -59,7 +59,7 @@ public class FinishCommand extends AbleUndoCommand {
         }
 
         ReadOnlyTask taskToMark = lastShownList.get(targetIndex - 1);
-        
+
         ReadOnlyTask editedTask = null;
 
         if (taskToMark.isFinished()) {
@@ -136,14 +136,14 @@ public class FinishCommand extends AbleUndoCommand {
         }
         if (task.isEvent()) {
             try {
-                oldTask = new Event(task.getName(), ((Event) task).getStartDate(), ((Event) task).getStartTime(), 
-                        task.getDate(), task.getTime(), task.getDescription(), task.getTag(), task.getVenue(), 
+                oldTask = new Event(task.getName(), ((Event) task).getStartDate(), ((Event) task).getStartTime(),
+                        task.getDate(), task.getTime(), task.getDescription(), task.getTag(), task.getVenue(),
                         task.getPriority(), task.isFavorite(), finish);
             } catch (IllegalValueException e) {
                 assert false : "The event must be valid";
             }
         } else {
-            oldTask = new Task(task.getName(), task.getDate(), task.getTime(), task.getDescription(), task.getTag(), 
+            oldTask = new Task(task.getName(), task.getDate(), task.getTime(), task.getDescription(), task.getTag(),
                     task.getVenue(), task.getPriority(), task.isFavorite(), finish);
         }
         try {
