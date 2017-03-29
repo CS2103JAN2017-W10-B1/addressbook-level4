@@ -14,7 +14,7 @@ import seedu.address.model.task.Venue;
  * A mutable event object. For testing only.
  */
 public class TestEvent extends TestTask {
-   
+
     private Name name;
     private TaskDate date;
     private TaskTime time;
