@@ -2,7 +2,6 @@
 package seedu.address.testutil;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.testutil.TestEvent;
 
 public class EventBuilder extends TaskBuilder {
 
