@@ -42,7 +42,7 @@ Role: Developer <br>
 <img src="images/sherminejong.jpg" width="150"><br>
 Role: Developer <br>
 
-* Components in charge of: [Logic](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#23-logic-component)[Storage] (https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#25-storage-component)
+* Components in charge of: [Logic](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#23-logic-component)[Storage](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#25-storage-component)
 * Aspects/tools in charge of: Github, Eclipse
 * Features implemented:
    * [Adding a typical task](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#22-adding-a-typical-task-add)
@@ -52,8 +52,6 @@ Role: Developer <br>
    * [Undo latest command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#210-undo-latest-command-undo)
    * [Redo previous `undo` command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#211-reverse-previous-undo-command-redo)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/main/A0138474X.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0138474X.md)]
-* Other major contributions:
-  * 
 
 -----
 
@@ -61,14 +59,12 @@ Role: Developer <br>
 <img src="images/MouZiyang.jpg" width="150"><br>
 Role: Developer <br>
 
-* Components in charge of: [Model](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#23-logic-component)[Storage] (https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#25-storage-component)
+* Components in charge of: [Model](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#23-logic-component)
 * Aspects/tools in charge of: Github, Eclipse
 * Features implemented:
    * [Add an event](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#23-adding-an-event-add)
    * [Allow user to enter date in variable manners](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#22-adding-a-typical-task-add)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/main/A0147984L.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0147984L.md)]
-* Other major contributions:
-  * 
 
 -----
 
