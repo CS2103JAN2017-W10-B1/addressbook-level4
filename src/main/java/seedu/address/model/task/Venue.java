@@ -70,7 +70,7 @@ public class Venue implements TaskField, Comparable<Venue> {
 //@@author A0143409J
     @Override
     public String getDisplayText() {
-        if (value.equals(" ") || value.equals("")) {
+        if (" ".equals(value) || "".equals(value)) {
             return "";
         } else {
             return "Venue: " + value;
