@@ -56,7 +56,7 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
      * Returns true if a given string is a valid person email.
      */
     public static boolean isValidTime(String test) {
-        if (test.equals("")) {
+        if ("".equals(test)) {
             return true;
         }
         if (!test.matches(TIME_VALIDATION_REGEX)) {
@@ -118,7 +118,7 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
 //@@author A0143409J
     @Override
     public String getDisplayText() {
-        if ((value.equals(" ")) || (value.equals(""))) {
+        if (" ".equals(value) || "".equals(value)) {
             return "";
         } else {
             return "Time: " + value;
@@ -126,7 +126,7 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
     }
  //@@author A0147996E
     public String getStartDisplayText() {
-        if ((value.equals(" ")) || (value.equals(""))) {
+        if (" ".equals(value) || "".equals(value)) {
             return "";
         } else {
             return "StartTime: " + value;

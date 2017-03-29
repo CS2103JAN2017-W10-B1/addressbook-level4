@@ -93,13 +93,13 @@ public class Priority implements TaskField, Comparable<Priority> {
 //@@author A0147996E
     @Override
     public String getDisplayText() {
-        if (value.equals(" ") || value.equals("")) {
+        if (" ".equals(value) || "".equals(value)) {
             return "";
-        } else if (value.equals("1")) {
+        } else if ("1".equals(value)) {
             return "Priority: " + "\u25CF";
-        } else if (value.equals("2")) {
+        } else if ("2".equals(value)) {
             return "Priority: " + "\u25CF \u25CF";
-        } else if (value.equals("3")) {
+        } else if ("3".equals(value)) {
             return "Priority: " + "\u25CF \u25CF \u25CF";
         } else  {
             throw new IllegalStateException("Priority is illegal\n");

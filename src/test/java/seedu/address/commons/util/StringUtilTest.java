@@ -135,7 +135,6 @@ public class StringUtilTest {
     /*
      * Equivalence Partitions: null, valid throwable object
      */
-
     @Test
     public void getDetailsExceptionGiven() {
         assertThat(StringUtil.getDetails(new FileNotFoundException("file not found")),
@@ -143,7 +142,7 @@ public class StringUtilTest {
     }
 
     @Test
-    public void getDetailsNullGiven_assertionError() {
+    public void getDetailsNullGivenAssertionError() {
         thrown.expect(AssertionError.class);
         StringUtil.getDetails(null);
     }

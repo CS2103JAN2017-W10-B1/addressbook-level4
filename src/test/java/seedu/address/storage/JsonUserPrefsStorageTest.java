@@ -88,7 +88,7 @@ public class JsonUserPrefsStorageTest {
     }
 
     @Test
-    public void saveUserPrefs_nullFilePath_assertionFailure() throws IOException {
+    public void saveUserPrefsNullFilePathAssertionFailure() throws IOException {
         thrown.expect(AssertionError.class);
         saveUserPrefs(new UserPrefs(), null);
     }
