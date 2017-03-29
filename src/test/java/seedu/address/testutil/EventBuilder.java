@@ -76,7 +76,7 @@ public class EventBuilder extends TaskBuilder {
         this.event.setFinished(isFinished);
         return this;
     }
-    
+
     public EventBuilder withEvent(boolean isEvent) throws IllegalValueException {
         this.event.setEvent(isEvent);
         return this;
