@@ -12,8 +12,9 @@ import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
 public class FinishCommandTest extends TaskManagerGuiTest {
+
     @Test
-    public void finish() {
+    public void finishValidTest() {
         //finish unfinished task in list all
         TestTask[] currentList = td.getTypicalTasks();
         int targetIndex = 1;
