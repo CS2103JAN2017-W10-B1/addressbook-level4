@@ -57,7 +57,7 @@ public class TaskListPanelHandle extends GuiHandle {
     public boolean isListMatching(int startPosition, ReadOnlyTask... tasks) throws IllegalArgumentException {
         if (tasks.length + startPosition != getListView().getItems().size()) {
             throw new IllegalArgumentException("List size mismatched\n" +
-                    "Expected " + (getListView().getItems().size() - 1) + " tasks\n");
+                    (tasks.length + startPosition) + " compared to " +  getListView().getItems().size());
         }
         //The order of the task list should be ordered first by date then by priority
         assertTrue(this.containsInOrder(startPosition, tasks));
