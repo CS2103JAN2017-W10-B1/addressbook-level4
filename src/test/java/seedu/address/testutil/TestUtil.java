@@ -320,6 +320,12 @@ public class TestUtil {
         return sort(listOfTasks.toArray(new TestTask[listOfTasks.size()]));
     }
 
+    public static TestTask[] addEventsToList(final TestTask[] tasks, TestEvent... eventsToAdd) {
+        List<TestTask> listOfTasks = asList(tasks);
+        listOfTasks.addAll(asList(eventsToAdd));
+        return sort(listOfTasks.toArray(new TestTask[listOfTasks.size()]));
+    }
+
     public static TestTask[] sort(TestTask[] taskArray) {
         List<TestTask> list = asList(taskArray);
         Collections.sort(list, (TestTask t1, TestTask t2) -> t1.getTag().compareTo(t2.getTag()));
