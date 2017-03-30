@@ -95,7 +95,8 @@ public class TaskListPanelHandle extends GuiHandle {
         // Return false if any of the tasks doesn't match
         for (int i = 0; i < tasks.length; i++) {
             if (!tasksInList.get(startPosition + i).isSameCardAs(tasks[i])) {
-                System.out.println(tasksInList.get(startPosition + i).getAsText() + " compared to " + tasks[i].getAsText());
+                System.out.println(tasksInList.get(startPosition + i).getAsText()
+                        + " compared to " + tasks[i].getAsText());
                 return false;
             }
         }
