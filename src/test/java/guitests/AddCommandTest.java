@@ -60,6 +60,7 @@ public class AddCommandTest extends TaskManagerGuiTest {
     @Test
     public void addEventToList() {
         //Start testing with an empty list
+        commandBox.runCommand("clear");
         TestTask[] currentList = {};
 
         //add an event to current task list
