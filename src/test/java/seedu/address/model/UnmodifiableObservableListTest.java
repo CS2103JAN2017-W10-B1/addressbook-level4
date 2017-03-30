@@ -39,7 +39,7 @@ public class UnmodifiableObservableListTest {
     }
 
     @Test
-    public void mutatingMethods_disabled() {
+    public void mutatingMethodsDisabled() {
 
         final Class<UnsupportedOperationException> ex = UnsupportedOperationException.class;
 

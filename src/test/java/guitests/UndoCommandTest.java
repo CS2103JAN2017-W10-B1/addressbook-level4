@@ -12,6 +12,7 @@ import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
 public class UndoCommandTest extends TaskManagerGuiTest {
+
     @Test
     public void finishUndoTest() {
         //add some events in first

@@ -19,7 +19,7 @@ public class ViewCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void view_invalidCommand_fail() {
+    public void viewInvalidCommandFail() {
         commandBox.runCommand("views next/10");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
 
