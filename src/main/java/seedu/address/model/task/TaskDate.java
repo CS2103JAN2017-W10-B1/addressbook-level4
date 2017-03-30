@@ -80,9 +80,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
             }
             this.date = current.getTime();
             this.isPastDue = false;
-            this.value = current.get(Calendar.DAY_OF_MONTH) + "/"
-                    + (current.get(Calendar.MONTH) + 1) + "/"
-                    + current.get(Calendar.YEAR);
+            this.value = getDateString(current);
         } else if (isTodayOrTomorrow(trimmedDate)) {
             int incre = todayOrTomorrow(trimmedDate);
             Calendar current = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
@@ -90,11 +88,9 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
                 incre = incre - 1;
                 current.add(Calendar.DATE, 1);
             }
-            this.date = current.getTime();
             this.isPastDue = false;
-            this.value = current.get(Calendar.DAY_OF_MONTH) + "/"
-                    + (current.get(Calendar.MONTH) + 1) + "/"
-                    + current.get(Calendar.YEAR);
+            this.date = current.getTime();
+            this.value = getDateString(current);
         } else {
             try {
                 this.date = "".equals(trimmedDate) ?
@@ -108,6 +104,12 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
                     this.date.getTime() - today.getTime().getTime(), TimeUnit.MILLISECONDS) < 0;
             this.value = "".equals(trimmedDate) ? trimmedDate : parseDate(trimmedDate);
         }
+    }
+
+    public static String getDateString(Calendar current) {
+        return current.get(Calendar.DAY_OF_MONTH) + "/"
+                + (current.get(Calendar.MONTH) + 1) + "/"
+                + current.get(Calendar.YEAR);
     }
 
     /**
@@ -285,6 +287,23 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
             return "";
         } else {
             return "Date: " + value;
+        }
+    }
+
+    public int compareToDay(TaskDate other) {
+        if ("".equals(this.value)) {
+            if ("".equals(other.value)) {
+                return 0;
+            } else {
+                return INF;
+            }
+        } else {
+            if ("".equals(other.value)) {
+                return -INF;
+            } else {
+                long diff = this.date.getTime() - other.date.getTime();
+                return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+            }
         }
     }
 
