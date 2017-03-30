@@ -21,7 +21,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
     private TestTask[] expectedTasksList = td.getTypicalTasks();
 
-/*    @Test
+    @Test
     public void editAllFieldsSpecifiedSuccess() throws Exception {
         String detailsToEdit = "n/lecture due/10/05/2017 dueT/16:00 #study d/Interesting module @I3 p/3 *u";
         int taskManagerIndex = 1;
@@ -30,7 +30,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
                 .withTime("16:00").withDescription("Interesting module").withFinished(false).
                 withVenue("I3").withPriority("3").withFavorite(false).build();
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
-    }*/
+    }
     @Test
     public void editTaskToBecomeEvent() throws Exception {
         String detailsToEdit = "start/04/05 startT/10:00";
@@ -50,7 +50,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
         eventToAdd = te.cs2103;
         commandBox.runCommand(eventToAdd.getAddCommand());
     }
-/*    @Test
+    @Test
     public void editSomeFieldsSpecifiedSuccess() throws Exception {
         String detailsToEdit = "due/10/05/2017 #newlist dueT/16:35 d/Random description p/trivial";
         int taskManagerIndex = 2;
@@ -106,7 +106,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("edit 1 p/5");
         assertResultMessage(Priority.MESSAGE_PRIORITY_CONSTRAINTS);
     }
-*/
+
     /**
      * Checks whether the edited Task has the correct updated details.
      *
