@@ -58,9 +58,9 @@ public class AddCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void add_event_to_taskList() {
+    public void addEventToList() {
         //Start testing with an empty list
-        TestTask[] currentList = td.getTypicalTasks();
+        TestTask[] currentList = {};
 
         //add an event to current task list
         TestEvent eventToAdd = te.date;
