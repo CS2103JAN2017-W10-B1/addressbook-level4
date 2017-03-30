@@ -33,9 +33,13 @@ public class FinishCommandTest extends TaskManagerGuiTest {
         assertFinishSuccess(targetIndex, new TestTask[] {td.gym, te.gym, td.gym2, td.gym3, td.date});
         targetIndex = 2;
         assertFinishSuccess(targetIndex, new TestTask[] {te.gym, td.gym2, td.gym3, td.date});
+    }
 
+    @Test
+    public void finishInvalidTest() {
         //cannot finish task that has already been marked as finished
-        targetIndex = 1;
+        int targetIndex = 1;
+        TestTask[] currentList = td.getTypicalTasks();
         commandBox.runCommand("finish " + targetIndex);
         commandBox.runCommand("list all");
         commandBox.runCommand("finish " + targetIndex);
@@ -43,7 +47,6 @@ public class FinishCommandTest extends TaskManagerGuiTest {
 
         //invalid command, index must be positive integer and must not exceed current list length
         int maxIndex = currentList.length;
-        System.out.println(targetIndex + "I am here");
         commandBox.runCommand("finish " + (maxIndex + 2));
         assertResultMessage(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
 
