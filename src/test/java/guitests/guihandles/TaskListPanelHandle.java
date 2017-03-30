@@ -61,6 +61,14 @@ public class TaskListPanelHandle extends GuiHandle {
         }
         //The order of the task list should be ordered first by date then by priority
         assertTrue(this.containsInOrder(startPosition, tasks));
+        for (int i = 0; i < tasks.length; i++) {
+            final int scrollTo = i + startPosition;
+            guiRobot.interact(() -> getListView().scrollTo(scrollTo));
+            guiRobot.sleep(200);
+            if (!TestUtil.compareCardAndTask(getTaskCardHandle(startPosition + i), tasks[i])) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -95,16 +103,17 @@ public class TaskListPanelHandle extends GuiHandle {
     /**
      * Navigates the listview to display and select the task.
      */
-    public TaskCardHandle navigateToTask(TestTask testTask) {
+    public boolean navigateToTask(TestTask testTask) {
         guiRobot.sleep(500); //Allow a bit of time for the list to be updated
 
         List<ReadOnlyTask> tasksInList = getListView().getItems();
         for (int i = 0; i < tasksInList.size(); i++) {
-            System.out.println(testTask.getFinishedText() + " compared to " + tasksInList.get(i).getFinishedText());
             if (tasksInList.get(i).isSameCardAs(testTask)) {
-                return getTaskCardHandle(i);
+                //System.out.println(tasksInList.get(i).toString() + " compared to " + testTask.getAsText());
+                //System.out.println("Card is found!\n");
+                return true;
             }
-        } return null;
+        } return false;
     }
 
     /**

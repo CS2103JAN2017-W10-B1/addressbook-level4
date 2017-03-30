@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import org.junit.Test;
 
-import guitests.guihandles.TaskCardHandle;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.task.Name;
@@ -102,9 +101,8 @@ public class EditCommandTest extends TaskManagerGuiTest {
                                     String detailsToEdit, TestTask editedTask) {
         commandBox.runCommand("edit " + filteredTaskListIndex + " " + detailsToEdit);
 
-        // confirm the new card contains the right data
-        TaskCardHandle editedCard = taskListPanel.navigateToTask(editedTask);
-        assertTrue(editedCard != null);
+        // confirm the new task is added to the current list
+        assertTrue(taskListPanel.navigateToTask(editedTask));
 
         // confirm the list now contains all previous Tasks plus the Task with updated details
         expectedTasksList = TestUtil.replaceTaskFromList(expectedTasksList, editedTask, taskManagerIndex - 1);

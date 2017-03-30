@@ -1,3 +1,4 @@
+/*author A0147996E */
 .background {
     -fx-background-color: derive(#B993D6, 100%);
 }
@@ -211,7 +212,7 @@
     -fx-text-fill: #F70D1A;
 }
 
-#filterField, #taskListPanel, #personWebpage {
+#filterField, #taskListPanel, #tagListPanel {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 

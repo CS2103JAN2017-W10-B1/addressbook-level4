@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import guitests.guihandles.TaskCardHandle;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.testutil.TestTask;
@@ -82,10 +81,8 @@ public class AddCommandTest extends TaskManagerGuiTest {
     private void assertAddSuccess(TestTask taskToAdd, TestTask... currentList) {
         commandBox.runCommand(taskToAdd.getAddCommand());
 
-        //try to navigate to the target task
-        TaskCardHandle addedCard = taskListPanel.navigateToTask(taskToAdd);
-        //AssertTrue if target card is found
-        assertTrue(addedCard != null);
+        //AssertTrue if can navigate to the task card in current list view that matches the taskToAdd
+        assertTrue(taskListPanel.navigateToTask(taskToAdd));
 
         //confirm the list now contains all previous persons plus the new person
         TestTask[] expectedList = TestUtil.addTasksToList(currentList, taskToAdd);
