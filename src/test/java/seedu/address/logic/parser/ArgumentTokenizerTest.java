@@ -23,7 +23,7 @@ public class ArgumentTokenizerTest {
     }
 
     @Test
-    public void tokenizeEmptyArgsString_noValues() {
+    public void tokenizeEmptyArgsStringNoValues() {
         ArgumentTokenizer tokenizer = new ArgumentTokenizer(slashP);
         String argsString = "  ";
         tokenizer.tokenize(argsString);

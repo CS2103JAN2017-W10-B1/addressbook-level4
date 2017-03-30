@@ -33,7 +33,7 @@ public class UnmodifiableObservableListTest {
     }
 
     @Test
-    public void transformationListGenerators_correctBackingList() {
+    public void transformationListGeneratorsCorrectBackingList() {
         assertSame(list.sorted().getSource(), list);
         assertSame(list.filtered(i -> true).getSource(), list);
     }
