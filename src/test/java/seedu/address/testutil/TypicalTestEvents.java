@@ -40,7 +40,7 @@ public class TypicalTestEvents {
             assignment = new EventBuilder().withName("assignment").withDate("10/12/2017").withTime(
                     "10:00").withDescription("IE2150").
                     withTag("study").withVenue("Utown").withPriority("2").withFavorite(true)
-                    .withStartDate("20/12/2017").withStartTime("19:00").withFinished(false).build();
+                    .withStartDate("02/12/2017").withStartTime("19:00").withFinished(false).build();
             //The test tasks below are for duplicate task testing
             date  = new EventBuilder().withName("date").withDate("14/02/2018").withTime(
                     "12:00").withDescription("Most important day").withFinished(false).

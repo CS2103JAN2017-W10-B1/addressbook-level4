@@ -13,6 +13,8 @@ public class TaskCardHandle extends GuiHandle {
     private static final String NAME_FIELD_ID = "#name";
     private static final String DATE_FIELD_ID = "#date";
     private static final String TIME_FIELD_ID = "#time";
+    private static final String START_DATE_FIELD_ID = "#startDate";
+    private static final String START_TIME_FIELD_ID = "#startTime";
     private static final String DESCRIPTION_FIELD_ID = "#description";
     private static final String TAG_FIELD_ID = "#tag";
     private static final String VENUE_FIELD_ID = "#venue";
@@ -39,8 +41,16 @@ public class TaskCardHandle extends GuiHandle {
         return getTextFromLabel(DATE_FIELD_ID);
     }
 
+    public String getStartDate() {
+        return getTextFromLabel(START_DATE_FIELD_ID);
+    }
+
     public String getTime() {
         return getTextFromLabel(TIME_FIELD_ID);
+    }
+
+    public String getStartTime() {
+        return getTextFromLabel(START_TIME_FIELD_ID);
     }
 
     public String getDescription() {

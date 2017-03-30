@@ -88,12 +88,14 @@ public class TaskListPanelHandle extends GuiHandle {
 
         // Return false if the list in panel is too short to contain the given list
         if (startPosition + tasks.length > tasksInList.size()) {
+            System.out.println("List size does not match\n");
             return false;
         }
 
         // Return false if any of the tasks doesn't match
         for (int i = 0; i < tasks.length; i++) {
             if (!tasksInList.get(startPosition + i).isSameCardAs(tasks[i])) {
+                System.out.println(tasksInList.get(startPosition + i).getAsText() + " compared to " + tasks[i].getAsText());
                 return false;
             }
         }
