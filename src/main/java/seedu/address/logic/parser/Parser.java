@@ -56,7 +56,6 @@ public class Parser {
             return new UndoCommand(commandList, undoCommandList);
 
         case RedoCommand.COMMAND_WORD:
-            commandList.clear();
             return new RedoCommand(undoCommandList);
 
         case AddCommand.COMMAND_WORD:
@@ -82,7 +81,6 @@ public class Parser {
             return FinishCommandParser.parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            commandList.clear();
             undoCommandList.clear();
             return new ClearCommand();
 
