@@ -29,7 +29,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void resetData_null_throwsAssertionError() {
+    public void resetDataNullThrowsAssertionError() {
         thrown.expect(AssertionError.class);
         modelManager.resetData(null);
     }
