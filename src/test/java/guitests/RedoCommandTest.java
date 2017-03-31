@@ -37,13 +37,13 @@ public class RedoCommandTest extends TaskManagerGuiTest {
         targetIndex = 3;
         commandBox.runCommand("delete " + targetIndex);
         currentList = TestUtil.removeTaskFromList(currentList, targetIndex);
-        //assertRedoSuccess(currentList);
+        assertRedoSuccess(currentList);
 
         //redo finish command
         targetIndex = 2;
         commandBox.runCommand("finish " + targetIndex);
         currentList = TestUtil.removeTaskFromList(currentList, targetIndex);
-        //assertRedoSuccess(currentList);
+        assertRedoSuccess(currentList);
 
         targetIndex = 3;
         commandBox.runCommand("finish " + targetIndex);
