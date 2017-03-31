@@ -9,6 +9,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.testutil.TestTask;
 
 public class ViewCommandTest extends TaskManagerGuiTest {
+//TODO: update typicalTestDate and Time by referring to current time and date
 
     @Test
     public void view () {

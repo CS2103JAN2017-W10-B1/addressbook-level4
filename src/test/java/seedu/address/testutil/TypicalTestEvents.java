@@ -50,10 +50,10 @@ public class TypicalTestEvents {
                     "12:00").withDescription("Most important day").withFinished(false).
                     withTag("personal").withVenue("Gardens by the bay").withPriority("3")
                     .withStartDate("tmr").withStartTime("19:00").withFavorite(false).build();
-            date3  = new EventBuilder().withName("date").withDate("14/02/2017").withTime(
+            date3  = new EventBuilder().withName("date").withDate("14/02/2018").withTime(
                     "12:00").withDescription("Most important day").withFinished(false).
                     withTag("personal").withVenue("Gardens by the bay").withPriority("3")
-                    .withStartDate("20/01/2017").withStartTime("19:00").withFavorite(false).build();
+                    .withStartDate("11/02/2018").withStartTime("09:00").withFavorite(false).build();
             date4  = new EventBuilder().withName("date").withDate("14/02/2018").withTime(
                     "12:00").withDescription("Most important day").
                     withTag("private").withVenue("Gardens by the bay").withPriority("3").withFinished(false)

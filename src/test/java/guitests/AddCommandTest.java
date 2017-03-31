@@ -54,22 +54,29 @@ public class AddCommandTest extends TaskManagerGuiTest {
 
         //add to empty list
         commandBox.runCommand("clear");
-        assertAddSuccess(td.assignment);
+        taskToAdd = td.assignment;
+        assertAddSuccess(taskToAdd);
+        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
     }
 
     @Test
-    public void addEventToList() {
+    public void addEventsAndTasksToList() {
         //Start testing with an empty list
         commandBox.runCommand("clear");
         TestTask[] currentList = {};
 
-        //add an event to current task list
+        //add a task to list
+        TestTask taskToAdd = td.shopping;
+        assertAddSuccess(taskToAdd, currentList);
+        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
+
+        //add an event to current list
         TestEvent eventToAdd = te.date;
         assertAddSuccess(eventToAdd, currentList);
         currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
 
-        //add another task with other fields other than name
-        TestTask taskToAdd = td.familyDinner;
+        //add another task
+        taskToAdd = td.familyDinner;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 

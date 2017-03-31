@@ -57,5 +57,4 @@ public class DeleteCommandTest extends TaskManagerGuiTest {
         //confirm the result message is correct
         assertResultMessage(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
-
 }
