@@ -345,7 +345,7 @@ public class TestUtil {
     }
 
     public static boolean compareCardAndTask(TaskCardHandle card, ReadOnlyTask task) {
-        //System.out.println(card.getName() + " compared to " + task.getName());
+        System.out.println(card.getName() + " compared to " + task.getName());
         return card.isSameStateAs(task);
     }
 

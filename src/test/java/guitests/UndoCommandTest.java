@@ -13,7 +13,7 @@ import seedu.address.testutil.TestTask;
 public class UndoCommandTest extends TaskManagerGuiTest {
 
     @Test
-    public void undo_add() {
+    public void undoAdd() {
         TestTask[] currentList = td.getTypicalTasks();
 
         TestEvent eventToAdd = te.assignment;
@@ -26,7 +26,7 @@ public class UndoCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void undo_delete() {
+    public void undoDelete() {
         TestTask[] currentList = td.getTypicalTasks();
 
         int targetIndex = 2;
@@ -39,7 +39,7 @@ public class UndoCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void undo_finish() {
+    public void undoFinish() {
         TestTask[] currentList = td.getTypicalTasks();
 
         int targetIndex = 2;
@@ -52,7 +52,7 @@ public class UndoCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void undo_edit() {
+    public void undoEdit() {
         TestTask[] currentList = td.getTypicalTasks();
 
         int targetIndex = 2;
