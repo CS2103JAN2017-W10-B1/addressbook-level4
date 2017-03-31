@@ -22,6 +22,7 @@ import seedu.address.TestApp;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.events.BaseEvent;
 import seedu.address.model.TaskManager;
+import seedu.address.testutil.TypicalTestEvents;
 import seedu.address.testutil.TypicalTestTasks;
 
 /**
@@ -36,6 +37,7 @@ public abstract class TaskManagerGuiTest {
     TestApp testApp;
 
     protected TypicalTestTasks td = new TypicalTestTasks();
+    protected TypicalTestEvents te = new TypicalTestEvents();
 
     /*
      *   Handles to GUI elements present at the start up are created in advance

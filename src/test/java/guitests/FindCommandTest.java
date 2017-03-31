@@ -11,7 +11,7 @@ import seedu.address.testutil.TestTask;
 public class FindCommandTest extends TaskManagerGuiTest {
 
     @Test
-    public void find_nonEmptyList() {
+    public void findNonEmptyList() {
         assertFindResult("find birthday"); // no results
         assertFindResult("find CS2103", td.cs2103); //find command is case insensitive
         // multiple results with duplicate task names but different taskStates
@@ -23,13 +23,13 @@ public class FindCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void find_emptyList() {
+    public void findEmptyList() {
         commandBox.runCommand("clear");
         assertFindResult("find exercise"); // no results
     }
 
     @Test
-    public void find_invalidCommand_fail() {
+    public void findInvalidCommandFail() {
         commandBox.runCommand("finds study");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
 

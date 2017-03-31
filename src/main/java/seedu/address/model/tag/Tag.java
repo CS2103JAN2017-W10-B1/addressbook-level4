@@ -1,8 +1,8 @@
 //@@author A0147984L
 package seedu.address.model.tag;
 
-
 import seedu.address.commons.exceptions.IllegalValueException;
+
 import seedu.address.model.task.TaskField;
 
 /**
@@ -38,7 +38,7 @@ public class Tag implements TaskField, Comparable<Tag> {
         if (isReservedName(trimmedName)) {
             throw new IllegalValueException(trimmedName + MESSAGE_TAG_CONSTRAINTS_2);
         }
-        this.tagName = trimmedName.equals("") ? DEFAULT_TAG_NAME : trimmedName;
+        this.tagName = "".equals(trimmedName) ? DEFAULT_TAG_NAME : trimmedName;
     }
 
     /**
@@ -54,7 +54,7 @@ public class Tag implements TaskField, Comparable<Tag> {
      * @throws IllegalValueException
      */
     public static boolean isValidTagName(String test) throws IllegalValueException {
-        if (test.equals("")) {
+        if ("".equals(test)) {
             return true;
         }
         return test.matches(TAG_VALIDATION_REGEX);
@@ -73,7 +73,7 @@ public class Tag implements TaskField, Comparable<Tag> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Tag // instanceof handles nulls
-                && this.tagName.equals(((Tag) other).tagName)); // state check
+                && this.tagName.equalsIgnoreCase(((Tag) other).tagName)); // state check
     }
 
     @Override
@@ -90,12 +90,12 @@ public class Tag implements TaskField, Comparable<Tag> {
 
     @Override
     public int compareTo(Tag other) {
-        return this.tagName.compareTo(other.tagName);
+        return this.tagName.compareToIgnoreCase(other.tagName);
     }
 
     @Override
     public String getDisplayText() {
-        if (tagName.equals(" ") || tagName.equals("")) {
+        if (" ".equals(tagName) || "".equals(tagName)) {
             return "";
         } else {
             return "[" + tagName + "]";

@@ -9,6 +9,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.testutil.TestTask;
 
 public class ViewCommandTest extends TaskManagerGuiTest {
+//TODO: update typicalTestDate and Time by referring to current time and date
 
     @Test
     public void view () {
@@ -19,7 +20,7 @@ public class ViewCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void view_invalidCommand_fail() {
+    public void viewInvalidCommandFail() {
         commandBox.runCommand("views next/10");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
 

@@ -5,16 +5,16 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import guitests.guihandles.TaskCardHandle;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.testutil.TestEvent;
 import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
 public class AddCommandTest extends TaskManagerGuiTest {
 
     @Test
-    public void add_task() {
+    public void addTask() {
         //Start testing with an empty list
         TestTask[] currentList = {};
         commandBox.runCommand("clear");
@@ -54,18 +54,45 @@ public class AddCommandTest extends TaskManagerGuiTest {
 
         //add to empty list
         commandBox.runCommand("clear");
-        assertAddSuccess(td.assignment);
+        taskToAdd = td.assignment;
+        assertAddSuccess(taskToAdd);
+        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
     }
-/*
+
     @Test
-    public void add_event() {
-      //Start testing with an empty list
-        TestEvent[] currentList = {};
+    public void addEventsAndTasksToList() {
+        //Start testing with an empty list
         commandBox.runCommand("clear");
+        TestTask[] currentList = {};
+
+        //add a task to list
+        TestTask taskToAdd = td.shopping;
+        assertAddSuccess(taskToAdd, currentList);
+        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
+
+        //add an event to current list
+        TestEvent eventToAdd = te.date;
+        assertAddSuccess(eventToAdd, currentList);
+        currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
+
+        //add another task
+        taskToAdd = td.familyDinner;
+        assertAddSuccess(taskToAdd, currentList);
+        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
+
+      //add an event to test duplication to current list
+        eventToAdd = te.date2;
+        assertAddSuccess(eventToAdd, currentList);
+        currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
+
+        //add an event to test duplication to current list
+        eventToAdd = te.date3;
+        assertAddSuccess(eventToAdd, currentList);
+        currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
     }
-*/
+
     @Test
-    public void invalid_command () {
+    public void invalidCommand () {
         //unknown command
         commandBox.runCommand("adds homework");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
@@ -82,12 +109,10 @@ public class AddCommandTest extends TaskManagerGuiTest {
     private void assertAddSuccess(TestTask taskToAdd, TestTask... currentList) {
         commandBox.runCommand(taskToAdd.getAddCommand());
 
-        //try to navigate to the target task
-        TaskCardHandle addedCard = taskListPanel.navigateToTask(taskToAdd);
-        //AssertTrue if target card is found
-        assertTrue(addedCard != null);
+        //AssertTrue if can navigate to the task card in current list view that matches the taskToAdd
+        assertTrue(taskListPanel.navigateToTask(taskToAdd));
 
-        //confirm the list now contains all previous persons plus the new person
+        //confirm the list now contains all previous tasks plus the new task
         TestTask[] expectedList = TestUtil.addTasksToList(currentList, taskToAdd);
         assertTrue(taskListPanel.isListMatching(expectedList));
     }

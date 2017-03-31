@@ -1,3 +1,4 @@
+//@@ author A0147996E-reused
 package guitests;
 
 import static org.junit.Assert.assertEquals;
@@ -10,7 +11,7 @@ public class SelectCommandTest extends TaskManagerGuiTest {
 
 
     @Test
-    public void selecttask_nonEmptyList() {
+    public void selecttaskNonEmptyList() {
 
         assertSelectionInvalid(10); // invalid index
         assertNotaskSelected();
@@ -28,7 +29,7 @@ public class SelectCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void selecttask_emptyList() {
+    public void selecttaskEmptyList() {
         commandBox.runCommand("clear");
         assertListSize(0);
         assertSelectionInvalid(1); //invalid index
@@ -49,7 +50,6 @@ public class SelectCommandTest extends TaskManagerGuiTest {
         assertEquals(taskListPanel.getSelectedTasks().size(), 1);
         ReadOnlyTask selectedtasks = taskListPanel.getSelectedTasks().get(0);
         assertEquals(taskListPanel.getTask(index - 1), selectedtasks);
-        //TODO: confirm the correct page is loaded in the Browser Panel
     }
 
     private void assertNotaskSelected() {

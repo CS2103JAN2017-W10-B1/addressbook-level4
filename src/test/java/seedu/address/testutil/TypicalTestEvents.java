@@ -17,16 +17,16 @@ public class TypicalTestEvents {
     public TypicalTestEvents() {
         try {
             gym = new EventBuilder().withName("gym").withDate("20/12/2017").withTime(
-                    "20:00").withDescription("50min workout").withStartDate("20/12/2017").withStartTime("19:00").
+                    "20:00").withDescription("50min workout").withStartDate("20/11/2017").withStartTime("19:00").
                     withTag("personal").withVenue("gym").withPriority("2").withFavorite(true)
                     .withFinished(false).build();
             //gym2 and gym3 are built for findCommandTest
             gym2 = new EventBuilder().withName("gym").withDate("21/12/2017").withTime(
-                    "20:00").withDescription("50min workout").withStartDate("20/12/2017").withStartTime("19:00").
+                    "20:00").withDescription("50min workout").withStartDate("20/11/2017").withStartTime("").
                     withTag("personal").withVenue("gym").withPriority("2").withFavorite(false)
                     .withFinished(false).build();
             gym3 = new EventBuilder().withName("gym").withDate("22/12/2017").withTime(
-                    "20:00").withDescription("50min workout").withStartDate("20/12/2017").withStartTime("19:00").
+                    "20:00").withDescription("50min workout").withStartDate("20/11/2017").withStartTime("").
                     withTag("personal").withVenue("gym").withPriority("2").withFavorite(false)
                     .withFinished(false).build();
             cs2103 = new EventBuilder().withName("cs2103").withDate("01/02").withTime(
@@ -40,45 +40,41 @@ public class TypicalTestEvents {
             assignment = new EventBuilder().withName("assignment").withDate("10/12/2017").withTime(
                     "10:00").withDescription("IE2150").
                     withTag("study").withVenue("Utown").withPriority("2").withFavorite(true)
-                    .withStartDate("20/12/2017").withStartTime("19:00").withFinished(false).build();
+                    .withStartDate("02/12/2017").withStartTime("19:00").withFinished(false).build();
             //The test tasks below are for duplicate task testing
             date  = new EventBuilder().withName("date").withDate("14/02/2018").withTime(
                     "12:00").withDescription("Most important day").withFinished(false).
                     withTag("personal").withVenue("Gardens by the bay").withPriority("3")
-                    .withStartDate("20/12/2017").withStartTime("19:00").withFavorite(false).build();
+                    .withStartDate("11/02/2018").withStartTime("08:00").withFavorite(false).build();
             date2  = new EventBuilder().withName("date").withDate("14/02/2020").withTime(
                     "12:00").withDescription("Most important day").withFinished(false).
-                    withTag("private").withVenue("Gardens by the bay").withPriority("3")
-                    .withStartDate("20/12/2017").withStartTime("19:00").withFavorite(false).build();
-            date3  = new EventBuilder().withName("date").withDate("15/04/2017").withTime(
+                    withTag("personal").withVenue("Gardens by the bay").withPriority("3")
+                    .withStartDate("tmr").withStartTime("19:00").withFavorite(false).build();
+            date3  = new EventBuilder().withName("date").withDate("14/02/2018").withTime(
                     "12:00").withDescription("Most important day").withFinished(false).
                     withTag("personal").withVenue("Gardens by the bay").withPriority("3")
-                    .withStartDate("20/12/2017").withStartTime("19:00").withFavorite(false).build();
-            date4  = new EventBuilder().withName("date").withDate("14/04/2017").withTime(
-                    "13:00").withDescription("Most important day").
-                    withTag("personal").withVenue("Gardens by the bay").withPriority("3").withFinished(false)
-                    .withStartDate("20/12/2017").withStartTime("19:00").withFavorite(false).build();
+                    .withStartDate("11/02/2018").withStartTime("09:00").withFavorite(false).build();
+            date4  = new EventBuilder().withName("date").withDate("14/02/2018").withTime(
+                    "12:00").withDescription("Most important day").
+                    withTag("private").withVenue("Gardens by the bay").withPriority("3").withFinished(false)
+                    .withStartDate("11/02/2018").withStartTime("08:00").withFavorite(false).build();
           //The test tasks above are for duplicate task testing
-            meeting = new EventBuilder().withName("meeting").withDate("27/04").withTime(
+            meeting = new EventBuilder().withName("meeting").withDate("27/04/2017").withTime(
                     "12:00").withDescription("Meeting old friends").
                     withTag("school").withVenue("PGP").withPriority("2").withFavorite(false)
-                    .withStartDate("20/12/2017").withStartTime("19:00").withFinished(false).build();
+                    .withStartDate("20/04/2017").withStartTime("19:00").withFinished(false).build();
             familyDinner = new EventBuilder().withName("family dinner").withDate("1/1").withTime(
                     "20:00").withDescription("Meeting families").
                     withTag("family").withVenue("home").withPriority("important").withFavorite(true)
-                    .withStartDate("20/12/2017").withStartTime("19:00").withFinished(false).build();
-            travel = new EventBuilder().withName("travel").withDate("1/01").withTime(
-                    "21:00").withDescription("To Africa").
+                    .withStartDate("20/12/2018").withStartTime("19:00").withFinished(false).build();
+            travel = new EventBuilder().withName("travel").withDate("1/01/2017").withTime(
+                    "").withDescription("To Africa").
                     withTag("personal").withVenue("Africa").withPriority("important").withFinished(false)
-                    .withStartDate("20/12/2017").withStartTime("19:00").withFavorite(true).build();
-            shopping = new EventBuilder().withName("shopping").withDate("1/01").withTime(
-                    "21:00").withDescription("Shopping in Airport").
+                    .withStartDate("20/12/2017").withStartTime("").withFavorite(true).build();
+            shopping = new EventBuilder().withName("shopping").withDate("1/01/2017").withTime(
+                    "").withDescription("Shopping in Airport").
                     withTag("personal").withVenue("Airport").withPriority("3").withFavorite(true)
-                    .withStartDate("20/12/2017").withStartTime("19:00").withFinished(false).build();
-            //floating task test
-            shopping2 = new EventBuilder().withName("shopping").withDate("26/04").withTime("")
-                    .withDescription("").withTag("Inbox").withVenue("").withPriority("2").withFinished(false)
-                    .withStartDate("20/12/2017").withStartTime("19:00").withFavorite(false).build();
+                    .withStartDate("20/12/2017").withStartTime("").withFinished(false).build();
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";

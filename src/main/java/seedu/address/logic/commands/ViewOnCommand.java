@@ -1,6 +1,12 @@
 //@@author A0143409J
 package seedu.address.logic.commands;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.task.TaskDate;
+
 /**
  * Lists all persons in the address book to the user.
  */
@@ -21,7 +27,14 @@ public class ViewOnCommand extends Command {
 
     public ViewOnCommand(int numberDays) {
         numberOfDays = String.valueOf(numberDays);
-        messageDisplay = MESSAGE_SUCCESS + " due in " + numberDays + " days later\n";
+        messageDisplay = MESSAGE_SUCCESS + " due in " + numberOfDays + " days later\n";
+    }
+
+    public ViewOnCommand(TaskDate date) throws IllegalValueException {
+        Calendar today = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
+        TaskDate todayDate = new TaskDate(TaskDate.getDateString(today));
+        numberOfDays = String.valueOf(date.compareToDay(todayDate));
+        messageDisplay = MESSAGE_SUCCESS + " due in " + numberOfDays + " days later\n";
     }
 
     @Override

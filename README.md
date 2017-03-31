@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/CS2103JAN2017-W10-B1/main.svg?branch=master)](https://travis-ci.org/CS2103JAN2017-W10-B1/main)
 [![Build status](https://ci.appveyor.com/api/projects/status/3boko2x2vr5cc3w2?svg=true)](https://ci.appveyor.com/project/wangzexin/main)
-[![Coverage Status](https://coveralls.io/repos/github/CS2103JAN2017-W10-B1/main/badge.svg?branch=master)](https://coveralls.io/github/CS2103JAN2017-W10-B1/main?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/CS2103JAN2017-W10-B1/main/badge.png?branch=master)](https://coveralls.io/github/CS2103JAN2017-W10-B1/main?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b1f3bf7472e34e2a94cb325f5cdf5dd9)](https://www.codacy.com/app/wangzexin/main?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CS2103JAN2017-W10-B1/main&amp;utm_campaign=Badge_Grade)
 
 <img src="docs/images/Ui.png" width="600"><br>

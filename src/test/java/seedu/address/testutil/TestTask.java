@@ -16,16 +16,16 @@ import seedu.address.model.task.Venue;
 public class TestTask implements ReadOnlyTask {
 
     //@@author A0147984L
-    private Name name;
-    private TaskDate date;
-    private TaskTime time;
-    private Description description;
-    private Venue venue;
-    private Priority priority;
-    private Tag tag;
-    private boolean isFavorite;
-    private FinishProperty isFinished;
-    private EventProperty isEvent;
+    protected Name name;
+    protected TaskDate date;
+    protected TaskTime time;
+    protected Description description;
+    protected Venue venue;
+    protected Priority priority;
+    protected Tag tag;
+    protected boolean isFavorite;
+    protected FinishProperty isFinished;
+    protected EventProperty isEvent;
 
     public TestTask() {}
 
@@ -135,6 +135,14 @@ public class TestTask implements ReadOnlyTask {
             this.isFinished = FinishProperty.FINISHED;
         } else {
             this.isFinished = FinishProperty.UNFINISHED;
+        }
+    }
+
+    public void setEvent(boolean isEvent) {
+        if (isEvent) {
+            this.isEvent = EventProperty.EVENT;
+        } else {
+            this.isEvent = EventProperty.NON_EVENT;
         }
     }
 
