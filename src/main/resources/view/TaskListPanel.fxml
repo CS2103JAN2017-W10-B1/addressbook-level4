@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- @@author A0147996E -->
 
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefWidth="251.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@MoonriseTheme.css" />
         <URL value="@Extensions.css" />
     </stylesheets>
     <children>
-        <ListView fx:id="taskListView" VBox.vgrow="ALWAYS" />
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="270.0" style="-fx-border-color: DEEPSKYBLUE; -fx-border-radius: 5; -fx-border-width: 3; -fx-background-color: ALICEBLUE;" text="Your Task Lists" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Label>
+        <ListView fx:id="taskListView" prefWidth="252.0" VBox.vgrow="ALWAYS" />
     </children>
 </VBox>
-
