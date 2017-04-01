@@ -7,11 +7,11 @@ import org.junit.Test;
 
 import seedu.address.model.task.ReadOnlyTask;
 
-public class SelectCommandTest extends TaskManagerGuiTest {
+public class ScrollToCommandTest extends TaskManagerGuiTest {
 
 
     @Test
-    public void selecttask_nonEmptyList() {
+    public void scrolltaskNonEmptyList() {
 
         assertSelectionInvalid(10); // invalid index
         assertNotaskSelected();
@@ -23,34 +23,33 @@ public class SelectCommandTest extends TaskManagerGuiTest {
         assertSelectionSuccess(middleIndex); // a task in the middle of the list
 
         assertSelectionInvalid(taskCount + 1); // invalid index
-        asserttaskSelected(middleIndex); // assert previous selection remains
+        assertScrollSucess(middleIndex);
 
-        /* Testing other invalid indexes such as -1 should be done when testing the SelectCommand */
+        /* Testing other invalid indexes such as -1 should be done when testing the ScrollToCommand */
     }
 
     @Test
-    public void selecttask_emptyList() {
+    public void scrolltaskEmptyList() {
         commandBox.runCommand("clear");
         assertListSize(0);
         assertSelectionInvalid(1); //invalid index
     }
 
     private void assertSelectionInvalid(int index) {
-        commandBox.runCommand("select " + index);
+        commandBox.runCommand("scroll " + index);
         assertResultMessage("The task index provided is invalid");
     }
 
     private void assertSelectionSuccess(int index) {
-        commandBox.runCommand("select " + index);
-        assertResultMessage("Selected task: " + index);
-        asserttaskSelected(index);
+        commandBox.runCommand("scroll " + index);
+        assertResultMessage("Scrolled to index " + index);
+        assertScrollSucess(index);
     }
 
-    private void asserttaskSelected(int index) {
+    private void assertScrollSucess(int index) {
         assertEquals(taskListPanel.getSelectedTasks().size(), 1);
-        ReadOnlyTask selectedtasks = taskListPanel.getSelectedTasks().get(0);
-        assertEquals(taskListPanel.getTask(index - 1), selectedtasks);
-        //TODO: confirm the correct page is loaded in the Browser Panel
+        ReadOnlyTask scrolledtasks = taskListPanel.getSelectedTasks().get(0);
+        assertEquals(taskListPanel.getTask(index - 1), scrolledtasks);
     }
 
     private void assertNotaskSelected() {

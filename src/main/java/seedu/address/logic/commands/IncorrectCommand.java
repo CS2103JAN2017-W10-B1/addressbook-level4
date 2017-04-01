@@ -37,5 +37,10 @@ public class IncorrectCommand extends AbleUndoCommand {
         return null;
     }
 
+    @Override
+    public String getUndoCommandWord() {
+        return COMMAND_WORD + COMMAND_SUFFIX;
+    }
+
 }
 

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="taskCardPane" fx:id="taskCardPane" opacity="0.75" prefHeight="123.0" prefWidth="425.0" style="-fx-border-radius: 5; -fx-border-width: 3; -fx-border-color: DARKSALMON; -fx-background-radius: 5; -fx-background-color: LAVENDERBLUSH;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="taskCardPane" fx:id="taskCardPane" opacity="0.75" prefHeight="120.0" prefWidth="522.0" style="-fx-border-radius: 5; -fx-border-width: 3; -fx-border-color: DARKSALMON; -fx-background-radius: 5; -fx-background-color: LAVENDERBLUSH;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <GridPane prefHeight="117.0" prefWidth="357.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
@@ -67,17 +67,17 @@
                         </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="5">
                            <children>
-                                    <Label fx:id="priority" prefHeight="12.0" prefWidth="95.0" style="-fx-font-family: Avenir; -fx-font-size: 13; -fx-text-fill: MEDIUMBLUE; -fx-font-weight: bold;" styleClass="cell_small_label" text="\$priority">
+                                    <Label fx:id="priority" minWidth="60.0" prefHeight="12.0" prefWidth="95.0" style="-fx-font-family: Avenir; -fx-font-size: 13; -fx-text-fill: MEDIUMBLUE; -fx-font-weight: bold;" styleClass="cell_small_label" text="\$priority">
                                  <HBox.margin>
                                     <Insets top="5.0" />
                                  </HBox.margin>
                               </Label>
-                                    <Label fx:id="isFavorite" prefHeight="12.0" prefWidth="75.0" style="-fx-font-size: 13; -fx-text-fill: red; -fx-font-family: Avenir;" styleClass="cell_small_label" text="\$isFavorite">
+                                    <Label fx:id="isFavorite" minWidth="60.0" prefHeight="12.0" prefWidth="75.0" style="-fx-font-size: 13; -fx-text-fill: red; -fx-font-family: Avenir;" styleClass="cell_small_label" text="\$isFavorite">
                                  <HBox.margin>
                                     <Insets left="28.0" top="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="pastDue" prefHeight="12.0" style="-fx-text-fill: red; -fx-font-size: 14; -fx-font-family: Avenir;" text="\$pastDue" textFill="#f20000">
+                              <Label fx:id="pastDue" minWidth="60.0" prefHeight="12.0" style="-fx-text-fill: red; -fx-font-size: 14; -fx-font-family: Avenir;" text="\$pastDue" textFill="#f20000">
                                  <font>
                                     <Font name="System Bold" size="11.0" />
                                  </font>

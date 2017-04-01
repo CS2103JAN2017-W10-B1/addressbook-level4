@@ -21,7 +21,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.ScrollToCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewCommand;
 
@@ -56,7 +56,6 @@ public class Parser {
             return new UndoCommand(commandList, undoCommandList);
 
         case RedoCommand.COMMAND_WORD:
-            commandList.clear();
             return new RedoCommand(undoCommandList);
 
         case AddCommand.COMMAND_WORD:
@@ -70,8 +69,8 @@ public class Parser {
             undoCommandList.clear();
             return EditCommandParser.parse(arguments);
 
-        case SelectCommand.COMMAND_WORD:
-            return SelectCommandParser.parse(arguments);
+        case ScrollToCommand.COMMAND_WORD:
+            return ScrollToCommandParser.parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             undoCommandList.clear();
@@ -82,7 +81,6 @@ public class Parser {
             return FinishCommandParser.parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            commandList.clear();
             undoCommandList.clear();
             return new ClearCommand();
 

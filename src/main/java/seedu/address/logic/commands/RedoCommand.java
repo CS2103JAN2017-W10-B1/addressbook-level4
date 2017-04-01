@@ -9,7 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 /**
  * Lists all persons in the address book to the user.
  */
-public class RedoCommand extends Command {
+public class RedoCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "redo";
 
@@ -31,7 +31,6 @@ public class RedoCommand extends Command {
                 try {
                     this.undoCommand = (AbleUndoCommand) undoCommandList.pop().getUndoCommand();
                 } catch (IllegalValueException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
                 if (!this.undoCommand.COMMAND_WORD.equals(IncorrectCommand.COMMAND_WORD)) {
@@ -56,7 +55,23 @@ public class RedoCommand extends Command {
 
     @Override
     public boolean isUndoable() {
-        return false;
+        return true;
     }
+
+    @Override
+    public CommandResult executeUndo(String message) throws CommandException {
+        return null;
+    }
+
+    @Override
+    public Command getUndoCommand() throws IllegalValueException {
+        return this.undoCommand.getUndoCommand();
+    }
+
+    @Override
+    public String getUndoCommandWord() {
+        return COMMAND_WORD + COMMAND_SUFFIX;
+    }
+
 }
 

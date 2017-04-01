@@ -5,10 +5,9 @@ import seedu.address.commons.events.BaseEvent;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a selection change in the Task List Panel
+ * Represents a selection change in the TagListPanel
  */
 public class TagPanelSelectionChangedEvent extends BaseEvent {
-
 
     private final Tag newSelection;
 

@@ -4,7 +4,9 @@ package seedu.address.logic.commands;
 import java.util.List;
 import java.util.Optional;
 
+import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -30,6 +32,8 @@ import seedu.address.model.task.Venue;
 public class EditCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "edit";
+
+    public static final String COMMAND_EDIT = "edit command";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the last task listing. "
@@ -87,6 +91,8 @@ public class EditCommand extends AbleUndoCommand {
             model.updateTask(filteredTaskListIndex, editedTask);
             this.isSuccess = true;
             this.task = editedTask;
+            int taskIndex = model.getFilteredTaskList().indexOf(editedTask);
+            EventsCenter.getInstance().post(new JumpToListRequestEvent(taskIndex));
         } catch (UniqueTaskList.DuplicateTaskException dpe) {
             this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
@@ -94,10 +100,7 @@ public class EditCommand extends AbleUndoCommand {
             throw new CommandException(e.getMessage());
         }
         model.updateFilteredListToShowAllUnfinishedTasks();
-        if (taskToEdit.isEvent()) {
-            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
-        }
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit.getName()));
     }
 
 
@@ -110,7 +113,6 @@ public class EditCommand extends AbleUndoCommand {
                         task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(),
                         FinishProperty.UNFINISHED);
             } catch (IllegalValueException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -338,7 +340,7 @@ public class EditCommand extends AbleUndoCommand {
         }
         model.updateFilteredListToShowAllUnfinishedTasks();
         this.isSuccess = true;
-        return new CommandResult(message);
+        return new CommandResult(CommandFormatter.undoMessageFormatter(message, getUndoCommandWord()));
     }
 
     @Override
@@ -349,4 +351,10 @@ public class EditCommand extends AbleUndoCommand {
             return new IncorrectCommand(null);
         }
     }
+
+    @Override
+    public String getUndoCommandWord() {
+        return COMMAND_WORD + COMMAND_SUFFIX;
+    }
+
 }

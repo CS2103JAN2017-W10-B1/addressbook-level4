@@ -1,5 +1,7 @@
 package guitests;
 
+import static org.junit.Assert.assertTrue;
+
 //import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -23,8 +25,8 @@ public class SampleDataTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void addressBook_dataFileDoesNotExist_loadSampleData() throws Exception {
+    public void addressBookDataFileDoesNotExistLoadSampleData() throws Exception {
         Task[] expectedList = SampleDataUtil.getSampleTasks();
-        //TODO: TO BE UPDATED assertTrue(taskListPanel.isListMatching(expectedList));
+        assertTrue(taskListPanel.isListMatching(expectedList));
     }
 }

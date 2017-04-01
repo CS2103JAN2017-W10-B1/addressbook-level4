@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- @@author A0147996E -->
 
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@MoonriseTheme.css" />
         <URL value="@Extensions.css" />
     </stylesheets>
     <children>
+      <Label fx:id="tagListHeader" style="-fx-background-color: ALICEBLUE; -fx-border-color: DEEPSKYBLUE; -fx-border-radius: 3; -fx-border-width: 3;" text="\$Label" />
         <ListView fx:id="tagListView" VBox.vgrow="ALWAYS" />
     </children>
 </VBox>
-

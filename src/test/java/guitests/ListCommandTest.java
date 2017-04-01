@@ -11,7 +11,7 @@ import seedu.address.testutil.TestTask;
 public class ListCommandTest extends TaskManagerGuiTest {
 
     @Test
-    public void list_nonEmptyList() {
+    public void listNonEmptyList() {
         //list all tasks in Dueue
         assertListResult("list all", td.assignment, td.gym, td.gym2, td.gym3, td.cs2103,
                 td.date, td.study);
@@ -29,7 +29,7 @@ public class ListCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void list_finishedList () {
+    public void listFinishedList () {
         commandBox.runCommand("list all");
         commandBox.runCommand("finish 1"); //finish assignment
         td.assignment.setFinished(true);
@@ -45,7 +45,7 @@ public class ListCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void list_invalidCommand_fail() {
+    public void listInvalidCommandFail() {
         commandBox.runCommand("lists study");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
 
@@ -54,7 +54,7 @@ public class ListCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void list_emptyList() {
+    public void listEmptyList() {
         commandBox.runCommand("clear");
         assertListResult("list exercise"); // no results
     }

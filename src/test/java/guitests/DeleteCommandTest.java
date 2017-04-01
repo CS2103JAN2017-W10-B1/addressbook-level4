@@ -1,10 +1,13 @@
 package guitests;
 
 import static org.junit.Assert.assertTrue;
+import static seedu.address.logic.commands.DeleteCommand.COMMAND_DELETE;
 import static seedu.address.logic.commands.DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS;
 
 import org.junit.Test;
 
+import seedu.address.logic.commands.CommandFormatter;
+import seedu.address.testutil.TestEvent;
 import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
@@ -12,8 +15,15 @@ public class DeleteCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void delete() {
-        //delete the first in the list
+        //add some events in first
         TestTask[] currentList = td.getTypicalTasks();
+        currentList = TestUtil.addEventsToList(currentList, te.assignment, te.cs2103);
+        TestEvent eventToAdd = te.assignment;
+        commandBox.runCommand(eventToAdd.getAddCommand());
+        eventToAdd = te.cs2103;
+        commandBox.runCommand(eventToAdd.getAddCommand());
+
+        //delete the first in the list
         int targetIndex = 1;
         assertDeleteSuccess(targetIndex, currentList);
 
@@ -47,7 +57,7 @@ public class DeleteCommandTest extends TaskManagerGuiTest {
         assertTrue(taskListPanel.isListMatching(expectedRemainder));
 
         //confirm the result message is correct
-        assertResultMessage(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+        assertResultMessage(CommandFormatter.undoFormatter(
+                String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete), COMMAND_DELETE));
     }
-
 }

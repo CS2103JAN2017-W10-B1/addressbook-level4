@@ -9,11 +9,12 @@ import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 
 
 /**
- * Deletes a person identified using it's last displayed index from the address book.
+ * Deletes a task identified using it's last displayed index from the address book.
  */
 public class DeleteCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_DELETE = "delete command";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number used in the last task listing.\n"
@@ -56,16 +57,17 @@ public class DeleteCommand extends AbleUndoCommand {
             this.task = taskToDelete;
             this.isSuccess = true;
         } catch (TaskNotFoundException pnfe) {
-            assert false : "The target person cannot be missing";
+            assert false : "The target task cannot be missing";
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+        return new CommandResult(
+                CommandFormatter.undoFormatter(
+                        String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete), COMMAND_DELETE));
     }
 
 
     @Override
     public boolean isUndoable() {
-        // TODO Auto-generated method stub
         return true;
     }
 
@@ -75,10 +77,9 @@ public class DeleteCommand extends AbleUndoCommand {
             model.deleteTask(task);
             this.isSuccess = true;
         } catch (TaskNotFoundException pnfe) {
-            assert false : "The target person cannot be missing";
+            assert false : "The target task cannot be missing";
         }
-
-        return new CommandResult(String.format(message));
+        return new CommandResult(CommandFormatter.undoMessageFormatter(message, COMMAND_DELETE));
     }
 
     @Override
@@ -90,4 +91,8 @@ public class DeleteCommand extends AbleUndoCommand {
         }
     }
 
+    @Override
+    public String getUndoCommandWord() {
+        return AddCommand.COMMAND_WORD + COMMAND_SUFFIX;
+    }
 }

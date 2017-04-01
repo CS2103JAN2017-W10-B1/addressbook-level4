@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
@@ -26,11 +27,14 @@ public class TagListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Tag> tagListView;
+    @FXML
+    private Label tagListHeader;
 
     public TagListPanel(AnchorPane tagListPanelPlaceholder, ObservableList<Tag> tagList) {
         super(FXML);
         setConnections(tagList);
         addToPlaceholder(tagListPanelPlaceholder);
+        tagListHeader.setText("Your Task Lists");
     }
 
     private void setConnections(ObservableList<Tag> tagList) {

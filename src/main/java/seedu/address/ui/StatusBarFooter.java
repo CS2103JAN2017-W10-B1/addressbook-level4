@@ -1,6 +1,8 @@
-//@@author A0147996E-reused
+//@@author A0147996E
 package seedu.address.ui;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -24,7 +26,7 @@ public class StatusBarFooter extends UiPart<Region> {
     @FXML
     private StatusBar syncStatus;
     @FXML
-    private StatusBar saveLocationStatus;
+    private StatusBar currentDate;
 
     private static final String FXML = "StatusBarFooter.fxml";
 
@@ -32,7 +34,7 @@ public class StatusBarFooter extends UiPart<Region> {
         super(FXML);
         addToPlaceholder(placeHolder);
         setSyncStatus("Not updated yet in this session");
-        setSaveLocation("./" + saveLocation);
+        setCurrentDate();
         registerAsAnEventHandler(this);
     }
 
@@ -41,8 +43,10 @@ public class StatusBarFooter extends UiPart<Region> {
         placeHolder.getChildren().add(getRoot());
     }
 
-    private void setSaveLocation(String location) {
-        this.saveLocationStatus.setText(location);
+    private void setCurrentDate() {
+        DateFormat dateFormat = new SimpleDateFormat("EEE yyyy/MM/dd");
+        Date date = new Date();
+        this.currentDate.setText("Today is " + dateFormat.format(date));
     }
 
     private void setSyncStatus(String status) {

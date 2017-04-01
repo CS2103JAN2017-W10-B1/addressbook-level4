@@ -9,17 +9,17 @@ import seedu.address.commons.core.Messages;
 import seedu.address.testutil.TestTask;
 
 public class ViewCommandTest extends TaskManagerGuiTest {
+//TODO: update typicalTestDate and Time by referring to current time and date
 
     @Test
     public void view () {
-        assertViewResult("view next/270",  td.assignment, td.gym, td.gym2, td.gym3);
-        assertViewResult("view next/1");
-        assertViewResult("view next/1000", td.assignment, td.gym, td.gym2, td.gym3,
-                td.cs2103, td.date, td.study);
+        assertViewResult("view next/1",  td.gym, td.cs2103);
+        assertViewResult("view next/1000", td.gym, td.cs2103, td.assignment, td.gym2, td.gym3,
+                 td.date, td.study);
     }
 
     @Test
-    public void view_invalidCommand_fail() {
+    public void viewInvalidCommandFail() {
         commandBox.runCommand("views next/10");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
 

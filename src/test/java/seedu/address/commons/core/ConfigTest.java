@@ -9,11 +9,12 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 public class ConfigTest {
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void toString_defaultObject_stringReturned() {
+    public void toStringDefaultObjectStringReturned() {
         String defaultConfigAsString = "App title : Dueue App\n" +
                 "Current log level : INFO\n" +
                 "Preference file Location : preferences.json\n" +
@@ -29,6 +30,5 @@ public class ConfigTest {
         assertNotNull(defaultConfig);
         assertTrue(defaultConfig.equals(defaultConfig));
     }
-
 
 }

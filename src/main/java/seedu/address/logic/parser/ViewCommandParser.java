@@ -2,10 +2,12 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.ViewOnCommand;
+import seedu.address.model.task.TaskDate;
 
 /**
  * Parses input arguments and creates a new ViewCommand object
@@ -40,8 +42,13 @@ public class ViewCommandParser {
             try {
                 return new ViewOnCommand(Integer.valueOf(parameters[1]));
             } catch (NumberFormatException nfe) {
-                return new IncorrectCommand(String.format(
-                        MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+                try {
+                    TaskDate date = new TaskDate(parameters[1]);
+                    return new ViewOnCommand(date);
+                } catch (IllegalValueException e) {
+                    return new IncorrectCommand(String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+                }
             }
         }
 
@@ -52,7 +59,7 @@ public class ViewCommandParser {
 
     public static String[] formatter(String args) {
         String argument = args.trim();
-        String[] parameters = argument.split("/");
+        String[] parameters = argument.split("/", 2);
         return parameters;
     }
 

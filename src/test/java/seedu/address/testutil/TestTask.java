@@ -28,6 +28,7 @@ public class TestTask implements ReadOnlyTask {
     private EventProperty isEvent;
     private RecurringProperty isRecurring;
 
+
     public TestTask() {}
 
     /**
@@ -137,6 +138,14 @@ public class TestTask implements ReadOnlyTask {
             this.isFinished = FinishProperty.FINISHED;
         } else {
             this.isFinished = FinishProperty.UNFINISHED;
+        }
+    }
+
+    public void setEvent(boolean isEvent) {
+        if (isEvent) {
+            this.isEvent = EventProperty.EVENT;
+        } else {
+            this.isEvent = EventProperty.NON_EVENT;
         }
     }
 

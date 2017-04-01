@@ -1,6 +1,8 @@
 //@@author A0138474X
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
@@ -21,6 +23,7 @@ import seedu.address.model.task.Venue;
 public class AddCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_ADD = COMMAND_WORD + COMMAND_SUFFIX;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to Dueue. "
             + "Parameters: TASKNAME [due/DUEDATE] [dueT/DUETIME] [start/STARTDATE] [startT/STARTTIME]"
@@ -100,7 +103,11 @@ public class AddCommand extends AbleUndoCommand {
         try {
             model.addTask(toAdd);
             this.isSuccess = true;
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+            int taskIndex = model.getFilteredTaskList().indexOf(toAdd);
+            EventsCenter.getInstance().post(new JumpToListRequestEvent(taskIndex));
+            return new CommandResult(
+                    CommandFormatter.undoFormatter(
+                            String.format(MESSAGE_SUCCESS, toAdd.getName()), COMMAND_ADD));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
@@ -122,7 +129,7 @@ public class AddCommand extends AbleUndoCommand {
         try {
             model.addTask(toAdd);
             this.isSuccess = true;
-            return new CommandResult(String.format(message));
+            return new CommandResult(CommandFormatter.undoMessageFormatter(message, COMMAND_ADD));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
@@ -136,4 +143,10 @@ public class AddCommand extends AbleUndoCommand {
             return new IncorrectCommand(null);
         }
     }
+
+    @Override
+    public String getUndoCommandWord() {
+        return DeleteCommand.COMMAND_WORD + COMMAND_SUFFIX;
+    }
+
 }

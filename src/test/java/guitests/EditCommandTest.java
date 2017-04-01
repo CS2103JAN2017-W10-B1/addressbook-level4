@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import org.junit.Test;
 
-import guitests.guihandles.TaskCardHandle;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.task.Name;
@@ -14,6 +13,7 @@ import seedu.address.model.task.Priority;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
 import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.TestEvent;
 import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
@@ -31,7 +31,25 @@ public class EditCommandTest extends TaskManagerGuiTest {
                 withVenue("I3").withPriority("3").withFavorite(false).build();
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
-
+    @Test
+    public void editTaskToBecomeEvent() throws Exception {
+        String detailsToEdit = "start/04/05 startT/10:00";
+        int taskManagerIndex = 1;
+        TestEvent editedTask = te.assignment;
+        editedTask.setStartDate("04/05");
+        editedTask.setStartTime("10:00");
+        assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
+    }
+    @Test
+    public void editEventToBecomeTask() throws Exception {
+        //add some events in first
+        TestTask[] currentList = td.getTypicalTasks();
+        currentList = TestUtil.addEventsToList(currentList, te.date, te.cs2103);
+        TestEvent eventToAdd = te.date;
+        commandBox.runCommand(eventToAdd.getAddCommand());
+        eventToAdd = te.cs2103;
+        commandBox.runCommand(eventToAdd.getAddCommand());
+    }
     @Test
     public void editSomeFieldsSpecifiedSuccess() throws Exception {
         String detailsToEdit = "due/10/05/2017 #newlist dueT/16:35 d/Random description p/trivial";
@@ -102,13 +120,12 @@ public class EditCommandTest extends TaskManagerGuiTest {
                                     String detailsToEdit, TestTask editedTask) {
         commandBox.runCommand("edit " + filteredTaskListIndex + " " + detailsToEdit);
 
-        // confirm the new card contains the right data
-        TaskCardHandle editedCard = taskListPanel.navigateToTask(editedTask);
-        assertTrue(editedCard != null);
+        // confirm the new task is added to the current list
+        assertTrue(taskListPanel.navigateToTask(editedTask));
 
         // confirm the list now contains all previous Tasks plus the Task with updated details
         expectedTasksList = TestUtil.replaceTaskFromList(expectedTasksList, editedTask, taskManagerIndex - 1);
         assertTrue(taskListPanel.isListMatching(expectedTasksList));
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+        assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask.getName()));
     }
 }

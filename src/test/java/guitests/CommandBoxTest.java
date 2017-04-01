@@ -13,7 +13,7 @@ import seedu.address.ui.CommandBox;
 
 public class CommandBoxTest extends TaskManagerGuiTest {
 
-    private static final String COMMAND_THAT_SUCCEEDS = "select 1";
+    private static final String COMMAND_THAT_SUCCEEDS = "scroll 1";
     private static final String COMMAND_THAT_FAILS = "invalid command";
 
     private ArrayList<String> defaultStyleOfCommandBox;
@@ -31,7 +31,7 @@ public class CommandBoxTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void commandBox_commandSucceeds_textClearedAndStyleClassRemainsTheSame() {
+    public void commandBoxCommandSucceedsTextClearedAndStyleClassRemainsTheSame() {
         commandBox.runCommand(COMMAND_THAT_SUCCEEDS);
 
         assertEquals("", commandBox.getCommandInput());
@@ -39,7 +39,7 @@ public class CommandBoxTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void commandBox_commandFails_textStaysAndErrorStyleClassAdded() {
+    public void commandBoxCommandFailsTextStaysAndErrorStyleClassAdded() {
         commandBox.runCommand(COMMAND_THAT_FAILS);
 
         assertEquals(COMMAND_THAT_FAILS, commandBox.getCommandInput());
@@ -47,7 +47,7 @@ public class CommandBoxTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void commandBox_commandSucceedsAfterFailedCommand_textClearedAndErrorStyleClassRemoved() {
+    public void commandBoxCommandSucceedsAfterFailedCommandTextClearedAndErrorStyleClassRemoved() {
         // add error style to simulate a failed command
         commandBox.getStyleClass().add(CommandBox.ERROR_STYLE_CLASS);
 
