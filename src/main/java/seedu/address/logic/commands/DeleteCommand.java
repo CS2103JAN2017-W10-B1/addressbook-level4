@@ -9,7 +9,7 @@ import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 
 
 /**
- * Deletes a person identified using it's last displayed index from the address book.
+ * Deletes a task identified using it's last displayed index from the address book.
  */
 public class DeleteCommand extends AbleUndoCommand {
 
@@ -57,7 +57,7 @@ public class DeleteCommand extends AbleUndoCommand {
             this.task = taskToDelete;
             this.isSuccess = true;
         } catch (TaskNotFoundException pnfe) {
-            assert false : "The target person cannot be missing";
+            assert false : "The target task cannot be missing";
         }
 
         return new CommandResult(
@@ -68,7 +68,6 @@ public class DeleteCommand extends AbleUndoCommand {
 
     @Override
     public boolean isUndoable() {
-        // TODO Auto-generated method stub
         return true;
     }
 
@@ -96,5 +95,4 @@ public class DeleteCommand extends AbleUndoCommand {
     public String getUndoCommandWord() {
         return AddCommand.COMMAND_WORD + COMMAND_SUFFIX;
     }
-
 }
