@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
@@ -26,11 +27,14 @@ public class TaskListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<ReadOnlyTask> taskListView;
+    @FXML
+    private Label taskListHeader;
 
     public TaskListPanel(AnchorPane taskListPlaceholder, ObservableList<ReadOnlyTask> taskList) {
         super(FXML);
         setConnections(taskList);
         addToPlaceholder(taskListPlaceholder);
+        taskListHeader.setText("What is to be done?");
     }
 
     private void setConnections(ObservableList<ReadOnlyTask> taskList) {

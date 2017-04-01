@@ -14,7 +14,7 @@
         <URL value="@Extensions.css" />
     </stylesheets>
     <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="270.0" style="-fx-border-color: DEEPSKYBLUE; -fx-border-radius: 5; -fx-border-width: 3; -fx-background-color: ALICEBLUE;" text="Your Task Lists" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+      <Label fx:id="taskListHeader" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="270.0" style="-fx-border-color: DEEPSKYBLUE; -fx-border-radius: 5; -fx-border-width: 3; -fx-background-color: ALICEBLUE;" text="\$header" textAlignment="CENTER" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets />
          </VBox.margin>
