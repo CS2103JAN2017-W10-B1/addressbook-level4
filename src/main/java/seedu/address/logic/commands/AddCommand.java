@@ -1,6 +1,8 @@
 //@@author A0138474X
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
@@ -101,6 +103,8 @@ public class AddCommand extends AbleUndoCommand {
         try {
             model.addTask(toAdd);
             this.isSuccess = true;
+            int taskIndex = model.getFilteredTaskList().indexOf(toAdd);
+            EventsCenter.getInstance().post(new JumpToListRequestEvent(taskIndex));
             return new CommandResult(
                     CommandFormatter.undoFormatter(String.format(MESSAGE_SUCCESS, toAdd.getName()), COMMAND_ADD));
         } catch (UniqueTaskList.DuplicateTaskException e) {
