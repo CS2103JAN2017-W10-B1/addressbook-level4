@@ -9,6 +9,7 @@ import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.task.ReadOnlyRecurringTask.RecurringMode;
 
 /**
  * Represents a Task's due date in task manager.
@@ -51,8 +52,8 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     private final Calendar today;
 
-    private final String value;
-    public final Date date;
+    private String value;
+    public Date date;
     public final boolean isPastDue;
 
     /**
@@ -234,6 +235,24 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         }
         assert false : "impossible";
         return validDate;
+    }
+
+    public void addPeriod(RecurringMode mode) {
+        Calendar todayCalendar = Calendar.getInstance();
+        todayCalendar.setTime(this.date);
+        if (mode.equals(RecurringMode.DAY)) {
+            todayCalendar.add(Calendar.DATE, 1);
+        } else if (mode.equals(RecurringMode.WEEK)) {
+            todayCalendar.add(Calendar.DATE, 7);
+        } else if (mode.equals(RecurringMode.MONTH)) {
+            todayCalendar.add(Calendar.MONTH, 1);
+        } else {
+            assert false;
+        }
+        this.date = todayCalendar.getTime();
+        this.value = todayCalendar.get(Calendar.DATE) + DAY_MONTH_SEPARATOR
+                + (todayCalendar.get(Calendar.MONTH) + 1) + DAY_MONTH_SEPARATOR
+                + todayCalendar.get(Calendar.YEAR);
     }
 
     public String getValue() {

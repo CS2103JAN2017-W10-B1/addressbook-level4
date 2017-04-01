@@ -45,7 +45,7 @@ public interface ReadOnlyRecurringTask extends ReadOnlyTask {
             builder.append(" finished");
         }
         if (true) {
-            builder.append(getRecurringPeriod());
+            builder.append(" " + getRecurringPeriod());
         }
         return builder.toString();
     }

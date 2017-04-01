@@ -58,7 +58,7 @@ public class RecurringTask extends Task implements ReadOnlyRecurringTask {
 
     @Override
     public void finishOnce() {
-        // TODO Auto-generated method stub
+        this.date.addPeriod(mode);
     }
 
     @Override
