@@ -31,7 +31,6 @@ public class RedoCommand extends AbleUndoCommand {
                 try {
                     this.undoCommand = (AbleUndoCommand) undoCommandList.pop().getUndoCommand();
                 } catch (IllegalValueException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
                 if (!this.undoCommand.COMMAND_WORD.equals(IncorrectCommand.COMMAND_WORD)) {

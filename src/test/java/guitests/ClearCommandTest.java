@@ -2,9 +2,12 @@
 package guitests;
 
 import static org.junit.Assert.assertTrue;
+import static seedu.address.logic.commands.ClearCommand.COMMAND_CLEAR;
 import static seedu.address.logic.commands.ClearCommand.MESSAGE_SUCCESS;
 
 import org.junit.Test;
+
+import seedu.address.logic.commands.CommandFormatter;
 
 public class ClearCommandTest extends TaskManagerGuiTest {
 
@@ -28,6 +31,6 @@ public class ClearCommandTest extends TaskManagerGuiTest {
     private void assertClearCommandSuccess() {
         commandBox.runCommand("clear");
         assertListSize(0);
-        assertResultMessage(MESSAGE_SUCCESS);
+        assertResultMessage(CommandFormatter.undoFormatter(MESSAGE_SUCCESS, COMMAND_CLEAR));
     }
 }

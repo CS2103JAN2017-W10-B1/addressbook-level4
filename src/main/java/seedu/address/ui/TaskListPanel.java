@@ -1,4 +1,4 @@
-//@@author A0147996E-reused
+//@@author A0147996E
 package seedu.address.ui;
 
 import java.util.logging.Logger;

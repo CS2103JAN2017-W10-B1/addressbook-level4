@@ -2,11 +2,14 @@
 package guitests;
 
 import static org.junit.Assert.assertTrue;
+import static seedu.address.logic.commands.AddCommand.COMMAND_ADD;
+import static seedu.address.logic.commands.AddCommand.MESSAGE_SUCCESS;
 
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CommandFormatter;
 import seedu.address.testutil.TestEvent;
 import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
@@ -36,19 +39,16 @@ public class AddCommandTest extends TaskManagerGuiTest {
 
         //add a task with duplicate name with existing unfinished task under different lists
         taskToAdd = td.date2;
-        commandBox.runCommand(td.date2.getAddCommand());
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
         //add a task with duplicate name and list but different date
         taskToAdd = td.date3;
-        commandBox.runCommand(td.date3.getAddCommand());
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
         //add a task with duplicate name, list, date but different time
         taskToAdd = td.date4;
-        commandBox.runCommand(td.date4.getAddCommand());
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
@@ -115,5 +115,7 @@ public class AddCommandTest extends TaskManagerGuiTest {
         //confirm the list now contains all previous tasks plus the new task
         TestTask[] expectedList = TestUtil.addTasksToList(currentList, taskToAdd);
         assertTrue(taskListPanel.isListMatching(expectedList));
+        assertResultMessage(CommandFormatter.undoFormatter(
+                String.format(MESSAGE_SUCCESS, taskToAdd.getName()), COMMAND_ADD));
     }
 }

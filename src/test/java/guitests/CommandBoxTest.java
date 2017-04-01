@@ -13,7 +13,7 @@ import seedu.address.ui.CommandBox;
 
 public class CommandBoxTest extends TaskManagerGuiTest {
 
-    private static final String COMMAND_THAT_SUCCEEDS = "select 1";
+    private static final String COMMAND_THAT_SUCCEEDS = "scroll 1";
     private static final String COMMAND_THAT_FAILS = "invalid command";
 
     private ArrayList<String> defaultStyleOfCommandBox;

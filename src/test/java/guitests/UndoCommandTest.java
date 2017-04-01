@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.UndoCommand.MESSAGE_SUCCESS;
 
 import org.junit.Test;
 
+import seedu.address.logic.commands.CommandFormatter;
 import seedu.address.testutil.TestEvent;
 import seedu.address.testutil.TestTask;
 
@@ -18,11 +19,11 @@ public class UndoCommandTest extends TaskManagerGuiTest {
 
         TestEvent eventToAdd = te.assignment;
         commandBox.runCommand(eventToAdd.getAddCommand());
-        assertUndoSuccess(currentList);
+        assertUndoSuccess(currentList, "add");
 
         TestTask taskToAdd = td.travel;
         commandBox.runCommand(taskToAdd.getAddCommand());
-        assertUndoSuccess(currentList);
+        assertUndoSuccess(currentList, "add");
     }
 
     @Test
@@ -31,11 +32,11 @@ public class UndoCommandTest extends TaskManagerGuiTest {
 
         int targetIndex = 2;
         commandBox.runCommand("delete " + targetIndex);
-        assertUndoSuccess(currentList);
+        assertUndoSuccess(currentList, "delete");
 
         targetIndex = 3;
         commandBox.runCommand("delete " + targetIndex);
-        assertUndoSuccess(currentList);
+        assertUndoSuccess(currentList, "delete");
     }
 
     @Test
@@ -44,11 +45,11 @@ public class UndoCommandTest extends TaskManagerGuiTest {
 
         int targetIndex = 2;
         commandBox.runCommand("finish " + targetIndex);
-        assertUndoSuccess(currentList);
+        assertUndoSuccess(currentList, "finish");
 
         targetIndex = 3;
         commandBox.runCommand("finish " + targetIndex);
-        assertUndoSuccess(currentList);
+        assertUndoSuccess(currentList, "finish");
     }
 
     @Test
@@ -58,19 +59,19 @@ public class UndoCommandTest extends TaskManagerGuiTest {
         int targetIndex = 2;
         String detailsToEdit = " n/assignment2 dueT/18:30";
         commandBox.runCommand("edit " + targetIndex + detailsToEdit);
-        assertUndoSuccess(currentList);
+        assertUndoSuccess(currentList, "edit");
 
         targetIndex = 4;
         detailsToEdit = " start/03/05/ due/08/05 *u p/important #school";
         commandBox.runCommand("edit " + targetIndex + detailsToEdit);
-        assertUndoSuccess(currentList);
+        assertUndoSuccess(currentList, "edit");
     }
 
-    private void assertUndoSuccess(final TestTask[] currentList) {
+    private void assertUndoSuccess(final TestTask[] currentList, String commandWord) {
         commandBox.runCommand("undo");
         //confirm the list now contains all previous tasks
         assertTrue(taskListPanel.isListMatching(currentList));
         //confirm the result message is correct
-        assertResultMessage(MESSAGE_SUCCESS);
+        assertResultMessage(CommandFormatter.undoMessageFormatter(MESSAGE_SUCCESS, (commandWord + " command")));
     }
 }
