@@ -17,5 +17,6 @@ public abstract class AbleUndoCommand extends Command {
 
     public abstract Command getUndoCommand() throws IllegalValueException;
 
+    public abstract String getUndoCommandWord();
 }
 

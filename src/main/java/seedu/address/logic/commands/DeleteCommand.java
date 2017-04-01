@@ -90,4 +90,9 @@ public class DeleteCommand extends AbleUndoCommand {
         }
     }
 
+    @Override
+    public String getUndoCommandWord() {
+        return AddCommand.COMMAND_WORD;
+    }
+
 }

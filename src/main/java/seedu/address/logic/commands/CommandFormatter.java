@@ -27,4 +27,13 @@ public class CommandFormatter {
     public static String undoFormatter(String message, String commandWord) {
         return message + "\nYou can undo the " + commandWord + " by typing 'undo'";
     }
+
+    public static String undoMessageFormatter(String message, String commandWord) {
+        return message.replace("last task", commandWord);
+    }
+
+    public static String undoMessageFormatter(String message, AbleUndoCommand command) {
+        String commandWord = command.getUndoCommandWord() + " command";
+        return undoMessageFormatter(message, commandWord);
+    }
 }

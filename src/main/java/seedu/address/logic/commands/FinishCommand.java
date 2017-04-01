@@ -166,5 +166,11 @@ public class FinishCommand extends AbleUndoCommand {
             return new IncorrectCommand(null);
         }
     }
+
+    @Override
+    public String getUndoCommandWord() {
+        return COMMAND_WORD;
+    }
+
 }
 

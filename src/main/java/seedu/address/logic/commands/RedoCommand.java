@@ -68,5 +68,11 @@ public class RedoCommand extends AbleUndoCommand {
     public Command getUndoCommand() throws IllegalValueException {
         return this.undoCommand.getUndoCommand();
     }
+
+    @Override
+    public String getUndoCommandWord() {
+        return COMMAND_WORD;
+    }
+
 }
 
