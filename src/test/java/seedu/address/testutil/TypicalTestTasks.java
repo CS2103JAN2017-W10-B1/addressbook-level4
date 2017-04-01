@@ -8,15 +8,17 @@ import java.util.List;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.TaskManager;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.UniqueTaskList;
 
 public class TypicalTestTasks {
-    public TestTask gym, gym2, gym3, cs2103, study, assignment, date, date2, date3, date4, meeting,
-        familyDinner, travel, shopping, shopping2;
+    public TestTask homework1, homework2, gym, gym2, gym3, cs2103, study, assignment,
+        date, date2, date3, date4, meeting, familyDinner, travel, shopping, shopping2;
 
     public TypicalTestTasks() {
         try {
-            gym = new TaskBuilder().withName("gym").withDate("20/12/2017").withTime(
+            TaskDate date1 = new TaskDate("tmr");
+            gym = new TaskBuilder().withName("gym").withDate(date1.toString()).withTime(
                     "20:00").withDescription("50min workout").
                     withTag("personal").withVenue("gym").withPriority("2").withFavorite(true)
                     .withFinished(false).build();
@@ -29,7 +31,7 @@ public class TypicalTestTasks {
                     "20:00").withDescription("50min workout").
                     withTag("personal").withVenue("gym").withPriority("2").withFavorite(false)
                     .withFinished(false).build();
-            cs2103 = new TaskBuilder().withName("cs2103").withDate("01/02").withTime(
+            cs2103 = new TaskBuilder().withName("cs2103").withDate(date1.toString()).withTime(
                     "16:00").withDescription("Crazy but useful mod").
                     withTag("school").withVenue("icube").withPriority("1").withFavorite(true)
                     .withFinished(false).build();

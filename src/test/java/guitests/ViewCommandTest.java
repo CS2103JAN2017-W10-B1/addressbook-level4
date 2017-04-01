@@ -13,10 +13,9 @@ public class ViewCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void view () {
-        assertViewResult("view next/270",  td.assignment, td.gym, td.gym2, td.gym3);
-        assertViewResult("view next/1");
-        assertViewResult("view next/1000", td.assignment, td.gym, td.gym2, td.gym3,
-                td.cs2103, td.date, td.study);
+        assertViewResult("view next/1",  td.gym, td.cs2103);
+        assertViewResult("view next/1000", td.gym, td.cs2103, td.assignment, td.gym2, td.gym3,
+                 td.date, td.study);
     }
 
     @Test
