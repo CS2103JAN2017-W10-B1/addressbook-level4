@@ -25,6 +25,7 @@ import seedu.address.commons.events.model.DueueChangedEvent;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CommandFormatter;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -181,7 +182,8 @@ public class LogicManagerTest {
         model.addTask(helper.generateTask(2));
         model.addTask(helper.generateTask(3));
 
-        assertCommandSuccess("clear", ClearCommand.MESSAGE_SUCCESS, new TaskManager(), Collections.emptyList());
+        String message = CommandFormatter.undoFormatter(ClearCommand.MESSAGE_SUCCESS, ClearCommand.COMMAND_CLEAR);
+        assertCommandSuccess("clear", message, new TaskManager(), Collections.emptyList());
     }
 
 
