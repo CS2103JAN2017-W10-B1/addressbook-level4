@@ -1,4 +1,39 @@
 # A0147996E-reused
+###### /java/seedu/address/logic/parser/ScrollToCommandParser.java
+``` java
+package seedu.address.logic.parser;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.util.Optional;
+
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.IncorrectCommand;
+import seedu.address.logic.commands.ScrollToCommand;
+
+/**
+ * Parses input arguments and creates a new ScrollToCommand object
+ */
+public class ScrollToCommandParser {
+
+    private ScrollToCommandParser() {
+    }
+    /**
+     * Parses the given {@code String} of arguments in the context of the ScrollToCommand
+     * and returns an ScrollToCommand object for execution.
+     */
+    public static Command parse(String args) {
+        Optional<Integer> index = ParserUtil.parseIndex(args);
+        if (!index.isPresent()) {
+            return new IncorrectCommand(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScrollToCommand.MESSAGE_USAGE));
+        }
+
+        return new ScrollToCommand(index.get());
+    }
+
+}
+```
 ###### /java/seedu/address/ui/CommandBox.java
 ``` java
 package seedu.address.ui;
@@ -101,7 +136,7 @@ public class ResultDisplay extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(ResultDisplay.class);
     private static final String FXML = "ResultDisplay.fxml";
     private static final String INIT_HELP_MESSAGE = "Welcome to Dueue. \nThe basic command words are as "
-            + "following: add, clear, delete, edit, find, finish, list, view, undo and redo.\n"
+            + "following: add, clear, delete, edit, find, finish, list, scroll, view, undo and redo.\n"
             + "To view the help message of any command, enter 'help + Command_Keyword'.";
 
     private final StringProperty displayed = new SimpleStringProperty(INIT_HELP_MESSAGE);
@@ -128,66 +163,6 @@ public class ResultDisplay extends UiPart<Region> {
     }
 }
 ```
-###### /java/seedu/address/ui/StatusBarFooter.java
-``` java
-package seedu.address.ui;
-
-import java.util.Date;
-import java.util.logging.Logger;
-
-import org.controlsfx.control.StatusBar;
-
-import com.google.common.eventbus.Subscribe;
-
-import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.events.model.DueueChangedEvent;
-import seedu.address.commons.util.FxViewUtil;
-
-/**
- * A ui for the status bar that is displayed at the footer of the application.
- */
-public class StatusBarFooter extends UiPart<Region> {
-    private static final Logger logger = LogsCenter.getLogger(StatusBarFooter.class);
-
-    @FXML
-    private StatusBar syncStatus;
-    @FXML
-    private StatusBar saveLocationStatus;
-
-    private static final String FXML = "StatusBarFooter.fxml";
-
-    public StatusBarFooter(AnchorPane placeHolder, String saveLocation) {
-        super(FXML);
-        addToPlaceholder(placeHolder);
-        setSyncStatus("Not updated yet in this session");
-        setSaveLocation("./" + saveLocation);
-        registerAsAnEventHandler(this);
-    }
-
-    private void addToPlaceholder(AnchorPane placeHolder) {
-        FxViewUtil.applyAnchorBoundaryParameters(getRoot(), 0.0, 0.0, 0.0, 0.0);
-        placeHolder.getChildren().add(getRoot());
-    }
-
-    private void setSaveLocation(String location) {
-        this.saveLocationStatus.setText(location);
-    }
-
-    private void setSyncStatus(String status) {
-        this.syncStatus.setText(status);
-    }
-
-    @Subscribe
-    public void handleAddressBookChangedEvent(DueueChangedEvent abce) {
-        String lastUpdated = (new Date()).toString();
-        logger.info(LogsCenter.getEventHandlingLogMessage(abce, "Setting last updated status to " + lastUpdated));
-        setSyncStatus("Last Updated: " + lastUpdated);
-    }
-}
-```
 ###### /java/seedu/address/ui/TagListPanel.java
 ``` java
 package seedu.address.ui;
@@ -197,13 +172,14 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.events.ui.ListPanelSelectionChangedEvent;
+import seedu.address.commons.events.ui.TagPanelSelectionChangedEvent;
 import seedu.address.commons.util.FxViewUtil;
 import seedu.address.model.tag.Tag;
 
@@ -217,11 +193,14 @@ public class TagListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Tag> tagListView;
+    @FXML
+    private Label tagListHeader;
 
     public TagListPanel(AnchorPane tagListPanelPlaceholder, ObservableList<Tag> tagList) {
         super(FXML);
         setConnections(tagList);
         addToPlaceholder(tagListPanelPlaceholder);
+        tagListHeader.setText("Your Task Lists");
     }
 
     private void setConnections(ObservableList<Tag> tagList) {
@@ -241,7 +220,7 @@ public class TagListPanel extends UiPart<Region> {
                 .addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
                         logger.fine("Selection in task list panel changed to : '" + newValue + "'");
-                        raise(new ListPanelSelectionChangedEvent(newValue));
+                        raise(new TagPanelSelectionChangedEvent(newValue));
                     }
                 });
     }
@@ -267,89 +246,6 @@ public class TagListPanel extends UiPart<Region> {
         }
     }
 }
-```
-###### /java/seedu/address/ui/TaskListPanel.java
-``` java
-package seedu.address.ui;
-
-import java.util.logging.Logger;
-
-import javafx.application.Platform;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.events.ui.TaskPanelSelectionChangedEvent;
-import seedu.address.commons.util.FxViewUtil;
-import seedu.address.model.task.ReadOnlyTask;
-
-/**
- * Panel containing the list of tasks.
- */
-public class TaskListPanel extends UiPart<Region> {
-
-    private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
-    private static final String FXML = "TaskListPanel.fxml";
-
-    @FXML
-    private ListView<ReadOnlyTask> taskListView;
-
-    public TaskListPanel(AnchorPane taskListPlaceholder, ObservableList<ReadOnlyTask> taskList) {
-        super(FXML);
-        setConnections(taskList);
-        addToPlaceholder(taskListPlaceholder);
-    }
-
-    private void setConnections(ObservableList<ReadOnlyTask> taskList) {
-        taskListView.setItems(taskList);
-        taskListView.setCellFactory(listView -> new TaskListViewCell());
-        setEventHandlerForSelectionChangeEvent();
-    }
-
-    private void addToPlaceholder(AnchorPane placeHolderPane) {
-        SplitPane.setResizableWithParent(placeHolderPane, false);
-        FxViewUtil.applyAnchorBoundaryParameters(getRoot(), 0.0, 0.0, 0.0, 0.0);
-        placeHolderPane.getChildren().add(getRoot());
-    }
-
-    private void setEventHandlerForSelectionChangeEvent() {
-        taskListView.getSelectionModel().selectedItemProperty()
-                .addListener((observable, oldValue, newValue) -> {
-                    if (newValue != null) {
-                        logger.fine("Selection in task list panel changed to : '" + newValue + "'");
-                        raise(new TaskPanelSelectionChangedEvent(newValue));
-                    }
-                });
-    }
-
-    public void scrollTo(int index) {
-        Platform.runLater(() -> {
-            taskListView.scrollTo(index);
-            taskListView.getSelectionModel().clearAndSelect(index);
-        });
-    }
-
-    class TaskListViewCell extends ListCell<ReadOnlyTask> {
-
-        @Override
-        protected void updateItem(ReadOnlyTask task, boolean empty) {
-            super.updateItem(task, empty);
-
-            if (empty || task == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new TaskListCard(task, getIndex() + 1).getRoot());
-            }
-        }
-    }
-
-}
-
 ```
 ###### /java/seedu/address/ui/Ui.java
 ``` java
@@ -579,30 +475,19 @@ public abstract class UiPart<T> {
 
 }
 ```
-###### /resources/view/CommandBox.fxml
-``` fxml
-
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.TextField?>
-<AnchorPane styleClass="anchor-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            stylesheets="@MoonriseTheme.css">
-   <TextField fx:id="commandTextField" onAction="#handleCommandInputChanged" promptText="Enter command here..."/>
-</AnchorPane>
-
-```
 ###### /resources/view/StatusBarFooter.fxml
 ``` fxml
 
 <?import javafx.scene.layout.*?>
 <?import org.controlsfx.control.StatusBar?>
-<GridPane styleClass="grid-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@DarkTheme.css">
+<GridPane styleClass="grid-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@MoonriseTheme.css">
 <columnConstraints>
   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 </columnConstraints>
  <children>
       <StatusBar styleClass="anchor-pane" fx:id="syncStatus" minWidth="0.0"/>
-      <StatusBar styleClass="anchor-pane" fx:id="saveLocationStatus" minWidth="0.0" GridPane.columnIndex="1"/>
+      <StatusBar styleClass="anchor-pane" fx:id="currentDate" minWidth="0.0" GridPane.columnIndex="1"/>
  </children>
 </GridPane>
 ```

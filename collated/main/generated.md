@@ -1,36 +1,4 @@
 # generated
-###### /java/seedu/address/logic/commands/ClearCommand.java
-``` java
-package seedu.address.logic.commands;
-
-import seedu.address.model.TaskManager;
-
-/**
- * Clears the address book.
- */
-public class ClearCommand extends Command {
-
-    public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Dueue has been cleared!";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clear all tasks in Dueue \n"
-            + "Parameters: Nil\n"
-            + "Example: " + COMMAND_WORD;
-
-
-    @Override
-    public CommandResult execute() {
-        assert model != null;
-        model.resetData(new TaskManager());
-        return new CommandResult(MESSAGE_SUCCESS);
-    }
-
-
-    @Override
-    public boolean isUndoable() {
-        return false;
-    }
-}
-```
 ###### /java/seedu/address/logic/commands/Command.java
 ``` java
 package seedu.address.logic.commands;
@@ -111,7 +79,6 @@ public class CommandResult {
         assert feedbackToUser != null;
         this.feedbackToUser = feedbackToUser;
     }
-
 }
 ```
 ###### /java/seedu/address/logic/commands/ExitCommand.java
@@ -236,12 +203,13 @@ public class HelpCommand extends Command {
 ``` java
 package seedu.address.logic.commands;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
  * Represents an incorrect command. Upon execution, throws a CommandException with feedback to the user.
  */
-public class IncorrectCommand extends Command {
+public class IncorrectCommand extends AbleUndoCommand {
 
     public final String feedbackToUser;
     public static final String COMMAND_WORD = "incorrect";
@@ -260,60 +228,24 @@ public class IncorrectCommand extends Command {
         return false;
     }
 
-}
-
-```
-###### /java/seedu/address/logic/commands/SelectCommand.java
-``` java
-package seedu.address.logic.commands;
-
-import seedu.address.commons.core.EventsCenter;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.UnmodifiableObservableList;
-import seedu.address.commons.events.ui.JumpToListRequestEvent;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.task.ReadOnlyTask;
-
-/**
- * Selects a person identified using it's last displayed index from the address book.
- */
-public class SelectCommand extends Command {
-
-    public final int targetIndex;
-
-    public static final String COMMAND_WORD = "select";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Selects the task identified by the index number used in the last person listing.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
-
-    public static final String MESSAGE_SELECT_PERSON_SUCCESS = "Selected task: %1$s";
-
-    public SelectCommand(int targetIndex) {
-        this.targetIndex = targetIndex;
+    @Override
+    public CommandResult executeUndo(String message) throws CommandException {
+        throw new CommandException(UndoCommand.MESSAGE_UNSUCCESS);
     }
 
     @Override
-    public CommandResult execute() throws CommandException {
-
-        UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
-
-        if (lastShownList.size() < targetIndex) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
-
-        EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex - 1));
-        return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, targetIndex));
-
+    public Command getUndoCommand() throws IllegalValueException {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
-    public boolean isUndoable() {
-        return false;
+    public String getUndoCommandWord() {
+        return COMMAND_WORD + COMMAND_SUFFIX;
     }
 
 }
+
 ```
 ###### /java/seedu/address/storage/JsonUserPrefsStorage.java
 ``` java

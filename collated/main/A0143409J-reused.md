@@ -191,7 +191,7 @@ import java.util.Objects;
 public class GuiSettings implements Serializable {
 
     private static final double DEFAULT_HEIGHT = 600;
-    private static final double DEFAULT_WIDTH = 740;
+    private static final double DEFAULT_WIDTH = 850;
 
     private Double windowWidth;
     private Double windowHeight;
@@ -826,7 +826,7 @@ package seedu.address.commons.events.model;
 import seedu.address.commons.events.BaseEvent;
 import seedu.address.model.ReadOnlyTaskManager;
 
-/** Indicates the AddressBook in the model has changed*/
+/** Indicates the TaskManager in the model has changed*/
 public class DueueChangedEvent extends BaseEvent {
 
     public final ReadOnlyTaskManager data;
