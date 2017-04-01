@@ -23,4 +23,8 @@ public class CommandFormatter {
         }
         return formatted;
     }
+
+    public static String undoFormatter(String message, String commandWord) {
+        return message + "\nYou can undo the " + commandWord + " by typing 'undo'";
+    }
 }

@@ -11,13 +11,13 @@ import seedu.address.model.TaskManager;
 public class ClearCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "clear";
+    public static final String COMMAND_CLEAR = "clear command";
     public static final String MESSAGE_SUCCESS = "Dueue has been cleared!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clear all tasks in Dueue \n"
             + "Parameters: Nil\n"
             + "Example: " + COMMAND_WORD;
-    
-    private TaskManager tasks;
 
+    private TaskManager tasks;
 
     @Override
     public CommandResult execute() {
@@ -25,15 +25,13 @@ public class ClearCommand extends AbleUndoCommand {
         tasks = new TaskManager();
         tasks.resetData(model.getTaskManager());
         model.resetData(new TaskManager());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(CommandFormatter.undoFormatter(MESSAGE_SUCCESS, COMMAND_CLEAR));
     }
-
 
     @Override
     public boolean isUndoable() {
         return true;
     }
-
 
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
@@ -42,9 +40,8 @@ public class ClearCommand extends AbleUndoCommand {
         tasks.resetData(model.getTaskManager());
         model.resetData(this.tasks);
         this.tasks = tasks;
-        return new CommandResult(message);
+        return new CommandResult(message.replace("last task", COMMAND_CLEAR));
     }
-
 
     @Override
     public Command getUndoCommand() throws IllegalValueException {
