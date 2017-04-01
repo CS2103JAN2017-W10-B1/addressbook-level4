@@ -10,6 +10,9 @@ import java.util.Set;
 public class CommandFormatter {
 
     private static final String LIST_SEPARATOR = ", ";
+    private static final String LAST_TASK = "last task";
+    private static final String COMMAND_SUFFIX = " command";
+    private static final String UNDO_FRIENDLY = "%s\nYou can undo the %s by typing 'undo'";
 
     private CommandFormatter() {};
 
@@ -25,15 +28,15 @@ public class CommandFormatter {
     }
 
     public static String undoFormatter(String message, String commandWord) {
-        return message + "\nYou can undo the " + commandWord + " by typing 'undo'";
+        return String.format(UNDO_FRIENDLY, message, commandWord);
     }
 
     public static String undoMessageFormatter(String message, String commandWord) {
-        return message.replace("last task", commandWord);
+        return message.replace(LAST_TASK, commandWord);
     }
 
     public static String undoMessageFormatter(String message, AbleUndoCommand command) {
-        String commandWord = command.getUndoCommandWord() + " command";
+        String commandWord = command.getUndoCommandWord() + COMMAND_SUFFIX;
         return undoMessageFormatter(message, commandWord);
     }
 }

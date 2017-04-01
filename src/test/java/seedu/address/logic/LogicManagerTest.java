@@ -186,7 +186,6 @@ public class LogicManagerTest {
         assertCommandSuccess("clear", message, new TaskManager(), Collections.emptyList());
     }
 
-
     /*@Test
     public void executeAddInvalidArgsFormat() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
