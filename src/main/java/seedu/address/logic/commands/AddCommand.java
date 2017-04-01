@@ -23,7 +23,7 @@ import seedu.address.model.task.Venue;
 public class AddCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "add";
-    private static final String COMMAND_ADD = COMMAND_WORD + COMMAND_SUFFIX;
+    public static final String COMMAND_ADD = COMMAND_WORD + COMMAND_SUFFIX;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to Dueue. "
             + "Parameters: TASKNAME [due/DUEDATE] [dueT/DUETIME] [start/STARTDATE] [startT/STARTTIME]"
@@ -107,7 +107,7 @@ public class AddCommand extends AbleUndoCommand {
             EventsCenter.getInstance().post(new JumpToListRequestEvent(taskIndex));
             return new CommandResult(
                     CommandFormatter.undoFormatter(
-                            String.format(MESSAGE_SUCCESS, toAdd.getName()), getUndoCommandWord()));
+                            String.format(MESSAGE_SUCCESS, toAdd.getName()), COMMAND_ADD));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);

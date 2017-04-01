@@ -60,7 +60,9 @@ public class DeleteCommand extends AbleUndoCommand {
             assert false : "The target person cannot be missing";
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+        return new CommandResult(
+                CommandFormatter.undoFormatter(
+                        String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete), COMMAND_DELETE));
     }
 
 
@@ -78,7 +80,6 @@ public class DeleteCommand extends AbleUndoCommand {
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target task cannot be missing";
         }
-
         return new CommandResult(CommandFormatter.undoMessageFormatter(message, COMMAND_DELETE));
     }
 
