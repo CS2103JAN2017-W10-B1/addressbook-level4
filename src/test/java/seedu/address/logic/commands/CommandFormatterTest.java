@@ -45,4 +45,20 @@ public class CommandFormatterTest {
         String result = CommandFormatter.undoMessageFormatter(RedoCommand.MESSAGE_SUCCESS, clearCommand);
         assertEquals(result, "Redo clear command successfully.");
     }
+
+    @Test
+    public void undoAddMesageTest() throws Exception {
+        DeleteCommand deleteCommand = new DeleteCommand(1);
+
+        String result = CommandFormatter.undoMessageFormatter(UndoCommand.MESSAGE_SUCCESS, deleteCommand);
+        assertEquals(result, "Undo add command successfully.");
+    }
+
+    @Test
+    public void redoDeleteMesageTest() throws Exception {
+        DeleteCommand deleteCommand = new DeleteCommand(1);
+
+        String result = CommandFormatter.undoMessageFormatter(RedoCommand.MESSAGE_SUCCESS, deleteCommand);
+        assertEquals(result, "Redo add command successfully.");
+    }
 }

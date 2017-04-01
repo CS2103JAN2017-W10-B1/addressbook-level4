@@ -33,6 +33,8 @@ public class EditCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "edit";
 
+    public static final String COMMAND_EDIT = "edit command";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the last task listing. "
             + "Existing values will be overwritten by the input values.\n"
@@ -338,7 +340,7 @@ public class EditCommand extends AbleUndoCommand {
         }
         model.updateFilteredListToShowAllUnfinishedTasks();
         this.isSuccess = true;
-        return new CommandResult(message);
+        return new CommandResult(CommandFormatter.undoMessageFormatter(message, getUndoCommandWord()));
     }
 
     @Override
@@ -352,7 +354,7 @@ public class EditCommand extends AbleUndoCommand {
 
     @Override
     public String getUndoCommandWord() {
-        return COMMAND_WORD;
+        return COMMAND_WORD + COMMAND_SUFFIX;
     }
 
 }

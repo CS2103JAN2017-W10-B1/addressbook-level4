@@ -27,6 +27,8 @@ public class FinishCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "finish";
 
+    public static final String COMMAND_FINISH = "finish command";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the task identified by the index number used in the last task listing as finished.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
@@ -154,7 +156,7 @@ public class FinishCommand extends AbleUndoCommand {
         }
         model.updateFilteredListToShowAllUnfinishedTasks();
         this.isSuccess = true;
-        return new CommandResult(message);
+        return new CommandResult(CommandFormatter.undoMessageFormatter(message, getUndoCommandWord()));
     }
 
 
@@ -169,7 +171,7 @@ public class FinishCommand extends AbleUndoCommand {
 
     @Override
     public String getUndoCommandWord() {
-        return COMMAND_WORD;
+        return COMMAND_WORD + COMMAND_SUFFIX;
     }
 
 }

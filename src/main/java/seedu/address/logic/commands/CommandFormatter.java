@@ -11,7 +11,6 @@ public class CommandFormatter {
 
     private static final String LIST_SEPARATOR = ", ";
     private static final String LAST_TASK = "last task";
-    private static final String COMMAND_SUFFIX = " command";
     private static final String UNDO_FRIENDLY = "%s\nYou can undo the %s by typing 'undo'";
 
     private CommandFormatter() {};
@@ -36,7 +35,7 @@ public class CommandFormatter {
     }
 
     public static String undoMessageFormatter(String message, AbleUndoCommand command) {
-        String commandWord = command.getUndoCommandWord() + COMMAND_SUFFIX;
+        String commandWord = command.getUndoCommandWord();
         return undoMessageFormatter(message, commandWord);
     }
 }

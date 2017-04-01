@@ -11,6 +11,8 @@ public abstract class AbleUndoCommand extends Command {
 
     public static final String UNDO_COMMAND_WORD = "undo";
 
+    public static final String COMMAND_SUFFIX = " command";
+
     public static final String MESSAGE_UNDO_TASK_SUCCESS = "Undo last command successful";
 
     public abstract CommandResult executeUndo(String message) throws CommandException;
