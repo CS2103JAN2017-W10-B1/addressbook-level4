@@ -14,6 +14,7 @@ import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 public class DeleteCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_DELETE = "delete command";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number used in the last task listing.\n"
@@ -75,10 +76,10 @@ public class DeleteCommand extends AbleUndoCommand {
             model.deleteTask(task);
             this.isSuccess = true;
         } catch (TaskNotFoundException pnfe) {
-            assert false : "The target person cannot be missing";
+            assert false : "The target task cannot be missing";
         }
 
-        return new CommandResult(String.format(message));
+        return new CommandResult(CommandFormatter.undoMessageFormatter(message, COMMAND_DELETE));
     }
 
     @Override
