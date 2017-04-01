@@ -12,9 +12,11 @@ import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.address.model.task.Event;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
+import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 
 /**
  * Wraps all data at the task-manager level
@@ -122,6 +124,17 @@ public class TaskManager implements ReadOnlyTaskManager {
             tags.remove(editedTask.getTag());
         }
         tags.sort();
+    }
+
+    public void finishTaskOnce(ReadOnlyTask recurringTask) throws DuplicateTaskException {
+        Task current = new RecurringTask(recurringTask);
+        try {
+            removeTask(recurringTask);
+            ((RecurringTask) current).finishOnce();
+            addTask(current);
+        } catch (TaskNotFoundException e) {
+            assert false;
+        }
     }
 
     /**

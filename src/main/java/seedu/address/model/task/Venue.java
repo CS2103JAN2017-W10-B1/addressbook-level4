@@ -35,7 +35,7 @@ public class Venue implements TaskField, Comparable<Venue> {
      * Returns if a given string is a valid venue.
      */
     public static boolean isValidVenue(String test) {
-        if (test.equals("")) {
+        if (test.isEmpty()) {
             return true;
         }
         return test.matches(VENUE_VALIDATION_REGEX);

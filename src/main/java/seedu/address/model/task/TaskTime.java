@@ -44,7 +44,7 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
             throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
         }
         try {
-            this.time = time.equals("") ? null : FORMATTER.parse(time);
+            this.time = time.isEmpty() ? null : FORMATTER.parse(time);
         } catch (ParseException e) {
             assert false : "impossible";
             throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
@@ -56,7 +56,7 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
      * Returns true if a given string is a valid person email.
      */
     public static boolean isValidTime(String test) {
-        if ("".equals(test)) {
+        if (test.isEmpty()) {
             return true;
         }
         if (!test.matches(TIME_VALIDATION_REGEX)) {

@@ -92,6 +92,15 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
+    @Override
+    public void finishTaskOnce(ReadOnlyTask recurringTask)
+            throws DuplicateTaskException {
+        assert recurringTask != null;
+
+        taskManager.finishTaskOnce(recurringTask);
+        indicateTaskManagerChanged();
+    }
+
   //================== List Level Operation ===========================================================
 
     //@@author A0147984L

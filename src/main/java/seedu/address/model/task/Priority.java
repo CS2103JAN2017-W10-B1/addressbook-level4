@@ -55,7 +55,7 @@ public class Priority implements TaskField, Comparable<Priority> {
      * Convert English expressions into digits expressions
      */
     public static String convert(String value) {
-        value = value.equals("") ? DEFAULT_PRIORITY : value;
+        value = value.isEmpty() ? DEFAULT_PRIORITY : value;
         value = value.replaceFirst(PRIORITY_IMPORTANT, PRIORITY_3);
         value = value.replaceFirst("(?i)" + PRIORITY_NORMAL, PRIORITY_2);
         value = value.replaceFirst("(?i)" + PRIORITY_TRIVIAL, PRIORITY_1);

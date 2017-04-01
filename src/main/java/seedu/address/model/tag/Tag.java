@@ -38,7 +38,7 @@ public class Tag implements TaskField, Comparable<Tag> {
         if (isReservedName(trimmedName)) {
             throw new IllegalValueException(trimmedName + MESSAGE_TAG_CONSTRAINTS_2);
         }
-        this.tagName = "".equals(trimmedName) ? DEFAULT_TAG_NAME : trimmedName;
+        this.tagName = trimmedName.isEmpty() ? DEFAULT_TAG_NAME : trimmedName;
     }
 
     /**
@@ -54,7 +54,7 @@ public class Tag implements TaskField, Comparable<Tag> {
      * @throws IllegalValueException
      */
     public static boolean isValidTagName(String test) throws IllegalValueException {
-        if ("".equals(test)) {
+        if (test.isEmpty()) {
             return true;
         }
         return test.matches(TAG_VALIDATION_REGEX);

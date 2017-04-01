@@ -33,8 +33,6 @@ public class Event extends Task implements ReadOnlyEvent {
             this.startDate = startDate;
             this.startTime = startTime;
         }
-
-
     }
 
     /**

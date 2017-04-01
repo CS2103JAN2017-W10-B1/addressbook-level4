@@ -103,21 +103,39 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
             }
             this.isPastDue = TimeUnit.DAYS.convert(
                     this.date.getTime() - today.getTime().getTime(), TimeUnit.MILLISECONDS) < 0;
-            this.value = "".equals(trimmedDate) ? trimmedDate : parseDate(trimmedDate);
+            this.value = trimmedDate.isEmpty() ? trimmedDate : parseDate(trimmedDate);
         }
     }
 
+    /**
+     * Format the date by giving calendar instance
+     */
     public static String getDateString(Calendar current) {
-        return current.get(Calendar.DAY_OF_MONTH) + "/"
-                + (current.get(Calendar.MONTH) + 1) + "/"
+        return current.get(Calendar.DAY_OF_MONTH) + DAY_MONTH_SEPARATOR
+                + (current.get(Calendar.MONTH) + 1) + DAY_MONTH_SEPARATOR
                 + current.get(Calendar.YEAR);
+    }
+
+    /**
+     * Format the date by specifying year, month, and day
+     */
+    public static String getDateString(int year, int month, int day) {
+        return day + DAY_MONTH_SEPARATOR
+                + month + DAY_MONTH_SEPARATOR
+                + year;
+    }
+
+    public static String getDateString(String year, String month, String day) {
+        return day + DAY_MONTH_SEPARATOR
+                + month + DAY_MONTH_SEPARATOR
+                + year;
     }
 
     /**
      * Returns if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        if ("".equals(test)) {
+        if (test.isEmpty()) {
             return true;
         }
         if (isDayInWeek(test)) {
@@ -218,11 +236,11 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         try {
             Calendar yesterday = Calendar.getInstance();
             yesterday.add(Calendar.DATE, -1);
-            String returnDate = day + DAY_MONTH_SEPARATOR + month + DAY_MONTH_SEPARATOR + year;
+            String returnDate = getDateString(year, month, day);
             Date date = FORMATTER.parse(returnDate);
             if (date.compareTo(yesterday.getTime()) < 0) {
                 year = Integer.toString(today.get(Calendar.YEAR) + 1);
-                returnDate = day + DAY_MONTH_SEPARATOR + month + DAY_MONTH_SEPARATOR + year;
+                returnDate = getDateString(year, month, day);
             }
             date = FORMATTER.parse(returnDate);
             if (!isValidDay(day, month, year)) {
@@ -237,6 +255,9 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         return validDate;
     }
 
+    /**
+     * Add a recurring period for date
+     */
     public void addPeriod(RecurringMode mode) {
         Calendar todayCalendar = Calendar.getInstance();
         todayCalendar.setTime(this.date);
@@ -250,9 +271,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
             assert false;
         }
         this.date = todayCalendar.getTime();
-        this.value = todayCalendar.get(Calendar.DATE) + DAY_MONTH_SEPARATOR
-                + (todayCalendar.get(Calendar.MONTH) + 1) + DAY_MONTH_SEPARATOR
-                + todayCalendar.get(Calendar.YEAR);
+        this.value = getDateString(todayCalendar);
     }
 
     public String getValue() {
@@ -283,14 +302,14 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     @Override
     public int compareTo(TaskDate other) {
-        if ("".equals(this.value)) {
-            if ("".equals(other.value)) {
+        if (this.value.isEmpty()) {
+            if (other.value.isEmpty()) {
                 return 0;
             } else {
                 return INF;
             }
         } else {
-            if ("".equals(other.value)) {
+            if (other.value.isEmpty()) {
                 return -INF;
             } else {
                 long diff = this.date.getTime() - other.date.getTime();
