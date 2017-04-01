@@ -102,7 +102,7 @@ public class AddCommand extends AbleUndoCommand {
             model.addTask(toAdd);
             this.isSuccess = true;
             return new CommandResult(
-                    CommandFormatter.undoFormatter(String.format(MESSAGE_SUCCESS, toAdd), COMMAND_ADD));
+                    CommandFormatter.undoFormatter(String.format(MESSAGE_SUCCESS, toAdd.getName()), COMMAND_ADD));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
@@ -124,7 +124,6 @@ public class AddCommand extends AbleUndoCommand {
         try {
             model.addTask(toAdd);
             this.isSuccess = true;
-            System.out.println(message);
             return new CommandResult(CommandFormatter.undoMessageFormatter(message, COMMAND_ADD));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);

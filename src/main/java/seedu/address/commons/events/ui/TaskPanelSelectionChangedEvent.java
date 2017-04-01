@@ -5,10 +5,9 @@ import seedu.address.commons.events.BaseEvent;
 import seedu.address.model.task.ReadOnlyTask;
 
 /**
- * Represents a selection change in the Task List Panel
+ * Represents a selection change in the TaskListPanel
  */
 public class TaskPanelSelectionChangedEvent extends BaseEvent {
-
 
     private final ReadOnlyTask newSelection;
 

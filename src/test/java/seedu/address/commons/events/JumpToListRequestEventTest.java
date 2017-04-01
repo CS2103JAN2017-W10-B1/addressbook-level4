@@ -24,7 +24,6 @@ public class JumpToListRequestEventTest {
         field.setAccessible(true);
 
         JumpToListRequestEvent event = new JumpToListRequestEvent(1);
-
         assertEquals(1, field.get(event));
     }
 }
