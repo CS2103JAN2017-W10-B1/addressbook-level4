@@ -93,6 +93,7 @@ public class Tag implements TaskField, Comparable<Tag> {
         return this.tagName.compareToIgnoreCase(other.tagName);
     }
 
+//@@author A0147996E
     @Override
     public String getDisplayText() {
         if (" ".equals(tagName) || "".equals(tagName)) {
