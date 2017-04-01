@@ -100,7 +100,7 @@ public class AddCommand extends AbleUndoCommand {
         try {
             model.addTask(toAdd);
             this.isSuccess = true;
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getName()));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);

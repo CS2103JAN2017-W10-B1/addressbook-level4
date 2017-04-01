@@ -94,10 +94,7 @@ public class EditCommand extends AbleUndoCommand {
             throw new CommandException(e.getMessage());
         }
         model.updateFilteredListToShowAllUnfinishedTasks();
-        if (taskToEdit.isEvent()) {
-            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
-        }
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit.getName()));
     }
 
 
@@ -110,7 +107,6 @@ public class EditCommand extends AbleUndoCommand {
                         task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(),
                         FinishProperty.UNFINISHED);
             } catch (IllegalValueException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
