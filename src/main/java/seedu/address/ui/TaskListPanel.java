@@ -30,7 +30,6 @@ public class TaskListPanel extends UiPart<Region> {
     public TaskListPanel(AnchorPane taskListPlaceholder, ObservableList<ReadOnlyTask> taskList) {
         super(FXML);
         setConnections(taskList);
-        taskListView.scrollTo(0);
         addToPlaceholder(taskListPlaceholder);
     }
 
@@ -68,8 +67,11 @@ public class TaskListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(ReadOnlyTask task, boolean empty) {
             super.updateItem(task, empty);
+<<<<<<< HEAD
 
             taskListView.scrollTo(getIndex() + 1);
+=======
+>>>>>>> origin/master
             if (empty || task == null) {
                 setGraphic(null);
                 setText(null);
