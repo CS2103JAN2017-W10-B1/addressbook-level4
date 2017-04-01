@@ -26,6 +26,7 @@ public class TestTask implements ReadOnlyTask {
     private boolean isFavorite;
     private FinishProperty isFinished;
     private EventProperty isEvent;
+    private RecurringProperty isRecurring;
 
     public TestTask() {}
 
@@ -43,6 +44,7 @@ public class TestTask implements ReadOnlyTask {
         this.isFavorite = taskToCopy.isFavorite();
         this.isFinished = taskToCopy.getFinished();
         this.isEvent = taskToCopy.getEventProperty();
+        this.isRecurring = taskToCopy.getRecurringProperty();
     }
 
     public void setName(String name) throws IllegalValueException {
@@ -189,5 +191,15 @@ public class TestTask implements ReadOnlyTask {
     @Override
     public EventProperty getEventProperty() {
         return this.isEvent;
+    }
+
+    @Override
+    public boolean isRecurring() {
+        return this.isRecurring == RecurringProperty.RECURRING;
+    }
+
+    @Override
+    public RecurringProperty getRecurringProperty() {
+        return this.isRecurring;
     }
 }

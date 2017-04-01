@@ -14,6 +14,9 @@ public interface ReadOnlyTask {
     public enum EventProperty {
         EVENT, NON_EVENT
     }
+    public enum RecurringProperty {
+        RECURRING, NON_RECURRING
+    }
 
     Name getName();
     TaskDate getDate();
@@ -27,6 +30,7 @@ public interface ReadOnlyTask {
     String getFavoriteText();
     String getFinishedText();
     boolean isEvent();
+    boolean isRecurring();
 
     /**
      * Returns true if both have the same state. (interfaces cannot override equals)
@@ -63,6 +67,7 @@ public interface ReadOnlyTask {
      */
     FinishProperty getFinished();
     EventProperty getEventProperty();
+    RecurringProperty getRecurringProperty();
 
     /*
      * Ensure there is no null pointer exception when comparing two TaskFields

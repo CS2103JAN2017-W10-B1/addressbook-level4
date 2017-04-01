@@ -22,9 +22,10 @@ public class Task implements ReadOnlyTask {
     protected FinishProperty isFinished;
     protected Tag tag;
     protected EventProperty isEvent;
+    protected RecurringProperty isRecurring;
 
     /**
-     * Every field must be present and not null.
+     * Every field must not be null.
      */
     public Task(Name name, TaskDate date, TaskTime time, Description description, Tag tag,
             Venue venue, Priority priority, boolean isFavorite) {
@@ -39,10 +40,11 @@ public class Task implements ReadOnlyTask {
         this.isFavorite = isFavorite;
         this.isFinished = FinishProperty.UNFINISHED;
         this.isEvent = EventProperty.NON_EVENT;
+        this.isRecurring = RecurringProperty.NON_RECURRING;
     }
 
     /**
-     * Every field must be present and not null.
+     * Constructor with flag on isFavorite
      */
     public Task(Name name, TaskDate date, TaskTime time, Description description, Tag tag,
             Venue venue, Priority priority, boolean isFavorite, FinishProperty isFinished) {
@@ -57,13 +59,15 @@ public class Task implements ReadOnlyTask {
         this.isFavorite = isFavorite;
         this.isFinished = isFinished;
         this.isEvent = EventProperty.NON_EVENT;
+        this.isRecurring = RecurringProperty.NON_RECURRING;
     }
 
     /**
-     *  Constructor of task with flag on isFinshed
+     *  Constructor of task with flag on isFinshed, flag on isEvent, flag on isRecurring
      */
     public Task(Name name, TaskDate date, TaskTime time, Description description, Tag tag,
-            Venue venue, Priority priority, boolean isFavorite, FinishProperty isFinished, EventProperty isEvent) {
+            Venue venue, Priority priority, boolean isFavorite, FinishProperty isFinished,
+            EventProperty isEvent, RecurringProperty isRecurring) {
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
         this.date = date;
@@ -75,6 +79,7 @@ public class Task implements ReadOnlyTask {
         this.isFavorite = isFavorite;
         this.isFinished = isFinished;
         this.isEvent = isEvent;
+        this.isRecurring = isRecurring;
     }
 
     /**
@@ -83,7 +88,8 @@ public class Task implements ReadOnlyTask {
     public Task(ReadOnlyTask source) {
         this(source.getName(), source.getDate(), source.getTime(), source.getDescription(),
                 source.getTag(), source.getVenue(), source.getPriority(),
-                source.isFavorite(), source.getFinished(), source.getEventProperty());
+                source.isFavorite(), source.getFinished(),
+                source.getEventProperty(), source.getRecurringProperty());
     }
 
     public void setName(Name name) {
@@ -208,11 +214,15 @@ public class Task implements ReadOnlyTask {
         this.setFavorite(replacement.isFavorite());
         this.setFinish(replacement.isFinished());
         this.setIsEvent(replacement.getEventProperty());
+        this.setIsRecurring(replacement.getRecurringProperty());
     }
 
     private void setIsEvent(EventProperty isEvent) {
         this.isEvent = isEvent;
+    }
 
+    private void setIsRecurring(RecurringProperty isRecurring) {
+        this.isRecurring = isRecurring;
     }
 
     @Override
@@ -239,6 +249,11 @@ public class Task implements ReadOnlyTask {
     }
 
     @Override
+    public boolean isRecurring() {
+        return this.isRecurring == RecurringProperty.RECURRING;
+    }
+
+    @Override
     public FinishProperty getFinished() {
         return this.isFinished;
     }
@@ -248,4 +263,8 @@ public class Task implements ReadOnlyTask {
         return this.isEvent;
     }
 
+    @Override
+    public RecurringProperty getRecurringProperty() {
+        return this.isRecurring;
+    }
 }
