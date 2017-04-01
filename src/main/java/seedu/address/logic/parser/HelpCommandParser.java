@@ -11,7 +11,6 @@ import seedu.address.logic.commands.FinishCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ScrollToCommand;
-import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.ViewOnCommand;
 
@@ -48,9 +47,6 @@ public class HelpCommandParser {
 
         case EditCommand.COMMAND_WORD:
             return EditCommand.MESSAGE_USAGE;
-
-        case SelectCommand.COMMAND_WORD:
-            return SelectCommand.MESSAGE_USAGE;
 
         case DeleteCommand.COMMAND_WORD:
             return DeleteCommand.MESSAGE_USAGE;

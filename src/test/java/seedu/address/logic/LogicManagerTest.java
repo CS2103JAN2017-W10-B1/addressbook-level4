@@ -31,7 +31,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.ScrollToCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -286,9 +286,9 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void executeSelectInvalidArgsFormatErrorMessageShown() throws Exception {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE);
-        assertIncorrectIndexFormatBehaviorForCommand("select", expectedMessage);
+    public void executeScrollInvalidArgsFormatErrorMessageShown() throws Exception {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScrollToCommand.MESSAGE_USAGE);
+        assertIncorrectIndexFormatBehaviorForCommand("scroll", expectedMessage);
     }
 
     @Test
