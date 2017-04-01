@@ -67,11 +67,7 @@ public class TaskListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(ReadOnlyTask task, boolean empty) {
             super.updateItem(task, empty);
-<<<<<<< HEAD
 
-            taskListView.scrollTo(getIndex() + 1);
-=======
->>>>>>> origin/master
             if (empty || task == null) {
                 setGraphic(null);
                 setText(null);
