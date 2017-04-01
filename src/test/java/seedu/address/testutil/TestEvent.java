@@ -42,6 +42,50 @@ public class TestEvent extends TestTask {
         return startTime;
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName());
+        if (getStartDate() != null) {
+            builder.append("  Start Date:");
+            builder.append(getStartDate());
+        }
+        if (getStartTime() != null) {
+            builder.append("  Start Time:");
+            builder.append(getStartTime());
+        }
+        if (getDate() != null) {
+            builder.append("  Due Date:");
+            builder.append(getDate());
+        }
+        if (getTime() != null) {
+            builder.append("  Due Time:");
+            builder.append(getTime());
+        }
+        if (getDescription() != null) {
+            builder.append("  Description:");
+            builder.append(getDescription());
+        }
+        if (getTag() != null) {
+            builder.append("  List:");
+            builder.append(getTag());
+        }
+        if (getVenue() != null) {
+            builder.append("  Venue:");
+            builder.append(getVenue());
+        }
+        assert getPriority() != null;
+        builder.append("  Priority:");
+        builder.append(getPriority());
+        if (isFavorite()) {
+            builder.append(" favorite");
+        }
+        if (isFinished()) {
+            builder.append(" finished");
+        }
+        return builder.toString();
+    }
+
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();
         sb.append(super.getAddCommand());

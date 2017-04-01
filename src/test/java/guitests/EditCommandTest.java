@@ -31,15 +31,17 @@ public class EditCommandTest extends TaskManagerGuiTest {
                 withVenue("I3").withPriority("3").withFavorite(false).build();
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
+
     @Test
     public void editTaskToBecomeEvent() throws Exception {
-        String detailsToEdit = "start/04/05 startT/10:00";
+        String detailsToEdit = "start/03/03/2017 startT/10:00";
         int taskManagerIndex = 1;
         TestEvent editedTask = te.assignment;
-        editedTask.setStartDate("04/05");
+        editedTask.setStartDate("03/03/2017");
         editedTask.setStartTime("10:00");
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
     }
+
     @Test
     public void editEventToBecomeTask() throws Exception {
         //add some events in first
