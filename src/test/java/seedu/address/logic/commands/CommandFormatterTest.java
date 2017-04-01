@@ -1,3 +1,4 @@
+//@@ author A0143409J
 package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertEquals;
@@ -18,5 +19,30 @@ public class CommandFormatterTest {
 
         String result = CommandFormatter.listFormatter(formatHeader, keywords);
         assertEquals(result, "List all tasks in list list1");
+    }
+
+    @Test
+    public void undoFriendlyMesageTest() throws Exception {
+        String formatHeader = "Hey";
+        String command = "rubbish";
+
+        String result = CommandFormatter.undoFormatter(formatHeader, command);
+        assertEquals(result, "Hey\nYou can undo the rubbish by typing 'undo'");
+    }
+
+    @Test
+    public void undoMesageTest() throws Exception {
+        ClearCommand clearCommand = new ClearCommand();
+
+        String result = CommandFormatter.undoMessageFormatter(UndoCommand.MESSAGE_SUCCESS, clearCommand);
+        assertEquals(result, "Undo clear command successfully.");
+    }
+
+    @Test
+    public void redoMesageTest() throws Exception {
+        ClearCommand clearCommand = new ClearCommand();
+
+        String result = CommandFormatter.undoMessageFormatter(RedoCommand.MESSAGE_SUCCESS, clearCommand);
+        assertEquals(result, "Redo clear command successfully.");
     }
 }
