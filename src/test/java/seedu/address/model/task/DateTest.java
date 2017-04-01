@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.task.ReadOnlyRecurringTask.RecurringMode;
 
 public class DateTest {
 
@@ -107,5 +108,18 @@ public class DateTest {
         TaskDate tester2 = new TaskDate("20/3/2019");
         assertTrue(tester1.isPastDue());
         assertFalse(tester2.isPastDue());
+    }
+
+    @Test
+    public void addPeriod() throws IllegalValueException {
+        TaskDate tester1 = new TaskDate("25/3/2017");
+        tester1.addPeriod(RecurringMode.DAY);
+        assertTrue(tester1.getValue().equals("26/3/2017"));
+
+        tester1.addPeriod(RecurringMode.WEEK);
+        assertTrue(tester1.getValue().equals("2/4/2017"));
+
+        tester1.addPeriod(RecurringMode.MONTH);
+        assertTrue(tester1.getValue().equals("2/5/2017"));
     }
 }
