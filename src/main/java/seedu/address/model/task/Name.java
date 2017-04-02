@@ -57,6 +57,11 @@ public class Name implements TaskField, Comparable<Name> {
     }
 
     @Override
+    public String getValue() {
+        return fullName;
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls

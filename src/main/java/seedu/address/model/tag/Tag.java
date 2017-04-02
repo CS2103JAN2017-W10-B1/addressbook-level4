@@ -89,6 +89,11 @@ public class Tag implements TaskField, Comparable<Tag> {
     }
 
     @Override
+    public String getValue() {
+        return tagName;
+    }
+
+    @Override
     public int compareTo(Tag other) {
         return this.tagName.compareToIgnoreCase(other.tagName);
     }
