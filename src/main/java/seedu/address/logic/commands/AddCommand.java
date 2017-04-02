@@ -42,6 +42,7 @@ public class AddCommand extends AbleUndoCommand {
 
     private final Task toAdd;
     private boolean isSuccess;
+    private boolean isDeleteAllOcurrence = true;
 
     /**
      * Creates an AddCommand using raw values.
@@ -132,8 +133,9 @@ public class AddCommand extends AbleUndoCommand {
         }
     }
 
-    public AddCommand(ReadOnlyTask task) {
+    public AddCommand(ReadOnlyTask task, boolean isDeleteAllOcurrence) {
         this.toAdd = (Task) task;
+        this.isDeleteAllOcurrence = isDeleteAllOcurrence;
     }
 
     @Override
@@ -177,7 +179,7 @@ public class AddCommand extends AbleUndoCommand {
     @Override
     public Command getUndoCommand() {
         if (isSuccess) {
-            return new DeleteCommand(getTask());
+            return new DeleteCommand(getTask(), isDeleteAllOcurrence);
         } else {
             return new IncorrectCommand(null);
         }
