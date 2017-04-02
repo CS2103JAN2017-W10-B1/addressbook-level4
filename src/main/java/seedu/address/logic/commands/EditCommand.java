@@ -18,6 +18,7 @@ import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyEvent;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.FinishProperty;
+import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
@@ -103,7 +104,6 @@ public class EditCommand extends AbleUndoCommand {
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit.getName()));
     }
 
-
     private Task createTask(ReadOnlyTask task) {
         Task newTask = null;
         if (task.isEvent()) {
@@ -115,6 +115,10 @@ public class EditCommand extends AbleUndoCommand {
             } catch (IllegalValueException e) {
                 e.printStackTrace();
             }
+        } else if (task.isRecurring()) {
+            newTask = new RecurringTask(task.getName(), task.getDate(), task.getTime(), task.getDescription(),
+                        task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(),
+                        ((RecurringTask) task).getMode());
         } else {
             newTask = new Task(task.getName(), task.getDate(), task.getTime(), task.getDescription(),
                     task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(),
