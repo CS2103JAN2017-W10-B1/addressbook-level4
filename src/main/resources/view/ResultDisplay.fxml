@@ -26,7 +26,7 @@
                   <Insets right="15.0" />
                </HBox.margin>
             </ImageView>
-              <TextArea fx:id="resultDisplay" editable="false" style="-fx-font-family: Avenir; -fx-font-size: 12; -fx-background-color: LAVENDERBLUSH; -fx-border-color: DEEPSKYBLUE; -fx-border-style: segments(10, 15, 15, 15)  line-cap round; -fx-border-radius: 5; -fx-border-width: 5;" styleClass="result-display" HBox.hgrow="ALWAYS">
+              <TextArea fx:id="resultDisplay" editable="false" style="-fx-font-family: Avenir; -fx-font-size: 14; -fx-background-color: LAVENDERBLUSH; -fx-border-color: DEEPSKYBLUE; -fx-border-style: segments(10, 15, 15, 15)  line-cap round; -fx-border-radius: 5; -fx-border-width: 5;" styleClass="result-display" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets />
                </HBox.margin>

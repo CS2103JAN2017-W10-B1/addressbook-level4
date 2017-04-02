@@ -38,9 +38,9 @@ public class EditCommand extends AbleUndoCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the last task listing. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) n/TASKNAME [due/DUEDATE] [dueT/DUETIME]\n"
-            + "[start/STARTDATE] [startT/STARTTIME] [#LISTNAME] "
-            + "[d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f]\n"
+            + "Parameters: INDEX [n/TASK_NAME] [due/DUE_DATE] [dueT/DUE_TIME]"
+            + "[start/START_DATE] [startT/STAR_TTIME]\n [#LIST_NAME] "
+            + "[d/DESCRIPTION] [@VENUE] [p/PRIORITY_LEVEL] [*f/*u]\n"
             + "Example: " + COMMAND_WORD + " 1 due/17/3/2017 #CS2103T";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
