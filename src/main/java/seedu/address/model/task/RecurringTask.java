@@ -1,8 +1,6 @@
 //@@author A0147984L
 package seedu.address.model.task;
 
-import java.util.Queue;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 
@@ -13,7 +11,6 @@ public class RecurringTask extends Task implements ReadOnlyRecurringTask {
     public static final String PERIOD_MONTHLY = "every month";
 
     protected RecurringMode mode;
-    protected Queue<TaskDate> queue;
 
     /**
      * Every field must not be null.

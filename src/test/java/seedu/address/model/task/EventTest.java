@@ -145,6 +145,7 @@ public class EventTest {
         assertEquals(testEvent.getStartTime().toString(), "10:00");
     }
 
+    //@@author A0147984L
     @Test
     public void constructorInvalid1() throws IllegalValueException {
         thrown.expect(IllegalValueException.class);
