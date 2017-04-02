@@ -10,23 +10,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="placeHolder" style="-fx-background-color: LAVENDERBLUSH;" styleClass="anchor-pane-with-border" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="placeHolder" styleClass="anchor-pane-with-border" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@MoonriseTheme.css" />
         <URL value="@Extensions.css" />
     </stylesheets>
-    <AnchorPane fx:id="mainPane" style="-fx-background-color: LAVENDERBLUSH;">
+    <AnchorPane fx:id="mainPane">
       <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="77.0" fitWidth="76.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
+            <ImageView fitHeight="89.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
                <image>
                   <Image url="@../images/address_book_32.png" />
                </image>
                <HBox.margin>
-                  <Insets right="15.0" />
+                  <Insets />
                </HBox.margin>
             </ImageView>
-              <TextArea fx:id="resultDisplay" editable="false" style="-fx-font-family: Avenir; -fx-font-size: 14; -fx-background-color: LAVENDERBLUSH; -fx-border-color: DEEPSKYBLUE; -fx-border-style: segments(10, 15, 15, 15)  line-cap round; -fx-border-radius: 5; -fx-border-width: 5;" styleClass="result-display" HBox.hgrow="ALWAYS">
+              <TextArea fx:id="resultDisplay" editable="false" opacity="0.76" style="-fx-font-family: Avenir; -fx-font-size: 14; -fx-background-color: LAVENDERBLUSH; -fx-border-color: DEEPSKYBLUE; -fx-border-style: segments(10, 15, 15, 15)  line-cap round; -fx-border-radius: 5; -fx-border-width: 5;" styleClass="result-display" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets />
                </HBox.margin>

@@ -6,6 +6,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox prefWidth="251.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
@@ -14,11 +15,14 @@
         <URL value="@Extensions.css" />
     </stylesheets>
     <children>
-      <Label fx:id="taskListHeader" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="270.0" style="-fx-border-color: DEEPSKYBLUE; -fx-border-radius: 5; -fx-border-width: 3; -fx-background-color: ALICEBLUE;" text="\$header" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+      <AnchorPane VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets />
          </VBox.margin>
-      </Label>
+         <children>
+            <Label fx:id="taskListHeader" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="270.0" style="-fx-border-color: DEEPSKYBLUE; -fx-border-radius: 5; -fx-border-width: 3; -fx-background-color: ALICEBLUE;" text="\$header" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
         <ListView fx:id="taskListView" prefWidth="252.0" VBox.vgrow="ALWAYS" />
     </children>
 </VBox>
