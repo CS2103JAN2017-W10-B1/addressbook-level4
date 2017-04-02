@@ -30,6 +30,9 @@ public class UndoCommand extends Command {
         do {
             if (!commandList.isEmpty()) {
                 try {
+                    if (this.undoCommand.COMMAND_WORD.equals(RedoCommand.COMMAND_WORD)) {
+                        undoCommandList.clear();
+                    }
                     this.undoCommand = (AbleUndoCommand) commandList.pop().getUndoCommand();
                     this.undoCommandList = undoCommandList;
                 } catch (IllegalValueException e) {
