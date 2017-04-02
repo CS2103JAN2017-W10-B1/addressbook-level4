@@ -76,7 +76,7 @@ public class TaskListCard extends UiPart<Region> {
         isRecurring.setText("");
         if (task.getRecurringProperty() == RecurringProperty.RECURRING) {
             assert task instanceof RecurringTask;
-            RecurringMode mode = ((ReadOnlyRecurringTask) isRecurring).getMode();
+            RecurringMode mode = ((ReadOnlyRecurringTask) task).getMode();
             if (mode == RecurringMode.DAY) {
                 isRecurring.setText("Everyday");
             } else if (mode == RecurringMode.MONTH) {
