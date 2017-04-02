@@ -110,7 +110,12 @@ public class TaskManager implements ReadOnlyTaskManager {
                 e.printStackTrace();
             }
         } else if (editedReadOnlyTask.isRecurring()) {
-            editedTask = new RecurringTask(editedReadOnlyTask);
+            try {
+                editedTask = new RecurringTask(editedReadOnlyTask);
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         } else {
             editedTask = new Task(editedReadOnlyTask);
         }
@@ -129,7 +134,13 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     public void finishTaskOnce(ReadOnlyTask recurringTask) throws DuplicateTaskException {
-        Task current = new RecurringTask(recurringTask);
+        Task current = null;
+        try {
+            current = new RecurringTask(recurringTask);
+        } catch (IllegalValueException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
         try {
             removeTask(recurringTask);
             ((RecurringTask) current).finishOnce();

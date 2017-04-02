@@ -2,6 +2,7 @@ package seedu.address.model.task;
 
 import java.util.Queue;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 
 public class RecurringTask extends Task implements ReadOnlyRecurringTask {
@@ -34,12 +35,14 @@ public class RecurringTask extends Task implements ReadOnlyRecurringTask {
 
     /**
      * Creates a copy of the given ReadOnlyTask.
+     * @throws IllegalValueException
      */
-    public RecurringTask(ReadOnlyTask source) {
-        super(source.getName(), source.getDate(), source.getTime(), source.getDescription(),
-                source.getTag(), source.getVenue(), source.getPriority(),
-                source.isFavorite(), source.getFinished(), source.getEventProperty(),
-                source.getRecurringProperty());
+    public RecurringTask(ReadOnlyTask source) throws IllegalValueException {
+        super(new Name(source.getName().fullName), new TaskDate(source.getDate().getValue()),
+                new TaskTime(source.getTime().getValue()), new Description(source.getDescription().getValue()),
+                new Tag(source.getTag().tagName), new Venue(source.getVenue().getValue()),
+                new Priority(source.getPriority().getValue()), source.isFavorite(), source.getFinished(),
+                source.getEventProperty(), source.getRecurringProperty());
         assert this.isRecurring == RecurringProperty.RECURRING;
         this.mode = ((ReadOnlyRecurringTask) source).getMode();
     }
