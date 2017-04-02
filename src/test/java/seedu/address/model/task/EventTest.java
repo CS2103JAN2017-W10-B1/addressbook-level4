@@ -69,7 +69,7 @@ public class EventTest {
         assertEquals(tester6.getStartTime().getValue(), "6:00");
         assertEquals(tester6.getFavoriteText(), "");
         tester6.setFavorite(true);
-        assertEquals(tester6.getFavoriteText(), "Favorite");
+        assertEquals(tester6.getFavoriteText(), "Favorite \u2764");
 
         Event tester7 = new Event(new Name("tester7"), new TaskDate("20/12/2017"), new TaskTime("6:00"),
                 new TaskDate("20/12/2017"), new TaskTime("7:00"), null, null, null, null, true,
@@ -78,14 +78,14 @@ public class EventTest {
         assertEquals(tester7.getStartDate().getValue(), "20/12/2017");
         assertEquals(tester7.getTime().getValue(), "7:00");
         assertEquals(tester7.getStartTime().getValue(), "6:00");
-        assertEquals(tester7.getFavoriteText(), "Favorite");
+        assertEquals(tester7.getFavoriteText(), "Favorite \u2764");
 
         Event tester8 = new Event(tester7);
         assertEquals(tester8.getDate().getValue(), "20/12/2017");
         assertEquals(tester8.getStartDate().getValue(), "20/12/2017");
         assertEquals(tester8.getTime().getValue(), "7:00");
         assertEquals(tester8.getStartTime().getValue(), "6:00");
-        assertEquals(tester8.getFavoriteText(), "Favorite");
+        assertEquals(tester8.getFavoriteText(), "Favorite \u2764");
         assertTrue(tester8.equals(tester7));
     }
 
@@ -119,13 +119,13 @@ public class EventTest {
         Event testEvent = new Event(new Name("tester7"), new TaskDate("20/12/2017"), new TaskTime("6:00"),
                 new TaskDate("20/12/2017"), new TaskTime("7:00"), null, null, null, null, true,
                 FinishProperty.UNFINISHED);
-        assertEquals(testEvent.getFavoriteText(), "Favorite");
+        assertEquals(testEvent.getFavoriteText(), "Favorite \u2764");
         testEvent.setDate(new TaskDate("30/12/2017"));
         assertEquals(testEvent.getDate().toString(), "30/12/2017");
         testEvent.setFavorite(false);
         assertEquals(testEvent.getFavoriteText(), "");
         testEvent.setFavorite(true);
-        assertEquals(testEvent.getFavoriteText(), "Favorite");
+        assertEquals(testEvent.getFavoriteText(), "Favorite \u2764");
         testEvent.setName(new Name("123"));
         assertEquals(testEvent.getName().toString(), "123");
         testEvent.setDescription(new Description("abc"));
