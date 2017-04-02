@@ -23,6 +23,7 @@ public class RecurringTask extends Task implements ReadOnlyRecurringTask {
         super(name, date, time, description, tag, venue, priority, isFavorite);
         this.isRecurring = RecurringProperty.RECURRING;
         this.mode = mode;
+        checkDateForRecurring();
     }
 
     /**
@@ -46,6 +47,7 @@ public class RecurringTask extends Task implements ReadOnlyRecurringTask {
                 source.getEventProperty(), source.getRecurringProperty());
         assert this.isRecurring == RecurringProperty.RECURRING;
         this.mode = ((ReadOnlyRecurringTask) source).getMode();
+        checkDateForRecurring();
     }
 
     @Override
@@ -58,6 +60,20 @@ public class RecurringTask extends Task implements ReadOnlyRecurringTask {
         super.resetData(replacement);
         assert this.isRecurring == RecurringProperty.RECURRING;
         this.mode = ((ReadOnlyRecurringTask) replacement).getMode();
+        checkDateForRecurring();
+    }
+
+    /**
+     * Set date to be day if date is not specified
+     */
+    private void checkDateForRecurring() {
+        if (this.date.getValue().isEmpty()) {
+            try {
+                this.date = new TaskDate("today");
+            } catch (IllegalValueException e) {
+                assert false;
+            }
+        }
     }
 
     @Override
