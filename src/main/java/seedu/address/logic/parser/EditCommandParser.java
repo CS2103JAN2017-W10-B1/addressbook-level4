@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FAVOURITE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
@@ -39,7 +40,7 @@ public class EditCommandParser {
         ArgumentTokenizer argsTokenizer =
                 new ArgumentTokenizer(PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_TAG,
                         PREFIX_DESCRIPTION, PREFIX_VENUE, PREFIX_PRIORITY, PREFIX_FAVOURITE,
-                        PREFIX_UNFAVOURITE, PREFIX_START, PREFIX_STARTTIME);
+                        PREFIX_UNFAVOURITE, PREFIX_START, PREFIX_STARTTIME, PREFIX_FREQUENCY);
         argsTokenizer.tokenize(args);
         List<Optional<String>> preambleFields = ParserUtil.splitPreamble(argsTokenizer.getPreamble().orElse(""), 2);
 
@@ -61,6 +62,7 @@ public class EditCommandParser {
             editTaskDescriptor.setPriority(ParserUtil.parsePriority(argsTokenizer.getValue(PREFIX_PRIORITY)));
             editTaskDescriptor.setIsFavourite(ParserUtil.isFavourite(argsTokenizer.getValue(PREFIX_FAVOURITE)));
             editTaskDescriptor.setIsUnfavourite(ParserUtil.isUnfavourite(argsTokenizer.getValue(PREFIX_UNFAVOURITE)));
+            editTaskDescriptor.setRecurringMode(ParserUtil.parseString(argsTokenizer.getValue(PREFIX_FREQUENCY)));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
