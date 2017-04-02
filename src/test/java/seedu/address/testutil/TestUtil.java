@@ -309,6 +309,18 @@ public class TestUtil {
     }
 
     /**
+     * Replaces events[i] with a event.
+     * @param events The array of events.
+     * @param event The replacement event
+     * @param index The index of the event to be replaced.
+     * @return
+     */
+    public static TestEvent[] replaceEventFromList(TestEvent[] events, TestEvent event, int index) {
+        events[index] = event;
+        return sort(events);
+    }
+
+    /**
      * Appends tasks to the array of tasks.
      * @param tasks A array of tasks.
      * @param tasksToAdd The tasks that are to be appended behind the original array.
@@ -334,6 +346,16 @@ public class TestUtil {
         Collections.sort(list, (TestTask t1, TestTask t2) -> -t1.getPriority().compareTo(t2.getPriority()));
         Collections.sort(list, (TestTask t1, TestTask t2) -> t1.getDate().compareTo(t2.getDate()));
         return list.toArray(new TestTask[list.size()]);
+    }
+
+    public static TestEvent[] sort(TestEvent[] taskArray) {
+        List<TestEvent> list = asList(taskArray);
+        Collections.sort(list, (TestEvent t1, TestEvent t2) -> t1.getTag().compareTo(t2.getTag()));
+        Collections.sort(list, (TestEvent t1, TestEvent t2) -> t1.getName().compareTo(t2.getName()));
+        Collections.sort(list, (TestEvent t1, TestEvent t2) -> t1.getTime().compareTo(t2.getTime()));
+        Collections.sort(list, (TestEvent t1, TestEvent t2) -> -t1.getPriority().compareTo(t2.getPriority()));
+        Collections.sort(list, (TestEvent t1, TestEvent t2) -> t1.getDate().compareTo(t2.getDate()));
+        return list.toArray(new TestEvent[list.size()]);
     }
 
     private static <T> List<T> asList(T[] objs) {
