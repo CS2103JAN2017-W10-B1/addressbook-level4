@@ -23,6 +23,10 @@ public class DeleteCommandParser {
         ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_ALL);
         argsTokenizer.tokenize(args);
 
+        if (!argsTokenizer.getPreamble().isPresent()) {
+            return new IncorrectCommand(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
         String stringIndex = argsTokenizer.getPreamble().get();
         Optional<Integer> index = ParserUtil.parseIndex(stringIndex);
         Optional<String> isDeleteAll = argsTokenizer.getValue(PREFIX_ALL);
