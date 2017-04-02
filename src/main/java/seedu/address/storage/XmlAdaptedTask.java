@@ -108,19 +108,18 @@ public class XmlAdaptedTask {
                     isFavourite, isFinished);
         } else if (isRecurring) {
             final RecurringMode recurring;
-            if (recurringMode.equals(RecurringMode.DAY)) {
+            if (recurringMode.contains("day")) {
                 recurring = RecurringMode.DAY;
-            } else if (recurringMode.equals(RecurringMode.WEEK)) {
+            } else if (recurringMode.contains("week")) {
                 recurring = RecurringMode.WEEK;
-            } else if (recurringMode.equals(RecurringMode.MONTH)) {
+            } else if (recurringMode.contains("month")) {
                 recurring = RecurringMode.MONTH;
             } else {
                 recurring = null;
             }
             return new RecurringTask(name, date, time, description, tag, venue, priority,
                     isFavourite, isFinished, recurring);
-        }
-        else {
+        } else {
             return new Task(name, date, time, description, tag,
                     venue, priority, isFavourite, isFinished);
         }
