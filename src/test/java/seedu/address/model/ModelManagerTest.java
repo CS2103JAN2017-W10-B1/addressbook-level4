@@ -80,6 +80,9 @@ public class ModelManagerTest {
         modelManager.updateFilteredTaskListGivenDaysToDueBy("0");
         assertEquals(modelManager.getFilteredTaskList().size(), 0);
 
+        modelManager.updateFilteredTaskListGivenDaysToDueOn("0");
+        assertEquals(modelManager.getFilteredTaskList().size(), 0);
+
         initModelManager();
 
         modelManager.updateFilteredTaskListGivenDaysToDueBy("300");
@@ -121,7 +124,7 @@ public class ModelManagerTest {
         modelManager = new ModelManager();
         modelManager.resetData(testUtil.getTypicalTaskManager());
         keywords.clear();
-        keywords.add("inbox");
+        keywords.add("Inbox");
 
         modelManager.updateFilteredTaskList(keywords);
         assertEquals(modelManager.getFilteredTaskList().size(), 0);
