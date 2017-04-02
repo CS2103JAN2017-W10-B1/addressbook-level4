@@ -22,8 +22,7 @@ public class ListCommand extends Command {
             + "Parameters: [all/favorite/finished] [LIST_NAME]\n"
             + "Example: " + COMMAND_WORD + "\n"
             + COMMAND_WORD + " all study\n"
-            + COMMAND_WORD + " finished\n"
-            + COMMAND_WORD + "study work\n";
+            + COMMAND_WORD + " finished\n";
 
     private final Set<String> keywords;
 
