@@ -15,7 +15,6 @@ import seedu.address.commons.events.model.DueueChangedEvent;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
@@ -103,16 +102,7 @@ public class ModelManager extends ComponentManager implements Model {
 
   //================== List Level Operation ===========================================================
 
-    //@@author A0147984L
-    @Override
-    public void addList(Tag list) throws UniqueTagList.DuplicateTagException {
-        assert list != null;
-
-        taskManager.addTag(list);
-        indicateTaskManagerChanged();
-    }
-
-    //=========== Filtered Task List Accessors =============================================================
+  //=========== Filtered Task List Accessors =============================================================
 
     @Override
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
