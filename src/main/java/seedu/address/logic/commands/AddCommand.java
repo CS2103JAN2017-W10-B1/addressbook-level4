@@ -10,7 +10,9 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Event;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.ReadOnlyRecurringTask.RecurringMode;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
@@ -27,7 +29,7 @@ public class AddCommand extends AbleUndoCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to Dueue. "
             + "Parameters: TASKNAME [due/DUEDATE] [dueT/DUETIME] [start/STARTDATE] [startT/STARTTIME]"
-            + " [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL][*f]\n"
+            + " [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f] [f/daily/weekly/monthly] \n"
             + "Example: " + COMMAND_WORD
             + " CS2103 Lecture due/24/3/2017 start/24/3 startT/16:00"
             + " dueT/18:00 #CS2103 d/Interesting module @I3 p/3 *f\n"
@@ -47,7 +49,8 @@ public class AddCommand extends AbleUndoCommand {
      */
 
     public AddCommand(String name, String date, String startDate, String time, String startTime,
-            String tag, String description, String venue, String priority, boolean isFavourite, boolean isEvent)
+            String tag, String description, String venue, String priority, String frequency,
+            boolean isFavourite, boolean isEvent, boolean isRecurring)
             throws IllegalValueException {
         //TODO: avoid long parameter list
 
@@ -77,6 +80,41 @@ public class AddCommand extends AbleUndoCommand {
                         new Priority(priority),
                         isFavourite
                     );
+            }
+        } else if (isRecurring) {
+            RecurringMode recurring;
+            if (frequency.contains("daily")) {
+                recurring = RecurringMode.DAY;
+            } else if (frequency.contains("weekly")) {
+                recurring = RecurringMode.WEEK;
+            } else if (frequency.contains("monthly")) {
+                recurring = RecurringMode.MONTH;
+            } else {
+                recurring = null;
+            }
+            if (recurring != null) {
+                this.toAdd = new RecurringTask(
+                        new Name(name),
+                        new TaskDate(date),
+                        new TaskTime(time),
+                        new Description(description),
+                        new Tag(tag),
+                        new Venue(venue),
+                        new Priority(priority),
+                        isFavourite,
+                        recurring
+                        );
+            } else {
+                this.toAdd = new Task(
+                        new Name(name),
+                        new TaskDate(date),
+                        new TaskTime(time),
+                        new Description(description),
+                        new Tag(tag),
+                        new Venue(venue),
+                        new Priority(priority),
+                        isFavourite
+                        );
             }
         } else {
             this.toAdd = new Task(
