@@ -106,15 +106,13 @@ public class TaskManager implements ReadOnlyTaskManager {
             try {
                 editedTask = new Event(editedReadOnlyTask);
             } catch (IllegalValueException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+               assert false;
             }
         } else if (editedReadOnlyTask.isRecurring()) {
             try {
                 editedTask = new RecurringTask(editedReadOnlyTask);
             } catch (IllegalValueException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                assert false;
             }
         } else {
             editedTask = new Task(editedReadOnlyTask);
@@ -133,13 +131,32 @@ public class TaskManager implements ReadOnlyTaskManager {
         tags.sort();
     }
 
+    public void updateTaskOnce(int index, ReadOnlyTask editedReadOnlyTask)
+            throws UniqueTaskList.DuplicateTaskException {
+        assert editedReadOnlyTask != null;
+
+        ReadOnlyTask recurringTask = tasks.get(index);
+        finishTaskOnce(recurringTask);
+
+        Task editedTask = null;
+        if (editedReadOnlyTask.isEvent()) {
+            try {
+                editedTask = new Event(editedReadOnlyTask);
+            } catch (IllegalValueException e) {
+               assert false;
+            }
+        } else {
+            editedTask = new Task(editedReadOnlyTask);
+        }
+        addTask(editedTask);
+    }
+
     public void finishTaskOnce(ReadOnlyTask recurringTask) throws DuplicateTaskException {
         Task current = null;
         try {
             current = new RecurringTask(recurringTask);
         } catch (IllegalValueException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+            assert false;
         }
         try {
             removeTask(recurringTask);

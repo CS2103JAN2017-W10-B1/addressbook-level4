@@ -100,6 +100,15 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
+    @Override
+    public void updateTaskOnOccurance(int filteredTaskListIndex, ReadOnlyTask editedTask)
+            throws UniqueTaskList.DuplicateTaskException {
+        assert editedTask != null;
+
+        int taskManagerIndex = filteredTasks.getSourceIndex(filteredTaskListIndex);
+        taskManager.updateTaskOnce(taskManagerIndex, editedTask);
+        indicateTaskManagerChanged();
+    }
   //================== List Level Operation ===========================================================
 
   //=========== Filtered Task List Accessors =============================================================
@@ -432,7 +441,6 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
         public boolean run(ReadOnlyTask task) {
             long diff = task.getDate().date.getTime() - today.getTime().getTime();
-            // TODO: need test
             return daysToDue == TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
         }
     }
