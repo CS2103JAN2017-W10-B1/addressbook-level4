@@ -49,6 +49,11 @@ public class MainWindow extends UiPart<Region> {
 
     public static MainWindow mainWindow;
 
+    public static MainWindow getInstance() {
+        assert mainWindow != null;
+        return mainWindow;
+    }
+
     private MainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
         super(FXML);
 
