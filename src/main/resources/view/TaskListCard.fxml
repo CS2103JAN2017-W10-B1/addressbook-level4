@@ -13,12 +13,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="taskCardPane" fx:id="taskCardPane" opacity="0.75" prefHeight="120.0" prefWidth="522.0" style="-fx-border-radius: 5; -fx-border-width: 3; -fx-border-color: DARKSALMON; -fx-background-radius: 5; -fx-background-color: LAVENDERBLUSH;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="taskCardPane" fx:id="taskCardPane" prefHeight="120.0" prefWidth="522.0" style="-fx-border-radius: 5; -fx-border-width: 3; -fx-border-color: DARKSALMON; -fx-background-radius: 5; -fx-background-color: LAVENDERBLUSH;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <GridPane prefHeight="117.0" prefWidth="357.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="375.0" minWidth="10.0" prefWidth="186.0" />
-            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="233.0" minWidth="150.0" prefWidth="233.0" />
+            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="240.0" minWidth="150.0" prefWidth="233.0" />
             </columnConstraints>
             <children>
             <HBox prefHeight="136.0" prefWidth="334.0">
@@ -77,7 +77,7 @@
                                     <Insets left="28.0" top="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="pastDue" minWidth="60.0" prefHeight="12.0" style="-fx-text-fill: red; -fx-font-size: 14; -fx-font-family: Avenir;" text="\$pastDue" textFill="#f20000">
+                              <Label fx:id="pastDue" minWidth="80.0" prefHeight="12.0" style="-fx-text-fill: red; -fx-font-size: 14; -fx-font-family: Avenir;" text="\$pastDue" textFill="#f20000">
                                  <font>
                                     <Font name="System Bold" size="11.0" />
                                  </font>
@@ -111,12 +111,12 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="startTime" prefHeight="19.0" prefWidth="140.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startTime">
+                        <Label fx:id="startTime" minWidth="140.0" prefHeight="19.0" prefWidth="140.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startTime">
                            <font>
                               <Font name="Avenir Roman" size="11.0" />
                            </font>
                         </Label>
-                              <Label fx:id="time" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="100.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$time">
+                              <Label fx:id="time" alignment="CENTER_RIGHT" minWidth="100.0" prefHeight="19.0" prefWidth="100.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$time">
                            <font>
                               <Font name="Avenir Roman" size="11.0" />
                            </font>
@@ -128,17 +128,12 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="startDate" prefHeight="19.0" prefWidth="140.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startDate">
+                        <Label fx:id="startDate" minWidth="140.0" prefHeight="19.0" prefWidth="140.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startDate">
                            <font>
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <Label fx:id="isRecurring" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="120.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$isRecurring">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="date" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="120.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$date">
+                        <Label fx:id="date" alignment="CENTER_RIGHT" minWidth="100.0" prefHeight="19.0" prefWidth="120.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$date">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -148,14 +143,23 @@
                         </Label>
                      </children>
                   </HBox>
-                        <Label fx:id="venue" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="158.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$venue">
+                  <HBox minWidth="80.0">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
-                     <font>
-                        <Font name="Avenir Roman" size="11.0" />
-                     </font>
-                  </Label>
+                     <children>
+                        <Label fx:id="isRecurring" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="120.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$isRecurring">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                              <Label fx:id="venue" alignment="CENTER_RIGHT" minWidth="160.0" prefHeight="19.0" prefWidth="158.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$venue">
+                           <font>
+                              <Font name="Avenir Roman" size="11.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
             </children>

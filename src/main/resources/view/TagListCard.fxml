@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- @@author A0147996E -->
 
 <?import javafx.geometry.Insets?>
@@ -16,7 +17,7 @@
             <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="250.0" minWidth="0.0" prefWidth="122.0" />
             </columnConstraints>
             <children>
-            <Label fx:id="index" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="\$id">
+            <Label fx:id="index" prefHeight="22.0" prefWidth="22.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="\$id">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin></Label>
