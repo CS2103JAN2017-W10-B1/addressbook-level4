@@ -16,6 +16,7 @@ import seedu.address.model.task.Event;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyEvent;
+import seedu.address.model.task.ReadOnlyRecurringTask.RecurringMode;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.FinishProperty;
 import seedu.address.model.task.RecurringTask;
@@ -165,6 +166,10 @@ public class EditCommand extends AbleUndoCommand {
                 TaskTime updatedStartTime = editTaskDescriptor.getStartTime().orElse(new TaskTime(""));
                 return new Event (updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
                         updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
+            } else if (taskToEdit.isRecurring()) {
+                RecurringMode mode = ((RecurringTask) taskToEdit).getMode();
+                return new RecurringTask(updatedName, updatedDueDate, updatedDueTime,
+                        updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, mode);
             } else {
                 return new Task (updatedName, updatedDueDate, updatedDueTime, updatedDescription,
                         updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
