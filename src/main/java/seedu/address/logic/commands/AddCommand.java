@@ -29,12 +29,13 @@ public class AddCommand extends AbleUndoCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to Dueue. "
             + "Parameters: TASKNAME [due/DUEDATE] [dueT/DUETIME] [start/STARTDATE] [startT/STARTTIME]"
-            + " [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f] [f/daily/weekly/monthly] \n"
+            + " [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f] [f/day/week/month/daily/weekly/monthly] \n"
             + "Example: " + COMMAND_WORD
             + " CS2103 Lecture due/24/3/2017 start/24/3 startT/16:00"
             + " dueT/18:00 #CS2103 d/Interesting module @I3 p/3 *f\n"
             + COMMAND_WORD
-            + " CS2103T Tutorial due/tomorrow dueT/10:00 #CS2103 d/Interesting module @I3 p/2 *f\n";
+            + " CS2103T Tutorial due/tomorrow dueT/10:00 #CS2103 d/Interesting module @I3 p/2 *f\n"
+            + " CS2103 Demo f/weekly #CS2103 d/Exhausting module @SoC p/3\n";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Dueue";
@@ -83,11 +84,11 @@ public class AddCommand extends AbleUndoCommand {
             }
         } else if (isRecurring) {
             RecurringMode recurring;
-            if (frequency.contains("daily")) {
+            if (frequency.contains("daily") || frequency.contains("day")) {
                 recurring = RecurringMode.DAY;
-            } else if (frequency.contains("weekly")) {
+            } else if (frequency.contains("week")) {
                 recurring = RecurringMode.WEEK;
-            } else if (frequency.contains("monthly")) {
+            } else if (frequency.contains("month")) {
                 recurring = RecurringMode.MONTH;
             } else {
                 recurring = null;
