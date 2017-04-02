@@ -40,7 +40,7 @@ public class EditCommand extends AbleUndoCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index given.\n"
             + "Parameters: INDEX [n/TASK_NAME]\n [due/DUE_DATE] [dueT/DUE_TIME]"
-            + "[start/START_DATE] [startT/STAR_TTIME]\n [#LIST_NAME] "
+            + "[start/START_DATE] [startT/STAR_TTIME] [#LIST_NAME] "
             + "[d/DESCRIPTION] [@VENUE] [p/PRIORITY_LEVEL] [*f/*u]\n"
             + "Example: " + COMMAND_WORD + " 1 due/17/3/2017 #CS2103T";
 
@@ -150,8 +150,13 @@ public class EditCommand extends AbleUndoCommand {
         } else {
             isFavourite = taskToEdit.isFavorite();
         }
-        if (taskToEdit.isRecurring()) {
-            RecurringMode mode = ((RecurringTask) taskToEdit).getMode();
+        if (taskToEdit.isRecurring() || editTaskDescriptor.getRecurringMode() != null) {
+            RecurringMode mode;
+            if (editTaskDescriptor.getRecurringMode() != null) {
+                mode = editTaskDescriptor.getRecurringMode();
+            } else {
+                mode = ((RecurringTask) taskToEdit).getMode();
+            }
             return new RecurringTask(updatedName, updatedDueDate, updatedDueTime,
                     updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, mode);
         } else if (editTaskDescriptor.updatedEvent(editTaskDescriptor.getStart()) || taskToEdit.isEvent()) {
@@ -193,6 +198,7 @@ public class EditCommand extends AbleUndoCommand {
         private Optional<Tag> tag = Optional.empty();
         private Optional<Venue> venue = Optional.empty();
         private Optional<Priority> priority = Optional.empty();
+        private RecurringMode recurringMode;
         private boolean isFavourite;
 
         private boolean isFavouriteEdited;
@@ -211,6 +217,7 @@ public class EditCommand extends AbleUndoCommand {
             this.priority = toCopy.getPriority();
             this.isFavourite = toCopy.getFavourite();
             this.isFavouriteEdited = toCopy.getIsFavouriteEdited();
+            this.recurringMode = toCopy.getRecurringMode();
         }
 
         /**
@@ -219,7 +226,8 @@ public class EditCommand extends AbleUndoCommand {
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyPresent(
                     this.name, this.due, this.dueTime, this.start, this.startTime,
-                    this.description, this.tag, this.venue, this.priority) || this.isFavouriteEdited;
+                    this.description, this.tag, this.venue, this.priority) ||
+                    this.isFavouriteEdited || (this.recurringMode != null);
         }
 
         public void setName(Optional<Name> name) {
@@ -328,6 +336,25 @@ public class EditCommand extends AbleUndoCommand {
         public boolean updatedEvent(Optional<TaskDate> start) {
             return start.isPresent();
         }
+
+        public void setRecurringMode(Optional<String> ocurrence) {
+            if (ocurrence.isPresent()) {
+                String ocurring = ocurrence.orElse("");
+                if (ocurring.contains("daily")) {
+                    this.recurringMode = RecurringMode.DAY;
+                } else if (ocurring.contains("weekly")) {
+                    this.recurringMode = RecurringMode.WEEK;
+                } else if (ocurring.contains("monthly")) {
+                    this.recurringMode = RecurringMode.MONTH;
+                }
+            } else {
+                this.recurringMode = null;
+            }
+        }
+
+        public RecurringMode getRecurringMode() {
+            return this.recurringMode;
+        }
     }
 
     @Override
@@ -341,6 +368,10 @@ public class EditCommand extends AbleUndoCommand {
         try {
             model.deleteTask(this.task);
             model.addTask(this.oldTask);
+            ReadOnlyTask temp;
+            temp = this.task;
+            this.task = this.oldTask;
+            this.oldTask = (Task) temp;
         } catch (UniqueTaskList.DuplicateTaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (TaskNotFoundException e) {
