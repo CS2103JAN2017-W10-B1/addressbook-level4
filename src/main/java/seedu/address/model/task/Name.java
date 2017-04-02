@@ -19,8 +19,6 @@ public class Name implements TaskField, Comparable<Name> {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String NAME_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    public static final String RESERVED_NAME = "(?i)"
-            + "(list)";
 
     public final String fullName;
 
@@ -34,8 +32,6 @@ public class Name implements TaskField, Comparable<Name> {
         String trimmedName = name.trim();
         if (!isValidName(trimmedName)) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS_1);
-        } else if (isReservedName(trimmedName)) {
-            throw new IllegalValueException(trimmedName + MESSAGE_NAME_CONSTRAINTS_2);
         }
         this.fullName = trimmedName;
     }
@@ -45,10 +41,6 @@ public class Name implements TaskField, Comparable<Name> {
      */
     public static boolean isValidName(String test) {
         return test.matches(NAME_VALIDATION_REGEX);
-    }
-
-    public static boolean isReservedName(String test) {
-        return test.matches(RESERVED_NAME);
     }
 
     @Override
