@@ -34,7 +34,7 @@ public class TaskListPanel extends UiPart<Region> {
         super(FXML);
         setConnections(taskList);
         addToPlaceholder(taskListPlaceholder);
-        taskListHeader.setText("What is to be done?");
+        taskListHeader.setText("What are left undone?");
     }
 
     private void setConnections(ObservableList<ReadOnlyTask> taskList) {
