@@ -151,7 +151,11 @@ public class EditCommand extends AbleUndoCommand {
         } else {
             isFavourite = taskToEdit.isFavorite();
         }
-        if (editTaskDescriptor.updatedEvent(editTaskDescriptor.getStart()) || taskToEdit.isEvent()) {
+        if (taskToEdit.isRecurring()) {
+            RecurringMode mode = ((RecurringTask) taskToEdit).getMode();
+            return new RecurringTask(updatedName, updatedDueDate, updatedDueTime,
+                    updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, mode);
+        } else if (editTaskDescriptor.updatedEvent(editTaskDescriptor.getStart()) || taskToEdit.isEvent()) {
             if (taskToEdit.isEvent() && !(editTaskDescriptor.getStart().isPresent() &&
                     editTaskDescriptor.getStart().get().getValue().isEmpty())) {
                 TaskDate updatedStartDate = editTaskDescriptor.getStart()
@@ -166,10 +170,6 @@ public class EditCommand extends AbleUndoCommand {
                 TaskTime updatedStartTime = editTaskDescriptor.getStartTime().orElse(new TaskTime(""));
                 return new Event (updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
                         updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
-            } else if (taskToEdit.isRecurring()) {
-                RecurringMode mode = ((RecurringTask) taskToEdit).getMode();
-                return new RecurringTask(updatedName, updatedDueDate, updatedDueTime,
-                        updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, mode);
             } else {
                 return new Task (updatedName, updatedDueDate, updatedDueTime, updatedDescription,
                         updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
