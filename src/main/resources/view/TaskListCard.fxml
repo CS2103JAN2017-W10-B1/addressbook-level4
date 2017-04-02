@@ -133,6 +133,11 @@
                               <Font size="11.0" />
                            </font>
                         </Label>
+                        <Label fx:id="isRecurring" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="120.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$isRecurring">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
                         <Label fx:id="date" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="120.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$date">
                            <font>
                               <Font size="11.0" />
