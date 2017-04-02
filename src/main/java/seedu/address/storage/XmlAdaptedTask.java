@@ -10,8 +10,11 @@ import seedu.address.model.task.Event;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyEvent;
+import seedu.address.model.task.ReadOnlyRecurringTask;
+import seedu.address.model.task.ReadOnlyRecurringTask.RecurringMode;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.FinishProperty;
+import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
@@ -46,6 +49,10 @@ public class XmlAdaptedTask {
     private String startDate;
     @XmlElement(required = false)
     private String startTime;
+    @XmlElement(required = true)
+    protected boolean isRecurring;
+    @XmlElement(required = false)
+    private String recurringMode;
 
     /**
      * Constructs an XmlAdaptedPerson.
@@ -70,9 +77,13 @@ public class XmlAdaptedTask {
         isFavourite = source.isFavorite();
         isFinished = source.getFinished();
         isEvent = source.isEvent();
+        isRecurring = source.isRecurring();
         if (isEvent) {
             startDate = ((ReadOnlyEvent) source).getStartDate().getValue();
             startTime = ((ReadOnlyEvent) source).getStartTime().getValue();
+        }
+        if (isRecurring) {
+            recurringMode = ((ReadOnlyRecurringTask) source).getRecurringPeriod();
         }
     }
 
@@ -95,7 +106,21 @@ public class XmlAdaptedTask {
 
             return new Event(name, startDate, startTime, date, time, description, tag, venue, priority,
                     isFavourite, isFinished);
-        } else {
+        } else if (isRecurring) {
+            final RecurringMode recurring;
+            if (recurringMode.equals(RecurringMode.DAY)) {
+                recurring = RecurringMode.DAY;
+            } else if (recurringMode.equals(RecurringMode.WEEK)) {
+                recurring = RecurringMode.WEEK;
+            } else if (recurringMode.equals(RecurringMode.MONTH)) {
+                recurring = RecurringMode.MONTH;
+            } else {
+                recurring = null;
+            }
+            return new RecurringTask(name, date, time, description, tag, venue, priority,
+                    isFavourite, isFinished, recurring);
+        }
+        else {
             return new Task(name, date, time, description, tag,
                     venue, priority, isFavourite, isFinished);
         }

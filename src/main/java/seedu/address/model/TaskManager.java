@@ -109,6 +109,8 @@ public class TaskManager implements ReadOnlyTaskManager {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+        } else if (editedReadOnlyTask.isRecurring()) {
+            editedTask = new RecurringTask(editedReadOnlyTask);
         } else {
             editedTask = new Task(editedReadOnlyTask);
         }
