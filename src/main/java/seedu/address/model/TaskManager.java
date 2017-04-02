@@ -12,6 +12,7 @@ import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.address.model.task.Event;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.ReadOnlyTask.RecurringProperty;
 import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
@@ -147,6 +148,7 @@ public class TaskManager implements ReadOnlyTaskManager {
             }
         } else {
             editedTask = new Task(editedReadOnlyTask);
+            editedTask.setRecurringProperty(RecurringProperty.NON_RECURRING);
         }
         addTask(editedTask);
     }

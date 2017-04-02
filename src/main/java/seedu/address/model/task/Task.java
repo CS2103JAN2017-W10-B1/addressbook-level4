@@ -263,6 +263,10 @@ public class Task implements ReadOnlyTask {
         return this.isEvent;
     }
 
+    public void setRecurringProperty(RecurringProperty isRecurring) {
+        this.isRecurring = isRecurring;
+    }
+
     @Override
     public RecurringProperty getRecurringProperty() {
         return this.isRecurring;
