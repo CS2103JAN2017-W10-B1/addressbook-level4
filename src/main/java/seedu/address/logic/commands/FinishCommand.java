@@ -11,8 +11,10 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Event;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.ReadOnlyRecurringTask;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.FinishProperty;
+import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
@@ -65,6 +67,9 @@ public class FinishCommand extends AbleUndoCommand {
 
         if (taskToMark.isFinished()) {
             throw new CommandException(MESSAGE_FINISH_TASK_MARKED);
+        } else if (taskToMark.isRecurring()) {
+            editedTask = new RecurringTask(taskToMark);
+            ((ReadOnlyRecurringTask) editedTask).finishOnce();
         } else {
             Name updatedName = taskToMark.getName();
             TaskDate updatedDueDate = taskToMark.getDate();
