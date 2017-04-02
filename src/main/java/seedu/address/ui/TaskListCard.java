@@ -5,12 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.task.Event;
+import seedu.address.model.task.ReadOnlyEvent;
 import seedu.address.model.task.ReadOnlyRecurringTask;
-import seedu.address.model.task.ReadOnlyRecurringTask.RecurringMode;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.RecurringProperty;
-import seedu.address.model.task.RecurringTask;
 
 /**
  * Taskcard defines format for individual task view.
@@ -69,21 +67,15 @@ public class TaskListCard extends UiPart<Region> {
         }
         startTime.setText("");
         startDate.setText("");
-        if (task instanceof Event) {
-            startDate.setText(((Event) task).getStartDate().getStartDisplayText());
-            startTime.setText(((Event) task).getStartTime().getStartDisplayText());
+        if (task instanceof ReadOnlyEvent) {
+            startDate.setText(((ReadOnlyEvent) task).getStartDate().getStartDisplayText());
+            startTime.setText(((ReadOnlyEvent) task).getStartTime().getStartDisplayText());
         }
         isRecurring.setText("");
         if (task.getRecurringProperty() == RecurringProperty.RECURRING) {
-            assert task instanceof RecurringTask;
-            RecurringMode mode = ((ReadOnlyRecurringTask) task).getMode();
-            if (mode == RecurringMode.DAY) {
-                isRecurring.setText("Everyday");
-            } else if (mode == RecurringMode.MONTH) {
-                isRecurring.setText("Every month");
-            } else if (mode == RecurringMode.WEEK) {
-                isRecurring.setText("Every week");
-            }
+            assert task instanceof ReadOnlyRecurringTask;
+            String mode = ((ReadOnlyRecurringTask) task).getRecurringPeriod();
+            isRecurring.setText(mode);
         }
     }
 }
