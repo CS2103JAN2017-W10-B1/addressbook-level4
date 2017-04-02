@@ -22,6 +22,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_UNFAVOURITE = new Prefix("*u");
     public static final Prefix PREFIX_START = new Prefix("start/");
     public static final Prefix PREFIX_STARTTIME = new Prefix("startT/");
+    public static final Prefix PREFIX_FREQUENCY = new Prefix("f/");
 
     /* Patterns definitions */
     public static final Pattern KEYWORDS_ARGS_FORMAT =

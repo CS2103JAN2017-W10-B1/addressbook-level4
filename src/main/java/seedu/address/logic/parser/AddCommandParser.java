@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FAVOURITE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
@@ -38,7 +39,8 @@ public class AddCommandParser {
         }
         ArgumentTokenizer argsTokenizer =
                 new ArgumentTokenizer(PREFIX_DATE, PREFIX_TIME, PREFIX_TAG, PREFIX_DESCRIPTION,
-                        PREFIX_VENUE, PREFIX_PRIORITY, PREFIX_FAVOURITE, PREFIX_START, PREFIX_STARTTIME);
+                        PREFIX_VENUE, PREFIX_PRIORITY, PREFIX_FAVOURITE, PREFIX_START,
+                        PREFIX_STARTTIME, PREFIX_FREQUENCY);
         argsTokenizer.tokenize(args);
         try {
             String name = argsTokenizer.getPreamble().get();
@@ -50,10 +52,12 @@ public class AddCommandParser {
             String description = checkString(argsTokenizer.getValue(PREFIX_DESCRIPTION));
             String venue = checkString(argsTokenizer.getValue(PREFIX_VENUE));
             String priority = checkString(argsTokenizer.getValue(PREFIX_PRIORITY));
+            String frequency = checkString(argsTokenizer.getValue(PREFIX_FREQUENCY));
             boolean isEvent = checkStart(startDate) || checkStart(startTime);
             boolean isFavourite = checkPresent(argsTokenizer.getValue(PREFIX_FAVOURITE));
+            boolean isRecurring = !frequency.isEmpty();
             return new AddCommand(name, date, startDate, time, startTime, tag,
-                    description, venue, priority, isFavourite, isEvent);
+                    description, venue, priority, frequency, isFavourite, isEvent, isRecurring);
         } catch (NoSuchElementException ive) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         } catch (IllegalValueException ive) {
