@@ -10,6 +10,10 @@ public class RecurringTask extends Task implements ReadOnlyRecurringTask {
     public static final String PERIOD_WEEKLY = "every week";
     public static final String PERIOD_MONTHLY = "every month";
 
+    public static final String PERIOD_DAY_REGEX = "(?i)((every)?(\\s)*(day))|(daily)";
+    public static final String PERIOD_WEEK_REGEX = "(?i)((every)?(\\s)*(week))|(weekly)";
+    public static final String PERIOD_MONTH_REGEX = "(?i)((every)?(\\s)*(month))|(monthly)";
+
     protected RecurringMode mode;
 
     /**

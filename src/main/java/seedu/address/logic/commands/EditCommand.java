@@ -340,11 +340,11 @@ public class EditCommand extends AbleUndoCommand {
         public void setRecurringMode(Optional<String> ocurrence) {
             if (ocurrence.isPresent()) {
                 String ocurring = ocurrence.orElse("");
-                if (ocurring.contains("daily")) {
+                if (ocurring.matches(RecurringTask.PERIOD_DAY_REGEX)) {
                     this.recurringMode = RecurringMode.DAY;
-                } else if (ocurring.contains("weekly")) {
+                } else if (ocurring.matches(RecurringTask.PERIOD_WEEK_REGEX)) {
                     this.recurringMode = RecurringMode.WEEK;
-                } else if (ocurring.contains("monthly")) {
+                } else if (ocurring.matches(RecurringTask.PERIOD_MONTH_REGEX)) {
                     this.recurringMode = RecurringMode.MONTH;
                 }
             } else {
