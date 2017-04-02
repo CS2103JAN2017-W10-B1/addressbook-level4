@@ -59,6 +59,15 @@ public class ModelManagerTest {
         modelManager.updateFilteredTaskList(keywords);
         assertEquals(modelManager.getFilteredTaskList().size(), 4);
 
+        modelManager.updateFilteredTaskListFinished(keywords);
+        assertEquals(modelManager.getFilteredTaskList().size(), 0);
+
+        modelManager.updateFilteredTaskListAll(keywords);
+        assertEquals(modelManager.getFilteredTaskList().size(), 4);
+
+        modelManager.updateFilteredTaskListFavorite(keywords);
+        assertEquals(modelManager.getFilteredTaskList().size(), 2);
+
         modelManager = new ModelManager();
         modelManager.resetData(testUtil.getTypicalTaskManager());
         keywords.add("cs2103");
@@ -111,6 +120,9 @@ public class ModelManagerTest {
         modelManager.updateFilteredTaskListGivenListName(keywords);
         assertEquals(modelManager.getFilteredTaskList().size(), 4);
         assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "gym");
+
+        modelManager.updateFilteredTaskListGivenListNameAll(keywords);
+        assertEquals(modelManager.getFilteredTaskList().size(), 4);
 
         modelManager = new ModelManager();
         modelManager.resetData(testUtil.getTypicalTaskManager());
