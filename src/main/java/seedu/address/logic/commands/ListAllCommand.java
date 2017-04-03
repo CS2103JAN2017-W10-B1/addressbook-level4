@@ -1,6 +1,7 @@
 //@@author A0143409J
 package seedu.address.logic.commands;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -30,11 +31,12 @@ public class ListAllCommand extends Command {
     }
 
     public ListAllCommand() {
-        this.keywords = null;
+        this.keywords = new HashSet<String>();
     }
 
     @Override
     public CommandResult execute() {
+        assert keywords != null;
         if (keywords.isEmpty()) {
             model.updateFilteredListToShowAllTasks();
             return new CommandResult(MESSAGE_LIST_ALL_SUCCESS);

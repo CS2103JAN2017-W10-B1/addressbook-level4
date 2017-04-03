@@ -1,6 +1,7 @@
 //@@author A0143409J
 package seedu.address.logic.commands;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -32,11 +33,12 @@ public class ListFavoriteCommand extends Command {
     }
 
     public ListFavoriteCommand() {
-        this.keywords = null;
+        this.keywords = new HashSet<String>();
     }
 
     @Override
     public CommandResult execute() {
+        assert keywords != null;
         if (keywords.isEmpty()) {
             model.updateFilteredListToShowAllFavoriteTasks();
             return new CommandResult(MESSAGE_LIST_FAVORITE_SUCCESS);

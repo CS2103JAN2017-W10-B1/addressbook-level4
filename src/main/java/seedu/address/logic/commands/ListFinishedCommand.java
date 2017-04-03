@@ -1,6 +1,7 @@
 //@@author A0143409J
 package seedu.address.logic.commands;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -29,11 +30,12 @@ public class ListFinishedCommand extends Command {
     }
 
     public ListFinishedCommand() {
-        this.keywords = null;
+        this.keywords = new HashSet<String>();
     }
 
     @Override
     public CommandResult execute() {
+        assert keywords != null;
         if (keywords.isEmpty()) {
             model.updateFilteredListToShowAllFinishedTasks();
             return new CommandResult(MESSAGE_LIST_FINISHED_SUCCESS);
