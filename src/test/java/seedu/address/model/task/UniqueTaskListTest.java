@@ -4,6 +4,7 @@ package seedu.address.model.task;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -33,6 +34,11 @@ public class UniqueTaskListTest {
         meetingTask = new Task(testUtil.meeting);
         travelTask = new Task(testUtil.travel);
         testEvent = new Event(new TypicalTestEvents().gym);
+    }
+
+    @AfterClass
+    public static void oneTimeTearDown() {
+        tester = new UniqueTaskList();
     }
 
     @Before
