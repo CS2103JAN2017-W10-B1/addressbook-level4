@@ -1,6 +1,10 @@
 //@@author generated
 package seedu.address.logic.commands;
 
+import java.util.logging.Logger;
+
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -9,11 +13,15 @@ import seedu.address.model.Model;
  * Represents a command with hidden internal logic and the ability to be executed.
  */
 public abstract class Command {
+
+    protected static final Logger LOGGER = LogsCenter.getLogger(MainApp.class);
+
     protected Model model;
 
     public static final String MESSAGE_USAGE = "";
 
     public static final String COMMAND_WORD = "";
+
 
     /**
      * Constructs a feedback message to summarise an operation that displayed a listing of persons.
