@@ -15,6 +15,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Event;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
@@ -28,7 +29,7 @@ public class AddCommandParserTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void nullTest() throws Exception {
+    public void addTask_emptyString_incorrectCommand() throws Exception {
 
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
@@ -39,7 +40,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void nameOnlyTaskTest() throws Exception {
+    public void addTask_onlyName_correctlyAdd() throws Exception {
 
         Field field = AddCommand.class.getDeclaredField("toAdd");
         field.setAccessible(true);
@@ -52,53 +53,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void nameAndDateTaskTest() throws Exception {
-
-        Field field = AddCommand.class.getDeclaredField("toAdd");
-        field.setAccessible(true);
-
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/10/3 \n");
-        Name sampleTaskName = new Name("CS2103 Lecture");
-        TaskDate sampleTaskDate = new TaskDate("10/3");
-        Task sampleTask = new Task(sampleTaskName, sampleTaskDate, new TaskTime(""),
-                new Description(""), new Tag(""), new Venue(""), new Priority(""), false);
-        assertEqualTasks((Task) field.get(addCommand), sampleTask);
-    }
-
-    @Test
-    public void nameDateTimeTaskTest() throws Exception {
-
-        Field field = AddCommand.class.getDeclaredField("toAdd");
-        field.setAccessible(true);
-
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/30/3 dueT/16:00 \n");
-        Name sampleTaskName = new Name("CS2103 Lecture");
-        TaskDate sampleTaskDate = new TaskDate("30/3");
-        TaskTime sampleTaskTime = new TaskTime("16:00");
-        Task sampleTask = new Task(sampleTaskName, sampleTaskDate, sampleTaskTime,
-                new Description(""), new Tag(""), new Venue(""), new Priority(""), false);
-        assertEqualTasks((Task) field.get(addCommand), sampleTask);
-    }
-
-    @Test
-    public void nameDateTimeDescriptionTaskTest() throws Exception {
-
-        Field field = AddCommand.class.getDeclaredField("toAdd");
-        field.setAccessible(true);
-
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/30/3 dueT/16:00"
-                + "d/Interesting \n");
-        Name sampleTaskName = new Name("CS2103 Lecture");
-        TaskDate sampleTaskDate = new TaskDate("30/3");
-        TaskTime sampleTaskTime = new TaskTime("16:00");
-        Description sampleTaskDescription = new Description("Interesting");
-        Task sampleTask = new Task(sampleTaskName, sampleTaskDate, sampleTaskTime,
-                sampleTaskDescription, new Tag(""), new Venue(""), new Priority(""), false);
-        assertEqualTasks((Task) field.get(addCommand), sampleTask);
-    }
-
-    @Test
-    public void nameDateTimeDescriptionTagTaskTest() throws Exception {
+    public void addTask_someFields_correctlyAdd() throws Exception {
 
         Field field = AddCommand.class.getDeclaredField("toAdd");
         field.setAccessible(true);
@@ -116,26 +71,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void nameDateTimeDescriptionTagVenueTaskTest() throws Exception {
-
-        Field field = AddCommand.class.getDeclaredField("toAdd");
-        field.setAccessible(true);
-
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/30/3 "
-                + "dueT/16:00 d/Interesting #CS2103 @I3 \n");
-        Name sampleTaskName = new Name("CS2103 Lecture");
-        TaskDate sampleTaskDate = new TaskDate("30/3");
-        TaskTime sampleTaskTime = new TaskTime("16:00");
-        Description sampleTaskDescription = new Description("Interesting");
-        Tag sampleTaskTag = new Tag("CS2103");
-        Venue sampleTaskVenue = new Venue("I3");
-        Task sampleTask = new Task(sampleTaskName, sampleTaskDate, sampleTaskTime,
-                sampleTaskDescription, sampleTaskTag, sampleTaskVenue, new Priority(""), false);
-        assertEqualTasks((Task) field.get(addCommand), sampleTask);
-    }
-
-    @Test
-    public void nameDateTimeDescriptionTagVenuePriorityTaskTest() throws Exception {
+    public void addTask_allFields_correctlyAdd() throws Exception {
 
         Field field = AddCommand.class.getDeclaredField("toAdd");
         field.setAccessible(true);
@@ -154,6 +90,30 @@ public class AddCommandParserTest {
         assertEqualTasks((Task) field.get(addCommand), sampleTask);
     }
 
+
+    @Test
+    public void addEvent_allFields_correctlyAdd() throws Exception {
+
+        Field field = AddCommand.class.getDeclaredField("toAdd");
+        field.setAccessible(true);
+
+        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/30/3 "
+                + "dueT/16:00 d/Interesting #CS2103 @I3 p/3 start/31/3 startT/15:00 \n");
+        Name sampleTaskName = new Name("CS2103 Lecture");
+        TaskDate sampleTaskDate = new TaskDate("30/3");
+        TaskTime sampleTaskTime = new TaskTime("16:00");
+        TaskDate sampleTaskStartDate = new TaskDate("30/3");
+        TaskTime sampleTaskStartTime = new TaskTime("15:00");
+        Description sampleTaskDescription = new Description("Interesting");
+        Tag sampleTaskTag = new Tag("CS2103");
+        Venue sampleTaskVenue = new Venue("I3");
+        Priority sampleTaskPriority = new Priority("3");
+        Event sampleEvent = new Event(sampleTaskName, sampleTaskStartDate, sampleTaskStartTime,
+                sampleTaskDate, sampleTaskTime, sampleTaskDescription, sampleTaskTag,
+                sampleTaskVenue, sampleTaskPriority, false);
+        assertEqualEvents((Event) field.get(addCommand), sampleEvent);
+    }
+
     private void assertEqualTasks(Task task1, Task sampleTask) {
         assertEquals(task1.getName(), sampleTask.getName());
         assertEquals(task1.getDate(), sampleTask.getDate());
@@ -164,5 +124,11 @@ public class AddCommandParserTest {
         assertEquals(task1.getPriority(), sampleTask.getPriority());
         assertEquals(task1.isFavorite(), sampleTask.isFavorite());
         assertEquals(task1.isFinished(), sampleTask.isFinished());
+    }
+
+    private void assertEqualEvents(Event event1, Event event2) {
+        assertEqualTasks(event1, event2);
+        assertEquals(event1.getStartTime(), event2.getStartTime());
+        assertEquals(event1.getStartDate(), event2.getStartDate());
     }
 }
