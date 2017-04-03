@@ -21,7 +21,7 @@ public class ConfigTest {
                 "Local data file location : data/dueue.xml\n" +
                 "TaskManager name : MyTaskManager";
 
-        assertEquals(defaultConfigAsString, Config.getStub());
+        assertEquals(defaultConfigAsString, Config.getStub().toString());
     }
 
     @Test
