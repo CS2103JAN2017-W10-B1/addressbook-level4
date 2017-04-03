@@ -77,11 +77,6 @@ public abstract class TaskManagerGuiTest {
         mainGui.focusOnMainApp();
     }
 
-    @After
-    public void tearDown() throws TimeoutException {
-        
-    }
-
     /**
      * Override this in child classes to set the initial local data.
      * Return null to use the data in the file specified in {@link #getDataFileLocation()}
