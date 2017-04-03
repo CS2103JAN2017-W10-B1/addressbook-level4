@@ -353,4 +353,12 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
             return "StartDate: " + value;
         }
     }
+
+    public String getPastDueDisplayedText() {
+        if (isPastDue()) {
+            return "Past due!";
+        } else {
+            return "";
+        }
+    }
 }
