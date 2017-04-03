@@ -20,13 +20,13 @@ public class FinishCommandParserTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void nullTest() throws Exception {
+    public void finishTask_nullString_nullPointerException() throws Exception {
         thrown.expect(NullPointerException.class);
         FinishCommandParser.parse(null);
     }
 
     @Test
-    public void validTest() throws Exception {
+    public void finishTask_validIndex_correctlyFinish() throws Exception {
         Field field = FinishCommand.class.getDeclaredField("targetIndex");
         field.setAccessible(true);
 
@@ -35,7 +35,7 @@ public class FinishCommandParserTest {
     }
 
     @Test
-    public void invalidTest() throws Exception {
+    public void finishTask_invalidIndex_correctlyFinish() throws Exception {
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
 

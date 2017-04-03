@@ -26,7 +26,7 @@ public class HelpCommandParserTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void nullTest() throws Exception {
+    public void helpMessage_nullString_general() throws Exception {
 
         Field field = HelpCommand.class.getDeclaredField("usageMessage");
         field.setAccessible(true);
@@ -36,7 +36,7 @@ public class HelpCommandParserTest {
     }
 
     @Test
-    public void singleCommandTest() throws Exception {
+    public void helpMessage_correctCommand_correctlyDisplayed() throws Exception {
 
         Field field = HelpCommand.class.getDeclaredField("usageMessage");
         field.setAccessible(true);
