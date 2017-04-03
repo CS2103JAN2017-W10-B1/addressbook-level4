@@ -112,11 +112,11 @@ public class MainApp extends Application {
 
         try {
             Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
-            initializedConfig = configOptional.orElse(new Config());
+            initializedConfig = configOptional.orElse(Config.getInstance());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. " +
                     "Using default config properties");
-            initializedConfig = new Config();
+            initializedConfig = Config.getInstance();
         }
 
         //Update config file in case it was missing to begin with or there are new/unused fields
