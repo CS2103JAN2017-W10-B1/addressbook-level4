@@ -26,6 +26,9 @@ public class Config {
         }
         return instance;
     }
+    public static Config getStub() {
+        return new Config();
+    }
 
     private Config() {}
 //@@author
