@@ -5,7 +5,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a Task's priority in task manager.
- * Guarantees: immutable; is valid as declared in {@link #isValidPriority(String)}
+ * Guarantees: is valid as declared in {@link #isValidPriority(String)}
  */
 public class Priority implements TaskField, Comparable<Priority> {
 
@@ -56,7 +56,7 @@ public class Priority implements TaskField, Comparable<Priority> {
      */
     public static String convert(String value) {
         value = value.isEmpty() ? DEFAULT_PRIORITY : value;
-        value = value.replaceFirst(PRIORITY_IMPORTANT, PRIORITY_3);
+        value = value.replaceFirst("(?i)" + PRIORITY_IMPORTANT, PRIORITY_3);
         value = value.replaceFirst("(?i)" + PRIORITY_NORMAL, PRIORITY_2);
         value = value.replaceFirst("(?i)" + PRIORITY_TRIVIAL, PRIORITY_1);
         return value;

@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -21,109 +23,120 @@ import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 import seedu.address.testutil.TypicalTestTasks;
 
 public class TaskManagerTest {
 
+    private static TaskManager taskManager;
+    private static TypicalTestTasks testUtil;
+    private static Task gym;
+    private static Task cs2103;
+    private static Task assignment;
+    private static ReadOnlyTask date;
+    private static ReadOnlyTask familyDinner;
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final TaskManager taskManager = TaskManager.getStub();;
-    private final TypicalTestTasks testUtil = new TypicalTestTasks();
+    @BeforeClass
+    public static void oneTimeSetup() {
+        taskManager = TaskManager.getStub();
+        testUtil = new TypicalTestTasks();
+        gym = new Task(testUtil.gym);
+        cs2103 = new Task(testUtil.cs2103);
+        assignment = new Task(testUtil.assignment);
+        date = new Task(testUtil.date);
+        familyDinner = new Task(testUtil.familyDinner);
+    }
+
+    @Before
+    public void setup() {
+        taskManager = TaskManager.getStub();
+    }
 
     @Test
-    public void constructor() {
+    public void constructor_defaultConstructor_emptyTaskManagerConstructed() {
         assertEquals(Collections.emptyList(), taskManager.getTaskList());
         assertEquals(Collections.emptyList(), taskManager.getTagList());
     }
 
     @Test
-    public void resetDataNullThrowsAssertionError() {
+    public void resetData_null_exceptionThrown() {
         thrown.expect(AssertionError.class);
         taskManager.resetData(null);
     }
 
     @Test
-    public void resetDataWithValidReadOnlyTaskManagerReplacesData() {
+    public void resetData_validReadOnlyTaskManager_dataReset() {
         TaskManager newData = new TypicalTestTasks().getTypicalTaskManager();
         taskManager.resetData(newData);
         assertEquals(newData, taskManager);
     }
 
     @Test
-    public void emptyManager() {
-        TaskManager emptyManager = TaskManager.getStub();
-        assertEquals(emptyManager.getTagList().size(), 0);
+    public void addTask_validTask_taskAdded() throws DuplicateTaskException {
+
+        taskManager.addTask(gym);
+        assertEquals(taskManager.getTaskList().size(), 1);
+        assertEquals(taskManager.getTagList().size(), 1);
+        assertEquals(taskManager.getTaskList().get(0), gym);
+
+        taskManager.addTask(assignment);
+        assertEquals(taskManager.getTaskList().size(), 2);
+        assertEquals(taskManager.getTagList().size(), 2);
+
+        taskManager.addTask(cs2103);
+        assertEquals(taskManager.getTaskList().size(), 3);
+        assertEquals(taskManager.getTagList().size(), 3);
     }
 
     @Test
-    public void addTask() throws IllegalValueException {
-        TaskManager newManager = TaskManager.getStub();
-        Task gym = new Task(testUtil.gym);
-        Task cs2103 = new Task(testUtil.cs2103);
-        Task assignment = new Task(testUtil.assignment);
+    public void removeTask_validTask_taskRemoved() throws TaskNotFoundException, DuplicateTaskException {
 
-        newManager.addTask(gym);
-        assertEquals(newManager.getTaskList().size(), 1);
-        assertEquals(newManager.getTagList().size(), 1);
-        assertEquals(newManager.getTaskList().get(0), gym);
+        taskManager.addTask(gym);
+        taskManager.addTask(cs2103);
+        taskManager.addTask(assignment);
+        taskManager.removeTask(gym);
+        assertEquals(taskManager.getTaskList().size(), 2);
 
-        newManager.addTask(assignment);
-        assertEquals(newManager.getTaskList().size(), 2);
-        assertEquals(newManager.getTagList().size(), 2);
-
-        newManager.addTask(cs2103);
-        assertEquals(newManager.getTaskList().size(), 3);
-        assertEquals(newManager.getTagList().size(), 3);
+        taskManager.removeTask(assignment);
+        assertEquals(taskManager.getTaskList().size(), 1);
     }
 
     @Test
-    public void deleteTask() throws IllegalValueException, TaskNotFoundException {
-        TaskManager newManager = TaskManager.getStub();
-        Task gym = new Task(testUtil.gym);
-        Task cs2103 = new Task(testUtil.cs2103);
-        Task assignment = new Task(testUtil.assignment);
+    public void removeTask_nonExistingTask_exceptionThrown() throws DuplicateTaskException, TaskNotFoundException {
+        thrown.expect(TaskNotFoundException.class);
 
-        newManager.addTask(gym);
-        newManager.addTask(cs2103);
-        newManager.addTask(assignment);
-        newManager.removeTask(gym);
-        assertEquals(newManager.getTaskList().size(), 2);
-
-        newManager.removeTask(assignment);
-        assertEquals(newManager.getTaskList().size(), 1);
+        taskManager.addTask(gym);
+        taskManager.addTask(cs2103);
+        taskManager.removeTask(assignment);
     }
 
     @Test
-    public void udpateTask() throws IllegalValueException {
-        TaskManager newManager = TaskManager.getStub();
-        Task gym = new Task(testUtil.gym);
-        Task cs2103 = new Task(testUtil.cs2103);
-        Task assignment = new Task(testUtil.assignment);
-        ReadOnlyTask date = new Task(testUtil.date);
-        ReadOnlyTask familyDinner = new Task(testUtil.familyDinner);
+    public void udpateTask_validIndex_taskUpdated() throws IllegalValueException {
 
-        newManager.addTask(gym);
-        newManager.addTask(cs2103);
-        newManager.addTask(assignment);
-        newManager.updateTask(1, date);
-        assertEquals(newManager.getTaskList().size(), 3);
-        assertEquals(newManager.getTagList().size(), 3);
+        taskManager.addTask(gym);
+        taskManager.addTask(cs2103);
+        taskManager.addTask(assignment);
+        taskManager.updateTask(1, date);
+        assertEquals(taskManager.getTaskList().size(), 3);
+        assertEquals(taskManager.getTagList().size(), 3);
 
-        newManager.updateTask(1, familyDinner);
-        assertEquals(newManager.getTaskList().size(), 3);
-        assertEquals(newManager.getTagList().size(), 3);
+        taskManager.updateTask(1, familyDinner);
+        assertEquals(taskManager.getTaskList().size(), 3);
+        assertEquals(taskManager.getTagList().size(), 3);
     }
 
     //@@author
     @Test
-    public void resetDataWithDuplicateTasksThrowsAssertionError() throws DuplicateTagException {
-        TypicalTestTasks td = new TypicalTestTasks();
+    public void resetData_duplicateTasks_assertionErrorThrown() throws DuplicateTagException {
+
         // Repeat td.alice twice
-        List<Task> newTasks = Arrays.asList(new Task(td.gym), new Task(td.gym));
+        List<Task> newTasks = Arrays.asList(gym, gym);
         UniqueTagList newTags = new UniqueTagList();
-        newTags.add(td.gym.getTag());
+        newTags.add(gym.getTag());
         TaskManagerStub newData = new TaskManagerStub(newTasks, newTags.asObservableList());
 
         thrown.expect(AssertionError.class);
@@ -131,7 +144,7 @@ public class TaskManagerTest {
     }
 
     @Test
-    public void resetDataWithDuplicateTagsThrowsAssertionError() {
+    public void resetData_duplicateTags_assertionErrorThrown() {
         TaskManager typicalTaskManager = new TypicalTestTasks().getTypicalTaskManager();
         List<ReadOnlyTask> newTasks = typicalTaskManager.getTaskList();
         List<Tag> newTags = new ArrayList<>(typicalTaskManager.getTagList());

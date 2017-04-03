@@ -9,12 +9,15 @@ import org.junit.Test;
 public class VenueTest {
 
     @Test
-    public void isValidVenue() {
+    public void isValidVenue_invalidVenue_falseReturned() {
         // invalid venue
         assertFalse(Venue.isValidVenue(" ")); // space only
         assertFalse(Venue.isValidVenue(" NUS")); // begin with white space
         assertFalse(Venue.isValidVenue("*NUS*")); // contains illegal punctuation
+    }
 
+    @Test
+    public void isValidVenue_validVenue_trueReturned() {
         // valid venue
         assertTrue(Venue.isValidVenue("")); // empty
         assertTrue(Venue.isValidVenue("NUS")); // alphabets only

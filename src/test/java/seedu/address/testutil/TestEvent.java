@@ -2,13 +2,14 @@
 package seedu.address.testutil;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.task.ReadOnlyEvent;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
 
 /**
  * A mutable event object. For testing only.
  */
-public class TestEvent extends TestTask {
+public class TestEvent extends TestTask implements ReadOnlyEvent {
 
     private TaskDate startDate;
     private TaskTime startTime;

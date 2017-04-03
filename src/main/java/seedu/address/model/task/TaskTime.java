@@ -53,7 +53,7 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
     }
 
     /**
-     * Returns true if a given string is a valid person email.
+     * Returns true if a given string is a valid time.
      */
     public static boolean isValidTime(String test) {
         if (test.isEmpty()) {
@@ -92,6 +92,9 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
                 && this.value.equals(((TaskTime) other).value)); // state check
     }
 
+    /**
+     * Empty TaskTime is always greater compare to non-empty one
+     */
     @Override
     public int compareTo(TaskTime other) {
         if (this.time == null) {
