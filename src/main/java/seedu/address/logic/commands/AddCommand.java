@@ -56,7 +56,6 @@ public class AddCommand extends AbleUndoCommand {
             boolean isFavourite, boolean isEvent, boolean isRecurring)
             throws IllegalValueException {
         //TODO: avoid long parameter list
-
         if (isEvent) {
             if (!startDate.isEmpty()) {
                 this.toAdd = new Event(

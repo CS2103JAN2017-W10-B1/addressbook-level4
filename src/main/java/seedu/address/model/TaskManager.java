@@ -27,6 +27,7 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     private final UniqueTaskList tasks;
     private final UniqueTagList tags;
+    private static TaskManager instance;
 
     /*
      * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
@@ -40,7 +41,16 @@ public class TaskManager implements ReadOnlyTaskManager {
         tags = new UniqueTagList();
     }
 
-    public TaskManager() {}
+//@@author A0147996E
+    public static TaskManager getInstance() {
+        if (instance == null) {
+            instance = new TaskManager();
+        }
+        return instance;
+    }
+//@@author
+
+    private TaskManager() {}
 
     /**
      * Creates an TaskManager using the Tasks ,Tags and Lists in the {@code toBeCopied}

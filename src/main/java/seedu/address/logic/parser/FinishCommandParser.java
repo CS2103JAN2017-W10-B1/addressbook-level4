@@ -21,7 +21,6 @@ public class FinishCommandParser {
      * and returns an DeleteCommand object for execution.
      */
     public static Command parse(String args) {
-
         Optional<Integer> index = ParserUtil.parseIndex(args);
         if (!index.isPresent()) {
             return new IncorrectCommand(
