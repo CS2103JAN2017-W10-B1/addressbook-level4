@@ -91,6 +91,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
+    //@@author A0147984L
     @Override
     public void finishTaskOnce(ReadOnlyTask recurringTask)
             throws DuplicateTaskException {
@@ -109,7 +110,7 @@ public class ModelManager extends ComponentManager implements Model {
         taskManager.updateTaskOnce(taskManagerIndex, editedTask);
         indicateTaskManagerChanged();
     }
-  //================== List Level Operation ===========================================================
+  //@@author
 
   //=========== Filtered Task List Accessors =============================================================
 
@@ -214,7 +215,6 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredTaskListGivenDaysToDueOn(String days) {
         updateFilteredTaskList(null, null, FinishedState.UNFINISHED, false, DueMode.ON, days);
     }
-    //@@author
 
     //=========== Filtered List Accessors =============================================================
     //@@author A0147984L
@@ -229,6 +229,7 @@ public class ModelManager extends ComponentManager implements Model {
     private void updateFilteredTagList(Expression expression) {
         filteredTag.setPredicate(expression::satisfies);
     }
+    //@@author
 
     //@@author A0143409J
     @Override

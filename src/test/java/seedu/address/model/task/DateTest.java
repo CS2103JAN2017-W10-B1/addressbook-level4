@@ -205,8 +205,10 @@ public class DateTest {
     public void isPastDue_nonPastDueTask_falseReturned() {
         assertFalse(tester2.isPastDue());
         assertFalse(testerNull.isPastDue()); // empty date will never past due
-        assertFalse(testerToday.isPastDue()); // TaskDate constructed by "today" will never past due upon construction
-        assertFalse(testerSunday.isPastDue()); // TaskDate constructed by day in a week will never past due upon construction
+        // TaskDate constructed by "today" will never past due upon construction
+        assertFalse(testerToday.isPastDue());
+        // TaskDate constructed by day in a week will never past due upon construction
+        assertFalse(testerSunday.isPastDue());
     }
 
     @Test
