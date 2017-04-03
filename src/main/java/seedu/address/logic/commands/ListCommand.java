@@ -1,6 +1,7 @@
 //@@author A0138474X
 package seedu.address.logic.commands;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -27,22 +28,27 @@ public class ListCommand extends Command {
     private final Set<String> keywords;
 
     public ListCommand(Set<String> keywords) {
+        assert !keywords.isEmpty();
         this.keywords = keywords;
     }
 
     public ListCommand() {
-        this.keywords = null;
+        this.keywords = new HashSet<String>();
     }
 
     @Override
     public CommandResult execute() {
-        if (keywords == null) {
+        assert keywords != null;
+        if (keywords.isEmpty()) {
             model.updateFilteredListToShowAllUnfinishedTasks();
+            LOGGER.info(getClass() + " listed all unfinished tasks");
             return new CommandResult(MESSAGE_LIST_SUCCESS);
         } else if (!model.isListExist(keywords)) {
+            LOGGER.info(getClass() + " all the listnames given are not found");
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         } else {
             model.updateFilteredTaskListGivenListName(keywords);
+            LOGGER.info(getClass() + " listed all unfinished tasks in the given lists");
             return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_SUCCESS, keywords));
         }
     }

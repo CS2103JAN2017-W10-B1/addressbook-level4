@@ -44,6 +44,7 @@ public class LogicManager extends ComponentManager implements Logic {
         if (command.isUndoable()) {
             commandList.push((AbleUndoCommand) command);
         }
+        logger.info(command.getClass() + " handles current command");
         return command.execute();
     }
 

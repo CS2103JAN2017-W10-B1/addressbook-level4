@@ -43,6 +43,7 @@ public interface Model {
     void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
             throws UniqueTaskList.DuplicateTaskException;
 
+    //@@author A0147984L
     /**
      * Finish the recurring task once
      */
@@ -54,6 +55,7 @@ public interface Model {
      */
     void updateTaskOnOccurance(int filteredTaskListIndex, ReadOnlyTask editedTask)
             throws UniqueTaskList.DuplicateTaskException;
+    //@@author
 
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
