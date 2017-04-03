@@ -9,13 +9,16 @@ import org.junit.Test;
 public class NameTest {
 
     @Test
-    public void isValidName() {
+    public void isValidName_invalidName_returnFalse() {
         // invalid name
         assertFalse(Name.isValidName("")); // empty string
         assertFalse(Name.isValidName(" ")); // spaces only
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
         assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+    }
 
+    @Test
+    public void isValidName_validName_returnTrue() {
         // valid name
         assertTrue(Name.isValidName("cs")); // alphabets only
         assertTrue(Name.isValidName("2103")); // numbers only

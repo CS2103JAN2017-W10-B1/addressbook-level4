@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.After;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -17,25 +19,43 @@ import seedu.address.testutil.TypicalTestTasks;
 
 public class ModelManagerTest {
 
+
+    private static ModelManager modelManager;
+    private static TypicalTestTasks testUtil;
+    private static Task task1;
+    private static Task task2;
+    private static Task task3;
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private ModelManager modelManager = new ModelManager();
-    private final TypicalTestTasks testUtil = new TypicalTestTasks();
+    @BeforeClass
+    public static void oneTimeSetup() {
+        modelManager = new ModelManager();
+        testUtil = new TypicalTestTasks();
+        task1 = new Task(testUtil.gym);
+        task2 = new Task(testUtil.cs2103);
+        task3 = new Task(testUtil.study);
+    }
+
+    @After
+    public void tearDown() {
+        modelManager = new ModelManager();
+    }
 
     @Test
-    public void constructor() {
+    public void constructor_defaultConstructor_emptyModelManagerConstructed() {
         assertEquals(Collections.emptyList(), modelManager.getFilteredTaskList());
     }
 
     @Test
-    public void resetDataNullThrowsAssertionError() {
+    public void resetData_null_exceptionThrown() {
         thrown.expect(AssertionError.class);
         modelManager.resetData(null);
     }
 
     @Test
-    public void resetData() {
+    public void resetData_validTaskManager_dataReset() {
         modelManager.resetData(testUtil.getTypicalTaskManager());
         assertEquals(modelManager.getTaskManager(), testUtil.getTypicalTaskManager());
         assertEquals(modelManager.getFilteredTaskList().size(), 7);
@@ -43,7 +63,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void testFilterName() {
+    public void updateFilteredTaskList_keywordsOfName_filterTaskListReturned() {
         modelManager.resetData(testUtil.getTypicalTaskManager());
         Set<String> keywords = new HashSet<String>();
         keywords.add("Gym");
@@ -67,23 +87,12 @@ public class ModelManagerTest {
 
         modelManager.updateFilteredTaskListFavorite(keywords);
         assertEquals(modelManager.getFilteredTaskList().size(), 2);
-
-        modelManager = new ModelManager();
-        modelManager.resetData(testUtil.getTypicalTaskManager());
-        keywords.add("cs2103");
-
-        modelManager.updateFilteredTaskList(keywords);
-        assertEquals(modelManager.getFilteredTaskList().size(), 4);
-    }
-
-    private void initModelManager() {
-        modelManager = new ModelManager();
-        modelManager.resetData(testUtil.getTypicalTaskManager());
     }
 
     @Test
-    public void testFilterDate() {
+    public void updateFilteredTaskListGivenDaysToDue_daysToDue_filteredTaskListReturned() {
         modelManager.resetData(testUtil.getTypicalTaskManager());
+
         assertEquals(modelManager.getFilteredTaskList().size(), 7);
 
         modelManager.updateFilteredTaskListGivenDaysToDueBy("0");
@@ -92,28 +101,20 @@ public class ModelManagerTest {
         modelManager.updateFilteredTaskListGivenDaysToDueOn("0");
         assertEquals(modelManager.getFilteredTaskList().size(), 0);
 
-        initModelManager();
-
         modelManager.updateFilteredTaskListGivenDaysToDueBy("300");
         assertEquals(modelManager.getFilteredTaskList().size(), 4);
         assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "assignment");
 
-        initModelManager();
-
         modelManager.updateFilteredTaskListGivenDaysToDueBy("365");
         assertEquals(modelManager.getFilteredTaskList().size(), 7);
-
-        initModelManager();
 
         modelManager.updateFilteredTaskListGivenDaysToDueBy("700");
         assertEquals(modelManager.getFilteredTaskList().size(), 7);
     }
 
     @Test
-    public void testFilterTag() {
+    public void updateFilteredTaskListGivenListName_keywordsOfList_filteredTaskListReturned() {
         modelManager.resetData(testUtil.getTypicalTaskManager());
-        assertEquals(modelManager.getFilteredTaskList().size(), 7);
-
         Set<String> keywords = new HashSet<String>();
         keywords.add("personal");
 
@@ -124,8 +125,6 @@ public class ModelManagerTest {
         modelManager.updateFilteredTaskListGivenListNameAll(keywords);
         assertEquals(modelManager.getFilteredTaskList().size(), 4);
 
-        modelManager = new ModelManager();
-        modelManager.resetData(testUtil.getTypicalTaskManager());
         keywords.clear();
         keywords.add("School");
 
@@ -133,8 +132,6 @@ public class ModelManagerTest {
         assertEquals(modelManager.getFilteredTaskList().size(), 2);
         assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "cs2103");
 
-        modelManager = new ModelManager();
-        modelManager.resetData(testUtil.getTypicalTaskManager());
         keywords.clear();
         keywords.add("Inbox");
 
@@ -143,11 +140,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void addTask() throws DuplicateTaskException {
-        modelManager = new ModelManager();
-        Task task1 = new Task(testUtil.gym);
-        Task task2 = new Task(testUtil.cs2103);
-        Task task3 = new Task(testUtil.study);
+    public void addTask_validTask_taskAdded() throws DuplicateTaskException {
 
         modelManager.addTask(task1);
         assertEquals(modelManager.getFilteredTaskList().size(), 1);
