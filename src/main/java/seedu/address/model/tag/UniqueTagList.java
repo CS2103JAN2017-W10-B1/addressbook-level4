@@ -126,6 +126,13 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
+     * Clear the UniqueTagList
+     */
+    public void clear() {
+        internalList.clear();
+    }
+
+    /**
      * Adds a Tag to the list.
      *
      * @throws DuplicateTagException if the Tag to add is a duplicate of an existing Tag in the list.

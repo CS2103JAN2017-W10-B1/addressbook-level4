@@ -114,6 +114,13 @@ public class UniqueTaskList implements Iterable<Task> {
         return taskFoundAndDeleted;
     }
 
+    /**
+     * clear the UniqueTaskList
+     */
+    public void clear() {
+        internalList.clear();
+    }
+
     public void setTasks(UniqueTaskList replacement) {
         this.internalList.setAll(replacement.internalList);
     }

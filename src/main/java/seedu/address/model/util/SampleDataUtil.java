@@ -48,6 +48,7 @@ public class SampleDataUtil {
     public static ReadOnlyTaskManager getSampleTaskManager() throws IllegalValueException {
         try {
             TaskManager sampleAB = TaskManager.getInstance();
+            sampleAB.clear();
             for (Task sampleTask : getSampleTasks()) {
                 sampleAB.addTask(sampleTask);
             }

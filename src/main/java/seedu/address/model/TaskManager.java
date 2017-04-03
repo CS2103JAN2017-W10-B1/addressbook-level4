@@ -89,6 +89,16 @@ public class TaskManager implements ReadOnlyTaskManager {
         syncMasterTagListWith(tasks);
     }
 
+    //@@author A0147984L
+    /**
+     * Reset the task manager
+     */
+    public void clear() {
+        this.tasks.clear();
+        this.tags.clear();
+    }
+    //@@author
+
 //// task-level operations
 
     /**
@@ -104,6 +114,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         tags.sort();
     }
 
+    //@@author A0147984L
     /**
      * Updates the task in the list at position {@code index} with {@code editedReadOnlyTask}.
      * {@code TaskManager}'s tag list will be updated with the tags of {@code editedReadOnlyTask}.
@@ -181,6 +192,7 @@ public class TaskManager implements ReadOnlyTaskManager {
             assert false;
         }
     }
+    //@@author
 
     /**
      * Ensures that every tag in this task:
