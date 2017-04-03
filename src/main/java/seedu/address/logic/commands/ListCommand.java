@@ -39,13 +39,17 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute() {
         assert keywords != null;
+        LOGGER.info(getClass() + " handles current command");
         if (keywords.isEmpty()) {
             model.updateFilteredListToShowAllUnfinishedTasks();
+            LOGGER.info("Listed all unfinished tasks");
             return new CommandResult(MESSAGE_LIST_SUCCESS);
         } else if (!model.isListExist(keywords)) {
+            LOGGER.info("All the listnames given are not found");
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         } else {
             model.updateFilteredTaskListGivenListName(keywords);
+            LOGGER.info("Listed all unfinished tasks in the given lists");
             return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_SUCCESS, keywords));
         }
     }

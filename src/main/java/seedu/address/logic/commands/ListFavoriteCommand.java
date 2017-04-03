@@ -39,13 +39,17 @@ public class ListFavoriteCommand extends Command {
     @Override
     public CommandResult execute() {
         assert keywords != null;
+        LOGGER.info(getClass() + " handles current command");
         if (keywords.isEmpty()) {
             model.updateFilteredListToShowAllFavoriteTasks();
+            LOGGER.info("Listed all favorite tasks");
             return new CommandResult(MESSAGE_LIST_FAVORITE_SUCCESS);
         } else if (model.isListExist(keywords)) {
             model.updateFilteredTaskListGivenListNameAllFavorite(keywords);
+            LOGGER.info("Listed all favorite tasks in the given lists");
             return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_FAVORITE_SUCCESS, keywords));
         } else {
+            LOGGER.info("All the listnames given are not found");
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         }
     }

@@ -37,13 +37,17 @@ public class ListAllCommand extends Command {
     @Override
     public CommandResult execute() {
         assert keywords != null;
+        LOGGER.info(getClass() + " handles current command");
         if (keywords.isEmpty()) {
             model.updateFilteredListToShowAllTasks();
+            LOGGER.info("Listed all tasks");
             return new CommandResult(MESSAGE_LIST_ALL_SUCCESS);
         } else if (model.isListExist(keywords)) {
             model.updateFilteredTaskListGivenListNameAll(keywords);
+            LOGGER.info("Listed all tasks in the given lists");
             return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_ALL_SUCCESS, keywords));
         } else {
+            LOGGER.info("All the listnames given are not found");
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         }
     }
