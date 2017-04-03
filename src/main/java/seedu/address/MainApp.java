@@ -137,14 +137,14 @@ public class MainApp extends Application {
         UserPrefs initializedPrefs;
         try {
             Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
-            initializedPrefs = prefsOptional.orElse(new UserPrefs());
+            initializedPrefs = prefsOptional.orElse(UserPrefs.getInstance());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. " +
                     "Using default user prefs");
-            initializedPrefs = new UserPrefs();
+            initializedPrefs = UserPrefs.getInstance();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty TaskManager");
-            initializedPrefs = new UserPrefs();
+            initializedPrefs = UserPrefs.getInstance();
         }
 
         //Update prefs file in case it was missing to begin with or there are new/unused fields

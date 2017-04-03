@@ -60,7 +60,7 @@ public class JsonUserPrefsStorageTest {
 
     @Test
     public void readUserPrefsFileInOrderSuccessfullyRead() throws DataConversionException {
-        UserPrefs expected = new UserPrefs();
+        UserPrefs expected = UserPrefs.getInstance();
         expected.setGuiSettings(1000, 500, 300, 100);
         UserPrefs actual = readUserPrefs("TypicalUserPref.json").get();
         assertEquals(expected, actual);
@@ -69,12 +69,12 @@ public class JsonUserPrefsStorageTest {
     @Test
     public void readUserPrefsValuesMissingFromFileDefaultValuesUsed() throws DataConversionException {
         UserPrefs actual = readUserPrefs("EmptyUserPrefs.json").get();
-        assertEquals(new UserPrefs(), actual);
+        assertEquals(UserPrefs.getInstance(), actual);
     }
 
     @Test
     public void readUserPrefsExtraValuesInFileExtraValuesIgnored() throws DataConversionException {
-        UserPrefs expected = new UserPrefs();
+        UserPrefs expected = UserPrefs.getInstance();
         expected.setGuiSettings(1000, 500, 300, 100);
         UserPrefs actual = readUserPrefs("ExtraValuesUserPref.json").get();
 
@@ -90,7 +90,7 @@ public class JsonUserPrefsStorageTest {
     @Test
     public void saveUserPrefsNullFilePathAssertionFailure() throws IOException {
         thrown.expect(AssertionError.class);
-        saveUserPrefs(new UserPrefs(), null);
+        saveUserPrefs(UserPrefs.getInstance(), null);
     }
 
     private void saveUserPrefs(UserPrefs userPrefs, String prefsFileInTestDataFolder) throws IOException {
@@ -101,7 +101,7 @@ public class JsonUserPrefsStorageTest {
     @Test
     public void saveUserPrefsAllInOrderSuccess() throws DataConversionException, IOException {
 
-        UserPrefs original = new UserPrefs();
+        UserPrefs original = UserPrefs.getInstance();
         original.setGuiSettings(1200, 200, 0, 2);
 
         String pefsFilePath = testFolder.getRoot() + File.separator + "TempPrefs.json";
