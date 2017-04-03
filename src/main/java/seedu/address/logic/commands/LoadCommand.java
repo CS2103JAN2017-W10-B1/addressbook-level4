@@ -42,10 +42,11 @@ public class LoadCommand extends AbleUndoCommand {
 
         LOGGER.info(getClass() + " handles current command");
         try {
+            assert path != null;
             StorageManager storage = new StorageManager(path);
-            storage.readTaskManager(path);
-            ReadOnlyTaskManager taskManager = storage.readTaskManager().get();
-            //model = ModelManager(storage, userPrefs);
+            ReadOnlyTaskManager taskManager = storage.readTaskManager(path).get();
+            model.resetData(taskManager);
+
             return new CommandResult(
                     CommandFormatter.undoFormatter(
                             String.format(MESSAGE_LOAD_SUCCESS, path), COMMAND_WORD));
