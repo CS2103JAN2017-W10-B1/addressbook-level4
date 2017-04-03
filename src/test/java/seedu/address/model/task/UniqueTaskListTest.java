@@ -25,7 +25,7 @@ public class UniqueTaskListTest {
 
     @BeforeClass
     public static void oneTimeSetup() throws IllegalValueException {
-        
+
         tester = new UniqueTaskList();
         testUtil = new TypicalTestTasks();
         shoppingTask = new Task(testUtil.shopping);
@@ -36,7 +36,7 @@ public class UniqueTaskListTest {
     }
 
     @Before
-    public void setup() throws DuplicateTaskException {  
+    public void setup() throws DuplicateTaskException {
 
         tester.add(familyDinnerTask);
         tester.add(meetingTask);

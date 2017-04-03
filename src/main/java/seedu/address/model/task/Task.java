@@ -29,12 +29,13 @@ public class Task implements ReadOnlyTask {
      */
     public Task(Name name, TaskDate date, TaskTime time, Description description, Tag tag,
             Venue venue, Priority priority, boolean isFavorite) {
+        //assert !CollectionUtil.isAnyNull(name, date, time, description, tag, venue, priority, isFavorite);
         assert !CollectionUtil.isAnyNull(name);
         this.name = name;
         this.date = date;
         this.time = time;
         this.description = description;
-        this.tag =  tag;
+        this.tag = tag;
         this.venue = venue;
         this.priority = priority;
         this.isFavorite = isFavorite;

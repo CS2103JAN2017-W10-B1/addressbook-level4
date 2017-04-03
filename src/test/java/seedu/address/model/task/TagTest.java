@@ -32,8 +32,8 @@ public class TagTest {
     @Test
     public void isReservedName_nonReservedName_falseReturned() {
         // non-reserved word
-        assertTrue(Tag.isReservedName("")); // empty
-        assertTrue(Tag.isReservedName("cs2103")); // non-reserved word
+        assertFalse(Tag.isReservedName("")); // empty
+        assertFalse(Tag.isReservedName("cs2103")); // non-reserved word
     }
 
     @Test
