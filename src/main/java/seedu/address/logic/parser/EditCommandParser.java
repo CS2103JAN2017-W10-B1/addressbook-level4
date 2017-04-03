@@ -29,8 +29,18 @@ import seedu.address.logic.commands.IncorrectCommand;
  */
 public class EditCommandParser {
 
+    private static EditCommandParser theOne;
+
     private EditCommandParser() {
     }
+
+    public static EditCommandParser getInstance() {
+        if (theOne == null) {
+            theOne = new EditCommandParser();
+        }
+        return theOne;
+    }
+
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
