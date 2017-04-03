@@ -48,6 +48,9 @@ public class TaskManager implements ReadOnlyTaskManager {
         }
         return instance;
     }
+    public static TaskManager getStub() {
+        return new TaskManager();
+    }
 //@@author
 
     private TaskManager() {}

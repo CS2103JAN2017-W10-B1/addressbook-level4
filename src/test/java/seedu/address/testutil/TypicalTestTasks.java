@@ -130,7 +130,7 @@ public class TypicalTestTasks {
     }
 
     public TaskManager getTypicalTaskManager() {
-        TaskManager tm = new TaskManager();
+        TaskManager tm = TaskManager.getStub();
         loadTaskManagerWithSampleData(tm);
         return tm;
     }

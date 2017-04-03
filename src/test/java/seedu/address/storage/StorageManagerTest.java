@@ -76,7 +76,7 @@ public class StorageManagerTest {
         Storage storage = new StorageManager(new XmlTaskManagerStorageExceptionThrowingStub("dummy"),
                                              new JsonUserPrefsStorage("dummy"));
         EventsCollector eventCollector = new EventsCollector();
-        storage.handleDueueChangedEvent(new DueueChangedEvent(new TaskManager()));
+        storage.handleDueueChangedEvent(new DueueChangedEvent(TaskManager.getStub()));
         assertTrue(eventCollector.get(0) instanceof DataSavingExceptionEvent);
     }
 

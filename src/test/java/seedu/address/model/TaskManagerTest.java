@@ -29,7 +29,7 @@ public class TaskManagerTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final TaskManager taskManager = new TaskManager();
+    private final TaskManager taskManager = TaskManager.getStub();;
     private final TypicalTestTasks testUtil = new TypicalTestTasks();
 
     @Test
@@ -53,13 +53,13 @@ public class TaskManagerTest {
 
     @Test
     public void emptyManager() {
-        TaskManager emptyManager = new TaskManager();
+        TaskManager emptyManager = TaskManager.getStub();
         assertEquals(emptyManager.getTagList().size(), 0);
     }
 
     @Test
     public void addTask() throws IllegalValueException {
-        TaskManager newManager = new TaskManager();
+        TaskManager newManager = TaskManager.getStub();
         Task gym = new Task(testUtil.gym);
         Task cs2103 = new Task(testUtil.cs2103);
         Task assignment = new Task(testUtil.assignment);
@@ -80,7 +80,7 @@ public class TaskManagerTest {
 
     @Test
     public void deleteTask() throws IllegalValueException, TaskNotFoundException {
-        TaskManager newManager = new TaskManager();
+        TaskManager newManager = TaskManager.getStub();
         Task gym = new Task(testUtil.gym);
         Task cs2103 = new Task(testUtil.cs2103);
         Task assignment = new Task(testUtil.assignment);
@@ -97,7 +97,7 @@ public class TaskManagerTest {
 
     @Test
     public void udpateTask() throws IllegalValueException {
-        TaskManager newManager = new TaskManager();
+        TaskManager newManager = TaskManager.getStub();
         Task gym = new Task(testUtil.gym);
         Task cs2103 = new Task(testUtil.cs2103);
         Task assignment = new Task(testUtil.assignment);

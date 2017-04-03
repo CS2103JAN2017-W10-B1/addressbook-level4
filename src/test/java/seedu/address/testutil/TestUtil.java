@@ -139,7 +139,7 @@ public class TestUtil {
     }
 
     public static XmlSerializableTaskManager generateSampleStorageTaskManager() {
-        return new XmlSerializableTaskManager(new TaskManager());
+        return new XmlSerializableTaskManager(TaskManager.getStub());
     }
 
     /**

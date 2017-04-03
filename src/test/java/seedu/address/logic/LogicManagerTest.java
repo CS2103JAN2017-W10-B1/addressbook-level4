@@ -164,7 +164,7 @@ public class LogicManagerTest {
 
     @Test
     public void executeHelp() {
-        assertCommandSuccess("help", HelpCommand.SHOWING_HELP_MESSAGE, new TaskManager(), Collections.emptyList());
+        assertCommandSuccess("help", HelpCommand.SHOWING_HELP_MESSAGE, TaskManager.getStub(), Collections.emptyList());
         // TODO: bugs here
         //assertTrue(helpShown);
     }
@@ -172,7 +172,7 @@ public class LogicManagerTest {
     @Test
     public void executeExit() {
         assertCommandSuccess("exit", ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT,
-                new TaskManager(), Collections.emptyList());
+                TaskManager.getStub(), Collections.emptyList());
     }
 
     @Test
@@ -183,7 +183,7 @@ public class LogicManagerTest {
         model.addTask(helper.generateTask(3));
 
         String message = CommandFormatter.undoFormatter(ClearCommand.MESSAGE_SUCCESS, ClearCommand.COMMAND_CLEAR);
-        assertCommandSuccess("clear", message, new TaskManager(), Collections.emptyList());
+        assertCommandSuccess("clear", message, TaskManager.getStub(), Collections.emptyList());
     }
 
     /*@Test
@@ -213,7 +213,7 @@ public class LogicManagerTest {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
         Task toBeAdded = helper.gym();
-        TaskManager expectedAB = new TaskManager();
+        TaskManager expectedAB = TaskManager.getStub();
         expectedAB.addTask(toBeAdded);
         expectedAB.getTaskList();
 
@@ -278,7 +278,7 @@ public class LogicManagerTest {
         List<Task> taskList = helper.generateTaskList(2);
 
         // set AB state to 2 persons
-        model.resetData(new TaskManager());
+        model.resetData(TaskManager.getStub());
         for (Task t : taskList) {
             model.addTask(t);
         }
@@ -460,7 +460,7 @@ public class LogicManagerTest {
          * Generates an TaskManager with auto-generated tasks.
          */
         TaskManager generateTaskManager(int numGenerated) throws Exception {
-            TaskManager taskManager = new TaskManager();
+            TaskManager taskManager = TaskManager.getStub();
             addToTaskManager(taskManager, numGenerated);
             return taskManager;
         }
@@ -469,7 +469,7 @@ public class LogicManagerTest {
          * Generates an TaskManager based on the list of Tasks given.
          */
         TaskManager generateTaskManager(List<Task> tasks) throws Exception {
-            TaskManager taskManager = new TaskManager();
+            TaskManager taskManager = TaskManager.getStub();
             addToTaskManager(taskManager, tasks);
             return taskManager;
         }
