@@ -98,11 +98,11 @@ public class AddCommandParserTest {
         field.setAccessible(true);
 
         AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/30/3 "
-                + "dueT/16:00 d/Interesting #CS2103 @I3 p/3 start/31/3 startT/15:00 \n");
+                + "dueT/16:00 d/Interesting #CS2103 @I3 p/3 start/29/3 startT/15:00 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         TaskDate sampleTaskDate = new TaskDate("30/3");
         TaskTime sampleTaskTime = new TaskTime("16:00");
-        TaskDate sampleTaskStartDate = new TaskDate("30/3");
+        TaskDate sampleTaskStartDate = new TaskDate("29/3");
         TaskTime sampleTaskStartTime = new TaskTime("15:00");
         Description sampleTaskDescription = new Description("Interesting");
         Tag sampleTaskTag = new Tag("CS2103");
