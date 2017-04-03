@@ -37,7 +37,6 @@ public class ListAllCommand extends Command {
     @Override
     public CommandResult execute() {
         assert keywords != null;
-        LOGGER.info(getClass() + " handles current command");
         if (keywords.isEmpty()) {
             model.updateFilteredListToShowAllTasks();
             LOGGER.info("Listed all tasks");

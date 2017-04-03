@@ -39,7 +39,6 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute() {
         assert keywords != null;
-        LOGGER.info(getClass() + " handles current command");
         if (keywords.isEmpty()) {
             model.updateFilteredListToShowAllUnfinishedTasks();
             LOGGER.info("Listed all unfinished tasks");
