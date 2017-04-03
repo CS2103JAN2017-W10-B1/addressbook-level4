@@ -16,6 +16,18 @@ import seedu.address.logic.commands.ViewOnCommand;
 
 public class HelpCommandParser {
 
+    private static HelpCommandParser theOne;
+
+    private HelpCommandParser() {
+    }
+
+    public static HelpCommandParser getInstance() {
+        if (theOne == null) {
+            theOne = new HelpCommandParser();
+        }
+        return theOne;
+    }
+
     /**
      * Parses the given {String} of arguments in the context of the HelpCommand
      * and returns a HelpCommand object for execution.

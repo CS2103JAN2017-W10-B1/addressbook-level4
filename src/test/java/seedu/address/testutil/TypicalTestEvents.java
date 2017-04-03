@@ -116,7 +116,7 @@ public class TypicalTestEvents {
     }
 
     public TaskManager getTypicalTaskManager() {
-        TaskManager tm = new TaskManager();
+        TaskManager tm = TaskManager.getStub();
         loadTaskManagerWithSampleData(tm);
         return tm;
     }

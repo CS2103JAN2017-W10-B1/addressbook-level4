@@ -26,9 +26,17 @@ import seedu.address.logic.commands.IncorrectCommand;
  */
 public class AddCommandParser {
 
+    private static AddCommandParser theOne;
+
     private AddCommandParser() {
     }
 
+    public static AddCommandParser getInstance() {
+        if (theOne == null) {
+            theOne = new AddCommandParser();
+        }
+        return theOne;
+    }
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.

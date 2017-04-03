@@ -83,12 +83,12 @@ public class MainApp extends Application {
             initialData = taskManagerOptional.orElse(SampleDataUtil.getSampleTaskManager());
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty TaskManager");
-            initialData = new TaskManager();
+            initialData = TaskManager.getInstance();
         } catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty TaskManager");
-            initialData = new TaskManager();
+            initialData = TaskManager.getInstance();
         }
         return new ModelManager(initialData, userPrefs);
     }
@@ -112,11 +112,11 @@ public class MainApp extends Application {
 
         try {
             Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
-            initializedConfig = configOptional.orElse(new Config());
+            initializedConfig = configOptional.orElse(Config.getInstance());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. " +
                     "Using default config properties");
-            initializedConfig = new Config();
+            initializedConfig = Config.getInstance();
         }
 
         //Update config file in case it was missing to begin with or there are new/unused fields

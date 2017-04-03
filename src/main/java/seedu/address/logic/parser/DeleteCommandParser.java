@@ -15,6 +15,18 @@ import seedu.address.logic.commands.IncorrectCommand;
  */
 public class DeleteCommandParser {
 
+    private static DeleteCommandParser theOne;
+
+    private DeleteCommandParser() {
+    }
+
+    public static DeleteCommandParser getInstance() {
+        if (theOne == null) {
+            theOne = new DeleteCommandParser();
+        }
+        return theOne;
+    }
+
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns an DeleteCommand object for execution.

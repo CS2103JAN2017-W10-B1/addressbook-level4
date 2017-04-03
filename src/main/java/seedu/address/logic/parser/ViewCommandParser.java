@@ -14,8 +14,18 @@ import seedu.address.model.task.TaskDate;
  */
 public class ViewCommandParser {
 
+    private static ViewCommandParser theOne;
+
     private ViewCommandParser() {
     }
+
+    public static ViewCommandParser getInstance() {
+        if (theOne == null) {
+            theOne = new ViewCommandParser();
+        }
+        return theOne;
+    }
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns an FindCommand object for execution.

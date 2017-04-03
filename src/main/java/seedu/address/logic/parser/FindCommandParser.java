@@ -17,8 +17,18 @@ import seedu.address.logic.commands.IncorrectCommand;
  */
 public class FindCommandParser {
 
+    private static FindCommandParser theOne;
+
     private FindCommandParser() {
     }
+
+    public static FindCommandParser getInstance() {
+        if (theOne == null) {
+            theOne = new FindCommandParser();
+        }
+        return theOne;
+    }
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns an FindCommand object for execution.

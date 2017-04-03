@@ -42,7 +42,7 @@ public class TaskManagerTest {
 
     @BeforeClass
     public static void oneTimeSetup() {
-        taskManager = new TaskManager();
+        taskManager = TaskManager.getStub();
         testUtil = new TypicalTestTasks();
         gym = new Task(testUtil.gym);
         cs2103 = new Task(testUtil.cs2103);
@@ -52,8 +52,8 @@ public class TaskManagerTest {
     }
 
     @Before
-    public static void setup() {
-        taskManager = new TaskManager();
+    public void setup() {
+        taskManager = TaskManager.getStub();
     }
 
     @Test

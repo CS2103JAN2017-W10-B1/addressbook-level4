@@ -47,7 +47,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     public ModelManager() {
-        this(new TaskManager(), new UserPrefs());
+        this(TaskManager.getInstance(), new UserPrefs());
     }
 
     @Override

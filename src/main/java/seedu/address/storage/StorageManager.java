@@ -24,11 +24,15 @@ public class StorageManager extends ComponentManager implements Storage {
     private TaskManagerStorage taskManagerStorage;
     private UserPrefsStorage userPrefsStorage;
 
-
     public StorageManager(TaskManagerStorage taskManagerStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.taskManagerStorage = taskManagerStorage;
         this.userPrefsStorage = userPrefsStorage;
+    }
+
+    public StorageManager(String taskManagerFilePath) {
+        super();
+        this.taskManagerStorage = new XmlTaskManagerStorage(taskManagerFilePath);
     }
 
     public StorageManager(String taskManagerFilePath, String userPrefsFilePath) {
