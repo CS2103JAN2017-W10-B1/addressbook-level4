@@ -62,7 +62,7 @@ public interface ReadOnlyTask {
                     // state checks here onwards
         }
     }
-    //@@ author A0147996E
+//@@author A0147996E
     /**
      * For comparing two tasks in GUItests, to check if the list view matches desired list view.
      */
@@ -77,7 +77,7 @@ public interface ReadOnlyTask {
                         || (other.getFinished() != null && other.getFinished().equals(this.getFinished()))));
     }
 
-    //@@ author A0143409J
+//@@author A0143409J
     /*
      * Get the FinishProperty instead of boolean
      */

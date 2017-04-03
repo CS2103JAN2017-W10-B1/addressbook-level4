@@ -321,7 +321,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
-    //@@author A0147984L
+//@@author A0147984L
     private class FinishedQualifier implements Qualifier {
         protected FinishedState state;
 
@@ -340,7 +340,7 @@ public class ModelManager extends ComponentManager implements Model {
             }
         }
 
-        //@@ author A0147996E
+//@@author A0147996E
         @Override
         public boolean run(Tag list) {
             return false;
