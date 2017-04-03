@@ -41,14 +41,14 @@ public class ListFavoriteCommand extends Command {
         assert keywords != null;
         if (keywords.isEmpty()) {
             model.updateFilteredListToShowAllFavoriteTasks();
-            LOGGER.info("Listed all favorite tasks");
+            LOGGER.info(getClass() + " listed all favorite tasks");
             return new CommandResult(MESSAGE_LIST_FAVORITE_SUCCESS);
         } else if (model.isListExist(keywords)) {
             model.updateFilteredTaskListGivenListNameAllFavorite(keywords);
-            LOGGER.info("Listed all favorite tasks in the given lists");
+            LOGGER.info(getClass() + " listed all favorite tasks in the given lists");
             return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_FAVORITE_SUCCESS, keywords));
         } else {
-            LOGGER.info("All the listnames given are not found");
+            LOGGER.info(getClass() + " all the listnames given are not found");
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         }
     }

@@ -41,14 +41,14 @@ public class ListCommand extends Command {
         assert keywords != null;
         if (keywords.isEmpty()) {
             model.updateFilteredListToShowAllUnfinishedTasks();
-            LOGGER.info("Listed all unfinished tasks");
+            LOGGER.info(getClass() + " listed all unfinished tasks");
             return new CommandResult(MESSAGE_LIST_SUCCESS);
         } else if (!model.isListExist(keywords)) {
-            LOGGER.info("All the listnames given are not found");
+            LOGGER.info(getClass() + " all the listnames given are not found");
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         } else {
             model.updateFilteredTaskListGivenListName(keywords);
-            LOGGER.info("Listed all unfinished tasks in the given lists");
+            LOGGER.info(getClass() + " listed all unfinished tasks in the given lists");
             return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_SUCCESS, keywords));
         }
     }

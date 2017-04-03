@@ -38,14 +38,14 @@ public class ListFinishedCommand extends Command {
         assert keywords != null;
         if (keywords.isEmpty()) {
             model.updateFilteredListToShowAllFinishedTasks();
-            LOGGER.info("Listed all finished tasks");
+            LOGGER.info(getClass() + " listed all finished tasks");
             return new CommandResult(MESSAGE_LIST_FINISHED_SUCCESS);
         } else if (model.isListExist(keywords)) {
             model.updateFilteredTaskListGivenListNameFinished(keywords);
-            LOGGER.info("Listed all finished tasks in the given lists");
+            LOGGER.info(getClass() + " listed all finished tasks in the given lists");
             return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_FINISHED_SUCCESS, keywords));
         } else {
-            LOGGER.info("All the listnames given are not found");
+            LOGGER.info(getClass() + " all the listnames given are not found");
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         }
     }

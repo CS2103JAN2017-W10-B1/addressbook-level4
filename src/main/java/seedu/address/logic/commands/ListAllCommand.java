@@ -39,14 +39,14 @@ public class ListAllCommand extends Command {
         assert keywords != null;
         if (keywords.isEmpty()) {
             model.updateFilteredListToShowAllTasks();
-            LOGGER.info("Listed all tasks");
+            LOGGER.info(getClass() + "listed all tasks");
             return new CommandResult(MESSAGE_LIST_ALL_SUCCESS);
         } else if (model.isListExist(keywords)) {
             model.updateFilteredTaskListGivenListNameAll(keywords);
-            LOGGER.info("Listed all tasks in the given lists");
+            LOGGER.info(getClass() + "listed all tasks in the given lists");
             return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_ALL_SUCCESS, keywords));
         } else {
-            LOGGER.info("All the listnames given are not found");
+            LOGGER.info(getClass() + "all the listnames given are not found");
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         }
     }
