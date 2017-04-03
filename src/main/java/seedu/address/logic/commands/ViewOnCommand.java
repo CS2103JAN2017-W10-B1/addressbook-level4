@@ -40,6 +40,7 @@ public class ViewOnCommand extends Command {
     @Override
     public CommandResult execute() {
         model.updateFilteredTaskListGivenDaysToDueOn(numberOfDays);
+        LOGGER.info(getClass() + " listed all tasks on " + numberOfDays);
         return new CommandResult(messageDisplay);
     }
 

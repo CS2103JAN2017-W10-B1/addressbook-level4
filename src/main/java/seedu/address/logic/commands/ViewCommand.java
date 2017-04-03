@@ -27,6 +27,7 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute() {
         model.updateFilteredTaskListGivenDaysToDueBy(numberOfDays);
+        LOGGER.info(getClass() + " listed all tasks by " + numberOfDays);
         return new CommandResult(messageDisplay);
     }
 
