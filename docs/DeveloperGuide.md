@@ -630,7 +630,7 @@ Use case ends.
 
 #### Use case: View help message
 
-**MSS***
+**MSS**
 
 1. User requests to view the help message for a specific command
 2. Dueue displays the help message <br>
@@ -648,9 +648,9 @@ Use case ends.
 > 1b1. Dueue shows an error message<br>
   Use case resumes at step 1
 
-### Use case: Load external XML file into Dueue 
+#### Use case: Load external XML file into Dueue 
 
-**MSS***
+**MSS**
 
 1. User requests to load external XML file into Dueue
 2. Dueue loads from the given filepath and displays the list of tasks<br>
@@ -667,9 +667,9 @@ Use case ends.
 > 1b1. Dueue shows an error message<br>
   Use case resumes at step 1
 
-### Use case: Scroll to a specific index in Dueue
+#### Use case: Scroll to a specific index in Dueue
 
-**MSS***
+**MSS**
 
 1. User requests to scroll to a given index in Dueue
 2. Dueue updates the list view as requested<br>
@@ -688,7 +688,7 @@ Use case ends.
 
 #### Use case: Find tasks by searching for keyword in task names
 
-**MSS***
+**MSS**
 
 1. User requests to find among all/finished/unfinished tasks whose names contain the keyword provided
 2. Dueue displays the list of tasks found<br>

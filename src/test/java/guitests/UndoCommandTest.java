@@ -58,6 +58,7 @@ public class UndoCommandTest extends TaskManagerGuiTest {
         assertUndoSuccess(currentList, "clear", "clear");
         currentList = TestUtil.addTasksToList(currentList, finishedTask);
 
+        commandWord = "finish";
         commandBox.runCommand("undo");
         assertTrue(taskListPanel.isListMatching(currentList));
         assertResultMessage(CommandFormatter.undoMessageFormatter(MESSAGE_SUCCESS,
