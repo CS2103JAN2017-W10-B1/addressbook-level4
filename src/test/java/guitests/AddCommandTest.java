@@ -12,6 +12,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandFormatter;
 import seedu.address.testutil.TestEvent;
+import seedu.address.testutil.TestRecurringTask;
 import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
@@ -25,20 +26,19 @@ public class AddCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void add_addTypicalTasks_addSuccess() {
-        //add a floating task with name only
+    public void add_addFloatingTask_addSuccess() {
         TestTask taskToAdd = td.shopping2;
-        assertAddSuccess(taskToAdd, currentList);
-        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
-
-        //add a task with all fields specified
-        taskToAdd = td.date;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
     }
 
     @Test
-    public void add_addInvalidDuplicate_failure() {
+    public void add_addInvalidDuplicate_duplicateFailure() {
+         //add a task with all fields specified first
+        TestTask taskToAdd = td.date;
+        assertAddSuccess(taskToAdd, currentList);
+        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
+
         //duplicate task tests
         commandBox.runCommand(td.date.getAddCommand());
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
@@ -76,7 +76,7 @@ public class AddCommandTest extends TaskManagerGuiTest {
     }
     @Test
     public void add_addRecurringTask_success() {
-        //TODO: set up typical recurring tests
+        TestRecurringTask recurringTask = 
     }
 
     @Test
