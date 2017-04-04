@@ -30,9 +30,9 @@ Role: Developer, UI Designer <br>
 * Components in charge of: [UI](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#22-ui-component)
 * Aspects/tools in charge of: JUnit Testing, SceneBuilder, Documentation
 * Features implemented:
-  * [Load external XML file into TaskManager]()
-  * [Find tasks by keywords]()
-  * [Scroll to a given list]()
+  * [Load external XML file into TaskManager](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#212-load-file-load)
+  * [Find tasks by keywords](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#213-find-tasks-find)
+  * [Scroll to a given list](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#214-scroll-to--scroll)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/main/A0147996E.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0147996E.md)]
 * Major contributions:
   * Designer of UI and maintain all UI components, including the fxml and css files
