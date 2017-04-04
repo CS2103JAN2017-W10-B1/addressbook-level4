@@ -307,21 +307,25 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     /**
      * Add a recurring period for date
      */
-    public void addPeriod(RecurringMode mode) {
+    public void addPeriod(RecurringMode mode, int times) {
         assert mode != null;
         Calendar todayCalendar = Calendar.getInstance();
         todayCalendar.setTime(this.date);
         if (mode.equals(RecurringMode.DAY)) {
-            todayCalendar.add(Calendar.DATE, 1);
+            todayCalendar.add(Calendar.DATE, 1 * times);
         } else if (mode.equals(RecurringMode.WEEK)) {
-            todayCalendar.add(Calendar.DATE, 7);
+            todayCalendar.add(Calendar.DATE, 7 * times);
         } else if (mode.equals(RecurringMode.MONTH)) {
-            todayCalendar.add(Calendar.MONTH, 1);
+            todayCalendar.add(Calendar.MONTH, 1 * times);
         } else {
             assert false;
         }
         this.date = todayCalendar.getTime();
         this.value = getDateString(todayCalendar);
+    }
+
+    public void addPeriod(RecurringMode mode) {
+        addPeriod(mode, 1);
     }
 
     public String getValue() {

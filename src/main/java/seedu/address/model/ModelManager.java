@@ -102,6 +102,15 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public void undoFinishTaskOnce(ReadOnlyTask recurringTask)
+            throws UniqueTaskList.DuplicateTaskException {
+        assert recurringTask != null;
+
+        taskManager.undoFinishTaskOnce(recurringTask);
+        indicateTaskManagerChanged();
+    }
+
+    @Override
     public void updateTaskOnOccurance(int filteredTaskListIndex, ReadOnlyTask editedTask)
             throws UniqueTaskList.DuplicateTaskException {
         assert editedTask != null;

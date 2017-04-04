@@ -99,7 +99,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
     //@@author
 
-//// task-level operations
+    // task-level operations
 
     /**
      * Adds a task to the task manager.
@@ -187,6 +187,22 @@ public class TaskManager implements ReadOnlyTaskManager {
         try {
             removeTask(recurringTask);
             ((RecurringTask) current).finishOnce();
+            addTask(current);
+        } catch (TaskNotFoundException e) {
+            assert false;
+        }
+    }
+
+    public void undoFinishTaskOnce(ReadOnlyTask recurringTask) throws DuplicateTaskException {
+        Task current = null;
+        try {
+            current = new RecurringTask(recurringTask);
+        } catch (IllegalValueException e1) {
+            assert false;
+        }
+        try {
+            removeTask(recurringTask);
+            ((RecurringTask) current).undoFinishOnce();
             addTask(current);
         } catch (TaskNotFoundException e) {
             assert false;
