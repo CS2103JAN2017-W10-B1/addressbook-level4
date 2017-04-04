@@ -53,6 +53,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void resetData(ReadOnlyTaskManager newData) {
         taskManager.resetData(newData);
+        logger.info("task manager is reset");
         indicateTaskManagerChanged();
     }
 
@@ -63,6 +64,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     /** Raises an event to indicate the model has changed */
     private void indicateTaskManagerChanged() {
+        logger.info("task manager is changed");
         raise(new DueueChangedEvent(taskManager));
     }
 
@@ -70,13 +72,17 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
+        assert target != null;
+
         taskManager.removeTask(target);
+        logger.info("target task is deleted");
         indicateTaskManagerChanged();
     }
 
     @Override
     public synchronized void addTask(Task task) throws DuplicateTaskException {
         taskManager.addTask(task);
+        logger.info("new task is added");
         updateFilteredListToShowAllUnfinishedTasks();
         indicateTaskManagerChanged();
     }
@@ -87,6 +93,7 @@ public class ModelManager extends ComponentManager implements Model {
         assert editedTask != null;
 
         int taskManagerIndex = filteredTasks.getSourceIndex(filteredTaskListIndex);
+        logger.info("target task is updated");
         taskManager.updateTask(taskManagerIndex, editedTask);
         indicateTaskManagerChanged();
     }
@@ -97,7 +104,18 @@ public class ModelManager extends ComponentManager implements Model {
             throws DuplicateTaskException {
         assert recurringTask != null;
 
+        logger.info("target recurring task is finished");
         taskManager.finishTaskOnce(recurringTask);
+        indicateTaskManagerChanged();
+    }
+
+    @Override
+    public void undoFinishTaskOnce(ReadOnlyTask recurringTask)
+            throws UniqueTaskList.DuplicateTaskException {
+        assert recurringTask != null;
+
+        logger.info("finish of target recurring task is undoed");
+        taskManager.undoFinishTaskOnce(recurringTask);
         indicateTaskManagerChanged();
     }
 
@@ -106,6 +124,7 @@ public class ModelManager extends ComponentManager implements Model {
             throws UniqueTaskList.DuplicateTaskException {
         assert editedTask != null;
 
+        logger.info("the latest occurance of target recurring task is updated");
         int taskManagerIndex = filteredTasks.getSourceIndex(filteredTaskListIndex);
         taskManager.updateTaskOnce(taskManagerIndex, editedTask);
         indicateTaskManagerChanged();
@@ -124,20 +143,17 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredTaskList(Set<String> nameKeywords, Set<String> tagKeywords,
             FinishedState finishedState, boolean isFavorite,
             DueMode dueMode, String days) {
+
         NameQualifier nameQualifier = nameKeywords == null ? null : new NameQualifier(nameKeywords);
         TagQualifier tagQualifier = tagKeywords == null ? null : new TagQualifier(tagKeywords);
         FinishedQualifier finishedQualifier = new FinishedQualifier(finishedState);
         FavoriteQualifier favoriteQualifier = isFavorite ? new FavoriteQualifier() : null;
-        DateQualifier dateQualifier;
-        if (dueMode == null) {
-            dateQualifier = null;
-        } else if (dueMode.equals(DueMode.BY)) {
-            dateQualifier = new DateQualifierBy(days);
-        } else if (dueMode.equals(DueMode.ON)) {
-            dateQualifier = new DateQualifierOn(days);
-        } else {
-            dateQualifier = null;
-        }
+        DateQualifier dateQualifier = constructDateQualifier(dueMode, days);
+
+        logger.info("the filtered list is returned, with filter: "
+                + nameQualifier + "; " + tagQualifier + "; " + finishedQualifier + "; "
+                + favoriteQualifier + "; " + dateQualifier + ".");
+
         updateFilteredTaskList(new PredicateExpression(
                 nameQualifier, tagQualifier, finishedQualifier, favoriteQualifier, dateQualifier));
     }
@@ -149,6 +165,18 @@ public class ModelManager extends ComponentManager implements Model {
 
     private void updateFilteredTaskList(Expression expression) {
         filteredTasks.setPredicate(expression::satisfies);
+    }
+
+    private DateQualifier constructDateQualifier(DueMode dueMode, String days) {
+        if (dueMode == null) {
+            return null;
+        } else if (dueMode.equals(DueMode.BY)) {
+            return new DateQualifierBy(days);
+        } else if (dueMode.equals(DueMode.ON)) {
+            return new DateQualifierOn(days);
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -412,6 +440,10 @@ public class ModelManager extends ComponentManager implements Model {
 
         DateQualifier(String days) {
             this.daysToDue = Integer.parseInt(days);
+            initializeToday();
+        }
+
+        private void initializeToday() {
             today = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
             today.set(Calendar.HOUR_OF_DAY, 0);
             today.set(Calendar.MINUTE, 0);
@@ -428,9 +460,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
 
         @Override
-        public String toString() {
-            return "daysToDue=" + daysToDue;
-        }
+        public abstract String toString();
     }
 
     private class DateQualifierOn extends DateQualifier {
@@ -443,6 +473,11 @@ public class ModelManager extends ComponentManager implements Model {
         public boolean run(ReadOnlyTask task) {
             long diff = task.getDate().date.getTime() - today.getTime().getTime();
             return daysToDue == TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        }
+
+        @Override
+        public String toString() {
+            return "daysOnDue=" + daysToDue;
         }
     }
 
@@ -459,6 +494,10 @@ public class ModelManager extends ComponentManager implements Model {
                     &&
                     (0 <= TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
         }
-    }
 
+        @Override
+        public String toString() {
+            return "daysToDue=" + daysToDue;
+        }
+    }
 }

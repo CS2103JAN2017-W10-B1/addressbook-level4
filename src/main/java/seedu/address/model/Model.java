@@ -50,6 +50,10 @@ public interface Model {
     void finishTaskOnce(ReadOnlyTask recurringTask)
             throws UniqueTaskList.DuplicateTaskException;
 
+    // for undo purpose only
+    void undoFinishTaskOnce(ReadOnlyTask recurringTask)
+            throws UniqueTaskList.DuplicateTaskException;
+
     /**
      * Update the recurring task located at {@code filteredTaskListIndex} with {@code editTask}
      */

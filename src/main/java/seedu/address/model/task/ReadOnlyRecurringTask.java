@@ -6,6 +6,7 @@ public interface ReadOnlyRecurringTask extends ReadOnlyTask {
     }
 
     void finishOnce();
+    void undoFinishOnce();
     String getRecurringPeriod();
     RecurringMode getMode();
 
