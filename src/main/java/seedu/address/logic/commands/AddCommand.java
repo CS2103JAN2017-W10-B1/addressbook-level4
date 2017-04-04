@@ -185,7 +185,7 @@ public class AddCommand extends AbleUndoCommand {
                     isFavourite,
                     mode
                     );
-            }
+        }
     }
 
     private RecurringMode getRecurringMode(String ocurring) {
