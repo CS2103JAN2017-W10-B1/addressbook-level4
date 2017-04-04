@@ -21,7 +21,7 @@ public class ViewCommandParserTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void nullTest() throws Exception {
+    public void viewParse_nullString_incorrectCommand() throws Exception {
 
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
@@ -32,7 +32,7 @@ public class ViewCommandParserTest {
     }
 
     @Test
-    public void viewNextValidIntTest() throws Exception {
+    public void viewParse_nextValid_viewNextCommand() throws Exception {
 
         Field field = ViewCommand.class.getDeclaredField("numberOfDays");
         field.setAccessible(true);
@@ -43,7 +43,7 @@ public class ViewCommandParserTest {
     }
 
     @Test
-    public void viewNextInvalidIntTest() throws Exception {
+    public void viewParse_nextInvalid_incorrectCommand() throws Exception {
 
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
@@ -55,7 +55,7 @@ public class ViewCommandParserTest {
     }
 
     @Test
-    public void viewOnValidIntTest() throws Exception {
+    public void viewParse_onValid_viewOnCommand() throws Exception {
 
         Field field = ViewOnCommand.class.getDeclaredField("numberOfDays");
         field.setAccessible(true);
@@ -66,7 +66,7 @@ public class ViewCommandParserTest {
     }
 
     @Test
-    public void viewOnInvalidIntTest() throws Exception {
+    public void viewParse_onInvalid_incorrectCommand() throws Exception {
 
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
@@ -78,7 +78,7 @@ public class ViewCommandParserTest {
     }
 
     @Test
-    public void viewFormatterTest() throws Exception {
+    public void viewFormatter_validString_successfulFormatting() throws Exception {
 
         String[] parameters =  ViewCommandParser.formatter("next/10");
 
