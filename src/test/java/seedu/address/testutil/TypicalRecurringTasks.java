@@ -35,16 +35,14 @@ public class TypicalRecurringTasks {
                     withTag("personal").withVenue("gym").withPriority("2").withFavorite(true)
                     .withFinished(false).withRecurring(true).withMode(mode2).build();
             //gym2 and gym3 are built for findCommandTest
-            gym2 = new RecurringTaskBuilder().withName("gym").withDate("07/06/2017").withTime(
-                    "20:00").withDescription("50min workout").
-                    withTag("personal").withVenue("gym").withPriority("2").withFavorite(false).withRecurring(true)
-                    .withMode(mode2)
-                    .withFinished(false).build();
-            gym3 = new RecurringTaskBuilder().withName("gym").withDate("08/06/2017").withTime(
-                    "20:00").withDescription("50min workout").
-                    withTag("personal").withVenue("gym").withPriority("2").withFavorite(false).withRecurring(true)
-                    .withMode(mode3)
-                    .withFinished(false).build();
+            gym2 = new RecurringTaskBuilder().withName("gym").withDate("20/12/2017").withTime(
+                    "15:00").withDescription("50min workout").
+                    withTag("personal").withVenue("gym").withPriority("2").withFavorite(true)
+                    .withFinished(false).withRecurring(true).withMode(mode1).build();
+            gym3 = new RecurringTaskBuilder().withName("gym").withDate("20/12/2017").withTime(
+                    "16:00").withDescription("50min workout").
+                    withTag("personal").withVenue("gym").withPriority("2").withFavorite(true)
+                    .withFinished(false).withRecurring(true).withMode(mode3).build();
             cs2103 = new RecurringTaskBuilder().withName("cs2103").withDate("01/02").withTime(
                     "16:00").withDescription("Crazy but useful mod").
                     withTag("school").withVenue("icube").withPriority("1").withFavorite(true).withRecurring(true)

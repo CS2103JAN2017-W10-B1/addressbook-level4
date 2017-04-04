@@ -67,6 +67,14 @@ public class EditCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
+    public void editEvent_editDuplicateTask_editFailure() throws Exception {
+        commandBox.runCommand("add testevent due/today start/today startT/23:59");
+        commandBox.runCommand("add testevent2 due/today start/today startT/23:59");
+        commandBox.runCommand("edit 2 n/testevent");
+        assertResultMessage(EditCommand.MESSAGE_DUPLICATE_TASK);
+    }
+
+    @Test
     public void editEvent_toBecomeTask_editSuccess() throws Exception {
         expectedTasksList = TestUtil.addTasksToList(expectedTasksList, te.travel);
         TestEvent eventToAdd = te.travel;
@@ -152,25 +160,4 @@ public class EditCommandTest extends TaskManagerGuiTest {
         assertTrue(taskListPanel.isListMatching(expectedTasksList));
         assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask.getName()));
     }
-
-    @Test
-    public void editValidEvent() throws Exception {
-        commandBox.runCommand("add testevent due/today start/today startT/23:59");
-        commandBox.runCommand("edit 1 n/testevent");
-
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, "testevent"));
-        commandBox.runCommand("delete 1");
-    }
-
-    @Test
-    public void editDuplicateTasks() throws Exception {
-        commandBox.runCommand("add testevent due/today start/today startT/23:59");
-        commandBox.runCommand("add testevent2 due/today start/today startT/23:59");
-        commandBox.runCommand("edit 2 n/testevent");
-
-        assertResultMessage(EditCommand.MESSAGE_DUPLICATE_TASK);
-        commandBox.runCommand("delete 1");
-        commandBox.runCommand("delete 2");
-    }
-
 }
