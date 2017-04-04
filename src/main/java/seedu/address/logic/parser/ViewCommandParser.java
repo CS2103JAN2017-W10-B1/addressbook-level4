@@ -29,6 +29,7 @@ public class ViewCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the ViewNextCommand
      * and returns an ViewNextCommand object for execution.
+     * @throws IllegalValueException
      */
     public static Command parse(String args) {
         if (args == null) {
@@ -47,11 +48,11 @@ public class ViewCommandParser {
                     return new ViewNextCommand(date);
                 } catch (IllegalValueException e) {
                     return new IncorrectCommand(String.format(
-                        MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
+                        MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_NONNEGATIVE));
                 }
             } catch (IllegalValueException e) {
                 return new IncorrectCommand(String.format(
-                        MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_NONNEGATIVE));
+                        MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_NONNEGATIVE));
             }
         }
 
@@ -65,8 +66,11 @@ public class ViewCommandParser {
                     return new ViewOnCommand(date);
                 } catch (IllegalValueException e) {
                     return new IncorrectCommand(String.format(
-                            MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_USAGE));
+                            MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_NONNEGATIVE));
                 }
+            } catch (IllegalValueException e) {
+                return new IncorrectCommand(String.format(
+                        MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_NONNEGATIVE));
             }
         }
         // if not matching any format

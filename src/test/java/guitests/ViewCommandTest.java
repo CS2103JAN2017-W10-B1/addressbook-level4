@@ -2,6 +2,8 @@
 package guitests;
 
 import static org.junit.Assert.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.ViewOnCommand.MESSAGE_NONNEGATIVE;
 
 import org.junit.Test;
 
@@ -22,14 +24,15 @@ public class ViewCommandTest extends TaskManagerGuiTest {
     @Test
     public void view_viewNextDate_viewSuccess() {
         assertViewResult("view next/01/01/2018", td.assignment, td.gym, td.gym2, td.gym3);
-        assertViewResult("view next/01/01/2050", td.homework, td.homework2, td.assignment,
+        assertViewResult("view next/01/01/2050", td.assignment,
             td.gym, td.gym2, td.gym3, td.cs2103, td.date, td.study);
     }
     @Test
-    public void view_viewNext_illegalParam() {
+    public void view_illegalParam_errorMessage() {
         commandBox.runCommand("view next/-1");
-        commandBox.runCommand("view next/01/04/2017");
-        //TODO: expecting exception message
+        assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_NONNEGATIVE));
+        commandBox.runCommand("view on/01/04/2017");
+        assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_NONNEGATIVE));
     }
     @Test
     public void view_viewOnNDays_viewSuccess() {

@@ -1,4 +1,4 @@
-///@@author A0138474X
+///@@author A0147984L
 package seedu.address.logic.commands;
 
 import java.util.List;
@@ -16,6 +16,7 @@ import seedu.address.model.task.Event;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.ReadOnlyEvent;
+import seedu.address.model.task.ReadOnlyRecurringTask;
 import seedu.address.model.task.ReadOnlyRecurringTask.RecurringMode;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.FinishProperty;
@@ -29,20 +30,15 @@ import seedu.address.model.task.Venue;
 
 
 /**
- * Edits the details of an existing task in the address book.
+ * Edits the details of an existing recurring task in Dueue.
  */
 public class EditNextCommand extends EditCommand {
 
     /**
-     * @param filteredPersonListIndex the index of the task in the filtered task list to edit
-     * @param editPersonDescriptor details to edit the task with
+     * Create editNext command using an index for specific task and description for the edited task
      */
     public EditNextCommand(int filteredTaskListIndex, EditTaskDescriptor editTaskDescriptor) {
         super(filteredTaskListIndex, editTaskDescriptor);
-    }
-
-    public EditNextCommand(ReadOnlyTask task, Task oldTask) {
-        super(task, oldTask);
     }
 
     @Override
@@ -54,9 +50,9 @@ public class EditNextCommand extends EditCommand {
         }
 
         ReadOnlyTask taskToEdit = lastShownList.get(filteredTaskListIndex);
-        this.oldTask = createTask(taskToEdit);
+        assert taskToEdit instanceof ReadOnlyRecurringTask;
+        oldTask = createTask(taskToEdit);
 
-        //TODO
         model.updateFilteredListToShowAllUnfinishedTasks();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit.getName()));
     }
@@ -69,7 +65,6 @@ public class EditNextCommand extends EditCommand {
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
         assert model != null;
-        //TDOO
         model.updateFilteredListToShowAllUnfinishedTasks();
         this.isSuccess = true;
         return new CommandResult(CommandFormatter.undoMessageFormatter(message, getUndoCommandWord()));

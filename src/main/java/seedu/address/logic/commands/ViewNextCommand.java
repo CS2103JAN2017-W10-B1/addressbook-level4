@@ -23,11 +23,11 @@ public class ViewNextCommand extends Command {
 
     public static final String MESSAGE_NONNEGATIVE = "The number of days in the future cannot be negative.\n";
 
-    private String numberOfDays;
+    private final String numberOfDays;
 
-    public void ViewCommand(int numberDays) throws IllegalValueException {
+    public ViewNextCommand(int numberDays) throws IllegalValueException {
         if (numberDays < 0) {
-            throw new IllegalValueException("The number of days in the future cannot be negative.");
+            throw new IllegalValueException(MESSAGE_NONNEGATIVE);
         }
         numberOfDays = String.valueOf(numberDays);
     }
@@ -35,6 +35,10 @@ public class ViewNextCommand extends Command {
     public ViewNextCommand(TaskDate date) throws IllegalValueException {
         Calendar today = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
         TaskDate todayDate = new TaskDate(TaskDate.getDateString(today));
+        int numberDays = date.compareToDay(todayDate);
+        if (numberDays < 0) {
+            throw new IllegalValueException(MESSAGE_NONNEGATIVE);
+        }
         numberOfDays = String.valueOf(date.compareToDay(todayDate));
     }
 
