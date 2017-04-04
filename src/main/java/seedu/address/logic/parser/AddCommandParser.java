@@ -13,8 +13,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -22,7 +20,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.IncorrectCommand;
-import seedu.address.logic.parser.ArgumentTokenizer.Prefix;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -55,17 +52,15 @@ public class AddCommandParser {
         argsTokenizer.tokenize(args);
         try {
             String name = argsTokenizer.getPreamble().get();
-            String date = null, startDate = null, time = null, startTime = null,
-                    tag = null, description = null, venue = null, priority = null, frequency = null;
-            List<String> list = Arrays.asList(date, startDate, time, startTime,
-                    tag, description, venue, priority, frequency);
-            List<Prefix> prefixList = Arrays.asList(PREFIX_DATE, PREFIX_START,
-                    PREFIX_TIME, PREFIX_STARTTIME, PREFIX_TAG, PREFIX_DESCRIPTION,
-                    PREFIX_VENUE, PREFIX_VENUE, PREFIX_FREQUENCY);
-            list.forEach(element -> element =
-                    checkString(argsTokenizer.getValue(prefixList.get(list.indexOf(element)))));
-            stringFactory(argsTokenizer, prefixList, date, startDate,
-                    time, startTime, tag, description, venue, priority, frequency);
+            String date = checkString(argsTokenizer.getValue(PREFIX_DATE));
+            String startDate = checkString(argsTokenizer.getValue(PREFIX_START));
+            String time = checkString(argsTokenizer.getValue(PREFIX_TIME));
+            String startTime = checkString(argsTokenizer.getValue(PREFIX_STARTTIME));
+            String tag = checkString(argsTokenizer.getValue(PREFIX_TAG));
+            String description = checkString(argsTokenizer.getValue(PREFIX_DESCRIPTION));
+            String venue = checkString(argsTokenizer.getValue(PREFIX_VENUE));
+            String priority = checkString(argsTokenizer.getValue(PREFIX_PRIORITY));
+            String frequency = checkString(argsTokenizer.getValue(PREFIX_FREQUENCY));
             boolean isEvent = checkStart(startDate) || checkStart(startTime);
             boolean isFavourite = checkPresent(argsTokenizer.getValue(PREFIX_FAVOURITE));
             boolean isRecurring = !frequency.isEmpty();
@@ -90,10 +85,4 @@ public class AddCommandParser {
         return args.orElse("");
     }
 
-    private static void stringFactory(ArgumentTokenizer argsTokenizer, List<Prefix> prefixList, String...strings) {
-        List<String> stringList = Arrays.asList(strings);
-        for (String string : strings) {
-            string = checkString(argsTokenizer.getValue(prefixList.get(stringList.indexOf(string))));
-        }
-    }
 }
