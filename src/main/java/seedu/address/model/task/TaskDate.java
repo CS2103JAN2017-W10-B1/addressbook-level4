@@ -7,7 +7,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.ReadOnlyRecurringTask.RecurringMode;
 
@@ -20,7 +19,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     public static final String MESSAGE_DATE_CONSTRAINTS_1 =
             "task due date should be the form dd/mm, dd/mm/yyyy or Monday, tomorrow, etc.";
 
-    public static final String DATE_VALIDATION_REGEX = ".*/.*";
+    public static final String DATE_VALIDATION_REGEX = ".+/.+";
     public static final String DAY_MONTH_SEPARATOR = "/";
     public static final String MONTH_VALIDATION_REGEX_1 = "([13578])|(0[13578])|(1[02])";
     public static final String MONTH_VALIDATION_REGEX_2 = "([469])|(0[469])|(11)";
@@ -50,7 +49,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     public static final int INF = 1000000000;
     public static final String INF_DATE = "1/1/2100";
 
-    private Calendar today;
+    public Calendar today;
 
     private String value;
     public Date date;
@@ -79,7 +78,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     private void initializeToday() {
         today = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
-        today.set(Calendar.HOUR, 0);
+        today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
         today.set(Calendar.SECOND, 0);
         today.set(Calendar.MILLISECOND, 0);

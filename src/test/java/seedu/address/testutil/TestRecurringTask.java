@@ -80,9 +80,4 @@ public class TestRecurringTask extends TestTask implements ReadOnlyRecurringTask
             return null;
         }
     }
-
-    @Override
-    public void undoFinishOnce() {
-        this.date.addPeriod(mode, -1);
-    }
 }

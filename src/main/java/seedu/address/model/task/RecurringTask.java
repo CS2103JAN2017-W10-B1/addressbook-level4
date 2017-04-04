@@ -83,11 +83,6 @@ public class RecurringTask extends Task implements ReadOnlyRecurringTask {
     }
 
     @Override
-    public void undoFinishOnce() {
-        this.date.addPeriod(mode, -1);
-    }
-
-    @Override
     public String getRecurringPeriod() {
         if (mode.equals(RecurringMode.DAY)) {
             return PERIOD_DAILY;
