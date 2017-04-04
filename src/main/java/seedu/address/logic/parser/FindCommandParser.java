@@ -1,3 +1,4 @@
+//@@author A0147996E-reused
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -19,8 +20,7 @@ public class FindCommandParser {
 
     private static FindCommandParser theOne;
 
-    private FindCommandParser() {
-    }
+    private FindCommandParser() {}
 
     public static FindCommandParser getInstance() {
         if (theOne == null) {
@@ -39,7 +39,6 @@ public class FindCommandParser {
             return new IncorrectCommand(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-
         // keywords delimited by whitespace
         final String[] keywords = matcher.group("keywords").split("\\s+");
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));

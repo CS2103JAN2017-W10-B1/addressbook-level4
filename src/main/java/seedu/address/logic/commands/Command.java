@@ -40,7 +40,11 @@ public abstract class Command {
      * @return summary message for tasks displayed
      */
     public static String getMessageForTaskFoundShownSummary(int displaySize) {
-        return String.format(Messages.MESSAGE_TASKS_FOUND_OVERVIEW, displaySize);
+        String resultMsg = String.format(Messages.MESSAGE_TASKS_FOUND_OVERVIEW, displaySize);
+        if (displaySize == 0) {
+            resultMsg += "\nYou may try with other keywords or find in all tasks.";
+        }
+        return resultMsg;
     }
 
     /**
