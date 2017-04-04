@@ -42,7 +42,7 @@ public class LoadCommandParserTest {
     }
 
     @Test
-    public void helpMessage_correctCommand_correctlyDisplayed() throws Exception {
+    public void loadCommand_oneString_correctlyInput() throws Exception {
 
         Field field = LoadCommand.class.getDeclaredField("path");
         field.setAccessible(true);
