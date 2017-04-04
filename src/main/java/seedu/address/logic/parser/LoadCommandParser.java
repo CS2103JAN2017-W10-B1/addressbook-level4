@@ -13,8 +13,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
  * Parses input arguments and creates a new LoadCommand object
  */
 public class LoadCommandParser {
-    private static final String DIRECTORY_REGEX = ".*";
-
     /**
      * Parses the given {@code String} of arguments in the context of the LoadCommand
      * and returns an LoadCommand object for execution.
@@ -22,13 +20,11 @@ public class LoadCommandParser {
      */
     public static Command parse(String args) {
         args = args.trim();
-        if (args == null) {
-            return new IncorrectCommand(LoadCommand.MESSAGE_DIRECTORY_NOT_GIVEN);
-        } else if (args.matches(DIRECTORY_REGEX)) {
-            return new LoadCommand(args);
-        } else {
+        if (args == null || args.equals("")) {
             return new IncorrectCommand(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, LoadCommand.MESSAGE_USAGE));
+        } else {
+            return new LoadCommand(args);
         }
     }
 }

@@ -17,7 +17,7 @@ public class TestTask implements ReadOnlyTask {
 
     //@@author A0147984L
     private Name name;
-    private TaskDate date;
+    protected TaskDate date;
     private TaskTime time;
     private Description description;
     private Venue venue;

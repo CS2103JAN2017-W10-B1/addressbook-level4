@@ -16,6 +16,7 @@ import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
 public class AddCommandTest extends TaskManagerGuiTest {
+    private TestTask[] currentList = {};
 
     @Before
     public void setUp() {
@@ -24,9 +25,7 @@ public class AddCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void addTask() {
-        TestTask[] currentList = {};
-
+    public void add_addTypicalTasks_addSuccess() {
         //add a floating task with name only
         TestTask taskToAdd = td.shopping2;
         assertAddSuccess(taskToAdd, currentList);
@@ -36,13 +35,19 @@ public class AddCommandTest extends TaskManagerGuiTest {
         taskToAdd = td.date;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
+    }
 
+    @Test
+    public void add_addInvalidDuplicate_failure() {
         //duplicate task tests
         commandBox.runCommand(td.date.getAddCommand());
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
         assertTrue(taskListPanel.isListMatching(currentList));
+    }
 
-        taskToAdd = td.date2;
+    @Test
+    public void add_addValidDuplicates_success() {
+        TestTask taskToAdd = td.date2;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
@@ -56,13 +61,7 @@ public class AddCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void addEventsAndTasksToList() {
-        TestTask[] currentList = {};
-
-        TestTask taskToAdd = td.shopping;
-        assertAddSuccess(taskToAdd, currentList);
-        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
-
+    public void add_addEventsWithSomeDuplicateFields_success() {
         TestEvent eventToAdd = te.date;
         assertAddSuccess(eventToAdd, currentList);
         currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
@@ -75,9 +74,13 @@ public class AddCommandTest extends TaskManagerGuiTest {
         assertAddSuccess(eventToAdd, currentList);
         currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
     }
+    @Test
+    public void add_addRecurringTask_success() {
+        //TODO: set up typical recurring tests
+    }
 
     @Test
-    public void invalidCommand () {
+    public void addCommand_invalidCommandFormat_failure () {
         commandBox.runCommand("adds homework");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
 
