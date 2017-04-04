@@ -13,6 +13,17 @@ import seedu.address.logic.commands.exceptions.CommandException;
  * Parses input arguments and creates a new LoadCommand object
  */
 public class LoadCommandParser {
+
+    private static LoadCommandParser theOne;
+
+    private LoadCommandParser() {};
+
+    public static LoadCommandParser getInstance() {
+        if (theOne == null) {
+            theOne = new LoadCommandParser();
+        }
+        return theOne;
+    }
     /**
      * Parses the given {@code String} of arguments in the context of the LoadCommand
      * and returns an LoadCommand object for execution.
