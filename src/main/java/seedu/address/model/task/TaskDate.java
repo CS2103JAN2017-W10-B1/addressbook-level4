@@ -111,7 +111,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         return isValidMonth(month) && isValidDay(day, month, year) && isValidYear(year);
     }
 
-//// methods used when given string is a date
+    // methods used when given string is a date
 
     private void initializeGivenDate(String trimmedDate) throws IllegalValueException {
         trimmedDate = addYearField(trimmedDate);
@@ -192,7 +192,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         return (year % 400 == 0) || ((year % 100 != 0) && (year % 4 == 0));
     }
 
-//// methods used when given string is today or tomorrow
+    // methods used when given string is today or tomorrow
 
     private void initializeGivenTodayOrTomorrow(String trimmedDate) {
         Calendar current = Calendar.getInstance();
@@ -224,7 +224,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         }
     }
 
-//// methods used when given string is day in a week
+    // methods used when given string is day in a week
 
     private void initializeGivenDayInWeek(String trimmedDate) {
         int day = dayInWeek(trimmedDate);
@@ -273,7 +273,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         }
     }
 
-//// Methods to format date string
+    // Methods to format date string
 
     /**
      * Format the date by given calendar instance

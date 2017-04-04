@@ -46,7 +46,6 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
         try {
             this.time = time.isEmpty() ? null : FORMATTER.parse(time);
         } catch (ParseException e) {
-            assert false : "impossible";
             throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
         }
         this.value = time;
