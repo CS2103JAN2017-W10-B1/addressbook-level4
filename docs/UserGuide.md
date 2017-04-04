@@ -229,17 +229,55 @@ Examples:
 * `redo`<br>
   Previous `undo` command is reversed.
 
-### 2.12. Clearing all tasks in Dueue : `clear`
+### 2.12. Load file: `load`
 
-Clears all tasks from Dueue.<br>
-Format: `clear`
+Load external XML file into Dueue.<br>
+Format: `load FILEPATH`
 
-### 2.13. Exiting the program : `exit`
+> * The path must trace to an XML file.
+> * Use `/` at the start of FILEPATH to indicate root directory.
+
+Example:
+
+* `load /Users/Alice/Desktop/sampleTasks.xml`<br>
+  Load tasks from the given filepath.
+
+### 2.13. Load file: `load`
+
+Load external XML file into Dueue.<br>
+Format: `load FILEPATH`
+
+> * The path must trace to an XML file.
+> * Use `/` at the start of FILEPATH to indicate root directory.
+
+Example:
+
+* `load /Users/Alice/Desktop/sampleTasks.xml`<br>
+  Load tasks from the given filepath.
+
+Examples:
+
+* `redo`<br>
+  Previous `undo` command is reversed.
+
+### 2.14. Scroll to : `scroll`
+
+Scroll to a given index in Dueue.<br>
+Format: `scroll INDEX`
+
+> * Index must be a positive integer no bigger than current length of list view.
+
+Example:
+
+* `scroll 3`<br>
+  Scroll to the task card with index 3.
+
+### 2.15. Exiting the program : `exit`
 
 Exits the program.<br>
 Format: `exit`
 
-### 2.14. Saving the data
+### 2.16. Saving the data
 
 Dueue data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.
