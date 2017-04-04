@@ -16,7 +16,7 @@
     <children>
       <AnchorPane>
          <children>
-            <Label fx:id="tagListHeader" contentDisplay="CENTER" style="-fx-background-color: ALICEBLUE; -fx-border-color: DEEPSKYBLUE; -fx-border-radius: 3; -fx-border-width: 3;" text="\$Label" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label fx:id="tagListHeader" alignment="CENTER" contentDisplay="CENTER" style="-fx-background-color: ALICEBLUE; -fx-border-color: DEEPSKYBLUE; -fx-border-radius: 3; -fx-border-width: 3;" text="\$Label" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
         <ListView fx:id="tagListView" VBox.vgrow="ALWAYS" />
