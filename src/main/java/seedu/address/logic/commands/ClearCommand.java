@@ -6,7 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.TaskManager;
 
 /**
- * Clears the address book.
+ * Clears Dueue.
  */
 public class ClearCommand extends AbleUndoCommand {
 
