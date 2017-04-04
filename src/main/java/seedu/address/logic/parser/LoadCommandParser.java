@@ -14,10 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
  * Parses input arguments and creates a new LoadCommand object
  */
 public class LoadCommandParser {
-<<<<<<< HEAD
     public static final String MESSAGE_ILLEGAL_DATA_TYPE = "File must be in XML format";
-=======
-
     private static LoadCommandParser theOne;
 
     private LoadCommandParser() {};
@@ -28,7 +25,6 @@ public class LoadCommandParser {
         }
         return theOne;
     }
->>>>>>> origin/master
     /**
      * Parses the given {@code String} of arguments in the context of the LoadCommand
      * and returns an LoadCommand object for execution.

@@ -30,7 +30,6 @@ public class LoadCommand extends AbleUndoCommand {
     public LoadCommand(String path) {
         this.path = path;
     }
-
     /**
      * @tempTaskManager a temporary task manager copy saved for undo command.
      */
@@ -39,14 +38,9 @@ public class LoadCommand extends AbleUndoCommand {
         assert model != null;
         tempTaskManager = TaskManager.getStub();
         tempTaskManager.resetData(model.getTaskManager());
-<<<<<<< HEAD
         if (!path.matches(PATH_VALIDATION_REGEX)) {
             throw new CommandException(MESSAGE_ILLEGAL_DATA_TYPE);
         }
-        LOGGER.info(getClass() + " handles current command");
-=======
-
->>>>>>> origin/master
         try {
             File file = new File(path);
             assert file != null;
