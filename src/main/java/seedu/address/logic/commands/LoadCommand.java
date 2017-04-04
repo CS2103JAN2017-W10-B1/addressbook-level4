@@ -11,6 +11,9 @@ import seedu.address.model.ReadOnlyTaskManager;
 import seedu.address.model.TaskManager;
 import seedu.address.storage.StorageManager;
 
+/**
+ * Load tasks from a specified file into Dueue.
+ */
 public class LoadCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "load";

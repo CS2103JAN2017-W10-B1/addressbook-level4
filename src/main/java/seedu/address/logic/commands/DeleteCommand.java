@@ -12,7 +12,7 @@ import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 
 
 /**
- * Deletes a task identified using it's last displayed index from the address book.
+ * Deletes a task identified using it's last displayed index from the Dueue.
  */
 public class DeleteCommand extends AbleUndoCommand {
 

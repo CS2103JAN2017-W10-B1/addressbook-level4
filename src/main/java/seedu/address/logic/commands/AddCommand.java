@@ -20,7 +20,7 @@ import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.task.Venue;
 
 /**
- * Adds a person to the address book.
+ * Adds a task/event/recurring task to Dueue.
  */
 public class AddCommand extends AbleUndoCommand {
 

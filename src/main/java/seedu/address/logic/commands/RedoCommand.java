@@ -7,7 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
- * Lists all persons in the address book to the user.
+ * Redo the previous undone command in Dueue.
  */
 public class RedoCommand extends AbleUndoCommand {
 

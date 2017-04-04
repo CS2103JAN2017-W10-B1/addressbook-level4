@@ -29,7 +29,7 @@ import seedu.address.model.task.Venue;
 
 
 /**
- * Edits the details of an existing task in the address book.
+ * Edits the details of an existing task in the Dueue.
  */
 public class EditCommand extends AbleUndoCommand {
 
