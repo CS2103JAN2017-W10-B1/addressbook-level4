@@ -9,7 +9,7 @@ import seedu.address.commons.events.ui.ShowHelpRequestEvent;
 
 public class ShowHelpRequestEventTest {
     @Test
-    public void checkToString() {
+    public void checkClassName_validInt_successfulCheckin() {
         String className = "ShowHelpRequestEvent";
         ShowHelpRequestEvent event = new ShowHelpRequestEvent();
 

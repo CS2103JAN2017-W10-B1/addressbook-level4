@@ -20,7 +20,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     public static final String MESSAGE_DATE_CONSTRAINTS_1 =
             "task due date should be the form dd/mm, dd/mm/yyyy or Monday, tomorrow, etc.";
 
-    public static final String DATE_VALIDATION_REGEX = ".*/.*";
+    public static final String DATE_VALIDATION_REGEX = ".+/.+";
     public static final String DAY_MONTH_SEPARATOR = "/";
     public static final String MONTH_VALIDATION_REGEX_1 = "([13578])|(0[13578])|(1[02])";
     public static final String MONTH_VALIDATION_REGEX_2 = "([469])|(0[469])|(11)";
@@ -50,7 +50,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     public static final int INF = 1000000000;
     public static final String INF_DATE = "1/1/2100";
 
-    private Calendar today;
+    public Calendar today;
 
     private String value;
     public Date date;
@@ -79,7 +79,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     private void initializeToday() {
         today = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
-        today.set(Calendar.HOUR, 0);
+        today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
         today.set(Calendar.SECOND, 0);
         today.set(Calendar.MILLISECOND, 0);
@@ -111,7 +111,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         return isValidMonth(month) && isValidDay(day, month, year) && isValidYear(year);
     }
 
-//// methods used when given string is a date
+    // methods used when given string is a date
 
     private void initializeGivenDate(String trimmedDate) throws IllegalValueException {
         trimmedDate = addYearField(trimmedDate);
@@ -192,7 +192,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         return (year % 400 == 0) || ((year % 100 != 0) && (year % 4 == 0));
     }
 
-//// methods used when given string is today or tomorrow
+    // methods used when given string is today or tomorrow
 
     private void initializeGivenTodayOrTomorrow(String trimmedDate) {
         Calendar current = Calendar.getInstance();
@@ -224,7 +224,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         }
     }
 
-//// methods used when given string is day in a week
+    // methods used when given string is day in a week
 
     private void initializeGivenDayInWeek(String trimmedDate) {
         int day = dayInWeek(trimmedDate);
@@ -273,7 +273,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         }
     }
 
-//// Methods to format date string
+    // Methods to format date string
 
     /**
      * Format the date by given calendar instance
@@ -307,21 +307,25 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     /**
      * Add a recurring period for date
      */
-    public void addPeriod(RecurringMode mode) {
+    public void addPeriod(RecurringMode mode, int times) {
         assert mode != null;
         Calendar todayCalendar = Calendar.getInstance();
         todayCalendar.setTime(this.date);
         if (mode.equals(RecurringMode.DAY)) {
-            todayCalendar.add(Calendar.DATE, 1);
+            todayCalendar.add(Calendar.DATE, 1 * times);
         } else if (mode.equals(RecurringMode.WEEK)) {
-            todayCalendar.add(Calendar.DATE, 7);
+            todayCalendar.add(Calendar.DATE, 7 * times);
         } else if (mode.equals(RecurringMode.MONTH)) {
-            todayCalendar.add(Calendar.MONTH, 1);
+            todayCalendar.add(Calendar.MONTH, 1 * times);
         } else {
             assert false;
         }
         this.date = todayCalendar.getTime();
         this.value = getDateString(todayCalendar);
+    }
+
+    public void addPeriod(RecurringMode mode) {
+        addPeriod(mode, 1);
     }
 
     public String getValue() {
