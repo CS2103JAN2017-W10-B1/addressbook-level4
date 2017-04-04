@@ -11,7 +11,6 @@ public class ListFinishedCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_LIST_SUCCESS = "Listed unfinished tasks";
     public static final String MESSAGE_LIST_FINISHED_SUCCESS = "Listed all finished tasks";
     public static final String MESSAGE_LIST_DOES_NOT_EXIST = "Given list name does not exist";
 

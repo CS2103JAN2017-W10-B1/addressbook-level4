@@ -11,9 +11,7 @@ public class ListAllCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_LIST_SUCCESS = "Listed unfinished tasks";
     public static final String MESSAGE_LIST_ALL_SUCCESS = "Listed all tasks";
-    public static final String MESSAGE_LIST_ALL_LIST_SUCCESS = "Listed all tasks in the list";
     public static final String MESSAGE_LIST_DOES_NOT_EXIST = "Given list name does not exist";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks as per the parameters\n"

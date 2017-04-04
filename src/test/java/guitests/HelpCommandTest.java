@@ -9,19 +9,22 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FinishCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.LoadCommand;
+import seedu.address.logic.commands.ScrollToCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.ViewOnCommand;
 
 public class HelpCommandTest extends TaskManagerGuiTest {
     @Test
-    public void help() {
-        //main commands help message display test
+    public void help_getSpecificHelpMessage_success() {
         assertHelpCommandSuccess("add");
         assertHelpCommandSuccess("delete");
         assertHelpCommandSuccess("edit");
         assertHelpCommandSuccess("find");
         assertHelpCommandSuccess("finish");
         assertHelpCommandSuccess("list");
+        assertHelpCommandSuccess("load");
+        assertHelpCommandSuccess("scroll");
         assertHelpCommandSuccess("view");
     }
     private void assertHelpCommandSuccess(String commandWord) {
@@ -38,6 +41,10 @@ public class HelpCommandTest extends TaskManagerGuiTest {
             assertResultMessage(FinishCommand.MESSAGE_USAGE);
         } else if (commandWord.equalsIgnoreCase("list")) {
             assertResultMessage(ListCommand.MESSAGE_USAGE);
+        } else if (commandWord.equalsIgnoreCase("load")) {
+            assertResultMessage(LoadCommand.MESSAGE_USAGE);
+        } else if (commandWord.equalsIgnoreCase("scroll")) {
+            assertResultMessage(ScrollToCommand.MESSAGE_USAGE);
         } else if (commandWord.equalsIgnoreCase("view")) {
             assertResultMessage(ViewCommand.MESSAGE_USAGE + "\n" +  ViewOnCommand.MESSAGE_USAGE);
         }
