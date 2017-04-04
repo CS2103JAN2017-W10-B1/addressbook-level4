@@ -17,13 +17,13 @@
     <children>
         <GridPane prefHeight="117.0" prefWidth="357.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="375.0" minWidth="10.0" prefWidth="186.0" />
-            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="240.0" minWidth="150.0" prefWidth="233.0" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="375.0" minWidth="10.0" prefWidth="186.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="240.0" minWidth="150.0" prefWidth="240.0" />
             </columnConstraints>
             <children>
-            <HBox prefHeight="136.0" prefWidth="334.0">
+            <HBox prefHeight="136.0" prefWidth="334.0" GridPane.hgrow="ALWAYS">
                <children>
-                      <VBox alignment="CENTER_LEFT" prefHeight="147.0" prefWidth="346.0">
+                      <VBox alignment="CENTER_LEFT" prefHeight="147.0" prefWidth="346.0" HBox.hgrow="ALWAYS">
                           <stylesheets>
                               <URL value="@Extensions.css" />
                           </stylesheets>
@@ -34,7 +34,7 @@
                           <children>
                         <HBox>
                            <children>
-                              <Label fx:id="index" prefHeight="17.0" prefWidth="28.0" style="-fx-font-family: Avenir; -fx-font-size: 15;" styleClass="cell_big_label" text="\$id">
+                              <Label fx:id="index" minWidth="20.0" prefHeight="17.0" prefWidth="28.0" style="-fx-font-family: Avenir; -fx-font-size: 15;" styleClass="cell_big_label" text="\$id" HBox.hgrow="NEVER">
                                  <HBox.margin>
                                     <Insets top="2.0" />
                                  </HBox.margin>
@@ -45,7 +45,7 @@
                                     <Glow />
                                  </effect>
                               </Label>
-                                       <Label fx:id="name" prefHeight="20.0" prefWidth="149.0" style="-fx-font-family: Avenir; -fx-font-size: 15; -fx-font-style: bold;" styleClass="cell_big_label" text="\$taskName">
+                                       <Label fx:id="name" minWidth="150.0" prefHeight="20.0" prefWidth="149.0" style="-fx-font-family: Avenir; -fx-font-size: 15; -fx-font-style: bold;" styleClass="cell_big_label" text="\$taskName" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Avenir Roman" size="14.0" />
                                  </font>
@@ -55,7 +55,7 @@
                                  <effect>
                                     <Glow />
                                  </effect></Label>
-                               <Label fx:id="tag" prefHeight="20.0" prefWidth="80.0" style="-fx-font-family: Avenir; -fx-font-size: 14;" styleClass="cell_small_label" text="\$list">
+                               <Label fx:id="tag" minWidth="80.0" prefHeight="20.0" prefWidth="101.0" style="-fx-font-family: Avenir; -fx-font-size: 14;" styleClass="cell_small_label" text="\$list" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets top="3.0" />
                                  </HBox.margin>
@@ -96,9 +96,9 @@
                       </VBox>
                </children>
             </HBox>
-            <VBox alignment="TOP_RIGHT" maxWidth="239.0" prefHeight="117.0" prefWidth="239.0" GridPane.columnIndex="1">
+            <VBox alignment="CENTER_RIGHT" fillWidth="false" maxWidth="239.0" prefHeight="117.0" prefWidth="239.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER">
                <children>
-                  <Label fx:id="isFinished" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="122.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$isFinished">
+                  <Label fx:id="isFinished" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="122.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$isFinished" VBox.vgrow="NEVER">
                      <VBox.margin>
                         <Insets top="8.0" />
                      </VBox.margin>
@@ -111,12 +111,12 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="startTime" minWidth="140.0" prefHeight="19.0" prefWidth="140.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startTime">
+                        <Label fx:id="startTime" contentDisplay="RIGHT" minWidth="140.0" prefHeight="19.0" prefWidth="140.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startTime" HBox.hgrow="NEVER">
                            <font>
                               <Font name="Avenir Roman" size="11.0" />
                            </font>
                         </Label>
-                              <Label fx:id="time" alignment="CENTER_RIGHT" minWidth="100.0" prefHeight="19.0" prefWidth="100.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$time">
+                              <Label fx:id="time" alignment="CENTER_RIGHT" contentDisplay="RIGHT" minWidth="100.0" prefHeight="19.0" prefWidth="100.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$time" textAlignment="JUSTIFY" HBox.hgrow="NEVER">
                            <font>
                               <Font name="Avenir Roman" size="11.0" />
                            </font>
@@ -128,12 +128,12 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="startDate" minWidth="140.0" prefHeight="19.0" prefWidth="140.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startDate">
+                        <Label fx:id="startDate" contentDisplay="RIGHT" minWidth="140.0" prefHeight="19.0" prefWidth="140.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startDate" HBox.hgrow="NEVER">
                            <font>
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <Label fx:id="date" alignment="CENTER_RIGHT" minWidth="100.0" prefHeight="19.0" prefWidth="120.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$date">
+                        <Label fx:id="date" alignment="CENTER_RIGHT" contentDisplay="RIGHT" minWidth="100.0" prefHeight="19.0" prefWidth="120.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$date" HBox.hgrow="NEVER">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -148,12 +148,15 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="isRecurring" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="120.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$isRecurring">
+                        <Label fx:id="isRecurring" alignment="TOP_CENTER" contentDisplay="RIGHT" prefHeight="19.0" prefWidth="120.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$isRecurring" HBox.hgrow="NEVER">
                            <font>
                               <Font size="11.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
                         </Label>
-                              <Label fx:id="venue" alignment="CENTER_RIGHT" minWidth="160.0" prefHeight="19.0" prefWidth="158.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$venue">
+                              <Label fx:id="venue" alignment="CENTER_RIGHT" contentDisplay="RIGHT" minWidth="160.0" prefHeight="19.0" prefWidth="158.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$venue" HBox.hgrow="NEVER">
                            <font>
                               <Font name="Avenir Roman" size="11.0" />
                            </font>
