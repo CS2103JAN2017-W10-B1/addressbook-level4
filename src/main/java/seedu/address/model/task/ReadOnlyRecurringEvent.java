@@ -1,14 +1,6 @@
-//@@author A0147984L
 package seedu.address.model.task;
 
-public interface ReadOnlyRecurringTask extends ReadOnlyTask {
-    public enum RecurringMode {
-        DAY, WEEK, MONTH
-    }
-
-    void finishOnce();
-    String getRecurringPeriod();
-    RecurringMode getMode();
+public interface ReadOnlyRecurringEvent extends ReadOnlyEvent, ReadOnlyRecurringTask {
 
     /**
      * Formats the person as text, showing all contact details.
@@ -16,6 +8,14 @@ public interface ReadOnlyRecurringTask extends ReadOnlyTask {
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
+        if (getStartDate() != null) {
+            builder.append("  Start Date:");
+            builder.append(getStartDate());
+        }
+        if (getStartTime() != null) {
+            builder.append("  Start Time:");
+            builder.append(getStartTime());
+        }
         if (getDate() != null) {
             builder.append("  Due Date:");
             builder.append(getDate());

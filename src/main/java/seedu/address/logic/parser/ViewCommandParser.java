@@ -48,7 +48,7 @@ public class ViewCommandParser {
                     return new ViewNextCommand(date);
                 } catch (IllegalValueException e) {
                     return new IncorrectCommand(String.format(
-                        MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
+                        MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_NONNEGATIVE));
                 }
             } catch (IllegalValueException e) {
                 return new IncorrectCommand(String.format(
@@ -66,7 +66,7 @@ public class ViewCommandParser {
                     return new ViewOnCommand(date);
                 } catch (IllegalValueException e) {
                     return new IncorrectCommand(String.format(
-                            MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_USAGE));
+                            MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_NONNEGATIVE));
                 }
             } catch (IllegalValueException e) {
                 return new IncorrectCommand(String.format(

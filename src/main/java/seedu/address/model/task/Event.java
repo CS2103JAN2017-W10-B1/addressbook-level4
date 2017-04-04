@@ -73,10 +73,14 @@ public class Event extends Task implements ReadOnlyEvent {
      * @throws IllegalValueException
      */
     public Event(ReadOnlyTask source) throws IllegalValueException {
-        this(source.getName(), ((ReadOnlyEvent) source).getStartDate(), ((ReadOnlyEvent) source).getStartTime(),
-                source.getDate(), source.getTime(), source.getDescription(), source.getTag(),
-                source.getVenue(), source.getPriority(), source.isFavorite(), source.getFinished());
-        assert this.isEvent == EventProperty.EVENT;
+        super(new Name(source.getName().getValue()), new TaskDate(source.getDate().getValue()),
+                new TaskTime(source.getTime().getValue()), new Description(source.getDescription().getValue()),
+                new Tag(source.getTag().getValue()), new Venue(source.getVenue().getValue()),
+                new Priority(source.getPriority().getValue()), source.isFavorite(), source.getFinished(),
+                source.getEventProperty(), source.getRecurringProperty());
+        assert this.isEvent();
+        this.startDate = ((ReadOnlyEvent) source).getStartDate();
+        this.startTime = ((ReadOnlyEvent) source).getStartTime();
     }
 
     @Override
@@ -87,7 +91,7 @@ public class Event extends Task implements ReadOnlyEvent {
         assert replacement != null;
 
         super.resetData(replacement);
-        assert this.isEvent == EventProperty.EVENT;
+        assert this.isEvent();
         this.setStartTime(((ReadOnlyEvent) replacement).getStartTime());
         this.setStartDate(((ReadOnlyEvent) replacement).getStartDate());
     }
