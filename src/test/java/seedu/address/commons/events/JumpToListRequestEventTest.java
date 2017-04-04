@@ -11,7 +11,7 @@ import seedu.address.commons.events.ui.JumpToListRequestEvent;
 
 public class JumpToListRequestEventTest {
     @Test
-    public void checkToString() {
+    public void checkClassName_validInt_successfulChecking() {
         String className = "JumpToListRequestEvent";
         JumpToListRequestEvent event = new JumpToListRequestEvent(1);
 
@@ -19,7 +19,7 @@ public class JumpToListRequestEventTest {
     }
 
     @Test
-    public void checkTargetIndex() throws Exception {
+    public void checkTargetIndex_validInt_successfulChecking() throws Exception {
         Field field = JumpToListRequestEvent.class.getDeclaredField("targetIndex");
         field.setAccessible(true);
 
