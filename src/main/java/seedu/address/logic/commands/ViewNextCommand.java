@@ -23,16 +23,12 @@ public class ViewNextCommand extends Command {
 
     public static final String MESSAGE_NONNEGATIVE = "The number of days in the future cannot be negative.\n";
 
-    private final String numberOfDays;
+    private String numberOfDays;
 
-<<<<<<< HEAD:src/main/java/seedu/address/logic/commands/ViewNextCommand.java
-    public ViewNextCommand(int numberDays) {
-=======
-    public ViewCommand(int numberDays) throws IllegalValueException {
+    public void ViewCommand(int numberDays) throws IllegalValueException {
         if (numberDays < 0) {
             throw new IllegalValueException("The number of days in the future cannot be negative.");
         }
->>>>>>> origin/master:src/main/java/seedu/address/logic/commands/ViewCommand.java
         numberOfDays = String.valueOf(numberDays);
     }
 
