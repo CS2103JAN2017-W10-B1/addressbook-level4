@@ -21,9 +21,14 @@ public class ViewCommand extends Command {
             + "Parameters: [next]/[number of days from today]\n"
             + "Example: " + COMMAND_WORD + " next/10";
 
+    public static final String MESSAGE_NONNEGATIVE = "The number of days in the future cannot be negative.\n";
+
     private final String numberOfDays;
 
-    public ViewCommand(int numberDays) {
+    public ViewCommand(int numberDays) throws IllegalValueException {
+        if (numberDays < 0) {
+            throw new IllegalValueException("The number of days in the future cannot be negative.");
+        }
         numberOfDays = String.valueOf(numberDays);
     }
 
