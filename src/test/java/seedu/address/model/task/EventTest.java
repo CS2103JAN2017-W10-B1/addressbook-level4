@@ -23,7 +23,7 @@ public class EventTest {
     private static Event tester6;
     private static Event tester7;
     private static Event tester8;
-    
+
     @Before
     public void setup() throws IllegalValueException {
         tester1 = new Event(new Name("tester1"), new TaskDate("20/12/2017"),
@@ -66,7 +66,7 @@ public class EventTest {
         assertEquals(tester3.getTime().getValue(), "6:00");
         assertEquals(tester3.getStartTime().getValue(), "6:00");
     }
-    
+
     @Test
     public void constructor2_validInput_eventConstructed() {
 
