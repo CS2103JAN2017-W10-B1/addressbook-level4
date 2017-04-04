@@ -3,6 +3,10 @@
 ``` java
 package seedu.address.logic.commands;
 
+import java.util.logging.Logger;
+
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -11,11 +15,15 @@ import seedu.address.model.Model;
  * Represents a command with hidden internal logic and the ability to be executed.
  */
 public abstract class Command {
+
+    protected static final Logger LOGGER = LogsCenter.getLogger(MainApp.class);
+
     protected Model model;
 
     public static final String MESSAGE_USAGE = "";
 
     public static final String COMMAND_WORD = "";
+
 
     /**
      * Constructs a feedback message to summarise an operation that displayed a listing of persons.
@@ -34,7 +42,11 @@ public abstract class Command {
      * @return summary message for tasks displayed
      */
     public static String getMessageForTaskFoundShownSummary(int displaySize) {
-        return String.format(Messages.MESSAGE_TASKS_FOUND_OVERVIEW, displaySize);
+        String resultMsg = String.format(Messages.MESSAGE_TASKS_FOUND_OVERVIEW, displaySize);
+        if (displaySize == 0) {
+            resultMsg += "\nYou may try with other keywords or find in all tasks.";
+        }
+        return resultMsg;
     }
 
     /**
@@ -112,93 +124,6 @@ public class ExitCommand extends Command {
         return false;
     }
 
-}
-```
-###### /java/seedu/address/logic/commands/FindCommand.java
-``` java
-package seedu.address.logic.commands;
-
-import java.util.Set;
-
-/**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case sensitive.
- */
-public class FindCommand extends Command {
-
-    public static final String COMMAND_WORD = "find";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all task whose names contain any of "
-            + "the specified keywords (case-sensitive)\nand displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " 2103";
-
-    private final Set<String> keywords;
-
-    public FindCommand(Set<String> keywords) {
-        this.keywords = keywords;
-    }
-
-    @Override
-    public CommandResult execute() {
-        model.updateFilteredTaskList(keywords);
-        return new CommandResult(getMessageForTaskFoundShownSummary(model.getFilteredTaskList().size()));
-    }
-
-    @Override
-    public boolean isUndoable() {
-        return false;
-    }
-
-}
-```
-###### /java/seedu/address/logic/commands/HelpCommand.java
-``` java
-package seedu.address.logic.commands;
-
-/**
- * Format full help instructions for every command for display.
- */
-public class HelpCommand extends Command {
-
-    public static final String COMMAND_WORD = "help";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
-            + "Example: " + COMMAND_WORD;
-
-    public static final String SHOWING_HELP_MESSAGE = "Please add command keyword after help.\n"
-            + "The basic command words are as following:\n"
-            + "Add, clear, delete, edit, find, finish, list, scroll, view, undo and redo.\n"
-            + "Example: help add";
-
-    private String usageMessage;
-
-    /**
-     * Creates a HelpCommand using one command .
-     */
-
-    public HelpCommand(String helpMessage) {
-        super();
-        usageMessage = helpMessage;
-    }
-
-    public HelpCommand() {
-        super();
-    }
-
-    @Override
-    public CommandResult execute() {
-        if (usageMessage == null) {
-            return new CommandResult(SHOWING_HELP_MESSAGE);
-        } else {
-            return new CommandResult(usageMessage);
-        }
-    }
-
-    @Override
-    public boolean isUndoable() {
-        return false;
-    }
 }
 ```
 ###### /java/seedu/address/logic/commands/IncorrectCommand.java
@@ -360,11 +285,15 @@ public class StorageManager extends ComponentManager implements Storage {
     private TaskManagerStorage taskManagerStorage;
     private UserPrefsStorage userPrefsStorage;
 
-
     public StorageManager(TaskManagerStorage taskManagerStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.taskManagerStorage = taskManagerStorage;
         this.userPrefsStorage = userPrefsStorage;
+    }
+
+    public StorageManager(String taskManagerFilePath) {
+        super();
+        this.taskManagerStorage = new XmlTaskManagerStorage(taskManagerFilePath);
     }
 
     public StorageManager(String taskManagerFilePath, String userPrefsFilePath) {
@@ -438,7 +367,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyTaskManager;
 
 /**
- * Represents a storage for {@link seedu.address.model.AddressBook}.
+ * Represents a storage for {@link seedu.address.model.TaskManager}.
  */
 public interface TaskManagerStorage {
 
@@ -448,7 +377,7 @@ public interface TaskManagerStorage {
     String getTaskManagerFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
+     * Returns TaskManager data as a {@link ReadOnlyTaskManager}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
@@ -456,19 +385,19 @@ public interface TaskManagerStorage {
     Optional<ReadOnlyTaskManager> readTaskManager() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getTaskManagerFilePath()
      */
     Optional<ReadOnlyTaskManager> readTaskManager(String filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * Saves the given {@link ReadOnlyTaskManager} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
     void saveTaskManager(ReadOnlyTaskManager taskManager) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyAddressBook)
+     * @see #saveTaskManager(ReadOnlyTaskManager)
      */
     void saveTaskManager(ReadOnlyTaskManager taskManager, String filePath) throws IOException;
 
@@ -563,11 +492,11 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.XmlUtil;
 
 /**
- * Stores addressbook data in an XML file
+ * Stores taskmanager data in an XML file
  */
 public class XmlFileStorage {
     /**
-     * Saves the given addressbook data to the specified file.
+     * Saves the given taskmanager data to the specified file.
      */
     public static void saveDataToFile(File file, XmlSerializableTaskManager taskManager)
             throws FileNotFoundException {
@@ -579,7 +508,7 @@ public class XmlFileStorage {
     }
 
     /**
-     * Returns address book in the file or an empty address book
+     * Returns task manager in the file or an empty task manager
      */
     public static XmlSerializableTaskManager loadDataFromSaveFile(File file) throws DataConversionException,
                                                                             FileNotFoundException {

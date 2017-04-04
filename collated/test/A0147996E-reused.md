@@ -1,4 +1,66 @@
 # A0147996E-reused
+###### /java/guitests/CommandBoxTest.java
+``` java
+package guitests;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
+import java.util.ArrayList;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import seedu.address.ui.CommandBox;
+
+public class CommandBoxTest extends TaskManagerGuiTest {
+
+    private static final String COMMAND_THAT_SUCCEEDS = "scroll 3";
+    private static final String COMMAND_THAT_FAILS = "invalid command";
+
+    private ArrayList<String> defaultStyleOfCommandBox;
+    private ArrayList<String> errorStyleOfCommandBox;
+
+    @Before
+    public void setUp() {
+        defaultStyleOfCommandBox = new ArrayList<>(commandBox.getStyleClass());
+        assertFalse("CommandBox default style classes should not contain error style class.",
+                    defaultStyleOfCommandBox.contains(CommandBox.ERROR_STYLE_CLASS));
+
+        // build style class for error
+        errorStyleOfCommandBox = new ArrayList<>(defaultStyleOfCommandBox);
+        errorStyleOfCommandBox.add(CommandBox.ERROR_STYLE_CLASS);
+    }
+
+    @Test
+    public void commandBox_commandSucceeds_textClearedAndStyleClassRemainsTheSame() {
+        commandBox.runCommand(COMMAND_THAT_SUCCEEDS);
+
+        assertEquals("", commandBox.getCommandInput());
+        assertEquals(defaultStyleOfCommandBox, commandBox.getStyleClass());
+    }
+
+    @Test
+    public void commandBox_commandFails_textStaysAndErrorStyleClassAdded() {
+        commandBox.runCommand(COMMAND_THAT_FAILS);
+
+        assertEquals(COMMAND_THAT_FAILS, commandBox.getCommandInput());
+        assertEquals(errorStyleOfCommandBox, commandBox.getStyleClass());
+    }
+
+    @Test
+    public void commandBox_commandSucceedsAfterFailedCommand_textClearedAndErrorStyleClassRemoved() {
+        // add error style to simulate a failed command
+        commandBox.getStyleClass().add(CommandBox.ERROR_STYLE_CLASS);
+
+        commandBox.runCommand(COMMAND_THAT_SUCCEEDS);
+
+        assertEquals("", commandBox.getCommandInput());
+        assertEquals(defaultStyleOfCommandBox, commandBox.getStyleClass());
+    }
+
+}
+```
 ###### /java/guitests/ErrorDialogGuiTest.java
 ``` java
 package guitests;
@@ -275,6 +337,197 @@ public class ResultDisplayHandle extends GuiHandle {
 
     private TextArea getResultDisplay() {
         return getNode(RESULT_DISPLAY_ID);
+    }
+}
+```
+###### /java/guitests/GuiRobot.java
+``` java
+package guitests;
+
+import org.testfx.api.FxRobot;
+
+import javafx.scene.input.KeyCodeCombination;
+import seedu.address.testutil.TestUtil;
+
+/**
+ * Robot used to simulate user actions on the GUI.
+ * Extends {@link FxRobot} by adding some customized functionality and workarounds.
+ */
+public class GuiRobot extends FxRobot {
+
+    public GuiRobot push(KeyCodeCombination keyCodeCombination) {
+        return (GuiRobot) super.push(TestUtil.scrub(keyCodeCombination));
+    }
+}
+```
+###### /java/guitests/ScrollToCommandTest.java
+``` java
+package guitests;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+import seedu.address.testutil.TestTask;
+
+public class ScrollToCommandTest extends TaskManagerGuiTest {
+    private TestTask[] currentList = td.getTypicalTasks();
+
+    @Test
+    public void scroll_inNonEmptyList_scrollSuccess() {
+        assertScrollSuccess(1);
+
+        int taskCount = currentList.length;
+        assertScrollSuccess(taskCount);
+        int middleIndex = taskCount / 2;
+        assertScrollSuccess(middleIndex);
+
+        assertScrollInvalid(taskCount + 1);
+        assertScrollSuccess(middleIndex);
+    }
+
+    @Test
+    public void scroll_inEmptyList_scrollFailure() {
+        commandBox.runCommand("clear");
+        assertListSize(0);
+        assertScrollInvalid(1);
+    }
+
+    private void assertScrollInvalid(int index) {
+        commandBox.runCommand("scroll " + index);
+        assertResultMessage("The task index provided is invalid");
+    }
+
+    private void assertScrollSuccess(int index) {
+        commandBox.runCommand("scroll " + index);
+        assertResultMessage("Scrolled to index " + index);
+        assertEquals(currentList[index - 1].getAsText(), taskListPanel.getSelectedTasks().get(0).getAsText());
+    }
+}
+```
+###### /java/guitests/TaskManagerGuiTest.java
+``` java
+package guitests;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.concurrent.TimeoutException;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.rules.TestName;
+import org.testfx.api.FxToolkit;
+
+import guitests.guihandles.CommandBoxHandle;
+import guitests.guihandles.MainGuiHandle;
+import guitests.guihandles.ResultDisplayHandle;
+import guitests.guihandles.TagListPanelHandle;
+import guitests.guihandles.TaskListPanelHandle;
+import javafx.application.Platform;
+import javafx.stage.Stage;
+import seedu.address.TestApp;
+import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.events.BaseEvent;
+import seedu.address.model.TaskManager;
+import seedu.address.testutil.TypicalRecurringTasks;
+import seedu.address.testutil.TypicalTestEvents;
+import seedu.address.testutil.TypicalTestTasks;
+
+/**
+ * A GUI Test class for TaskManager.
+ */
+public abstract class TaskManagerGuiTest {
+
+    /* The TestName Rule makes the current test name available inside test methods */
+    @Rule
+    public TestName name = new TestName();
+
+    TestApp testApp;
+
+    protected TypicalTestTasks td = new TypicalTestTasks();
+    protected TypicalTestEvents te = new TypicalTestEvents();
+    protected TypicalRecurringTasks tr = new TypicalRecurringTasks();
+
+    /*
+     *   Handles to GUI elements present at the start up are created in advance
+     *   for easy access from child classes.
+     */
+    protected MainGuiHandle mainGui;
+    protected TagListPanelHandle tagListPanel;
+    protected TaskListPanelHandle taskListPanel;
+    protected ResultDisplayHandle resultDisplay;
+    protected CommandBoxHandle commandBox;
+    private Stage stage;
+
+    @BeforeClass
+    public static void setupSpec() {
+        try {
+            FxToolkit.registerPrimaryStage();
+            FxToolkit.hideStage();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Before
+    public void setup() throws Exception {
+        FxToolkit.setupStage((stage) -> {
+            mainGui = new MainGuiHandle(new GuiRobot(), stage);
+            taskListPanel = mainGui.getTaskListPanel();
+            tagListPanel = mainGui.getTagListPanel();
+            resultDisplay = mainGui.getResultDisplay();
+            commandBox = mainGui.getCommandBox();
+            this.stage = stage;
+        });
+        EventsCenter.clearSubscribers();
+        testApp = (TestApp) FxToolkit.setupApplication(() -> new TestApp(this::getInitialData, getDataFileLocation()));
+        FxToolkit.showStage();
+        while (!stage.isShowing());
+        mainGui.focusOnMainApp();
+    }
+
+    /**
+     * Override this in child classes to set the initial local data.
+     * Return null to use the data in the file specified in {@link #getDataFileLocation()}
+     */
+    protected TaskManager getInitialData() {
+        TaskManager tm = TaskManager.getStub();
+        TypicalTestTasks.loadTaskManagerWithSampleData(tm);
+        return tm;
+    }
+
+    /**
+     * Override this in child classes to set the data file location.
+     */
+    protected String getDataFileLocation() {
+        return TestApp.SAVE_LOCATION_FOR_TESTING;
+    }
+
+    @After
+    public void cleanup() throws TimeoutException {
+        FxToolkit.cleanupStages();
+    }
+
+    /**
+     * Asserts the size of the task list is equal to the given number.
+     */
+    protected void assertListSize(int size) {
+        int numberOfTasks = taskListPanel.getNumberOfTasks();
+        assertEquals(size, numberOfTasks);
+    }
+
+    /**
+     * Asserts the message shown in the Result Display area is same as the given string.
+     */
+    protected void assertResultMessage(String expected) {
+        assertEquals(expected, resultDisplay.getText());
+    }
+
+    public void raise(BaseEvent e) {
+        //JUnit doesn't run its test cases on the UI thread. Platform.runLater is used to post event on the UI thread.
+        Platform.runLater(() -> EventsCenter.getInstance().post(e));
     }
 }
 ```

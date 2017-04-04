@@ -1,4 +1,54 @@
 # A0147996E-reused
+###### /java/seedu/address/logic/parser/FindCommandParser.java
+``` java
+package seedu.address.logic.parser;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.KEYWORDS_ARGS_FORMAT;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Matcher;
+
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.IncorrectCommand;
+
+/**
+ * Parses input arguments and creates a new FindCommand object
+ */
+public class FindCommandParser {
+
+    private static FindCommandParser theOne;
+
+    private FindCommandParser() {}
+
+    public static FindCommandParser getInstance() {
+        if (theOne == null) {
+            theOne = new FindCommandParser();
+        }
+        return theOne;
+    }
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the FindCommand
+     * and returns an FindCommand object for execution.
+     */
+    public static Command parse(String args) {
+        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+        // keywords delimited by whitespace
+        final String[] keywords = matcher.group("keywords").split("\\s+");
+        final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
+        return new FindCommand(keywordSet);
+    }
+
+}
+```
 ###### /java/seedu/address/logic/parser/ScrollToCommandParser.java
 ``` java
 package seedu.address.logic.parser;
@@ -28,7 +78,6 @@ public class ScrollToCommandParser {
             return new IncorrectCommand(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScrollToCommand.MESSAGE_USAGE));
         }
-
         return new ScrollToCommand(index.get());
     }
 
