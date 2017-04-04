@@ -50,5 +50,4 @@ public interface ReadOnlyRecurringEvent extends ReadOnlyEvent, ReadOnlyRecurring
         }
         return builder.toString();
     }
-
 }

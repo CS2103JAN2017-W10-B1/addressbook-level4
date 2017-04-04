@@ -36,31 +36,33 @@ public interface ReadOnlyTask {
      * Returns true if both have the same state. (interfaces cannot override equals)
      */
     default boolean isSameStateAs(ReadOnlyTask other) {
+        if (this.isRecurring() ^ other.isRecurring()) {
+            return false;
+        }
         if (this.isEvent() ^ other.isEvent()) {
             return false;
-        } else if (!this.isEvent()) {
-            return other == this // short circuit if same object
-                    || (other != null // this is first to avoid NPE below
-                    && checkEqual(this.getName(), other.getName())
-                    && checkEqual(this.getDate(), other.getDate())
-                    && checkEqual(this.getTime(), other.getTime())
-                    && checkEqual(this.getTag(), other.getTag())
-                    && ((other.getFinished() == null && this.getFinished() == null)
-                            || (other.getFinished() != null && other.getFinished().equals(this.getFinished()))));
+        }
+        boolean state = other == this // short circuit if same object
+                || (other != null // this is first to avoid NPE below
+                && checkEqual(this.getName(), other.getName())
+                && checkEqual(this.getDate(), other.getDate())
+                && checkEqual(this.getTime(), other.getTime())
+                && checkEqual(this.getTag(), other.getTag())
+                && ((other.getFinished() == null && this.getFinished() == null)
+                        || (other.getFinished() != null && other.getFinished().equals(this.getFinished()))));
                     // state checks here onwards
-        } else {
-            return other == this // short circuit if same object
-                    || (other != null // this is first to avoid NPE below
-                    && checkEqual(this.getName(), other.getName())
-                    && checkEqual(this.getDate(), other.getDate())
-                    && checkEqual(this.getTime(), other.getTime())
+        if (this.isEvent()) {
+            state = state
                     && checkEqual(((ReadOnlyEvent) this).getStartDate(), ((ReadOnlyEvent) other).getStartDate())
-                    && checkEqual(((ReadOnlyEvent) this).getStartTime(), ((ReadOnlyEvent) other).getStartTime())
-                    && checkEqual(this.getTag(), other.getTag())
-                    && ((other.getFinished() == null && this.getFinished() == null)
-                            || (other.getFinished() != null && other.getFinished().equals(this.getFinished()))));
+                    && checkEqual(((ReadOnlyEvent) this).getStartTime(), ((ReadOnlyEvent) other).getStartTime());
                     // state checks here onwards
         }
+        if (this.isRecurring()) {
+            state = state
+                    && ((((ReadOnlyRecurringTask) this).getRecurringPeriod()).equals(
+                            ((ReadOnlyRecurringTask) this).getRecurringPeriod()));
+        }
+        return state;
     }
 //@@author A0147996E
     /**

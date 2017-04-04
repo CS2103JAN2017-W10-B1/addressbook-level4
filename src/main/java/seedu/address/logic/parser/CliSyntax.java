@@ -23,6 +23,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_START = new Prefix("start/");
     public static final Prefix PREFIX_STARTTIME = new Prefix("startT/");
     public static final Prefix PREFIX_FREQUENCY = new Prefix("f/");
+    public static final Prefix PREFIX_ONCE = new Prefix("once/");
     public static final Prefix PREFIX_ALL = new Prefix("all");
 
     /* Patterns definitions */
