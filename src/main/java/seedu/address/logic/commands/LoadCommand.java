@@ -40,7 +40,6 @@ public class LoadCommand extends AbleUndoCommand {
         tempTaskManager = TaskManager.getStub();
         tempTaskManager.resetData(model.getTaskManager());
 
-        LOGGER.info(getClass() + " handles current command");
         try {
             assert path != null;
             StorageManager storage = new StorageManager(path);

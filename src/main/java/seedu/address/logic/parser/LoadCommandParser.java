@@ -19,7 +19,9 @@ public class LoadCommandParser {
      * @throws CommandException
      */
     public static Command parse(String args) {
-        args = args.trim();
+        if (args != null) {
+            args = args.trim();
+        }
         if (args == null || args.equals("")) {
             return new IncorrectCommand(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, LoadCommand.MESSAGE_USAGE));
