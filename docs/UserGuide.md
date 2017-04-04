@@ -242,23 +242,18 @@ Example:
 * `load /Users/Alice/Desktop/sampleTasks.xml`<br>
   Load tasks from the given filepath.
 
-### 2.13. Load file: `load`
+### 2.13. Find tasks: `find`
 
-Load external XML file into Dueue.<br>
-Format: `load FILEPATH`
+Find a list of all/finished/unfinished tasks containing given keywords.<br>
+Format: `find [all/finished/unfinished] [KEYWORD...]`
 
-> * The path must trace to an XML file.
-> * Use `/` at the start of FILEPATH to indicate root directory.
+> * Only task(s) whose names containing any of the entire KEYWORD given will be listed.
+> * Matching is case-insensitive.
 
 Example:
 
-* `load /Users/Alice/Desktop/sampleTasks.xml`<br>
-  Load tasks from the given filepath.
-
-Examples:
-
-* `redo`<br>
-  Previous `undo` command is reversed.
+* `find finished CS2103`<br>
+  Find all finished tasks whose name contains "CS2103".
 
 ### 2.14. Scroll to : `scroll`
 
