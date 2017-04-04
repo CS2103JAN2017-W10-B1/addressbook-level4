@@ -26,7 +26,7 @@ import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
  * Duplicates are not allowed (by .equals comparison)
  */
 public class TaskManager implements ReadOnlyTaskManager {
-    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final Logger logger = LogsCenter.getLogger(TaskManager.class);
 
     private final UniqueTaskList tasks;
     private final UniqueTagList tags;
@@ -211,15 +211,6 @@ public class TaskManager implements ReadOnlyTaskManager {
     public void finishTaskOnce(ReadOnlyTask recurringTask) throws DuplicateTaskException {
         Task current = buildFinishedRecurringTask(recurringTask);
         ((RecurringTask) current).finishOnce();
-        replaceTask(recurringTask, current);
-    }
-
-    /**
-     * Method for undo finishOnce only
-     */
-    public void undoFinishTaskOnce(ReadOnlyTask recurringTask) throws DuplicateTaskException {
-        Task current = buildFinishedRecurringTask(recurringTask);
-        ((RecurringTask) current).undoFinishOnce();
         replaceTask(recurringTask, current);
     }
 
