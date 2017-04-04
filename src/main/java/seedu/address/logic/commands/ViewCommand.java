@@ -14,13 +14,12 @@ public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
-    public static final String MESSAGE_SUCCESS = "View all tasks";
+    public static final String MESSAGE_SUCCESS = "View all tasks in the next %s days\n";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List unfinished tasks due by "
             + "the specified date and displays them as a list with index numbers.\n"
             + "Parameters: [next]/[number of days from today]\n"
             + "Example: " + COMMAND_WORD + " next/10";
-
 
     private final String numberOfDays;
 
@@ -37,7 +36,7 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute() {
         model.updateFilteredTaskListGivenDaysToDueBy(numberOfDays);
-        String messageDisplay = MESSAGE_SUCCESS + " in the next " + numberOfDays + " days\n";
+        String messageDisplay = String.format(MESSAGE_SUCCESS, numberOfDays);
         LOGGER.info(getClass() + " listed all unfinished tasks by " + numberOfDays);
         return new CommandResult(messageDisplay);
     }
