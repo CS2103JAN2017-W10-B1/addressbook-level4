@@ -41,8 +41,13 @@ public class ViewCommandParser {
             try {
                 return new ViewCommand(Integer.valueOf(parameters[1]));
             } catch (NumberFormatException nfe) {
-                return new IncorrectCommand(String.format(
+                try {
+                    TaskDate date = new TaskDate(parameters[1]);
+                    return new ViewCommand(date);
+                } catch (IllegalValueException e) {
+                    return new IncorrectCommand(String.format(
                         MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+                }
             }
         }
 
@@ -60,7 +65,6 @@ public class ViewCommandParser {
                 }
             }
         }
-
         // if not matching any format
         return new IncorrectCommand(String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
@@ -71,5 +75,4 @@ public class ViewCommandParser {
         String[] parameters = argument.split("/", 2);
         return parameters;
     }
-
 }
