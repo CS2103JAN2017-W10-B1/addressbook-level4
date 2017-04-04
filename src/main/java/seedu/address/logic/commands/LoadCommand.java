@@ -1,6 +1,7 @@
 //@@author A0147996E
 package seedu.address.logic.commands;
 
+import java.io.File;
 import java.io.IOException;
 
 import seedu.address.commons.exceptions.DataConversionException;
@@ -43,7 +44,8 @@ public class LoadCommand extends AbleUndoCommand {
         }
         LOGGER.info(getClass() + " handles current command");
         try {
-            assert path != null;
+            File file = new File(path);
+            assert file != null;
             StorageManager storage = new StorageManager(path);
             ReadOnlyTaskManager taskManager = storage.readTaskManager(path).get();
             model.resetData(taskManager);
