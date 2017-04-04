@@ -12,7 +12,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandFormatter;
 import seedu.address.testutil.TestEvent;
-import seedu.address.testutil.TestRecurringTask;
 import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
@@ -76,7 +75,7 @@ public class AddCommandTest extends TaskManagerGuiTest {
     }
     @Test
     public void add_addRecurringTask_success() {
-        TestRecurringTask recurringTask = 
+        //TestRecurringTask recurringTask = new
     }
 
     @Test
