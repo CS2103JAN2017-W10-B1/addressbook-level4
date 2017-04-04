@@ -15,9 +15,9 @@
 
 <HBox id="taskCardPane" fx:id="taskCardPane" prefHeight="120.0" prefWidth="522.0" style="-fx-border-radius: 5; -fx-border-width: 3; -fx-border-color: DARKSALMON; -fx-background-radius: 5; -fx-background-color: LAVENDERBLUSH;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <GridPane prefHeight="117.0" prefWidth="357.0" HBox.hgrow="ALWAYS">
+        <GridPane prefHeight="113.0" prefWidth="516.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" maxWidth="375.0" minWidth="10.0" prefWidth="186.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="186.0" />
             <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="240.0" minWidth="150.0" prefWidth="240.0" />
             </columnConstraints>
             <children>
