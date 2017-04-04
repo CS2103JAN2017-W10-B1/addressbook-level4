@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FAVOURITE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ONCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
@@ -22,6 +23,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
+import seedu.address.logic.commands.EditNextCommand;
 import seedu.address.logic.commands.IncorrectCommand;
 
 /**
@@ -50,7 +52,7 @@ public class EditCommandParser {
         ArgumentTokenizer argsTokenizer =
                 new ArgumentTokenizer(PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_TAG,
                         PREFIX_DESCRIPTION, PREFIX_VENUE, PREFIX_PRIORITY, PREFIX_FAVOURITE,
-                        PREFIX_UNFAVOURITE, PREFIX_START, PREFIX_STARTTIME, PREFIX_FREQUENCY);
+                        PREFIX_UNFAVOURITE, PREFIX_START, PREFIX_STARTTIME, PREFIX_FREQUENCY, PREFIX_ONCE);
         argsTokenizer.tokenize(args);
         List<Optional<String>> preambleFields = ParserUtil.splitPreamble(argsTokenizer.getPreamble().orElse(""), 2);
 
@@ -79,6 +81,11 @@ public class EditCommandParser {
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             return new IncorrectCommand(EditCommand.MESSAGE_NOT_EDITED);
+        }
+
+        Optional<String> once = argsTokenizer.getValue(PREFIX_ONCE);
+        if (once.isPresent() && "t".equals(once.get())) {
+            return new EditNextCommand(index.get(), editTaskDescriptor);
         }
 
         return new EditCommand(index.get(), editTaskDescriptor);
