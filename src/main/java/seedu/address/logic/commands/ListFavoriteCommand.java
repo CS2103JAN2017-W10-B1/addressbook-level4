@@ -33,7 +33,7 @@ public class ListFavoriteCommand extends Command {
     }
 
     public ListFavoriteCommand() {
-        this.keywords = new HashSet<String>();
+        keywords = new HashSet<String>();
     }
 
     @Override

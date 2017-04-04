@@ -29,7 +29,7 @@ public class ListFinishedCommand extends Command {
     }
 
     public ListFinishedCommand() {
-        this.keywords = new HashSet<String>();
+        keywords = new HashSet<String>();
     }
 
     @Override

@@ -29,7 +29,7 @@ public class ListAllCommand extends Command {
     }
 
     public ListAllCommand() {
-        this.keywords = new HashSet<String>();
+        keywords = new HashSet<String>();
     }
 
     @Override
