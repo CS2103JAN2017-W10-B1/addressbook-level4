@@ -68,10 +68,6 @@ public class DeleteCommand extends AbleUndoCommand {
                     isSuccess = true;
                     model.updateTask(targetIndex - 1, taskToDelete);
                 } catch (DuplicateTaskException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (IllegalValueException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             } else {

@@ -77,7 +77,7 @@ public class FinishCommandTest extends TaskManagerGuiTest {
         currentList = TestUtil.removeTaskFromList(currentList, targetIndexOneIndexed);
 
         commandBox.runCommand("finish " + targetIndexOneIndexed);
-        assertResultMessage(String.format(MESSAGE_FINISH_TASK_SUCCESS, taskToFinish.toString() + " finished"));
+        assertResultMessage(String.format(MESSAGE_FINISH_TASK_SUCCESS, taskToFinish.toString()));
         commandBox.runCommand("list");
         assertTrue(taskListPanel.isListMatching(currentList));
     }

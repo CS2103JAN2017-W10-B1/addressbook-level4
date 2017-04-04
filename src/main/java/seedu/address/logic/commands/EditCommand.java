@@ -94,14 +94,14 @@ public class EditCommand extends AbleUndoCommand {
             task = editedTask;
             int taskIndex = model.getFilteredTaskList().indexOf(editedTask);
             EventsCenter.getInstance().post(new JumpToListRequestEvent(taskIndex));
+            model.updateFilteredListToShowAllUnfinishedTasks();
+            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask.getName()));
         } catch (UniqueTaskList.DuplicateTaskException dpe) {
             isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         } catch (IllegalValueException e) {
             throw new CommandException(e.getMessage());
         }
-        model.updateFilteredListToShowAllUnfinishedTasks();
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit.getName()));
     }
 
     protected Task createTask(ReadOnlyTask task) {

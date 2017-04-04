@@ -51,7 +51,7 @@ public class ViewCommandParserTest {
         IncorrectCommand incorrectCommand =  (IncorrectCommand) ViewCommandParser.parse("next/abc");
 
         assertEquals(field.get(incorrectCommand), String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_NONNEGATIVE));
     }
 
     @Test
