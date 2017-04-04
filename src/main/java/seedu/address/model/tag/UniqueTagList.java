@@ -126,6 +126,19 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
+     * Returns the tag at the position of given index
+     */
+    public Tag get(int index) {
+        return internalList.get(index);
+    }
+
+    /**
+     * Returns the index of the given Tag
+     */
+    public int indexOf(Tag toCheck) {
+        return internalList.indexOf(toCheck);
+    }
+    /**
      * Clear the UniqueTagList
      */
     public void clear() {

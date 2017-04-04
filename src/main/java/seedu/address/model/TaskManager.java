@@ -249,6 +249,8 @@ public class TaskManager implements ReadOnlyTaskManager {
         try {
             tags.add(taskTag);
         } catch (DuplicateTagException e) {
+            Tag tagInList = tags.get(tags.indexOf(taskTag));
+            task.setTag(tagInList);
             logger.info("task manager already has the tag for new task");
         }
     }
