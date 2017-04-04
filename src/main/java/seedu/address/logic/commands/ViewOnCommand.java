@@ -8,7 +8,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.TaskDate;
 
 /**
- * Lists all persons in the address book to the user.
+ * List tasks due on a specified date in Dueue.
  */
 public class ViewOnCommand extends Command {
 
