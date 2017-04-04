@@ -60,9 +60,16 @@ public class TaskListCard extends UiPart<Region> {
         tag.setText(task.getTag().getDisplayText());
         isFavorite.setText(task.getFavoriteText());
         isFinished.setText(task.getFinishedText());
-        pastDue.setText(task.getDate().getPastDueDisplayedText());
+        setPastDue(task);
         setEventFields(task);
         setRecurringTaskFields(task);
+    }
+
+    private void setPastDue(ReadOnlyTask task) {
+        pastDue.setText("");
+        if (!task.isFinished()) {
+            pastDue.setText(task.getDate().getPastDueDisplayedText());
+        }
     }
 
     private void setEventFields(ReadOnlyTask task) {
