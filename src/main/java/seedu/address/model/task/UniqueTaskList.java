@@ -75,24 +75,23 @@ public class UniqueTaskList implements Iterable<Task> {
         if (!taskToUpdate.equals(editedTask) && internalList.contains(editedTask)) {
             throw new DuplicateTaskException();
         }
-        if (!taskToUpdate.isEvent() && editedTask.isEvent()) {
+        if (editedTask.isEvent()) {
             try {
-                taskToUpdate = new Event(editedTask);
-            } catch (IllegalValueException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        } else if (taskToUpdate.isEvent() && !editedTask.isEvent()) {
-            taskToUpdate = new Task(editedTask);
-        } else if (taskToUpdate.isRecurring() || editedTask.isRecurring()) {
-            try {
-                taskToUpdate = new RecurringTask(editedTask);
+                if (taskToUpdate.isRecurring() || editedTask.isRecurring()) {
+                    taskToUpdate = new RecurringEvent(editedTask);
+                } else {
+                    taskToUpdate = new Event(editedTask);
+                }
             } catch (IllegalValueException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
-            taskToUpdate.resetData(editedTask);
+            if (taskToUpdate.isRecurring() || editedTask.isRecurring()) {
+                taskToUpdate = new RecurringTask(editedTask);
+            } else {
+                taskToUpdate = new Task(editedTask);
+            }
         }
         // TODO: The code below is just a workaround to notify observers of the updated task.
         // The right way is to implement observable properties in the Task class.
