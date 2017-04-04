@@ -18,13 +18,20 @@ import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
  */
 public class EditNextCommand extends EditCommand {
 
+  ///@@author A0143409J
     private ReadOnlyTask finishedOnceTask;
+
     /**
      * Create editNext command using an index for specific task and description for the edited task
      */
     public EditNextCommand(int filteredTaskListIndex, EditTaskDescriptor editTaskDescriptor) {
         super(filteredTaskListIndex, editTaskDescriptor);
-        this.finishedOnceTask = null;
+        finishedOnceTask = null;
+    }
+
+    public EditNextCommand(ReadOnlyTask task, Task oldTask, ReadOnlyTask finishedOnceTask) {
+        super(task, oldTask);
+        this.finishedOnceTask = finishedOnceTask;
     }
 
     @Override
@@ -83,7 +90,7 @@ public class EditNextCommand extends EditCommand {
     public Command getUndoCommand() {
         if (isSuccess) {
             //TODO
-            return null;
+            return new EditNextCommand(task, oldTask, finishedOnceTask);
         } else {
             return new IncorrectCommand(null);
         }
