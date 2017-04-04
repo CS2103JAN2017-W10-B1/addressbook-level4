@@ -69,7 +69,7 @@ public class JsonUserPrefsStorageTest {
     @Test
     public void readUserPrefsValuesMissingFromFileDefaultValuesUsed() throws DataConversionException {
         UserPrefs actual = readUserPrefs("EmptyUserPrefs.json").get();
-        assertEquals(UserPrefs.getInstance(), actual);
+        assertEquals(UserPrefs.getStub(), actual);
     }
 
     @Test

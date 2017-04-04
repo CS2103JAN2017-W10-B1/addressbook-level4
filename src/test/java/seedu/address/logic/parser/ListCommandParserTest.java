@@ -29,7 +29,8 @@ public class ListCommandParserTest {
         field.setAccessible(true);
 
         ListCommand listCommand =  (ListCommand) ListCommandParser.parse(null);
-        assertEquals(field.get(listCommand), null);
+        Set<String> set = new HashSet<String>();
+        assertEquals(field.get(listCommand), set);
     }
 
     @Test

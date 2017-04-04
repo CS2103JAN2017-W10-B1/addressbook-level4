@@ -302,7 +302,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
                 + year;
     }
 
-//// Methods with recurring task
+// Methods with recurring task
 
     /**
      * Add a recurring period for date

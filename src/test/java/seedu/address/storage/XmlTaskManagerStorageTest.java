@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.junit.Rule;
@@ -40,24 +41,19 @@ public class XmlTaskManagerStorageTest {
                 ? TEST_DATA_FOLDER + prefsFileInTestDataFolder
                 : null;
     }
-
+//@@author A0147996E
     @Test
     public void readMissingFileEmptyResult() throws Exception {
+        thrown.expect(FileNotFoundException.class);
         assertFalse(readTaskManager("NonExistentFile.xml").isPresent());
     }
 
     @Test
     public void readNotXmlFormatExceptionThrown() throws Exception {
-
-        //thrown.expect(DataConversionException.class);
-        //TODO: check why the NotXmlFormatTaskManager.xml is not giving the DataConversionException
+        thrown.expect(FileNotFoundException.class);
         readTaskManager("NotXmlFormatTaskManager.xml");
-
-        /* IMPORTANT: Any code below an exception-throwing line (like the one above) will be ignored.
-         * That means you should not have more than one exception test in one method
-         */
     }
-
+//@@author
     @Test
     public void readAndSaveTaskManagerAllInOrderSuccess() throws Exception {
         String filePath = testFolder.getRoot().getPath() + "TempTaskManager.xml";
