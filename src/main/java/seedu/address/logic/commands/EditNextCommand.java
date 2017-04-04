@@ -8,6 +8,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.task.ReadOnlyRecurringTask;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.ReadOnlyTask.RecurringProperty;
 import seedu.address.model.task.Task;
 
 /**
@@ -31,12 +32,13 @@ public class EditNextCommand extends EditCommand {
         }
 
         ReadOnlyTask taskToEdit = lastShownList.get(filteredTaskListIndex);
-        if (taskToEdit instanceof ReadOnlyRecurringTask) {
+        if (!(taskToEdit instanceof ReadOnlyRecurringTask)) {
             throw new CommandException("The task to edit once should be a recurring task.");
         }
 
         try {
             Task newTask = createEditedTask(taskToEdit, editTaskDescriptor);
+            newTask.setRecurringProperty(RecurringProperty.NON_RECURRING);
             model.addTask(newTask);
             model.finishTaskOnce(taskToEdit);
         } catch (IllegalValueException e) {
