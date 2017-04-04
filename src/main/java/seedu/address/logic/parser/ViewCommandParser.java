@@ -1,3 +1,4 @@
+//@@author A0143409J
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -10,7 +11,7 @@ import seedu.address.logic.commands.ViewOnCommand;
 import seedu.address.model.task.TaskDate;
 
 /**
- * Parses input arguments and creates a new ViewCommand object
+ * Parses input arguments and creates a new ViewCommand/ViewOnCommand object
  */
 public class ViewCommandParser {
 
