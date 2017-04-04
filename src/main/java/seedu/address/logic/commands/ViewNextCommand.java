@@ -1,4 +1,4 @@
-//@@author A0143409J
+//@@author A0147996E
 package seedu.address.logic.commands;
 
 import java.util.Calendar;
@@ -10,7 +10,7 @@ import seedu.address.model.task.TaskDate;
 /**
  * Lists all unfinished tasks due by a specified date in Dueue.
  */
-public class ViewCommand extends Command {
+public class ViewNextCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
@@ -24,11 +24,11 @@ public class ViewCommand extends Command {
 
     private final String numberOfDays;
 
-    public ViewCommand(int numberDays) {
+    public ViewNextCommand(int numberDays) {
         numberOfDays = String.valueOf(numberDays);
     }
 
-    public ViewCommand(TaskDate date) throws IllegalValueException {
+    public ViewNextCommand(TaskDate date) throws IllegalValueException {
         Calendar today = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
         TaskDate todayDate = new TaskDate(TaskDate.getDateString(today));
         numberOfDays = String.valueOf(date.compareToDay(todayDate));
