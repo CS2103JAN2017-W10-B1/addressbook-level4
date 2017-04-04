@@ -11,9 +11,9 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Event;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
-import seedu.address.model.task.ReadOnlyRecurringTask;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.FinishProperty;
+import seedu.address.model.task.RecurringEvent;
 import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
@@ -70,10 +70,17 @@ public class FinishCommand extends AbleUndoCommand {
             throw new CommandException(MESSAGE_FINISH_TASK_MARKED);
         } else if (taskToMark.isRecurring()) {
             try {
-                this.task = new RecurringTask(taskToMark);
-                editedTask = new RecurringTask(taskToMark);
-                ((ReadOnlyRecurringTask) editedTask).finishOnce();
-                this.replaceTask = new RecurringTask(editedTask);
+                if (taskToMark.isEvent()) {
+                    this.task = new RecurringEvent(taskToMark);
+                    editedTask = new RecurringEvent(taskToMark);
+                    ((RecurringEvent) editedTask).finishOnce();
+                    this.replaceTask = new RecurringEvent(editedTask);
+                } else {
+                    this.task = new RecurringTask(taskToMark);
+                    editedTask = new RecurringTask(taskToMark);
+                    ((RecurringTask) editedTask).finishOnce();
+                    this.replaceTask = new RecurringTask(editedTask);
+                }
             } catch (IllegalValueException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -155,15 +162,9 @@ public class FinishCommand extends AbleUndoCommand {
                     assert false : "The event must be valid";
                 }
             } else if (task.isRecurring()) {
-                Task temp;
-                try {
-                    temp = new RecurringTask(task);
-                    this.task = new RecurringTask(replaceTask);
-                    this.replaceTask = new RecurringTask(temp);
-                } catch (IllegalValueException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                Task temp = new RecurringTask(task);
+                this.task = new RecurringTask(replaceTask);
+                this.replaceTask = new RecurringTask(temp);
             } else {
                 Task temp = new Task(task);
                 this.task = new Task(replaceTask);

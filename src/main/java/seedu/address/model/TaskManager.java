@@ -15,6 +15,7 @@ import seedu.address.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.address.model.task.Event;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.RecurringProperty;
+import seedu.address.model.task.RecurringEvent;
 import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
@@ -157,12 +158,7 @@ public class TaskManager implements ReadOnlyTaskManager {
                         + " event in updating task manager");
             }
         } else if (editedReadOnlyTask.isRecurring()) {
-            try {
-                return new RecurringTask(editedReadOnlyTask);
-            } catch (IllegalValueException e) {
-                logger.info("IllegalValueException thrown when building"
-                        + " recurring task in updating task manager");
-            }
+            return new RecurringTask(editedReadOnlyTask);
         } else {
             return new Task(editedReadOnlyTask);
         }
@@ -210,7 +206,11 @@ public class TaskManager implements ReadOnlyTaskManager {
      */
     public void finishTaskOnce(ReadOnlyTask recurringTask) throws DuplicateTaskException {
         Task current = buildFinishedRecurringTask(recurringTask);
-        ((RecurringTask) current).finishOnce();
+        if (current.isEvent()) {
+            ((RecurringEvent) current).finishOnce();
+        } else {
+            ((RecurringTask) current).finishOnce();
+        }
         replaceTask(recurringTask, current);
     }
 
@@ -226,7 +226,11 @@ public class TaskManager implements ReadOnlyTaskManager {
     private Task buildFinishedRecurringTask(ReadOnlyTask recurringTask) {
         Task current = null;
         try {
-            current = new RecurringTask(recurringTask);
+            if (recurringTask.isEvent()) {
+                current = new RecurringEvent(recurringTask);
+            } else {
+                current = new RecurringTask(recurringTask);
+            }
         } catch (IllegalValueException e1) {
             logger.info("IllegalValueException thrown when building"
                     + " recurring task in updating task manager");
@@ -245,6 +249,8 @@ public class TaskManager implements ReadOnlyTaskManager {
         try {
             tags.add(taskTag);
         } catch (DuplicateTagException e) {
+            Tag tagInList = tags.get(tags.indexOf(taskTag));
+            task.setTag(tagInList);
             logger.info("task manager already has the tag for new task");
         }
     }

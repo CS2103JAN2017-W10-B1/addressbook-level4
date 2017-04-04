@@ -103,6 +103,7 @@ public class RecurringEvent extends Event implements ReadOnlyRecurringEvent {
 
     @Override
     public void finishOnce() {
+        this.startDate.addPeriod(mode);
         this.date.addPeriod(mode);
     }
 

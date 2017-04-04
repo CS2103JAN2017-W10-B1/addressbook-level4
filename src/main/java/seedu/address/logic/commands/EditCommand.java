@@ -337,6 +337,7 @@ public class EditCommand extends AbleUndoCommand {
             return start.isPresent();
         }
 
+        //@@author A0147984L
         public void setRecurringMode(Optional<String> ocurrence) {
             if (ocurrence.isPresent()) {
                 String ocurring = ocurrence.orElse("");
@@ -355,6 +356,7 @@ public class EditCommand extends AbleUndoCommand {
         public RecurringMode getRecurringMode() {
             return this.recurringMode;
         }
+        //@@author
     }
 
     @Override
