@@ -12,6 +12,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandFormatter;
 import seedu.address.testutil.TestEvent;
+import seedu.address.testutil.TestRecurringTask;
 import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
@@ -63,19 +64,29 @@ public class AddCommandTest extends TaskManagerGuiTest {
     public void add_addEventsWithSomeDuplicateFields_success() {
         TestEvent eventToAdd = te.date;
         assertAddSuccess(eventToAdd, currentList);
-        currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
+        currentList = (TestUtil.addTasksToList(currentList, eventToAdd));
 
         eventToAdd = te.date2;
         assertAddSuccess(eventToAdd, currentList);
-        currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
+        currentList = (TestUtil.addTasksToList(currentList, eventToAdd));
 
         eventToAdd = te.date3;
         assertAddSuccess(eventToAdd, currentList);
-        currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
+        currentList = (TestUtil.addTasksToList(currentList, eventToAdd));
     }
     @Test
     public void add_addRecurringTask_success() {
-        //TestRecurringTask recurringTask = new
+        TestRecurringTask recurringTaskToAdd = tr.homework;
+        assertAddSuccess(recurringTaskToAdd, currentList);
+        currentList = (TestUtil.addTasksToList(currentList, recurringTaskToAdd));
+
+        recurringTaskToAdd = tr.homework2;
+        assertAddSuccess(recurringTaskToAdd, currentList);
+        currentList = (TestUtil.addTasksToList(currentList, recurringTaskToAdd));
+
+        recurringTaskToAdd = tr.cs2103;
+        assertAddSuccess(recurringTaskToAdd, currentList);
+        currentList = (TestUtil.addTasksToList(currentList, recurringTaskToAdd));
     }
 
     @Test

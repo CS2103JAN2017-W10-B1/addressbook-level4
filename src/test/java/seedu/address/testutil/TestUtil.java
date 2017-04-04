@@ -332,7 +332,12 @@ public class TestUtil {
         return sort(listOfTasks.toArray(new TestTask[listOfTasks.size()]));
     }
 
-    public static TestTask[] addEventsToList(final TestTask[] tasks, TestEvent... eventsToAdd) {
+    public static TestTask[] addTasksToList(final TestTask[] tasks, TestEvent... eventsToAdd) {
+        List<TestTask> listOfTasks = asList(tasks);
+        listOfTasks.addAll(asList(eventsToAdd));
+        return sort(listOfTasks.toArray(new TestTask[listOfTasks.size()]));
+    }
+    public static TestTask[] addTasksToList(final TestTask[] tasks, TestRecurringTask... eventsToAdd) {
         List<TestTask> listOfTasks = asList(tasks);
         listOfTasks.addAll(asList(eventsToAdd));
         return sort(listOfTasks.toArray(new TestTask[listOfTasks.size()]));

@@ -17,7 +17,7 @@ public class DeleteCommandTest extends TaskManagerGuiTest {
     public void delete() {
         //add some events in first
         TestTask[] currentList = td.getTypicalTasks();
-        currentList = TestUtil.addEventsToList(currentList, te.assignment, te.cs2103);
+        currentList = TestUtil.addTasksToList(currentList, te.assignment, te.cs2103);
         TestEvent eventToAdd = te.assignment;
         commandBox.runCommand(eventToAdd.getAddCommand());
         eventToAdd = te.cs2103;

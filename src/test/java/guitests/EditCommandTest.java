@@ -46,7 +46,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
     public void editEventToBecomeTask() throws Exception {
         //add some events in first
         TestTask[] currentList = td.getTypicalTasks();
-        currentList = TestUtil.addEventsToList(currentList, te.date, te.cs2103);
+        currentList = TestUtil.addTasksToList(currentList, te.date, te.cs2103);
         TestEvent eventToAdd = te.date;
         commandBox.runCommand(eventToAdd.getAddCommand());
         eventToAdd = te.cs2103;
