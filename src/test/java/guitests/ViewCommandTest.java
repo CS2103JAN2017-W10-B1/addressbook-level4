@@ -20,12 +20,27 @@ public class ViewCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
+    public void view_viewNextDate_viewSuccess() {
+        assertViewResult("view next/01/01/2018", td.assignment, td.gym, td.gym2, td.gym3);
+        assertViewResult("view next/01/01/2050", td.homework, td.homework2, td.assignment,
+            td.gym, td.gym2, td.gym3, td.cs2103, td.date, td.study);
+    }
+    @Test
+    public void view_viewNext_illegalParam() {
+        commandBox.runCommand("view next/-1");
+        commandBox.runCommand("view next/01/04/2017");
+        //TODO: expecting exception message
+    }
+    @Test
     public void view_viewOnNDays_viewSuccess() {
         commandBox.runCommand(td.homework.getAddCommand());
         commandBox.runCommand(td.homework2.getAddCommand());
-        assertViewResult("view next/1",  td.homework, td.homework2);
-        assertViewResult("view next/1000", td.homework, td.homework2, td.assignment,
-            td.gym, td.gym2, td.gym3, td.cs2103, td.date, td.study);
+        assertViewResult("view on/tmr",  td.homework, td.homework2);
+    }
+    @Test
+    public void view_viewOnDate_viewSuccess() {
+        assertViewResult("view on/20/12/2017", td.gym);
+        assertViewResult("view on/01/02", td.cs2103);
     }
 
     @Test
