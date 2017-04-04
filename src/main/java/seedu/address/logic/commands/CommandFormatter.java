@@ -7,6 +7,9 @@ package seedu.address.logic.commands;
 import java.util.Iterator;
 import java.util.Set;
 
+/*
+ *  A formatter class to help other command classes to format strings.
+ */
 public class CommandFormatter {
 
     private static final String LIST_SEPARATOR = ", ";
