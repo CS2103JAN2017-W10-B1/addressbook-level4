@@ -7,9 +7,6 @@ import java.util.TimeZone;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.TaskDate;
 
-/**
- * Lists all persons in the address book to the user.
- */
 public class ViewOnCommand extends Command {
 
     public static final String COMMAND_WORD = "view";

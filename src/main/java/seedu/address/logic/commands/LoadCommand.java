@@ -20,7 +20,7 @@ public class LoadCommand extends AbleUndoCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Loads tasks from an external xml file\n"
             + "Parameters: Directory of the xml file\n"
-            + "Example: " + COMMAND_WORD + "  /Users/Alice/Desktop/sampleData.xml";
+            + "Example: " + COMMAND_WORD + " /Users/Alice/Desktop/sampleData.xml";
     public static final String MESSAGE_DIRECTORY_NOT_GIVEN = "Directory not provided\n";
     public static final String PATH_VALIDATION_REGEX = ".*xml";
 
@@ -35,21 +35,32 @@ public class LoadCommand extends AbleUndoCommand {
      */
     @Override
     public CommandResult execute() throws CommandException {
-        assert model != null;
-        tempTaskManager = TaskManager.getStub();
-        tempTaskManager.resetData(model.getTaskManager());
+        saveTaskManagerCopy();
         if (!path.matches(PATH_VALIDATION_REGEX)) {
             throw new CommandException(MESSAGE_ILLEGAL_DATA_TYPE);
         }
+        File file = new File(path);
+        assert file != null;
+        if (resetDataFromFilePath(path)) {
+            return new CommandResult(CommandFormatter.undoFormatter(
+                    String.format(MESSAGE_LOAD_SUCCESS, path), COMMAND_WORD));
+        } else {
+            return new CommandResult(MESSAGE_LOAD_UNSUCCESS);
+        }
+    }
+
+    private void saveTaskManagerCopy() {
+        assert model != null;
+        tempTaskManager = TaskManager.getStub();
+        tempTaskManager.resetData(model.getTaskManager());
+    }
+
+    private boolean resetDataFromFilePath(String path) throws CommandException {
         try {
-            File file = new File(path);
-            assert file != null;
             StorageManager storage = new StorageManager(path);
             ReadOnlyTaskManager taskManager = storage.readTaskManager(path).get();
             model.resetData(taskManager);
-            return new CommandResult(
-                    CommandFormatter.undoFormatter(
-                            String.format(MESSAGE_LOAD_SUCCESS, path), COMMAND_WORD));
+            return true;
         } catch (DataConversionException de) {
             throw new CommandException(MESSAGE_ILLEGAL_DATA_TYPE);
         } catch (IOException e) {

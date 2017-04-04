@@ -16,8 +16,7 @@ public class ViewCommandParser {
 
     private static ViewCommandParser theOne;
 
-    private ViewCommandParser() {
-    }
+    private ViewCommandParser() {}
 
     public static ViewCommandParser getInstance() {
         if (theOne == null) {
@@ -27,8 +26,8 @@ public class ViewCommandParser {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns an FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ViewCommand
+     * and returns an ViewCommand object for execution.
      */
     public static Command parse(String args) {
         if (args == null) {

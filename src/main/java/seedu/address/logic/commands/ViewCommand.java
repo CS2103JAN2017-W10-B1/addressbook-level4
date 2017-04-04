@@ -1,9 +1,6 @@
 //@@author A0143409J
 package seedu.address.logic.commands;
 
-/**
- * Lists all persons in the address book to the user.
- */
 public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
