@@ -1,4 +1,4 @@
-//@@ author A0147996E-reused
+//@@author A0147996E-reused
 package guitests;
 
 import static org.junit.Assert.assertEquals;

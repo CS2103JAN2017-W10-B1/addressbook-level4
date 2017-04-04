@@ -6,6 +6,9 @@ import seedu.address.model.task.ReadOnlyRecurringTask;
  * A mutable task object. For testing only.
  */
 public class TestRecurringTask extends TestTask implements ReadOnlyRecurringTask {
+    public static final String PERIOD_DAILY = "every day";
+    public static final String PERIOD_WEEKLY = "every week";
+    public static final String PERIOD_MONTHLY = "every month";
 
     private RecurringProperty isRecurring;
     private RecurringMode mode;
@@ -31,7 +34,7 @@ public class TestRecurringTask extends TestTask implements ReadOnlyRecurringTask
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();
         sb.append(super.getAddCommand());
-        sb.append("f/" + this.getRecurringPeriod() + " ");
+        sb.append(" f/" + this.getRecurringPeriod() + " ");
         return sb.toString();
     }
 
@@ -52,12 +55,29 @@ public class TestRecurringTask extends TestTask implements ReadOnlyRecurringTask
     }
 
     @Override
-    public String getRecurringPeriod() {
-        return mode.toString();
+    public RecurringMode getMode() {
+        return mode;
+    }
+
+    public void setMode (RecurringMode mode) {
+        this.mode = mode;
+    }
+
+    public void setRecurring (RecurringProperty isRecurring) {
+        this.isRecurring = isRecurring;
     }
 
     @Override
-    public RecurringMode getMode() {
-        return mode;
+    public String getRecurringPeriod() {
+        if (mode.equals(RecurringMode.DAY)) {
+            return PERIOD_DAILY;
+        } else if (mode.equals(RecurringMode.WEEK)) {
+            return PERIOD_WEEKLY;
+        } else if (mode.equals(RecurringMode.MONTH)) {
+            return PERIOD_MONTHLY;
+        } else {
+            assert false;
+            return null;
+        }
     }
 }

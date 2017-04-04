@@ -18,7 +18,7 @@ public class RedoCommandTest extends TaskManagerGuiTest {
         //redo add event
         TestEvent eventToAdd = te.assignment;
         commandBox.runCommand(eventToAdd.getAddCommand());
-        currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
+        currentList = (TestUtil.addTasksToList(currentList, eventToAdd));
         assertRedoSuccess(currentList, "add");
 
         //redo delete command

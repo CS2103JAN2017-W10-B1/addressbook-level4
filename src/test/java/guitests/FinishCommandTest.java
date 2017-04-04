@@ -1,4 +1,4 @@
-//@@ author A0147996E
+//@@author A0147996E
 package guitests;
 
 import static org.junit.Assert.assertTrue;
@@ -17,7 +17,7 @@ public class FinishCommandTest extends TaskManagerGuiTest {
     public void finishValidTest() {
         //add some events in first
         TestTask[] currentList = td.getTypicalTasks();
-        currentList = TestUtil.addEventsToList(currentList, te.assignment, te.gym);
+        currentList = TestUtil.addTasksToList(currentList, te.assignment, te.gym);
         TestEvent eventToAdd = te.assignment;
         commandBox.runCommand(eventToAdd.getAddCommand());
         eventToAdd = te.gym;

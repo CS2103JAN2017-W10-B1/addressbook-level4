@@ -1,3 +1,4 @@
+//@@author A0147996E-reused
 package guitests;
 
 import static org.junit.Assert.assertEquals;
@@ -22,6 +23,7 @@ import seedu.address.TestApp;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.events.BaseEvent;
 import seedu.address.model.TaskManager;
+import seedu.address.testutil.TypicalRecurringTasks;
 import seedu.address.testutil.TypicalTestEvents;
 import seedu.address.testutil.TypicalTestTasks;
 
@@ -38,6 +40,7 @@ public abstract class TaskManagerGuiTest {
 
     protected TypicalTestTasks td = new TypicalTestTasks();
     protected TypicalTestEvents te = new TypicalTestEvents();
+    protected TypicalRecurringTasks tr = new TypicalRecurringTasks();
 
     /*
      *   Handles to GUI elements present at the start up are created in advance

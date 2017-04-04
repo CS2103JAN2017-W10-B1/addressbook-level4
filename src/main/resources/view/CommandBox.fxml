@@ -6,5 +6,5 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane styleClass="anchor-pane" stylesheets="@MoonriseTheme.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
-   <TextField fx:id="commandTextField" onAction="#handleCommandInputChanged" opacity="0.7" promptText="Enter command here..." />
+   <TextField fx:id="commandTextField" onAction="#handleCommandInputChanged" opacity="0.87" promptText="Enter command here..." />
 </AnchorPane>

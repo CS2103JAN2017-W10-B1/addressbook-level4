@@ -4,6 +4,7 @@ package guitests;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.AddCommand.COMMAND_ADD;
 import static seedu.address.logic.commands.AddCommand.MESSAGE_SUCCESS;
+import static seedu.address.model.task.Event.MESSAGE_EVENT_CONSTRAINT;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +13,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandFormatter;
 import seedu.address.testutil.TestEvent;
+import seedu.address.testutil.TestRecurringTask;
 import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
@@ -45,7 +47,7 @@ public class AddCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void add_addValidDuplicates_success() {
+    public void add_addValidDuplicates_addSuccess() {
         TestTask taskToAdd = td.date2;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
@@ -60,27 +62,45 @@ public class AddCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
+    public void add_addEventWithIllegalStartDate_addUnsuccess() {
+        TestEvent eventToAdd = te.shopping;
+        commandBox.runCommand(eventToAdd.getAddCommand());
+        assertResultMessage(MESSAGE_EVENT_CONSTRAINT);
+    }
+
+    @Test
     public void add_addEventsWithSomeDuplicateFields_success() {
         TestEvent eventToAdd = te.date;
         assertAddSuccess(eventToAdd, currentList);
-        currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
+        currentList = (TestUtil.addTasksToList(currentList, eventToAdd));
 
         eventToAdd = te.date2;
         assertAddSuccess(eventToAdd, currentList);
-        currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
+        currentList = (TestUtil.addTasksToList(currentList, eventToAdd));
 
         eventToAdd = te.date3;
         assertAddSuccess(eventToAdd, currentList);
-        currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
+        currentList = (TestUtil.addTasksToList(currentList, eventToAdd));
     }
+
     @Test
     public void add_addRecurringTask_success() {
-        //TestRecurringTask recurringTask = new
+        TestRecurringTask recurringTaskToAdd = tr.homework;
+        assertAddSuccess(recurringTaskToAdd, currentList);
+        currentList = (TestUtil.addTasksToList(currentList, recurringTaskToAdd));
+
+        recurringTaskToAdd = tr.homework2;
+        assertAddSuccess(recurringTaskToAdd, currentList);
+        currentList = (TestUtil.addTasksToList(currentList, recurringTaskToAdd));
+
+        recurringTaskToAdd = tr.cs2103;
+        assertAddSuccess(recurringTaskToAdd, currentList);
+        currentList = (TestUtil.addTasksToList(currentList, recurringTaskToAdd));
     }
 
     @Test
     public void addCommand_invalidCommandFormat_failure () {
-        commandBox.runCommand("adds homework");
+        commandBox.runCommand("addhomework");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
 
         commandBox.runCommand("add p/important");

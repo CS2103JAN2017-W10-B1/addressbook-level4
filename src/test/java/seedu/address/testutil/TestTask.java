@@ -28,7 +28,6 @@ public class TestTask implements ReadOnlyTask {
     private EventProperty isEvent;
     private RecurringProperty isRecurring;
 
-
     public TestTask() {}
 
     /**
@@ -146,6 +145,14 @@ public class TestTask implements ReadOnlyTask {
             this.isEvent = EventProperty.EVENT;
         } else {
             this.isEvent = EventProperty.NON_EVENT;
+        }
+    }
+
+    public void setRecurring(boolean isRecurring) {
+        if (isRecurring) {
+            this.isRecurring = RecurringProperty.RECURRING;
+        } else {
+            this.isRecurring = RecurringProperty.NON_RECURRING;
         }
     }
 

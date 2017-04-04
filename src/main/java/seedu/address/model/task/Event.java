@@ -6,7 +6,7 @@ import seedu.address.model.tag.Tag;
 
 public class Event extends Task implements ReadOnlyEvent {
 
-    public static final String MESSAGE_EVENT_CONSTRAINT = "End time should be latter than start time";
+    public static final String MESSAGE_EVENT_CONSTRAINT = "End date should be later than start date";
     private TaskDate startDate;
     private TaskTime startTime;
 
