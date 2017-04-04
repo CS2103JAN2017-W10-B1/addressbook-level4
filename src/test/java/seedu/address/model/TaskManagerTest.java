@@ -115,7 +115,7 @@ public class TaskManagerTest {
     }
 
     @Test
-    public void udpateTask_validIndex_taskUpdated() throws IllegalValueException {
+    public void updateTask_validIndex_taskUpdated() throws IllegalValueException {
 
         taskManager.addTask(gym);
         taskManager.addTask(cs2103);
