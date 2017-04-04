@@ -3,8 +3,10 @@ package seedu.address.model;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
@@ -12,6 +14,7 @@ import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.tag.UniqueTagList.DuplicateTagException;
 import seedu.address.model.task.Event;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.ReadOnlyTask.RecurringProperty;
 import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
@@ -23,9 +26,11 @@ import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
  * Duplicates are not allowed (by .equals comparison)
  */
 public class TaskManager implements ReadOnlyTaskManager {
+    private static final Logger logger = LogsCenter.getLogger(TaskManager.class);
 
     private final UniqueTaskList tasks;
     private final UniqueTagList tags;
+    private static TaskManager instance;
 
     /*
      * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
@@ -39,7 +44,19 @@ public class TaskManager implements ReadOnlyTaskManager {
         tags = new UniqueTagList();
     }
 
-    public TaskManager() {}
+//@@author A0147996E
+    public static TaskManager getInstance() {
+        if (instance == null) {
+            instance = new TaskManager();
+        }
+        return instance;
+    }
+    public static TaskManager getStub() {
+        return new TaskManager();
+    }
+//@@author
+
+    private TaskManager() {}
 
     /**
      * Creates an TaskManager using the Tasks ,Tags and Lists in the {@code toBeCopied}
@@ -75,7 +92,17 @@ public class TaskManager implements ReadOnlyTaskManager {
         syncMasterTagListWith(tasks);
     }
 
-//// task-level operations
+    //@@author A0147984L
+    /**
+     * Reset the task manager
+     */
+    public void clear() {
+        this.tasks.clear();
+        this.tags.clear();
+    }
+    //@@author
+
+    // task-level operations
 
     /**
      * Adds a task to the task manager.
@@ -90,6 +117,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         tags.sort();
     }
 
+    //@@author A0147984L
     /**
      * Updates the task in the list at position {@code index} with {@code editedReadOnlyTask}.
      * {@code TaskManager}'s tag list will be updated with the tags of {@code editedReadOnlyTask}.
@@ -101,26 +129,13 @@ public class TaskManager implements ReadOnlyTaskManager {
     public void updateTask(int index, ReadOnlyTask editedReadOnlyTask)
             throws DuplicateTaskException {
         assert editedReadOnlyTask != null;
-        Task editedTask = null;
-        if (editedReadOnlyTask.isEvent()) {
-            try {
-                editedTask = new Event(editedReadOnlyTask);
-            } catch (IllegalValueException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        } else if (editedReadOnlyTask.isRecurring()) {
-            try {
-                editedTask = new RecurringTask(editedReadOnlyTask);
-            } catch (IllegalValueException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        } else {
-            editedTask = new Task(editedReadOnlyTask);
-        }
+        Task editedTask = buildEditedTask(editedReadOnlyTask);
 
         syncMasterTagListWith(editedTask);
+        updateTasksAndTagsWhenUpdating(index, editedTask);
+    }
+
+    private void updateTasksAndTagsWhenUpdating(int index, Task editedTask) throws DuplicateTaskException {
         Tag oldTaskTag = tasks.get(index).getTag();
         tasks.updateTask(index, editedTask);
         tasks.sort();
@@ -133,22 +148,92 @@ public class TaskManager implements ReadOnlyTaskManager {
         tags.sort();
     }
 
+    private Task buildEditedTask(ReadOnlyTask editedReadOnlyTask) {
+        if (editedReadOnlyTask.isEvent()) {
+            try {
+                return new Event(editedReadOnlyTask);
+            } catch (IllegalValueException e) {
+                logger.info("IllegalValueException thrown when building"
+                        + " event in updating task manager");
+            }
+        } else if (editedReadOnlyTask.isRecurring()) {
+            try {
+                return new RecurringTask(editedReadOnlyTask);
+            } catch (IllegalValueException e) {
+                logger.info("IllegalValueException thrown when building"
+                        + " recurring task in updating task manager");
+            }
+        } else {
+            return new Task(editedReadOnlyTask);
+        }
+        return null;
+    }
+
+    /**
+     * Updates the recurring task in the list at position {@code index} with {@code editedReadOnlyTask}.
+     * The recurring task will be postpone for one period,
+     * add a new Task will be created
+     * @throws DuplicateTaskException
+     * @throws IndexOutOfBoundsException if {@code index} < 0 or >= the size of the list.
+     */
+    public void updateTaskOnce(int index, ReadOnlyTask editedReadOnlyTask)
+            throws UniqueTaskList.DuplicateTaskException {
+        assert editedReadOnlyTask != null;
+
+        ReadOnlyTask recurringTask = tasks.get(index);
+        finishTaskOnce(recurringTask);
+
+        Task editedTask = buildEditedTaskOneTime(editedReadOnlyTask);
+        addTask(editedTask);
+    }
+
+    private Task buildEditedTaskOneTime(ReadOnlyTask editedReadOnlyTask) {
+        Task editedTask = null;
+        if (editedReadOnlyTask.isEvent()) {
+            try {
+                editedTask = new Event(editedReadOnlyTask);
+            } catch (IllegalValueException e) {
+                logger.info("IllegalValueException thrown when building"
+                        + " event in updating task manager");
+            }
+        } else {
+            editedTask = new Task(editedReadOnlyTask);
+            editedTask.setRecurringProperty(RecurringProperty.NON_RECURRING);
+        }
+        return editedTask;
+    }
+
+    /**
+     * Finish the recurring task once
+     * @param recurringTask
+     * @throws DuplicateTaskException
+     */
     public void finishTaskOnce(ReadOnlyTask recurringTask) throws DuplicateTaskException {
+        Task current = buildFinishedRecurringTask(recurringTask);
+        ((RecurringTask) current).finishOnce();
+        replaceTask(recurringTask, current);
+    }
+
+    private void replaceTask(ReadOnlyTask recurringTask, Task current) throws DuplicateTaskException {
+        try {
+            removeTask(recurringTask);
+            addTask(current);
+        } catch (TaskNotFoundException e) {
+            logger.info("task is not found");
+        }
+    }
+
+    private Task buildFinishedRecurringTask(ReadOnlyTask recurringTask) {
         Task current = null;
         try {
             current = new RecurringTask(recurringTask);
         } catch (IllegalValueException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+            logger.info("IllegalValueException thrown when building"
+                    + " recurring task in updating task manager");
         }
-        try {
-            removeTask(recurringTask);
-            ((RecurringTask) current).finishOnce();
-            addTask(current);
-        } catch (TaskNotFoundException e) {
-            assert false;
-        }
+        return current;
     }
+    //@@author
 
     /**
      * Ensures that every tag in this task:
@@ -160,7 +245,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         try {
             tags.add(taskTag);
         } catch (DuplicateTagException e) {
-            //TODO: deal after adding lists features
+            logger.info("task manager already has the tag for new task");
         }
     }
 
@@ -174,6 +259,12 @@ public class TaskManager implements ReadOnlyTaskManager {
         tasks.forEach(this::syncMasterTagListWith);
     }
 
+    /**
+     * Remove the task in the task manager
+     * @param key
+     * @return
+     * @throws UniqueTaskList.TaskNotFoundException
+     */
     public boolean removeTask(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
         if (tasks.remove(key)) {
             if (isEmptyTag(key.getTag())) {
@@ -186,6 +277,19 @@ public class TaskManager implements ReadOnlyTaskManager {
         }
     }
 
+//// tag-level operations
+    //@@author A0147984L
+    public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {
+        tags.add(t);
+        logger.info(t + " is addded in task manager");
+    }
+
+    public void removeTag(Tag t) {
+        tags.remove(t);
+        logger.info(t + " is deleted in task manager");
+    }
+
+
     private boolean isEmptyTag(Tag keyTag) {
         for (Task t : tasks) {
             if (t.getTag().equals(keyTag)) {
@@ -194,16 +298,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         }
         return true;
     }
-
-//// tag-level operations
-
-    public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {
-        tags.add(t);
-    }
-
-    public void removeTag(Tag t) {
-        tags.remove(t);
-    }
+    //@@author
 
 //// util methods
 

@@ -25,7 +25,7 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void nullTest() throws Exception {
+    public void deleteTask_emptyString_incorrectCommand() throws Exception {
 
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
@@ -36,7 +36,7 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void zeroTargetIndexTest() throws Exception {
+    public void deleteTask_zerothIndex_incorrectCommand() throws Exception {
 
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);

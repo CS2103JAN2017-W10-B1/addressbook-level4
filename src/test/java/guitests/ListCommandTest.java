@@ -2,6 +2,7 @@
 package guitests;
 
 import static org.junit.Assert.assertTrue;
+import static seedu.address.logic.commands.ListCommand.MESSAGE_LIST_DOES_NOT_EXIST;
 
 import org.junit.Test;
 
@@ -11,33 +12,26 @@ import seedu.address.testutil.TestTask;
 public class ListCommandTest extends TaskManagerGuiTest {
 
     @Test
-    public void listNonEmptyList() {
-        //list all tasks in Dueue
+    public void list_byListNamesFavouriteAll_listSuccess() {
         assertListResult("list all", td.assignment, td.gym, td.gym2, td.gym3, td.cs2103,
                 td.date, td.study);
-        //list multiple tasks by list name
         assertListResult("list personal", td.gym, td.gym2, td.gym3, td.date);
-        //list single task by list name
         assertListResult("list study", td.assignment);
-        //list favorite tasks in Dueue
         assertListResult("list favorite", td.assignment, td.gym, td.cs2103, td.study);
-        //TODO: uncomment tests below when list command is finalized
-        //list favorite tasks in study
         assertListResult("list favorite study", td.assignment);
-        //list favorite tasks in personal
         assertListResult("list favorite personal", td.gym);
     }
 
     @Test
-    public void listFinishedList () {
+    public void list_finishedTasks_listSuccess() {
         commandBox.runCommand("list all");
-        commandBox.runCommand("finish 1"); //finish assignment
+        commandBox.runCommand("finish 1");
         td.assignment.setFinished(true);
         assertListResult("list finished", td.assignment);
         commandBox.runCommand("list");
         commandBox.runCommand("finish 1");
         commandBox.runCommand("finish 1");
-        commandBox.runCommand("finish 1"); //finish gym, gym2, gym3
+        commandBox.runCommand("finish 1");
         td.gym.setFinished(true);
         td.gym2.setFinished(true);
         td.gym3.setFinished(true);
@@ -45,18 +39,18 @@ public class ListCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void listInvalidCommandFail() {
+    public void list_invalidCommandFormat_unknownCommand() {
         commandBox.runCommand("lists study");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
-
         commandBox.runCommand("liststudy");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
     }
 
     @Test
-    public void listEmptyList() {
+    public void list_EmptyList_noTasksListed() {
         commandBox.runCommand("clear");
-        assertListResult("list exercise"); // no results
+        assertListResult("list exercise");
+        assertResultMessage(MESSAGE_LIST_DOES_NOT_EXIST);
     }
 
     private void assertListResult(String command, TestTask... expectedHits) {

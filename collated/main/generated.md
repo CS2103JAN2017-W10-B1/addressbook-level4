@@ -129,7 +129,7 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all task whose names contain any of "
-            + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
+            + "the specified keywords (case-sensitive)\nand displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " 2103";
 
@@ -167,6 +167,8 @@ public class HelpCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_HELP_MESSAGE = "Please add command keyword after help.\n"
+            + "The basic command words are as following:\n"
+            + "Add, clear, delete, edit, find, finish, list, scroll, view, undo and redo.\n"
             + "Example: help add";
 
     private String usageMessage;

@@ -45,7 +45,7 @@ public class StorageManagerTest {
          * {@link JsonUserPrefsStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonUserPrefsStorageTest} class.
          */
-        UserPrefs original = new UserPrefs();
+        UserPrefs original = UserPrefs.getInstance();
         original.setGuiSettings(300, 600, 4, 6);
         storageManager.saveUserPrefs(original);
         UserPrefs retrieved = storageManager.readUserPrefs().get();
@@ -76,7 +76,7 @@ public class StorageManagerTest {
         Storage storage = new StorageManager(new XmlTaskManagerStorageExceptionThrowingStub("dummy"),
                                              new JsonUserPrefsStorage("dummy"));
         EventsCollector eventCollector = new EventsCollector();
-        storage.handleDueueChangedEvent(new DueueChangedEvent(new TaskManager()));
+        storage.handleDueueChangedEvent(new DueueChangedEvent(TaskManager.getStub()));
         assertTrue(eventCollector.get(0) instanceof DataSavingExceptionEvent);
     }
 

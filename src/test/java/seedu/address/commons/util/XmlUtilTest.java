@@ -61,7 +61,7 @@ public class XmlUtilTest {
     @Test
     public void saveDataToFileNullFileAssertionError() throws Exception {
         thrown.expect(AssertionError.class);
-        XmlUtil.saveDataToFile(null, new TaskManager());
+        XmlUtil.saveDataToFile(null, TaskManager.getStub());
     }
 
     @Test
@@ -73,19 +73,19 @@ public class XmlUtilTest {
     @Test
     public void saveDataToFileMissingFileFileNotFoundException() throws Exception {
         thrown.expect(FileNotFoundException.class);
-        XmlUtil.saveDataToFile(MISSING_FILE, new TaskManager());
+        XmlUtil.saveDataToFile(MISSING_FILE, TaskManager.getStub());
     }
 
     @Test
     public void saveDataToFileValidFileDataSaved() throws Exception {
         TEMP_FILE.createNewFile();
-        XmlSerializableTaskManager dataToWrite = new XmlSerializableTaskManager(new TaskManager());
+        XmlSerializableTaskManager dataToWrite = new XmlSerializableTaskManager(TaskManager.getStub());
         XmlUtil.saveDataToFile(TEMP_FILE, dataToWrite);
         XmlSerializableTaskManager dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE, XmlSerializableTaskManager.class);
         assertEquals((new TaskManager(dataToWrite)).toString(), (new TaskManager(dataFromFile)).toString());
         //TODO: use equality instead of string comparisons
 
-        TaskManagerBuilder builder = new TaskManagerBuilder(new TaskManager());
+        TaskManagerBuilder builder = new TaskManagerBuilder(TaskManager.getStub());
         dataToWrite = new XmlSerializableTaskManager(
                 builder.withTask(TestUtil.generateSampleTaskData().get(0)).withTag("Friends").build());
 

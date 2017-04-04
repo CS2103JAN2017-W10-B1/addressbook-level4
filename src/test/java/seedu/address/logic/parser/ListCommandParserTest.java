@@ -23,17 +23,18 @@ public class ListCommandParserTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void nullTest() throws Exception {
+    public void listParse_nullString_listCommand() throws Exception {
 
         Field field = ListCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
 
         ListCommand listCommand =  (ListCommand) ListCommandParser.parse(null);
-        assertEquals(field.get(listCommand), null);
+        Set<String> set = new HashSet<String>();
+        assertEquals(field.get(listCommand), set);
     }
 
     @Test
-    public void singleFieldTest() throws Exception {
+    public void listParse_oneWord_listCommand() throws Exception {
 
         Field field = ListCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
@@ -47,7 +48,7 @@ public class ListCommandParserTest {
     }
 
     @Test
-    public void multipleFieldTest() throws Exception {
+    public void listParse_multipleWord_listCommand() throws Exception {
 
         Field field = ListCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
@@ -62,7 +63,7 @@ public class ListCommandParserTest {
     }
 
     @Test
-    public void singleFieldFinishedTest() throws Exception {
+    public void listFinishedParse_oneWord_listFinishedCommand() throws Exception {
 
         Field field = ListFinishedCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
@@ -77,7 +78,7 @@ public class ListCommandParserTest {
     }
 
     @Test
-    public void multipleFieldFinishedTest() throws Exception {
+    public void listFinishedParse_multpleWord_listFinishedCommand() throws Exception {
 
         Field field = ListFinishedCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
@@ -93,7 +94,7 @@ public class ListCommandParserTest {
     }
 
     @Test
-    public void singleFieldAllTest() throws Exception {
+    public void listAllParse_oneWord_listAllCommand() throws Exception {
 
         Field field = ListAllCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
@@ -108,7 +109,7 @@ public class ListCommandParserTest {
     }
 
     @Test
-    public void multipleFieldAllTest() throws Exception {
+    public void listAllParse_multipleWord_listAllCommand() throws Exception {
 
         Field field = ListAllCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
@@ -124,7 +125,7 @@ public class ListCommandParserTest {
     }
 
     @Test
-    public void singleFieldFavoriteTest() throws Exception {
+    public void listFavoriteParse_oneWord_listFavoriteCommand() throws Exception {
 
         Field field = ListFavoriteCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);
@@ -139,7 +140,7 @@ public class ListCommandParserTest {
     }
 
     @Test
-    public void multipleFieldFavoriteTest() throws Exception {
+    public void listFavoriteParse_multipleWord_listFavoriteCommand() throws Exception {
 
         Field field = ListFavoriteCommand.class.getDeclaredField("keywords");
         field.setAccessible(true);

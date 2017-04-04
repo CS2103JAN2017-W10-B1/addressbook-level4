@@ -11,58 +11,47 @@ import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
 public class RedoCommandTest extends TaskManagerGuiTest {
+
     @Test
-    public void redo() throws IllegalValueException {
+    public void redo_undoCommands_redoSuccess() throws IllegalValueException {
         TestTask[] currentList = td.getTypicalTasks();
 
-        //redo add event
+        String commandToRedo = "add ";
         TestEvent eventToAdd = te.assignment;
         commandBox.runCommand(eventToAdd.getAddCommand());
-        currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
-        assertRedoSuccess(currentList, "add");
+        currentList = (TestUtil.addTasksToList(currentList, eventToAdd));
+        assertRedoSuccess(currentList, commandToRedo);
 
-        //redo delete command
         int targetIndex = 2;
-        commandBox.runCommand("delete " + targetIndex);
+        commandToRedo = "delete ";
+        commandBox.runCommand(commandToRedo + targetIndex);
         currentList = TestUtil.removeTaskFromList(currentList, targetIndex);
-        assertRedoSuccess(currentList, "delete");
+        assertRedoSuccess(currentList, commandToRedo);
 
-        targetIndex = 3;
-        commandBox.runCommand("delete " + targetIndex);
-        currentList = TestUtil.removeTaskFromList(currentList, targetIndex);
-        assertRedoSuccess(currentList, "delete");
-
-        //redo finish command
+        commandToRedo = "finish ";
         targetIndex = 2;
-        commandBox.runCommand("finish " + targetIndex);
+        commandBox.runCommand(commandToRedo + targetIndex);
         currentList = TestUtil.removeTaskFromList(currentList, targetIndex);
-        assertRedoSuccess(currentList, "finish");
+        assertRedoSuccess(currentList, commandToRedo);
 
-        targetIndex = 3;
-        commandBox.runCommand("finish " + targetIndex);
-        currentList = TestUtil.removeTaskFromList(currentList, targetIndex);
-        assertRedoSuccess(currentList, "finish");
-
-        //redo editing command
+        commandToRedo = "edit ";
         targetIndex = 1;
         String detailsToEdit = " @Home";
-        commandBox.runCommand("edit " + targetIndex + detailsToEdit);
+        commandBox.runCommand(commandToRedo + targetIndex + detailsToEdit);
         currentList[targetIndex].setVenue("Home");
-        assertRedoSuccess(currentList, "edit");
+        assertRedoSuccess(currentList, commandToRedo);
 
-        targetIndex = 2;
-        detailsToEdit = " d/There are so many tests";
-        commandBox.runCommand("edit " + targetIndex + detailsToEdit);
-        currentList[targetIndex].setDescription("There are so many tests");
-        assertRedoSuccess(currentList, "edit");
+        commandToRedo = "clear ";
+        commandBox.runCommand(commandToRedo);
+        currentList = new TestTask[] {};
+        assertRedoSuccess(currentList, commandToRedo);
     }
 
     private void assertRedoSuccess(final TestTask[] currentList, String commandWord) {
         commandBox.runCommand("undo");
         commandBox.runCommand("redo");
-        //confirm the list now contains all previous tasks
+
         assertTrue(taskListPanel.isListMatching(currentList));
-        //confirm the result message is correct
-        assertResultMessage("Redo " + commandWord + " command successfully.");
+        assertResultMessage("Redo " + commandWord + "command successfully.");
     }
 }

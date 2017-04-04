@@ -1,6 +1,10 @@
 //@@author generated
 package seedu.address.logic.commands;
 
+import java.util.logging.Logger;
+
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -9,11 +13,15 @@ import seedu.address.model.Model;
  * Represents a command with hidden internal logic and the ability to be executed.
  */
 public abstract class Command {
+
+    protected static final Logger LOGGER = LogsCenter.getLogger(MainApp.class);
+
     protected Model model;
 
     public static final String MESSAGE_USAGE = "";
 
     public static final String COMMAND_WORD = "";
+
 
     /**
      * Constructs a feedback message to summarise an operation that displayed a listing of persons.
@@ -32,7 +40,11 @@ public abstract class Command {
      * @return summary message for tasks displayed
      */
     public static String getMessageForTaskFoundShownSummary(int displaySize) {
-        return String.format(Messages.MESSAGE_TASKS_FOUND_OVERVIEW, displaySize);
+        String resultMsg = String.format(Messages.MESSAGE_TASKS_FOUND_OVERVIEW, displaySize);
+        if (displaySize == 0) {
+            resultMsg += "\nYou may try with other keywords or find in all tasks.";
+        }
+        return resultMsg;
     }
 
     /**

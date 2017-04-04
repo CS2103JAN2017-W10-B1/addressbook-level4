@@ -166,7 +166,7 @@ public class EditCommand extends AbleUndoCommand {
                         .orElseGet(((ReadOnlyEvent) taskToEdit)::getStartDate);
                 TaskTime updatedStartTime = editTaskDescriptor.getStartTime()
                         .orElseGet(((ReadOnlyEvent) taskToEdit)::getStartTime);
-                return new Event (updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
+                return new Event(updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
                         updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
             } else if (!taskToEdit.isEvent() && (editTaskDescriptor.getStart().isPresent() &&
                     !editTaskDescriptor.getStart().get().getValue().isEmpty())) {
@@ -175,11 +175,11 @@ public class EditCommand extends AbleUndoCommand {
                 return new Event (updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
                         updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
             } else {
-                return new Task (updatedName, updatedDueDate, updatedDueTime, updatedDescription,
+                return new Task(updatedName, updatedDueDate, updatedDueTime, updatedDescription,
                         updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
             }
         } else {
-            return new Task (updatedName, updatedDueDate, updatedDueTime, updatedDescription,
+            return new Task(updatedName, updatedDueDate, updatedDueTime, updatedDescription,
                     updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
         }
     }
@@ -340,11 +340,11 @@ public class EditCommand extends AbleUndoCommand {
         public void setRecurringMode(Optional<String> ocurrence) {
             if (ocurrence.isPresent()) {
                 String ocurring = ocurrence.orElse("");
-                if (ocurring.contains("daily")) {
+                if (ocurring.matches(RecurringTask.PERIOD_DAY_REGEX)) {
                     this.recurringMode = RecurringMode.DAY;
-                } else if (ocurring.contains("weekly")) {
+                } else if (ocurring.matches(RecurringTask.PERIOD_WEEK_REGEX)) {
                     this.recurringMode = RecurringMode.WEEK;
-                } else if (ocurring.contains("monthly")) {
+                } else if (ocurring.matches(RecurringTask.PERIOD_MONTH_REGEX)) {
                     this.recurringMode = RecurringMode.MONTH;
                 }
             } else {

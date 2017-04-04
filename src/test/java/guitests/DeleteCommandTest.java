@@ -1,46 +1,40 @@
+//@@author A0147996E
 package guitests;
 
 import static org.junit.Assert.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.DeleteCommand.COMMAND_DELETE;
 import static seedu.address.logic.commands.DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS;
 
 import org.junit.Test;
 
 import seedu.address.logic.commands.CommandFormatter;
-import seedu.address.testutil.TestEvent;
 import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
 public class DeleteCommandTest extends TaskManagerGuiTest {
 
-    @Test
-    public void delete() {
-        //add some events in first
-        TestTask[] currentList = td.getTypicalTasks();
-        currentList = TestUtil.addEventsToList(currentList, te.assignment, te.cs2103);
-        TestEvent eventToAdd = te.assignment;
-        commandBox.runCommand(eventToAdd.getAddCommand());
-        eventToAdd = te.cs2103;
-        commandBox.runCommand(eventToAdd.getAddCommand());
+    private TestTask[] currentList = td.getTypicalTasks();
 
-        //delete the first in the list
+    @Test
+    public void delete_validIndexGiven_deleteSucess() {
         int targetIndex = 1;
         assertDeleteSuccess(targetIndex, currentList);
         currentList = TestUtil.removeTaskFromList(currentList, targetIndex);
 
-        //delete the last in the list
         targetIndex = currentList.length;
         assertDeleteSuccess(targetIndex, currentList);
         currentList = TestUtil.removeTaskFromList(currentList, targetIndex);
 
-        //delete from the middle of the list
         targetIndex = currentList.length / 2;
         assertDeleteSuccess(targetIndex, currentList);
         currentList = TestUtil.removeTaskFromList(currentList, targetIndex);
+    }
 
-        //invalid index
+    @Test
+    public void delete_invalidIndexGiven_deleteFailure() {
         commandBox.runCommand("delete " + (currentList.length + 1));
-        assertResultMessage("The task index provided is invalid");
+        assertResultMessage(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     /**
@@ -53,11 +47,8 @@ public class DeleteCommandTest extends TaskManagerGuiTest {
         TestTask[] expectedRemainder = TestUtil.removeTaskFromList(currentList, targetIndexOneIndexed);
 
         commandBox.runCommand("delete " + targetIndexOneIndexed);
-
-        //confirm the list now contains all previous tasks except the deleted task
         assertTrue(taskListPanel.isListMatching(expectedRemainder));
 
-        //confirm the result message is correct
         assertResultMessage(CommandFormatter.undoFormatter(
                 String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete), COMMAND_DELETE));
     }

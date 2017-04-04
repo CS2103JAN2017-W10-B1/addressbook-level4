@@ -29,12 +29,14 @@ public class Task implements ReadOnlyTask {
      */
     public Task(Name name, TaskDate date, TaskTime time, Description description, Tag tag,
             Venue venue, Priority priority, boolean isFavorite) {
-        assert !CollectionUtil.isAnyNull(name);
+        //assert !CollectionUtil.isAnyNull(name, date, time, description, tag, venue, priority, isFavorite);
+        assert !CollectionUtil.isAnyNull(name, date, time, description, tag,
+                venue, priority, isFavorite);
         this.name = name;
         this.date = date;
         this.time = time;
         this.description = description;
-        this.tag =  tag;
+        this.tag = tag;
         this.venue = venue;
         this.priority = priority;
         this.isFavorite = isFavorite;
@@ -261,6 +263,10 @@ public class Task implements ReadOnlyTask {
     @Override
     public EventProperty getEventProperty() {
         return this.isEvent;
+    }
+
+    public void setRecurringProperty(RecurringProperty isRecurring) {
+        this.isRecurring = isRecurring;
     }
 
     @Override

@@ -2,7 +2,7 @@
 package seedu.address.logic.commands;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all unfinished tasks due by a specified date in Dueue.
  */
 public class ViewCommand extends Command {
 
@@ -10,7 +10,7 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "View all tasks";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks due by "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List unfinished tasks due by "
             + "the specified date and displays them as a list with index numbers.\n"
             + "Parameters: [next]/[number of days from today]\n"
             + "Example: " + COMMAND_WORD + " next/10";
@@ -27,6 +27,7 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute() {
         model.updateFilteredTaskListGivenDaysToDueBy(numberOfDays);
+        LOGGER.info(getClass() + " listed all unfinished tasks by " + numberOfDays);
         return new CommandResult(messageDisplay);
     }
 

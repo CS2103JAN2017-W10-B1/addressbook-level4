@@ -62,19 +62,20 @@ public class TypicalTestEvents {
             meeting = new EventBuilder().withName("meeting").withDate("27/04/2017").withTime(
                     "12:00").withDescription("Meeting old friends").
                     withTag("school").withVenue("PGP").withPriority("2").withFavorite(false)
-                    .withStartDate("20/04/2017").withStartTime("19:00").withFinished(false).build();
+                    .withStartDate("25/04/2017").withStartTime("19:00").withFinished(false).build();
             familyDinner = new EventBuilder().withName("family dinner").withDate("1/1").withTime(
                     "20:00").withDescription("Meeting families").
                     withTag("family").withVenue("home").withPriority("important").withFavorite(true)
-                    .withStartDate("20/12/2018").withStartTime("19:00").withFinished(false).build();
-            travel = new EventBuilder().withName("travel").withDate("1/01/2017").withTime(
+                    .withStartDate("20/12/2017").withStartTime("19:00").withFinished(false).build();
+            travel = new EventBuilder().withName("travel").withDate("1/01/2018").withTime(
                     "").withDescription("To Africa").
                     withTag("personal").withVenue("Africa").withPriority("important").withFinished(false)
                     .withStartDate("20/12/2017").withStartTime("").withFavorite(true).build();
-            shopping = new EventBuilder().withName("shopping").withDate("1/01/2017").withTime(
+            //shopping violates start date constraint
+            shopping = new EventBuilder().withName("shopping").withDate("1/01/2018").withTime(
                     "").withDescription("Shopping in Airport").
                     withTag("personal").withVenue("Airport").withPriority("3").withFavorite(true)
-                    .withStartDate("20/12/2017").withStartTime("").withFinished(false).build();
+                    .withStartDate("20/12/2018").withStartTime("").withFinished(false).build();
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";
@@ -116,7 +117,7 @@ public class TypicalTestEvents {
     }
 
     public TaskManager getTypicalTaskManager() {
-        TaskManager tm = new TaskManager();
+        TaskManager tm = TaskManager.getStub();
         loadTaskManagerWithSampleData(tm);
         return tm;
     }

@@ -22,7 +22,7 @@ public class XmlUtil {
      * @param classToConvert The class corresponding to the xml data.
      *                       Cannot be null.
      * @throws FileNotFoundException Thrown if the file is missing.
-     * @throws JAXBException         Thrown if the file is empty or does not have the correct format.
+     * @throws JAXBException Thrown if the file is empty or does not have the correct format.
      */
     @SuppressWarnings("unchecked")
     public static <T> T getDataFromFile(File file, Class<T> classToConvert)

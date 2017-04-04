@@ -4,8 +4,8 @@ package seedu.address.model.task;
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Task's description in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
+ * Represents a Task's description in the task manager.
+ * Guarantees: is valid as declared in {@link #isValidDescription(String)}
  */
 public class Description implements TaskField, Comparable<Description> {
 
@@ -15,7 +15,7 @@ public class Description implements TaskField, Comparable<Description> {
     private final String value;
 
     /**
-     * Validates given description number.
+     * Validates given task description.
      *
      * @throws IllegalValueException if given description string is invalid.
      */
@@ -29,7 +29,7 @@ public class Description implements TaskField, Comparable<Description> {
     }
 
     /**
-     * Returns true if a given string is a valid person description number.
+     * Returns true if a given string is a valid task description.
      */
     public static boolean isValidDescription(String test) {
         return test.matches(DESCRIPTION_VALIDATION_REGEX);

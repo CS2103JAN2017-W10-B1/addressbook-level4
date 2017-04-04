@@ -1,4 +1,4 @@
-//@@ author A0147996E
+//@@author A0147996E
 package guitests;
 
 import static org.junit.Assert.assertTrue;
@@ -11,7 +11,7 @@ import seedu.address.testutil.TestTask;
 public class ViewCommandTest extends TaskManagerGuiTest {
 
     @Test
-    public void view () {
+    public void view_viewNextNDays_viewSuccess () {
         commandBox.runCommand(td.homework.getAddCommand());
         commandBox.runCommand(td.homework2.getAddCommand());
         assertViewResult("view next/1",  td.homework, td.homework2);
@@ -20,7 +20,7 @@ public class ViewCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void viewInvalidCommandFail() {
+    public void view_invalidCommand_unknownCommand() {
         commandBox.runCommand("views next/10");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
 

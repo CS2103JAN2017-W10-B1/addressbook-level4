@@ -10,11 +10,24 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FinishCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.LoadCommand;
 import seedu.address.logic.commands.ScrollToCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.ViewOnCommand;
 
 public class HelpCommandParser {
+
+    private static HelpCommandParser theOne;
+
+    private HelpCommandParser() {
+    }
+
+    public static HelpCommandParser getInstance() {
+        if (theOne == null) {
+            theOne = new HelpCommandParser();
+        }
+        return theOne;
+    }
 
     /**
      * Parses the given {String} of arguments in the context of the HelpCommand
@@ -59,6 +72,9 @@ public class HelpCommandParser {
 
         case ListCommand.COMMAND_WORD:
             return ListCommand.MESSAGE_USAGE;
+
+        case LoadCommand.COMMAND_WORD:
+            return LoadCommand.MESSAGE_USAGE;
 
         case ExitCommand.COMMAND_WORD:
             return ExitCommand.MESSAGE_USAGE;

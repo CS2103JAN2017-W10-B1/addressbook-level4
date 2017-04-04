@@ -24,7 +24,16 @@ public class ListCommandParser {
     public static final String LIST_FINISHED = "finished";
     public static final String LIST_FAVORITE = "favorite";
 
+    private static ListCommandParser theOne;
+
     private ListCommandParser() {
+    }
+
+    public static ListCommandParser getInstance() {
+        if (theOne == null) {
+            theOne = new ListCommandParser();
+        }
+        return theOne;
     }
 
     /**
@@ -36,7 +45,7 @@ public class ListCommandParser {
             return new ListCommand();
         }
 
-        // if not match, show all the unfinished task
+        // if do not match any pattern, show all the unfinished task
         final Matcher matcher = KEYWORDS_ARGS_FORMAT_LIST.matcher(args.trim());
         if (!matcher.matches()) {
             return new ListCommand();

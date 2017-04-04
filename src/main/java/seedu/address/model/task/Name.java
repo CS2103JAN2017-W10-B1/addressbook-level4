@@ -3,24 +3,22 @@ package seedu.address.model.task;
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Person's name in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Represents a Task's name in the task manager.
+ * Guarantees: is valid as declared in {@link #isValidName(String)}
  */
 public class Name implements TaskField, Comparable<Name> {
 
     public static final String MESSAGE_NAME_CONSTRAINTS_1 =
             "Task names should only contain alphanumeric characters and spaces, "
-            + "and it should not be blank, or be 'list' since it is reserved for command";
+            + "and it should not be blank";
     public static final String MESSAGE_NAME_CONSTRAINTS_2 =
             " is a reserved name.";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the task name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String NAME_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    public static final String RESERVED_NAME = "(?i)"
-            + "(list)";
 
     public final String fullName;
 
@@ -34,21 +32,15 @@ public class Name implements TaskField, Comparable<Name> {
         String trimmedName = name.trim();
         if (!isValidName(trimmedName)) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS_1);
-        } else if (isReservedName(trimmedName)) {
-            throw new IllegalValueException(trimmedName + MESSAGE_NAME_CONSTRAINTS_2);
         }
         this.fullName = trimmedName;
     }
 
     /**
-     * Returns true if a given string is a valid person name.
+     * Returns true if a given string is a valid task name.
      */
     public static boolean isValidName(String test) {
         return test.matches(NAME_VALIDATION_REGEX);
-    }
-
-    public static boolean isReservedName(String test) {
-        return test.matches(RESERVED_NAME);
     }
 
     @Override

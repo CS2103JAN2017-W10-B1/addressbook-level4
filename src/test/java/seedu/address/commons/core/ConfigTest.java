@@ -21,12 +21,12 @@ public class ConfigTest {
                 "Local data file location : data/dueue.xml\n" +
                 "TaskManager name : MyTaskManager";
 
-        assertEquals(defaultConfigAsString, new Config().toString());
+        assertEquals(defaultConfigAsString, Config.getStub().toString());
     }
 
     @Test
     public void equalsMethod() {
-        Config defaultConfig = new Config();
+        Config defaultConfig = Config.getStub();
         assertNotNull(defaultConfig);
         assertTrue(defaultConfig.equals(defaultConfig));
     }

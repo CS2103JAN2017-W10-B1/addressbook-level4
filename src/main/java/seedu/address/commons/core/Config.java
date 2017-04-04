@@ -17,6 +17,21 @@ public class Config {
     private String userPrefsFilePath = "preferences.json";
     private String dueueFilePath = "data/dueue.xml";
     private String dueueName = "MyTaskManager";
+    private static Config instance;
+
+//@@author A0147996E
+    public static Config getInstance() {
+        if (instance == null) {
+            instance = new Config();
+        }
+        return instance;
+    }
+    public static Config getStub() {
+        return new Config();
+    }
+
+    private Config() {}
+//@@author
 
     public String getAppTitle() {
         return appTitle;

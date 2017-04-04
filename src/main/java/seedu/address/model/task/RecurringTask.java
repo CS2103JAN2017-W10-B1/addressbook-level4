@@ -1,8 +1,6 @@
 //@@author A0147984L
 package seedu.address.model.task;
 
-import java.util.Queue;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 
@@ -12,8 +10,11 @@ public class RecurringTask extends Task implements ReadOnlyRecurringTask {
     public static final String PERIOD_WEEKLY = "every week";
     public static final String PERIOD_MONTHLY = "every month";
 
+    public static final String PERIOD_DAY_REGEX = "(?i)((every)?(\\s)*(day))|(daily)";
+    public static final String PERIOD_WEEK_REGEX = "(?i)((every)?(\\s)*(week))|(weekly)";
+    public static final String PERIOD_MONTH_REGEX = "(?i)((every)?(\\s)*(month))|(monthly)";
+
     protected RecurringMode mode;
-    protected Queue<TaskDate> queue;
 
     /**
      * Every field must not be null.
@@ -23,6 +24,7 @@ public class RecurringTask extends Task implements ReadOnlyRecurringTask {
         super(name, date, time, description, tag, venue, priority, isFavorite);
         this.isRecurring = RecurringProperty.RECURRING;
         this.mode = mode;
+        checkDateForRecurring();
     }
 
     /**
@@ -46,6 +48,7 @@ public class RecurringTask extends Task implements ReadOnlyRecurringTask {
                 source.getEventProperty(), source.getRecurringProperty());
         assert this.isRecurring == RecurringProperty.RECURRING;
         this.mode = ((ReadOnlyRecurringTask) source).getMode();
+        checkDateForRecurring();
     }
 
     @Override
@@ -58,6 +61,20 @@ public class RecurringTask extends Task implements ReadOnlyRecurringTask {
         super.resetData(replacement);
         assert this.isRecurring == RecurringProperty.RECURRING;
         this.mode = ((ReadOnlyRecurringTask) replacement).getMode();
+        checkDateForRecurring();
+    }
+
+    /**
+     * Set date to be day if date is not specified
+     */
+    private void checkDateForRecurring() {
+        if (this.date.getValue().isEmpty()) {
+            try {
+                this.date = new TaskDate("today");
+            } catch (IllegalValueException e) {
+                assert false;
+            }
+        }
     }
 
     @Override

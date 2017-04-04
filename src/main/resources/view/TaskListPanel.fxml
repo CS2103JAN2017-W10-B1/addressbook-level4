@@ -15,7 +15,7 @@
         <URL value="@Extensions.css" />
     </stylesheets>
     <children>
-      <AnchorPane VBox.vgrow="ALWAYS">
+      <AnchorPane VBox.vgrow="NEVER">
          <VBox.margin>
             <Insets />
          </VBox.margin>

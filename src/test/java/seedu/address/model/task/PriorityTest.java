@@ -17,7 +17,25 @@ public class PriorityTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void convert() {
+    public void isValidPriority_invalidPriority_falseReturned() {
+        // invalid priority
+        assertFalse(Priority.isValidPriority("")); // empty string
+        assertFalse(Priority.isValidPriority(" ")); // spaces only
+        assertFalse(Priority.isValidPriority("*")); // only non-alphanumeric characters
+        assertFalse(Priority.isValidPriority("vital!")); // contains illegal expression
+        assertFalse(Priority.isValidPriority("trivial")); // not 1, 2, or 3
+    }
+
+    @Test
+    public void isValidPriority_validPriority_trueReturned() {
+        // valid priority
+        assertTrue(Priority.isValidPriority("1")); // 1
+        assertTrue(Priority.isValidPriority("2")); // 2
+        assertTrue(Priority.isValidPriority("3")); // 3
+    }
+
+    @Test
+    public void convert_validPriorityInString_priorityInDigitReturned() {
         // exact expressions
         assertEquals(Priority.convert(Priority.PRIORITY_IMPORTANT), Priority.PRIORITY_3);
         assertEquals(Priority.convert(Priority.PRIORITY_NORMAL), Priority.PRIORITY_2);
@@ -30,29 +48,14 @@ public class PriorityTest {
     }
 
     @Test
-    public void isValidPriority() {
-        // invalid priority
-        assertFalse(Priority.isValidPriority("")); // empty string
-        assertFalse(Priority.isValidPriority(" ")); // spaces only
-        assertFalse(Priority.isValidPriority("*")); // only non-alphanumeric characters
-        assertFalse(Priority.isValidPriority("vital!")); // contains illegal expression
-        assertFalse(Priority.isValidPriority("trivial")); // not 1, 2, or 3
-
-        // valid priority
-        assertTrue(Priority.isValidPriority("1")); // 1
-        assertTrue(Priority.isValidPriority("2")); // 2
-        assertTrue(Priority.isValidPriority("3")); // 3
-    }
-
-    @Test
-    public void invalidNameTest() throws IllegalValueException {
+    public void constructor_invalidPriority_exceptionThrown() throws IllegalValueException {
         //invalid name by illegal expression
         thrown.expect(IllegalValueException.class);
-        Priority tester1 = new Priority("vital!");
+        new Priority("vital!");
     }
 
     @Test
-    public void validNameTest() throws IllegalValueException {
+    public void constructor_validPriority_priorityConstructed() throws IllegalValueException {
         //valid name
         Priority tester2a = new Priority(""); // empty string
         Priority tester2b = new Priority(" "); // space

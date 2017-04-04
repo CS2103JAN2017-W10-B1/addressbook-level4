@@ -4,104 +4,108 @@ package guitests;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.AddCommand.COMMAND_ADD;
 import static seedu.address.logic.commands.AddCommand.MESSAGE_SUCCESS;
+import static seedu.address.model.task.Event.MESSAGE_EVENT_CONSTRAINT;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandFormatter;
 import seedu.address.testutil.TestEvent;
+import seedu.address.testutil.TestRecurringTask;
 import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
 public class AddCommandTest extends TaskManagerGuiTest {
+    private TestTask[] currentList = {};
+
+    @Before
+    public void setUp() {
+        String initCommand = "clear";
+        commandBox.runCommand(initCommand);
+    }
 
     @Test
-    public void addTask() {
-        //Start testing with an empty list
-        TestTask[] currentList = {};
-        commandBox.runCommand("clear");
-
-        //add a floating task with name only
+    public void add_addFloatingTask_addSuccess() {
         TestTask taskToAdd = td.shopping2;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
+    }
 
-        //add a task with other fields other than name
-        taskToAdd = td.date;
+    @Test
+    public void add_addInvalidDuplicate_duplicateFailure() {
+         //add a task with all fields specified first
+        TestTask taskToAdd = td.date;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
-        //try to add a duplicate task
+        //duplicate task tests
         commandBox.runCommand(td.date.getAddCommand());
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
         assertTrue(taskListPanel.isListMatching(currentList));
+    }
 
-        //add a task with duplicate name with existing unfinished task under different lists
-        taskToAdd = td.date2;
+    @Test
+    public void add_addValidDuplicates_addSuccess() {
+        TestTask taskToAdd = td.date2;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
-        //add a task with duplicate name and list but different date
         taskToAdd = td.date3;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
-        //add a task with duplicate name, list, date but different time
         taskToAdd = td.date4;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
-
-        //add to empty list
-        commandBox.runCommand("clear");
-        taskToAdd = td.assignment;
-        assertAddSuccess(taskToAdd);
-        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
     }
 
     @Test
-    public void addEventsAndTasksToList() {
-        //Start testing with an empty list
-        commandBox.runCommand("clear");
-        TestTask[] currentList = {};
+    public void add_addEventWithIllegalStartDate_addUnsuccess() {
+        TestEvent eventToAdd = te.shopping;
+        commandBox.runCommand(eventToAdd.getAddCommand());
+        assertResultMessage(MESSAGE_EVENT_CONSTRAINT);
+    }
 
-        //add a task to list
-        TestTask taskToAdd = td.shopping;
-        assertAddSuccess(taskToAdd, currentList);
-        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
-
-        //add an event to current list
+    @Test
+    public void add_addEventsWithSomeDuplicateFields_success() {
         TestEvent eventToAdd = te.date;
         assertAddSuccess(eventToAdd, currentList);
-        currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
+        currentList = (TestUtil.addTasksToList(currentList, eventToAdd));
 
-        //add another task
-        taskToAdd = td.familyDinner;
-        assertAddSuccess(taskToAdd, currentList);
-        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
-
-      //add an event to test duplication to current list
         eventToAdd = te.date2;
         assertAddSuccess(eventToAdd, currentList);
-        currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
+        currentList = (TestUtil.addTasksToList(currentList, eventToAdd));
 
-        //add an event to test duplication to current list
         eventToAdd = te.date3;
         assertAddSuccess(eventToAdd, currentList);
-        currentList = (TestUtil.addEventsToList(currentList, eventToAdd));
+        currentList = (TestUtil.addTasksToList(currentList, eventToAdd));
     }
 
     @Test
-    public void invalidCommand () {
-        //unknown command
-        commandBox.runCommand("adds homework");
+    public void add_addRecurringTask_success() {
+        TestRecurringTask recurringTaskToAdd = tr.homework;
+        assertAddSuccess(recurringTaskToAdd, currentList);
+        currentList = (TestUtil.addTasksToList(currentList, recurringTaskToAdd));
+
+        recurringTaskToAdd = tr.homework2;
+        assertAddSuccess(recurringTaskToAdd, currentList);
+        currentList = (TestUtil.addTasksToList(currentList, recurringTaskToAdd));
+
+        recurringTaskToAdd = tr.cs2103;
+        assertAddSuccess(recurringTaskToAdd, currentList);
+        currentList = (TestUtil.addTasksToList(currentList, recurringTaskToAdd));
+    }
+
+    @Test
+    public void addCommand_invalidCommandFormat_failure () {
+        commandBox.runCommand("addhomework");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
 
-        //invalid command, task must have a name
         commandBox.runCommand("add p/important");
         assertResultMessage(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
-        //invalid command, name should be the first field entered
         commandBox.runCommand("add p/important homework");
         assertResultMessage(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }

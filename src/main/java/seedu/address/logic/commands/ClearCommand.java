@@ -22,9 +22,9 @@ public class ClearCommand extends AbleUndoCommand {
     @Override
     public CommandResult execute() {
         assert model != null;
-        tasks = new TaskManager();
+        tasks = TaskManager.getStub();
         tasks.resetData(model.getTaskManager());
-        model.resetData(new TaskManager());
+        model.resetData(TaskManager.getStub());
         return new CommandResult(CommandFormatter.undoFormatter(MESSAGE_SUCCESS, COMMAND_CLEAR));
     }
 
@@ -36,7 +36,7 @@ public class ClearCommand extends AbleUndoCommand {
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
         assert model != null;
-        TaskManager tasks = new TaskManager();
+        TaskManager tasks = TaskManager.getStub();
         tasks.resetData(model.getTaskManager());
         model.resetData(this.tasks);
         this.tasks = tasks;

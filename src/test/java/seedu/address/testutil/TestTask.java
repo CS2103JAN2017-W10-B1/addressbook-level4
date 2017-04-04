@@ -17,7 +17,7 @@ public class TestTask implements ReadOnlyTask {
 
     //@@author A0147984L
     private Name name;
-    private TaskDate date;
+    protected TaskDate date;
     private TaskTime time;
     private Description description;
     private Venue venue;
@@ -27,7 +27,6 @@ public class TestTask implements ReadOnlyTask {
     private FinishProperty isFinished;
     private EventProperty isEvent;
     private RecurringProperty isRecurring;
-
 
     public TestTask() {}
 
@@ -146,6 +145,14 @@ public class TestTask implements ReadOnlyTask {
             this.isEvent = EventProperty.EVENT;
         } else {
             this.isEvent = EventProperty.NON_EVENT;
+        }
+    }
+
+    public void setRecurring(boolean isRecurring) {
+        if (isRecurring) {
+            this.isRecurring = RecurringProperty.RECURRING;
+        } else {
+            this.isRecurring = RecurringProperty.NON_RECURRING;
         }
     }
 

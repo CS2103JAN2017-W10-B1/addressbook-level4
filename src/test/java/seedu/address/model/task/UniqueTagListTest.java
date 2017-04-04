@@ -1,4 +1,4 @@
-//@@author A0143049J
+//@@author A0143409J
 package seedu.address.model.task;
 
 import static org.junit.Assert.assertEquals;
@@ -24,7 +24,7 @@ public class UniqueTagListTest {
     private UniqueTagList tester = new UniqueTagList();
 
     @Test
-    public void sort() throws DuplicateTagException, IllegalValueException {
+    public void sortTag_twoTags_allTagsContained() throws DuplicateTagException, IllegalValueException {
         Tag tag1 = new Tag("abc");
         Tag tag2 = new Tag("test");
         tester.add(tag1);
@@ -39,7 +39,8 @@ public class UniqueTagListTest {
     }
 
     @Test
-    public void constructorTest() throws DuplicateTagException, IllegalValueException {
+    public void checkConstructor_validConstructors_successfulConstruction()
+            throws DuplicateTagException, IllegalValueException {
         Tag tag1 = new Tag("abc");
         Tag tag2 = new Tag("test");
         tester = new UniqueTagList(tag1, tag2);
@@ -70,7 +71,7 @@ public class UniqueTagListTest {
     }
 
     @Test
-    public void equalTest() throws IllegalValueException {
+    public void equivalenceTagList_twoEquivalentTagLists_equalTagLists() throws IllegalValueException {
         Tag tag1 = new Tag("abc");
         Tag tag2 = new Tag("test");
         tester = new UniqueTagList(tag1, tag2);
@@ -85,7 +86,7 @@ public class UniqueTagListTest {
     }
 
     @Test
-    public void setTagTest() throws IllegalValueException {
+    public void setTag_importAnotherTagList_sucessfullySet() throws IllegalValueException {
         Tag tag1 = new Tag("abc");
         Tag tag2 = new Tag("test");
         tester = new UniqueTagList(tag1, tag2);
@@ -104,7 +105,7 @@ public class UniqueTagListTest {
     }
 
     @Test
-    public void mergeTest() throws IllegalValueException {
+    public void mergeTagLists_twoDifferentLists_successfullyMerged() throws IllegalValueException {
         Tag tag1 = new Tag("abc");
         Tag tag2 = new Tag("test");
         Tag tag3 = new Tag("lala");
@@ -125,7 +126,7 @@ public class UniqueTagListTest {
     }
 
     @Test
-    public void duplicateTagTest() throws IllegalValueException {
+    public void duplicateTag_addDuplicateTag_duplicateTagException() throws IllegalValueException {
         Tag tag1 = new Tag("abc");
         thrown.expect(DuplicateTagException.class);
         tester = new UniqueTagList(tag1, tag1);
