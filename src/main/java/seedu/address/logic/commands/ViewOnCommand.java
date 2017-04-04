@@ -20,16 +20,24 @@ public class ViewOnCommand extends Command {
             + "the specified date and displays them as a list with index numbers.\n"
             + "Parameters: [on/[number of days from today]\n"
             + "Example: " + COMMAND_WORD + " on/10";
+    public static final String MESSAGE_NONNEGATIVE = "The number of days in the future cannot be negative.\n";
 
     private final String numberOfDays;
 
-    public ViewOnCommand(int numberDays) {
+    public ViewOnCommand(int numberDays) throws IllegalValueException {
+        if (numberDays < 0) {
+            throw new IllegalValueException(MESSAGE_NONNEGATIVE);
+        }
         numberOfDays = String.valueOf(numberDays);
     }
 
     public ViewOnCommand(TaskDate date) throws IllegalValueException {
         Calendar today = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
         TaskDate todayDate = new TaskDate(TaskDate.getDateString(today));
+        int numberDays = date.compareToDay(todayDate);
+        if (numberDays < 0) {
+            throw new IllegalValueException(MESSAGE_NONNEGATIVE);
+        }
         numberOfDays = String.valueOf(date.compareToDay(todayDate));
     }
 

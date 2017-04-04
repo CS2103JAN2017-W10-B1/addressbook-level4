@@ -25,20 +25,20 @@ public class ViewNextCommand extends Command {
 
     private final String numberOfDays;
 
-<<<<<<< HEAD:src/main/java/seedu/address/logic/commands/ViewNextCommand.java
-    public ViewNextCommand(int numberDays) {
-=======
-    public ViewCommand(int numberDays) throws IllegalValueException {
+    public ViewNextCommand(int numberDays) throws IllegalValueException {
         if (numberDays < 0) {
-            throw new IllegalValueException("The number of days in the future cannot be negative.");
+            throw new IllegalValueException(MESSAGE_NONNEGATIVE);
         }
->>>>>>> origin/master:src/main/java/seedu/address/logic/commands/ViewCommand.java
         numberOfDays = String.valueOf(numberDays);
     }
 
     public ViewNextCommand(TaskDate date) throws IllegalValueException {
         Calendar today = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
         TaskDate todayDate = new TaskDate(TaskDate.getDateString(today));
+        int numberDays = date.compareToDay(todayDate);
+        if (numberDays < 0) {
+            throw new IllegalValueException(MESSAGE_NONNEGATIVE);
+        }
         numberOfDays = String.valueOf(date.compareToDay(todayDate));
     }
 
