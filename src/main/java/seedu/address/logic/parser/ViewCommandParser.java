@@ -49,6 +49,9 @@ public class ViewCommandParser {
                     return new IncorrectCommand(String.format(
                         MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
                 }
+            } catch (IllegalValueException e) {
+                return new IncorrectCommand(String.format(
+                        MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_NONNEGATIVE));
             }
         }
 

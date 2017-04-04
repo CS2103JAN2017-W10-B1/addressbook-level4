@@ -14,7 +14,7 @@ public class ViewOnCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
-    public static final String MESSAGE_SUCCESS = "View all tasks";
+    public static final String MESSAGE_SUCCESS = "View all tasks due on %s days later\n";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks due on "
             + "the specified date and displays them as a list with index numbers.\n"
@@ -37,7 +37,7 @@ public class ViewOnCommand extends Command {
     public CommandResult execute() {
         model.updateFilteredTaskListGivenDaysToDueOn(numberOfDays);
         LOGGER.info(getClass() + " listed all tasks on " + numberOfDays);
-        String messageDisplay = MESSAGE_SUCCESS + " due in " + numberOfDays + " days later\n";
+        String messageDisplay = String.format(MESSAGE_SUCCESS, numberOfDays);
         return new CommandResult(messageDisplay);
     }
 

@@ -48,11 +48,11 @@ public class EditCommand extends AbleUndoCommand {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
 
-    private final int filteredTaskListIndex;
-    private final EditTaskDescriptor editTaskDescriptor;
-    private ReadOnlyTask task;
-    private Task oldTask;
-    private boolean isSuccess;
+    protected final int filteredTaskListIndex;
+    protected final EditTaskDescriptor editTaskDescriptor;
+    protected ReadOnlyTask task;
+    protected Task oldTask;
+    protected boolean isSuccess;
 
     /**
      * @param filteredPersonListIndex the index of the task in the filtered task list to edit
@@ -104,7 +104,7 @@ public class EditCommand extends AbleUndoCommand {
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit.getName()));
     }
 
-    private Task createTask(ReadOnlyTask task) {
+    protected Task createTask(ReadOnlyTask task) {
         Task newTask = null;
         if (task.isEvent()) {
             try {
@@ -132,7 +132,7 @@ public class EditCommand extends AbleUndoCommand {
      * edited with {@code editPersonDescriptor}.
      * @throws IllegalValueException
      */
-    private static Task createEditedTask(ReadOnlyTask taskToEdit,
+    protected static Task createEditedTask(ReadOnlyTask taskToEdit,
             EditTaskDescriptor editTaskDescriptor) throws IllegalValueException {
         assert taskToEdit != null;
 
@@ -318,11 +318,11 @@ public class EditCommand extends AbleUndoCommand {
             }
         }
 
-        private boolean getFavourite() {
+        protected boolean getFavourite() {
             return this.isFavourite;
         }
 
-        private boolean getIsFavouriteEdited() {
+        protected boolean getIsFavouriteEdited() {
             return this.isFavouriteEdited;
         }
 
