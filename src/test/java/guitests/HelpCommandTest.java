@@ -11,7 +11,7 @@ import seedu.address.logic.commands.FinishCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.LoadCommand;
 import seedu.address.logic.commands.ScrollToCommand;
-import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.ViewNextCommand;
 import seedu.address.logic.commands.ViewOnCommand;
 
 public class HelpCommandTest extends TaskManagerGuiTest {
@@ -46,7 +46,7 @@ public class HelpCommandTest extends TaskManagerGuiTest {
         } else if (commandWord.equalsIgnoreCase("scroll")) {
             assertResultMessage(ScrollToCommand.MESSAGE_USAGE);
         } else if (commandWord.equalsIgnoreCase("view")) {
-            assertResultMessage(ViewCommand.MESSAGE_USAGE + "\n" +  ViewOnCommand.MESSAGE_USAGE);
+            assertResultMessage(ViewNextCommand.MESSAGE_USAGE + "\n" +  ViewOnCommand.MESSAGE_USAGE);
         }
     }
 }

@@ -1,4 +1,4 @@
-//@@ author A0143409J
+//@@author A0143409J
 
 package seedu.address.logic.parser;
 
@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.commands.IncorrectCommand;
-import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.ViewNextCommand;
 import seedu.address.logic.commands.ViewOnCommand;
 
 public class ViewCommandParserTest {
@@ -28,16 +28,16 @@ public class ViewCommandParserTest {
 
         IncorrectCommand incorrectCommand =  (IncorrectCommand) ViewCommandParser.parse(null);
         assertEquals(field.get(incorrectCommand), String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void viewParse_nextValid_viewNextCommand() throws Exception {
 
-        Field field = ViewCommand.class.getDeclaredField("numberOfDays");
+        Field field = ViewNextCommand.class.getDeclaredField("numberOfDays");
         field.setAccessible(true);
 
-        ViewCommand viewCommand =  (ViewCommand) ViewCommandParser.parse("next/10");
+        ViewNextCommand viewCommand =  (ViewNextCommand) ViewCommandParser.parse("next/10");
 
         assertEquals(field.get(viewCommand), "10");
     }
@@ -51,7 +51,7 @@ public class ViewCommandParserTest {
         IncorrectCommand incorrectCommand =  (IncorrectCommand) ViewCommandParser.parse("next/abc");
 
         assertEquals(field.get(incorrectCommand), String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -74,7 +74,7 @@ public class ViewCommandParserTest {
         IncorrectCommand incorrectCommand =  (IncorrectCommand) ViewCommandParser.parse("on/abc");
 
         assertEquals(field.get(incorrectCommand), String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
     }
 
     @Test
