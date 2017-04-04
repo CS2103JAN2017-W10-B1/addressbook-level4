@@ -7,12 +7,6 @@ import java.util.TimeZone;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.TaskDate;
 
-<<<<<<< HEAD
-=======
-/**
- * List tasks due on a specified date in Dueue.
- */
->>>>>>> origin/master
 public class ViewOnCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
