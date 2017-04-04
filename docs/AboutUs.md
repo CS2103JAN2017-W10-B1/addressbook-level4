@@ -8,10 +8,10 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/wangzexin.jpg" width="150"><br>
 Role: Developer <br>
 
-* Components in charge of: [Commons](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#26-common-classes)
+* Components in charge of: [Logic](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#23-logic-component)[Commons](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#26-common-classes)
 * Aspects/tools in charge of: JUnit testing, Travis, Codacy, Coveralls
 * Features implemented:
-   * [View tasks due within n days or due on the day after n days](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#27-view-certain-tasks-view)
+   * [View tasks due on a day](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#27-view-certain-tasks-view)
    * [List tasks](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#25-listing-all-tasks--list)
    * [Display help messages for commands](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#21-viewing-help--help)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/collated/main/A0143409J.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0143409J.md)]
@@ -27,10 +27,11 @@ Role: Developer <br>
 <img src="images/matilda-yxx.jpg" width="150"><br>
 Role: Developer, UI Designer <br>
 
-* Components in charge of: [UI](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#22-ui-component)
+* Components in charge of: [UI](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#22-ui-component)
 * Aspects/tools in charge of: JUnit Testing, SceneBuilder, Documentation
 * Features implemented:
   * [Load external XML file into TaskManager](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#212-load-file-load)
+  * [View tasks due in next N days](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#27-view-certain-tasks-view)
   * [Find tasks by keywords](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#213-find-tasks-find)
   * [Scroll to a given list](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#214-scroll-to--scroll)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/main/A0147996E.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0147996E.md)]
@@ -49,7 +50,7 @@ Role: Developer, UI Designer <br>
 <img src="images/sherminejong.jpg" width="150"><br>
 Role: Developer <br>
 
-* Components in charge of: [Logic](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#23-logic-component)[Storage](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#25-storage-component)
+* Components in charge of: [Logic](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#23-logic-component)[Storage](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#25-storage-component)
 * Aspects/tools in charge of: Github, Eclipse
 * Features implemented:
    * [Adding a typical task](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#22-adding-a-typical-task-add)
@@ -66,7 +67,7 @@ Role: Developer <br>
 <img src="images/MouZiyang.jpg" width="150"><br>
 Role: Developer <br>
 
-* Components in charge of: [Model](https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.md#23-logic-component)
+* Components in charge of: [Model](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#24-model-component)
 * Aspects/tools in charge of: Github, Eclipse
 * Features implemented:
    * [Add an event](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#23-adding-an-event-add)

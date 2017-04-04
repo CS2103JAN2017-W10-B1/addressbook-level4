@@ -172,20 +172,23 @@ Examples:
 
 ### 2.7. View certain tasks: `view`
 
-View tasks due on a specified date.<br>
+View tasks due on a specified date / n days later.<br>
 Format: `view on/NUMBEROFDAYS`
+        `view on/DATE`
 
-View tasks due within the next n days.<br>
-Format: `view dueby/NUMBEROFDAYS`
+View tasks due within a specific date / the next n days.<br>
+Format: `view next/NUMBEROFDAYS`
+        `view next/DATE`
 
-> * NUMBEROFDAYS must be a positive integer.<br>
+> * NUMBEROFDAYS must be a non-negative integer.<br>
+> * Date must not be earlier than today.
 
 Examples:
 
-* `view on/10`<br>
-  Returns a list of tasks due on that day from 10 days later
-* `view next/10`<br>
-  Returns a list of tasks due within the next 10 days
+* `view on/today`<br>
+  Returns a list of tasks due on today
+* `view next/Monday`<br>
+  Returns a list of tasks due within next Monday
 
 ### 2.8. Deleting task(s) or list(s) : `delete`
 
