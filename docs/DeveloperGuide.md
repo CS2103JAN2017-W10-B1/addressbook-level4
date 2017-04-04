@@ -1,4 +1,4 @@
-# Dueue - Developer Guide
+﻿# Dueue - Developer Guide
 
 By : `Team SE-EDU`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Feb 2017`  &nbsp;&nbsp;&nbsp;&nbsp; Licence: `MIT`
 
@@ -12,9 +12,7 @@ By : `Team SE-EDU`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Feb 2017`  &nbsp;&nbsp;&nbs
 
 * [Appendix A: User Stories](#appendix-a--user-stories)
 * [Appendix B: Use Cases](#appendix-b--use-cases)
-* [Appendix C: Non Functional Requirements](#appendix-c--non-functional-requirements)
-* [Appendix D: Glossary](#appendix-d--glossary)
-* [Appendix E : Product Survey](#appendix-e--product-survey)
+* [Appendix C : Product Survey](#appendix-c--product-survey)
 
 
 ## 1. Setting up
@@ -146,8 +144,7 @@ _Figure 2.2.1 : Structure of the UI Component_
 
 **API** : [`Ui.java`](../src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TagListPanel`,
-`TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TagListPanel`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
  that are in the `src/main/resources/view` folder.<br>
@@ -162,7 +159,7 @@ The `UI` component,
 
 ### 2.3. Logic component
 
-Author: Bernard Choo
+Author: Shermine Jong and Wang Zexin
 
 <img src="images/LogicClassDiagram.png" width="800"><br>
 _Figure 2.3.1 : Structure of the Logic Component_
@@ -358,7 +355,9 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | recategorize a task under a different list | change its category
 `* * *` | user | mark a task as favorite/unfavorite | maintain a favorite category across different lists
 `* * *` | user | view the help message for a specific feature | know how to use a command
-`* *` | user | find specific tasks with name containing given keywords | easily organize my tasks
+`* *` | user | load external XML file into Dueue | read external task lists
+`* *` | user | scroll to a specific index | conveniently view tasks at any position in current list view
+`* *` | user | find specific tasks with name containing given keywords in all/finished/unfinished tasks | easily organize my tasks
 `* *` | first-time user | view the entire help messages | get to know various commands
 `* *` | user | list required task lists displayed as sorted based on due date and time, priority and lastly lexicographic order | manage all tasks more efficiently
 `* *` | user | list all finished and unfinished tasks | manage all tasks
@@ -631,7 +630,7 @@ Use case ends.
 
 #### Use case: View help message
 
-**MSS***
+**MSS**
 
 1. User requests to view the help message for a specific command
 2. Dueue displays the help message <br>
@@ -649,11 +648,49 @@ Use case ends.
 > 1b1. Dueue shows an error message<br>
   Use case resumes at step 1
 
+#### Use case: Load external XML file into Dueue 
+
+**MSS**
+
+1. User requests to load external XML file into Dueue
+2. Dueue loads from the given filepath and displays the list of tasks<br>
+Use case ends.
+
+**Extensions**
+
+1a. The given load command input format is invalid
+
+> 1a1. Dueue shows an error and a help message<br>
+  Use case resumes at step 1
+
+1b. The given filepath is empty or file is not in XML format
+> 1b1. Dueue shows an error message<br>
+  Use case resumes at step 1
+
+#### Use case: Scroll to a specific index in Dueue
+
+**MSS**
+
+1. User requests to scroll to a given index in Dueue
+2. Dueue updates the list view as requested<br>
+Use case ends.
+
+**Extensions**
+
+1a. The given scroll command input format is invalid
+
+> 1a1. Dueue shows an error and a help message<br>
+  Use case resumes at step 1
+
+1b. The given index is out of range
+> 1b1. Dueue shows an error message<br>
+  Use case resumes at step 1
+
 #### Use case: Find tasks by searching for keyword in task names
 
-**MSS***
+**MSS**
 
-1. User requests to find tasks whose names contain the keyword provided
+1. User requests to find among all/finished/unfinished tasks whose names contain the keyword provided
 2. Dueue displays the list of tasks found<br>
 Use case ends.
 

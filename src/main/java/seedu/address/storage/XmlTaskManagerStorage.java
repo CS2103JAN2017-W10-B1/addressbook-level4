@@ -38,15 +38,15 @@ public class XmlTaskManagerStorage implements TaskManagerStorage {
      * Similar to {@link #readAddressBook()}
      * @param filePath location of the data. Cannot be null
      * @throws DataConversionException if the file is not in the correct format.
+     * @throws FileNotFoundException
      */
-    public Optional<ReadOnlyTaskManager> readTaskManager(String filePath) throws DataConversionException,
-                                                                                 FileNotFoundException {
+    public Optional<ReadOnlyTaskManager> readTaskManager(String filePath) throws
+        DataConversionException, FileNotFoundException {
         assert filePath != null;
         File taskManagerFile = new File(filePath);
 
         if (!taskManagerFile.exists()) {
             logger.info("TaskManager file "  + taskManagerFile + " not found");
-            throw new FileNotFoundException();
         }
         ReadOnlyTaskManager taskManagerOptional = XmlFileStorage.loadDataFromSaveFile(new File(filePath));
 

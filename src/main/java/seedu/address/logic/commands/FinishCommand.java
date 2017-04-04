@@ -23,7 +23,7 @@ import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 import seedu.address.model.task.Venue;
 
 /**
- * Deletes a person identified using it's last displayed index from the address book.
+ * Finishes an unfinished task/event/recurring task in Dueue.
  */
 public class FinishCommand extends AbleUndoCommand {
 

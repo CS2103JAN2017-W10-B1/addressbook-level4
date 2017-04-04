@@ -8,7 +8,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.TaskDate;
 
 /**
- * Lists all persons in the address book to the user.
+ * List tasks due on a specified date in Dueue.
  */
 public class ViewOnCommand extends Command {
 
@@ -21,26 +21,23 @@ public class ViewOnCommand extends Command {
             + "Parameters: [on/[number of days from today]\n"
             + "Example: " + COMMAND_WORD + " on/10";
 
-    private final String messageDisplay;
-
     private final String numberOfDays;
 
     public ViewOnCommand(int numberDays) {
         numberOfDays = String.valueOf(numberDays);
-        messageDisplay = MESSAGE_SUCCESS + " due in " + numberOfDays + " days later\n";
     }
 
     public ViewOnCommand(TaskDate date) throws IllegalValueException {
         Calendar today = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
         TaskDate todayDate = new TaskDate(TaskDate.getDateString(today));
         numberOfDays = String.valueOf(date.compareToDay(todayDate));
-        messageDisplay = MESSAGE_SUCCESS + " due in " + numberOfDays + " days later\n";
     }
 
     @Override
     public CommandResult execute() {
         model.updateFilteredTaskListGivenDaysToDueOn(numberOfDays);
         LOGGER.info(getClass() + " listed all tasks on " + numberOfDays);
+        String messageDisplay = MESSAGE_SUCCESS + " due in " + numberOfDays + " days later\n";
         return new CommandResult(messageDisplay);
     }
 

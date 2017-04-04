@@ -5,15 +5,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all tasks (finished and unfinished) in Dueue or in a specified list.
  */
 public class ListAllCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_LIST_SUCCESS = "Listed unfinished tasks";
     public static final String MESSAGE_LIST_ALL_SUCCESS = "Listed all tasks";
-    public static final String MESSAGE_LIST_ALL_LIST_SUCCESS = "Listed all tasks in the list";
     public static final String MESSAGE_LIST_DOES_NOT_EXIST = "Given list name does not exist";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks as per the parameters\n"

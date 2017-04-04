@@ -26,7 +26,6 @@ public class ScrollToCommandParser {
             return new IncorrectCommand(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScrollToCommand.MESSAGE_USAGE));
         }
-
         return new ScrollToCommand(index.get());
     }
 

@@ -1,3 +1,4 @@
+//@@author A0143409J
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -10,14 +11,13 @@ import seedu.address.logic.commands.ViewOnCommand;
 import seedu.address.model.task.TaskDate;
 
 /**
- * Parses input arguments and creates a new ViewCommand object
+ * Parses input arguments and creates a new ViewCommand/ViewOnCommand object
  */
 public class ViewCommandParser {
 
     private static ViewCommandParser theOne;
 
-    private ViewCommandParser() {
-    }
+    private ViewCommandParser() {}
 
     public static ViewCommandParser getInstance() {
         if (theOne == null) {
@@ -27,8 +27,8 @@ public class ViewCommandParser {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns an FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ViewCommand
+     * and returns an ViewCommand object for execution.
      */
     public static Command parse(String args) {
         if (args == null) {
@@ -42,8 +42,13 @@ public class ViewCommandParser {
             try {
                 return new ViewCommand(Integer.valueOf(parameters[1]));
             } catch (NumberFormatException nfe) {
-                return new IncorrectCommand(String.format(
+                try {
+                    TaskDate date = new TaskDate(parameters[1]);
+                    return new ViewCommand(date);
+                } catch (IllegalValueException e) {
+                    return new IncorrectCommand(String.format(
                         MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+                }
             }
         }
 
@@ -61,7 +66,6 @@ public class ViewCommandParser {
                 }
             }
         }
-
         // if not matching any format
         return new IncorrectCommand(String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
@@ -72,5 +76,4 @@ public class ViewCommandParser {
         String[] parameters = argument.split("/", 2);
         return parameters;
     }
-
 }

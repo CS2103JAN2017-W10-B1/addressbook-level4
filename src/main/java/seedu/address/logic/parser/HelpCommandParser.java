@@ -1,3 +1,4 @@
+//@@author A0143409J
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.AddCommand;
@@ -15,6 +16,9 @@ import seedu.address.logic.commands.ScrollToCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.ViewOnCommand;
 
+/**
+ * Parses input arguments and creates a new HelpCommand object
+ */
 public class HelpCommandParser {
 
     private static HelpCommandParser theOne;
