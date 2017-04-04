@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all tasks (finished and unfinished) in Dueue or in a specified list.
  */
 public class ListAllCommand extends Command {
 
