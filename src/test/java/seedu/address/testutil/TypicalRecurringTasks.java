@@ -30,11 +30,10 @@ public class TypicalRecurringTasks {
                     withTag("school").withVenue("icube").withPriority("1").withFavorite(true).withRecurring(true)
                     .withMode(mode1)
                     .withFinished(false).build();
-            gym = new RecurringTaskBuilder().withName("gym").withDate("06/06/2017").withTime(
+            gym = new RecurringTaskBuilder().withName("gym").withDate("20/12/2017").withTime(
                     "20:00").withDescription("50min workout").
-                    withTag("personal").withVenue("gym").withPriority("2").withFavorite(true).withRecurring(true)
-                    .withMode(mode2)
-                    .withFinished(false).build();
+                    withTag("personal").withVenue("gym").withPriority("2").withFavorite(true)
+                    .withFinished(false).withRecurring(true).withMode(mode2).build();
             //gym2 and gym3 are built for findCommandTest
             gym2 = new RecurringTaskBuilder().withName("gym").withDate("07/06/2017").withTime(
                     "20:00").withDescription("50min workout").

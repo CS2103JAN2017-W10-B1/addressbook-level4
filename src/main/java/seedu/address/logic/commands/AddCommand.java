@@ -31,7 +31,7 @@ public class AddCommand extends AbleUndoCommand {
             + "Parameters: NAME [due/DUE_DATE] [dueT/DUE_TIME] [start/START_DATE] [startT/START_TIME]\n"
             + "[#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITY_LEVEL] [*f] [f/REPEAT_PERIOD] \n"
             + "Examples: " + COMMAND_WORD
-            + " CS2103 Lecture due/24/3/2017 start/24/3 startT/16:00"
+            + " \nTrip to Taiwan due/24/6/2017 start/tmr startT/16:00"
             + " dueT/18:00 p/3 *f\n"
             + COMMAND_WORD
             + " CS2103T Tutorial #CS2103 d/Finish asap p/important\n"

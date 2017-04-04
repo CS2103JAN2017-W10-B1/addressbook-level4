@@ -9,7 +9,7 @@ public class TestRecurringTask extends TestTask implements ReadOnlyRecurringTask
     public static final String PERIOD_DAILY = "every day";
     public static final String PERIOD_WEEKLY = "every week";
     public static final String PERIOD_MONTHLY = "every month";
-    
+
     private RecurringProperty isRecurring;
     private RecurringMode mode;
 
