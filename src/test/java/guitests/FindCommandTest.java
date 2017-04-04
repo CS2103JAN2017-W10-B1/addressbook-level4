@@ -1,4 +1,4 @@
-//@@ author A0147996E
+//@@author A0147996E
 package guitests;
 
 import static org.junit.Assert.assertTrue;
@@ -6,26 +6,39 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.Command;
 import seedu.address.testutil.TestTask;
 
 public class FindCommandTest extends TaskManagerGuiTest {
+    private TestTask[] currentList = td.getTypicalTasks();
 
     @Test
-    public void findNonEmptyList() {
-        assertFindResult("find birthday"); // no results
-        assertFindResult("find CS2103", td.cs2103); //find command is case insensitive
-        // multiple results with duplicate task names but different taskStates
-        assertFindResult("find gym", td.gym, td.gym2, td.gym3);
+    public void find_inNonEmptyList_findSuccess() {
+        assertFindResult("find all birthday");
+        assertFindResult("find unfinished CS2103", td.cs2103);
+        assertFindResult("find gym cs2103", td.gym, td.gym2, td.gym3, td.cs2103);
+    }
 
-        //find after deleting one result
-        commandBox.runCommand("delete 1");
-        assertFindResult("find assignment", td.assignment);
+    @Test
+    public void find_deletedTask_findFailure() {
+        int targetIndex = 1;
+        String  keyWord = currentList[targetIndex - 1].getName().toString();
+        commandBox.runCommand("delete " + targetIndex);
+        assertFindResult("find " + keyWord);
+    }
+
+    @Test
+    public void find_finishedTask_findUnsucess() {
+        int targetIndex = 3;
+        String  keyWord = currentList[targetIndex - 1].getName().toString();
+        commandBox.runCommand("finish " + targetIndex);
+        assertFindResult("find unfinished" + keyWord);
     }
 
     @Test
     public void findEmptyList() {
         commandBox.runCommand("clear");
-        assertFindResult("find exercise"); // no results
+        assertFindResult("find exercise");
     }
 
     @Test
@@ -37,7 +50,7 @@ public class FindCommandTest extends TaskManagerGuiTest {
     private void assertFindResult(String command, TestTask... expectedHits) {
         commandBox.runCommand(command);
         assertListSize(expectedHits.length);
-        assertResultMessage(expectedHits.length + " tasks found!");
+        assertResultMessage(String.format(Command.getMessageForTaskFoundShownSummary(expectedHits.length)));
         assertTrue(taskListPanel.isListMatching(expectedHits));
     }
 }
