@@ -10,17 +10,21 @@ import seedu.address.model.task.ReadOnlyRecurringTask;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.RecurringProperty;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
+import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 
 /**
  * Edits the details of an existing recurring task in Dueue.
  */
 public class EditNextCommand extends EditCommand {
 
+    private ReadOnlyTask finishedOnceTask;
     /**
      * Create editNext command using an index for specific task and description for the edited task
      */
     public EditNextCommand(int filteredTaskListIndex, EditTaskDescriptor editTaskDescriptor) {
         super(filteredTaskListIndex, editTaskDescriptor);
+        this.finishedOnceTask = null;
     }
 
     @Override
@@ -35,12 +39,15 @@ public class EditNextCommand extends EditCommand {
         if (!(taskToEdit instanceof ReadOnlyRecurringTask)) {
             throw new CommandException("The task to edit once should be a recurring task.");
         }
+        oldTask = new Task(lastShownList.get(filteredTaskListIndex));
 
         try {
             Task newTask = createEditedTask(taskToEdit, editTaskDescriptor);
             newTask.setRecurringProperty(RecurringProperty.NON_RECURRING);
+            task = newTask;
             model.addTask(newTask);
             model.finishTaskOnce(taskToEdit);
+            finishedOnceTask = taskToEdit;
         } catch (IllegalValueException e) {
             throw new CommandException(e.getMessage());
         }
@@ -57,8 +64,18 @@ public class EditNextCommand extends EditCommand {
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
         assert model != null;
+        try {
+            model.deleteTask(task);
+            model.addTask(oldTask);
+            model.deleteTask(finishedOnceTask);
+        } catch (TaskNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (DuplicateTaskException e) {
+            e.printStackTrace();
+        }
         model.updateFilteredListToShowAllUnfinishedTasks();
-        this.isSuccess = true;
+        isSuccess = true;
         return new CommandResult(CommandFormatter.undoMessageFormatter(message, getUndoCommandWord()));
     }
 

@@ -63,6 +63,7 @@ public interface ReadOnlyTask {
                             ((ReadOnlyRecurringTask) this).getRecurringPeriod()));
         }
         return state;
+
     }
 //@@author A0147996E
     /**
