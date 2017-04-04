@@ -13,15 +13,15 @@
     <children>
         <GridPane prefHeight="146.0" prefWidth="550.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="22.0" />
-            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="250.0" minWidth="0.0" prefWidth="122.0" />
+                <ColumnConstraints hgrow="NEVER" maxWidth="134.0" minWidth="30.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="122.0" />
             </columnConstraints>
             <children>
-            <Label fx:id="index" prefHeight="22.0" prefWidth="22.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="\$id">
+            <Label fx:id="index" prefHeight="22.0" prefWidth="30.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="\$id">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin></Label>
-            <Label fx:id="name" style="-fx-font-size: 16; -fx-font-family: Avenir;" text="\$tag" GridPane.columnIndex="1" />
+            <Label fx:id="name" prefHeight="24.0" style="-fx-font-size: 16; -fx-font-family: Avenir;" text="\$tag" GridPane.columnIndex="1" />
             </children>
          <rowConstraints>
             <RowConstraints />
