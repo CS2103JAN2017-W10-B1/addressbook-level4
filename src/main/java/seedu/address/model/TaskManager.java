@@ -41,8 +41,8 @@ public class TaskManager implements ReadOnlyTaskManager {
      *   among constructors.
      */
     {
-        tasks = UniqueTaskList.getInstance();
-        tags = UniqueTagList.getInstance();
+        tasks = UniqueTaskList.getStub();
+        tags = UniqueTagList.getStub();
     }
 
 //@@author A0147996E

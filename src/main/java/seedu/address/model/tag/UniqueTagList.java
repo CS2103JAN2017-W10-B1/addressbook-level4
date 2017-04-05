@@ -180,7 +180,7 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
 //@@author A0147996E
-    public int find (String tagName) {
+    public int find(String tagName) {
         int size = internalList.size();
         tagName = tagName.trim();
         for (int index = 0; index < size; index++) {
