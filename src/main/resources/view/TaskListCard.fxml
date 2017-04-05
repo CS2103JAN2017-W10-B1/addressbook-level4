@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="taskCardPane" fx:id="taskCardPane" prefHeight="120.0" prefWidth="600.0" style="-fx-border-radius: 5; -fx-border-width: 3; -fx-border-color: DARKSALMON; -fx-background-radius: 5; -fx-background-color: LAVENDERBLUSH;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="taskCardPane" fx:id="taskCardPane" prefHeight="120.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <GridPane prefHeight="113.0" prefWidth="516.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
@@ -34,7 +34,7 @@
                           <children>
                         <HBox>
                            <children>
-                              <Label fx:id="index" minWidth="20.0" prefHeight="17.0" prefWidth="28.0" style="-fx-font-family: Avenir; -fx-font-size: 15;" styleClass="cell_big_label" text="\$id" HBox.hgrow="NEVER">
+                              <Label fx:id="index" contentDisplay="RIGHT" minWidth="40.0" prefHeight="23.0" prefWidth="29.0" style="-fx-font-family: Avenir; -fx-font-size: 15;" styleClass="cell_big_label" text="\$id" HBox.hgrow="NEVER">
                                  <HBox.margin>
                                     <Insets top="2.0" />
                                  </HBox.margin>
@@ -45,7 +45,7 @@
                                     <Glow />
                                  </effect>
                               </Label>
-                                       <Label fx:id="name" minWidth="150.0" prefHeight="20.0" prefWidth="149.0" style="-fx-font-family: Avenir; -fx-font-size: 15; -fx-font-style: bold;" styleClass="cell_big_label" text="\$taskName" HBox.hgrow="ALWAYS">
+                                       <Label fx:id="name" minWidth="150.0" prefHeight="23.0" prefWidth="292.0" style="-fx-font-family: Avenir; -fx-font-size: 15; -fx-font-style: bold;" styleClass="cell_big_label" text="\$taskName" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Avenir Roman" size="14.0" />
                                  </font>
@@ -55,19 +55,16 @@
                                  <effect>
                                     <Glow />
                                  </effect></Label>
-                               <Label fx:id="tag" minWidth="80.0" prefHeight="20.0" prefWidth="101.0" style="-fx-font-family: Avenir; -fx-font-size: 14;" styleClass="cell_small_label" text="\$list" HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
-                                    <Insets top="3.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="Avenir Roman" size="14.0" />
-                                 </font>
-                              </Label>
                            </children>
                         </HBox>
+                         <Label fx:id="tag" minWidth="80.0" prefHeight="20.0" prefWidth="327.0" style="-fx-font-family: Avenir; -fx-font-size: 14;" styleClass="cell_small_label" text="\$list" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="Avenir Roman" size="14.0" />
+                           </font>
+                        </Label>
                               <HBox alignment="CENTER_LEFT" spacing="5">
                            <children>
-                                    <Label fx:id="priority" minWidth="60.0" prefHeight="12.0" prefWidth="95.0" style="-fx-font-family: Avenir; -fx-font-size: 13; -fx-text-fill: MEDIUMBLUE; -fx-font-weight: bold;" styleClass="cell_small_label" text="\$priority">
+                                    <Label fx:id="priority" minWidth="60.0" prefHeight="19.0" prefWidth="146.0" style="-fx-font-family: Avenir; -fx-font-size: 13; -fx-text-fill: MEDIUMBLUE; -fx-font-weight: bold;" styleClass="cell_small_label" text="\$priority" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets top="5.0" />
                                  </HBox.margin>
@@ -88,7 +85,7 @@
                            </children>
                               </HBox>
 
-                              <Label fx:id="description" alignment="TOP_LEFT" prefHeight="46.0" prefWidth="297.0" style="-fx-font-size: 14; -fx-font-family: Avenir;" styleClass="cell_small_label" text="\$description" />
+                              <Label fx:id="description" alignment="TOP_LEFT" prefHeight="46.0" prefWidth="297.0" style="-fx-font-size: 14; -fx-font-family: Avenir;" styleClass="cell_small_label" text="\$description" VBox.vgrow="ALWAYS" />
                           </children>
                      <HBox.margin>
                         <Insets />
