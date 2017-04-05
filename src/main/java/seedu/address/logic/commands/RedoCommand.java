@@ -34,7 +34,7 @@ public class RedoCommand extends AbleUndoCommand {
                 } catch (IllegalValueException e) {
                     e.printStackTrace();
                 }
-                if (!this.undoCommand.COMMAND_WORD.equals(IncorrectCommand.COMMAND_WORD)) {
+                if (this.undoCommand != null) {
                     this.canUndo = false;
                 } else {
                     this.canUndo = true;
@@ -66,7 +66,11 @@ public class RedoCommand extends AbleUndoCommand {
 
     @Override
     public Command getUndoCommand() throws IllegalValueException {
-        return this.undoCommand.getUndoCommand();
+        if (this.undoCommand != null) {
+            return this.undoCommand.getUndoCommand();
+        } else {
+            return null;
+        }
     }
 
     @Override

@@ -108,7 +108,7 @@ public class EditNextCommand extends EditCommand {
             //TODO
             return new EditNextCommand(task, oldTask, finishedOnceTask);
         } else {
-            return new IncorrectCommand(null);
+            return null;
         }
     }
 

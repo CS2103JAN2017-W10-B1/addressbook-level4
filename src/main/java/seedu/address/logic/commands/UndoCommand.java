@@ -40,7 +40,7 @@ public class UndoCommand extends Command {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                if (!this.undoCommand.COMMAND_WORD.equals(IncorrectCommand.COMMAND_WORD)) {
+                if (this.undoCommand != null) {
                     this.canUndo = false;
                 } else {
                     this.canUndo = true;

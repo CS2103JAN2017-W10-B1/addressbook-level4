@@ -389,7 +389,7 @@ public class EditCommand extends AbleUndoCommand {
         if (isSuccess) {
             return new EditCommand(this.task, this.oldTask);
         } else {
-            return new IncorrectCommand(null);
+            return null;
         }
     }
 

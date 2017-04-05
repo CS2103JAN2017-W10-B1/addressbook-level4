@@ -184,7 +184,7 @@ public class FinishCommand extends AbleUndoCommand {
         if (isSuccess) {
             return this;
         } else {
-            return new IncorrectCommand(null);
+            return null;
         }
     }
 

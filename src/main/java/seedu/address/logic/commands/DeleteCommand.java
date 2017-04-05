@@ -131,7 +131,7 @@ public class DeleteCommand extends AbleUndoCommand {
             }
             return new AddCommand(task, isDeleteAllOcurrence);
         } else {
-            return new IncorrectCommand(null);
+            return null;
         }
     }
 

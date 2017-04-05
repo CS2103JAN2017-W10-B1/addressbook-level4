@@ -247,7 +247,7 @@ public class AddCommand extends AbleUndoCommand {
         if (isSuccess) {
             return new DeleteCommand(getTask(), isDeleteAllOcurrence);
         } else {
-            return new IncorrectCommand(null);
+            return null;
         }
     }
 
