@@ -648,7 +648,7 @@ Use case ends.
 > 1b1. Dueue shows an error message<br>
   Use case resumes at step 1
 
-#### Use case: Load external XML file into Dueue 
+#### Use case: Load external XML file into Dueue
 
 **MSS**
 

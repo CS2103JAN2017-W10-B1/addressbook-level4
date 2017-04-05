@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.HBox?>
 
 <HBox id="tagCardPane" fx:id="tagCardPane" prefHeight="50.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
-    
     <children>
       <Label fx:id="index" alignment="CENTER_RIGHT" contentDisplay="RIGHT" minWidth="45.0" prefWidth="30.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="\$id" textAlignment="JUSTIFY" HBox.hgrow="NEVER">
          <padding>
