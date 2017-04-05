@@ -13,12 +13,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="taskCardPane" fx:id="taskCardPane" prefHeight="120.0" prefWidth="522.0" style="-fx-border-radius: 5; -fx-border-width: 3; -fx-border-color: DARKSALMON; -fx-background-radius: 5; -fx-background-color: LAVENDERBLUSH;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="taskCardPane" fx:id="taskCardPane" prefHeight="120.0" prefWidth="600.0" style="-fx-border-radius: 5; -fx-border-width: 3; -fx-border-color: DARKSALMON; -fx-background-radius: 5; -fx-background-color: LAVENDERBLUSH;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <GridPane prefHeight="113.0" prefWidth="516.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
                 <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="186.0" />
-            <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="240.0" minWidth="150.0" prefWidth="240.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="240.0" minWidth="260.0" prefWidth="240.0" />
             </columnConstraints>
             <children>
             <HBox prefHeight="136.0" prefWidth="334.0" GridPane.hgrow="ALWAYS">
@@ -116,7 +116,7 @@
                               <Font name="Avenir Roman" size="11.0" />
                            </font>
                         </Label>
-                              <Label fx:id="time" alignment="CENTER_RIGHT" contentDisplay="RIGHT" minWidth="100.0" prefHeight="19.0" prefWidth="100.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$time" textAlignment="JUSTIFY" HBox.hgrow="NEVER">
+                              <Label fx:id="time" alignment="CENTER_RIGHT" contentDisplay="RIGHT" minWidth="120.0" prefHeight="19.0" prefWidth="100.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$time" textAlignment="JUSTIFY" HBox.hgrow="NEVER">
                            <font>
                               <Font name="Avenir Roman" size="11.0" />
                            </font>
@@ -128,12 +128,12 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="startDate" contentDisplay="RIGHT" minWidth="140.0" prefHeight="19.0" prefWidth="140.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startDate" HBox.hgrow="NEVER">
+                        <Label fx:id="startDate" contentDisplay="RIGHT" minWidth="140.0" prefHeight="19.0" prefWidth="127.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" text="\$startDate" HBox.hgrow="NEVER">
                            <font>
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <Label fx:id="date" alignment="CENTER_RIGHT" contentDisplay="RIGHT" minWidth="100.0" prefHeight="19.0" prefWidth="120.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$date" HBox.hgrow="NEVER">
+                        <Label fx:id="date" alignment="CENTER_RIGHT" contentDisplay="RIGHT" minWidth="120.0" prefHeight="19.0" prefWidth="128.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$date" HBox.hgrow="NEVER">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -148,7 +148,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="isRecurring" alignment="TOP_CENTER" contentDisplay="RIGHT" prefHeight="19.0" prefWidth="120.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$isRecurring" HBox.hgrow="NEVER">
+                        <Label fx:id="isRecurring" alignment="TOP_CENTER" contentDisplay="RIGHT" prefHeight="19.0" prefWidth="119.0" style="-fx-font-family: Avenir; -fx-font-size: 12;" styleClass="cell_small_label" text="\$isRecurring" HBox.hgrow="NEVER">
                            <font>
                               <Font size="11.0" />
                            </font>
