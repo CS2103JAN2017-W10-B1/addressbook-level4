@@ -44,7 +44,6 @@ public class Tag implements TaskField, Comparable<Tag> {
     /**
      * Creates a copy of the given Tag.
      */
-
     public Tag(Tag source) throws IllegalValueException {
         this(source.getName());
     }

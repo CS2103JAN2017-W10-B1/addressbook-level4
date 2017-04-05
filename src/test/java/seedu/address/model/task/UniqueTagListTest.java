@@ -21,7 +21,7 @@ public class UniqueTagListTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private UniqueTagList tester = new UniqueTagList();
+    private UniqueTagList tester = UniqueTagList.getStub();
 
     @Test
     public void sortTag_twoTags_allTagsContained() throws DuplicateTagException, IllegalValueException {
@@ -95,7 +95,7 @@ public class UniqueTagListTest {
         assertTrue(tags.contains(tag1));
         assertTrue(tags.contains(tag2));
 
-        UniqueTagList newTester = new UniqueTagList();
+        UniqueTagList newTester = UniqueTagList.getStub();
         newTester.setTags(tester);
 
         tags = newTester.toSet();

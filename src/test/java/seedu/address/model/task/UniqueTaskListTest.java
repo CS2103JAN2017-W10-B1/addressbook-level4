@@ -27,7 +27,7 @@ public class UniqueTaskListTest {
     @BeforeClass
     public static void oneTimeSetup() throws IllegalValueException {
 
-        tester = new UniqueTaskList();
+        tester = UniqueTaskList.getStub();
         testUtil = new TypicalTestTasks();
         shoppingTask = new Task(testUtil.shopping);
         familyDinnerTask = new Task(testUtil.familyDinner);
@@ -38,7 +38,7 @@ public class UniqueTaskListTest {
 
     @AfterClass
     public static void oneTimeTearDown() {
-        tester = new UniqueTaskList();
+        tester = UniqueTaskList.getStub();
     }
 
     @Before
@@ -52,7 +52,7 @@ public class UniqueTaskListTest {
 
     @After
     public void tearDown() {
-        tester = new UniqueTaskList();
+        tester = UniqueTaskList.getStub();
     }
 
     @Test

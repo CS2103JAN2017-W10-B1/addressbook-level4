@@ -135,7 +135,7 @@ public class TaskManagerTest {
 
         // Repeat td.alice twice
         List<Task> newTasks = Arrays.asList(gym, gym);
-        UniqueTagList newTags = new UniqueTagList();
+        UniqueTagList newTags = UniqueTagList.getStub();
         newTags.add(gym.getTag());
         TaskManagerStub newData = new TaskManagerStub(newTasks, newTags.asObservableList());
 
