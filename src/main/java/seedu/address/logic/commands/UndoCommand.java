@@ -13,7 +13,8 @@ public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
 
-    public static final String MESSAGE_SUCCESS = "Undo last task successfully.";
+    public static final String MESSAGE_SUCCESS = "Undo last task successfully.\n"
+            + " You can type 'redo' to revert this undo.\n";
 
     public static final String MESSAGE_UNSUCCESS = "No task to undo";
 

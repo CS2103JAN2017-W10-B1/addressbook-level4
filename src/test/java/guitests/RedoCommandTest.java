@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.CommandFormatter;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.testutil.TestEvent;
 import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
@@ -52,6 +54,7 @@ public class RedoCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("redo");
 
         assertTrue(taskListPanel.isListMatching(currentList));
-        assertResultMessage("Redo " + commandWord + "command successfully.");
+        assertResultMessage(CommandFormatter.undoMessageFormatter(
+                RedoCommand.MESSAGE_SUCCESS, commandWord + "command"));
     }
 }

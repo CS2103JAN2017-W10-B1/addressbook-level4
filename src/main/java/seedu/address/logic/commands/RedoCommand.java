@@ -13,7 +13,8 @@ public class RedoCommand extends AbleUndoCommand {
 
     public static final String COMMAND_WORD = "redo";
 
-    public static final String MESSAGE_SUCCESS = "Redo last task successfully.";
+    public static final String MESSAGE_SUCCESS = "Redo last task successfully.\n"
+            + " You can type 'undo' to revert this redo again!";
 
     public static final String MESSAGE_UNSUCCESS = "No task to redo";
 
