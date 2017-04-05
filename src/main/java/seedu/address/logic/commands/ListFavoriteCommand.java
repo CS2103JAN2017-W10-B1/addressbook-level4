@@ -4,6 +4,10 @@ package seedu.address.logic.commands;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.events.ui.JumpToTagListRequestEvent;
+import seedu.address.model.tag.UniqueTagList;
+
 /**
  * Lists all favorite unfinished tasks in Dueue or in a specified list.
  */
@@ -44,6 +48,7 @@ public class ListFavoriteCommand extends Command {
             LOGGER.info(getClass() + " listed all favorite tasks");
             return new CommandResult(MESSAGE_LIST_FAVORITE_SUCCESS);
         } else if (model.isListExist(keywords)) {
+            highlightCurrentTagName(keywords);
             model.updateFilteredTaskListGivenListNameAllFavorite(keywords);
             LOGGER.info(getClass() + " listed all favorite tasks in the given lists");
             return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_FAVORITE_SUCCESS, keywords));
@@ -52,7 +57,18 @@ public class ListFavoriteCommand extends Command {
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         }
     }
-
+  //@@author A0147996E
+    /**
+     * Highlight the single tag if user requests to filter tasks under a single list.
+     * Does not support highlighting multiple list names concurrently.
+     * @param keywords
+     */
+    private void highlightCurrentTagName(Set<String> keywords) {
+        int index = UniqueTagList.getInstance().find(keywords.toString());
+        if (index != -1) {
+            EventsCenter.getInstance().post(new JumpToTagListRequestEvent(index));
+        }
+    }
     @Override
     public boolean isUndoable() {
         return false;

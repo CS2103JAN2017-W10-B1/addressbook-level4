@@ -16,6 +16,8 @@ import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.storage.DataSavingExceptionEvent;
 import seedu.address.commons.events.ui.JumpToListRequestEvent;
+import seedu.address.commons.events.ui.JumpToTagListRequestEvent;
+import seedu.address.commons.events.ui.TagPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.TaskPanelSelectionChangedEvent;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
@@ -105,9 +107,20 @@ public class UiManager extends ComponentManager implements Ui {
     }
 
     @Subscribe
+    private void handleJumpToTagListRequestEvent(JumpToTagListRequestEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        MainWindow.mainWindow.getTagListPanel().scrollTo(event.targetIndex);
+    }
+
+    @Subscribe
     private void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         MainWindow.mainWindow.getTaskListPanel().scrollTo(event.targetIndex);
+    }
+
+    @Subscribe
+    private void handleTagPanelSelectionChangedEvent(TagPanelSelectionChangedEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
     }
 
     @Subscribe
