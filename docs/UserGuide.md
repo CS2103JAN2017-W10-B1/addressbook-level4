@@ -190,9 +190,9 @@ Examples:
 * `view next/Monday`<br>
   Returns a list of tasks due within next Monday
 
-### 2.8. Deleting task(s) or list(s) : `delete`
+### 2.8. Deleting task : `delete`
 
-Deletes the specified task(s) from Dueue.<br>
+Deletes the specified task from Dueue.<br>
 Format: `delete TASKINDEX`
 
 > * Deletes the task at the specified `TASKINDEX`. <br>
@@ -309,11 +309,14 @@ There is no need to save manually.
 * **List** : `list [all/favorite/finished] [LIST_NAME]` <br>
   e.g. `list work favorite`
 
+* **Load** : `load FILEPATH` <br>
+  e.g. `load data/sampleTasks.xml`
+
 * **Redo** : `redo` <br>
   e.g. `redo`
 
 * **Undo** : `undo` <br>
   e.g. `undo`
 
-* **View** : `view DUETYPE/NUMBEROFDAYS`<br>
-  e.g. `view dueby/10`
+* **View** : `view DUETYPE/NUMBEROFDAYS` `view DUETYPE/DATE`<br>
+  e.g. `view next/10 view on/today`

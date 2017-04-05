@@ -24,6 +24,17 @@
     -fx-opacity: 1;
 }
 
+.anchor-pane {
+     -fx-background-color:  linear-gradient(to left, #E55D87 , #5FC3E4);
+}
+
+.anchor-pane-with-border {
+     -fx-background-color:  linear-gradient(to left, #E55D87 , #5FC3E4);
+     -fx-border-color:  linear-gradient(to left, #E55D87 , #5FC3E4);
+     -fx-border-top-width: 1px;
+}
+
+
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Avenir";
@@ -42,7 +53,7 @@
 .table-view {
     -fx-base: #B993D6;
     -fx-control-inner-background: #B993D6;
-    -fx-background-color: #B993D6;
+    -fx-background-color: transparent;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -72,10 +83,6 @@
     -fx-opacity: 1;
 }
 
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
-}
-
 .split-pane:horizontal .split-pane-divider {
     -fx-border-color: transparent #5FC3E4;
     -fx-background-color: transparent,  #5FC3E4;
@@ -85,12 +92,6 @@
     -fx-border-radius: 1;
     -fx-border-width: 1;
     -fx-background-color:  linear-gradient(to left, #E55D87 , #5FC3E4);
-}
-
-.list-cell {
-    -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
 }
 
 .list-cell .label {
@@ -107,23 +108,13 @@
     -fx-text-fill: #010504;
 }
 
-.anchor-pane {
-     -fx-background-color:  linear-gradient(to left, #E55D87 , #5FC3E4);
-}
-
-.anchor-pane-with-border {
-     -fx-background-color:  linear-gradient(to left, #E55D87 , #5FC3E4);
-     -fx-border-color:  linear-gradient(to left, #E55D87 , #5FC3E4);
-     -fx-border-top-width: 1px;
-}
-
 .status-bar {
     -fx-background-color: #5FC3E4;
     -fx-text-fill: black;
 }
 
 .result-display {
-    -fx-background-color: #ffffff;
+    -fx-background-color: transparent;
 }
 
 .result-display .label {
@@ -201,10 +192,37 @@
     -fx-padding: 8 1 8 1;
 }
 
-#cardPane {
-    -fx-background-color: #ccffee;
-    -fx-border-color: #d6d6d6;
-    -fx-border-width: 1 1 1 1;
+#taskCardPane {
+    -fx-background-color: LAVENDERBLUSH;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: DARKSALMON;
+    -fx-border-width: 3;
+}
+
+#tagCardPane {
+    -fx-background-color: LAVENDERBLUSH;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: DARKSALMON;
+    -fx-border-width: 2;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: DARKSALMON;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: DARKSALMON;
+    -fx-border-width: 3;
+}
+
+.list-cell:filled:hover {
+    -fx-cell-hover-color: #0093ff;
+    -fx-text-fill: white;
+}
+
+.list-cell{
+	-fx-background-color: transparent;
 }
 
 #commandTypeLabel {
@@ -212,20 +230,6 @@
     -fx-text-fill: #F70D1A;
 }
 
-#filterField, #taskListPanel, #tagListPanel {
-    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
-}
-
-#tags {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
-#tags .label {
-    -fx-text-fill: white;
-    -fx-background-color: #383838;
-    -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
+#taskListPanel, #tagListPanel {
+    -fx-background-color: transparent;
 }
