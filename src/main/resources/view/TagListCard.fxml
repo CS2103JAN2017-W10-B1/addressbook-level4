@@ -4,31 +4,17 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 
-<HBox id="cardPane" fx:id="tagCardPane" prefHeight="45.0" prefWidth="168.0" style="-fx-background-color: LAVENDERBLUSH; -fx-border-color: SALMON; -fx-border-width: 2; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="tagCardPane" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: LAVENDERBLUSH; -fx-border-color: SALMON; -fx-border-width: 2; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <GridPane prefHeight="146.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-            <columnConstraints>
-                <ColumnConstraints hgrow="NEVER" maxWidth="134.0" minWidth="30.0" />
-            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="122.0" />
-            </columnConstraints>
-            <children>
-            <Label fx:id="index" prefHeight="22.0" prefWidth="30.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="\$id">
-               <GridPane.margin>
-                  <Insets left="10.0" />
-               </GridPane.margin></Label>
-            <Label fx:id="name" prefHeight="24.0" style="-fx-font-size: 16; -fx-font-family: Avenir;" text="\$tag" GridPane.columnIndex="1" />
-            </children>
-         <rowConstraints>
-            <RowConstraints />
-         </rowConstraints>
-         <HBox.margin>
+      <Label fx:id="index" alignment="CENTER_RIGHT" contentDisplay="RIGHT" minWidth="45.0" prefWidth="30.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="\$id" textAlignment="JUSTIFY" HBox.hgrow="NEVER">
+         <padding>
             <Insets top="10.0" />
-         </HBox.margin>
-        </GridPane>
+         </padding></Label>
+      <Label fx:id="name" prefHeight="26.0" prefWidth="163.0" style="-fx-font-size: 16; -fx-font-family: Avenir;" text="\$tag" HBox.hgrow="ALWAYS">
+         <padding>
+            <Insets top="10.0" />
+         </padding></Label>
     </children>
 </HBox>
