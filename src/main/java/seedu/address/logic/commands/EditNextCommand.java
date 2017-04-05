@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.task.ReadOnlyRecurringTask;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.RecurringProperty;
+import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
@@ -46,15 +47,16 @@ public class EditNextCommand extends EditCommand {
         if (!(taskToEdit instanceof ReadOnlyRecurringTask)) {
             throw new CommandException("The task to edit once should be a recurring task.");
         }
-        oldTask = new Task(lastShownList.get(filteredTaskListIndex));
+        oldTask = new RecurringTask(lastShownList.get(filteredTaskListIndex));
 
         try {
             Task newTask = createEditedTask(taskToEdit, editTaskDescriptor);
             newTask.setRecurringProperty(RecurringProperty.NON_RECURRING);
-            task = newTask;
+            task = new Task(newTask);
             model.addTask(newTask);
             model.finishTaskOnce(taskToEdit);
-            finishedOnceTask = taskToEdit;
+            finishedOnceTask = new RecurringTask(taskToEdit);
+            this.isSuccess = true;
         } catch (IllegalValueException e) {
             throw new CommandException(e.getMessage());
         }
@@ -72,9 +74,23 @@ public class EditNextCommand extends EditCommand {
     public CommandResult executeUndo(String message) throws CommandException {
         assert model != null;
         try {
-            model.deleteTask(task);
-            model.addTask(oldTask);
-            model.deleteTask(finishedOnceTask);
+            if (finishedOnceTask != null) {
+                model.deleteTask(task);
+                model.addTask(oldTask);
+                model.deleteTask(finishedOnceTask);
+                Task temp = new Task(task);
+                this.task = new RecurringTask(oldTask);
+                this.oldTask = temp;
+                this.finishedOnceTask = null;
+                this.isSuccess = true;
+            } else {
+                model.addTask(oldTask);
+                this.oldTask = new RecurringTask(task);
+                model.finishTaskOnce(task);
+                this.task = new Task(oldTask);
+                this.finishedOnceTask = new RecurringTask(task);
+                this.isSuccess = true;
+            }
         } catch (TaskNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
