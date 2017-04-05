@@ -387,14 +387,14 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     }
 
     public int compareToDay(TaskDate other) {
-        if (this.value.isEmpty()) {
+        if (value.isEmpty()) {
             if (other.value.isEmpty()) {
                 return 0;
             } else {
                 return INF;
             }
         } else {
-            if (this.value.isEmpty()) {
+            if (value.isEmpty()) {
                 return -INF;
             } else {
                 long diff = this.date.getTime() - other.date.getTime();
