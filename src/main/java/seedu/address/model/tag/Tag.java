@@ -16,10 +16,9 @@ public class Tag implements TaskField, Comparable<Tag> {
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
     public static final String TAG_RESERVED_NAME =
             "(?i)"
-            + "(list)|(tag)|(task)|(date)|(time)|(venue)|(description)|"
-            + "(finished)|(unfinished)|(favorite)|(favourite)|"
+            + "(list)|(finished)|(unfinished)|(favorite)|(favourite)|"
             + "(today)|(tomorrow)|(all)|"
-            + "(add)|(delete)|(edit)|(update)|(find)|(help)|(list)|(clear)|(finish)|(select)";
+            + "(add)|(delete)|(edit)|(update)|(find)|(help)|(list)|(clear)|(finish)|(scroll)|(load)";
     public static final String DEFAULT_TAG_NAME = "Inbox";
     public String tagName;
 
