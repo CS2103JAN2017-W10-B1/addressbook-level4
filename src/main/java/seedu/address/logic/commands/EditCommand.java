@@ -138,6 +138,7 @@ public class EditCommand extends AbleUndoCommand {
 
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
         TaskDate updatedDueDate = editTaskDescriptor.getDue().orElseGet(taskToEdit::getDate);
+        updatedDueDate = new TaskDate(updatedDueDate.getValue());
         TaskTime updatedDueTime = editTaskDescriptor.getDueTime().orElseGet(taskToEdit::getTime);
         Description updatedDescription = editTaskDescriptor.getDescription().orElseGet(taskToEdit::getDescription);
         Tag updatedTag = editTaskDescriptor.getTag().orElseGet(taskToEdit::getTag);
@@ -164,6 +165,7 @@ public class EditCommand extends AbleUndoCommand {
                     editTaskDescriptor.getStart().get().getValue().isEmpty())) {
                 TaskDate updatedStartDate = editTaskDescriptor.getStart()
                         .orElseGet(((ReadOnlyEvent) taskToEdit)::getStartDate);
+                updatedStartDate = new TaskDate(updatedStartDate.getValue());
                 TaskTime updatedStartTime = editTaskDescriptor.getStartTime()
                         .orElseGet(((ReadOnlyEvent) taskToEdit)::getStartTime);
                 return new Event(updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
@@ -171,6 +173,7 @@ public class EditCommand extends AbleUndoCommand {
             } else if (!taskToEdit.isEvent() && (editTaskDescriptor.getStart().isPresent() &&
                     !editTaskDescriptor.getStart().get().getValue().isEmpty())) {
                 TaskDate updatedStartDate = editTaskDescriptor.getStart().orElse(new TaskDate(""));
+                updatedStartDate = new TaskDate(updatedStartDate.getValue());
                 TaskTime updatedStartTime = editTaskDescriptor.getStartTime().orElse(new TaskTime(""));
                 return new Event (updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
                         updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
