@@ -101,11 +101,11 @@ public class XmlAdaptedTask {
         final Tag tag = new Tag(this.tag);
         final Venue venue = new Venue(this.venue);
         final Priority priority = new Priority(this.priority);
-        final RecurringMode recurring = getRecurringMode(this.recurringMode);
         if (this.isEvent) {
             final TaskDate startDate = new TaskDate(this.startDate);
             final TaskTime startTime = new TaskTime(this.startTime);
             if (isRecurring) {
+                final RecurringMode recurring = getRecurringMode(this.recurringMode);
                 return new RecurringEvent(name, startDate, startTime, date, time, description, tag, venue, priority,
                         isFavourite, isFinished, recurring);
             } else {
@@ -114,6 +114,7 @@ public class XmlAdaptedTask {
             }
         } else {
             if (isRecurring) {
+                final RecurringMode recurring = getRecurringMode(this.recurringMode);
                 return new RecurringTask(name, date, time, description, tag, venue, priority,
                         isFavourite, isFinished, recurring);
             } else {
