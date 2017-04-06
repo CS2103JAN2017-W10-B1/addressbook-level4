@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.ViewOnCommand.MESSAGE_NONNEGATIVE;
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.ViewOnCommand;
 import seedu.address.testutil.TestTask;
 
 public class ViewCommandTest extends TaskManagerGuiTest {
@@ -32,7 +33,7 @@ public class ViewCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("view next/-1");
         assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_NONNEGATIVE));
         commandBox.runCommand("view on/01/04/2017");
-        assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_NONNEGATIVE));
+        assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_USAGE));
     }
     @Test
     public void view_viewOnNDays_viewSuccess() {

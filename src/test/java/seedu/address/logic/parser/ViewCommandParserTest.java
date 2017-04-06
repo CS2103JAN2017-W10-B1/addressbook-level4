@@ -28,7 +28,7 @@ public class ViewCommandParserTest {
 
         IncorrectCommand incorrectCommand =  (IncorrectCommand) ViewCommandParser.parse(null);
         assertEquals(field.get(incorrectCommand), String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_USAGE  + ViewNextCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -51,7 +51,7 @@ public class ViewCommandParserTest {
         IncorrectCommand incorrectCommand =  (IncorrectCommand) ViewCommandParser.parse("next/abc");
 
         assertEquals(field.get(incorrectCommand), String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_NONNEGATIVE));
+                MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class ViewCommandParserTest {
 
         assertEquals(field.get(viewOnCommand), "10");
     }
-/*
+
     @Test
     public void viewParse_onInvalid_incorrectCommand() throws Exception {
 
@@ -74,8 +74,8 @@ public class ViewCommandParserTest {
         IncorrectCommand incorrectCommand =  (IncorrectCommand) ViewCommandParser.parse("on/abc");
 
         assertEquals(field.get(incorrectCommand), String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
-    }*/
+                MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_USAGE));
+    }
 
     @Test
     public void viewFormatter_validString_successfulFormatting() throws Exception {

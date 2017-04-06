@@ -18,8 +18,8 @@ public class ViewOnCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks due on "
             + "the specified date and displays them as a list with index numbers.\n"
-            + "Parameters: [on/[number of days from today]\n"
-            + "Example: " + COMMAND_WORD + " on/10";
+            + "Parameters: on/[number of days from today/date]\n"
+            + "Example: " + COMMAND_WORD + " on/tmr\n";
     public static final String MESSAGE_NONNEGATIVE = "The number of days in the future cannot be negative.\n";
 
     private final String numberOfDays;

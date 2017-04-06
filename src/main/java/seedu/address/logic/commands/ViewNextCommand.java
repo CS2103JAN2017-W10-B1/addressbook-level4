@@ -18,17 +18,11 @@ public class ViewNextCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List unfinished tasks due by "
             + "the specified date and displays them as a list with index numbers.\n"
-            + "Parameters: [next]/[number of days from today]\n"
-            + "Example: " + COMMAND_WORD + " next/10";
-
-    public static final String MESSAGE_NONNEGATIVE = "The number of days in the future cannot be negative.\n";
-
+            + "Parameters: [next]/[number of days from today/date]\n"
+            + "Example: " + COMMAND_WORD + " next/Monday";
     private final String numberOfDays;
 
     public ViewNextCommand(int numberDays) throws IllegalValueException {
-        if (numberDays < 0) {
-            throw new IllegalValueException(MESSAGE_NONNEGATIVE);
-        }
         numberOfDays = String.valueOf(numberDays);
     }
 
@@ -36,9 +30,6 @@ public class ViewNextCommand extends Command {
         Calendar today = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
         TaskDate todayDate = new TaskDate(TaskDate.getDateString(today));
         int numberDays = date.compareToDay(todayDate);
-        if (numberDays < 0) {
-            throw new IllegalValueException(MESSAGE_NONNEGATIVE);
-        }
         numberOfDays = String.valueOf(date.compareToDay(todayDate));
     }
 
