@@ -194,6 +194,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         if (editedReadOnlyTask.isEvent()) {
             try {
                 editedTask = new Event(editedReadOnlyTask);
+                editedTask.setRecurringProperty(RecurringProperty.NON_RECURRING);
             } catch (IllegalValueException e) {
                 logger.info("IllegalValueException thrown when building"
                         + " event in updating task manager");

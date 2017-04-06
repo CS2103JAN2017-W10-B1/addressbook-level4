@@ -24,7 +24,7 @@ public class RecurringEventTest {
     @BeforeClass
     public static void oneTimeSetup() throws IllegalValueException {
         sample = new RecurringEvent(new Name("tester"), new TaskDate("20/12/2017"), new TaskTime("0:00"),
-                new TaskDate("21/12/2017"), new TaskTime(""), new Description(""), new Tag(""), 
+                new TaskDate("21/12/2017"), new TaskTime(""), new Description(""), new Tag(""),
                 new Venue(""), new Priority(""),
                 false, FinishProperty.FINISHED, RecurringMode.MONTH);
     }
@@ -36,7 +36,7 @@ public class RecurringEventTest {
     public void constructor1_validInput_recurringEventConstructed() throws IllegalValueException {
 
         tester = new RecurringEvent(new Name("tester"), new TaskDate("20/12/2017"), new TaskTime("0:00"),
-                new TaskDate("21/12/2017"), new TaskTime(""), new Description(""), new Tag(""), 
+                new TaskDate("21/12/2017"), new TaskTime(""), new Description(""), new Tag(""),
                 new Venue(""), new Priority(""),
                 false, RecurringMode.MONTH);
         assertTrue(tester.isEvent());
@@ -51,7 +51,7 @@ public class RecurringEventTest {
     public void constructor2_validInput_recurringEventConstructed() throws IllegalValueException {
 
         tester = new RecurringEvent(new Name("tester"), new TaskDate("20/12/2017"), new TaskTime("0:00"),
-                new TaskDate("21/12/2017"), new TaskTime(""), new Description(""), new Tag(""), 
+                new TaskDate("21/12/2017"), new TaskTime(""), new Description(""), new Tag(""),
                 new Venue(""), new Priority(""),
                 false, FinishProperty.FINISHED, RecurringMode.MONTH);
         assertTrue(tester.isEvent());
@@ -61,7 +61,7 @@ public class RecurringEventTest {
         assertEquals(tester.getMode(), RecurringMode.MONTH);
         assertEquals(tester.getRecurringPeriod(), "every month");
     }
-    
+
     @Test
     public void constructor3_validInput_recurringEventConstructed() throws IllegalValueException {
 
@@ -128,4 +128,5 @@ public class RecurringEventTest {
         assertEquals(tester.getDate().getValue(), "21/1/2018");
         assertEquals(tester.getStartDate().getValue(), "20/1/2018");
     }
+
 }
