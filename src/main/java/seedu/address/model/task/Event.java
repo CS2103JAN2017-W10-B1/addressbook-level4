@@ -79,8 +79,8 @@ public class Event extends Task implements ReadOnlyEvent {
                 new Priority(source.getPriority().getValue()), source.isFavorite(), source.getFinished(),
                 source.getEventProperty(), source.getRecurringProperty());
         assert this.isEvent();
-        this.startDate = ((ReadOnlyEvent) source).getStartDate();
-        this.startTime = ((ReadOnlyEvent) source).getStartTime();
+        this.startDate = new TaskDate(((ReadOnlyEvent) source).getStartDate().getValue());
+        this.startTime = new TaskTime(((ReadOnlyEvent) source).getStartTime().getValue());
     }
 
     @Override
