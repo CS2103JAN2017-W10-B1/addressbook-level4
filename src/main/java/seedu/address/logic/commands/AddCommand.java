@@ -43,8 +43,12 @@ public class AddCommand extends AbleUndoCommand {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the Dueue";
 
     private final Task toAdd;
-    private boolean isSuccess;
+    // indicate whether the command had been executed successfully
+    private boolean isSuccess = false;
+    // indicate for undoing deleting of occurring Task or Events
     private boolean isDeleteAllOcurrence = true;
+    // indicate whether this command is performing undo for another command
+    private boolean isUndo = false;
 
     /**
      * Creates an AddCommand using raw values.
@@ -52,37 +56,33 @@ public class AddCommand extends AbleUndoCommand {
      * @throws IllegalValueException if any of the raw values are invalid
      */
 
-    public AddCommand(String name, String date, String startDate, String time, String startTime,
-            String tag, String description, String venue, String priority, String frequency,
-            boolean isFavourite, boolean isEvent, boolean isRecurring)
-            throws IllegalValueException {
-        //TODO: avoid long parameter list
-        if (isEvent) {
-            if (isRecurring) {
-                RecurringMode mode = getRecurringMode(frequency);
-                this.toAdd = buildEvent(name, date, startDate, time, startTime,
-                        tag, description, venue, priority, isFavourite, mode);
-            } else {
-                this.toAdd = buildEvent(name, date, startDate, time, startTime,
+    public AddCommand(String name, String date, String startDate, String time, String startTime, String tag,
+            String description, String venue, String priority, String frequency, boolean isFavourite,
+            boolean isEvent, boolean isRecurring) throws IllegalValueException {
+        RecurringMode mode = getRecurringMode(frequency);
+        if (isEvent && isRecurring) {
+            this.toAdd = buildRecurringEvent(name, date, startDate, time, startTime,
+                    tag, description, venue, priority, isFavourite, mode);
+        } else if (isEvent) {
+            this.toAdd = buildEvent(name, date, startDate, time, startTime,
                     tag, description, venue, priority, isFavourite);
-            }
+        } else if (isRecurring) {
+            this.toAdd = buildRecurringTask(name, date, time,
+                    tag, description, venue, priority, isFavourite, mode);
         } else {
-            if (isRecurring) {
-                RecurringMode mode = getRecurringMode(frequency);
-                this.toAdd = buildTask(name, date, time, tag, description,
-                        venue, priority, isFavourite, mode);
-            } else {
-                this.toAdd = buildTask(name, date, time, tag, description,
-                        venue, priority, isFavourite);
-            }
+            this.toAdd = buildTask(name, date, time, tag, description,
+                    venue, priority, isFavourite);
         }
-        this.isSuccess = false;
     }
 
-    private Event buildEvent(String name, String date, String startDate, String time,
-            String startTime, String tag, String description, String venue,
-            String priority, boolean isFavourite)
-                    throws IllegalValueException {
+    public AddCommand(ReadOnlyTask task, boolean isDeleteAllOcurrence) {
+        this.toAdd = (Task) task;
+        this.isDeleteAllOcurrence = isDeleteAllOcurrence;
+        this.isUndo = true;
+    }
+
+    private Event buildEvent(String name, String date, String startDate, String time, String startTime, String tag,
+            String description, String venue, String priority, boolean isFavourite) throws IllegalValueException {
         if (!startDate.isEmpty()) {
             return new Event(
                     new Name(name),
@@ -95,7 +95,7 @@ public class AddCommand extends AbleUndoCommand {
                     new Venue(venue),
                     new Priority(priority),
                     isFavourite
-            );
+                    );
         } else {
             return new Event(
                     new Name(name),
@@ -107,17 +107,15 @@ public class AddCommand extends AbleUndoCommand {
                     new Venue(venue),
                     new Priority(priority),
                     isFavourite
-                );
+                    );
         }
     }
 
-    private Event buildEvent(String name, String date, String startDate, String time,
-            String startTime, String tag, String description, String venue,
-            String priority, boolean isFavourite, RecurringMode mode)
-                    throws IllegalValueException {
+    private Event buildRecurringEvent(String name, String date, String startDate, String time, String startTime,
+            String tag, String description, String venue, String priority, boolean isFavourite, RecurringMode mode)
+            throws IllegalValueException {
         if (mode == null) {
-            return buildEvent(name, date, startDate, time, startTime, tag,
-                    description, venue, priority, isFavourite);
+            return buildEvent(name, date, startDate, time, startTime, tag, description, venue, priority, isFavourite);
         } else {
             if (!startDate.isEmpty()) {
                 return new RecurringEvent(
@@ -132,7 +130,7 @@ public class AddCommand extends AbleUndoCommand {
                         new Priority(priority),
                         isFavourite,
                         mode
-                );
+                        );
             } else {
                 return new RecurringEvent(
                         new Name(name),
@@ -145,15 +143,13 @@ public class AddCommand extends AbleUndoCommand {
                         new Priority(priority),
                         isFavourite,
                         mode
-                    );
+                        );
             }
         }
     }
 
-    private Task buildTask(String name, String date, String time,
-            String tag, String description, String venue,
-            String priority, boolean isFavourite)
-                    throws IllegalValueException {
+    private Task buildTask(String name, String date, String time, String tag, String description, String venue,
+            String priority, boolean isFavourite) throws IllegalValueException {
         return new Task(
                 new Name(name),
                 new TaskDate(date),
@@ -166,10 +162,8 @@ public class AddCommand extends AbleUndoCommand {
                 );
     }
 
-    private Task buildTask(String name, String date, String time,
-            String tag, String description, String venue,
-            String priority, boolean isFavourite, RecurringMode mode)
-                    throws IllegalValueException {
+    private Task buildRecurringTask(String name, String date, String time, String tag, String description, String venue,
+            String priority, boolean isFavourite, RecurringMode mode) throws IllegalValueException {
         if (mode == null) {
             return buildTask(name, date, time, tag,
                     description, venue, priority, isFavourite);
@@ -199,13 +193,16 @@ public class AddCommand extends AbleUndoCommand {
         return null;
     }
 
-    public AddCommand(ReadOnlyTask task, boolean isDeleteAllOcurrence) {
-        this.toAdd = (Task) task;
-        this.isDeleteAllOcurrence = isDeleteAllOcurrence;
-    }
-
     @Override
     public CommandResult execute() throws CommandException {
+        if (!isUndo) {
+            return execute(String.format(MESSAGE_SUCCESS, toAdd.getName()));
+        } else {
+            return execute(UndoCommand.MESSAGE_SUCCESS);
+        }
+    }
+
+    public CommandResult execute(String message) throws CommandException {
         assert model != null;
         try {
             model.addTask(toAdd);
@@ -213,16 +210,11 @@ public class AddCommand extends AbleUndoCommand {
             int taskIndex = model.getFilteredTaskList().indexOf(toAdd);
             EventsCenter.getInstance().post(new JumpToListRequestEvent(taskIndex));
             return new CommandResult(
-                    CommandFormatter.undoFormatter(
-                            String.format(MESSAGE_SUCCESS, toAdd.getName()), COMMAND_ADD));
+                    CommandFormatter.undoFormatter(message, COMMAND_ADD));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-    }
-
-    public Task getTask() {
-        return toAdd;
     }
 
     @Override
@@ -232,20 +224,13 @@ public class AddCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
-        assert model != null;
-        try {
-            model.addTask(toAdd);
-            this.isSuccess = true;
-            return new CommandResult(CommandFormatter.undoMessageFormatter(message, COMMAND_ADD));
-        } catch (UniqueTaskList.DuplicateTaskException e) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        }
+        return execute();
     }
 
     @Override
     public Command getUndoCommand() {
         if (isSuccess) {
-            return new DeleteCommand(getTask(), isDeleteAllOcurrence);
+            return new DeleteCommand(toAdd, isDeleteAllOcurrence);
         } else {
             return null;
         }
