@@ -14,6 +14,7 @@ import seedu.address.model.task.ReadOnlyRecurringTask;
 import seedu.address.model.task.ReadOnlyRecurringTask.RecurringMode;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.FinishProperty;
+import seedu.address.model.task.RecurringEvent;
 import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
@@ -100,28 +101,37 @@ public class XmlAdaptedTask {
         final Tag tag = new Tag(this.tag);
         final Venue venue = new Venue(this.venue);
         final Priority priority = new Priority(this.priority);
+        final RecurringMode recurring = getRecurringMode(this.recurringMode);
         if (this.isEvent) {
             final TaskDate startDate = new TaskDate(this.startDate);
             final TaskTime startTime = new TaskTime(this.startTime);
-
-            return new Event(name, startDate, startTime, date, time, description, tag, venue, priority,
-                    isFavourite, isFinished);
-        } else if (isRecurring) {
-            final RecurringMode recurring;
-            if (recurringMode.contains("day")) {
-                recurring = RecurringMode.DAY;
-            } else if (recurringMode.contains("week")) {
-                recurring = RecurringMode.WEEK;
-            } else if (recurringMode.contains("month")) {
-                recurring = RecurringMode.MONTH;
+            if (isRecurring) {
+                return new RecurringEvent(name, startDate, startTime, date, time, description, tag, venue, priority,
+                        isFavourite, isFinished, recurring);
             } else {
-                recurring = null;
+                return new Event(name, startDate, startTime, date, time, description, tag, venue, priority,
+                        isFavourite, isFinished);
             }
-            return new RecurringTask(name, date, time, description, tag, venue, priority,
-                    isFavourite, isFinished, recurring);
         } else {
-            return new Task(name, date, time, description, tag,
-                    venue, priority, isFavourite, isFinished);
+            if (isRecurring) {
+                return new RecurringTask(name, date, time, description, tag, venue, priority,
+                        isFavourite, isFinished, recurring);
+            } else {
+                return new Task(name, date, time, description, tag,
+                        venue, priority, isFavourite, isFinished);
+            }
+        }
+    }
+
+    private RecurringMode getRecurringMode(String recurringMode) {
+        if (recurringMode.contains("day")) {
+            return RecurringMode.DAY;
+        } else if (recurringMode.contains("week")) {
+            return RecurringMode.WEEK;
+        } else if (recurringMode.contains("month")) {
+            return RecurringMode.MONTH;
+        } else {
+            return null;
         }
     }
 
