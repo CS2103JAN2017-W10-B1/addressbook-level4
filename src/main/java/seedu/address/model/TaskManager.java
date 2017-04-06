@@ -152,15 +152,21 @@ public class TaskManager implements ReadOnlyTaskManager {
     private Task buildEditedTask(ReadOnlyTask editedReadOnlyTask) {
         if (editedReadOnlyTask.isEvent()) {
             try {
-                return new Event(editedReadOnlyTask);
+                if (editedReadOnlyTask.isRecurring()) {
+                    return new RecurringEvent(editedReadOnlyTask);
+                } else {
+                    return new Event(editedReadOnlyTask);
+                }
             } catch (IllegalValueException e) {
                 logger.info("IllegalValueException thrown when building"
                         + " event in updating task manager");
             }
-        } else if (editedReadOnlyTask.isRecurring()) {
-            return new RecurringTask(editedReadOnlyTask);
         } else {
-            return new Task(editedReadOnlyTask);
+            if (editedReadOnlyTask.isRecurring()) {
+                return new RecurringTask(editedReadOnlyTask);
+            } else {
+                return new Task(editedReadOnlyTask);
+            }
         }
         return null;
     }
