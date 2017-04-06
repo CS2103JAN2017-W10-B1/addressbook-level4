@@ -6,7 +6,9 @@ import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.RecurringEvent;
 import seedu.address.model.task.RecurringTask;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 
@@ -29,10 +31,14 @@ public class DeleteCommand extends AbleUndoCommand {
     public final int targetIndex;
 
     private ReadOnlyTask task;
+    private ReadOnlyTask taskToDelete;
     private ReadOnlyTask replaceTask;
-
-    private boolean isSuccess;
+    // indicating whether the command is executed correctly
+    private boolean isSuccess = false;
+    // indicate to delete all occurrence for occurring task and event
     private boolean isDeleteAllOcurrence;
+    // indicating whether this command in undoing another command
+    private boolean isUndo = false;
 
     public DeleteCommand(int targetIndex, boolean isDeleteAllOcurrence) {
         this.targetIndex = targetIndex;
@@ -44,29 +50,40 @@ public class DeleteCommand extends AbleUndoCommand {
     public DeleteCommand(ReadOnlyTask task, boolean isDeleteAllOcurrence) {
         this.targetIndex = 0;
         this.isDeleteAllOcurrence = isDeleteAllOcurrence;
-        this.task = task;
+        this.taskToDelete = task;
+        this.isUndo = true;
     }
 
 
     @Override
     public CommandResult execute() throws CommandException {
-
-        UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
-
-        if (lastShownList.size() < targetIndex) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        if (!isUndo) {
+            return execute(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+        } else {
+            return execute(UndoCommand.MESSAGE_SUCCESS);
         }
+    }
 
-        ReadOnlyTask taskToDelete = lastShownList.get(targetIndex - 1);
+    public CommandResult execute(String message) throws CommandException {
 
+        if (!isUndo) {
+            processData();
+        }
+        return delete(taskToDelete, message);
+    }
+
+
+    private CommandResult delete(ReadOnlyTask deleteTask, String message) {
         try {
-            if (taskToDelete.isRecurring() && !isDeleteAllOcurrence) {
+            if (deleteTask.isRecurring() && !isDeleteAllOcurrence) {
                 try {
-                    this.task = new RecurringTask(taskToDelete);
-                    ((RecurringTask) taskToDelete).finishOnce();
-                    this.replaceTask = new RecurringTask(taskToDelete);
+                    Task task = (Task) createRecurringTask(deleteTask);
+                    finishOnce(task);
+                    this.replaceTask = createRecurringTask(task);
                     isSuccess = true;
-                    model.updateTask(targetIndex - 1, taskToDelete);
+                    model.deleteTask(deleteTask);
+                    model.addTask(task);
+                    this.task = deleteTask;
                 } catch (DuplicateTaskException e) {
                     e.printStackTrace();
                 }
@@ -78,12 +95,40 @@ public class DeleteCommand extends AbleUndoCommand {
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target task cannot be missing";
         }
-
-        return new CommandResult(
-                CommandFormatter.undoFormatter(
-                        String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete), COMMAND_DELETE));
+        return new CommandResult(CommandFormatter.undoFormatter(message, COMMAND_DELETE));
     }
 
+    private void finishOnce(ReadOnlyTask deleteTask) {
+        if (!deleteTask.isEvent()) {
+            ((RecurringTask) deleteTask).finishOnce();
+        } else {
+            ((RecurringEvent) deleteTask).finishOnce();
+        }
+    }
+
+    private ReadOnlyTask createRecurringTask(ReadOnlyTask recurringTask) {
+        Task task = null;
+        if (recurringTask.isEvent()) {
+            try {
+                task = new RecurringEvent(recurringTask);
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } else {
+            task =  new RecurringTask(recurringTask);
+        }
+        return task;
+    }
+
+    private void processData() throws CommandException {
+        UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
+
+        if (lastShownList.size() < targetIndex) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+        taskToDelete = lastShownList.get(targetIndex - 1);
+    }
 
     @Override
     public boolean isUndoable() {
@@ -92,31 +137,7 @@ public class DeleteCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
-
-        try {
-            if (task.isRecurring() && !isDeleteAllOcurrence) {
-                try {
-                    RecurringTask task = new RecurringTask(this.task);
-                    ((RecurringTask) task).finishOnce();
-                    this.replaceTask = new RecurringTask(task);
-                    isSuccess = true;
-                    model.deleteTask(this.task);
-                    model.addTask(task);
-                } catch (DuplicateTaskException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (IllegalValueException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            } else {
-                model.deleteTask(this.task);
-                this.isSuccess = true;
-            }
-        } catch (TaskNotFoundException pnfe) {
-            assert false : "The target task cannot be missing";
-        }
-        return new CommandResult(CommandFormatter.undoMessageFormatter(message, COMMAND_DELETE));
+        return execute();
     }
 
     @Override
