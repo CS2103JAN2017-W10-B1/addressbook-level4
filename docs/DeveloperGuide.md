@@ -365,10 +365,11 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | add a new task by specifying a task name only | add a floating task
 `* * *` | user | add a task by specifying a task name together with its other fields as optional (Date, Time, Description, List, Venue, Priority, isFavorite)  | record tasks with various details
 `* * *` | user | add a new event | add a task with duration instead of due date
-`* * *` | user | add a task that has duplicate names but with different due date/time and/or under different lists | create similar tasks
-`* * *` | user | add an event that has duplicate names but with different starting and/or due date/time | create similar events due on different starting and ending dates and times and/or under different lists
-`* * *` | user | delete task(s) | remove task(s) that is/are no longer useful or created by mistake
-`* * *` | user | mark a task as finished | know the task is done
+`* * *` | user | add a recurring task/event | add a task/event with frequency to repeat
+`* * *` | user | add a task that has duplicate names but with other fields being different | create similar tasks/events
+`* * *` | user | delete task | remove task that is/are no longer useful or created by mistake
+`* * *` | user | mark a task/event as finished | know the task is done
+`* * *` | user | mark the most recent occurence of a recurring task/event as finished | finishthe task/event only once
 `* * *` | user | list tasks under a specific list | view my tasks by categories
 `* * *` | user | edit the Name/Date/Time/Description/Venue/Priority/isFavorite... of a task | change its content
 `* * *` | user | recategorize a task under a different list | change its category
@@ -402,30 +403,11 @@ Priority | As a ... | I want to ... | So that I can...
 
 (For all use cases below, the **System** is the `Dueue` and the **Actor** is the `user`, unless specified otherwise)
 
-#### Use case: Add task by name only
-
-**MSS**
-1. User requests to add task by specifying the name only
-2. Dueue shows the added task by name<br>
-Use case ends.
-
-**Extensions**
-
-1a. The given add command format is invalid
-
-> 1a1. Dueue shows an error and a help message on how to add a task<br>
-  Use case resumes at step 1
-
-1b. The given task already has an unfinished duplicate in current Dueue
-
-> 1b1. Dueue shows an error message<br>
-  Use case resumes at step 1
-
 #### Use case: Add task by name and other fields (TaskDate, Time, Description, List, Venue, Priority, isFavorite)
 
 **MSS**
 
-1. User requests to add task by specifying the name and other fields
+1. User requests to add task by specifying the name and other fields as optional
 2. Dueue shows the added task by name and other fields<br>
 Use case ends.
 
@@ -471,12 +453,32 @@ Use case ends.
 > 1c1. Dueue shows an error message on the field(s) that violate constraints<br>
   Use case resumes at step 1
 
-#### Use case: Add a task that has duplicate names but with different due date/time and/or under different lists
+#### Use case: Add a task/event that has duplicate names but with different due date/time and/or under different lists
 
 **MSS**
 
-1. User requests to add a task with duplicate name as current unfinished tasks
+1. User requests to add a task/event with duplicate name as current unfinished tasks/events
 2. Dueue displays the successul message and update current list view<br>
+Use case ends.
+
+**Extensions**
+
+1a. The given add command input format is invalid
+
+> 1a1. Dueue shows an error and a help message on how to add a task/event<br>
+  Use case resumes at step 1
+
+1b. The given task/event already has an exact unfinished duplicate
+
+> 1b1. Dueue shows an error of failure of adding a duplicate task/event<br>
+  Use case resumes at step 1
+
+#### Use case: Add a recurring task/event
+
+**MSS**
+
+1. User requests to add a recurring task/event by specifying its frequency
+2. Dueue shows the added task/event<br>
 Use case ends.
 
 **Extensions**
@@ -486,37 +488,16 @@ Use case ends.
 > 1a1. Dueue shows an error and a help message on how to add an event<br>
   Use case resumes at step 1
 
-1b. The given task already has an exact unfinished duplicate
+1b. The field(s) provided violate relevant contraints
 
-> 1b1. Dueue shows an error of failure of adding a duplicate task<br>
+> 1b1. Dueue shows an error message on the field(s) that violate constraints<br>
   Use case resumes at step 1
 
-#### Use case: Add an event that has duplicate names but with different starting and/or ending due date/time and/or under different lists
+#### Use case: Delete a task/event
 
 **MSS**
 
-1. User requests to add an event with duplicate name as current unfinished tasks
-2. Dueue displays the successul message and update current list view<br>
-Use case ends.
-
-**Extensions**
-
-1a. The given add command input format is invalid
-
-> 1a1. Dueue shows an error and a help message on how to add an event<br>
-  Use case resumes at step 1
-
-1b. The given event already has an exact unfinished duplicate
-
-> 1b1. Dueue shows an error of failure of adding a duplicate task<br>
-  Use case resumes at step 1
-
-
-#### Use case: Delete task
-
-**MSS**
-
-1. User requests to delete a task by task index
+1. User requests to delete a task/event by task index
 2. Dueue displays the successul message and update current list view<br>
 Use case ends.
 
@@ -532,11 +513,32 @@ Use case ends.
 >1b1. Dueue shows an error message<br>
  Use case resumes at step 1.
 
-#### Use case: Mark task as finished
+
+#### Use case: Mark a task/event as finished
 
 **MSS**
 
 1. User requests to mark task as finished
+2. Dueue displays the successul message and update current list view<br>
+Use case ends.
+
+**Extensions**
+
+1a. The given finish command input format is invalid
+
+> 1a1. Dueue shows an error and a help message on how to add an event<br>
+  Use case resumes at step 1
+
+1b. User input task index contain undefined items.
+
+>1b1. Dueue shows an error message<br>
+ Use case resumes at step 1.
+
+#### Use case: Mark the most recent occurence of a recurring task/event as finished
+
+**MSS**
+
+1. User requests to finish once of a recurring task/event
 2. Dueue displays the successul message and update current list view<br>
 Use case ends.
 
@@ -572,11 +574,11 @@ Use case ends.
 > 1b1. Dueue shows an error message <br>
   Use case resumes at step 1
 
-#### Use case: Edit the fields of a task
+#### Use case: Edit the fields of a task/event of recurring and non-recurring types
 
 **MSS**
 
-1. User requests to edit a task specified by the given task index and provide the details to edit, including Name/Date/Time/Description/Venue/Priority
+1. User requests to edit a task specified by the given task index and provide the details to edit, including Name/Date/Time/StartDate/StartTime/Description/Venue/Priority/Frequency
 2. Dueue shows success message upon editing and update current list view<br>
 Use case ends.
 
@@ -584,7 +586,7 @@ Use case ends.
 
 1a. The given edit command input format is invalid
 
-> 1a1. Dueue shows an error and a help message on how to add an event<br>
+> 1a1. Dueue shows an error message on how to edit<br>
   Use case resumes at step 1
 
 1b. The given task index is out of range
@@ -594,7 +596,7 @@ Use case ends.
 
 1c. The details to edit is invaid (e.g. starting date later than ending date)
 
-> 1c1. Dueue shows an error message<br>
+> 1c1. Dueue shows an error message on the constraint of the specific field<br>
   Use case resumes at step 1
 
 #### Use case: Recategorize a task under another list
@@ -771,34 +773,34 @@ Use case ends.
 
 **MSS**
 
-1. User requests to view all tasks due in the next n days
-2. Dueue shows a list of tasks in chronological order<br>
+1. User requests to view all tasks due in the next n days by specifying the date or number of days from now
+2. Dueue shows a list of tasks as due by the specific date<br>
 Use case ends.
 
 **Extensions**
 
-1a. The given n is invalid
+1a. The given number of days or date is invalid
 
 > 1a1. Dueue shows an error message <br>
 Use case resumes at step 1
 
 
-#### Use case: View on due date
+#### Use case: View all tasks due on a specific day
 
 **MSS**
 
-1. User requests to view all tasks due on a specific date
-2. Dueue shows a list of tasks due that date<br>
+1. User requests to view all tasks due on a specific date by specifying the date or number of days from now
+2. Dueue shows a list of tasks due on that date<br>
 Use case ends.
 
 **Extensions**
 
-1a. The given date is invalid
+1a. The given number of days or date is invalid
 
-> 1a1. Dueue shows an error message adn the standard format for specifying dates<br>
-  Use case resumes at step 1
+> 1a1. Dueue shows an error message <br>
+Use case resumes at step 1
 
-#### Use case: Undo previous edit/add/delete/finish command
+#### Use case: Undo previous add/delete/edit/finish/clear/load command
 
 **MSS**
 
@@ -811,7 +813,12 @@ Use case ends
 1a. Previous command is undoable
 
 > 1a1. Dueue shows an error message<br>
-  Use case ends
+  Use case ends.
+
+1b. No previous command to undo
+
+> 1a1. Dueue shows an error message<br>
+  Use case ends.
 
 #### Use case: Redo previous undo command
 
@@ -827,7 +834,6 @@ Use case ends
 
 > 1a1. Dueue shows an error message<br>
   Use case ends
-
 
 #### Use case: Create a new list
 
@@ -867,7 +873,6 @@ Use case ends.
 1. User views a specific list of tasks
 2. Dueue display a red label below the task name of the past due tasks<br>
 Use case ends
-
 
 ## Appendix C : Product Survey
 
