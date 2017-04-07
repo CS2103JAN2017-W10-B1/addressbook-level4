@@ -80,7 +80,6 @@ public class EditCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult execute() throws CommandException {
-
         processTask();
         return execute(String.format(MESSAGE_EDIT_TASK_SUCCESS, task.getName()));
     }
@@ -121,7 +120,7 @@ public class EditCommand extends AbleUndoCommand {
             }
         }
         model.updateFilteredListToShowAllUnfinishedTasks();
-        return new CommandResult(message);
+        return new CommandResult(CommandFormatter.undoFormatter(message, COMMAND_EDIT));
     }
 
     private void processTask() throws CommandException {

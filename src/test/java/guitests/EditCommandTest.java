@@ -8,6 +8,7 @@ import static seedu.address.model.task.Event.MESSAGE_EVENT_CONSTRAINT;
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandFormatter;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
@@ -25,10 +26,10 @@ public class EditCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void editTask_changeAllTaskFields_editSuccess() throws Exception {
-        String detailsToEdit = "n/lecture due/10/05/2017 dueT/16:00 #study d/Interesting module @I3 p/3 *u";
+        String detailsToEdit = "due/10/05/2017 dueT/16:00 #study d/Interesting module @I3 p/3 *u";
         int taskManagerIndex = 1;
 
-        TestTask editedTask = new TaskBuilder().withName("lecture").withDate("10/05/2017").withTag("study")
+        TestTask editedTask = new TaskBuilder().withName("assignment").withDate("10/05/2017").withTag("study")
                 .withTime("16:00").withDescription("Interesting module").withFinished(false).
                 withVenue("I3").withPriority("3").withFavorite(false).build();
         assertEditSuccess(taskManagerIndex, taskManagerIndex, detailsToEdit, editedTask);
@@ -158,6 +159,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
         // confirm the list now contains all previous Tasks plus the Task with updated details
         expectedTasksList = TestUtil.replaceTaskFromList(expectedTasksList, editedTask, taskManagerIndex - 1);
         assertTrue(taskListPanel.isListMatching(expectedTasksList));
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask.getName()));
+        assertResultMessage(CommandFormatter.undoFormatter(
+                String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask.getName()), "edit command"));
     }
 }

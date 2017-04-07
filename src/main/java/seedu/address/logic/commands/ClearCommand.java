@@ -30,7 +30,7 @@ public class ClearCommand extends AbleUndoCommand {
         tasks.resetData(model.getTaskManager());
         model.resetData(this.tasks);
         this.tasks = tasks;
-        return new CommandResult(CommandFormatter.undoMessageFormatter(message, COMMAND_CLEAR));
+        return new CommandResult(CommandFormatter.undoFormatter(message, COMMAND_CLEAR));
     }
 
     @Override
