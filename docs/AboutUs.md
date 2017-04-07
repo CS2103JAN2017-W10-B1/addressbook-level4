@@ -35,7 +35,7 @@ Role: Developer, UI Designer <br>
   * [Load external XML file into TaskManager](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#216-load-file-load)
   * [View tasks due in next N days](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#212-view-certain-tasks-view)
   * [Find tasks by keywords](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#217-find-tasks-find)
-  * [Highlight listName under execution of list commands][commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/59d0b98dd853afd5f920f6add8ff4a79a5d312b5)
+  * [Highlight listName under execution of list commands](https://github.com/CS2103JAN2017-W10-B1/main/commit/59d0b98dd853afd5f920f6add8ff4a79a5d312b5)
   * [Scroll current list view to a given index](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#218-scroll-to--scroll)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/main/A0147996E.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0147996E.md)]
 * Major contributions:
@@ -53,7 +53,7 @@ Role: Developer, UI Designer <br>
 <img src="images/sherminejong.jpg" width="150"><br>
 Role: Developer <br>
 
-* Components in charge of: [Logic](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#23-logic-component)[Storage](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#25-storage-component)
+* Components in charge of: [Logic](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#23-logic-component) [Storage](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#25-storage-component)
 * Aspects/tools in charge of: Github, Eclipse
 * Features implemented:
    * [Adding a typical task](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#22-adding-a-typical-task-add)
