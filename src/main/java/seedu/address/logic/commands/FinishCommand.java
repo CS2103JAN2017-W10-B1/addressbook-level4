@@ -41,10 +41,15 @@ public class FinishCommand extends AbleUndoCommand {
     public static final String MESSAGE_WRONG_TASK_INDEX = "Oops! This task already exists in Dueue.";
 
     public final int targetIndex;
+    // indicate whether the finish is successful
     private boolean isSuccess;
+    // indicate whether the task is deleted due to the duplicated task
     private boolean isDeleted;
+    // the task to be added if undoing
     private Task task;
+    // the task to be deleted if undoing or the edited finished task if not undoing
     private Task replaceTask;
+    // indicate whether the task is undoing a finish command
     private boolean isUndo;
 
     public FinishCommand(int targetIndex) {
@@ -61,6 +66,13 @@ public class FinishCommand extends AbleUndoCommand {
         return execute(String.format(MESSAGE_FINISH_TASK_SUCCESS, replaceTask.getName()));
     }
 
+    /*
+     * update the mark task
+     * if the task is not undoing a previous task the task update the model
+     * if there is a duplicate task delete the task to replace
+     * if undoing update by deleting and adding
+     * if the there is a duplicate task then do not delete just add
+     */
     public CommandResult execute(String message) throws CommandException {
 
         if (!isUndo) {
@@ -68,7 +80,6 @@ public class FinishCommand extends AbleUndoCommand {
                 model.updateTask(targetIndex - 1, replaceTask);
                 isSuccess = true;
             } catch (DuplicateTaskException e) {
-                this.isSuccess = false;
                 try {
                     model.deleteTask(replaceTask);
                     isSuccess = true;
@@ -122,6 +133,8 @@ public class FinishCommand extends AbleUndoCommand {
 
         return new CommandResult(message);
     }
+
+    // create the mark task
     private void processTask() throws CommandException {
         List<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
 
@@ -207,7 +220,7 @@ public class FinishCommand extends AbleUndoCommand {
         return execute(CommandFormatter.undoMessageFormatter(message, getUndoCommandWord()));
     }
 
-
+    // get the command to undo this command
     @Override
     public Command getUndoCommand() throws IllegalValueException {
         if (isSuccess) {
