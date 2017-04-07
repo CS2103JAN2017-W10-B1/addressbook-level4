@@ -75,12 +75,14 @@ public class AddCommand extends AbleUndoCommand {
         }
     }
 
+    // constructor for undoing a delete command
     public AddCommand(ReadOnlyTask task, boolean isDeleteAllOcurrence) {
         this.toAdd = (Task) task;
         this.isDeleteAllOcurrence = isDeleteAllOcurrence;
         this.isUndo = true;
     }
 
+    //create an event to add to Dueue
     private Event buildEvent(String name, String date, String startDate, String time, String startTime, String tag,
             String description, String venue, String priority, boolean isFavourite) throws IllegalValueException {
         if (!startDate.isEmpty()) {
@@ -111,6 +113,7 @@ public class AddCommand extends AbleUndoCommand {
         }
     }
 
+    // create a recurring event to add to Dueue
     private Event buildRecurringEvent(String name, String date, String startDate, String time, String startTime,
             String tag, String description, String venue, String priority, boolean isFavourite, RecurringMode mode)
             throws IllegalValueException {
@@ -148,6 +151,7 @@ public class AddCommand extends AbleUndoCommand {
         }
     }
 
+    // create a task to add into Dueue
     private Task buildTask(String name, String date, String time, String tag, String description, String venue,
             String priority, boolean isFavourite) throws IllegalValueException {
         return new Task(
@@ -162,6 +166,7 @@ public class AddCommand extends AbleUndoCommand {
                 );
     }
 
+    // create a recurring task to add into Dueue
     private Task buildRecurringTask(String name, String date, String time, String tag, String description, String venue,
             String priority, boolean isFavourite, RecurringMode mode) throws IllegalValueException {
         if (mode == null) {
@@ -182,6 +187,7 @@ public class AddCommand extends AbleUndoCommand {
         }
     }
 
+    // convert the string to RecurringMode
     private RecurringMode getRecurringMode(String ocurring) {
         if (ocurring.matches(RecurringTask.PERIOD_DAY_REGEX)) {
             return RecurringMode.DAY;
@@ -195,11 +201,8 @@ public class AddCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult execute() throws CommandException {
-        if (!isUndo) {
-            return execute(String.format(MESSAGE_SUCCESS, toAdd.getName()));
-        } else {
-            return execute(UndoCommand.MESSAGE_SUCCESS);
-        }
+        return execute(CommandFormatter.undoFormatter(
+                String.format(MESSAGE_SUCCESS, toAdd.getName()), COMMAND_ADD));
     }
 
     public CommandResult execute(String message) throws CommandException {
@@ -209,8 +212,7 @@ public class AddCommand extends AbleUndoCommand {
             this.isSuccess = true;
             int taskIndex = model.getFilteredTaskList().indexOf(toAdd);
             EventsCenter.getInstance().post(new JumpToTaskListRequestEvent(taskIndex));
-            return new CommandResult(
-                    CommandFormatter.undoFormatter(message, COMMAND_ADD));
+            return new CommandResult(message);
         } catch (UniqueTaskList.DuplicateTaskException e) {
             this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
@@ -224,9 +226,10 @@ public class AddCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
-        return execute();
+        return execute(message);
     }
 
+    // return the command that is equivalent to undoing add (DeleteCommand)
     @Override
     public Command getUndoCommand() {
         if (isSuccess) {

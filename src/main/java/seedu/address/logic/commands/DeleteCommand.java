@@ -37,8 +37,6 @@ public class DeleteCommand extends AbleUndoCommand {
     private boolean isSuccess = false;
     // indicate to delete all occurrence for occurring task and event
     private boolean isDeleteAllOcurrence;
-    // indicating whether this command in undoing another command
-    private boolean isUndo = false;
 
     public DeleteCommand(int targetIndex, boolean isDeleteAllOcurrence) {
         this.targetIndex = targetIndex;
@@ -47,43 +45,36 @@ public class DeleteCommand extends AbleUndoCommand {
         this.isSuccess = false;
     }
 
+    // constructor for undoing an add command
     public DeleteCommand(ReadOnlyTask task, boolean isDeleteAllOcurrence) {
         this.targetIndex = 0;
         this.isDeleteAllOcurrence = isDeleteAllOcurrence;
         this.taskToDelete = task;
-        this.isUndo = true;
     }
 
 
     @Override
     public CommandResult execute() throws CommandException {
-        if (!isUndo) {
-            return execute(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
-        } else {
-            return execute(UndoCommand.MESSAGE_SUCCESS);
-        }
+        processData();
+        return execute(CommandFormatter.undoFormatter(String.format(MESSAGE_DELETE_TASK_SUCCESS, this.taskToDelete)
+                , COMMAND_DELETE));
     }
 
+    /*
+     * Delete a task
+     * If user request to delete a recurring task and did not specify all the recurring task will be finish once
+     */
     public CommandResult execute(String message) throws CommandException {
-
-        if (!isUndo) {
-            processData();
-        }
-        return delete(taskToDelete, message);
-    }
-
-
-    private CommandResult delete(ReadOnlyTask deleteTask, String message) {
         try {
-            if (deleteTask.isRecurring() && !isDeleteAllOcurrence) {
+            if (taskToDelete.isRecurring() && !isDeleteAllOcurrence) {
                 try {
-                    Task task = (Task) createRecurringTask(deleteTask);
+                    Task task = (Task) createRecurringTask(taskToDelete);
                     finishOnce(task);
                     this.replaceTask = createRecurringTask(task);
                     isSuccess = true;
-                    model.deleteTask(deleteTask);
+                    model.deleteTask(taskToDelete);
                     model.addTask(task);
-                    this.task = deleteTask;
+                    this.task = taskToDelete;
                 } catch (DuplicateTaskException e) {
                     e.printStackTrace();
                 }
@@ -95,7 +86,7 @@ public class DeleteCommand extends AbleUndoCommand {
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target task cannot be missing";
         }
-        return new CommandResult(CommandFormatter.undoFormatter(message, COMMAND_DELETE));
+        return new CommandResult(message);
     }
 
     private void finishOnce(ReadOnlyTask deleteTask) {
@@ -106,6 +97,7 @@ public class DeleteCommand extends AbleUndoCommand {
         }
     }
 
+    // create a recurring task to be store for undoing the delete
     private ReadOnlyTask createRecurringTask(ReadOnlyTask recurringTask) {
         Task task = null;
         if (recurringTask.isEvent()) {
@@ -121,6 +113,7 @@ public class DeleteCommand extends AbleUndoCommand {
         return task;
     }
 
+    // get the task to be deleted from the modelManager
     private void processData() throws CommandException {
         UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
 
@@ -137,9 +130,10 @@ public class DeleteCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
-        return execute();
+        return execute(message);
     }
 
+    // Get the command that is equivalent to undoing a delete command (AddCommand)
     @Override
     public Command getUndoCommand() {
         if (isSuccess) {

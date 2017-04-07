@@ -41,4 +41,17 @@ public class CommandFormatter {
         String commandWord = command.getUndoCommandWord();
         return undoMessageFormatter(message, commandWord);
     }
+
+    public static String viewCommandFeedBackMessageFormatter(
+            String numberOfDays, String messageViewSuccess,
+            String messageViewSuccessToday, String messageViewSuccessTmr) {
+        if ("0".equals(numberOfDays)) {
+            return String.format(messageViewSuccessToday, numberOfDays);
+        } else if ("1".equals(numberOfDays)) {
+            return String.format(messageViewSuccessTmr, numberOfDays);
+        } else {
+            return  String.format(messageViewSuccess, numberOfDays);
+        }
+    }
+
 }

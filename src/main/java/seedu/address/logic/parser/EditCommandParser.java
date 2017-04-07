@@ -22,8 +22,8 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.EditNextCommand;
+import seedu.address.logic.commands.EditTaskDescriptor;
 import seedu.address.logic.commands.IncorrectCommand;
 
 /**

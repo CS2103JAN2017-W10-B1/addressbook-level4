@@ -17,15 +17,20 @@ public class ClearCommand extends AbleUndoCommand {
             + "Parameters: Nil\n"
             + "Example: " + COMMAND_WORD;
 
-    private TaskManager tasks;
+    private TaskManager tasks = TaskManager.getStub();
 
     @Override
     public CommandResult execute() {
+        return execute(MESSAGE_SUCCESS);
+    }
+
+    public CommandResult execute(String message) {
         assert model != null;
-        tasks = TaskManager.getStub();
+        TaskManager tasks = TaskManager.getStub();
         tasks.resetData(model.getTaskManager());
-        model.resetData(TaskManager.getStub());
-        return new CommandResult(CommandFormatter.undoFormatter(MESSAGE_SUCCESS, COMMAND_CLEAR));
+        model.resetData(this.tasks);
+        this.tasks = tasks;
+        return new CommandResult(CommandFormatter.undoMessageFormatter(message, COMMAND_CLEAR));
     }
 
     @Override
@@ -35,12 +40,7 @@ public class ClearCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
-        assert model != null;
-        TaskManager tasks = TaskManager.getStub();
-        tasks.resetData(model.getTaskManager());
-        model.resetData(this.tasks);
-        this.tasks = tasks;
-        return new CommandResult(CommandFormatter.undoMessageFormatter(message, COMMAND_CLEAR));
+        return execute(message);
     }
 
     @Override
