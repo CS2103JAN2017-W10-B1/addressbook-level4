@@ -2,13 +2,11 @@
 package seedu.address.logic.commands;
 
 import java.util.List;
-import java.util.Optional;
 
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.events.ui.JumpToTaskListRequestEvent;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
@@ -19,6 +17,7 @@ import seedu.address.model.task.ReadOnlyEvent;
 import seedu.address.model.task.ReadOnlyRecurringTask.RecurringMode;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.FinishProperty;
+import seedu.address.model.task.RecurringEvent;
 import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
@@ -78,14 +77,8 @@ public class EditCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult execute() throws CommandException {
-        List<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
 
-        if (filteredTaskListIndex >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
-
-        ReadOnlyTask taskToEdit = lastShownList.get(filteredTaskListIndex);
-        oldTask = createTask(taskToEdit);
+        ReadOnlyTask taskToEdit =  processTask();
 
         try {
             Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
@@ -104,25 +97,36 @@ public class EditCommand extends AbleUndoCommand {
         }
     }
 
+    private ReadOnlyTask processTask() throws CommandException {
+        List<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
+
+        if (filteredTaskListIndex >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+
+        ReadOnlyTask taskToEdit = lastShownList.get(filteredTaskListIndex);
+        oldTask = createTask(taskToEdit);  
+        return taskToEdit;
+    }
+
     protected Task createTask(ReadOnlyTask task) {
         Task newTask = null;
-        if (task.isEvent()) {
+        if (task.isEvent() && task.isRecurring()) {
             try {
-                newTask = new Event(task.getName(), ((Event) task).getStartDate(),
-                        ((Event) task).getStartTime(), task.getDate(), task.getTime(), task.getDescription(),
-                        task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(),
-                        FinishProperty.UNFINISHED);
+                newTask = new RecurringEvent(task);
+            } catch (IllegalValueException e) {
+                e.printStackTrace();
+            }
+        } else if (task.isEvent()) {
+            try {
+                newTask = new Event(task);
             } catch (IllegalValueException e) {
                 e.printStackTrace();
             }
         } else if (task.isRecurring()) {
-            newTask = new RecurringTask(task.getName(), task.getDate(), task.getTime(), task.getDescription(),
-                        task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(),
-                        ((RecurringTask) task).getMode());
+            newTask = new RecurringTask(task);
         } else {
-            newTask = new Task(task.getName(), task.getDate(), task.getTime(), task.getDescription(),
-                    task.getTag(), task.getVenue(), task.getPriority(), task.isFavorite(),
-                    FinishProperty.UNFINISHED);
+            newTask = new Task(task);
         }
         return newTask;
     }
@@ -136,6 +140,7 @@ public class EditCommand extends AbleUndoCommand {
             EditTaskDescriptor editTaskDescriptor) throws IllegalValueException {
         assert taskToEdit != null;
 
+        // get the common detail field
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
         TaskDate updatedDueDate = editTaskDescriptor.getDue().orElseGet(taskToEdit::getDate);
         updatedDueDate = new TaskDate(updatedDueDate.getValue());
@@ -146,220 +151,73 @@ public class EditCommand extends AbleUndoCommand {
         Priority updatedPriority = editTaskDescriptor.getPriority().orElseGet(taskToEdit::getPriority);
         FinishProperty isFinished = taskToEdit.getFinished();
         boolean isFavourite;
+        // check the fravourite
         if (editTaskDescriptor.getIsFavouriteEdited()) {
             isFavourite = editTaskDescriptor.getFavourite();
         } else {
             isFavourite = taskToEdit.isFavorite();
         }
+        // check the RecurringMode
+        RecurringMode mode = null;
         if (taskToEdit.isRecurring() || editTaskDescriptor.getRecurringMode() != null) {
-            RecurringMode mode;
             if (editTaskDescriptor.getRecurringMode() != null) {
                 mode = editTaskDescriptor.getRecurringMode();
             } else {
-                mode = ((RecurringTask) taskToEdit).getMode();
+                if (taskToEdit.isEvent()) {
+                    mode = ((RecurringEvent) taskToEdit).getMode();
+                } else {
+                    mode = ((RecurringTask) taskToEdit).getMode();
+                }
             }
-            return new RecurringTask(updatedName, updatedDueDate, updatedDueTime,
-                    updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, mode);
-        } else if (editTaskDescriptor.updatedEvent(editTaskDescriptor.getStart()) || taskToEdit.isEvent()) {
+        }
+        /*
+         *If the Task is an Event or the user specify the startDate or startTime
+         *Then get the Event property
+         *Else it is a task
+         */
+        if (editTaskDescriptor.updatedEvent(editTaskDescriptor.getStart()) || taskToEdit.isEvent()) {
+
+            // if the task is an event and the user wants to keep it as an event or the user edit it to become an event
             if (taskToEdit.isEvent() && !(editTaskDescriptor.getStart().isPresent() &&
                     editTaskDescriptor.getStart().get().getValue().isEmpty())) {
+
                 TaskDate updatedStartDate = editTaskDescriptor.getStart()
                         .orElseGet(((ReadOnlyEvent) taskToEdit)::getStartDate);
-                updatedStartDate = new TaskDate(updatedStartDate.getValue());
                 TaskTime updatedStartTime = editTaskDescriptor.getStartTime()
                         .orElseGet(((ReadOnlyEvent) taskToEdit)::getStartTime);
-                return new Event(updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
-                        updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
-            } else if (!taskToEdit.isEvent() && (editTaskDescriptor.getStart().isPresent() &&
-                    !editTaskDescriptor.getStart().get().getValue().isEmpty())) {
-                TaskDate updatedStartDate = editTaskDescriptor.getStart().orElse(new TaskDate(""));
-                updatedStartDate = new TaskDate(updatedStartDate.getValue());
-                TaskTime updatedStartTime = editTaskDescriptor.getStartTime().orElse(new TaskTime(""));
-                return new Event (updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
-                        updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
+
+                // if the Event is recurring or the user edit it to become recurring
+                if (taskToEdit.isRecurring() || editTaskDescriptor.getRecurringMode() != null) {
+                    return new RecurringEvent(updatedName, updatedStartDate, updatedStartTime, updatedDueDate,
+                            updatedDueTime, updatedDescription, updatedTag, updatedVenue, updatedPriority,
+                            isFavourite, isFinished, mode);
+                } else {
+                    return new Event(updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
+                            updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
+                }
+
+            } else {
+                // the user wants to convert a event into a task
+
+                // if the Task is recurring or the user edit it to become recurring
+                if (taskToEdit.isRecurring() || editTaskDescriptor.getRecurringMode() != null) {
+                    return new RecurringTask(updatedName, updatedDueDate, updatedDueTime, updatedDescription,
+                            updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished, mode);
+                } else {
+                    return new Task(updatedName, updatedDueDate, updatedDueTime, updatedDescription,
+                            updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
+                }
+            }
+        } else {
+            // if the Task is recurring or the user edit it to become recurring
+            if ((taskToEdit.isRecurring() || editTaskDescriptor.getRecurringMode() != null) && !taskToEdit.isEvent()) {
+                return new RecurringTask(updatedName, updatedDueDate, updatedDueTime,
+                        updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, mode);
             } else {
                 return new Task(updatedName, updatedDueDate, updatedDueTime, updatedDescription,
                         updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
             }
-        } else {
-            return new Task(updatedName, updatedDueDate, updatedDueTime, updatedDescription,
-                    updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
         }
-    }
-
-    /**
-     * Stores the details to edit the task with. Each non-empty field value will replace the
-     * corresponding field value of the task.
-     */
-    public static class EditTaskDescriptor {
-        private Optional<Name> name = Optional.empty();
-        private Optional<TaskDate> due = Optional.empty();
-        private Optional<TaskTime> dueTime = Optional.empty();
-        private Optional<TaskDate> start = Optional.empty();
-        private Optional<TaskTime> startTime = Optional.empty();
-        private Optional<Description> description = Optional.empty();
-        private Optional<Tag> tag = Optional.empty();
-        private Optional<Venue> venue = Optional.empty();
-        private Optional<Priority> priority = Optional.empty();
-        private RecurringMode recurringMode;
-        private boolean isFavourite;
-
-        private boolean isFavouriteEdited;
-
-        public EditTaskDescriptor() {}
-
-        public EditTaskDescriptor(EditTaskDescriptor toCopy) {
-            this.name = toCopy.getName();
-            this.due = toCopy.getDue();
-            this.dueTime = toCopy.getDueTime();
-            this.start = toCopy.getStart();
-            this.startTime = toCopy.getStartTime();
-            this.description = toCopy.getDescription();
-            this.tag = toCopy.getTag();
-            this.venue = toCopy.getVenue();
-            this.priority = toCopy.getPriority();
-            this.isFavourite = toCopy.getFavourite();
-            this.isFavouriteEdited = toCopy.getIsFavouriteEdited();
-            this.recurringMode = toCopy.getRecurringMode();
-        }
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyPresent(
-                    this.name, this.due, this.dueTime, this.start, this.startTime,
-                    this.description, this.tag, this.venue, this.priority) ||
-                    this.isFavouriteEdited || (this.recurringMode != null);
-        }
-
-        public void setName(Optional<Name> name) {
-            assert name != null;
-            this.name = name;
-        }
-
-        public Optional<Name> getName() {
-            return name;
-        }
-
-        public void setDue(Optional<TaskDate> due) {
-            assert due != null;
-            this.due = due;
-        }
-
-        public void setStart(Optional<TaskDate> start) {
-            assert start != null;
-            this.start = start;
-        }
-
-        public Optional<TaskDate> getDue() {
-            return due;
-        }
-
-        public Optional<TaskDate> getStart() {
-            return start;
-        }
-
-        public void setDueTime(Optional<TaskTime> dueTime) {
-            assert dueTime != null;
-            this.dueTime = dueTime;
-        }
-
-        public void setStartTime(Optional<TaskTime> startTime) {
-            assert startTime != null;
-            this.startTime = startTime;
-        }
-
-        public Optional<TaskTime> getDueTime() {
-            return dueTime;
-        }
-
-        public Optional<TaskTime> getStartTime() {
-            return startTime;
-        }
-
-        public void setDescription(Optional<Description> description) {
-            assert description != null;
-            this.description = description;
-        }
-
-        public Optional<Description> getDescription() {
-            return description;
-        }
-
-        public void setTag(Optional<Tag> tag) {
-            assert tag != null;
-            this.tag = tag;
-        }
-
-        public Optional<Tag> getTag() {
-            return tag;
-        }
-
-        public void setVenue(Optional<Venue> venue) {
-            assert venue != null;
-            this.venue = venue;
-        }
-
-        public Optional<Venue> getVenue() {
-            return venue;
-        }
-
-        public void setPriority(Optional<Priority> priority) {
-            assert priority != null;
-            this.priority = priority;
-        }
-
-        public Optional<Priority> getPriority() {
-            return priority;
-        }
-
-        public void setIsFavourite(boolean isFavourite) {
-            if (isFavourite) {
-                this.isFavouriteEdited = true;
-                this.isFavourite = true;
-            }
-        }
-
-        protected boolean getFavourite() {
-            return this.isFavourite;
-        }
-
-        protected boolean getIsFavouriteEdited() {
-            return this.isFavouriteEdited;
-        }
-
-        public void setIsUnfavourite (boolean isUnFavourite) {
-            if (isUnFavourite) {
-                this.isFavouriteEdited = true;
-                this.isFavourite = false;
-            }
-        }
-
-        public boolean updatedEvent(Optional<TaskDate> start) {
-            return start.isPresent();
-        }
-
-        //@@author A0147984L
-        public void setRecurringMode(Optional<String> ocurrence) {
-            if (ocurrence.isPresent()) {
-                String ocurring = ocurrence.orElse("");
-                if (ocurring.matches(RecurringTask.PERIOD_DAY_REGEX)) {
-                    this.recurringMode = RecurringMode.DAY;
-                } else if (ocurring.matches(RecurringTask.PERIOD_WEEK_REGEX)) {
-                    this.recurringMode = RecurringMode.WEEK;
-                } else if (ocurring.matches(RecurringTask.PERIOD_MONTH_REGEX)) {
-                    this.recurringMode = RecurringMode.MONTH;
-                }
-            } else {
-                this.recurringMode = null;
-            }
-        }
-
-        public RecurringMode getRecurringMode() {
-            return this.recurringMode;
-        }
-        //@@author
     }
 
     @Override
