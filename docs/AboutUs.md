@@ -8,12 +8,14 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/wangzexin.jpg" width="150"><br>
 Role: Developer <br>
 
-* Components in charge of: [Logic](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#23-logic-component)[Commons](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#26-common-classes)
+* Components in charge of: [Logic](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#23-logic-component) [Commons](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#26-common-classes)
 * Aspects/tools in charge of: JUnit testing, Travis, Codacy, Coveralls
 * Features implemented:
    * [View tasks due on a day](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#27-view-certain-tasks-view)
-   * [List tasks](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#25-listing-all-tasks--list)
+   * [List tasks](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#28-listing-all-tasks--list)
+   * [Edit next recurrence of a recurring task/event](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#211-edit-next-recurring-taskevent--edit-nextt)
    * [Display help messages for commands](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#21-viewing-help--help)
+   * [Create interactive messages for redo command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#215-reverse-previous-undo-command-redo)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/collated/main/A0143409J.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0143409J.md)]
 * Other major contributions:
   * Apply Dependency Inversion Principle by TaskField inteface[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/cf16109842cf3476b1111f9fab33de78976f2980)]
@@ -23,19 +25,18 @@ Role: Developer <br>
 
 -----
 
-#### [Yan Xiaoxuan][Matilda-Yxx](https://github.com/Matilda-Yxx)
+#### [Yan Xiaoxuan](https://github.com/Matilda-Yxx)
 <img src="images/matilda-yxx.jpg" width="150"><br>
 Role: Developer, UI Designer <br>
 
-* Components in charge of: [UI](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#22-ui-component)
+* Components in charge of: [UI](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#22-ui-component) [GUItests]
 * Aspects/tools in charge of: JUnit Testing, SceneBuilder, Documentation
 * Features implemented:
-  * [Load external XML file into TaskManager](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#212-load-file-load)
-  * [View tasks due in next N days](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#27-view-certain-tasks-view)
-  * [Find tasks by keywords](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#213-find-tasks-find)
-  * [Highlight listName under execution of list commands](https://github.com/CS2103JAN2017-W10-B1/main/commit/59d0b98dd853afd5f920f6add8ff4a79a5d312b5)
-  * [Scroll and highlight the most recently mutated task card]
-  * [Scroll current list view to a given index](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#214-scroll-to--scroll)
+  * [Load external XML file into TaskManager](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#216-load-file-load)
+  * [View tasks due in next N days](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#212-view-certain-tasks-view)
+  * [Find tasks by keywords](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#217-find-tasks-find)
+  * [Highlight listName under execution of list commands][commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/59d0b98dd853afd5f920f6add8ff4a79a5d312b5)
+  * [Scroll current list view to a given index](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#218-scroll-to--scroll)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/main/A0147996E.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0147996E.md)]
 * Major contributions:
   * Designer of UI and maintain all UI components, including the fxml and css files
@@ -56,11 +57,12 @@ Role: Developer <br>
 * Aspects/tools in charge of: Github, Eclipse
 * Features implemented:
    * [Adding a typical task](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#22-adding-a-typical-task-add)
-   * [Edit task(s)](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#26-editing-tasks--edit)
-   * [Delete task(s)](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#28-deleting-tasks-or-lists--delete)
-   * [Finish task(s)](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#24-finishing-tasks--finish)
-   * [Undo latest command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#210-undo-latest-command-undo)
-   * [Redo previous `undo` command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#211-reverse-previous-undo-command-redo)
+   * [Edit a task](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#29-editing-a-task--edit)
+   * [Edit an event](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#210-edit-an-event--edit)
+   * [Delete a task](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#213-deleting-task--delete)
+   * [Finish a task](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#26-finishing-a-non-recurring-taskevent--finish)
+   * [Undo latest command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#214-undo-latest-command-undo)
+   * [Redo previous `undo` command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#215-reverse-previous-undo-command-redo)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/main/A0138474X.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0138474X.md)]
 
 -----
@@ -73,6 +75,10 @@ Role: Developer <br>
 * Aspects/tools in charge of: Github, Eclipse
 * Features implemented:
    * [Add an event](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#23-adding-an-event-add)
+   * [Add a recurring task](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#24-adding-a-recurring-task-add)
+   * [Add a recurring event](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#25-adding-a-recurring-event-add)
+   * [Edit next recurring task/event](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#211-edit-next-recurring-taskevent--edit-nextt)
+   * [Finish a recurring task/event](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#27-finishing-a-recurring-taskevent--finish)
    * [Allow user to enter date in variable manners](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#22-adding-a-typical-task-add)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/main/A0147984L.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0147984L.md)]
 
