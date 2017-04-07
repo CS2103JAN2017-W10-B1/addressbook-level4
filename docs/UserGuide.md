@@ -384,15 +384,14 @@ There is no need to save manually.
 ## 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with
-       the file that contains the data of your previous Dueue folder.
+**A**: Install the app in the other computer and load the original empty data file created that contains the data of your previous Dueue folder.
 
 ## 4. Command Summary
 
 * **Add**  `add n/TASKNAME [due/DUEDATE] [dueT/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f]` <br>
   e.g. `add CS2103 lecture due/01/02 dueT/16:00 #study d/go for lecture p/3 @iCube`
 
-* **Clear** : `clear`
+* **Clear** : `clear`<br>
   e.g. `clear`
 
 * **Delete** : `delete TASKINDEX...` <br>
