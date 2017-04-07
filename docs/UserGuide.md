@@ -65,7 +65,7 @@ Format: `add TASKNAME [due/DATE] [dueT/TIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p
 > * TIME should be in the format of "hh:mm".
 > * If `[#LIST]` is not specified, the task will be automatically categorized under the default list "Inbox". If given LIST is not an existing list name, a new LIST will be created and displayed in Dueue.
 > * PRIORITY should be in the format of "3/2/1" (from most importance to least importance), or equivalently "important/normal/trivial"
-> * User can mark a task as favorite by specifying the field [*f]. Favorite tasks can be viewed using the [list favorite command](#28-listing-all-tasks--list).
+> * User can mark a task as favorite by specifying the field [*f]. Favorite tasks can be viewed using the [list favorite command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#28-listing-all-tasks--list).
 > * Task list will automatically scroll to the newly added task.
 
 Examples:
