@@ -22,7 +22,7 @@ import com.google.common.eventbus.Subscribe;
 
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.events.model.DueueChangedEvent;
-import seedu.address.commons.events.ui.JumpToListRequestEvent;
+import seedu.address.commons.events.ui.JumpToTaskListRequestEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CommandFormatter;
@@ -77,7 +77,7 @@ public class LogicManagerTest {
     }
 
     @Subscribe
-    private void handleJumpToListRequestEvent(JumpToListRequestEvent je) {
+    private void handleJumpToTaskListRequestEvent(JumpToTaskListRequestEvent je) {
         targetedJumpIndex = je.targetIndex;
     }
 

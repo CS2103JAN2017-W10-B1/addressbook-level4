@@ -7,23 +7,23 @@ import java.lang.reflect.Field;
 
 import org.junit.Test;
 
-import seedu.address.commons.events.ui.JumpToListRequestEvent;
+import seedu.address.commons.events.ui.JumpToTaskListRequestEvent;
 
 public class JumpToListRequestEventTest {
     @Test
     public void checkClassName_validInt_successfulChecking() {
-        String className = "JumpToListRequestEvent";
-        JumpToListRequestEvent event = new JumpToListRequestEvent(1);
+        String className = "JumpToTaskListRequestEvent";
+        JumpToTaskListRequestEvent event = new JumpToTaskListRequestEvent(1);
 
         assertEquals(className, event.toString());
     }
 
     @Test
     public void checkTargetIndex_validInt_successfulChecking() throws Exception {
-        Field field = JumpToListRequestEvent.class.getDeclaredField("targetIndex");
+        Field field = JumpToTaskListRequestEvent.class.getDeclaredField("targetIndex");
         field.setAccessible(true);
 
-        JumpToListRequestEvent event = new JumpToListRequestEvent(1);
+        JumpToTaskListRequestEvent event = new JumpToTaskListRequestEvent(1);
         assertEquals(1, field.get(event));
     }
 }
