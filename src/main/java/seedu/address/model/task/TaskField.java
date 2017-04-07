@@ -6,8 +6,8 @@ package seedu.address.model.task;
 
 public interface TaskField {
 
-    String getDisplayText ();
+    public abstract String getDisplayText ();
 
-    String getValue();
+    public abstract String getValue();
 
 }

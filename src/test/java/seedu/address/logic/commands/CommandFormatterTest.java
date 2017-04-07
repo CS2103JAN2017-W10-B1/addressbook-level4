@@ -35,7 +35,7 @@ public class CommandFormatterTest {
         ClearCommand clearCommand = new ClearCommand();
 
         String result = CommandFormatter.undoMessageFormatter(UndoCommand.MESSAGE_SUCCESS, clearCommand);
-        assertEquals(result, "Undo clear command successfully.\n You can type 'redo' to revert this undo.\n");
+        assertEquals(result, "Undo clear command successfully.\nYou can type 'redo' to revert this undo.\n");
     }
 
     @Test
@@ -43,7 +43,7 @@ public class CommandFormatterTest {
         ClearCommand clearCommand = new ClearCommand();
 
         String result = CommandFormatter.undoMessageFormatter(RedoCommand.MESSAGE_SUCCESS, clearCommand);
-        assertEquals(result, "Redo clear command successfully.\n You can type 'undo' to revert this redo again!");
+        assertEquals(result, "Redo clear command successfully.\nYou can type 'undo' to revert this redo again!");
     }
 
     @Test
@@ -51,7 +51,7 @@ public class CommandFormatterTest {
         DeleteCommand deleteCommand = new DeleteCommand(1, false);
 
         String result = CommandFormatter.undoMessageFormatter(UndoCommand.MESSAGE_SUCCESS, deleteCommand);
-        assertEquals(result, "Undo add command successfully.\n You can type 'redo' to revert this undo.\n");
+        assertEquals(result, "Undo add command successfully.\nYou can type 'redo' to revert this undo.\n");
     }
 
     @Test
@@ -59,6 +59,6 @@ public class CommandFormatterTest {
         DeleteCommand deleteCommand = new DeleteCommand(1, false);
 
         String result = CommandFormatter.undoMessageFormatter(RedoCommand.MESSAGE_SUCCESS, deleteCommand);
-        assertEquals(result, "Redo add command successfully.\n You can type 'undo' to revert this redo again!");
+        assertEquals(result, "Redo add command successfully.\nYou can type 'undo' to revert this redo again!");
     }
 }

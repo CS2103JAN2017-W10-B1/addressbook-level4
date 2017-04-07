@@ -74,6 +74,11 @@ public class RedoCommand extends AbleUndoCommand {
     }
 
     @Override
+    public String getUndoCommandWord() {
+        return COMMAND_WORD + COMMAND_SUFFIX;
+    }
+
+    @Override
     public String getRedoCommandWord() {
         return COMMAND_WORD + COMMAND_SUFFIX;
     }
