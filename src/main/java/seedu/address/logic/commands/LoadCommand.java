@@ -78,7 +78,7 @@ public class LoadCommand extends AbleUndoCommand {
         newTaskManager.resetData(model.getTaskManager());
         model.resetData(this.tempTaskManager);
         this.tempTaskManager = newTaskManager;
-        return new CommandResult(CommandFormatter.undoMessageFormatter(message, COMMAND_WORD));
+        return new CommandResult(CommandFormatter.undoMessageFormatter(message, getUndoCommandWord()));
     }
 
     @Override
