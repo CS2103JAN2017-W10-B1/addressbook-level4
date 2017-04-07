@@ -57,33 +57,22 @@ public class DeleteCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult execute() throws CommandException {
-        if (!isUndo) {
-            return execute(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
-        } else {
-            return execute(UndoCommand.MESSAGE_SUCCESS);
-        }
+        processData();
+        return execute(CommandFormatter.undoFormatter(String.format(MESSAGE_DELETE_TASK_SUCCESS, this.taskToDelete)
+                , COMMAND_DELETE));
     }
 
     public CommandResult execute(String message) throws CommandException {
-
-        if (!isUndo) {
-            processData();
-        }
-        return delete(taskToDelete, message);
-    }
-
-
-    private CommandResult delete(ReadOnlyTask deleteTask, String message) {
         try {
-            if (deleteTask.isRecurring() && !isDeleteAllOcurrence) {
+            if (taskToDelete.isRecurring() && !isDeleteAllOcurrence) {
                 try {
-                    Task task = (Task) createRecurringTask(deleteTask);
+                    Task task = (Task) createRecurringTask(taskToDelete);
                     finishOnce(task);
                     this.replaceTask = createRecurringTask(task);
                     isSuccess = true;
-                    model.deleteTask(deleteTask);
+                    model.deleteTask(taskToDelete);
                     model.addTask(task);
-                    this.task = deleteTask;
+                    this.task = taskToDelete;
                 } catch (DuplicateTaskException e) {
                     e.printStackTrace();
                 }
@@ -95,7 +84,7 @@ public class DeleteCommand extends AbleUndoCommand {
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target task cannot be missing";
         }
-        return new CommandResult(CommandFormatter.undoFormatter(message, COMMAND_DELETE));
+        return new CommandResult(message);
     }
 
     private void finishOnce(ReadOnlyTask deleteTask) {
@@ -137,7 +126,7 @@ public class DeleteCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
-        return execute();
+        return execute(message);
     }
 
     @Override

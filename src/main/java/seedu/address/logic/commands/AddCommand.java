@@ -195,11 +195,8 @@ public class AddCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult execute() throws CommandException {
-        if (!isUndo) {
-            return execute(String.format(MESSAGE_SUCCESS, toAdd.getName()));
-        } else {
-            return execute(UndoCommand.MESSAGE_SUCCESS);
-        }
+        return execute(CommandFormatter.undoFormatter(
+                String.format(MESSAGE_SUCCESS, toAdd.getName()), COMMAND_ADD));
     }
 
     public CommandResult execute(String message) throws CommandException {
@@ -209,8 +206,7 @@ public class AddCommand extends AbleUndoCommand {
             this.isSuccess = true;
             int taskIndex = model.getFilteredTaskList().indexOf(toAdd);
             EventsCenter.getInstance().post(new JumpToTaskListRequestEvent(taskIndex));
-            return new CommandResult(
-                    CommandFormatter.undoFormatter(message, COMMAND_ADD));
+            return new CommandResult(message);
         } catch (UniqueTaskList.DuplicateTaskException e) {
             this.isSuccess = false;
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
@@ -224,7 +220,7 @@ public class AddCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
-        return execute();
+        return execute(message);
     }
 
     @Override
