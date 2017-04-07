@@ -77,6 +77,5 @@ public class RedoCommand extends AbleUndoCommand {
     public String getUndoCommandWord() {
         return COMMAND_WORD + COMMAND_SUFFIX;
     }
-
 }
 

@@ -102,7 +102,7 @@ public class ModelManagerTest {
         assertEquals(modelManager.getFilteredTaskList().size(), 0);
 
         modelManager.updateFilteredTaskListGivenDaysToDueBy("300");
-        assertEquals(modelManager.getFilteredTaskList().size(), 4);
+        assertEquals(modelManager.getFilteredTaskList().size(), 5);
         assertEquals(modelManager.getFilteredTaskList().get(0).getName().fullName, "assignment");
 
         modelManager.updateFilteredTaskListGivenDaysToDueBy("365");

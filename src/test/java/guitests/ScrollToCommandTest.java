@@ -2,6 +2,7 @@
 package guitests;
 
 import static org.junit.Assert.assertEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
 import org.junit.Test;
 
@@ -18,7 +19,6 @@ public class ScrollToCommandTest extends TaskManagerGuiTest {
         assertScrollSuccess(taskCount);
         int middleIndex = taskCount / 2;
         assertScrollSuccess(middleIndex);
-
         assertScrollInvalid(taskCount + 1);
         assertScrollSuccess(middleIndex);
     }
@@ -32,7 +32,7 @@ public class ScrollToCommandTest extends TaskManagerGuiTest {
 
     private void assertScrollInvalid(int index) {
         commandBox.runCommand("scroll " + index);
-        assertResultMessage("The task index provided is invalid");
+        assertResultMessage(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     private void assertScrollSuccess(int index) {

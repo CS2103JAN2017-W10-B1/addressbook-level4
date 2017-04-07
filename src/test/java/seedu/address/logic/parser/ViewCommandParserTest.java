@@ -21,14 +21,13 @@ public class ViewCommandParserTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void viewParse_nullString_incorrectCommand() throws Exception {
-
-        Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
+    public void viewParse_emptyString_viewToday() throws Exception {
+        Field field = ViewNextCommand.class.getDeclaredField("numberOfDays");
         field.setAccessible(true);
 
-        IncorrectCommand incorrectCommand =  (IncorrectCommand) ViewCommandParser.parse(null);
-        assertEquals(field.get(incorrectCommand), String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_USAGE  + ViewNextCommand.MESSAGE_USAGE));
+        ViewNextCommand viewCommand =  (ViewNextCommand) ViewCommandParser.parse("");
+
+        assertEquals(field.get(viewCommand), "0");
     }
 
     @Test
