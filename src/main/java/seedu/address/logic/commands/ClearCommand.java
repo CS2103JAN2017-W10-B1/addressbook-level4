@@ -21,16 +21,20 @@ public class ClearCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult execute() {
-        return execute(MESSAGE_SUCCESS);
+        return execute(MESSAGE_SUCCESS, false);
     }
 
-    public CommandResult execute(String message) {
+    public CommandResult execute(String message, Boolean isUndo) {
         assert model != null;
         TaskManager tasks = TaskManager.getStub();
         tasks.resetData(model.getTaskManager());
         model.resetData(this.tasks);
         this.tasks = tasks;
-        return new CommandResult(CommandFormatter.undoFormatter(message, COMMAND_CLEAR));
+        if (isUndo) {
+            return new CommandResult(CommandFormatter.undoMessageFormatter(message, getUndoCommandWord()));
+        } else {
+            return new CommandResult(CommandFormatter.undoFormatter(message, COMMAND_CLEAR));
+        }
     }
 
     @Override
@@ -40,7 +44,7 @@ public class ClearCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
-        return execute(CommandFormatter.undoMessageFormatter(message, getUndoCommandWord()));
+        return execute(message, true);
     }
 
     @Override
