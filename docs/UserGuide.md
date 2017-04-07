@@ -78,7 +78,7 @@ Examples:
 ### 2.3. Adding an event: `add`
 
 Add an event to Dueue<br>
-Format: `add TASKNAME due/DUEDATE [dueT/DUETIME] [start/STARTDATE] [startT/STARTTIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f]`
+Format: `add TASKNAME due/DUEDATE [dueT/DUETIME] [start/STARTDATE] [startT/STARTTIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f]`
 
 > * All constraints applied to adding a task also applies to adding an event.
 > * Due date must be specified for Dueue to identify this task as an event.
@@ -93,7 +93,7 @@ Examples:
 ### 2.4 Adding a recurring task: `add`
 
 Add a recurring task/event to Dueue<br>
-Format: `add TASKNAME [due/DUEDATE] [dueT/DUETIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f] f/FREQUENCY`
+Format: `add TASKNAME [due/DUEDATE] [dueT/DUETIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f] f/FREQUENCY`
 
 > * Valid FREQUENCY includes "day/week/month", accept varying input formats like "week/weekly/every week".
 > * All constraints applied to adding a task also applies to adding a recurring task.
@@ -106,7 +106,7 @@ Examples:
 ### 2.5 Adding a recurring event: `add`
 
 Add a recurring task/event to Dueue<br>
-Format: `add TASKNAME due/DUEDATE [start/STARTDATE] [dueT/DUETIME] [startT/STARTTIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f] f/FREQUENCY`
+Format: `add TASKNAME due/DUEDATE [start/STARTDATE] [dueT/DUETIME] [startT/STARTTIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f] f/FREQUENCY`
 
 > * Valid FREQUENCY includes "day/week/month", accept varying input formats like "week/weekly/every week".
 > * All other constraints applied to adding an event also applies to adding a recurring event.
@@ -170,7 +170,7 @@ Shows all finished tasks in Dueue<br>
 Format: `list finished LIST_NAME`
 
 > * Specification parameters must be entered following the defined sequence.
-> * Tasks listed will be sorted based on the following parameters, from the most importance to the least importance: due date > priority > due time > name > tag
+> * Tasks listed will be sorted based on the following parameters, from the most importance to the least importance: `due date > priority > due time > name > tag`
 > * When LIST_NAME is provided, the corresponding LIST namecard will be highlighted in Dueue.
 
 Examples:
@@ -191,100 +191,114 @@ Examples:
 ### 2.9. Editing a task : `edit`
 
 Edits existing task in Dueue<br>
-Format: `edit TASKINDEX [n/NAME] [due/DUEDATE] [dueT/TIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f/*u]`
+Format: `edit TASKINDEX [n/TASKNAME] [due/DUEDATE] [dueT/TIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f/*u] [f/FREQUENCY]`
 
 > * Edits the task at the specified `INDEX`.
 > * The index refers to the index number shown in the current list view.<br>
 > * The index **must be a positive integer** 1, 2, 3, ...
 > * At least one of the optional fields must be provided.
-> * For the field "favorite", use "*f" to mark as favorte and use "*u" to unfavorite a task.
+> * A field will be updated only if the given details does not violate task constraints.
+> * For the field "favorite", use "*f" to mark as favorite and use "*u" to unfavorite a task.
+> * If FREQUENCY is specified, a non-recurring task will be changed into a recurring task.
 > * Existing values will be edited to the input values.
-> * You can remove details by typing the field prefix only, e.g.`edit TASK_INDEX due/`.
+> * You can remove the content of a specific field by typing the field prefix only, e.g.`edit TASK_INDEX due/`.
 > * Specifications of fields for task can be entered in any order.
 
 Examples:
 
 * `edit 1 Laundry due/10/01 @`<br>
-  Edits the name, due date and the venue of the 1st task to be `Laundry`, `10/01` and remove the venue respectively.
+  Edits the name and due date of the task with `INDEX` 1 to be `Laundry`, `10/01` and remove the venue.
 
 * `edit 2 due/ *u`<br>
-  Remove the due date of the task with `INDEX` 2 and make it not a favourite.
+  Remove the due date of the task with `INDEX` 2 and make it not a favorite.
 
-### 2.10. Edit a event : `edit`
+* `edit 3 f/month`<br>
+  Change the event with `INDEX` 3 into a recurring task that repeats every `month`.
 
-Edits existing task in Dueue<br>
-Format: `edit TASKINDEX [n/NAME] [due/DUEDATE] [dueT/TIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f/*u]`
+### 2.10. Edit an event : `edit`
 
-> * Edits the task at the specified `INDEX`.
-> * The index refers to the index number shown in the current list view.<br>
-> * The index **must be a positive integer** 1, 2, 3, ...
-> * At least one of the optional fields must be provided.
-> * For the field "favorite", use "*f" to mark as favorte and use "*u" to unfavorite a task.
-> * Existing values will be edited to the input values.
-> * You can remove details by typing the field prefix only, e.g.`edit TASK_INDEX due/`.
-> * Specifications of fields for task can be entered in any order.
+Edits existing event in Dueue<br>
+Format: `edit TASKINDEX [n/NAME] [startT/STARTTIME] [dueT/STARTDATE] [due/DUEDATE] [dueT/DUETIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f/*u]`
+
+> * A field will be updated only if the given details does not violate event constraints (e.g. STARTDATE should be no later than the DUEDATE).
+> * If FREQUENCY is specified, a non-recurring event will be changed into a recurring event.
 
 Examples:
 
 * `edit 1 Laundry due/10/01 @`<br>
-  Edits the name, due date and the venue of the 1st task to be `Laundry`, `10/01` and remove the venue respectively.
+  Edits the name, due date of the task with `INDEX` 1 to be `Laundry`, `10/01` respectively, and remove its venue.
 
-* `edit 2 due/ *u`<br>
-  Remove the due date of the task with `INDEX` 2 and make it not a favourite.
+* `edit 2 start/tmr *u`<br>
+  Edits the start date of the task with `INDEX` 2 into `tmr` and make it not a favorite.
+
+* `edit 3 f/weekly`<br>
+  Edits the event with `INDEX` 3 into a recurring event that repeats `weekly`.
 
 ### 2.11. Edit next recurring task/event : `edit next/t`
 
 Edit the most recurrence of a recurring task/event<br>
-Format: `edit next/t TASKINDEX [n/NAME] [due/DUEDATE] [dueT/TIME] [start/STARTDATE] [startT/STARTTIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f/*u]`
+Format: `edit next/t TASKINDEX [n/NAME] [due/DUEDATE] [dueT/TIME] [start/STARTDATE] [startT/STARTTIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f/*u]`
+
+> * This command only applies to recurring tasks/events.
+> * All constraints applied to editing non-recurring tasks/events also applies.
+> * Editions will only apply to the most recent occurence of the task/event as specified by the INDEX given.
+> * Upon execution, the most recent occurence will be seperated from the previous set of recurring task/event, whose date/time will be increased by one period.
 
 ### 2.12. View certain tasks: `view`
 
-View tasks due on a specified date / n days later.<br>
+View tasks due on today.<br>
+Format: `view`
+
+View tasks due on a specified date / N days later.<br>
 Format: `view on/NUMBEROFDAYS`
         `view on/DATE`
 
-View tasks due within a specific date / the next n days.<br>
+View tasks due within a specific date / the next N days.<br>
 Format: `view next/NUMBEROFDAYS`
         `view next/DATE`
+        `view by/NUMBEROFDAYS`
+        `view by/DATE
 
-> * NUMBEROFDAYS must be a non-negative integer.<br>
-> * Date must not be earlier than today.
-> * Tasks listed under view command will be sorted based on the following parameters, from the most importance to the least importance: due date > priority > due time > name > tag
+> * When no parameters are given, Dueue will show the tasks due on today.
+> * NUMBEROFDAYS must be a non-negative integer.
+> * Date must not be earlier than today. It accepts varying formats, including "dd/mm", "dd/mm/yyyy", "today/tmr/tomorrow" and "Mon/Monday".
+> * Tasks listed under view command will be sorted based on the following parameters, from the most importance to the least importance: `due date > priority > due time > name > tag`
 
 Examples:
 
 * `view on/today`<br>
   Returns a list of tasks due on today
 * `view next/Monday`<br>
-  Returns a list of tasks due within next Monday
+  Returns a list of tasks due by next Monday
 
 ### 2.13. Deleting task : `delete`
 
 Deletes the specified task from Dueue.<br>
 Format: `delete TASKINDEX`
 
-> * Deletes the task at the specified `TASKINDEX`. <br>
-> * The index refers to the index number shown in the most recent listing.<br>
+> * Deletes the task at the specified `TASKINDEX`.
+> * The index refers to the index number shown in the most recent listing.
 > * Each index **must be a positive integer** 1, 2, 3, ...
+> * Index cannot exceed the length of current list view.
 
 Examples:
 
 * `delete 2`<br>
-  Deletes the 2nd task/list in current list view.
+  Deletes the 2nd task in current list view.
 
 ### 2.14. Undo latest command: `undo`
 
 Undo the immediately preceding command.<br>
 Format: `undo`
 
-> * Undo the latest mutating command, including `add`, `delete`, `edit` and `finish`.
-> * Definition of **mutating** : making changes to the fields of tasks
-> * Cannot undo more than once in succession.
+> * Undoable commands include `add`, `delete`, `edit`, `finish`, `clear` and `load`.
+> * If last command is undoable, a success message will be shown, while the Latest command is reversed.
 
 Examples:
 
 * `undo`<br>
-  Latest command is reversed.
+  Undo the previous command.
+  
 
 ### 2.15. Reverse previous `undo` command: `redo`
 
@@ -293,7 +307,6 @@ Format: `redo`
 
 > * Reverse `undo` command if user made a mistake.
 > * Can only redo right after an `undo` command.
-> * Cannot redo more than once.
 
 Examples:
 
@@ -306,11 +319,14 @@ Load external XML file into Dueue.<br>
 Format: `load FILEPATH`
 
 > * The path must trace to an XML file.
-> * Use `/` at the start of FILEPATH to indicate root directory.
+> * Use `/` at the start of FILEPATH to indicate root directory, else will read as relative directory.
 
 Example:
 
-* `load /Users/Alice/Desktop/sampleTasks.xml`<br>
+* `load /Users/Alice/Desktop/sampleTasks.xml` in Mac OS X<br>
+  Load tasks from the given filepath.
+
+* `load C:\Alice\Desktop\sampleTasks.xml` in Windows<br>
   Load tasks from the given filepath.
 
 ### 2.17. Find tasks: `find`
@@ -356,7 +372,7 @@ There is no need to save manually.
 
 ## 4. Command Summary
 
-* **Add**  `add n/TASKNAME [due/DUEDATE] [dueT/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f]` <br>
+* **Add**  `add n/TASKNAME [due/DUEDATE] [dueT/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f]` <br>
   e.g. `add n/laundry due/01/01 dueT/10:00 #personal d/wash clothes @B1 p/IMPORTANT *f`
 
 * **Clear** : `clear`
@@ -365,7 +381,7 @@ There is no need to save manually.
 * **Delete** : `delete TASKINDEX...` <br>
    e.g. `delete 3`
 
-* **Edit** : `edit TASKINDEX ... [n/NAME] [due/DUEDATE] [dueT/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f/*u]` <br>
+* **Edit** : `edit TASKINDEX ... [n/NAME] [due/DUEDATE] [dueT/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f/*u]` <br>
   e.g.`update 1 Laundry due/every sunday @`
 
 * **Finish** : `finish TASKINDEX...` <br>
@@ -375,7 +391,7 @@ There is no need to save manually.
   e.g. `help add`
 
 * **List** : `list [all/favorite/finished] [LIST_NAME]` <br>
-  e.g. `list work favorite`
+  e.g. `list favorite work`
 
 * **Load** : `load FILEPATH` <br>
   e.g. `load data/sampleTasks.xml`
@@ -387,4 +403,4 @@ There is no need to save manually.
   e.g. `undo`
 
 * **View** : `view DUETYPE/NUMBEROFDAYS` `view DUETYPE/DATE`<br>
-  e.g. `view next/10 view on/today`
+  e.g. `view by/today view on/today`
