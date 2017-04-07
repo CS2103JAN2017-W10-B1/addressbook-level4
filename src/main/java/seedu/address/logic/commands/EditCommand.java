@@ -52,6 +52,7 @@ public class EditCommand extends AbleUndoCommand {
     protected ReadOnlyTask task;
     protected Task oldTask;
     protected boolean isSuccess;
+    private boolean isUndo = false;
 
     /**
      * @param filteredPersonListIndex the index of the task in the filtered task list to edit
@@ -73,40 +74,60 @@ public class EditCommand extends AbleUndoCommand {
         this.oldTask = oldTask;
         this.filteredTaskListIndex = 0;
         this.editTaskDescriptor = null;
+        isUndo = true;
     }
 
     @Override
     public CommandResult execute() throws CommandException {
 
-        ReadOnlyTask taskToEdit =  processTask();
-
-        try {
-            Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
-            model.updateTask(filteredTaskListIndex, editedTask);
-            isSuccess = true;
-            task = editedTask;
-            int taskIndex = model.getFilteredTaskList().indexOf(editedTask);
-            EventsCenter.getInstance().post(new JumpToTaskListRequestEvent(taskIndex));
-            model.updateFilteredListToShowAllUnfinishedTasks();
-            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask.getName()));
-        } catch (UniqueTaskList.DuplicateTaskException dpe) {
-            isSuccess = false;
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        } catch (IllegalValueException e) {
-            throw new CommandException(e.getMessage());
-        }
+        processTask();
+        return execute(String.format(MESSAGE_EDIT_TASK_SUCCESS, task.getName()));
     }
 
-    private ReadOnlyTask processTask() throws CommandException {
+    public CommandResult execute(String message) throws CommandException {
+
+        if (!isUndo) {
+            try {
+                Task editedTask = createEditedTask(task, editTaskDescriptor);
+                model.updateTask(filteredTaskListIndex, editedTask);
+                isSuccess = true;
+                task = editedTask;
+                int taskIndex = model.getFilteredTaskList().indexOf(editedTask);
+                EventsCenter.getInstance().post(new JumpToTaskListRequestEvent(taskIndex));
+            } catch (UniqueTaskList.DuplicateTaskException dpe) {
+                isSuccess = false;
+                throw new CommandException(MESSAGE_DUPLICATE_TASK);
+            } catch (IllegalValueException e) {
+                throw new CommandException(e.getMessage());
+            }
+        } else {
+            try {
+                model.deleteTask(this.task);
+                model.addTask(this.oldTask);
+                ReadOnlyTask temp;
+                temp = this.task;
+                this.task = this.oldTask;
+                this.isSuccess = true;
+                this.oldTask = (Task) temp;
+            } catch (UniqueTaskList.DuplicateTaskException dpe) {
+                throw new CommandException(MESSAGE_DUPLICATE_TASK);
+            } catch (TaskNotFoundException e) {
+                assert false : "The target task cannot be missing";
+            }
+        }
+        model.updateFilteredListToShowAllUnfinishedTasks();
+        return new CommandResult(message);
+    }
+
+    private void processTask() throws CommandException {
         List<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
 
         if (filteredTaskListIndex >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        ReadOnlyTask taskToEdit = lastShownList.get(filteredTaskListIndex);
-        oldTask = createTask(taskToEdit);  
-        return taskToEdit;
+        task = lastShownList.get(filteredTaskListIndex);
+        oldTask = createTask(task);
     }
 
     protected Task createTask(ReadOnlyTask task) {
@@ -227,22 +248,7 @@ public class EditCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
-        assert model != null;
-        try {
-            model.deleteTask(this.task);
-            model.addTask(this.oldTask);
-            ReadOnlyTask temp;
-            temp = this.task;
-            this.task = this.oldTask;
-            this.oldTask = (Task) temp;
-        } catch (UniqueTaskList.DuplicateTaskException dpe) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        } catch (TaskNotFoundException e) {
-            assert false : "The target task cannot be missing";
-        }
-        model.updateFilteredListToShowAllUnfinishedTasks();
-        this.isSuccess = true;
-        return new CommandResult(CommandFormatter.undoMessageFormatter(message, getUndoCommandWord()));
+        return execute(CommandFormatter.undoMessageFormatter(message, getUndoCommandWord()));
     }
 
     @Override
