@@ -70,9 +70,22 @@ public class FinishCommandTest extends TaskManagerGuiTest {
     @Test
     public void finish_validEvent_finishSuccess() {
         commandBox.runCommand("clear");
-        commandBox.runCommand("add testEvent startT/22:00 due/today");
-        commandBox.runCommand("finish 1");
+        TestTask[] currentList = {};
+        int targetIndex = 1;
+        currentList = TestUtil.addTasksToList(currentList, te.gym);
+        commandBox.runCommand(te.gym.getAddCommand());
+
+        currentList = TestUtil.addTasksToList(currentList, te.cs2103);
+        commandBox.runCommand(te.cs2103.getAddCommand());
+
+        commandBox.runCommand("finish " + targetIndex);
+        currentList[targetIndex - 1].setFinished(true);
+
+        targetIndex = 1;
+        commandBox.runCommand("finish " + targetIndex);
+        currentList[targetIndex - 1].setFinished(true);
         assertTrue(taskListPanel.isListMatching());
+
     }
 
     /**
