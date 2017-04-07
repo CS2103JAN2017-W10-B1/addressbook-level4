@@ -67,6 +67,14 @@ public class FinishCommandTest extends TaskManagerGuiTest {
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
     }
 
+    @Test
+    public void finish_validEvent_finishSuccess() {
+        commandBox.runCommand("clear");
+        commandBox.runCommand("add testEvent startT/22:00 due/today");
+        commandBox.runCommand("finish 1");
+        assertTrue(taskListPanel.isListMatching());
+    }
+
     /**
      * Runs the finish command to finish the task at specified index and confirms the result is correct.
      * @param targetIndexOneIndexed e.g. index 1 to finish the first task in the list,
