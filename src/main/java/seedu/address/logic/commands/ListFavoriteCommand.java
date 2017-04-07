@@ -1,6 +1,8 @@
 //@@author A0143409J
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.ListCommand.MESSAGE_LIST_DOES_NOT_EXIST;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,14 +15,11 @@ import seedu.address.model.tag.UniqueTagList;
  */
 public class ListFavoriteCommand extends Command {
 
-    public static final String COMMAND_WORD = "list";
-
     public static final String LIST_ALL = "all";
     public static final String LIST_FINISHED = "finished";
     public static final String LIST_FAVORITE = "favorite";
 
-    public static final String MESSAGE_LIST_FAVORITE_SUCCESS = "Listed all favorite tasks";
-    public static final String MESSAGE_LIST_DOES_NOT_EXIST = "Given list name does not exist";
+    public static final String MESSAGE_LIST_FAVORITE_SUCCESS = "Favorite tasks are listed!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks as per the parameters\n"
             + "the specified listname and displays them as a list with index numbers.\n"
