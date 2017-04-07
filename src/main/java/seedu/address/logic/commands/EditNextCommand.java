@@ -1,4 +1,4 @@
-///@@author A0147984L
+//@@author A0147984L
 package seedu.address.logic.commands;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
  */
 public class EditNextCommand extends EditCommand {
 
-  ///@@author A0143409J
+  //@@author A0143409J
     private ReadOnlyTask finishedOnceTask;
 
     /**
