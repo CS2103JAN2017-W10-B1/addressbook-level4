@@ -210,9 +210,9 @@
 
 .list-cell:filled:selected {
     -fx-background-color: DARKSALMON;
-    -fx-background-radius: 5;
+    -fx-background-radius: 3;
     -fx-border-radius: 5;
-    -fx-border-color: DARKSALMON;
+    -fx-border-color: white;
     -fx-border-width: 3;
 }
 
