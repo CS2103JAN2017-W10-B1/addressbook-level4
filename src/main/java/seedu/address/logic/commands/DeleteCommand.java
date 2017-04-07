@@ -37,8 +37,6 @@ public class DeleteCommand extends AbleUndoCommand {
     private boolean isSuccess = false;
     // indicate to delete all occurrence for occurring task and event
     private boolean isDeleteAllOcurrence;
-    // indicating whether this command in undoing another command
-    private boolean isUndo = false;
 
     public DeleteCommand(int targetIndex, boolean isDeleteAllOcurrence) {
         this.targetIndex = targetIndex;
@@ -47,11 +45,11 @@ public class DeleteCommand extends AbleUndoCommand {
         this.isSuccess = false;
     }
 
+    // constructor for undoing an add command
     public DeleteCommand(ReadOnlyTask task, boolean isDeleteAllOcurrence) {
         this.targetIndex = 0;
         this.isDeleteAllOcurrence = isDeleteAllOcurrence;
         this.taskToDelete = task;
-        this.isUndo = true;
     }
 
 
@@ -62,6 +60,10 @@ public class DeleteCommand extends AbleUndoCommand {
                 , COMMAND_DELETE));
     }
 
+    /*
+     * Delete a task
+     * If user request to delete a recurring task and did not specify all the recurring task will be finish once
+     */
     public CommandResult execute(String message) throws CommandException {
         try {
             if (taskToDelete.isRecurring() && !isDeleteAllOcurrence) {
@@ -95,6 +97,7 @@ public class DeleteCommand extends AbleUndoCommand {
         }
     }
 
+    // create a recurring task to be store for undoing the delete
     private ReadOnlyTask createRecurringTask(ReadOnlyTask recurringTask) {
         Task task = null;
         if (recurringTask.isEvent()) {
@@ -110,6 +113,7 @@ public class DeleteCommand extends AbleUndoCommand {
         return task;
     }
 
+    // get the task to be deleted from the modelManager
     private void processData() throws CommandException {
         UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
 
@@ -129,6 +133,7 @@ public class DeleteCommand extends AbleUndoCommand {
         return execute(message);
     }
 
+    // Get the command that is equivalent to undoing a delete command (AddCommand)
     @Override
     public Command getUndoCommand() {
         if (isSuccess) {
