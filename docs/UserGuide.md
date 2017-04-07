@@ -16,17 +16,17 @@ By : `Team CS2103JAN2017-W10-B1`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Feb 2017`  &n
    > Having any Java 8 version is not enough. <br>
    > This app will not work with earlier versions of Java 8.
 
-1. Download the latest `dueue.jar` from the [releases](../../../releases) tab.
+1. Download the latest `dueue.jar`, `config.json` and `preferences.json` from the [releases](../../../releases) tab.
 2. Copy the file to the folder you want to use as the home folder for your Dueue.
-3. Double-click the file to start the app. The GUI should appear in a few seconds.
+3. Double-click the `dueue.jar` file to start the app. The GUI should appear in a few seconds.
    > <img src="images/Ui.png" width="600">
 
 4. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br>
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.
 5. Some example commands you can try:
-   * **`list`** : lists all tasks
-   * **`add`**`  add laundry due/10/01 t/16:00 #personal d/wash clothes p/trivial @B1 *f` :
-     adds a task to Dueue named `laundry` which is due on `10/01` at `16:00` under list `personal` with description `wash clothes` at venue `B1` with priority `trivial` and star it as `favourite`.
+   * **`list`** : lists all the unfinished tasks
+   * **`add`**`  add laundry due/sunday dueT/16:00 #personal d/wash clothes p/trivial @B1 *f` :
+     adds a task to Dueue named `laundry` which is due on `sunday` at `16:00` under list `personal` with description `wash clothes` at venue `B1` with priority `trivial` and star it as `favorite`.
    * **`delete`**` 3` : deletes the task with index 3 as shown in the current list
    * **`exit`** : exits the app
 6. Refer to the [Features](#2-features) section below for details of each command.<br>
@@ -38,7 +38,7 @@ By : `Team CS2103JAN2017-W10-B1`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Feb 2017`  &n
 > * Words in `UPPER_CASE` are the parameters.
 > * Items in `SQUARE_BRACKETS` are optional.
 > * Items with `...` after them can have multiple instances.
-> * Parameters can be in any order.
+> * Parameters can be in any order unless otherwise stated.
 
 ### 2.1. Viewing help : `help`
 
@@ -61,11 +61,11 @@ Format: `add TASKNAME [due/DATE] [dueT/TIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p
 
 > * A floating task can be added when TASKNAME is the only field specified.
 > * The required field for a typical task is TASKNAME, which must be entered as the first field, while other fields are optional and can be entered in random sequence.
-> * TASKDATE can be entered in varying formats, including "dd/mm", "dd/mm/yyyy", "today/tmr/tomorrow" and "Mon/Monday". When a task past due, a red label will be displayed on the task card.
+> * TASKDATE can be entered in various formats, including "dd/mm", "dd/mm/yyyy", "today/tmr/tomorrow" and "Mon/Monday" with case-insensitive. When a task passes due, a red label will be displayed on the task card.
 > * TIME should be in the format of "hh:mm".
-> * If [#LIST] is not specified, the task will be automatically categorized under the default list "Inbox". If given LIST is not an existing list name, a new LIST will be created and displayed in Dueue.
-> * PRIORITY should be in the format of "3/2/1" (from most importance to least importance), or "important/normal/trivial"
-> * User can mark a task as favorite by specifying the field [*f]. Favorite tasks can be viewed by using the "list favorite command".
+> * If `[#LIST]` is not specified, the task will be automatically categorized under the default list "Inbox". If given LIST is not an existing list name, a new LIST will be created and displayed in Dueue.
+> * PRIORITY should be in the format of "3/2/1" (from most importance to least importance), or equivalently "important/normal/trivial"
+> * User can mark a task as favorite by specifying the field [*f]. Favorite tasks can be viewed using the [list favorite command](#28-listing-all-tasks--list).
 > * Task list will automatically scroll to the newly added task.
 
 Examples:
@@ -157,17 +157,23 @@ Format: `list`
 Shows all finished tasks in Dueue<br>
 Format: `list finished`
 
-Shows all tasks in Dueue (finished and unfinished)<br>
-Format: `list all`
+Shows all favorite tasks in Dueue<br>
+Format: `list favorite`
 
 Shows all tasks in Dueue (finished and unfinished)<br>
-Format: `list all LIST_NAME`
+Format: `list all`
 
 Shows all unfinished tasks in Dueue<br>
 Format: `list LIST_NAME`
 
 Shows all finished tasks in Dueue<br>
 Format: `list finished LIST_NAME`
+
+Shows all favorite tasks in Dueue<br>
+Format: `list favorite LIST_NAME`
+
+Shows all tasks in Dueue (finished and unfinished)<br>
+Format: `list all LIST_NAME`
 
 > * Specification parameters must be entered following the defined sequence.
 > * Tasks listed will be sorted based on the following parameters, from the most importance to the least importance: `due date > priority > due time > name > tag`
