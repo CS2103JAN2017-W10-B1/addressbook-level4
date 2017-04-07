@@ -120,7 +120,13 @@ public class EditCommand extends AbleUndoCommand {
             }
         }
         model.updateFilteredListToShowAllUnfinishedTasks();
-        return new CommandResult(CommandFormatter.undoFormatter(message, COMMAND_EDIT));
+        String displayMessage;
+        if (isUndo) {
+            displayMessage = CommandFormatter.undoMessageFormatter(message, getUndoCommandWord());
+        } else {
+            displayMessage = CommandFormatter.undoFormatter(message, COMMAND_EDIT);
+        }
+        return new CommandResult(displayMessage);
     }
 
     private void processTask() throws CommandException {
@@ -252,7 +258,7 @@ public class EditCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
-        return execute(CommandFormatter.undoMessageFormatter(message, getUndoCommandWord()));
+        return execute(message);
     }
 
     // get the edit command to undo this edit command
