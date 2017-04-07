@@ -133,18 +133,15 @@ Another _Sequence Diagram_ below shows how the components interact for the scena
 command `edit 1 due/today`, assuming that the task indexed with 1 is a recurring task.
 
 <img src="images\SDforEditRecurringTask.png" width="800"><br>
-_Figure 2.1.3a : Component interactions for `edit 1 due/today` command (part 1)_
+_Figure 2.1.4a : Component interactions for `edit 1 due/today` command (part 1)_
 
 >Note how the `Model` simply raises a `TaskManagerChangedEvent` when the Task Manager data are changed, instead of asking the Storage to save the updates to the hard disk.
 
 The diagram below shows how the `EventsCenter` reacts to that event,  which eventually results in the updates being saved to the hard disk and the status bar of the `UI` being updated to reflect the ‘Last Updated’ time. 
 <img src="images\SDforEditRecurringTaskEventHandling.png" width="800"><br>
-_Figure 2.1.3b : Component interactions for `edit 1 due/today` command (part 2)_
+_Figure 2.1.4b : Component interactions for `edit 1 due/today` command (part 2)_
 
 > Note how the event is propagated through the `EventsCenter` to the `UI` without `Model` having to be coupled to it. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
-
-
-
 
 The sections below give more details of each component.
 
@@ -189,6 +186,15 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <img src="images/ListAllInboxSdForLogic.png" width="800"><br>
 _Figure 2.3.1 : Interactions Inside the Logic Component for the `list all inbox` Command_
 
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("undo")`
+ API call.<br>
+<img src="images/UndoAddCommandSdForLogic.png" width="800"><br>
+_Figure 2.3.2 : Interactions Inside the Logic Component for the `undo` Command given that the previous command is `add`_
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("view next/7")`
+ API call.<br>
+<img src="images/ViewNextCommandSdForLogic.png" width="800"><br>
+_Figure 2.3.3 : Interactions Inside the Logic Component for the `view next/7` Command_
 
 ### 2.4. Model component
 
@@ -353,7 +359,6 @@ b. Require developers to download those libraries manually (this creates extra w
 ## Appendix A : User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (unlikely to have) - `*`
-
 
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
