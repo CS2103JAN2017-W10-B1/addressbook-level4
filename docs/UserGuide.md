@@ -302,11 +302,11 @@ Examples:
 
 ### 2.14. Undo latest command: `undo`
 
-Undo the immediately preceding command.<br>
+Undo the immediately preceding undoable command.<br>
 Format: `undo`
 
 > * Undoable commands include `add`, `delete`, `edit`, `finish`, `clear` and `load`.
-> * If last command is undoable, a success message will be shown, while the Latest command is reversed.
+> * When the latest undoable command is undone, a success message will be shown, while the latest command is reversed.
 
 Examples:
 
@@ -319,7 +319,7 @@ Reverse the immediately preceding undo command.<br>
 Format: `redo`
 
 > * Reverse `undo` command if user made a mistake.
-> * Can only redo right after an `undo` command.
+> * Can only redo when there is any undone command.
 
 Examples:
 
@@ -332,7 +332,7 @@ Load external XML file into Dueue.<br>
 Format: `load FILEPATH`
 
 > * The path must trace to an XML file.
-> * For MAC users, use `/` at the start of FILEPATH to indicate absolute/root directory, else will read as relative directory.
+> * For MAC users, use `/` at the start of FILEPATH to indicate absolute/root directory, otherwise the path will be read as relative directory.
 
 Example:
 
@@ -398,7 +398,7 @@ There is no need to save manually.
 * **Delete** : `delete TASKINDEX...` <br>
    e.g. `delete 3`
 
-* **Edit** : `edit TASKINDEX [n/NAME] [due/DUEDATE] [dueT/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f/*u]` <br>
+* **Edit** : `edit TASKINDEX [n/NAME] [startT/STARTTIME] [dueT/STARTDATE] [due/DUEDATE] [dueT/DUETIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f/*u]` <br>
   e.g.`edit 1 Laundry due/10/01 @`
 
 * **Finish** : `finish TASKINDEX` <br>
