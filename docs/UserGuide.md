@@ -91,7 +91,35 @@ Examples:
 * `add CS2103 Lecture due/24/3 start/24/3 startT/16:00 dueT/18:00 #CS2103 d/Interesting module @I3 p/3 *f`<br>
   Add a task with taskname `CS2103 Lecture` on `03/24` with starting time `16:00` to ending time `18:00` under the list `CS2103` with description `Interesting module` at the venue `I3` and mark it as favourite.
 
-### 2.4. Finishing task(s) : `finish`
+### 2.4 Adding a recurring task: `add`
+
+Add a recurring task/event to Dueue<br>
+Format: `add TASKNAME [due/DUEDATE] [dueT/DUETIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f] [f/FREQUENCY]`
+
+> * Supported frequencies include "day/week/month", accepting varying formats like "week/weekly/every week"
+> * All constraints applied to adding a task also applies to adding a recurring task.
+> * Starting point (as determined starting time and date) must not be later than due point.
+
+Examples:
+
+* `add CS2103 Lecture startT/16:00 dueT/18:00 #CS2103 @I3 f/weekly`<br>
+  Add a task with taskname `CS2103 Lecture` with starting time `16:00` to ending time `18:00` under the list `CS2103` that repeats `weekly` at the venue `I3`
+
+### 2.5 Adding a recurring event: `add`
+
+Add a recurring task/event to Dueue<br>
+Format: `add TASKNAME [due/DUEDATE] [dueT/DUETIME] [start/STARTDATE] [startT/STARTTIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f] [f/FREQUENCY]`
+
+> * Supported frequencies include "day/week/month", accepting varying formats like "week/weekly/every week"
+> * All constraints applied to adding a task also applies to adding a recurring task.
+> * Starting point (as determined starting time and date) must not be later than due point.
+
+Examples:
+
+* `add CS2103 Lecture startT/16:00 dueT/18:00 #CS2103 @I3 f/weekly`<br>
+  Add a task with taskname `CS2103 Lecture` with starting time `16:00` to ending time `18:00` under the list `CS2103` that repeats `weekly` at the venue `I3`
+
+### 2.4. Finishing a task : `finish`
 
 Mark a task as finished in Dueue.<br>
 Format: `finish TASK_INDEX...`
@@ -148,7 +176,7 @@ Examples:
 * `list favourite study`<br>
   List all favourite tasks in list `study`
 
-### 2.6. Editing task(s) : `edit`
+### 2.6. Editing a task : `edit`
 
 Edits existing task(s) in Dueue<br>
 Format: `edit TASKINDEX [n/NAME] [due/DUEDATE] [dueT/TIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITYLEVEL] [*f/*u]`
