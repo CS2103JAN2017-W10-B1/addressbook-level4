@@ -69,6 +69,7 @@ public class EditCommand extends AbleUndoCommand {
         this.isSuccess = false;
     }
 
+    // constructor for undoing edit command
     public EditCommand(ReadOnlyTask task, Task oldTask) {
         this.task = task;
         this.oldTask = oldTask;
@@ -84,6 +85,10 @@ public class EditCommand extends AbleUndoCommand {
         return execute(String.format(MESSAGE_EDIT_TASK_SUCCESS, task.getName()));
     }
 
+    /*
+     * update the Task using the index if not undoing a task
+     * if undoing a task update by delete and add
+     */
     public CommandResult execute(String message) throws CommandException {
 
         if (!isUndo) {
@@ -251,6 +256,7 @@ public class EditCommand extends AbleUndoCommand {
         return execute(CommandFormatter.undoMessageFormatter(message, getUndoCommandWord()));
     }
 
+    // get the edit command to undo this edit command
     @Override
     public Command getUndoCommand() {
         if (isSuccess) {
