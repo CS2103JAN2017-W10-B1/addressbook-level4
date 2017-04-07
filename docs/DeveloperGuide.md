@@ -116,22 +116,35 @@ _Figure 2.1.2 : Class Diagram of the Logic Component_
 #### Events-Driven nature of the design
 
 The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the
-command `delete 1`.
+command `list all inbox`.
 
-<img src="images\SDforDeleteTask.png" width="800"><br>
-_Figure 2.1.3a : Component interactions for `delete 1` command (part 1)_
+<img src="images\SDforListAllInboxCommand.png" width="800"><br>
+_Figure 2.1.3a : Component interactions for `list all inbox` command (part 1)_
 
->Note how the `Model` simply raises a `TaskManagerChangedEvent` when the Task Manager data are changed,
- instead of asking the `Storage` to save the updates to the hard disk.
+>Note how the `Model` simply raises a `TagPanelSelectionChangedEvent` and `NewResultAvailableChangedEvent` through the execution of command in `Logic` component.
 
-The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates
-being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time. <br>
-<img src="images\SDforDeleteTaskEventHandling.png" width="800"><br>
-_Figure 2.1.3b : Component interactions for `delete 1` command (part 2)_
+The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updated filtered list view and tag panel view in the `UI`.
+<img src="images\SDforListAllInboxEventHandling.png" width="800"><br>
+_Figure 2.1.3b : Component interactions for `list all inbox` command (part 2)_
 
-> Note how the event is propagated through the `EventsCenter` to the `Storage` and `UI` without `Model` having
-  to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct
-  coupling between components.
+> Note how the event is propagated through the `EventsCenter` to the `UI` without `Model` having to be coupled to it. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
+
+Another _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the
+command `edit 1 due/today`, assuming that the task indexed with 1 is a recurring task.
+
+<img src="images\SDforEditRecurringTask.png" width="800"><br>
+_Figure 2.1.3a : Component interactions for `edit 1 due/today` command (part 1)_
+
+>Note how the `Model` simply raises a `TaskManagerChangedEvent` when the Task Manager data are changed, instead of asking the Storage to save the updates to the hard disk.
+
+The diagram below shows how the `EventsCenter` reacts to that event,  which eventually results in the updates being saved to the hard disk and the status bar of the `UI` being updated to reflect the ‘Last Updated’ time. 
+<img src="images\SDforEditRecurringTaskEventHandling.png" width="800"><br>
+_Figure 2.1.3b : Component interactions for `edit 1 due/today` command (part 2)_
+
+> Note how the event is propagated through the `EventsCenter` to the `UI` without `Model` having to be coupled to it. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
+
+
+
 
 The sections below give more details of each component.
 
@@ -171,10 +184,11 @@ _Figure 2.3.1 : Structure of the Logic Component_
 3. The command execution can affect the `Model` (e.g. adding a Task) and/or raise events.
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")`
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("list all inbox")`
  API call.<br>
-<img src="images/DeleteTaskSdForLogic.png" width="800"><br>
-_Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Command_
+<img src="images/ListAllInboxSdForLogic.png" width="800"><br>
+_Figure 2.3.1 : Interactions Inside the Logic Component for the `list all inbox` Command_
+
 
 ### 2.4. Model component
 
