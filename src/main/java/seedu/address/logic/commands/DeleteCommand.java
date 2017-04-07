@@ -154,4 +154,9 @@ public class DeleteCommand extends AbleUndoCommand {
     public String getUndoCommandWord() {
         return AddCommand.COMMAND_WORD + COMMAND_SUFFIX;
     }
+
+    @Override
+    public String getRedoCommandWord() {
+        return COMMAND_WORD + COMMAND_SUFFIX;
+    }
 }

@@ -217,7 +217,7 @@ public class FinishCommand extends AbleUndoCommand {
 
     @Override
     public CommandResult executeUndo(String message) throws CommandException {
-        return execute(CommandFormatter.undoMessageFormatter(message, getUndoCommandWord()));
+        return execute(CommandFormatter.undoMessageFormatter(message, getRedoCommandWord()));
     }
 
     // get the command to undo this command
@@ -231,5 +231,9 @@ public class FinishCommand extends AbleUndoCommand {
         }
     }
 
+    @Override
+    public String getRedoCommandWord() {
+        return COMMAND_WORD + COMMAND_SUFFIX;
+    }
 }
 

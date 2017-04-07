@@ -91,4 +91,8 @@ public class LoadCommand extends AbleUndoCommand {
         return this;
     }
 
+    @Override
+    public String getRedoCommandWord() {
+        return COMMAND_WORD + COMMAND_SUFFIX;
+    }
 }

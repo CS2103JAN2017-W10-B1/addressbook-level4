@@ -49,8 +49,7 @@ public class ClearCommand extends AbleUndoCommand {
     }
 
     @Override
-    public String getUndoCommandWord() {
+    public String getRedoCommandWord() {
         return COMMAND_WORD + COMMAND_SUFFIX;
     }
-
 }

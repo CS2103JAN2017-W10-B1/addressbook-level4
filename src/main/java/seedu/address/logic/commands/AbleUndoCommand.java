@@ -23,8 +23,6 @@ public abstract class AbleUndoCommand extends Command {
         return COMMAND_WORD + COMMAND_SUFFIX;
     }
 
-    public String getRedoCommandWord() {
-        return COMMAND_WORD + COMMAND_SUFFIX;
-    }
+    public abstract String getRedoCommandWord();
 
 }
