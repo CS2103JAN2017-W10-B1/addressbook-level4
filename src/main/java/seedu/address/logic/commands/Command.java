@@ -42,7 +42,8 @@ public abstract class Command {
     public static String getMessageForTaskFoundShownSummary(int displaySize) {
         String resultMsg = String.format(Messages.MESSAGE_TASKS_FOUND_OVERVIEW, displaySize);
         if (displaySize == 0) {
-            resultMsg += "\nYou may try with other keywords or find in all tasks.";
+            resultMsg += "\nOops, no matches found in Dueue."
+                    + "You may try with other keywords or find in all tasks.";
         }
         return resultMsg;
     }

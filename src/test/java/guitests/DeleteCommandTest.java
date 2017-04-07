@@ -19,6 +19,7 @@ public class DeleteCommandTest extends TaskManagerGuiTest {
     @Test
     public void delete_validIndexGiven_deleteSucess() {
         int targetIndex = 1;
+        System.out.println("啊 啊啊啊啊" + currentList[targetIndex - 1].toString());
         assertDeleteSuccess(targetIndex, currentList);
         currentList = TestUtil.removeTaskFromList(currentList, targetIndex);
 
@@ -39,16 +40,17 @@ public class DeleteCommandTest extends TaskManagerGuiTest {
 
     /**
      * Runs the delete command to delete the task at specified index and confirms the result is correct.
-     * @param targetIndexOneIndexed e.g. index 1 to delete the first task in the list,
+     * @param targetIndex e.g. index 1 to delete the first task in the list,
      * @param currentList A copy of the current list of tasks (before deletion).
      */
-    private void assertDeleteSuccess(int targetIndexOneIndexed, final TestTask[] currentList) {
-        TestTask taskToDelete = currentList[targetIndexOneIndexed - 1]; // -1 as array uses zero indexing
-        TestTask[] expectedRemainder = TestUtil.removeTaskFromList(currentList, targetIndexOneIndexed);
+    private void assertDeleteSuccess(int targetIndex, final TestTask[] currentList) {
+        TestTask taskToDelete = currentList[targetIndex - 1]; // -1 as array uses zero indexing
+        TestTask[] expectedRemainder = TestUtil.removeTaskFromList(currentList, targetIndex);
 
-        commandBox.runCommand("delete " + targetIndexOneIndexed);
+        commandBox.runCommand("delete " + targetIndex);
         assertTrue(taskListPanel.isListMatching(expectedRemainder));
 
+        System.out.println("啊 啊啊啊啊" + currentList[targetIndex - 1].toString());
         assertResultMessage(CommandFormatter.undoFormatter(
                 String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete), COMMAND_DELETE));
     }

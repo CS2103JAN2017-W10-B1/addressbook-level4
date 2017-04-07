@@ -33,60 +33,72 @@ public class ViewCommandParser {
      * @throws IllegalValueException
      */
     public static Command parse(String args) {
-        if (args == null) {
-            return new IncorrectCommand(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_USAGE + ViewNextCommand.MESSAGE_USAGE));
+        if (args == null || args.equals("")) {
+            return parseNoParamGiven();
         }
 
-        // if matching the format for view next n days, show all the tasks due within the next n days
         String[] parameters = formatter(args);
-        if (parameters[0].equals("next")) {
+        if (parameters[0].equals("next") || parameters[0].equals("by")) {
+            return parseViewNext(parameters);
+        } else if (parameters[0].equals("on")) {
+            return parseViewOn(parameters);
+        } else {
+            return new IncorrectCommand(String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
+        }
+    }
+
+    private static Command parseNoParamGiven() {
+        try {
+            return new ViewNextCommand(0);
+        } catch (IllegalValueException e) {
+            return new IncorrectCommand(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
+        }
+    }
+
+    private static Command parseViewNext(String[] parameters) {
+        try {
+            if (Integer.valueOf(parameters[1]) < 0) {
+                return new IncorrectCommand(String.format(
+                        MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_NONNEGATIVE));
+            } else {
+                return new ViewNextCommand(Integer.valueOf(parameters[1]));
+            }
+        } catch (NumberFormatException nfe) {
             try {
-                if (Integer.valueOf(parameters[1]) < 0) {
-                    return new IncorrectCommand(String.format(
-                            MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_NONNEGATIVE));
-                } else {
-                    return new ViewNextCommand(Integer.valueOf(parameters[1]));
-                }
-            } catch (NumberFormatException nfe) {
-                try {
-                    TaskDate date = new TaskDate(parameters[1]);
-                    return new ViewNextCommand(date);
-                } catch (IllegalValueException e) {
-                    return new IncorrectCommand(String.format(
-                        MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
-                }
+                TaskDate date = new TaskDate(parameters[1]);
+                return new ViewNextCommand(date);
             } catch (IllegalValueException e) {
                 return new IncorrectCommand(String.format(
-                        MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
+                    MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
             }
+        } catch (IllegalValueException e) {
+            return new IncorrectCommand(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
         }
+    }
 
-        // if matching the format for view due on date, show all the tasks due on that day
-        if (parameters[0].equals("on")) {
+    private static Command parseViewOn(String[] parameters) {
+        try {
+            if (Integer.valueOf(parameters[1]) < 0) {
+                return new IncorrectCommand(String.format(
+                        MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_NONNEGATIVE));
+            } else {
+                return new ViewOnCommand(Integer.valueOf(parameters[1]));
+            }
+        } catch (NumberFormatException nfe) {
             try {
-                if (Integer.valueOf(parameters[1]) < 0) {
-                    return new IncorrectCommand(String.format(
-                            MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_NONNEGATIVE));
-                } else {
-                    return new ViewOnCommand(Integer.valueOf(parameters[1]));
-                }
-            } catch (NumberFormatException nfe) {
-                try {
-                    TaskDate date = new TaskDate(parameters[1]);
-                    return new ViewOnCommand(date);
-                } catch (IllegalValueException e) {
-                    return new IncorrectCommand(String.format(
-                            MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_USAGE));
-                }
+                TaskDate date = new TaskDate(parameters[1]);
+                return new ViewOnCommand(date);
             } catch (IllegalValueException e) {
                 return new IncorrectCommand(String.format(
                         MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_USAGE));
             }
+        } catch (IllegalValueException e) {
+            return new IncorrectCommand(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_USAGE));
         }
-        // if not matching any format
-        return new IncorrectCommand(String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
     }
 
     public static String[] formatter(String args) {

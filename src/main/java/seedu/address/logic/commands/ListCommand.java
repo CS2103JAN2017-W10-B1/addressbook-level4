@@ -15,8 +15,9 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_LIST_SUCCESS = "Listed unfinished tasks";
-    public static final String MESSAGE_LIST_DOES_NOT_EXIST = "Given list name does not exist";
+    public static final String MESSAGE_LIST_SUCCESS = "Unfinished tasks are listed!";
+    public static final String MESSAGE_LIST_DOES_NOT_EXIST = "Oops, given list name does not exist.\n"
+            + "You may want to refer to the list names in the left column.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks as per the parameters\n"
             + "the specified listname and displays them as a list with index numbers.\n"

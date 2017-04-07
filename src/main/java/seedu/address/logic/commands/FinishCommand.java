@@ -36,9 +36,9 @@ public class FinishCommand extends AbleUndoCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_FINISH_TASK_SUCCESS = "Mark finished task: %1$s";
-    public static final String MESSAGE_FINISH_TASK_MARKED = "Task had already been finished";
-    public static final String MESSAGE_WRONG_TASK_INDEX = "This task already exists in the task manager.";
+    public static final String MESSAGE_FINISH_TASK_SUCCESS = "Mark finished task: %1$s. Good job!";
+    public static final String MESSAGE_FINISH_TASK_MARKED = "Oops! This task had already been finished";
+    public static final String MESSAGE_WRONG_TASK_INDEX = "Oops! This task already exists in Dueue.";
 
     public final int targetIndex;
     private boolean isSuccess;
@@ -132,7 +132,7 @@ public class FinishCommand extends AbleUndoCommand {
             }
         }
 
-        return new CommandResult(String.format(MESSAGE_FINISH_TASK_SUCCESS, taskToMark));
+        return new CommandResult(String.format(MESSAGE_FINISH_TASK_SUCCESS, taskToMark.getName()));
     }
 
     @Override

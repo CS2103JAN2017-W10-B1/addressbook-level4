@@ -1,6 +1,8 @@
 //@@author A0143409J
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.ListCommand.MESSAGE_LIST_DOES_NOT_EXIST;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,8 +17,7 @@ public class ListAllCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_LIST_ALL_SUCCESS = "Listed all tasks";
-    public static final String MESSAGE_LIST_DOES_NOT_EXIST = "Given list name does not exist";
+    public static final String MESSAGE_LIST_ALL_SUCCESS = "All tasks are listed!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks as per the parameters\n"
             + "the specified listname and displays them as a list with index numbers.\n"
@@ -53,7 +54,7 @@ public class ListAllCommand extends Command {
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         }
     }
-  //@@author A0147996E
+//@@author A0147996E
     /**
      * Highlight the single tag if user requests to filter tasks under a single list.
      * Does not support highlighting multiple list names concurrently.
