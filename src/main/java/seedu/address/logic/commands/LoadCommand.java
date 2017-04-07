@@ -91,8 +91,4 @@ public class LoadCommand extends AbleUndoCommand {
         return this;
     }
 
-    @Override
-    public String getUndoCommandWord() {
-        return COMMAND_WORD + COMMAND_SUFFIX;
-    }
 }

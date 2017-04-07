@@ -112,9 +112,4 @@ public class EditNextCommand extends EditCommand {
         }
     }
 
-    @Override
-    public String getUndoCommandWord() {
-        return COMMAND_WORD + COMMAND_SUFFIX;
-    }
-
 }

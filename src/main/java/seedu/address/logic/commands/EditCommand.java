@@ -266,9 +266,4 @@ public class EditCommand extends AbleUndoCommand {
         }
     }
 
-    @Override
-    public String getUndoCommandWord() {
-        return COMMAND_WORD + COMMAND_SUFFIX;
-    }
-
 }
