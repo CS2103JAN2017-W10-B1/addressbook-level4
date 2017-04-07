@@ -1,16 +1,16 @@
-//@@author A0143409J-reused
+//@@author A0147996E
 package seedu.address.commons.events.ui;
 
 import seedu.address.commons.events.BaseEvent;
 
 /**
- * Indicates a request to jump to the list of tasks
+ * Indicates a request to jump to the list of tags
  */
-public class JumpToListRequestEvent extends BaseEvent {
+public class JumpToTaskListRequestEvent extends BaseEvent {
 
     public final int targetIndex;
 
-    public JumpToListRequestEvent(int targetIndex) {
+    public JumpToTaskListRequestEvent(int targetIndex) {
         this.targetIndex = targetIndex;
     }
 

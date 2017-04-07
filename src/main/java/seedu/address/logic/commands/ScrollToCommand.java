@@ -4,7 +4,7 @@ package seedu.address.logic.commands;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.UnmodifiableObservableList;
-import seedu.address.commons.events.ui.JumpToListRequestEvent;
+import seedu.address.commons.events.ui.JumpToTaskListRequestEvent;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.task.ReadOnlyTask;
 
@@ -37,7 +37,7 @@ public class ScrollToCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex - 1));
+        EventsCenter.getInstance().post(new JumpToTaskListRequestEvent(targetIndex - 1));
         return new CommandResult(String.format(MESSAGE_SCROLL_TASK_SUCCESS, targetIndex));
     }
 
