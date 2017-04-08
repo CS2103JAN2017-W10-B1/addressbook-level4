@@ -59,6 +59,8 @@ public class ViewCommandTest extends TaskManagerGuiTest {
         assertResultMessage(MESSAGE_SUCCESS_TODAY);
         commandBox.runCommand("view next/tmr");
         assertResultMessage(MESSAGE_SUCCESS_TMR);
+        commandBox.runCommand("view on/tmr");
+        assertResultMessage(ViewOnCommand.MESSAGE_SUCCESS_TMR);
     }
 
     @Test
