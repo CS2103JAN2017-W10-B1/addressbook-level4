@@ -27,20 +27,12 @@ import seedu.address.commons.util.CollectionUtil;
 public class UniqueTagList implements Iterable<Tag> {
 
     private final ObservableList<Tag> internalList = FXCollections.observableArrayList();
-    private static UniqueTagList instance;
-  //@@author A0147996E
-    public static UniqueTagList getInstance() {
-        if (instance == null) {
-            instance = new UniqueTagList();
-        }
-        return instance;
-    }
+
     public static UniqueTagList getStub() {
         return new UniqueTagList();
     }
 
-    private UniqueTagList() {}
-//@@author
+    public UniqueTagList() {}
 
     /**
      * Creates a UniqueTagList using given String tags.

@@ -8,7 +8,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.events.ui.JumpToTagListRequestEvent;
-import seedu.address.model.tag.UniqueTagList;
+import seedu.address.model.TaskManager;
 
 /**
  * Lists all finished tasks in Dueue or in a specified list.
@@ -61,7 +61,7 @@ public class ListFinishedCommand extends Command {
      * @param keywords
      */
     private void highlightCurrentTagName(Set<String> keywords) {
-        int index = UniqueTagList.getInstance().find(keywords.toString());
+        int index = TaskManager.getInstance().find(keywords.toString());
         if (index != -1) {
             EventsCenter.getInstance().post(new JumpToTagListRequestEvent(index));
         }

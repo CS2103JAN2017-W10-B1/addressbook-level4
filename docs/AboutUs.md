@@ -42,7 +42,7 @@ Role: Developer, UI Designer <br>
   * Designer of UI and maintain all UI components, including the fxml and css files
   * Maintainer of all GUI tests[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/ca757e1706061bfe97197f4552c43f5024f57381)]
   * Maintainer of UserGuide and DeveloperGuide[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/bebddddb18a09124898a41a3a45178a859f7bb5c)]
-  * Apply Singleton to UniqueTaskList, UniqueTagList, TaskManager, Config, and UserPref[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/d3e6ea424dc4768e3b6bd83b2527151c6e6a4eed)]
+  * Apply Singleton to TaskManager, Config, and UserPref[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/d3e6ea424dc4768e3b6bd83b2527151c6e6a4eed)]
   * Apply Dependency Injection by using Stub instances for testing[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/a1d72fe0cfbafd67f522765ebeb88bc53a5b5439)]
   * Set up collation[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/657cf3157bac077ae0ebe8c36bfe68d632a02063)]
   * Generate JAR file for weekly milsStones [[release](https://github.com/CS2103JAN2017-W10-B1/main/releases/tag/v0.3)][[release](https://github.com/CS2103JAN2017-W10-B1/main/releases/tag/v0.4)]
