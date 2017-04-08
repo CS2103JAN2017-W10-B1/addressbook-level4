@@ -209,14 +209,13 @@ public class EditCommand extends AbleUndoCommand {
         if (editTaskDescriptor.updatedEvent(editTaskDescriptor.getStart()) || taskToEdit.isEvent()) {
 
             // if the task is an event and the user wants to keep it as an event or the user edit it to become an event
-            if (taskToEdit.isEvent() && !(editTaskDescriptor.getStart().isPresent() &&
-                    editTaskDescriptor.getStart().get().getValue().isEmpty())) {
+            if ((taskToEdit.isEvent() && !(editTaskDescriptor.getStart().isPresent() &&
+                    editTaskDescriptor.getStart().get().getValue().isEmpty()))) {
 
                 TaskDate updatedStartDate = editTaskDescriptor.getStart()
                         .orElseGet(((ReadOnlyEvent) taskToEdit)::getStartDate);
                 TaskTime updatedStartTime = editTaskDescriptor.getStartTime()
                         .orElseGet(((ReadOnlyEvent) taskToEdit)::getStartTime);
-
                 // if the Event is recurring or the user edit it to become recurring
                 if (taskToEdit.isRecurring() || editTaskDescriptor.getRecurringMode() != null) {
                     return new RecurringEvent(updatedName, updatedStartDate, updatedStartTime, updatedDueDate,
@@ -227,6 +226,21 @@ public class EditCommand extends AbleUndoCommand {
                             updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
                 }
 
+            } else if (!taskToEdit.isEvent() && (editTaskDescriptor.getStart().isPresent() &&
+                            !editTaskDescriptor.getStart().get().getValue().isEmpty())) {
+                TaskDate updatedStartDate = editTaskDescriptor.getStart()
+                        .orElse(new TaskDate(""));
+                TaskTime updatedStartTime = editTaskDescriptor.getStartTime()
+                        .orElse(new TaskTime(""));
+                // if the Event is recurring or the user edit it to become recurring
+                if (taskToEdit.isRecurring() || editTaskDescriptor.getRecurringMode() != null) {
+                    return new RecurringEvent(updatedName, updatedStartDate, updatedStartTime, updatedDueDate,
+                            updatedDueTime, updatedDescription, updatedTag, updatedVenue, updatedPriority,
+                            isFavourite, isFinished, mode);
+                } else {
+                    return new Event(updatedName, updatedStartDate, updatedStartTime, updatedDueDate, updatedDueTime,
+                            updatedDescription, updatedTag, updatedVenue, updatedPriority, isFavourite, isFinished);
+                }
             } else {
                 // the user wants to convert a event into a task
 
