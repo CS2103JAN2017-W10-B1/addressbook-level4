@@ -3,8 +3,6 @@ package guitests;
 
 import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.ViewNextCommand.MESSAGE_SUCCESS_TMR;
-import static seedu.address.logic.commands.ViewNextCommand.MESSAGE_SUCCESS_TODAY;
 import static seedu.address.logic.commands.ViewOnCommand.MESSAGE_NONNEGATIVE;
 
 import org.junit.Test;
@@ -30,6 +28,7 @@ public class ViewCommandTest extends TaskManagerGuiTest {
         assertViewResult("view next/01/01/2050", td.assignment,
             td.gym, td.gym2, td.gym3, td.cs2103, td.date, td.study);
     }
+
     @Test
     public void view_illegalParam_errorMessage() {
         commandBox.runCommand("view next/-1");
@@ -37,6 +36,7 @@ public class ViewCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("view on/01/04/2017");
         assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_USAGE));
     }
+
     @Test
     public void view_viewOnNDays_viewSuccess() {
         commandBox.runCommand("clear");
@@ -49,14 +49,6 @@ public class ViewCommandTest extends TaskManagerGuiTest {
     public void view_viewOnDate_viewSuccess() {
         assertViewResult("view on/20/12/2017", td.gym);
         assertViewResult("view on/01/02", td.cs2103);
-    }
-
-    @Test
-    public void view_feedBackMsg_msgMatches() {
-        commandBox.runCommand("view");
-        assertResultMessage(MESSAGE_SUCCESS_TODAY);
-        commandBox.runCommand("view next/tmr");
-        assertResultMessage(MESSAGE_SUCCESS_TMR);
     }
 
     @Test

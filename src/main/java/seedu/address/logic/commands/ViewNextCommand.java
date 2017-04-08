@@ -37,19 +37,10 @@ public class ViewNextCommand extends Command {
     @Override
     public CommandResult execute() {
         model.updateFilteredTaskListGivenDaysToDueBy(numberOfDays);
-        String messageDisplay = feedBackMessageFormatter();
         LOGGER.info(getClass() + " listed all unfinished tasks by " + numberOfDays);
+        String messageDisplay = CommandFormatter.viewCommandFeedBackMessageFormatter(
+                numberOfDays, MESSAGE_SUCCESS, MESSAGE_SUCCESS_TODAY, MESSAGE_SUCCESS_TMR);
         return new CommandResult(messageDisplay);
-    }
-
-    public String feedBackMessageFormatter() {
-        if (numberOfDays.equals("0")) {
-            return String.format(MESSAGE_SUCCESS_TODAY, numberOfDays);
-        } else if (numberOfDays.equals("1")) {
-            return String.format(MESSAGE_SUCCESS_TMR, numberOfDays);
-        } else {
-            return  String.format(MESSAGE_SUCCESS, numberOfDays);
-        }
     }
 
     @Override
