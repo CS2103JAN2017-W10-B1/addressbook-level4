@@ -31,6 +31,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandFormatter;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FinishCommand;
@@ -446,6 +447,168 @@ public class LogicManagerTest {
 
         String message = CommandFormatter.undoMessageFormatter(RedoCommand.MESSAGE_SUCCESS,
                 FinishCommand.COMMAND_WORD + FinishCommand.COMMAND_SUFFIX);
+        assertCommandSuccess("redo", message, taskManager, list);
+    }
+
+    @Test
+    public void editTest() throws Exception {
+        taskEditTest(getTask());
+        taskEditTest(getEvent());
+        taskEditTest(getRecurringTask());
+        taskEditTest(getRecurringEvent());
+        taskEditConvertEventTest(getTask());
+        taskEditConvertEventTest(getEvent());
+        taskEditConvertEventTest(getRecurringTask());
+        taskEditConvertEventTest(getRecurringEvent());
+        taskEditConvertRecurringTest(getTask());
+        taskEditConvertRecurringTest(getTask());
+
+    }
+    private void taskEditConvertRecurringTest(Task task) throws Exception {
+        model.resetData(TaskManager.getStub());
+        ArrayList<Task> list1 = new ArrayList<Task>();
+        ArrayList<Task> list2 = new ArrayList<Task>();
+        TaskManager taskManager1 = TaskManager.getStub();
+        TaskManager taskManager2 = TaskManager.getStub();
+        Task finishTask = createConvertRecurringTask(task);
+        finishTask = createTask(finishTask);
+        model.addTask(task);
+        taskManager1.resetData(model.getTaskManager());
+        model.deleteTask(task);
+        model.addTask(finishTask);
+        taskManager2.resetData(model.getTaskManager());
+        model.deleteTask(finishTask);
+        model.addTask(task);
+        executeEdit(task, list2, taskManager2, "edit 1 f/daily");
+        undoEdit(list1, taskManager1);
+        redoEdit(list2, taskManager2);
+        undoEdit(list1, taskManager1);
+    }
+
+    private Task createConvertRecurringTask(Task task) {
+        try {
+            Name name = task.getName();
+            TaskDate date = task.getDate();
+            TaskTime time = task.getTime();
+            Description description = task.getDescription();
+            Tag tag = task.getTag();
+            Venue venue = task.getVenue();
+            Priority priority = task.getPriority();
+            boolean isFavorite = task.isFavorite();
+
+            if (task.isEvent()) {
+                TaskDate start = ((Event) task).getStartDate();
+                TaskTime startT =  ((Event) task).getStartTime();
+                return new RecurringEvent(name, start, startT, date, time, description, tag, venue, priority,
+                        isFavorite, RecurringMode.DAY);
+            } else {
+                return new RecurringTask(name, date, time, description, tag, venue, priority, isFavorite,
+                        RecurringMode.DAY);
+            }
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private void taskEditConvertEventTest(Task task) throws Exception {
+        model.resetData(TaskManager.getStub());
+        ArrayList<Task> list1 = new ArrayList<Task>();
+        ArrayList<Task> list2 = new ArrayList<Task>();
+        TaskManager taskManager1 = TaskManager.getStub();
+        TaskManager taskManager2 = TaskManager.getStub();
+        Task finishTask = createConvertEventTask(task);
+        finishTask = createTask(finishTask);
+        model.addTask(task);
+        taskManager1.resetData(model.getTaskManager());
+        model.deleteTask(task);
+        model.addTask(finishTask);
+        taskManager2.resetData(model.getTaskManager());
+        model.deleteTask(finishTask);
+        model.addTask(task);
+        if (task.isEvent()) {
+            executeEdit(task, list2, taskManager2, "edit 1 start/");
+        } else {
+            executeEdit(task, list2, taskManager2, "edit 1 start/23/3 startT/10:00");
+        }
+        undoEdit(list1, taskManager1);
+        redoEdit(list2, taskManager2);
+        undoEdit(list1, taskManager1);
+    }
+    private Task createConvertEventTask(Task task) {
+        try {
+            Name name = task.getName();
+            TaskDate date = task.getDate();
+            TaskTime time = task.getTime();
+            Description description = task.getDescription();
+            Tag tag = task.getTag();
+            Venue venue = task.getVenue();
+            Priority priority = task.getPriority();
+            boolean isFavorite = task.isFavorite();
+
+            if (task.isEvent() && task.isRecurring()) {
+                return new RecurringTask(name, date, time, description, tag, venue, priority, isFavorite,
+                        ((RecurringEvent) task).getMode());
+            } else if (task.isRecurring()) {
+                TaskDate start = new TaskDate("23/3");
+                TaskTime startT =  new TaskTime("10:00");
+                return new RecurringEvent(name, start, startT, date, time, description, tag, venue, priority,
+                        isFavorite, ((RecurringTask) task).getMode());
+            } else if (task.isEvent()) {
+                return new Task(name, date, time, description, tag, venue, priority, isFavorite);
+            } else {
+                TaskDate start = new TaskDate("23/3");
+                TaskTime startT =  new TaskTime("10:00");
+                return new Event(name, start, startT, date, time, description, tag, venue, priority,
+                        isFavorite);
+            }
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void taskEditTest(Task task) throws Exception {
+        model.resetData(TaskManager.getStub());
+        ArrayList<Task> list1 = new ArrayList<Task>();
+        ArrayList<Task> list2 = new ArrayList<Task>();
+        TaskManager taskManager1 = TaskManager.getStub();
+        TaskManager taskManager2 = TaskManager.getStub();
+        Task finishTask = createTask(task);
+        finishTask.setFavorite(true);
+        list1.add(task);
+        model.addTask(task);
+        taskManager1.resetData(model.getTaskManager());
+        model.deleteTask(task);
+        model.addTask(finishTask);
+        taskManager2.resetData(model.getTaskManager());
+        model.deleteTask(finishTask);
+        model.addTask(task);
+        executeEdit(task, list2, taskManager2, "edit 1 *f");
+        undoEdit(list1, taskManager1);
+        redoEdit(list2, taskManager2);
+        undoEdit(list1, taskManager1);
+
+    }
+    public void executeEdit(Task task, ArrayList<Task> list, TaskManager taskManager, String command) throws Exception {
+
+        String message = CommandFormatter.undoFormatter(String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS,
+                task.getName()), EditCommand.COMMAND_EDIT);
+        assertCommandSuccess(command, message, taskManager, list);
+    }
+    public void undoEdit(ArrayList<Task> list, TaskManager taskManager) throws Exception {
+
+        String message = CommandFormatter.undoMessageFormatter(UndoCommand.MESSAGE_SUCCESS,
+                EditCommand.COMMAND_WORD + EditCommand.COMMAND_SUFFIX);
+        assertCommandSuccess("undo", message, taskManager, list);
+    }
+
+    public void redoEdit(ArrayList<Task> list, TaskManager taskManager) throws Exception {
+
+        String message = CommandFormatter.undoMessageFormatter(RedoCommand.MESSAGE_SUCCESS,
+                EditCommand.COMMAND_WORD + EditCommand.COMMAND_SUFFIX);
         assertCommandSuccess("redo", message, taskManager, list);
     }
 
