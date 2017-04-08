@@ -363,32 +363,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (un
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
 `* * *` | user | add a new task by specifying a task name only | add a floating task
-`* * *` | user | add a task by specifying a task name together
-with its other fields as optional (Date, Time, Description, List,
-Venue, Priority, isFavorite)  | record tasks with various details
+`* * *` | user | add a task by specifying a task name together with its other fields as optional (Date, Time, Description, List, Venue, Priority, isFavorite)  | record tasks with various details
 `* * *` | user | add a new event | add a task with duration instead of due date
 `* * *` | user | add a recurring task/event | add a task/event with frequency to repeat
-`* * *` | user | add a task/event that has duplicate names
-but with other fields being different | create similar tasks/events
+`* * *` | user | add a task/event that has duplicate names but with other fields being different | create similar tasks/events
 `* * *` | user | delete a task | remove task that is no longer useful or created by mistake
 `* * *` | user | mark a task/event as finished | know the task is done
 `* * *` | user | mark the most recent occurence of a recurring task/event as finished | finish the task/event only once
 `* * *` | user | list tasks under a specific list | view my tasks by categories
-`* * *` | user | edit the Name/Date/Time/StartDate/StartTime/
-Description/Venue/Priority/isFavorite/Frequency... of a task | change its content
+`* * *` | user | edit the Name/Date/Time/StartDate/StartTime/Description/Venue/Priority/isFavorite/Frequency... of a task | change its content
 `* * *` | user | edit the fields of the most recent occurence of a recurring task/event | modify a recurring item for once
 `* * *` | user | recategorize a task under a different list | change its category
 `* *` | user | mark a task as favorite/unfavorite | maintain a favorite category across different lists
 `* *` | user | view the help message for a specific feature | know how to use a command
 `* *` | user | load external XML file into Dueue | read external task lists
-`* *` | user | list required task lists displayed as sorted
-based on `due date > priority > due time > name > tag` | manage all tasks more efficiently
+`* *` | user | list required task lists displayed as sorted based on `due date > priority > due time > name > tag` | manage all tasks more efficiently
 `* *` | user | list all/finished/unfinished/favorite tasks | manage specific category of tasks in Dueue
 `* *` | user | view the list of tasks by due date | view the tasks due from today to that day
 `* *` | user | view the list of tasks on an exact date | view the tasks due on that day
 `* *` | user | undo my latest add/delete/edit/finish/load/clear command | undo when I regret my latest command
-`* *` | user | find specific tasks with name containing given keywords
-in all/finished/unfinished tasks | easily organize my tasks
+`* *` | user | find specific tasks with name containing given keywords in all/finished/unfinished tasks | easily organize my tasks
 `*` | user | view the entire help message when opening Dueue | get to know various commands
 `*` | user | scroll to a specific index | conveniently view tasks at any position in current list view
 `*` | user | create a new list by adding a new task under that list | add a customized list
