@@ -374,21 +374,18 @@ but with other fields being different | create similar tasks/events
 `* * *` | user | mark a task/event as finished | know the task is done
 `* * *` | user | mark the most recent occurence of a recurring task/event as finished | finish the task/event only once
 `* * *` | user | list tasks under a specific list | view my tasks by categories
-`* * *` | user | edit the Name/Date/Time/StartDate/StartTime/
-Description/Venue/Priority/isFavorite/Frequency... of a task | change its content
+`* * *` | user | edit the Name/Date/Time/StartDate/StartTime/Description/Venue/Priority/isFavorite/Frequency... of a task | change its content
 `* * *` | user | edit the fields of the most recent occurence of a recurring task/event | modify a recurring item for once
 `* * *` | user | recategorize a task under a different list | change its category
 `* *` | user | mark a task as favorite/unfavorite | maintain a favorite category across different lists
 `* *` | user | view the help message for a specific feature | know how to use a command
 `* *` | user | load external XML file into Dueue | read external task lists
-`* *` | user | list required task lists displayed as sorted
-based on `due date > priority > due time > name > tag` | manage all tasks more efficiently
+`* *` | user | list required task lists displayed as sorted based on `due date > priority > due time > name > tag` | manage all tasks more efficiently
 `* *` | user | list all/finished/unfinished/favorite tasks | manage specific category of tasks in Dueue
 `* *` | user | view the list of tasks by due date | view the tasks due from today to that day
 `* *` | user | view the list of tasks on an exact date | view the tasks due on that day
 `* *` | user | undo my latest add/delete/edit/finish/load/clear command | undo when I regret my latest command
-`* *` | user | find specific tasks with name containing given keywords
-in all/finished/unfinished tasks | easily organize my tasks
+`* *` | user | find specific tasks with name containing given keywords in all/finished/unfinished tasks | easily organize my tasks
 `*` | user | view the entire help message when opening Dueue | get to know various commands
 `*` | user | scroll to a specific index | conveniently view tasks at any position in current list view
 `*` | user | create a new list by adding a new task under that list | add a customized list
