@@ -41,8 +41,8 @@ public class TaskManager implements ReadOnlyTaskManager {
      *   among constructors.
      */
     {
-        tasks = UniqueTaskList.getStub();
-        tags = UniqueTagList.getStub();
+        tasks = new UniqueTaskList();
+        tags = new UniqueTagList();
     }
 
 //@@author A0147996E
@@ -56,7 +56,6 @@ public class TaskManager implements ReadOnlyTaskManager {
         return new TaskManager();
     }
 //@@author
-
     private TaskManager() {}
 
     /**
@@ -68,6 +67,9 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
 //// list overwrite operations
+    public int find(String tagName) {
+        return tags.find(tagName);
+    }
 
     public void setTasks(List<? extends ReadOnlyTask> tasks)
             throws UniqueTaskList.DuplicateTaskException {

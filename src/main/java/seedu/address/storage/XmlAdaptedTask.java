@@ -47,13 +47,13 @@ public class XmlAdaptedTask {
     @XmlElement(required = true)
     protected boolean isEvent;
     @XmlElement(required = true)
-    private String startDate;
+    protected String startDate;
     @XmlElement(required = false)
-    private String startTime;
+    protected String startTime;
     @XmlElement(required = true)
     protected boolean isRecurring;
     @XmlElement(required = false)
-    private String recurringMode;
+    protected String recurringMode;
 
     /**
      * Constructs an XmlAdaptedPerson.

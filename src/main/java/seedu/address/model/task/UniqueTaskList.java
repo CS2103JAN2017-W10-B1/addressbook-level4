@@ -22,22 +22,11 @@ import seedu.address.commons.util.CollectionUtil;
 public class UniqueTaskList implements Iterable<Task> {
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
-    private static UniqueTaskList instance;
-
-//@@author A0147996E
-    public static UniqueTaskList getInstance() {
-        if (instance == null) {
-            instance = new UniqueTaskList();
-        }
-        return instance;
-    }
 
     public static UniqueTaskList getStub() {
         return new UniqueTaskList();
     }
-
-    private UniqueTaskList() {}
-//@@author
+    public UniqueTaskList() {}
 
     /**
      * Returns true if the list contains an equivalent task as the given argument.

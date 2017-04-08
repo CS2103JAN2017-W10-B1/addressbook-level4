@@ -24,6 +24,7 @@ import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.events.model.DueueChangedEvent;
 import seedu.address.commons.events.ui.JumpToTaskListRequestEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
+import seedu.address.logic.commands.AbleUndoCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CommandFormatter;
 import seedu.address.logic.commands.CommandResult;
@@ -32,7 +33,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.ScrollToCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -175,17 +178,45 @@ public class LogicManagerTest {
                 TaskManager.getStub(), Collections.emptyList());
     }
 
+    //@@author A0138474X
     @Test
-    public void executeClear() throws Exception {
+    public void clearTest() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         model.addTask(helper.generateTask(1));
         model.addTask(helper.generateTask(2));
         model.addTask(helper.generateTask(3));
-
-        String message = CommandFormatter.undoFormatter(ClearCommand.MESSAGE_SUCCESS, ClearCommand.COMMAND_CLEAR);
-        assertCommandSuccess("clear", message, TaskManager.getStub(), Collections.emptyList());
+        ArrayList<Task> list = new ArrayList<Task>();
+        TaskManager taskManager = TaskManager.getStub();
+        taskManager.resetData(model.getTaskManager());
+        list.add(helper.generateTask(1));
+        list.add(helper.generateTask(2));
+        list.add(helper.generateTask(3));
+        executeClear();
+        undoClear(list, taskManager);
+        redoClear();
+        undoClear(list, taskManager);
     }
 
+    private void redoClear() {
+        String message = CommandFormatter.undoMessageFormatter(RedoCommand.MESSAGE_SUCCESS,
+                ClearCommand.COMMAND_WORD + ClearCommand.COMMAND_SUFFIX);
+        assertCommandSuccess("redo", message, TaskManager.getInstance(), Collections.emptyList());
+    }
+
+    public void executeClear() throws Exception {
+
+        String message = CommandFormatter.undoFormatter(ClearCommand.MESSAGE_SUCCESS, ClearCommand.COMMAND_CLEAR);
+        assertCommandSuccess("clear", message, TaskManager.getInstance(), Collections.emptyList());
+    }
+
+    public void undoClear(ArrayList<Task> list, TaskManager taskManager) throws Exception {
+
+        String message = CommandFormatter.undoMessageFormatter(UndoCommand.MESSAGE_SUCCESS,
+                ClearCommand.COMMAND_WORD + ClearCommand.COMMAND_SUFFIX);
+        assertCommandSuccess("undo", message, taskManager, list);
+    }
+
+    //@@ author
     /*@Test
     public void executeAddInvalidArgsFormat() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
