@@ -107,7 +107,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
         //expectedTasksList = TestUtil.replaceTaskFromList(expectedTasksList, recurringTaskToAdd, 1 - 1);
         //assertTrue(taskListPanel.isListMatching(expectedTasksList));
         //assertResultMessage(CommandFormatter.undoFormatter(
-                String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, recurringTaskToAdd.getName()), "edit command"));
+        String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, recurringTaskToAdd.getName(), "edit command");
     }
 
     @Test
@@ -163,7 +163,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
      * @param editedTask the expected Task after editing the Task's details
      */
     private void assertEditSuccess(int filteredTaskListIndex, int taskManagerIndex,
-                                    String detailsToEdit, TestTask editedTask) {
+            String detailsToEdit, TestTask editedTask) {
         commandBox.runCommand("edit " + filteredTaskListIndex + " " + detailsToEdit);
 
         // confirm the new task is added to the current list
