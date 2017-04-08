@@ -364,8 +364,7 @@ Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
 `* * *` | user | add a new task by specifying a task name only | add a floating task
 `* * *` | user | add a task by specifying a task name together
-with its other fields as optional (Date, Time, Description, List,
-Venue, Priority, isFavorite)  | record tasks with various details
+with its other fields as optional | record tasks with various details
 `* * *` | user | add a new event | add a task with duration instead of due date
 `* * *` | user | add a recurring task/event | add a task/event with frequency to repeat
 `* * *` | user | add a task/event that has duplicate names
