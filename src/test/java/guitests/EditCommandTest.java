@@ -68,14 +68,6 @@ public class EditCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void editEvent_editDuplicateTask_editFailure() throws Exception {
-        commandBox.runCommand("add testevent due/today start/today startT/23:59");
-        commandBox.runCommand("add testevent2 due/today start/today startT/23:59");
-        commandBox.runCommand("edit 2 n/testevent");
-        assertResultMessage(EditCommand.MESSAGE_DUPLICATE_TASK);
-    }
-
-    @Test
     public void editEvent_toBecomeTask_editSuccess() throws Exception {
         expectedTasksList = TestUtil.addTasksToList(expectedTasksList, te.travel);
         TestEvent eventToAdd = te.travel;
