@@ -11,7 +11,7 @@ Role: Developer <br>
 * Components in charge of: [Logic](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#23-logic-component) [Commons](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#26-common-classes)
 * Aspects/tools in charge of: JUnit testing, Travis, Codacy, Coveralls
 * Features implemented:
-   * [View tasks due on a day](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#27-view-certain-tasks-view)
+   * [View tasks due on a day](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#212-view-certain-tasks-view)
    * [List tasks](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#28-listing-all-tasks--list)
    * [Edit next recurrence of a recurring task/event](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#211-edit-next-recurring-taskevent--edit-nextt)
    * [Display help messages for commands](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#21-viewing-help--help)
@@ -59,10 +59,10 @@ Role: Developer <br>
    * [Adding a typical task](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#22-adding-a-typical-task-add)
    * [Edit a task](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#29-editing-a-task--edit)
    * [Edit an event](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#210-edit-an-event--edit)
-   * [Delete a task](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#213-deleting-task--delete)
+   * [Delete a task](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#213-deleting-a-task--delete)
    * [Finish a task](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#26-finishing-a-non-recurring-taskevent--finish)
    * [Undo latest command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#214-undo-latest-command-undo)
-   * [Redo previous `undo` command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#215-reverse-previous-undo-command-redo)
+   * [Redo previous undo command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#215-reverse-previous-undo-command-redo)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/main/A0138474X.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0138474X.md)]
 
 -----

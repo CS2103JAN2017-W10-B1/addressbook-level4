@@ -25,7 +25,7 @@ By : `Team CS2103JAN2017-W10-B1`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Feb 2017`  &n
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.
 5. Some example commands you can try:
    * **`list`** : lists all the unfinished tasks
-   * **`add`**`  add laundry due/sunday dueT/16:00 #personal d/wash clothes p/trivial @B1 *f` :
+   * **`add`** laundry due/sunday dueT/16:00 #personal d/wash clothes p/trivial @B1 *f` :
      adds a task to Dueue named `laundry` which is due on `sunday` at `16:00` under list `personal` with description `wash clothes` at venue `B1` with priority `trivial` and star it as `favorite`.
    * **`delete`**` 3` : deletes the task with index 3 as shown in the current list
    * **`exit`** : exits the app
@@ -270,7 +270,7 @@ View tasks due within a specific date / the next N days.<br>
 Format: `view next/NUMBEROFDAYS`
         `view next/DATE`
         `view by/NUMBEROFDAYS`
-        `view by/DATE
+        `view by/DATE`
 
 > * When no parameters are given, Dueue will show the tasks due on today.
 > * `view on/today` is equivalent to `view on/0`.
@@ -388,7 +388,7 @@ There is no need to save manually.
 
 ## 4. Command Summary
 
-* **Add**  `add n/TASKNAME [due/DUEDATE] [dueT/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f]` <br>
+* **Add**  `add n/TASKNAME [startT/STARTTIME] [dueT/STARTDATE] [due/DUEDATE] [dueT/TIME] [#LISTNAME] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f] [f/FREQUENCY]` <br>
   e.g. `add CS2103 lecture due/01/02 dueT/16:00 #study d/go for lecture p/3 @iCube`
 
 * **Clear** : `clear`<br>
@@ -397,7 +397,7 @@ There is no need to save manually.
 * **Delete** : `delete TASKINDEX...` <br>
    e.g. `delete 3`
 
-* **Edit** : `edit TASKINDEX [n/NAME] [startT/STARTTIME] [dueT/STARTDATE] [due/DUEDATE] [dueT/DUETIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f/*u]` <br>
+* **Edit** : `edit TASKINDEX [n/NAME] [startT/STARTTIME] [dueT/STARTDATE] [due/DUEDATE] [dueT/DUETIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f/*u] [f/FREQUENCY]` <br>
   e.g.`edit 1 Laundry due/10/01 @`
 
 * **Finish** : `finish TASKINDEX` <br>
