@@ -26,7 +26,7 @@ public class XmlAdaptedTaskTest {
     public void floatingTaskTest() {
         Task task = null;
         try {
-            task = new Task(new Name("recurring Event"), new TaskDate(""), new TaskTime(""),
+            task = new Task(new Name("task"), new TaskDate(""), new TaskTime(""),
                     new Description(""), new Tag(""), new Venue(""), new Priority(""), false,
                     FinishProperty.UNFINISHED);
         } catch (IllegalValueException e) {

@@ -25,7 +25,9 @@ import seedu.address.commons.events.model.DueueChangedEvent;
 import seedu.address.commons.events.ui.JumpToTaskListRequestEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
 import seedu.address.logic.commands.AbleUndoCommand;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandFormatter;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
@@ -152,7 +154,9 @@ public class LogicManagerTest {
         }
 
         //Confirm the ui display elements should contain the right data
-        assertEquals(expectedShownList, model.getFilteredTaskList());
+        for (ReadOnlyTask t : expectedShownList) {
+            assertTrue(model.getFilteredTaskList().contains(t));
+        }
 
         //Confirm the state of data (saved and in-memory) is as expected
         assertEquals(expectedTaskManager, model.getTaskManager());
@@ -168,8 +172,6 @@ public class LogicManagerTest {
     @Test
     public void executeHelp() {
         assertCommandSuccess("help", HelpCommand.SHOWING_HELP_MESSAGE, TaskManager.getStub(), Collections.emptyList());
-        // TODO: bugs here
-        //assertTrue(helpShown);
     }
 
     @Test
@@ -217,26 +219,10 @@ public class LogicManagerTest {
     }
 
     //@@ author
-    /*@Test
+    @Test
     public void executeAddInvalidArgsFormat() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
-        assertCommandFailure("add /", expectedMessage);
-        assertCommandFailure("add Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid,address", expectedMessage);
-        assertCommandFailure("add Valid Name p/12345 valid@email.butNoPrefix a/valid, address", expectedMessage);
-        assertCommandFailure("add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address", expectedMessage);
-    }*/
-
-    @Test
-    public void executeAddInvalidPersonData() {
-        assertCommandFailure("add []\\[;] p/12345 e/valid@e.mail a/valid, address",
-                Name.MESSAGE_NAME_CONSTRAINTS_1);
-        assertCommandFailure("add Valid Name due/abc",
-                TaskDate.MESSAGE_DATE_CONSTRAINTS_1);
-        assertCommandFailure("add Valid Name due/10/4 dueT/abc",
-                TaskTime.MESSAGE_TIME_CONSTRAINTS);
-        assertCommandFailure("add Valid Name due/10/4 dueT/10:00 #$#$@",
-                Tag.MESSAGE_TAG_CONSTRAINTS_1);
-
+        assertCommandFailure("add ", expectedMessage);;
     }
 
     @Test
@@ -260,7 +246,7 @@ public class LogicManagerTest {
         model.addTask(toBeAdded); // task already in internal address book
 
         // execute command and verify result
-        //assertCommandFailure(helper.generateAddCommand(toBeAdded),  AddCommand.MESSAGE_DUPLICATE_TASK);
+        assertCommandFailure(helper.generateAddCommand(toBeAdded),  AddCommand.MESSAGE_DUPLICATE_TASK);
 
     }
 
@@ -323,27 +309,6 @@ public class LogicManagerTest {
         assertIncorrectIndexFormatBehaviorForCommand("scroll", expectedMessage);
     }
 
-    @Test
-    public void executeSelectIndexNotFoundErrorMessageShown() throws Exception {
-        //assertIndexNotFoundBehaviorForCommand("select");
-    }
-
-    @Test
-    public void executeSelectJumpsToCorrectTask() throws Exception {
-        TestDataHelper helper = new TestDataHelper();
-        List<Task> threePersons = helper.generateTaskList(3);
-
-        TaskManager expectedAB = helper.generateTaskManager(threePersons);
-        helper.addToModel(model, threePersons);
-
-        /*assertCommandSuccess("select 2",
-                String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, 2),
-                expectedAB,
-                expectedAB.getTaskList());
-        assertEquals(1, targetedJumpIndex);
-        assertEquals(model.getFilteredTaskList().get(1), threePersons.get(1));*/
-    }
-
 
     @Test
     public void executeDeleteInvalidArgsFormatErrorMessageShown() throws Exception {
@@ -353,7 +318,7 @@ public class LogicManagerTest {
 
     @Test
     public void executeDeleteIndexNotFoundErrorMessageShown() throws Exception {
-        //assertIndexNotFoundBehaviorForCommand("delete");
+        assertIndexNotFoundBehaviorForCommand("delete");
     }
 
     @Test
@@ -365,10 +330,11 @@ public class LogicManagerTest {
         expectedAB.removeTask(threeTasks.get(1));
         helper.addToModel(model, threeTasks);
 
-        /*assertCommandSuccess("delete 2",
-                String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, threeTasks.get(1)),
+        assertCommandSuccess("delete 2",
+                CommandFormatter.undoFormatter(String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS,
+                        threeTasks.get(1)), DeleteCommand.COMMAND_WORD + DeleteCommand.COMMAND_SUFFIX),
                 expectedAB,
-                expectedAB.getTaskList());*/
+                expectedAB.getTaskList());
     }
 
 
@@ -378,7 +344,7 @@ public class LogicManagerTest {
         assertCommandFailure("find ", expectedMessage);
     }
 
-    /*@Test
+
     public void execute_find_onlyMatchesFullWordsInNames() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         Task pTarget1 = helper.generateTaskWithName("bla bla KEY bla");
@@ -395,9 +361,9 @@ public class LogicManagerTest {
                 Command.getMessageForTaskListShownSummary(expectedList.size()),
                 expectedAB,
                 expectedList);
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void execute_find_isNotCaseSensitive() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         Task t1 = helper.generateTaskWithName("bla bla KEY bla ");
@@ -411,10 +377,10 @@ public class LogicManagerTest {
         helper.addToModel(model, fourTasks);
 
         assertCommandSuccess("find KEY",
-                Command.getMessageForTaskListShownSummary(expectedList.size()),
+                Command.getMessageForTaskFoundShownSummary(expectedList.size()),
                 expectedAB,
                 expectedList);
-    }*/
+    }
 
     /*@Test
     public void execute_find_matchesIfAnyKeywordPresent() throws Exception {
@@ -478,12 +444,14 @@ public class LogicManagerTest {
             StringBuffer cmd = new StringBuffer();
 
             cmd.append("add ");
-            cmd.append("n/").append(t.getName().toString());
-            cmd.append("due/").append(t.getDate());
-            cmd.append(" t/").append(t.getTime());
-            cmd.append(" d/").append(t.getDescription());
-            cmd.append(" @/").append(t.getVenue());
-            cmd.append(" p/").append(t.getPriority());
+            cmd.append(t.getName().getValue());
+            cmd.append("due/").append(t.getDate().getValue());
+            cmd.append(" dueT/").append(t.getTime().getValue());
+            cmd.append(" d/").append(t.getDescription().getValue());
+            cmd.append(" @").append(t.getVenue().getValue());
+            cmd.append(" p/").append(t.getPriority().getValue());
+            cmd.append("*f");
+            cmd.append("#").append(t.getTag().getName());
             return cmd.toString();
         }
 
@@ -563,7 +531,7 @@ public class LogicManagerTest {
                     new TaskDate("1/1"),
                     new TaskTime("17:00"),
                     new Description("This task requires a lot of efforts"),
-                    new Tag("Heavy grade"),
+                    new Tag("HeavyGrade"),
                     new Venue("LT52"),
                     new Priority("1"),
                     true
