@@ -26,7 +26,7 @@ public class XmlAdaptedTaskTest {
     public void floatingTaskTest() {
         Task task = null;
         try {
-            task = new Task(new Name("task"), new TaskDate(""), new TaskTime(""),
+            task = new Task(new Name("floating task"), new TaskDate(""), new TaskTime(""),
                     new Description(""), new Tag(""), new Venue(""), new Priority(""), false,
                     FinishProperty.UNFINISHED);
         } catch (IllegalValueException e) {
@@ -42,7 +42,7 @@ public class XmlAdaptedTaskTest {
     public void taskTest() {
         Task task = null;
         try {
-            task = new Task(new Name("recurring Event"), new TaskDate("24/3"), new TaskTime("11:00"),
+            task = new Task(new Name("task"), new TaskDate("24/3"), new TaskTime("11:00"),
                     new Description(""), new Tag(""), new Venue(""), new Priority(""), false,
                     FinishProperty.UNFINISHED);
         } catch (IllegalValueException e) {
@@ -58,7 +58,7 @@ public class XmlAdaptedTaskTest {
     public void eventTest() {
         Event task = null;
         try {
-            task =  new Event(new Name("recurring Event"), new TaskDate("23/3"), new TaskTime("10:00"),
+            task =  new Event(new Name("Event"), new TaskDate("23/3"), new TaskTime("10:00"),
                     new TaskDate("24/3"), new TaskTime("11:00"), new Description(""), new Tag(""), new Venue(""),
                     new Priority(""), false, FinishProperty.UNFINISHED);
         } catch (IllegalValueException e) {
@@ -74,7 +74,7 @@ public class XmlAdaptedTaskTest {
     public void taskRecurringTest() {
         RecurringTask task = null;
         try {
-            task = new RecurringTask(new Name("recurring Event"), new TaskDate("24/3"), new TaskTime("11:00"),
+            task = new RecurringTask(new Name("recurring Task"), new TaskDate("24/3"), new TaskTime("11:00"),
                     new Description(""), new Tag(""), new Venue(""), new Priority(""), false,
                     FinishProperty.UNFINISHED, RecurringMode.DAY);
         } catch (IllegalValueException e) {

@@ -24,7 +24,7 @@ import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.events.model.DueueChangedEvent;
 import seedu.address.commons.events.ui.JumpToTaskListRequestEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
-import seedu.address.logic.commands.AbleUndoCommand;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -45,9 +45,14 @@ import seedu.address.model.ReadOnlyTaskManager;
 import seedu.address.model.TaskManager;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Event;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.ReadOnlyRecurringTask.RecurringMode;
 import seedu.address.model.task.ReadOnlyTask;
+import seedu.address.model.task.ReadOnlyTask.FinishProperty;
+import seedu.address.model.task.RecurringEvent;
+import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
@@ -116,8 +121,8 @@ public class LogicManagerTest {
      * @see #assertCommandBehavior(boolean, String, String, ReadOnlyTaskManager, List)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-                                      ReadOnlyTaskManager expectedTaskManager,
-                                      List<? extends ReadOnlyTask> expectedShownList) {
+            ReadOnlyTaskManager expectedTaskManager,
+            List<? extends ReadOnlyTask> expectedShownList) {
         assertCommandBehavior(false, inputCommand, expectedMessage, expectedTaskManager, expectedShownList);
     }
 
@@ -141,8 +146,8 @@ public class LogicManagerTest {
      *      - {@code expectedTaskManager} was saved to the storage file. <br>
      */
     private void assertCommandBehavior(boolean isCommandExceptionExpected, String inputCommand, String expectedMessage,
-                                       ReadOnlyTaskManager expectedTaskManager,
-                                       List<? extends ReadOnlyTask> expectedShownList) {
+            ReadOnlyTaskManager expectedTaskManager,
+            List<? extends ReadOnlyTask> expectedShownList) {
 
         try {
             CommandResult result = logic.execute(inputCommand);
@@ -226,14 +231,195 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void executeAddSuccessful() throws Exception {
-        // setup expectations
-        TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.gym();
-        TaskManager expectedAB = TaskManager.getStub();
-        expectedAB.addTask(toBeAdded);
-        expectedAB.getTaskList();
+    public void addTest() throws Exception {
+        taskAddTest(getTask());
+        taskAddTest(getEvent());
+        taskAddTest(getRecurringTask());
+        taskAddTest(getRecurringEvent());
 
+    }
+    public void taskAddTest(Task task) throws Exception {
+        ArrayList<Task> list = new ArrayList<Task>();
+        TaskManager taskManager = TaskManager.getStub();
+        model.addTask(task);
+        taskManager.resetData(model.getTaskManager());
+        model.deleteTask(task);
+        executeAdd(list, taskManager, task);
+        undoAdd();
+        redoAdd(list, taskManager);
+        undoAdd();
+
+    }
+    public void executeAdd(ArrayList<Task> list, TaskManager taskManager, Task task) throws Exception {
+
+        TestDataHelper helper = new TestDataHelper();
+        String message = CommandFormatter.undoFormatter(String.format(AddCommand.MESSAGE_SUCCESS, task.getName()),
+                AddCommand.COMMAND_ADD);
+        String command = helper.generateAddCommand(task);
+        assertCommandSuccess(command, message, taskManager, list);
+    }
+    public void undoAdd() throws Exception {
+
+        String message = CommandFormatter.undoMessageFormatter(UndoCommand.MESSAGE_SUCCESS,
+                AddCommand.COMMAND_WORD + AddCommand.COMMAND_SUFFIX);
+        assertCommandSuccess("undo", message, TaskManager.getStub(), Collections.emptyList());
+    }
+    public void redoAdd(ArrayList<Task> list, TaskManager taskManager) throws Exception {
+
+        String message = CommandFormatter.undoMessageFormatter(RedoCommand.MESSAGE_SUCCESS,
+                AddCommand.COMMAND_WORD + AddCommand.COMMAND_SUFFIX);
+        assertCommandSuccess("redo", message, taskManager, list);
+    }
+
+    @Test
+    public void deleteTest() throws Exception {
+        taskDeleteTest(getTask());
+        taskDeleteTest(getEvent());
+        taskDeleteTest(getRecurringTask());
+        taskDeleteTest(getRecurringEvent());
+        taskOnceDeleteTest(getRecurringTask());
+        taskOnceDeleteTest(getRecurringEvent());
+
+    }
+    public void taskDeleteTest(Task task) throws Exception {
+        model.resetData(TaskManager.getStub());
+        ArrayList<Task> list = new ArrayList<Task>();
+        ArrayList<Task> emptyList = new ArrayList<Task>();
+        TaskManager taskManager = TaskManager.getStub();
+        list.add(task);
+        model.addTask(task);
+        taskManager.resetData(model.getTaskManager());
+        executeDelete(task);
+        undoDelete(list, taskManager);
+        redoDelete(emptyList, TaskManager.getStub());
+        undoDelete(list, taskManager);
+
+    }
+    public void taskOnceDeleteTest(Task task) throws Exception {
+        model.resetData(TaskManager.getStub());
+        ArrayList<Task> list1 = new ArrayList<Task>();
+        ArrayList<Task> list2 = new ArrayList<Task>();
+        TaskManager taskManager1 = TaskManager.getStub();
+        TaskManager taskManager2 = TaskManager.getStub();
+        Task deletedOnceTask = createTask(task);
+        if (task.isEvent()) {
+            ((RecurringEvent) deletedOnceTask).finishOnce();
+        } else {
+            ((RecurringTask) deletedOnceTask).finishOnce();
+        }
+        list1.add(task);
+        list2.add(deletedOnceTask);
+        model.addTask(task);
+        taskManager1.resetData(model.getTaskManager());
+        model.deleteTask(task);
+        model.addTask(deletedOnceTask);
+        taskManager2.resetData(model.getTaskManager());
+        model.deleteTask(deletedOnceTask);
+        model.addTask(task);
+        executeDelete(task, list2, taskManager2);
+        undoDelete(list1, taskManager1);
+        redoDelete(list2, taskManager2);
+        undoDelete(list1, taskManager1);
+
+    }
+    private Task createTask(Task task) {
+        try {
+            if (task.isEvent() && task.isRecurring()) {
+                return new RecurringEvent(task);
+            } else if (task.isRecurring()) {
+                return new RecurringTask(task);
+            } else if (task.isEvent()) {
+                return new Event(task);
+            } else {
+                return new Task(task);
+            }
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void executeDelete(Task task) throws Exception {
+
+        String message = CommandFormatter.undoFormatter(String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS,
+                task),
+                DeleteCommand.COMMAND_DELETE);
+        String deleteCommand = "delete 1";
+        if (task.isRecurring()) {
+            deleteCommand += " all";
+        }
+        assertCommandSuccess(deleteCommand, message, TaskManager.getStub(), Collections.emptyList());
+    }
+
+    public void executeDelete(Task task, ArrayList<Task> list, TaskManager taskManager) throws Exception {
+
+        String message = CommandFormatter.undoFormatter(String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS,
+                task),
+                DeleteCommand.COMMAND_DELETE);
+        assertCommandSuccess("delete 1", message, taskManager, list);
+    }
+
+    public void undoDelete(ArrayList<Task> list, TaskManager taskManager) throws Exception {
+
+        String message = CommandFormatter.undoMessageFormatter(UndoCommand.MESSAGE_SUCCESS,
+                DeleteCommand.COMMAND_WORD + DeleteCommand.COMMAND_SUFFIX);
+        assertCommandSuccess("undo", message, taskManager, list);
+    }
+
+    public void redoDelete(ArrayList<Task> list, TaskManager taskManager) throws Exception {
+
+        String message = CommandFormatter.undoMessageFormatter(RedoCommand.MESSAGE_SUCCESS,
+                DeleteCommand.COMMAND_WORD + DeleteCommand.COMMAND_SUFFIX);
+        assertCommandSuccess("redo", message, taskManager, list);
+    }
+    public Task getTask() {
+        Task task = null;
+        try {
+            task = new Task(new Name("task"), new TaskDate("24/3"), new TaskTime("11:00"),
+                    new Description(""), new Tag(""), new Venue(""), new Priority(""), false,
+                    FinishProperty.UNFINISHED);
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return task;
+    }
+    public Task getEvent() {
+        Event task = null;
+        try {
+            task =  new Event(new Name("Event"), new TaskDate("23/3"), new TaskTime("10:00"),
+                    new TaskDate("24/3"), new TaskTime("11:00"), new Description(""), new Tag(""), new Venue(""),
+                    new Priority(""), false, FinishProperty.UNFINISHED);
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return task;
+    }
+    public Task getRecurringTask() {
+        RecurringTask task = null;
+        try {
+            task = new RecurringTask(new Name("recurring Task"), new TaskDate("24/3"), new TaskTime("11:00"),
+                    new Description(""), new Tag(""), new Venue(""), new Priority(""), false,
+                    FinishProperty.UNFINISHED, RecurringMode.DAY);
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return task;
+    }
+    public Task getRecurringEvent() {
+        RecurringEvent task = null;
+        try {
+            task = new RecurringEvent(new Name("recurring Event"), new TaskDate("23/3"), new TaskTime("10:00"),
+                    new TaskDate("24/3"), new TaskTime("11:00"), new Description(""), new Tag(""), new Venue(""),
+                    new Priority(""), false, FinishProperty.UNFINISHED, RecurringMode.DAY);
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return task;
     }
 
     @Test
@@ -382,7 +568,7 @@ public class LogicManagerTest {
                 expectedList);
     }
 
-    /*@Test
+    @Test
     public void execute_find_matchesIfAnyKeywordPresent() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         Task pTarget1 = helper.generateTaskWithName("bla bla KEY bla");
@@ -396,10 +582,10 @@ public class LogicManagerTest {
         helper.addToModel(model, fourTasks);
 
         assertCommandSuccess("find key rAnDoM",
-                Command.getMessageForTaskListShownSummary(expectedList.size()),
+                Command.getMessageForTaskFoundShownSummary(expectedList.size()),
                 expectedAB,
                 expectedList);
-    }*/
+    }
 
 
     /**
@@ -436,7 +622,7 @@ public class LogicManagerTest {
                     new Venue("LT" + (seed % 53 + 1)),
                     new Priority("" + (seed % 3 + 1)),
                     true
-            );
+                    );
         }
 
         /** Generates the correct add command based on the task given */
@@ -452,6 +638,16 @@ public class LogicManagerTest {
             cmd.append(" p/").append(t.getPriority().getValue());
             cmd.append("*f");
             cmd.append("#").append(t.getTag().getName());
+            if (t.isEvent() && !t.isRecurring()) {
+                cmd.append("start/").append(((Event) t).getStartDate().getValue());
+                cmd.append("startT/").append(((Event) t).getStartTime().getValue());
+            } else if (t.isRecurring() && !t.isEvent()) {
+                cmd.append("f/").append(((RecurringTask) t).getRecurringPeriod());
+            } else if (t.isRecurring() && t.isEvent()) {
+                cmd.append("start/").append(((RecurringEvent) t).getStartDate().getValue());
+                cmd.append("startT/").append(((RecurringEvent) t).getStartTime().getValue());
+                cmd.append("f/").append(((RecurringEvent) t).getRecurringPeriod());
+            }
             return cmd.toString();
         }
 
@@ -535,7 +731,7 @@ public class LogicManagerTest {
                     new Venue("LT52"),
                     new Priority("1"),
                     true
-            );
+                    );
         }
     }
 }
