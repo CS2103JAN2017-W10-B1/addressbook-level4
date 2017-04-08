@@ -363,8 +363,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (un
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
 `* * *` | user | add a new task by specifying a task name only | add a floating task
-`* * *` | user | add a task by specifying a task name together
-with its other fields as optional | record tasks with various details
+`* * *` | user | add a task by specifying a task name together with its other fields as optional (Date, Time, Description, List, Venue, Priority, isFavorite)  | record tasks with various details
 `* * *` | user | add a new event | add a task with duration instead of due date
 `* * *` | user | add a recurring task/event | add a task/event with frequency to repeat
 `* * *` | user | add a task/event that has duplicate names
@@ -373,7 +372,7 @@ but with other fields being different | create similar tasks/events
 `* * *` | user | mark a task/event as finished | know the task is done
 `* * *` | user | mark the most recent occurence of a recurring task/event as finished | finish the task/event only once
 `* * *` | user | list tasks under a specific list | view my tasks by categories
-`* * *` | user | edit the Name/Date/Time/StartDate/StartTime/Description/Venue/Priority/isFavorite/Frequency... of a task | change its content
+`* * *` | user | edit all the possible fields of a task | change its content
 `* * *` | user | edit the fields of the most recent occurence of a recurring task/event | modify a recurring item for once
 `* * *` | user | recategorize a task under a different list | change its category
 `* *` | user | mark a task as favorite/unfavorite | maintain a favorite category across different lists
