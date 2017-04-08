@@ -33,6 +33,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FinishCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
@@ -56,6 +57,7 @@ import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
+import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.model.task.Venue;
 import seedu.address.storage.StorageManager;
 
@@ -223,7 +225,6 @@ public class LogicManagerTest {
         assertCommandSuccess("undo", message, taskManager, list);
     }
 
-    //@@ author
     @Test
     public void executeAddInvalidArgsFormat() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
@@ -373,6 +374,81 @@ public class LogicManagerTest {
                 DeleteCommand.COMMAND_WORD + DeleteCommand.COMMAND_SUFFIX);
         assertCommandSuccess("redo", message, taskManager, list);
     }
+
+    @Test
+    public void finishTest() throws Exception {
+        taskFinishTest(getTask());
+        taskFinishTest(getEvent());
+        taskFinishTest(getRecurringTask());
+        taskFinishTest(getRecurringEvent());
+        finishedTaskFinishTest(getTask());
+
+    }
+
+    private void finishedTaskFinishTest(Task task) {
+        task.setFinish(true);
+        model.resetData(TaskManager.getStub());
+        try {
+            model.addTask(task);
+            model.updateFilteredListToShowAllTasks();
+            assertCommandFailure("finish 1", FinishCommand.MESSAGE_FINISH_TASK_MARKED);
+        } catch (DuplicateTaskException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void taskFinishTest(Task task) throws Exception {
+        model.resetData(TaskManager.getStub());
+        ArrayList<Task> list1 = new ArrayList<Task>();
+        ArrayList<Task> list2 = new ArrayList<Task>();
+        TaskManager taskManager1 = TaskManager.getStub();
+        TaskManager taskManager2 = TaskManager.getStub();
+        Task finishTask = createTask(task);
+        if (task.isRecurring()) {
+            if (task.isEvent()) {
+                ((RecurringEvent) finishTask).finishOnce();
+            } else {
+                ((RecurringTask) finishTask).finishOnce();
+            }
+        } else {
+            finishTask.setFinish(true);
+        }
+        list1.add(task);
+        model.addTask(task);
+        taskManager1.resetData(model.getTaskManager());
+        model.deleteTask(task);
+        model.addTask(finishTask);
+        taskManager2.resetData(model.getTaskManager());
+        model.deleteTask(finishTask);
+        model.addTask(task);
+        executeFinish(task, list2, taskManager2);
+        undoFinish(list1, taskManager1);
+        redoFinish(list2, taskManager2);
+        undoFinish(list1, taskManager1);
+
+    }
+
+    public void executeFinish(Task task, ArrayList<Task> list, TaskManager taskManager) throws Exception {
+
+        String message = String.format(FinishCommand.MESSAGE_FINISH_TASK_SUCCESS, task.getName());
+        assertCommandSuccess("finish 1", message, taskManager, list);
+    }
+
+    public void undoFinish(ArrayList<Task> list, TaskManager taskManager) throws Exception {
+
+        String message = CommandFormatter.undoMessageFormatter(UndoCommand.MESSAGE_SUCCESS,
+                FinishCommand.COMMAND_WORD + FinishCommand.COMMAND_SUFFIX);
+        assertCommandSuccess("undo", message, taskManager, list);
+    }
+
+    public void redoFinish(ArrayList<Task> list, TaskManager taskManager) throws Exception {
+
+        String message = CommandFormatter.undoMessageFormatter(RedoCommand.MESSAGE_SUCCESS,
+                FinishCommand.COMMAND_WORD + FinishCommand.COMMAND_SUFFIX);
+        assertCommandSuccess("redo", message, taskManager, list);
+    }
+
     public Task getTask() {
         Task task = null;
         try {
@@ -422,6 +498,7 @@ public class LogicManagerTest {
         return task;
     }
 
+    //@@ author
     @Test
     public void executeAddDuplicateNotAllowed() throws Exception {
         // setup expectations
