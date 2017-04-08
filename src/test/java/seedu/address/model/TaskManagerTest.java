@@ -44,11 +44,16 @@ public class TaskManagerTest {
     public static void oneTimeSetup() {
         taskManager = TaskManager.getStub();
         testUtil = new TypicalTestTasks();
-        gym = new Task(testUtil.gym);
-        cs2103 = new Task(testUtil.cs2103);
-        assignment = new Task(testUtil.assignment);
-        date = new Task(testUtil.date);
-        familyDinner = new Task(testUtil.familyDinner);
+        try {
+            gym = new Task(testUtil.gym);
+            cs2103 = new Task(testUtil.cs2103);
+            assignment = new Task(testUtil.assignment);
+            date = new Task(testUtil.date);
+            familyDinner = new Task(testUtil.familyDinner);
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     @Before

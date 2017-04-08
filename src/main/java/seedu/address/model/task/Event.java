@@ -92,8 +92,14 @@ public class Event extends Task implements ReadOnlyEvent {
 
         super.resetData(replacement);
         assert this.isEvent();
-        this.setStartTime(((ReadOnlyEvent) replacement).getStartTime());
-        this.setStartDate(((ReadOnlyEvent) replacement).getStartDate());
+        try {
+            this.setStartDate(new TaskDate(((ReadOnlyEvent) replacement).getStartDate().getValue()));
+            this.setStartTime(new TaskTime(((ReadOnlyEvent) replacement).getStartTime().getValue()));
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
 
     @Override

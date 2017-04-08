@@ -13,6 +13,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.testutil.TypicalTestTasks;
@@ -33,9 +34,14 @@ public class ModelManagerTest {
     public static void oneTimeSetup() {
         modelManager = new ModelManager();
         testUtil = new TypicalTestTasks();
-        task1 = new Task(testUtil.gym);
-        task2 = new Task(testUtil.cs2103);
-        task3 = new Task(testUtil.study);
+        try {
+            task1 = new Task(testUtil.gym);
+            task2 = new Task(testUtil.cs2103);
+            task3 = new Task(testUtil.study);
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     @After

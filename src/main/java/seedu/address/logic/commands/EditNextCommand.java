@@ -6,9 +6,11 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.task.Event;
 import seedu.address.model.task.ReadOnlyRecurringTask;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.RecurringProperty;
+import seedu.address.model.task.RecurringEvent;
 import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
@@ -47,15 +49,30 @@ public class EditNextCommand extends EditCommand {
         if (!(taskToEdit instanceof ReadOnlyRecurringTask)) {
             throw new CommandException("The task to edit once should be a recurring task.");
         }
-        oldTask = new RecurringTask(lastShownList.get(filteredTaskListIndex));
+        ReadOnlyTask editTask = lastShownList.get(filteredTaskListIndex);
 
         try {
+            if (editTask.isEvent()) {
+                oldTask = new RecurringEvent(editTask);
+            } else {
+                oldTask = new RecurringTask(editTask);
+            }
             Task newTask = createEditedTask(taskToEdit, editTaskDescriptor);
             newTask.setRecurringProperty(RecurringProperty.NON_RECURRING);
-            task = new Task(newTask);
-            model.addTask(newTask);
-            model.finishTaskOnce(taskToEdit);
-            finishedOnceTask = new RecurringTask(taskToEdit);
+            if (newTask.isEvent()) {
+                task = new Event(newTask);
+            } else {
+                task = new Task(newTask);
+            }
+            if (taskToEdit.isEvent()) {
+                ((RecurringEvent) taskToEdit).finishOnce();
+                finishedOnceTask = new RecurringEvent(taskToEdit);
+            } else {
+                ((RecurringTask) taskToEdit).finishOnce();
+                finishedOnceTask = new RecurringTask(taskToEdit);
+            }
+            model.updateTask(filteredTaskListIndex, taskToEdit);
+            model.addTask((Task) task);
             this.isSuccess = true;
         } catch (IllegalValueException e) {
             throw new CommandException(e.getMessage());
@@ -78,23 +95,43 @@ public class EditNextCommand extends EditCommand {
                 model.deleteTask(task);
                 model.addTask(oldTask);
                 model.deleteTask(finishedOnceTask);
-                Task temp = new Task(task);
-                this.task = new RecurringTask(oldTask);
+                Task temp = (Task) task;
+                this.task = oldTask;
                 this.oldTask = temp;
                 this.finishedOnceTask = null;
                 this.isSuccess = true;
             } else {
+                Task temp;
+                if (oldTask.isEvent()) {
+                    temp = new Event(oldTask);
+                } else {
+                    temp = new Task(oldTask);
+                }
                 model.addTask(oldTask);
-                this.oldTask = new RecurringTask(task);
-                model.finishTaskOnce(task);
-                this.task = new Task(oldTask);
-                this.finishedOnceTask = new RecurringTask(task);
+                if (task.isEvent()) {
+                    oldTask = new RecurringEvent(task);
+                } else {
+                    oldTask = new RecurringTask(task);
+                }
+                if (task.isEvent()) {
+                    ((RecurringEvent) task).finishOnce();
+                    finishedOnceTask = new RecurringEvent(task);
+                } else {
+                    ((RecurringTask) task).finishOnce();
+                    finishedOnceTask = new RecurringTask(task);
+                }
+                model.deleteTask(task);
+                model.addTask((Task) finishedOnceTask);
+                this.task = temp;
                 this.isSuccess = true;
             }
         } catch (TaskNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (DuplicateTaskException e) {
+            e.printStackTrace();
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         model.updateFilteredListToShowAllUnfinishedTasks();

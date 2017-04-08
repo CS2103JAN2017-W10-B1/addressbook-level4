@@ -165,7 +165,12 @@ public class TaskManager implements ReadOnlyTaskManager {
             if (editedReadOnlyTask.isRecurring()) {
                 return new RecurringTask(editedReadOnlyTask);
             } else {
-                return new Task(editedReadOnlyTask);
+                try {
+                    return new Task(editedReadOnlyTask);
+                } catch (IllegalValueException e) {
+                    logger.info("IllegalValueException thrown when building"
+                            + " event in updating task manager");
+                }
             }
         }
         return null;
@@ -200,7 +205,12 @@ public class TaskManager implements ReadOnlyTaskManager {
                         + " event in updating task manager");
             }
         } else {
-            editedTask = new Task(editedReadOnlyTask);
+            try {
+                editedTask = new Task(editedReadOnlyTask);
+            } catch (IllegalValueException e) {
+                logger.info("IllegalValueException thrown when building"
+                        + " event in updating task manager");
+            }
             editedTask.setRecurringProperty(RecurringProperty.NON_RECURRING);
         }
         return editedTask;

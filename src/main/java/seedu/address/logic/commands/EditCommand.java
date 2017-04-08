@@ -157,7 +157,12 @@ public class EditCommand extends AbleUndoCommand {
         } else if (task.isRecurring()) {
             newTask = new RecurringTask(task);
         } else {
-            newTask = new Task(task);
+            try {
+                newTask = new Task(task);
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
         return newTask;
     }
@@ -174,7 +179,6 @@ public class EditCommand extends AbleUndoCommand {
         // get the common detail field
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
         TaskDate updatedDueDate = editTaskDescriptor.getDue().orElseGet(taskToEdit::getDate);
-        updatedDueDate = new TaskDate(updatedDueDate.getValue());
         TaskTime updatedDueTime = editTaskDescriptor.getDueTime().orElseGet(taskToEdit::getTime);
         Description updatedDescription = editTaskDescriptor.getDescription().orElseGet(taskToEdit::getDescription);
         Tag updatedTag = editTaskDescriptor.getTag().orElseGet(taskToEdit::getTag);

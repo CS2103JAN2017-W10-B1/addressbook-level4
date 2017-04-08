@@ -106,7 +106,12 @@ public class UniqueTaskList implements Iterable<Task> {
             if (taskToUpdate.isRecurring() || editedTask.isRecurring()) {
                 taskToUpdate = new RecurringTask(editedTask);
             } else {
-                taskToUpdate = new Task(editedTask);
+                try {
+                    taskToUpdate = new Task(editedTask);
+                } catch (IllegalValueException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         }
         // TODO: The code below is just a workaround to notify observers of the updated task.
@@ -165,7 +170,12 @@ public class UniqueTaskList implements Iterable<Task> {
                     e.printStackTrace();
                 }
             } else {
-                replacement.add(new Task(task));
+                try {
+                    replacement.add(new Task(task));
+                } catch (IllegalValueException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         }
         setTasks(replacement);

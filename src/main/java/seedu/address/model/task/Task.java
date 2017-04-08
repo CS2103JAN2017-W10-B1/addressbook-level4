@@ -3,6 +3,7 @@ package seedu.address.model.task;
 
 import java.util.Objects;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.tag.Tag;
 
@@ -86,11 +87,13 @@ public class Task implements ReadOnlyTask {
 
     /**
      * Creates a copy of the given ReadOnlyTask.
+     * @throws IllegalValueException
      */
-    public Task(ReadOnlyTask source) {
-        this(source.getName(), source.getDate(), source.getTime(), source.getDescription(),
-                source.getTag(), source.getVenue(), source.getPriority(),
-                source.isFavorite(), source.getFinished(),
+    public Task(ReadOnlyTask source) throws IllegalValueException {
+        this(new Name(source.getName().getValue()), new TaskDate(source.getDate().getValue()),
+                new TaskTime(source.getTime().getValue()), new Description(source.getDescription().getValue()),
+                new Tag(source.getTag().getValue()), new Venue(source.getVenue().getValue()),
+                new Priority(source.getPriority().getValue()), source.isFavorite(), source.getFinished(),
                 source.getEventProperty(), source.getRecurringProperty());
     }
 
@@ -206,17 +209,22 @@ public class Task implements ReadOnlyTask {
     public void resetData(ReadOnlyTask replacement) {
         assert replacement != null;
 
-        this.setName(replacement.getName());
-        this.setDate(replacement.getDate());
-        this.setTime(replacement.getTime());
-        this.setDescription(replacement.getDescription());
-        this.setTag(replacement.getTag());
-        this.setVenue(replacement.getVenue());
-        this.setPriority(replacement.getPriority());
-        this.setFavorite(replacement.isFavorite());
-        this.setFinish(replacement.isFinished());
-        this.setIsEvent(replacement.getEventProperty());
-        this.setIsRecurring(replacement.getRecurringProperty());
+        try {
+            this.setName(new Name(replacement.getName().getValue()));
+            this.setDate(new TaskDate(replacement.getDate().getValue()));
+            this.setTime(new TaskTime(replacement.getTime().getValue()));
+            this.setDescription(new Description(replacement.getDescription().getValue()));
+            this.setTag(new Tag(replacement.getTag().getValue()));
+            this.setVenue(new Venue(replacement.getVenue().getValue()));
+            this.setPriority(new Priority(replacement.getPriority().getValue()));
+            this.setFavorite(replacement.isFavorite());
+            this.setFinish(replacement.isFinished());
+            this.setIsEvent(replacement.getEventProperty());
+            this.setIsRecurring(replacement.getRecurringProperty());
+        } catch (IllegalValueException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     private void setIsEvent(EventProperty isEvent) {

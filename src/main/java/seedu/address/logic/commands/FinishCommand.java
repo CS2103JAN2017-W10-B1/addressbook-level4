@@ -108,13 +108,9 @@ public class FinishCommand extends AbleUndoCommand {
                         assert false : "The event must be valid";
                     }
                 } else if (task.isEvent()) {
-                    try {
-                        Task temp = new Event(task);
-                        this.task = new Event(replaceTask);
-                        this.replaceTask = new Event(temp);
-                    } catch (IllegalValueException e) {
-                        assert false : "The event must be valid";
-                    }
+                    Task temp = new Event(task);
+                    this.task = new Event(replaceTask);
+                    this.replaceTask = new Event(temp);
                 } else if (task.isRecurring()) {
                     Task temp = new RecurringTask(task);
                     this.task = new RecurringTask(replaceTask);
@@ -126,6 +122,9 @@ public class FinishCommand extends AbleUndoCommand {
                 }
             } catch (DuplicateTaskException e) {
                 assert false : "There must not be duplicated task";
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
             model.updateFilteredListToShowAllUnfinishedTasks();
             this.isSuccess = true;
@@ -170,24 +169,24 @@ public class FinishCommand extends AbleUndoCommand {
                 try {
                     this.task = new Event(taskToMark);
                     editedTask = new Event(new Name(taskToMark.getName().fullName),
-                                 new TaskDate(((Event) taskToMark).getStartDate().getValue()),
-                                 new TaskTime(((Event) taskToMark).getStartTime().getValue()),
-                                 new TaskDate(taskToMark.getDate().getValue()),
-                                 new TaskTime(taskToMark.getTime().getValue()),
-                                 new Description(taskToMark.getDescription().getValue()),
-                                 new Tag(taskToMark.getTag().tagName),
-                                 new Venue(taskToMark.getVenue().getValue()),
-                                 new Priority(taskToMark.getPriority().getValue()),
-                                 taskToMark.isFavorite(),
-                                 FinishProperty.FINISHED);
+                            new TaskDate(((Event) taskToMark).getStartDate().getValue()),
+                            new TaskTime(((Event) taskToMark).getStartTime().getValue()),
+                            new TaskDate(taskToMark.getDate().getValue()),
+                            new TaskTime(taskToMark.getTime().getValue()),
+                            new Description(taskToMark.getDescription().getValue()),
+                            new Tag(taskToMark.getTag().tagName),
+                            new Venue(taskToMark.getVenue().getValue()),
+                            new Priority(taskToMark.getPriority().getValue()),
+                            taskToMark.isFavorite(),
+                            FinishProperty.FINISHED);
                     this.replaceTask = new Event(editedTask);
                 } catch (IllegalValueException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             } else {
-                this.task = new Task(taskToMark);
                 try {
+                    this.task = new Task(taskToMark);
                     editedTask  = new Task(
                             new Name(taskToMark.getName().fullName),
                             new TaskDate(taskToMark.getDate().getValue()),
@@ -198,11 +197,11 @@ public class FinishCommand extends AbleUndoCommand {
                             new Priority(taskToMark.getPriority().getValue()),
                             taskToMark.isFavorite(),
                             FinishProperty.FINISHED);
+                    this.replaceTask = new Task(editedTask);
                 } catch (IllegalValueException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                this.replaceTask = new Task(editedTask);
             }
         }
 

@@ -52,15 +52,15 @@ public interface ReadOnlyTask {
                         || (other.getFinished() != null && other.getFinished().equals(this.getFinished()))));
                     // state checks here onwards
         if (this.isEvent()) {
-            state = state
+            state = state && (other instanceof ReadOnlyEvent)
                     && checkEqual(((ReadOnlyEvent) this).getStartDate(), ((ReadOnlyEvent) other).getStartDate())
                     && checkEqual(((ReadOnlyEvent) this).getStartTime(), ((ReadOnlyEvent) other).getStartTime());
                     // state checks here onwards
         }
-        if (this.isRecurring()) {
-            state = state
+        if (this.isRecurring() && !this.isEvent()) {
+            state = state && (other instanceof ReadOnlyRecurringTask)
                     && ((((ReadOnlyRecurringTask) this).getRecurringPeriod()).equals(
-                            ((ReadOnlyRecurringTask) this).getRecurringPeriod()));
+                            ((ReadOnlyRecurringTask) other).getRecurringPeriod()));
         }
         return state;
 

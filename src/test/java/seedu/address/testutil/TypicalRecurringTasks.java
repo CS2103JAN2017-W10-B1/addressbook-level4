@@ -60,6 +60,9 @@ public class TypicalRecurringTasks {
                 tm.addTask(new Task(task));
             } catch (UniqueTaskList.DuplicateTaskException e) {
                 assert false : "not possible";
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         }
     }
