@@ -51,7 +51,6 @@ public class TaskManagerTest {
             date = new Task(testUtil.date);
             familyDinner = new Task(testUtil.familyDinner);
         } catch (IllegalValueException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -138,7 +137,6 @@ public class TaskManagerTest {
     @Test
     public void resetData_duplicateTasks_assertionErrorThrown() throws DuplicateTagException {
 
-        // Repeat td.alice twice
         List<Task> newTasks = Arrays.asList(gym, gym);
         UniqueTagList newTags = UniqueTagList.getStub();
         newTags.add(gym.getTag());

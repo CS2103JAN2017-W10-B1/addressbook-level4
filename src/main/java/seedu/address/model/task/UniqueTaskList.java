@@ -152,28 +152,24 @@ public class UniqueTaskList implements Iterable<Task> {
                 try {
                     replacement.add(new RecurringEvent(task));
                 } catch (IllegalValueException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             } else if (task.isEvent()) {
                 try {
                     replacement.add(new Event(task));
                 } catch (IllegalValueException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             } else if (task.isRecurring()) {
                 try {
                     replacement.add(new RecurringTask(task));
                 } catch (IllegalValueException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             } else {
                 try {
                     replacement.add(new Task(task));
                 } catch (IllegalValueException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
