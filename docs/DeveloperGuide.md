@@ -366,37 +366,28 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | add a task by specifying a task name together with its other fields as optional (Date, Time, Description, List, Venue, Priority, isFavorite)  | record tasks with various details
 `* * *` | user | add a new event | add a task with duration instead of due date
 `* * *` | user | add a recurring task/event | add a task/event with frequency to repeat
-`* * *` | user | add a task that has duplicate names but with other fields being different | create similar tasks/events
-`* * *` | user | delete task | remove task that is/are no longer useful or created by mistake
+`* * *` | user | add a task/event that has duplicate names but with other fields being different | create similar tasks/events
+`* * *` | user | delete a task | remove task that is no longer useful or created by mistake
 `* * *` | user | mark a task/event as finished | know the task is done
-`* * *` | user | mark the most recent occurence of a recurring task/event as finished | finishthe task/event only once
+`* * *` | user | mark the most recent occurence of a recurring task/event as finished | finish the task/event only once
 `* * *` | user | list tasks under a specific list | view my tasks by categories
-`* * *` | user | edit the Name/Date/Time/Description/Venue/Priority/isFavorite... of a task | change its content
+`* * *` | user | edit the Name/Date/Time/StartDate/StartTime/Description/Venue/Priority/isFavorite/Frequency... of a task | change its content
+`* * *` | user | edit the fields of the most recent occurence of a recurring task/event | modify a recurring item for once
 `* * *` | user | recategorize a task under a different list | change its category
-`* * *` | user | mark a task as favorite/unfavorite | maintain a favorite category across different lists
-`* * *` | user | view the help message for a specific feature | know how to use a command
+`* *` | user | mark a task as favorite/unfavorite | maintain a favorite category across different lists
+`* *` | user | view the help message for a specific feature | know how to use a command
 `* *` | user | load external XML file into Dueue | read external task lists
-`* *` | user | scroll to a specific index | conveniently view tasks at any position in current list view
-`* *` | user | find specific tasks with name containing given keywords in all/finished/unfinished tasks | easily organize my tasks
-`* *` | first-time user | view the entire help messages | get to know various commands
-`* *` | user | list required task lists displayed as sorted based on due date and time, priority and lastly lexicographic order | manage all tasks more efficiently
-`* *` | user | list all finished and unfinished tasks | manage all tasks
-`* *` | user | list all finished tasks | manage finished tasks
-`* *` | user | list all unfinished tasks | manage unfinished tasks
-`* *` | user | list all favorite tasks | manage favorite tasks
+`* *` | user | list required task lists displayed as sorted based on `due date > priority > due time > name > tag` | manage all tasks more efficiently
+`* *` | user | list all/finished/unfinished/favorite tasks | manage specific category of tasks in Dueue
 `* *` | user | view the list of tasks by due date | view the tasks due from today to that day
 `* *` | user | view the list of tasks on an exact date | view the tasks due on that day
-`* *` | user | undo my latest edit command | undo when I regret my latest edit
-`* *` | user | undo my latest add command | undo when I regret my latest addition
-`* *` | user | undo my latest delete command | undo when I regret my latest deletion
-`* *` | user | undo my latest finish command | undo when I regret my latest finish command
-`* *` | user | redo my undone command | redo when I regret my previous undo command
-`* *` | user | create a new list by adding a new task under that list | add a customized list
+`* *` | user | undo my latest add/delete/edit/finish/load/clear command | undo when I regret my latest command
+`* *` | user | find specific tasks with name containing given keywords in all/finished/unfinished tasks | easily organize my tasks
+`*` | user | view the entire help message when opening Dueue | get to know various commands
+`*` | user | scroll to a specific index | conveniently view tasks at any position in current list view
+`*` | user | create a new list by adding a new task under that list | add a customized list
 `*` | user | remove a list when all tasks in the list is deleted | automatically remove unused list(s)
-`*` | user | list all finished and unfinished tasks under a specific list | manage all tasks under a specific list
-`*` | user | list all finished tasks under a specific list | manage finished tasks under a specific list
-`*` | user | list all unfinished tasks under a specific list | manage unfinished tasks under a specific list
-`*` | user | list all favorite tasks under a specific list | manage favorite tasks under a specific list
+`*` | user | list all/finished/unfinished/favorite tasks under a specific list | manage specific tasks under a specific list
 `*` | user | know which tasks are past due | get to know what task is left undone
 
 ## Appendix B : Use Cases
@@ -724,7 +715,7 @@ Use case ends.
 
 #### Use case: View the entire help message when opening Dueue
 
-**MSS***
+**MSS**
 
 1. User launches Dueue app
 2. Dueue displays the summary of all help messages<br>
@@ -732,7 +723,7 @@ Use case ends.
 
 #### Use case: View task lists as sorted
 
-**MSS***
+**MSS**
 
 1. User requests to list/view task(s) as specified by the command
 2. Dueue displays the required task lists displayed as sorted, based firstly on due date and time, priority and lastly lexicographic order<br>
@@ -835,22 +826,6 @@ Use case ends
 > 1a1. Dueue shows an error message<br>
   Use case ends
 
-#### Use case: Create a new list
-
-**MSS**
-
-1. User create a new list by adding a new task under that list
-2. Dueue display a successful message upon addition and update the names of lists<br>
-Use case ends
-
-#### Use case: Remove an empty list with no more tasks
-
-**MSS**
-
-1. User deletes the last tasks inside the list
-2. Dueue display a successful message upon deletion and update the names of lists<br>
-Use case ends
-
 #### Use case: List the finished/unfinished/favorite tasks under a specific list
 
 **MSS**
@@ -865,14 +840,6 @@ Use case ends.
 
 > 1a1. Dueue shows an error and a help message<br>
   Use case resumes at step 1
-
-#### Use case: View past due tasks
-
-**MSS**
-
-1. User views a specific list of tasks
-2. Dueue display a red label below the task name of the past due tasks<br>
-Use case ends
 
 ## Appendix C : Product Survey
 
