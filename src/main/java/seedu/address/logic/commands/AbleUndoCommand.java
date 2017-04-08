@@ -15,7 +15,7 @@ public abstract class AbleUndoCommand extends Command {
 
     public static final String MESSAGE_UNDO_TASK_SUCCESS = "Undo last command successful";
 
-    public abstract CommandResult executeUndo(String message) throws CommandException;
+    public abstract CommandResult undo(String message) throws CommandException;
 
     public abstract Command getUndoCommand() throws IllegalValueException;
 

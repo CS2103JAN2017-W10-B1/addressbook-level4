@@ -43,7 +43,7 @@ public class ClearCommand extends AbleUndoCommand {
     }
 
     @Override
-    public CommandResult executeUndo(String message) throws CommandException {
+    public CommandResult undo(String message) throws CommandException {
         return execute(message, true);
     }
 

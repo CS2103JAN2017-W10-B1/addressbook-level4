@@ -50,7 +50,7 @@ public class RedoCommand extends AbleUndoCommand {
             throw new CommandException(MESSAGE_UNSUCCESS);
         } else {
             this.undoCommand.setData(model);
-            return this.undoCommand.executeUndo(MESSAGE_SUCCESS);
+            return this.undoCommand.undo(MESSAGE_SUCCESS);
         }
     }
 
@@ -60,7 +60,7 @@ public class RedoCommand extends AbleUndoCommand {
     }
 
     @Override
-    public CommandResult executeUndo(String message) throws CommandException {
+    public CommandResult undo(String message) throws CommandException {
         return null;
     }
 

@@ -275,7 +275,7 @@ public class EditCommand extends AbleUndoCommand {
     }
 
     @Override
-    public CommandResult executeUndo(String message) throws CommandException {
+    public CommandResult undo(String message) throws CommandException {
         return execute(message);
     }
 

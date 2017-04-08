@@ -56,7 +56,7 @@ public class UndoCommand extends Command {
         } else {
             this.undoCommand.setData(model);
             this.undoCommandList.push(this.undoCommand);
-            return this.undoCommand.executeUndo(
+            return this.undoCommand.undo(
                     CommandFormatter.undoMessageFormatter(MESSAGE_SUCCESS, this.undoCommand));
         }
     }

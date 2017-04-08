@@ -129,7 +129,7 @@ public class DeleteCommand extends AbleUndoCommand {
     }
 
     @Override
-    public CommandResult executeUndo(String message) throws CommandException {
+    public CommandResult undo(String message) throws CommandException {
         return execute(CommandFormatter.undoMessageFormatter(message, COMMAND_WORD + " command"));
     }
 

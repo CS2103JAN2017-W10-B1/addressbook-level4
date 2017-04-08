@@ -225,7 +225,7 @@ public class AddCommand extends AbleUndoCommand {
     }
 
     @Override
-    public CommandResult executeUndo(String message) throws CommandException {
+    public CommandResult undo(String message) throws CommandException {
         return execute(CommandFormatter.undoMessageFormatter(message, getRedoCommandWord()));
     }
 

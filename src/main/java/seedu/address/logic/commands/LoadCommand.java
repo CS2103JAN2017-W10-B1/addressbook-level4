@@ -72,7 +72,7 @@ public class LoadCommand extends AbleUndoCommand {
     }
 
     @Override
-    public CommandResult executeUndo(String message) throws CommandException {
+    public CommandResult undo(String message) throws CommandException {
         assert model != null;
         TaskManager newTaskManager = TaskManager.getStub();
         newTaskManager.resetData(model.getTaskManager());

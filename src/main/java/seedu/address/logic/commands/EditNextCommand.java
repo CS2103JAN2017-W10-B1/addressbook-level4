@@ -88,7 +88,7 @@ public class EditNextCommand extends EditCommand {
     }
 
     @Override
-    public CommandResult executeUndo(String message) throws CommandException {
+    public CommandResult undo(String message) throws CommandException {
         assert model != null;
         try {
             if (finishedOnceTask != null) {
