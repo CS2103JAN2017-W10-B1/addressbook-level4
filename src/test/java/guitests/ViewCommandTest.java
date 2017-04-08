@@ -30,6 +30,7 @@ public class ViewCommandTest extends TaskManagerGuiTest {
         assertViewResult("view next/01/01/2050", td.assignment,
             td.gym, td.gym2, td.gym3, td.cs2103, td.date, td.study);
     }
+
     @Test
     public void view_illegalParam_errorMessage() {
         commandBox.runCommand("view next/-1");
@@ -37,6 +38,7 @@ public class ViewCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("view on/01/04/2017");
         assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_USAGE));
     }
+
     @Test
     public void view_viewOnNDays_viewSuccess() {
         commandBox.runCommand("clear");

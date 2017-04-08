@@ -15,8 +15,8 @@ public class ViewNextCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_SUCCESS = "View all tasks in the next %s days\n";
-    public static final String MESSAGE_SUCCESS_TODAY = "View all tasks due today\n";
-    public static final String MESSAGE_SUCCESS_TMR = "View all tasks due by tomorrow\n";
+    public static final String MESSAGE_SUCCESS_TODAY = "View all tasks due today";
+    public static final String MESSAGE_SUCCESS_TMR = "View all tasks due by tomorrow";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List unfinished tasks due by "
             + "the specified date and displays them as a list with index numbers.\n"
