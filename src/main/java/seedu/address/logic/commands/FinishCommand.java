@@ -2,10 +2,13 @@
 package seedu.address.logic.commands;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.ModelManager;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Event;
@@ -26,6 +29,8 @@ import seedu.address.model.task.Venue;
  * Finishes an unfinished task/event/recurring task in Dueue.
  */
 public class FinishCommand extends AbleUndoCommand {
+
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     public static final String COMMAND_WORD = "finish";
 
@@ -123,8 +128,7 @@ public class FinishCommand extends AbleUndoCommand {
             } catch (DuplicateTaskException e) {
                 assert false : "There must not be duplicated task";
             } catch (IllegalValueException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                logger.info(e.getMessage() + " impossible");
             }
             model.updateFilteredListToShowAllUnfinishedTasks();
             this.isSuccess = true;
@@ -161,8 +165,7 @@ public class FinishCommand extends AbleUndoCommand {
                     this.replaceTask = new RecurringTask(editedTask);
                 }
             } catch (IllegalValueException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                logger.info(e.getMessage() + " impossible");
             }
         } else {
             if (taskToMark.isEvent()) {
@@ -199,8 +202,7 @@ public class FinishCommand extends AbleUndoCommand {
                             FinishProperty.FINISHED);
                     this.replaceTask = new Task(editedTask);
                 } catch (IllegalValueException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    logger.info(e.getMessage() + " impossible");
                 }
             }
         }

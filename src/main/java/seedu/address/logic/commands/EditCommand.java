@@ -2,12 +2,15 @@
 package seedu.address.logic.commands;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.events.ui.JumpToTaskListRequestEvent;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.ModelManager;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Event;
@@ -31,6 +34,8 @@ import seedu.address.model.task.Venue;
  * Edits the details of an existing task in the Dueue.
  */
 public class EditCommand extends AbleUndoCommand {
+
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     public static final String COMMAND_WORD = "edit";
 
@@ -114,6 +119,7 @@ public class EditCommand extends AbleUndoCommand {
                 this.isSuccess = true;
                 this.oldTask = (Task) temp;
             } catch (UniqueTaskList.DuplicateTaskException dpe) {
+                logger.info(dpe.getMessage());
                 throw new CommandException(MESSAGE_DUPLICATE_TASK);
             } catch (TaskNotFoundException e) {
                 assert false : "The target task cannot be missing";
@@ -142,27 +148,21 @@ public class EditCommand extends AbleUndoCommand {
 
     protected Task createTask(ReadOnlyTask task) {
         Task newTask = null;
-        if (task.isEvent() && task.isRecurring()) {
-            try {
+        try {
+            if (task.isEvent() && task.isRecurring()) {
                 newTask = new RecurringEvent(task);
-            } catch (IllegalValueException e) {
-                e.printStackTrace();
-            }
-        } else if (task.isEvent()) {
-            try {
+
+            } else if (task.isEvent()) {
                 newTask = new Event(task);
-            } catch (IllegalValueException e) {
-                e.printStackTrace();
-            }
-        } else if (task.isRecurring()) {
-            newTask = new RecurringTask(task);
-        } else {
-            try {
+
+            } else if (task.isRecurring()) {
+                newTask = new RecurringTask(task);
+            } else {
                 newTask = new Task(task);
-            } catch (IllegalValueException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+
             }
+        } catch (IllegalValueException e) {
+            logger.info(e.getMessage() + " impossible");
         }
         return newTask;
     }
@@ -231,7 +231,7 @@ public class EditCommand extends AbleUndoCommand {
                 }
 
             } else if (!taskToEdit.isEvent() && (editTaskDescriptor.getStart().isPresent() &&
-                            !editTaskDescriptor.getStart().get().getValue().isEmpty())) {
+                    !editTaskDescriptor.getStart().get().getValue().isEmpty())) {
                 TaskDate updatedStartDate = editTaskDescriptor.getStart()
                         .orElse(new TaskDate(""));
                 TaskTime updatedStartTime = editTaskDescriptor.getStartTime()
