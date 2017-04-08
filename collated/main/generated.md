@@ -44,7 +44,8 @@ public abstract class Command {
     public static String getMessageForTaskFoundShownSummary(int displaySize) {
         String resultMsg = String.format(Messages.MESSAGE_TASKS_FOUND_OVERVIEW, displaySize);
         if (displaySize == 0) {
-            resultMsg += "\nYou may try with other keywords or find in all tasks.";
+            resultMsg += "\nOops, no matches found in Dueue."
+                    + "You may try with other keywords or find in all tasks.";
         }
         return resultMsg;
     }
@@ -130,13 +131,12 @@ public class ExitCommand extends Command {
 ``` java
 package seedu.address.logic.commands;
 
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
  * Represents an incorrect command. Upon execution, throws a CommandException with feedback to the user.
  */
-public class IncorrectCommand extends AbleUndoCommand {
+public class IncorrectCommand extends Command {
 
     public final String feedbackToUser;
     public static final String COMMAND_WORD = "incorrect";
@@ -153,22 +153,6 @@ public class IncorrectCommand extends AbleUndoCommand {
     @Override
     public boolean isUndoable() {
         return false;
-    }
-
-    @Override
-    public CommandResult executeUndo(String message) throws CommandException {
-        throw new CommandException(UndoCommand.MESSAGE_UNSUCCESS);
-    }
-
-    @Override
-    public Command getUndoCommand() throws IllegalValueException {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public String getUndoCommandWord() {
-        return COMMAND_WORD + COMMAND_SUFFIX;
     }
 
 }
@@ -293,11 +277,11 @@ public class StorageManager extends ComponentManager implements Storage {
 
     public StorageManager(String taskManagerFilePath) {
         super();
-        this.taskManagerStorage = new XmlTaskManagerStorage(taskManagerFilePath);
+        this.taskManagerStorage = XmlTaskManagerStorage.getInstance(taskManagerFilePath);
     }
 
     public StorageManager(String taskManagerFilePath, String userPrefsFilePath) {
-        this(new XmlTaskManagerStorage(taskManagerFilePath), new JsonUserPrefsStorage(userPrefsFilePath));
+        this(XmlTaskManagerStorage.getInstance(taskManagerFilePath), new JsonUserPrefsStorage(userPrefsFilePath));
     }
 
     // ================ UserPrefs methods ==============================

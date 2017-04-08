@@ -108,8 +108,9 @@ public class ResultDisplay extends UiPart<Region> {
 
     private static final Logger logger = LogsCenter.getLogger(ResultDisplay.class);
     private static final String FXML = "ResultDisplay.fxml";
-    private static final String INIT_HELP_MESSAGE = "Welcome to Dueue. \nThe basic command words are as "
-            + "following: add, clear, delete, edit, find, finish, list, scroll, view, undo and redo.\n"
+    private static final String INIT_HELP_MESSAGE = "Welcome to Dueue. How do you do today? \n"
+            + "The basic command words are as "
+            + "following: add, clear, delete, edit, find, finish, load, list, scroll, view, undo and redo.\n"
             + "To view the help message of any command, enter 'help + Command_Keyword'.";
 
     private final StringProperty displayed = new SimpleStringProperty(INIT_HELP_MESSAGE);
@@ -257,7 +258,9 @@ import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.storage.DataSavingExceptionEvent;
-import seedu.address.commons.events.ui.JumpToListRequestEvent;
+import seedu.address.commons.events.ui.JumpToTagListRequestEvent;
+import seedu.address.commons.events.ui.JumpToTaskListRequestEvent;
+import seedu.address.commons.events.ui.TagPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.TaskPanelSelectionChangedEvent;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
@@ -347,9 +350,20 @@ public class UiManager extends ComponentManager implements Ui {
     }
 
     @Subscribe
-    private void handleJumpToListRequestEvent(JumpToListRequestEvent event) {
+    private void handleJumpToTagListRequestEvent(JumpToTagListRequestEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        MainWindow.mainWindow.getTagListPanel().scrollTo(event.targetIndex);
+    }
+
+    @Subscribe
+    private void handleJumpToTaskListRequestEvent(JumpToTaskListRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         MainWindow.mainWindow.getTaskListPanel().scrollTo(event.targetIndex);
+    }
+
+    @Subscribe
+    private void handleTagPanelSelectionChangedEvent(TagPanelSelectionChangedEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
     }
 
     @Subscribe

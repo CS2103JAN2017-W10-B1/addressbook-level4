@@ -116,7 +116,7 @@ import java.util.Objects;
 public class GuiSettings implements Serializable {
 
     private static final double DEFAULT_HEIGHT = 600;
-    private static final double DEFAULT_WIDTH = 850;
+    private static final double DEFAULT_WIDTH = 1000;
 
     private Double windowWidth;
     private Double windowHeight;
@@ -299,11 +299,12 @@ package seedu.address.commons.core;
  */
 public class Messages {
 
-    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The task index provided is invalid";
+    public static final String MESSAGE_UNKNOWN_COMMAND = "Sorry, Dueue cannot understand your command."
+            + "You may want to call up the help command?\n";
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Oops. The command format given is invalid! \n%1$s";
+    public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "Oops! The task index provided is invalid";
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
-    public static final String MESSAGE_TASKS_FOUND_OVERVIEW = "%1$d tasks found!";
+    public static final String MESSAGE_TASKS_FOUND_OVERVIEW = "%1$d tasks are found in Dueue!";
 
 }
 ```
@@ -800,52 +801,6 @@ import seedu.address.commons.events.BaseEvent;
  * Indicates a request for App termination
  */
 public class ExitAppRequestEvent extends BaseEvent {
-
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName();
-    }
-}
-```
-###### /java/seedu/address/commons/events/ui/JumpToListRequestEvent.java
-``` java
-package seedu.address.commons.events.ui;
-
-import seedu.address.commons.events.BaseEvent;
-
-/**
- * Indicates a request to jump to the list of tasks
- */
-public class JumpToListRequestEvent extends BaseEvent {
-
-    public final int targetIndex;
-
-    public JumpToListRequestEvent(int targetIndex) {
-        this.targetIndex = targetIndex;
-    }
-
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName();
-    }
-}
-```
-###### /java/seedu/address/commons/events/ui/JumpToTagListRequestEvent.java
-``` java
-package seedu.address.commons.events.ui;
-
-import seedu.address.commons.events.BaseEvent;
-
-/**
- * Indicates a request to jump to the list of tags
- */
-public class JumpToTagListRequestEvent extends BaseEvent {
-
-    public final int targetIndex;
-
-    public JumpToTagListRequestEvent(int targetIndex) {
-        this.targetIndex = targetIndex;
-    }
 
     @Override
     public String toString() {
