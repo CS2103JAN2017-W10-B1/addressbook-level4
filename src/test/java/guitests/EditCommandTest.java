@@ -8,6 +8,7 @@ import static seedu.address.model.task.Event.MESSAGE_EVENT_CONSTRAINT;
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.CommandFormatter;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.task.Name;
@@ -89,6 +90,26 @@ public class EditCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("edit 5 " + detailsToEdit);
         assertResultMessage(MESSAGE_EVENT_CONSTRAINT);
     }
+
+    @Test
+    public void editNext_someFieldsSpecified_editSuccess() throws IllegalValueException {
+        TestRecurringTask recurringTaskToAdd = tr.gym;
+        commandBox.runCommand(recurringTaskToAdd.getAddCommand());
+
+        String detailsToEdit = "d/test";
+        commandBox.runCommand("edit " + 1 + " " + detailsToEdit);
+        recurringTaskToAdd.setDescription("test");
+
+        // confirm the new task is added to the current list
+        //assertTrue(taskListPanel.navigateToTask(recurringTaskToAdd));
+
+        // confirm the list now contains all previous Tasks plus the Task with updated details
+        //expectedTasksList = TestUtil.replaceTaskFromList(expectedTasksList, recurringTaskToAdd, 1 - 1);
+        //assertTrue(taskListPanel.isListMatching(expectedTasksList));
+        //assertResultMessage(CommandFormatter.undoFormatter(
+                String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, recurringTaskToAdd.getName()), "edit command"));
+    }
+
     @Test
     public void editEvent_withRecurrence_editFailure() {
         //TODO: after edit command is modified
