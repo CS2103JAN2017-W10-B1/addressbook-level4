@@ -274,7 +274,6 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     }
 
     // Methods to format date string
-
     /**
      * Format the date by given calendar instance
      */
@@ -303,7 +302,6 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     }
 
 // Methods with recurring task
-
     /**
      * Add a recurring period for date
      */
@@ -404,6 +402,11 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     }
 
 //@@author A0147996E
+    /**
+     * Get the displayed text of startDate on Ui TaskCard.
+     *
+     * @return the text to display for the task's startDate
+     */
     public String getStartDisplayText() {
         if (" ".equals(value) || "".equals(value)) {
             return "";
@@ -411,7 +414,11 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
             return "StartDate: " + value;
         }
     }
-
+    /**
+     * Display `Past due!` on Ui TaskCard if the task's dueDate is later than today.
+     *
+     * @return the text to display if the task is already past due.
+     */
     public String getPastDueDisplayedText() {
         if (isPastDue()) {
             return "Past due!";

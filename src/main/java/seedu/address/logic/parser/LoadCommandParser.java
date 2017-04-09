@@ -9,7 +9,7 @@ import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.logic.commands.LoadCommand;
 
 /**
- * Parses input arguments and creates a new LoadCommand object
+ * Parses input arguments and creates a new LoadCommand object.
  */
 public class LoadCommandParser {
     public static final String MESSAGE_ILLEGAL_DATA_TYPE = "File must be in XML format";
