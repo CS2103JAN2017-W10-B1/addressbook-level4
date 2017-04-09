@@ -79,7 +79,8 @@ public class EditNextCommand extends EditCommand {
         }
 
         model.updateFilteredListToShowAllUnfinishedTasks();
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit.getName()));
+        return new CommandResult(CommandFormatter.undoFormatter(
+                String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit.getName()), COMMAND_EDIT));
     }
 
     @Override

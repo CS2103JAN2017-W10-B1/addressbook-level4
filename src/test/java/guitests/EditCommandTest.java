@@ -112,7 +112,8 @@ public class EditCommandTest extends TaskManagerGuiTest {
         expectedTasksList[0] = typicalTaskToAdd;
         expectedTasksList[1] = recurringTaskToAdd;
         assertTrue(taskListPanel.isListMatching(expectedTasksList));
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, recurringTaskToAdd.getName()));
+        assertResultMessage(CommandFormatter.undoFormatter(String.format(
+                EditCommand.MESSAGE_EDIT_TASK_SUCCESS, recurringTaskToAdd.getName()), EditCommand.COMMAND_EDIT));
     }
 
     @Test
