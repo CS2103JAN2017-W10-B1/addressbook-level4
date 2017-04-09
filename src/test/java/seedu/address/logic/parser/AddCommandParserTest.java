@@ -18,6 +18,9 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Event;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.ReadOnlyRecurringTask.RecurringMode;
+import seedu.address.model.task.RecurringEvent;
+import seedu.address.model.task.RecurringTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
@@ -116,6 +119,53 @@ public class AddCommandParserTest {
         assertEqualEvents((Event) field.get(addCommand), sampleEvent);
     }
 
+    @Test
+    public void addRecurringTask_allFields_correctlyAdd() throws Exception {
+
+        Field field = AddCommand.class.getDeclaredField("toAdd");
+        field.setAccessible(true);
+
+        AddCommand addCommand =  (AddCommand) theOne.parse("CS2103 Lecture due/30/3 "
+                + "dueT/16:00 d/Interesting #CS2103 @I3 p/3 f/week \n");
+        Name sampleTaskName = new Name("CS2103 Lecture");
+        TaskDate sampleTaskDate = new TaskDate("30/3");
+        TaskTime sampleTaskTime = new TaskTime("16:00");
+        Description sampleTaskDescription = new Description("Interesting");
+        Tag sampleTaskTag = new Tag("CS2103");
+        Venue sampleTaskVenue = new Venue("I3");
+        Priority sampleTaskPriority = new Priority("3");
+        RecurringMode mode = RecurringMode.WEEK;
+        RecurringTask sampleRecurringTask = new RecurringTask(
+                sampleTaskName, sampleTaskDate, sampleTaskTime, sampleTaskDescription, sampleTaskTag,
+                sampleTaskVenue, sampleTaskPriority, false, mode);
+        assertEqualRecurringTasks((RecurringTask) field.get(addCommand), sampleRecurringTask);
+    }
+
+    @Test
+    public void addRecurringEvent_allFields_correctlyAdd() throws Exception {
+
+        Field field = AddCommand.class.getDeclaredField("toAdd");
+        field.setAccessible(true);
+
+        AddCommand addCommand =  (AddCommand) theOne.parse("CS2103 Lecture due/30/3 "
+                + "dueT/16:00 d/Interesting #CS2103 @I3 p/3 start/29/3 startT/15:00 f/week \n");
+        Name sampleTaskName = new Name("CS2103 Lecture");
+        TaskDate sampleTaskDate = new TaskDate("30/3");
+        TaskTime sampleTaskTime = new TaskTime("16:00");
+        TaskDate sampleTaskStartDate = new TaskDate("29/3");
+        TaskTime sampleTaskStartTime = new TaskTime("15:00");
+        Description sampleTaskDescription = new Description("Interesting");
+        Tag sampleTaskTag = new Tag("CS2103");
+        Venue sampleTaskVenue = new Venue("I3");
+        Priority sampleTaskPriority = new Priority("3");
+        RecurringMode mode = RecurringMode.WEEK;
+        RecurringEvent sampleRecurringEvent = new RecurringEvent(
+                sampleTaskName, sampleTaskStartDate, sampleTaskStartTime,
+                sampleTaskDate, sampleTaskTime, sampleTaskDescription, sampleTaskTag,
+                sampleTaskVenue, sampleTaskPriority, false, mode);
+        assertEqualRecurringEvents((RecurringEvent) field.get(addCommand), sampleRecurringEvent);
+    }
+
     private void assertEqualTasks(Task task1, Task sampleTask) {
         assertEquals(task1.getName(), sampleTask.getName());
         assertEquals(task1.getDate(), sampleTask.getDate());
@@ -128,9 +178,19 @@ public class AddCommandParserTest {
         assertEquals(task1.isFinished(), sampleTask.isFinished());
     }
 
+    private void assertEqualRecurringTasks(RecurringTask task1, RecurringTask task2) {
+        assertEqualTasks(task1, task2);
+        assertEquals(task1.getMode(), task2.getMode());
+    }
+
     private void assertEqualEvents(Event event1, Event event2) {
         assertEqualTasks(event1, event2);
         assertEquals(event1.getStartTime(), event2.getStartTime());
         assertEquals(event1.getStartDate(), event2.getStartDate());
+    }
+
+    private void assertEqualRecurringEvents(RecurringEvent event1, RecurringEvent event2) {
+        assertEqualEvents(event1, event2);
+        assertEquals(event1.getMode(), event2.getMode());
     }
 }
