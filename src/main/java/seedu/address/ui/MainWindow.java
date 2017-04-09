@@ -151,9 +151,6 @@ public class MainWindow extends UiPart<Region> {
         primaryStage.show();
     }
 
-    /**
-     * Closes the application.
-     */
     @FXML
     private void handleExit() {
         raise(new ExitAppRequestEvent());

@@ -14,6 +14,11 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 
+/**
+ * An ui for user to type input commands.
+ * @param  logic If a command exception is thrown upon the execution
+ * of given command through logic, commandBox will highlight in error style.
+ */
 public class CommandBox extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(CommandBox.class);
     private static final String FXML = "CommandBox.fxml";
@@ -41,7 +46,6 @@ public class CommandBox extends UiPart<Region> {
     private void handleCommandInputChanged() {
         try {
             CommandResult commandResult = logic.execute(commandTextField.getText());
-
             // process result of the command
             setStyleToIndicateCommandSuccess();
             commandTextField.setText("");

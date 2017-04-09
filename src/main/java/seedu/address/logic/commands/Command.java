@@ -59,7 +59,7 @@ public abstract class Command {
     public void highlightCurrentTagName(String keywords) {
         int index = model.getListIndex(keywords.toString());
         if (index != -1) {
-            EventsCenter.getInstance().post(new JumpToTagListRequestEvent(index - 1));
+            EventsCenter.getInstance().post(new JumpToTagListRequestEvent(index));
         }
     }
 //@@author
