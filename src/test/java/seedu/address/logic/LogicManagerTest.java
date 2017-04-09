@@ -831,8 +831,8 @@ public class LogicManagerTest {
     /**
      * A utility class to generate test data.
      */
-    class TestDataHelper {
-        Task gym() throws Exception {
+    private class TestDataHelper {
+        public Task gym() throws Exception {
             Name name = new Name("Homework");
             TaskDate date = new TaskDate("21/3/2019");
             TaskTime time = new TaskTime("12:00");
@@ -851,7 +851,7 @@ public class LogicManagerTest {
          *
          * @param seed used to generate the task data field values
          */
-        Task generateTask(int seed) throws Exception {
+        public Task generateTask(int seed) throws Exception {
             return new Task(
                     new Name("Task " + seed),
                     new TaskDate("" + (Math.abs(seed) % 31 + 1) + "/" + (Math.abs(seed) % 12 + 1)),
@@ -866,7 +866,7 @@ public class LogicManagerTest {
         }
 
         /** Generates the correct add command based on the task given */
-        String generateAddCommand(Task t) {
+        public String generateAddCommand(Task t) {
             StringBuffer cmd = new StringBuffer();
 
             cmd.append("add ");
@@ -894,7 +894,7 @@ public class LogicManagerTest {
         /**
          * Generates an TaskManager with auto-generated tasks.
          */
-        TaskManager generateTaskManager(int numGenerated) throws Exception {
+        public TaskManager generateTaskManager(int numGenerated) throws Exception {
             TaskManager taskManager = TaskManager.getStub();
             addToTaskManager(taskManager, numGenerated);
             return taskManager;
@@ -913,14 +913,14 @@ public class LogicManagerTest {
          * Adds auto-generated Task objects to the given TaskManager
          * @param taskManager The TaskManager to which the Tasks will be added
          */
-        void addToTaskManager(TaskManager taskManager, int numGenerated) throws Exception {
+        public void addToTaskManager(TaskManager taskManager, int numGenerated) throws Exception {
             addToTaskManager(taskManager, generateTaskList(numGenerated));
         }
 
         /**
          * Adds the given list of Tasks to the given taskManager
          */
-        void addToTaskManager(TaskManager taskManager, List<Task> tasksToAdd) throws Exception {
+        public void addToTaskManager(TaskManager taskManager, List<Task> tasksToAdd) throws Exception {
             for (Task t: tasksToAdd) {
                 taskManager.addTask(t);
             }
@@ -930,14 +930,14 @@ public class LogicManagerTest {
          * Adds auto-generated Task objects to the given model
          * @param model The model to which the Tasks will be added
          */
-        void addToModel(Model model, int numGenerated) throws Exception {
+        public void addToModel(Model model, int numGenerated) throws Exception {
             addToModel(model, generateTaskList(numGenerated));
         }
 
         /**
          * Adds the given list of Tasks to the given model
          */
-        void addToModel(Model model, List<Task> tasksToAdd) throws Exception {
+        public void addToModel(Model model, List<Task> tasksToAdd) throws Exception {
             for (Task t: tasksToAdd) {
                 model.addTask(t);
             }
@@ -946,7 +946,7 @@ public class LogicManagerTest {
         /**
          * Generates a list of Tasks based on the flags.
          */
-        List<Task> generateTaskList(int numGenerated) throws Exception {
+        public List<Task> generateTaskList(int numGenerated) throws Exception {
             List<Task> tasks = new ArrayList<>();
             for (int i = 1; i <= numGenerated; i++) {
                 tasks.add(generateTask(i));
@@ -954,14 +954,14 @@ public class LogicManagerTest {
             return tasks;
         }
 
-        List<Task> generateTaskList(Task... tasks) {
+        public List<Task> generateTaskList(Task... tasks) {
             return Arrays.asList(tasks);
         }
 
         /**
          * Generates a Task object with given name. Other fields will have some dummy values.
          */
-        Task generateTaskWithName(String name) throws Exception {
+        public Task generateTaskWithName(String name) throws Exception {
             return new Task(
                     new Name(name),
                     new TaskDate("1/1"),

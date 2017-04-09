@@ -26,7 +26,7 @@ public class XmlTaskManagerStorage implements TaskManagerStorage {
         this.filePath = filePath;
     }
 
-    static XmlTaskManagerStorage getInstance(String filePath) {
+    public static XmlTaskManagerStorage getInstance(String filePath) {
         if (xmlStorage == null) {
             return xmlStorage = new XmlTaskManagerStorage(filePath);
         } else {
