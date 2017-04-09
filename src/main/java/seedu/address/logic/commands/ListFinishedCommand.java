@@ -10,6 +10,8 @@ public class ListFinishedCommand extends ListCommand {
 
     public static final String MESSAGE_LIST_SUCCESS = "Finished tasks are listed! Well done!\n";
 
+    protected Set<String> keywords;
+
     /**
      * Create a ListFinishedCommand using a set of keywords
      *
@@ -27,7 +29,7 @@ public class ListFinishedCommand extends ListCommand {
             LOGGER.info(getClass() + " listed all finished tasks");
             return new CommandResult(MESSAGE_LIST_SUCCESS);
         } else if (model.isListExist(keywords)) {
-            highlightCurrentTagName(keywords);
+            highlightCurrentTagName(keywords.toString());
             model.updateFilteredTaskListGivenListNameFinished(keywords);
             LOGGER.info(getClass() + " listed all finished tasks in the given lists");
             return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_SUCCESS, keywords));

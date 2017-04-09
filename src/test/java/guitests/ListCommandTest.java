@@ -16,6 +16,7 @@ public class ListCommandTest extends TaskManagerGuiTest {
         assertListResult("list all", td.assignment, td.gym, td.gym2, td.gym3, td.cs2103,
                 td.date, td.study);
         assertListResult("list personal", td.gym, td.gym2, td.gym3, td.date);
+        assertListResult("list all personal", td.gym, td.gym2, td.gym3, td.date);
         assertListResult("list study", td.assignment);
         assertListResult("list favorite", td.assignment, td.gym, td.cs2103, td.study);
         assertListResult("list favorite study", td.assignment);
@@ -47,9 +48,15 @@ public class ListCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void list_EmptyList_noTasksListed() {
+    public void list_invalidListname_noTasksListed() {
         commandBox.runCommand("clear");
         assertListResult("list exercise");
+        assertResultMessage(MESSAGE_LIST_DOES_NOT_EXIST);
+        assertListResult("list all exercise");
+        assertResultMessage(MESSAGE_LIST_DOES_NOT_EXIST);
+        assertListResult("list favorite exercise");
+        assertResultMessage(MESSAGE_LIST_DOES_NOT_EXIST);
+        assertListResult("list finished exercise");
         assertResultMessage(MESSAGE_LIST_DOES_NOT_EXIST);
     }
 
