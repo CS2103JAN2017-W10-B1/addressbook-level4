@@ -52,25 +52,12 @@ public class EditNextCommand extends EditCommand {
         ReadOnlyTask editTask = lastShownList.get(filteredTaskListIndex);
 
         try {
-            if (editTask.isEvent()) {
-                oldTask = new RecurringEvent(editTask);
-            } else {
-                oldTask = new RecurringTask(editTask);
-            }
+            oldTask = createRecurringTaskOrEvent(editTask);
             Task newTask = createEditedTask(taskToEdit, editTaskDescriptor);
             newTask.setRecurringProperty(RecurringProperty.NON_RECURRING);
-            if (newTask.isEvent()) {
-                task = new Event(newTask);
-            } else {
-                task = new Task(newTask);
-            }
-            if (taskToEdit.isEvent()) {
-                ((RecurringEvent) taskToEdit).finishOnce();
-                finishedOnceTask = new RecurringEvent(taskToEdit);
-            } else {
-                ((RecurringTask) taskToEdit).finishOnce();
-                finishedOnceTask = new RecurringTask(taskToEdit);
-            }
+            task = createTaskOrEvent(newTask);
+            ((ReadOnlyRecurringTask) taskToEdit).finishOnce();
+            finishedOnceTask = createRecurringTaskOrEvent(taskToEdit);
             model.updateTask(filteredTaskListIndex, taskToEdit);
             model.addTask((Task) task);
             this.isSuccess = true;
@@ -102,37 +89,21 @@ public class EditNextCommand extends EditCommand {
                 this.finishedOnceTask = null;
                 this.isSuccess = true;
             } else {
-                Task temp;
-                if (oldTask.isEvent()) {
-                    temp = new Event(oldTask);
-                } else {
-                    temp = new Task(oldTask);
-                }
+                Task temp = createTaskOrEvent(oldTask);
                 model.addTask(oldTask);
-                if (task.isEvent()) {
-                    oldTask = new RecurringEvent(task);
-                } else {
-                    oldTask = new RecurringTask(task);
-                }
-                if (task.isEvent()) {
-                    ((RecurringEvent) task).finishOnce();
-                    finishedOnceTask = new RecurringEvent(task);
-                } else {
-                    ((RecurringTask) task).finishOnce();
-                    finishedOnceTask = new RecurringTask(task);
-                }
+                oldTask = createRecurringTaskOrEvent(task);
+                ((ReadOnlyRecurringTask) task).finishOnce();
+                finishedOnceTask = createRecurringTaskOrEvent(task);
                 model.deleteTask(task);
                 model.addTask((Task) finishedOnceTask);
                 this.task = temp;
                 this.isSuccess = true;
             }
         } catch (TaskNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (DuplicateTaskException e) {
             e.printStackTrace();
         } catch (IllegalValueException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         model.updateFilteredListToShowAllUnfinishedTasks();
@@ -143,11 +114,25 @@ public class EditNextCommand extends EditCommand {
     @Override
     public Command getUndoCommand() {
         if (isSuccess) {
-            //TODO
             return new EditNextCommand(task, oldTask, finishedOnceTask);
         } else {
             return null;
         }
     }
 
+    private Task createTaskOrEvent(ReadOnlyTask newTask) throws IllegalValueException {
+        if (newTask.isEvent()) {
+            return new Event(newTask);
+        } else {
+            return new Task(newTask);
+        }
+    }
+
+    private Task createRecurringTaskOrEvent(ReadOnlyTask newTask) throws IllegalValueException {
+        if (newTask.isEvent()) {
+            return new RecurringEvent(newTask);
+        } else {
+            return new RecurringTask(newTask);
+        }
+    }
 }

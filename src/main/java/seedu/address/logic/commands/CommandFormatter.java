@@ -20,9 +20,9 @@ public class CommandFormatter {
 
     public static String listFormatter(String message, Set<String> keywords) {
         String formatted = message + " in list ";
-        for (Iterator<String> it = keywords.iterator(); it.hasNext(); ) {
-            formatted += it.next();
-            if (it.hasNext()) {
+        for (Iterator<String> i = keywords.iterator(); i.hasNext(); ) {
+            formatted += i.next();
+            if (i.hasNext()) {
                 formatted += LIST_SEPARATOR;
             }
         }
