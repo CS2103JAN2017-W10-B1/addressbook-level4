@@ -137,7 +137,7 @@ _Figure 2.1.4a : Component interactions for `edit 1 due/today` command (part 1)_
 
 >Note how the `Model` simply raises a `TaskManagerChangedEvent` when the Task Manager data are changed, instead of asking the Storage to save the updates to the hard disk.
 
-The diagram below shows how the `EventsCenter` reacts to that event,  which eventually results in the updates being saved to the hard disk and the status bar of the `UI` being updated to reflect the ‘Last Updated’ time. 
+The diagram below shows how the `EventsCenter` reacts to that event,  which eventually results in the updates being saved to the hard disk and the status bar of the `UI` being updated to reflect the ‘Last Updated’ time.
 <img src="images\SDforEditRecurringTaskEventHandling.png" width="800"><br>
 _Figure 2.1.4b : Component interactions for `edit 1 due/today` command (part 2)_
 
