@@ -1,17 +1,15 @@
 //@@author A0147996E
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.UnmodifiableObservableList;
-import seedu.address.commons.events.ui.JumpToTaskListRequestEvent;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.task.ReadOnlyTask;
 
 /**
  * Scrolls to a task identified using it's last displayed index from the Dueue.
  *
- * @param targetIndex index given by user, not the internal index used by task list
+ * @param targetIndex index as shown in the ui task list.
  */
 public class ScrollToCommand extends Command {
 
@@ -39,7 +37,7 @@ public class ScrollToCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        EventsCenter.getInstance().post(new JumpToTaskListRequestEvent(targetIndex - 1));
+        highlightCurrentTaskName(targetIndex - 1);
         return new CommandResult(String.format(MESSAGE_SCROLL_TASK_SUCCESS, targetIndex));
     }
 

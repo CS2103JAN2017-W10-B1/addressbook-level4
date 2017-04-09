@@ -222,7 +222,6 @@ public class Task implements ReadOnlyTask {
             this.setIsEvent(replacement.getEventProperty());
             this.setIsRecurring(replacement.getRecurringProperty());
         } catch (IllegalValueException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

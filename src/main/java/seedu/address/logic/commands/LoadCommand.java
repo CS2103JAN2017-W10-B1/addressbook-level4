@@ -1,11 +1,8 @@
 //@@author A0147996E
 package seedu.address.logic.commands;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.logging.Logger;
 
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -17,7 +14,6 @@ import seedu.address.storage.StorageManager;
  * Load tasks from an external XML file into Dueue.
  */
 public class LoadCommand extends AbleUndoCommand {
-    private static final Logger logger = LogsCenter.getLogger(LoadCommand.class);
 
     public static final String COMMAND_WORD = "load";
     public static final String MESSAGE_ILLEGAL_DATA_TYPE = "File must be in XML format";
@@ -41,11 +37,9 @@ public class LoadCommand extends AbleUndoCommand {
     public CommandResult execute() throws CommandException {
         saveTaskManagerCopy();
         if (!path.matches(PATH_VALIDATION_REGEX)) {
-            logger.info("Input file is not in XML format. Load unsuccessful");
+            LOGGER.info(getClass() + "Input file " + path + "is not in XML format. Load unsuccessful");
             throw new CommandException(MESSAGE_ILLEGAL_DATA_TYPE);
         }
-        File file = new File(path);
-        assert file != null;
 
         if (resetDataFromFilePath(path)) {
             return new CommandResult(CommandFormatter.undoFormatter(
@@ -60,7 +54,7 @@ public class LoadCommand extends AbleUndoCommand {
      * @param tempTaskManager A temporary task manager copy saved for undo command.
      */
     private void saveTaskManagerCopy() {
-        logger.info("Start saving a copy of current task manager");
+        LOGGER.info(getClass() + "Start saving a copy of current task manager");
         assert model != null;
         tempTaskManager = TaskManager.getStub();
         tempTaskManager.resetData(model.getTaskManager());
@@ -75,7 +69,7 @@ public class LoadCommand extends AbleUndoCommand {
      */
     private boolean resetDataFromFilePath(String path) throws CommandException {
         try {
-            logger.info("Start resetting data in current model");
+            LOGGER.info(getClass() + "Start resetting data in current model from given directory");
             StorageManager storage = new StorageManager(path);
             ReadOnlyTaskManager taskManager = storage.readTaskManager(path).get();
             model.resetData(taskManager);

@@ -4,10 +4,8 @@ package seedu.address.logic.commands;
 import java.util.List;
 import java.util.logging.Logger;
 
-import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.events.ui.JumpToTaskListRequestEvent;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
@@ -101,9 +99,9 @@ public class EditCommand extends AbleUndoCommand {
                 model.updateTask(filteredTaskListIndex, editedTask);
                 isSuccess = true;
                 task = editedTask;
-                int taskIndex = model.getFilteredTaskList().indexOf(editedTask);
-                EventsCenter.getInstance().post(new JumpToTaskListRequestEvent(taskIndex));
 
+                int taskIndex = model.getFilteredTaskList().indexOf(editedTask);
+                highlightCurrentTaskName(taskIndex);
                 highlightCurrentTagName(editedTask.getTag().toString());
             } catch (UniqueTaskList.DuplicateTaskException dpe) {
                 isSuccess = false;

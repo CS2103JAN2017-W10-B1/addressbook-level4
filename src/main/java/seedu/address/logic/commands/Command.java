@@ -8,6 +8,7 @@ import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.events.ui.JumpToTagListRequestEvent;
+import seedu.address.commons.events.ui.JumpToTaskListRequestEvent;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -54,15 +55,23 @@ public abstract class Command {
      * Highlight the single tag if user requests to filter tasks under a single list.
      * Does not support highlighting multiple list names concurrently.
      *
-     * @param keywords
+     * @param keywords the tagName to be highlighted
      */
-
     public void highlightCurrentTagName(String keywords) {
         int index = model.getListIndex(keywords.toString());
         if (index != -1) {
             EventsCenter.getInstance().post(new JumpToTagListRequestEvent(index));
         }
     }
+    /**
+     * Highlight the task upon adding, editing and scrolling to.
+     *
+     * @param targetIndex the index of the task whose taskCard in ui will be highlighted.
+     */
+    public void highlightCurrentTaskName(int targetIndex) {
+        EventsCenter.getInstance().post(new JumpToTaskListRequestEvent(targetIndex));
+    }
+
 //@@author
     /**
      * Executes the command and returns the result message.

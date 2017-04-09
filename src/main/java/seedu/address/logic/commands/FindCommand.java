@@ -39,6 +39,7 @@ public class FindCommand extends Command {
         } else {
             model.updateFilteredTaskListAll(keywords);
         }
+        LOGGER.info(getClass() + " listed all tasks as specified by the parameters " + keywords.toString());
         return new CommandResult(getMessageForTaskFoundShownSummary(
                 model.getFilteredTaskList().size()));
     }
