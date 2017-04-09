@@ -129,6 +129,11 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
         }
     }
  //@@author A0147996E
+    /**
+     * Get the displayed text of startTime on Ui TaskCard.
+     *
+     * @return the text to display for the task's startTime
+     */
     public String getStartDisplayText() {
         if (" ".equals(value) || "".equals(value)) {
             return "";

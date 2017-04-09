@@ -14,6 +14,11 @@ public class UserPrefs {
     public GuiSettings guiSettings;
 
     //@@author A0147996E
+    /**
+     * Creates the UserPrefs stub for testing purpose.
+     *
+     * @return an empty UserPrefs object.
+     */
     public static UserPrefs getInstance() {
         if (instance == null) {
             instance = new UserPrefs();
