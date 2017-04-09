@@ -58,7 +58,7 @@ public abstract class Command {
      * @param keywords
      */
     public void highlightCurrentTagName(Set<String> keywords) {
-        int index = TaskManager.getInstance().find(keywords.toString());
+        int index = model.getListIndex(keywords.toString());
         if (index != -1) {
             EventsCenter.getInstance().post(new JumpToTagListRequestEvent(index));
         }

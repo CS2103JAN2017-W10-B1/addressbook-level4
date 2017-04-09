@@ -119,6 +119,17 @@ public class ModelManager extends ComponentManager implements Model {
         taskManager.updateTaskOnce(taskManagerIndex, editedTask);
         indicateTaskManagerChanged();
     }
+
+    public int getListIndex(String listName) {
+        for (int i = 0; i < filteredTag.size(); i++) {
+            System.out.println(filteredTag.get(i) + " " + listName);
+            if (filteredTag.get(i).toString().equalsIgnoreCase(listName)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
   //@@author
 
   //=========== Filtered Task List Accessors =============================================================
