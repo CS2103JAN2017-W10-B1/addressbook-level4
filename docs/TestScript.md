@@ -81,25 +81,27 @@
   * list favorite testing
   <br>
 
-9. view tasks by due dates
-  * view next/10
-  * view on/10
-  * view next/sunday
-  * view on/2/5
-  <br>
-
-10. clear the current data
+9. clear the current data
   * clear
   <br>
 
-11. load an xml data file
+10. load an xml data file
   * load data/sample_data.xml
   <br>
 
-12. scroll to the specific task
+11. scroll to the specific task
   * scroll 2
   * scroll 6
   * scroll 11
+  * scroll 14
+  <br>
+
+9. view tasks by due dates
+  * view next/10
+  * view next/50
+  * view next/sunday
+  * view on/10
+  * view on/4/5
   <br>
 
 13. exit the program
