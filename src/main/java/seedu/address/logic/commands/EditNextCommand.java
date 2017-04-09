@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 
 import java.util.List;
 
+import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.events.ui.JumpToTaskListRequestEvent;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.task.Event;
@@ -61,6 +63,9 @@ public class EditNextCommand extends EditCommand {
             model.updateTask(filteredTaskListIndex, taskToEdit);
             model.addTask((Task) task);
             this.isSuccess = true;
+
+            int taskIndex = model.getFilteredTaskList().indexOf(task);
+            EventsCenter.getInstance().post(new JumpToTaskListRequestEvent(taskIndex));
         } catch (IllegalValueException e) {
             throw new CommandException(e.getMessage());
         }
