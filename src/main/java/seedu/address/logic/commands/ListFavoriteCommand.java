@@ -9,6 +9,8 @@ public class ListFavoriteCommand extends ListCommand {
 
     public static final String MESSAGE_LIST_SUCCESS = "Favorite tasks are listed!";
 
+    protected Set<String> keywords;
+
     /**
      * Create a ListFavoriteCommand using a set of keywords
      *

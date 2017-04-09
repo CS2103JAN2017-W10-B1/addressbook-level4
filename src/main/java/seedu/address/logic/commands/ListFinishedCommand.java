@@ -10,6 +10,8 @@ public class ListFinishedCommand extends ListCommand {
 
     public static final String MESSAGE_LIST_SUCCESS = "Finished tasks are listed! Well done!\n";
 
+    protected Set<String> keywords;
+
     /**
      * Create a ListFinishedCommand using a set of keywords
      *

@@ -11,6 +11,8 @@ public class ListAllCommand extends ListCommand {
 
     public static final String MESSAGE_LIST_SUCCESS = "All tasks are listed!";
 
+    protected Set<String> keywords;
+
     /**
      * Create a ListAllCommand using a set of keywords
      *
