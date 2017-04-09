@@ -3,9 +3,6 @@ package seedu.address.logic.commands;
 
 import java.util.Set;
 
-import seedu.address.commons.core.EventsCenter;
-import seedu.address.commons.events.ui.JumpToTagListRequestEvent;
-import seedu.address.model.TaskManager;
 
 /**
  * Lists all tasks (finished and unfinished) in Dueue or in a specified list.
@@ -40,20 +37,6 @@ public class ListAllCommand extends ListCommand {
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         }
     }
-
-//@@author A0147996E
-    /**
-     * Highlight the single tag if user requests to filter tasks under a single list.
-     * Does not support highlighting multiple list names concurrently.
-     * @param keywords
-     */
-    private void highlightCurrentTagName(Set<String> keywords) {
-        int index = TaskManager.getInstance().find(keywords.toString());
-        if (index != -1) {
-            EventsCenter.getInstance().post(new JumpToTagListRequestEvent(index));
-        }
-    }
-
 
     @Override
     public boolean isUndoable() {
