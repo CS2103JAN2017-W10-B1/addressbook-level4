@@ -59,6 +59,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     /**
      * Validates given date.
      *
+     * @param date
      * @throws IllegalValueException if given date string is invalid.
      */
     public TaskDate(String date) throws IllegalValueException {
@@ -101,18 +102,19 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         if (!test.matches(DATE_VALIDATION_REGEX)) {
             return false;
         }
-        String[] dayMonthYear = test.split(DAY_MONTH_SEPARATOR);
-        if (dayMonthYear.length > 3) {
+        String[] dateFields = test.split(DAY_MONTH_SEPARATOR);
+        if (dateFields.length > 3) {
             return false;
         }
-        String day = dayMonthYear[0];
-        String month = dayMonthYear[1];
-        String year = dayMonthYear.length == 3 ? dayMonthYear[2] : null;
+        String day = dateFields[0];
+        String month = dateFields[1];
+        String year = dateFields.length == 3 ? dateFields[2] : null;
         return isValidMonth(month) && isValidDay(day, month, year) && isValidYear(year);
     }
 
     // methods used when given string is a date
 
+    /** Construct TaskDate if the given string represents a date */
     private void initializeGivenDate(String trimmedDate) throws IllegalValueException {
         trimmedDate = addYearField(trimmedDate);
         try {
@@ -126,16 +128,17 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         this.value = trimmedDate.isEmpty() ? trimmedDate : getDateString(date);
     }
 
+    /** Add year to a date if the given date has no year */
     private String addYearField(String validDate) throws IllegalValueException {
         if (validDate.isEmpty()) {
             return validDate;
         }
-        String[] dayMonthYear = validDate.split(DAY_MONTH_SEPARATOR);
-        if (dayMonthYear.length == 3) {
+        String[] dateFields = validDate.split(DAY_MONTH_SEPARATOR);
+        if (dateFields.length == 3) {
             return validDate;
         }
-        String day = dayMonthYear[0];
-        String month = dayMonthYear[1];
+        String day = dateFields[0];
+        String month = dateFields[1];
         String year = Integer.toString(today.get(Calendar.YEAR));
         try {
             return parseDate(day, month, year);
@@ -144,6 +147,17 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         }
     }
 
+    /**
+     * Return the correct formatted date
+     * The year will increase if the date is before than today
+     * 
+     * @param day
+     * @param month
+     * @param year
+     * @return corrected formatted date
+     * @throws IllegalValueException
+     * @throws ParseException
+     */
     private String parseDate(String day, String month, String year) throws IllegalValueException, ParseException {
         if (!isValidDay(day, month, year)) {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
@@ -151,11 +165,18 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         String returnDate = getDateString(year, month, day);
         Date date = FORMATTER.parse(getDateString(year, month, day));
         if (date.before(today.getTime())) {
-            year = Integer.toString(today.get(Calendar.YEAR) + 1);
-            returnDate = getDateString(year, month, day);
-            if (!isValidDay(day, month, year)) {
-                throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
-            }
+            returnDate = increaseYearByOne(day, month);
+        }
+        return returnDate;
+    }
+
+    private String increaseYearByOne(String day, String month) throws IllegalValueException {
+        String year;
+        String returnDate;
+        year = Integer.toString(today.get(Calendar.YEAR) + 1);
+        returnDate = getDateString(year, month, day);
+        if (!isValidDay(day, month, year)) {
+            throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS_1);
         }
         return returnDate;
     }
@@ -194,6 +215,9 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     // methods used when given string is today or tomorrow
 
+    /**
+     *  Construct TaskDate if the given string represents today or tomorrow
+     */
     private void initializeGivenTodayOrTomorrow(String trimmedDate) {
         Calendar current = Calendar.getInstance();
         current.setTime(today.getTime());
@@ -212,6 +236,9 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     /**
      * Return the corresponding digit represented by the giving string
      * Return 0 for today, 1 for tomorrow, and -1 for invalid input
+     * 
+     * @param today or tomorrow
+     * @return digital representation
      */
     public static int todayOrTomorrow(String test) {
         assert test != null;
@@ -226,6 +253,9 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     // methods used when given string is day in a week
 
+    /**
+     * Construct TaskDate if the given string represents a day in a week
+     */
     private void initializeGivenDayInWeek(String trimmedDate) {
         int day = dayInWeek(trimmedDate);
         int incre = 0;
@@ -251,6 +281,9 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
      * Return the corresponding digit represented by the order of day in a week of the giving string
      * The first day in a week is Sunday
      * Return -1 for invalid input
+     * 
+     * @param day of a week
+     * @return digital representation
      */
     public static int dayInWeek(String test) {
         assert test != null;
@@ -276,6 +309,9 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     // Methods to format date string
     /**
      * Format the date by given calendar instance
+     * 
+     * @param calendar
+     * @return formatted string
      */
     public static String getDateString(Calendar current) {
         return current.get(Calendar.DAY_OF_MONTH) + DAY_MONTH_SEPARATOR
@@ -285,6 +321,9 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     /**
      * Format the date by given date
+     * 
+     * @param date
+     * @return formatted string
      */
     public static String getDateString(Date date) {
         Calendar current = Calendar.getInstance();
@@ -294,6 +333,11 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     /**
      * Format the date by given year, month, and day
+     * 
+     * @param year
+     * @param month
+     * @param day
+     * @return formatted string
      */
     public static String getDateString(String year, String month, String day) {
         return day + DAY_MONTH_SEPARATOR
@@ -303,7 +347,10 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
 // Methods with recurring task
     /**
-     * Add a recurring period for date
+     * Add k recurring periods for date based on the mode
+     * 
+     * @param mode
+     * @param times
      */
     public void addPeriod(RecurringMode mode, int times) {
         assert mode != null;
@@ -322,6 +369,11 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         this.value = getDateString(todayCalendar);
     }
 
+    /** 
+     * Add a period for the date based on the mode
+     * 
+     * @param mode
+     */
     public void addPeriod(RecurringMode mode) {
         addPeriod(mode, 1);
     }
@@ -330,7 +382,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         return value;
     }
 
-    /** return if the task has past due*/
+    /** return if the task has past due */
     public boolean isPastDue() {
         return isPastDue;
     }
@@ -384,6 +436,12 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         }
     }
 
+    /**
+     * Return the time difference with another TaskDate object.
+     *
+     * @param other Another TaskDate object.
+     * @return An integer representing the time difference in units of milliseconds.
+     */
     public int compareToDay(TaskDate other) {
         if (value.isEmpty()) {
             if (other.value.isEmpty()) {
