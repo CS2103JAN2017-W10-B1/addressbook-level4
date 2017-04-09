@@ -26,6 +26,12 @@ public class HelpCommandParser {
     private HelpCommandParser() {
     }
 
+    /**
+     * Return the single instance of HelpCommandParser.
+     *
+     * @param The string after the command word help.
+     * @return theOne.
+     */
     public static HelpCommandParser getInstance() {
         if (theOne == null) {
             theOne = new HelpCommandParser();

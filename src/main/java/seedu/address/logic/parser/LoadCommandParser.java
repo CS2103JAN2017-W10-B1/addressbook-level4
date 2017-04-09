@@ -4,11 +4,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.logic.commands.LoadCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
  * Parses input arguments and creates a new LoadCommand object
@@ -27,9 +25,10 @@ public class LoadCommandParser {
     }
     /**
      * Parses the given {@code String} of arguments in the context of the LoadCommand
-     * and returns an LoadCommand object for execution.
-     * @throws DataConversionException
-     * @throws CommandException
+     * and returns a LoadCommand object for execution.
+     *
+     * @param args The string after the command word load.
+     * @return a LoadCommand
      */
     public Command parse(String args) {
         if (args != null) {

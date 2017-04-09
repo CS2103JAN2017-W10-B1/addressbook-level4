@@ -17,10 +17,16 @@ import seedu.address.model.task.TaskDate;
 public class ViewCommandParser {
 
     private static ViewCommandParser theOne;
+
     public static final String MESSAGE_NONNEGATIVE = "The number of days in the future cannot be negative.\n";
 
     private ViewCommandParser() {}
 
+    /**
+     * Return the single instance of ViewCommandParser.
+     *
+     * @return theOne
+     */
     public static ViewCommandParser getInstance() {
         if (theOne == null) {
             theOne = new ViewCommandParser();
@@ -30,7 +36,9 @@ public class ViewCommandParser {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * ViewNextCommand or ViewOnCommand
+     * ViewNextCommand or ViewOnCommand.
+     *
+     * @param args The string after the command word view.
      * @return a ViewNextCommand/ViewOnCommand object for execution.
      */
     public Command parse(String args) {
