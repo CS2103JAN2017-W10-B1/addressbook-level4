@@ -92,6 +92,11 @@ public class Priority implements TaskField, Comparable<Priority> {
 
 //@@author A0147996E
     @Override
+    /**
+     * Get the displayed text of priority on Ui TaskCard by number of dots.
+     *
+     * @return the text to display for the task's priority.
+     */
     public String getDisplayText() {
         if (" ".equals(value) || "".equals(value)) {
             return "";

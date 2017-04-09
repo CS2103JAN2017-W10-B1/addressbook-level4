@@ -24,7 +24,7 @@ public class RecurringEvent extends Event implements ReadOnlyRecurringEvent {
     /**
      * Every field should not be null
      * Due time should be later than start time
-     * 
+     *
      * @throws IllegalValueException
      */
     public RecurringEvent(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate,
