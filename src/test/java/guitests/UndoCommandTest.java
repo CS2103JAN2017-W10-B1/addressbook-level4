@@ -8,8 +8,10 @@ import static seedu.address.logic.commands.UndoCommand.MESSAGE_UNSUCCESS;
 
 import org.junit.Test;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.CommandFormatter;
 import seedu.address.testutil.TestEvent;
+import seedu.address.testutil.TestRecurringTask;
 import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 
@@ -37,11 +39,40 @@ public class UndoCommandTest extends TaskManagerGuiTest {
         commandWord = "load";
         assertUndoSuccess(currentList, commandToUndo, commandWord);
 
-        String detailsToEdit = " n/assignment2 dueT/18:30";
+        String detailsToEdit = "n/assignment2 dueT/18:30";
         commandToUndo = "edit 2 " + detailsToEdit;
         commandWord = "edit";
         assertUndoSuccess(currentList, commandToUndo, commandWord);
     }
+
+    @Test
+    public void undo_editNext_undoSuccess() throws IllegalValueException {
+        TestRecurringTask recurringTaskToAdd = tr.gym;
+        commandBox.runCommand("clear");
+        commandBox.runCommand(recurringTaskToAdd.getAddCommand());
+
+        String detailsToEdit = "d/test";
+        commandBox.runCommand("edit " + 1 + " once/t " + detailsToEdit);
+        TestTask typicalTaskToAdd = new TestTask(tr.gym);
+        typicalTaskToAdd.setDescription("test");
+        recurringTaskToAdd.setDate("27/12/2017");
+
+        // confirm the new typical and recurring task is added to the current list
+        assertTrue(taskListPanel.navigateToTask(typicalTaskToAdd));
+        assertTrue(taskListPanel.navigateToTask(recurringTaskToAdd));
+
+        // confirm the list now contains no task except the Tasks with updated details
+        TestTask[] expectedTasksList = new TestTask[2];
+        expectedTasksList[0] = typicalTaskToAdd;
+        expectedTasksList[1] = recurringTaskToAdd;
+        assertTrue(taskListPanel.isListMatching(expectedTasksList));
+
+        commandBox.runCommand("undo");
+        expectedTasksList = new TestTask[1];
+        expectedTasksList[0] = tr.gym;
+        assertTrue(taskListPanel.isListMatching(expectedTasksList));
+    }
+
     @Test
     public void undo_noMoreCommandToUndo_undoUnsuccess() {
         commandBox.runCommand("list all"); //list is not ableUndoCommand
