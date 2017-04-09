@@ -30,6 +30,7 @@ public class ViewOnCommand extends Command {
      * Create ViewOnCommand with the number of days from today
      *
      * @param numberDays A integer for number of days from today
+     * @throws IllegalValueException if number of days is negative
      */
     public ViewOnCommand(int numberDays) throws IllegalValueException {
         if (numberDays < 0) {

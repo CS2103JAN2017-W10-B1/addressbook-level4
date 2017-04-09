@@ -93,4 +93,16 @@ public class CommandFormatter {
         }
     }
 
+    /**
+     * Create a list of parameters by chopping up a string
+     * for the ViewCommandParser
+     *
+     * @param args A {@code string} containing all the parameters connected by slash
+     * @return A list of {@code String} parameters
+     */
+    public static String[] viewCommandParserFormatter(String args) {
+        String argument = args.trim();
+        String[] parameters = argument.split("/", 2);
+        return parameters;
+    }
 }

@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandFormatter;
 import seedu.address.logic.commands.IncorrectCommand;
 import seedu.address.logic.commands.ViewNextCommand;
 import seedu.address.logic.commands.ViewOnCommand;
@@ -37,7 +38,7 @@ public class ViewCommandParser {
             return parseNoParamGiven();
         }
 
-        String[] parameters = formatter(args);
+        String[] parameters = CommandFormatter.viewCommandParserFormatter(args);
         if (parameters[0].equals("next") || parameters[0].equals("by")) {
             return parseViewNext(parameters);
         } else if (parameters[0].equals("on")) {
@@ -108,9 +109,4 @@ public class ViewCommandParser {
         }
     }
 
-    public static String[] formatter(String args) {
-        String argument = args.trim();
-        String[] parameters = argument.split("/", 2);
-        return parameters;
-    }
 }
