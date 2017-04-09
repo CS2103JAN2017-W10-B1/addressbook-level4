@@ -13,7 +13,7 @@ public class Event extends Task implements ReadOnlyEvent {
     /**
      * Every field must be present and not null.
      * Due time should be later than start time
-     * 
+     *
      * @throws IllegalValueException
      */
     public Event(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime,
@@ -52,7 +52,7 @@ public class Event extends Task implements ReadOnlyEvent {
     /**
      * Constructor of event with only one date given
      * Both start date and due date are using this date
-     * 
+     *
      * @throws IllegalValueException
      */
     public Event(Name name, TaskDate date, TaskTime startTime, TaskTime endTime,

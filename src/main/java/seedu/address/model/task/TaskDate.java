@@ -150,7 +150,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     /**
      * Return the correct formatted date
      * The year will increase if the date is before than today
-     * 
+     *
      * @param day
      * @param month
      * @param year
@@ -236,7 +236,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
     /**
      * Return the corresponding digit represented by the giving string
      * Return 0 for today, 1 for tomorrow, and -1 for invalid input
-     * 
+     *
      * @param today or tomorrow
      * @return digital representation
      */
@@ -281,7 +281,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
      * Return the corresponding digit represented by the order of day in a week of the giving string
      * The first day in a week is Sunday
      * Return -1 for invalid input
-     * 
+     *
      * @param day of a week
      * @return digital representation
      */
@@ -310,7 +310,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     /**
      * Format the date by given calendar instance
-     * 
+     *
      * @param calendar
      * @return formatted string
      */
@@ -322,7 +322,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     /**
      * Format the date by given date
-     * 
+     *
      * @param date
      * @return formatted string
      */
@@ -334,7 +334,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     /**
      * Format the date by given year, month, and day
-     * 
+     *
      * @param year
      * @param month
      * @param day
@@ -350,7 +350,7 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
 
     /**
      * Add k recurring periods for date based on the mode
-     * 
+     *
      * @param mode
      * @param times
      */
@@ -371,9 +371,9 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         this.value = getDateString(todayCalendar);
     }
 
-    /** 
+    /**
      * Add a period for the date based on the mode
-     * 
+     *
      * @param mode
      */
     public void addPeriod(RecurringMode mode) {
