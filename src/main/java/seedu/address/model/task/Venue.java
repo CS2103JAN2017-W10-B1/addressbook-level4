@@ -20,6 +20,7 @@ public class Venue implements TaskField, Comparable<Venue> {
     /**
      * Validity given venue.
      *
+     * @param venue
      * @throws IllegalValueException if given venue string is invalid.
      */
     public Venue(String venue) throws IllegalValueException {

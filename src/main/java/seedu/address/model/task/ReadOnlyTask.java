@@ -81,14 +81,14 @@ public interface ReadOnlyTask {
     }
 
 //@@author A0143409J
-    /*
+    /**
      * Get the FinishProperty instead of boolean
      */
     FinishProperty getFinished();
     EventProperty getEventProperty();
     RecurringProperty getRecurringProperty();
 
-    /*
+    /**
      * Ensure there is no null pointer exception when comparing two TaskFields
      */
     default boolean checkEqual(TaskField mine, TaskField other) {
