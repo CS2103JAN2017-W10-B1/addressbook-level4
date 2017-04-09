@@ -16,16 +16,20 @@
   * help exit
   
 
-1. Adding a task<br>
+1. Adding a task
+
   1.1 Add floating task by not adding due date
   * add floating task1
-  * add floating task2 #testing2 @anywhere p/3 *f d/a floating task<br>
+  * add floating task2 #testing2 @anywhere p/3 *f d/a floating task
+
   1.2 Aadd task by specifying due date
   * add task1 due/today dueT/09:00
-  * add task2 due/20/12 #testing @anywhere p/1 *f d/a task<br>
+  * add task2 due/20/12 #testing @anywhere p/1 *f d/a task
+
   1.3 Add event by specifying start date
   * add Event1 due/tmr start/today startT/09:00 dueT/10:00
-  * add Event2 due/wednesday start/tue startT/09:00 dueT/10:00<br>
+  * add Event2 due/wednesday start/tue startT/09:00 dueT/10:00
+  
   1.4 Add recurring task/event by specifying frequency
   * add recurring task1 due/today dueT/09:00 f/daily
   * add recurring task2 due/tomorrow dueT/10:00 p/3 f/every week
@@ -33,25 +37,31 @@
   * add recurring Event2 due/2/5 start/1/5 startT/9:00 dueT/9:00 f/month #testing
   
 
-2. Deleting a task<br>
+2. Deleting a task
+
   2.1 Delete a task/event by specifying its index
-  * delete 8<br>
-  2.2 Delete one occurance of a recurring task/event
-  * delete 3<br>
-  2.3 Delete all occurances of a recurring task/event
+  * delete 8
+  
+  2.2 Delete one occurrence of a recurring task/event
+  * delete 3
+
+  2.3 Delete all occurrences of a recurring task/event
   * delete 4 all
   
 
-3. Edit a task<br>
+3. Edit a task
+
   3.1 Edit certain field of a task/event
   * edit 1 *f
   * edit 2 n/task1 edited #testing *f
   * edit 8 *u
   * edit 4 startT/8:00 start/tmr
-  * edit 6 d/edited<br>
-  3.2 Edit one occurance of a recurring task/event by specifying "once"
-  * edit 5 once/t n/recuring task2 change<br>
-  3.3 Edit field of all occurances of a recurring task/event
+  * edit 6 d/edited
+  
+  3.2 Edit one occurrence of a recurring task/event by specifying "once"
+  * edit 5 once/t n/recurring task2 change
+
+  3.3 Edit field of all occurrences of a recurring task/event
   * edit 6 f/month
   * edit 6 @nus
   
@@ -66,18 +76,22 @@
   * redo
   
 
-6. Finish a task<br>
+6. Finish a task
+
   6.1 Finish a task/event
   * finish 3
-  * finish 7<br>
+  * finish 7
+
   6.2 Finish a recurring task/event
   * finish 1
  
 
-7. Find tasks by names<br>
+7. Find tasks by names
+
   7.1 Find all tasks containing keywords
   * find task
-  * find task1<br>
+  * find task1
+
   7.2 Find unfinished/finished tasks containing keywords
   * find task1 unfinished
   * find task1 finished
@@ -110,11 +124,13 @@
   * scroll 14
   
 
-12. View tasks by due dates<br>
+12. View tasks by due dates
+
   12.1 View tasks with due before the given date
   * view next/10
   * view next/4/5
-  * view next/sunday<br>
+  * view next/sunday
+
   12.2 View tasks with due on the given date
   * view on/10
   * view on/4/5
