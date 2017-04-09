@@ -89,7 +89,8 @@ public class FinishCommandTest extends TaskManagerGuiTest {
     }
 
     /**
-     * Runs the finish command to finish the task at specified index and confirms the result is correct.
+     * Runs the finish command to finish the task at specified index and confirms the result is correct.、
+     *
      * @param targetIndexOneIndexed e.g. index 1 to finish the first task in the list,
      * @param currentList A copy of the current unfinished list of tasks (before finish command).
      */

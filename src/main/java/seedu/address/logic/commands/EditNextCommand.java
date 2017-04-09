@@ -140,11 +140,11 @@ public class EditNextCommand extends EditCommand {
     }
 
     /**
-     * Create a new task or event based on isEvent
+     * Create a new task or event based on isEvent.
      *
-     * @param newTask A typical task or typical event
-     * @return a new task or event
-     * @throws IllegalValueException
+     * @param newTask a typical task or typical event.
+     * @return a new task or event.
+     * @throws IllegalValueException.
      */
     private Task createTaskOrEvent(ReadOnlyTask newTask) throws IllegalValueException {
         if (newTask.isEvent()) {

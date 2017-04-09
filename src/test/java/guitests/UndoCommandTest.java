@@ -101,6 +101,13 @@ public class UndoCommandTest extends TaskManagerGuiTest {
                 (commandWord + " command")));
     }
 
+    /**
+     * Checks whether the previous command has been correctly undone.
+     *
+     * @param currentList expected list after undo command is executed.
+     * @param commandToUndo command as a string to be undone.
+     * @param commandWord keyword of the command to undo.
+     */
     private void assertUndoSuccess(final TestTask[] currentList,
             String commandToUndo, String commandWord) {
         commandBox.runCommand(commandToUndo);

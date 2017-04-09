@@ -60,6 +60,12 @@ public class ViewCommandTest extends TaskManagerGuiTest {
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
     }
 
+    /**
+     * Checks whether the view command has the correct matched tasks.
+     *
+     * @param command view command to be tested as a string.
+     * @param expectedHits expected test tasks to be listed.
+     */
     private void assertViewResult(String command, TestTask... expectedHits) {
         commandBox.runCommand(command);
         assertListSize(expectedHits.length);

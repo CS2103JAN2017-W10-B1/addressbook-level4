@@ -10,7 +10,8 @@ import seedu.address.model.task.ReadOnlyTask;
 
 /**
  * Scrolls to a task identified using it's last displayed index from the Dueue.
- * @param targetIndex Index given by user, not the internal index used by task list
+ *
+ * @param targetIndex index given by user, not the internal index used by task list
  */
 public class ScrollToCommand extends Command {
 
