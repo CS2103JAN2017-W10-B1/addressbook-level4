@@ -66,7 +66,7 @@ Role: Developer <br>
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/main/A0138474X.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0138474X.md)]
 * Major contributions:
   * Ensure that the storage stores and load all types of task
-  * Apply Singleton to XmlTaskManagerStorage [[commit]https://github.com/CS2103JAN2017-W10-B1/main/commit/3da89de66a6bdf3d0ff87510a5d8d857e4b94905]
+  * Apply Singleton to XmlTaskManagerStorage [[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/3da89de66a6bdf3d0ff87510a5d8d857e4b94905)]
   * Apply Command pattern on redo and undo
 
 -----
