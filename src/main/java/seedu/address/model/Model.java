@@ -129,7 +129,7 @@ public interface Model {
     /** Get the index of the list with given list name */
     int getListIndex(String listName);
 
-    /** Check whether the list name exist*/
+    /** Check whether the list name exists in the current taglist*/
     boolean isListExist(Set<String> listNames);
 
 }

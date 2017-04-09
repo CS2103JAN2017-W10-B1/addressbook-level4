@@ -386,6 +386,12 @@ public class TaskDate implements TaskField, Comparable<TaskDate> {
         }
     }
 
+    /**
+     * Return the time difference with another TaskDate object.
+     *
+     * @param other Another TaskDate object.
+     * @return An integer representing the time difference in units of milliseconds.
+     */
     public int compareToDay(TaskDate other) {
         if (value.isEmpty()) {
             if (other.value.isEmpty()) {

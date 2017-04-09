@@ -67,7 +67,11 @@ public interface ReadOnlyTask {
     }
 //@@author A0147996E
     /**
-     * For comparing two tasks in GUItests, to check if the list view matches desired list view.
+     * Comparing two tasks in GUItests,
+     * to check if the list view matches desired list view.
+     *
+     * @param other A ReadOnlyTask for comparison.
+     * @return whether the two Tasks are considered equivalent for list view.
      */
     default boolean isSameCardAs(ReadOnlyTask other) {
         return other == this // short circuit if same object
@@ -81,15 +85,20 @@ public interface ReadOnlyTask {
     }
 
 //@@author A0143409J
-    /*
-     * Get the FinishProperty instead of boolean
-     */
+    /* return the FinishProperty of a Task */
     FinishProperty getFinished();
+
+    /* return the EventProperty of a Task */
     EventProperty getEventProperty();
+
+    /* return the RecurringProperty of a Task */
     RecurringProperty getRecurringProperty();
 
-    /*
-     * Ensure there is no null pointer exception when comparing two TaskFields
+    /**
+     * Check for equivalence of two TaskField objects.
+     * Refrain from NullPointerException.
+     *
+     * @return whether they are equivalent.
      */
     default boolean checkEqual(TaskField mine, TaskField other) {
         if (mine == null) {
@@ -100,7 +109,7 @@ public interface ReadOnlyTask {
     }
 //@@author
     /**
-     * Formats the person as text, showing all contact details.
+     * Formats a task into text, showing all contact details.
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
