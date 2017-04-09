@@ -29,7 +29,7 @@ Role: Developer <br>
 <img src="images/matilda-yxx.jpg" width="150"><br>
 Role: Developer, UI Designer <br>
 
-* Components in charge of: [UI](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#22-ui-component) [GUItests]
+* Components in charge of: [UI](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#22-ui-component)
 * Aspects/tools in charge of: JUnit Testing, SceneBuilder, Documentation
 * Features implemented:
   * [Load external XML file into TaskManager](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#216-load-file-load)
