@@ -49,6 +49,12 @@ public class RedoCommandTest extends TaskManagerGuiTest {
         assertRedoSuccess(currentList, commandToRedo);
     }
 
+    /**
+     * Checks whether can correctly redo the previous command that has been undone.
+     *
+     * @param currentList the expected taskList after redo command.
+     * @param commandWord the command word of the command to be redone.
+     */
     private void assertRedoSuccess(final TestTask[] currentList, String commandWord) {
         commandBox.runCommand("undo");
         commandBox.runCommand("redo");

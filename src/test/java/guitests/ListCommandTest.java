@@ -60,6 +60,12 @@ public class ListCommandTest extends TaskManagerGuiTest {
         assertResultMessage(MESSAGE_LIST_DOES_NOT_EXIST);
     }
 
+    /**
+     * Checks whether the list command has the correct matched tasks.
+     *
+     * @param command list command to be tested as a string.
+     * @param expectedHits expected test tasks to be listed.
+     */
     private void assertListResult(String command, TestTask... expectedHits) {
         commandBox.runCommand(command);
         assertListSize(expectedHits.length);

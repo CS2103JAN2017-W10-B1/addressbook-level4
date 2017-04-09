@@ -47,6 +47,12 @@ public class FindCommandTest extends TaskManagerGuiTest {
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
     }
 
+    /**
+     * Check if the tasks found matches the expected task list.
+     *
+     * @param command a string to be run as the test command.
+     * @param expectedHits expected task lists after running {@code command}.
+     */
     private void assertFindResult(String command, TestTask... expectedHits) {
         commandBox.runCommand(command);
         assertListSize(expectedHits.length);
