@@ -85,6 +85,7 @@ public interface ReadOnlyTask {
     }
 
 //@@author A0143409J
+
     /* return the FinishProperty of a Task */
     FinishProperty getFinished();
 
@@ -95,10 +96,14 @@ public interface ReadOnlyTask {
     RecurringProperty getRecurringProperty();
 
     /**
+<<<<<<< HEAD
+     * Ensure there is no null pointer exception when comparing two TaskFields
+=======
      * Check for equivalence of two TaskField objects.
      * Refrain from NullPointerException.
      *
      * @return whether they are equivalent.
+>>>>>>> bb480ab433c1d473cd41b5044c618ee07581ab0d
      */
     default boolean checkEqual(TaskField mine, TaskField other) {
         if (mine == null) {

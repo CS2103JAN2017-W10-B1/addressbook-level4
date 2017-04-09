@@ -1,5 +1,12 @@
+//@@author A0147984L
 package seedu.address.model.task;
 
+
+/**
+ * A read-only immutable interface for a Recurring Event in the TaskManager.
+ * Implementations should guarantee: details are present and not null, field values are validated.
+ * The instance should be both event and recurring
+ */
 public interface ReadOnlyRecurringEvent extends ReadOnlyEvent, ReadOnlyRecurringTask {
 
     /**
