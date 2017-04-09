@@ -60,7 +60,7 @@ public abstract class Command {
     public void highlightCurrentTagName(Set<String> keywords) {
         int index = TaskManager.getInstance().find(keywords.toString());
         if (index != -1) {
-            EventsCenter.getInstance().post(new JumpToTagListRequestEvent(index));
+            EventsCenter.getInstance().post(new JumpToTagListRequestEvent(index - 1));
         }
     }
 //@@author
