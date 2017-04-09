@@ -25,18 +25,26 @@ public class ViewNextCommand extends Command {
     private final String numberOfDays;
 
     /**
-     * Create ViewNextCommand with the number of days from today
+     * Create ViewNextCommand with the number of days from today.
      *
+<<<<<<< HEAD
      * @param numberDays a integer for number of days from today.
+=======
+     * @param numberDays A integer for number of days from today.
+>>>>>>> origin/master
      */
     public ViewNextCommand(int numberDays) {
         numberOfDays = String.valueOf(numberDays);
     }
 
     /**
-     * Create ViewNextCommand with a specific date
+     * Create ViewNextCommand with a specific date.
      *
+<<<<<<< HEAD
      * @param date a TaskDate object for the specific date.
+=======
+     * @param date A TaskDate object for the specific date.
+>>>>>>> origin/master
      * @throws IllegalValueException if today's date cannot be converted into a TaskDate.
      */
     public ViewNextCommand(TaskDate date) throws IllegalValueException {

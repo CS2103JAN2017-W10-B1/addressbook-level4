@@ -17,7 +17,7 @@ import seedu.address.logic.commands.ViewNextCommand;
 import seedu.address.logic.commands.ViewOnCommand;
 
 /**
- * Parses input arguments and creates a new HelpCommand object
+ * Parses input arguments and creates a new HelpCommand object.
  */
 public class HelpCommandParser {
 
@@ -40,8 +40,10 @@ public class HelpCommandParser {
     }
 
     /**
-     * Parses the given {String} of arguments in the context of the HelpCommand
+     * Parses the given {String} of arguments in the context of the HelpCommand.
      * and returns a HelpCommand object for execution.
+     *
+     * @param args The string after the command word help.
      */
     public Command parse(String args) {
         if (args == null) {
@@ -58,10 +60,10 @@ public class HelpCommandParser {
     }
 
     /**
-     * Parses the given {String} of command in the context of the HelpCommand
+     * Check for the command word in the given {String} of command
      * and returns the help message of the corresponding command.
      *
-     * Considering to make it more generic together with the similar part in Parser.
+     * @param commandWord A string which may be the command word.
      */
     private static String parseCommand(String commandWord) {
         switch (commandWord) {
