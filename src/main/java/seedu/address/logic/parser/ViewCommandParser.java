@@ -28,9 +28,9 @@ public class ViewCommandParser {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ViewNextCommand
-     * and returns an ViewNextCommand object for execution.
-     * @throws IllegalValueException
+     * Parses the given {@code String} of arguments in the context of the
+     * ViewNextCommand or ViewOnCommand
+     * @return a ViewNextCommand/ViewOnCommand object for execution.
      */
     public Command parse(String args) {
         if (args == null || args.equals("")) {
@@ -48,15 +48,20 @@ public class ViewCommandParser {
         }
     }
 
+    /**
+     * Create a new ViewNextCommand with date today
+     * when there is no parameter after "view"
+     * @return A ViewNextCommand dated today
+     */
     private static Command parseNoParamGiven() {
-        try {
-            return new ViewNextCommand(0);
-        } catch (IllegalValueException e) {
-            return new IncorrectCommand(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
-        }
+        return new ViewNextCommand(0);
     }
 
+    /**
+     * Create a new ViewNextCommand
+     * @param parameters A set of dates/number of days
+     * @return A new ViewNextCommand with specific date associated
+     */
     private static Command parseViewNext(String[] parameters) {
         try {
             if (Integer.valueOf(parameters[1]) < 0) {
@@ -73,12 +78,14 @@ public class ViewCommandParser {
                 return new IncorrectCommand(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
             }
-        } catch (IllegalValueException e) {
-            return new IncorrectCommand(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
         }
     }
 
+    /**
+     * Create a new ViewOnCommand
+     * @param parameters A set of dates/number of days
+     * @return A new ViewOnCommand with specific date associated
+     */
     private static Command parseViewOn(String[] parameters) {
         try {
             if (Integer.valueOf(parameters[1]) < 0) {
