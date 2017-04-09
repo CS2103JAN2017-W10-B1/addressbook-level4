@@ -6,8 +6,10 @@ package seedu.address.logic.commands;
 import java.util.logging.Logger;
 
 import seedu.address.MainApp;
+import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.events.ui.JumpToTagListRequestEvent;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -49,33 +51,6 @@ public abstract class Command {
         }
         return resultMsg;
     }
-
-    /**
-     * Executes the command and returns the result message.
-     *
-     * @return feedback message of the operation result for display
-     * @throws CommandException If an error occurs during command execution.
-     */
-    public abstract CommandResult execute() throws CommandException;
-
-    /**
-     * Provides any needed dependencies to the command.
-     * Commands making use of any of these should override this method to gain
-     * access to the dependencies.
-     */
-    public void setData(Model model) {
-        this.model = model;
-    }
-
-    /**
-     * Provides usage message for help command
-     */
-    public String getUsageMessage() {
-        return MESSAGE_USAGE;
-    }
-
-    public abstract boolean isUndoable();
-}
 ```
 ###### /java/seedu/address/logic/commands/CommandResult.java
 ``` java

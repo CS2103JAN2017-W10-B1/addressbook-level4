@@ -117,16 +117,6 @@ public class EditCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void editEvent_withRecurrence_editFailure() {
-        //TODO: after edit command is modified
-    }
-
-    @Test
-    public void editRecurringTask_withStartDate_editFailure() {
-        //TODO: after edit command is modified
-    }
-
-    @Test
     public void edit_invalidCommands_InvalidCommandFailure() {
         commandBox.runCommand("edit p/2");
         assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));

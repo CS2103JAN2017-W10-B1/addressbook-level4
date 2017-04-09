@@ -51,10 +51,11 @@ public class LoadCommand extends AbleUndoCommand {
             return new CommandResult(MESSAGE_LOAD_UNSUCCESS);
         }
     }
-/**
- * Create a copy of current TaskManager in case user requests to undo the load command.
- * @param tempTaskManager A temporary task manager copy saved for undo command.
- */
+
+    /**
+     * Create a copy of current TaskManager in case user requests to undo the load command.
+     * @param tempTaskManager A temporary task manager copy saved for undo command.
+     */
     private void saveTaskManagerCopy() {
         assert model != null;
         tempTaskManager = TaskManager.getStub();
