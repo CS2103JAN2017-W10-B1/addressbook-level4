@@ -30,6 +30,7 @@ public class ScrollToCommandParser {
      * and returns an ScrollToCommand object for execution.
      */
     public Command parse(String args) {
+        assert args != null;
         Optional<Integer> index = ParserUtil.parseIndex(args);
         if (!index.isPresent()) {
             return new IncorrectCommand(
