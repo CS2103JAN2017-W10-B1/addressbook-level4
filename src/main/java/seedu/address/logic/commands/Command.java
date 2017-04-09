@@ -1,13 +1,17 @@
 //@@author generated
 package seedu.address.logic.commands;
 
+import java.util.Set;
 import java.util.logging.Logger;
 
 import seedu.address.MainApp;
+import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.events.ui.JumpToTagListRequestEvent;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.TaskManager;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
@@ -47,7 +51,19 @@ public abstract class Command {
         }
         return resultMsg;
     }
-
+//@@author A0147996E
+    /**
+     * Highlight the single tag if user requests to filter tasks under a single list.
+     * Does not support highlighting multiple list names concurrently.
+     * @param keywords
+     */
+    public void highlightCurrentTagName(Set<String> keywords) {
+        int index = TaskManager.getInstance().find(keywords.toString());
+        if (index != -1) {
+            EventsCenter.getInstance().post(new JumpToTagListRequestEvent(index));
+        }
+    }
+//@@author
     /**
      * Executes the command and returns the result message.
      *

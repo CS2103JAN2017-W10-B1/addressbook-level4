@@ -39,6 +39,8 @@ public class ListCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the ListCommand
      * and returns a ListCommand/ListAllCommand/ListFinishedCommand/ListFavoriteCommand object for execution.
+     *
+     * @param args The string after the command word list
      */
     public Command parse(String args) {
         if (args == null) {

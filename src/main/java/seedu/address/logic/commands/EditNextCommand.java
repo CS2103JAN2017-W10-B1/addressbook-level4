@@ -1,9 +1,11 @@
-//@@author A0147984L
+//@@author A0143409J
 package seedu.address.logic.commands;
 
 import java.util.List;
 
+import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.events.ui.JumpToTaskListRequestEvent;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.task.Event;
@@ -17,21 +19,33 @@ import seedu.address.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.address.model.task.UniqueTaskList.TaskNotFoundException;
 
 /**
- * Edits the details of an existing recurring task in Dueue.
+ * Edits the details of an existing recurring task once in Dueue.
+ * Only the next occurrence of the recurring task will be modified.
+ * Effictively, a new typical task is created to replace the next occurrence,
+ * and the due date of the recurring task is pushed until the next period.
  */
 public class EditNextCommand extends EditCommand {
 
-  //@@author A0143409J
     private ReadOnlyTask finishedOnceTask;
 
     /**
      * Create editNext command using an index for specific task and description for the edited task
+     *
+     * @param filteredTaskListIndex Index of the task to edit
+     * @param editTaskDescriptor All the fields for editing
      */
     public EditNextCommand(int filteredTaskListIndex, EditTaskDescriptor editTaskDescriptor) {
         super(filteredTaskListIndex, editTaskDescriptor);
         finishedOnceTask = null;
     }
 
+    /**
+     * Create editNextCommand for the execution of Redo.
+     *
+     * @param task The new task to add
+     * @param oldTask The formerly finished recurring task
+     * @param finishedOnceTask The new recurring task which has been finished once
+     */
     public EditNextCommand(ReadOnlyTask task, Task oldTask, ReadOnlyTask finishedOnceTask) {
         super(task, oldTask);
         this.finishedOnceTask = finishedOnceTask;
@@ -61,6 +75,9 @@ public class EditNextCommand extends EditCommand {
             model.updateTask(filteredTaskListIndex, taskToEdit);
             model.addTask((Task) task);
             this.isSuccess = true;
+
+            int taskIndex = model.getFilteredTaskList().indexOf(task);
+            EventsCenter.getInstance().post(new JumpToTaskListRequestEvent(taskIndex));
         } catch (IllegalValueException e) {
             throw new CommandException(e.getMessage());
         }
@@ -120,6 +137,13 @@ public class EditNextCommand extends EditCommand {
         }
     }
 
+    /**
+     * Create a new task or event based on isEvent
+     *
+     * @param newTask A typical task or typical event
+     * @return a new task or event
+     * @throws IllegalValueException
+     */
     private Task createTaskOrEvent(ReadOnlyTask newTask) throws IllegalValueException {
         if (newTask.isEvent()) {
             return new Event(newTask);
@@ -128,6 +152,13 @@ public class EditNextCommand extends EditCommand {
         }
     }
 
+    /**
+     * Create a new Recurring task or event based on isEvent
+     *
+     * @param newTask A recurring task or recurring event
+     * @return A new recurring task or recurring event
+     * @throws IllegalValueException
+     */
     private Task createRecurringTaskOrEvent(ReadOnlyTask newTask) throws IllegalValueException {
         if (newTask.isEvent()) {
             return new RecurringEvent(newTask);
