@@ -13,7 +13,7 @@ Role: Developer <br>
 * Features implemented:
    * [View tasks due on a day](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#212-view-certain-tasks-view)
    * [List tasks](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#28-listing-all-tasks--list)
-   * [Edit next recurrence of a recurring task/event](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#211-edit-next-recurring-taskevent--edit-nextt)
+   * [Edit next recurrence of a recurring task/event](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#211-edit-next-recurring-taskevent--edit-oncet)
    * [Display help messages for commands](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#21-viewing-help--help)
    * [Create interactive messages for redo command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#215-reverse-previous-undo-command-redo)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/collated/main/A0143409J.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0143409J.md)]
