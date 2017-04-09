@@ -18,7 +18,7 @@ Role: Developer <br>
    * [Create interactive messages for redo command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#215-reverse-previous-undo-command-redo)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/collated/main/A0143409J.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0143409J.md)]
 * Other major contributions:
-  * Apply Dependency Inversion Principle by TaskField inteface[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/cf16109842cf3476b1111f9fab33de78976f2980)]
+  * Apply Dependency Inversion Principle by TaskField interface[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/cf16109842cf3476b1111f9fab33de78976f2980)]
   * Apply Singleton to commandParsers[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/cfe0a0c5bb6462e30a509931db307d4391709353)]
   * Apply Singleton to UI class[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/fe0b435f3577e0adde247bec969b59d90274e347)]
   * Set up Travis, Appveyor, Coveralls and Codacy[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/b226302f6552801a7fc135d406b5ce2badf244df)]
@@ -29,7 +29,7 @@ Role: Developer <br>
 <img src="images/matilda-yxx.jpg" width="150"><br>
 Role: Developer, UI Designer <br>
 
-* Components in charge of: [UI](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#22-ui-component) [GUItests]
+* Components in charge of: [UI](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/DeveloperGuide.md#22-ui-component)
 * Aspects/tools in charge of: JUnit Testing, SceneBuilder, Documentation
 * Features implemented:
   * [Load external XML file into TaskManager](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#216-load-file-load)
@@ -45,7 +45,7 @@ Role: Developer, UI Designer <br>
   * Apply Singleton to TaskManager, Config, and UserPref[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/d3e6ea424dc4768e3b6bd83b2527151c6e6a4eed)]
   * Apply Dependency Injection by using Stub instances for testing[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/a1d72fe0cfbafd67f522765ebeb88bc53a5b5439)]
   * Set up collation[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/657cf3157bac077ae0ebe8c36bfe68d632a02063)]
-  * Generate JAR file for weekly milsStones [[release](https://github.com/CS2103JAN2017-W10-B1/main/releases/tag/v0.3)][[release](https://github.com/CS2103JAN2017-W10-B1/main/releases/tag/v0.4)]
+  * Generate JAR file for weekly milestones [[release](https://github.com/CS2103JAN2017-W10-B1/main/releases/tag/v0.3)][[release](https://github.com/CS2103JAN2017-W10-B1/main/releases/tag/v0.4)]
 
 -----
 
