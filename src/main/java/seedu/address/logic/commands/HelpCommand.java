@@ -38,8 +38,10 @@ public class HelpCommand extends Command {
     @Override
     public CommandResult execute() {
         if (usageMessage == null) {
+            LOGGER.info(getClass() + " general message shown");
             return new CommandResult(SHOWING_HELP_MESSAGE);
         } else {
+            LOGGER.info(getClass() + " usage message for specific command shown");
             return new CommandResult(usageMessage);
         }
     }
