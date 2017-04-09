@@ -9,7 +9,7 @@ import java.util.Set;
  */
 public class ListAllCommand extends ListCommand {
 
-    public static final String MESSAGE_LIST_SUCCESS = "All tasks are listed!";
+    public static final String MESSAGE_LIST_SUCCESS = "All tasks are listed";
 
     protected Set<String> keywords;
 

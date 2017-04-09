@@ -8,7 +8,7 @@ import java.util.Set;
  */
 public class ListFinishedCommand extends ListCommand {
 
-    public static final String MESSAGE_LIST_SUCCESS = "Finished tasks are listed! Well done!\n";
+    public static final String MESSAGE_LIST_SUCCESS = "Finished tasks are listed";
 
     protected Set<String> keywords;
 

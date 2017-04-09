@@ -7,7 +7,7 @@ import java.util.Set;
  */
 public class ListFavoriteCommand extends ListCommand {
 
-    public static final String MESSAGE_LIST_SUCCESS = "Favorite tasks are listed!";
+    public static final String MESSAGE_LIST_SUCCESS = "Favorite tasks are listed";
 
     protected Set<String> keywords;
 
