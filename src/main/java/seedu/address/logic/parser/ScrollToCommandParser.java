@@ -14,13 +14,22 @@ import seedu.address.logic.commands.ScrollToCommand;
  */
 public class ScrollToCommandParser {
 
+    private static ScrollToCommandParser theOne;
+
     private ScrollToCommandParser() {
+    }
+
+    public static ScrollToCommandParser getInstance() {
+        if (theOne == null) {
+            theOne = new ScrollToCommandParser();
+        }
+        return theOne;
     }
     /**
      * Parses the given {@code String} of arguments in the context of the ScrollToCommand
      * and returns an ScrollToCommand object for execution.
      */
-    public static Command parse(String args) {
+    public Command parse(String args) {
         Optional<Integer> index = ParserUtil.parseIndex(args);
         if (!index.isPresent()) {
             return new IncorrectCommand(

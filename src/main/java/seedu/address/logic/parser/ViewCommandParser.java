@@ -32,7 +32,7 @@ public class ViewCommandParser {
      * and returns an ViewNextCommand object for execution.
      * @throws IllegalValueException
      */
-    public static Command parse(String args) {
+    public Command parse(String args) {
         if (args == null || args.equals("")) {
             return parseNoParamGiven();
         }

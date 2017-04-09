@@ -61,44 +61,44 @@ public class Parser {
 
         case AddCommand.COMMAND_WORD:
             undoCommandList.clear();
-            return AddCommandParser.parse(arguments);
+            return AddCommandParser.getInstance().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case EditCommand.COMMAND_WORD:
             undoCommandList.clear();
-            return EditCommandParser.parse(arguments);
+            return EditCommandParser.getInstance().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             undoCommandList.clear();
-            return DeleteCommandParser.parse(arguments);
+            return DeleteCommandParser.getInstance().parse(arguments);
 
         case FinishCommand.COMMAND_WORD:
             undoCommandList.clear();
-            return FinishCommandParser.parse(arguments);
+            return FinishCommandParser.getInstance().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             undoCommandList.clear();
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-            return FindCommandParser.parse(arguments);
+            return FindCommandParser.getInstance().parse(arguments);
 
         case LoadCommand.COMMAND_WORD:
-            return LoadCommandParser.parse(arguments);
+            return LoadCommandParser.getInstance().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return ListCommandParser.parse(arguments);
+            return ListCommandParser.getInstance().parse(arguments);
 
         case ScrollToCommand.COMMAND_WORD:
-            return ScrollToCommandParser.parse(arguments);
+            return ScrollToCommandParser.getInstance().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
-            return HelpCommandParser.parse(arguments);
+            return HelpCommandParser.getInstance().parse(arguments);
 
         case ViewNextCommand.COMMAND_WORD:
-            return ViewCommandParser.parse(arguments);
+            return ViewCommandParser.getInstance().parse(arguments);
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);

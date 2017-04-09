@@ -25,6 +25,8 @@ import seedu.address.model.task.Venue;
 
 public class AddCommandParserTest {
 
+    public AddCommandParser theOne = AddCommandParser.getInstance();
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
@@ -34,7 +36,7 @@ public class AddCommandParserTest {
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
 
-        IncorrectCommand incorrectCommand =  (IncorrectCommand) AddCommandParser.parse(null);
+        IncorrectCommand incorrectCommand =  (IncorrectCommand) theOne.parse(null);
         assertEquals(field.get(incorrectCommand), String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddCommand.MESSAGE_USAGE));
     }
@@ -45,7 +47,7 @@ public class AddCommandParserTest {
         Field field = AddCommand.class.getDeclaredField("toAdd");
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture \n");
+        AddCommand addCommand =  (AddCommand) theOne.parse("CS2103 Lecture \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         Task sampleTask = new Task(sampleTaskName, new TaskDate(""), new TaskTime(""),
                 new Description(""), new Tag(""), new Venue(""), new Priority(""), false);
@@ -58,7 +60,7 @@ public class AddCommandParserTest {
         Field field = AddCommand.class.getDeclaredField("toAdd");
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/30/03 "
+        AddCommand addCommand =  (AddCommand) AddCommandParser.getInstance().parse("CS2103 Lecture due/30/03 "
                 + "dueT/16:00 d/Interesting #CS2103 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         TaskDate sampleTaskDate = new TaskDate("30/03");
@@ -76,7 +78,7 @@ public class AddCommandParserTest {
         Field field = AddCommand.class.getDeclaredField("toAdd");
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/30/3 "
+        AddCommand addCommand =  (AddCommand) theOne.parse("CS2103 Lecture due/30/3 "
                 + "dueT/16:00 d/Interesting #CS2103 @I3 p/3 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         TaskDate sampleTaskDate = new TaskDate("30/3");
@@ -97,7 +99,7 @@ public class AddCommandParserTest {
         Field field = AddCommand.class.getDeclaredField("toAdd");
         field.setAccessible(true);
 
-        AddCommand addCommand =  (AddCommand) AddCommandParser.parse("CS2103 Lecture due/30/3 "
+        AddCommand addCommand =  (AddCommand) theOne.parse("CS2103 Lecture due/30/3 "
                 + "dueT/16:00 d/Interesting #CS2103 @I3 p/3 start/29/3 startT/15:00 \n");
         Name sampleTaskName = new Name("CS2103 Lecture");
         TaskDate sampleTaskDate = new TaskDate("30/3");

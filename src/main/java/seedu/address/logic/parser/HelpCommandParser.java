@@ -37,7 +37,7 @@ public class HelpCommandParser {
      * Parses the given {String} of arguments in the context of the HelpCommand
      * and returns a HelpCommand object for execution.
      */
-    public static Command parse(String args) {
+    public Command parse(String args) {
         if (args == null) {
             return new HelpCommand();
         }

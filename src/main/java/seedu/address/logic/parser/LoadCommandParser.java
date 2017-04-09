@@ -31,7 +31,7 @@ public class LoadCommandParser {
      * @throws DataConversionException
      * @throws CommandException
      */
-    public static Command parse(String args) {
+    public Command parse(String args) {
         if (args != null) {
             args = args.trim();
         }

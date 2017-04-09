@@ -41,7 +41,7 @@ public class AddCommandParser {
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      */
-    public static Command parse(String args) {
+    public Command parse(String args) {
         // check whether the user did not enter an empty add command
         if (args == null) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));

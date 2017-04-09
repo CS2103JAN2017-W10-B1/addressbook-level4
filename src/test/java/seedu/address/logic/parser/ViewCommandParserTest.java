@@ -17,6 +17,8 @@ import seedu.address.logic.commands.ViewOnCommand;
 
 public class ViewCommandParserTest {
 
+    public ViewCommandParser theOne = ViewCommandParser.getInstance();
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
@@ -25,7 +27,7 @@ public class ViewCommandParserTest {
         Field field = ViewNextCommand.class.getDeclaredField("numberOfDays");
         field.setAccessible(true);
 
-        ViewNextCommand viewCommand =  (ViewNextCommand) ViewCommandParser.parse("");
+        ViewNextCommand viewCommand =  (ViewNextCommand) theOne.parse("");
 
         assertEquals(field.get(viewCommand), "0");
     }
@@ -36,7 +38,7 @@ public class ViewCommandParserTest {
         Field field = ViewNextCommand.class.getDeclaredField("numberOfDays");
         field.setAccessible(true);
 
-        ViewNextCommand viewCommand =  (ViewNextCommand) ViewCommandParser.parse("next/10");
+        ViewNextCommand viewCommand =  (ViewNextCommand) theOne.parse("next/10");
 
         assertEquals(field.get(viewCommand), "10");
     }
@@ -47,7 +49,7 @@ public class ViewCommandParserTest {
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
 
-        IncorrectCommand incorrectCommand =  (IncorrectCommand) ViewCommandParser.parse("next/abc");
+        IncorrectCommand incorrectCommand =  (IncorrectCommand) theOne.parse("next/abc");
 
         assertEquals(field.get(incorrectCommand), String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, ViewNextCommand.MESSAGE_USAGE));
@@ -59,7 +61,7 @@ public class ViewCommandParserTest {
         Field field = ViewOnCommand.class.getDeclaredField("numberOfDays");
         field.setAccessible(true);
 
-        ViewOnCommand viewOnCommand =  (ViewOnCommand) ViewCommandParser.parse("on/10");
+        ViewOnCommand viewOnCommand =  (ViewOnCommand) theOne.parse("on/10");
 
         assertEquals(field.get(viewOnCommand), "10");
     }
@@ -70,7 +72,7 @@ public class ViewCommandParserTest {
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
 
-        IncorrectCommand incorrectCommand =  (IncorrectCommand) ViewCommandParser.parse("on/abc");
+        IncorrectCommand incorrectCommand =  (IncorrectCommand) theOne.parse("on/abc");
 
         assertEquals(field.get(incorrectCommand), String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, ViewOnCommand.MESSAGE_USAGE));

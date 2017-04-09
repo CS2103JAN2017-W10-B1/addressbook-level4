@@ -30,7 +30,7 @@ public class FinishCommandParser {
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns an DeleteCommand object for execution.
      */
-    public static Command parse(String args) {
+    public Command parse(String args) {
         Optional<Integer> index = ParserUtil.parseIndex(args);
         if (!index.isPresent()) {
             return new IncorrectCommand(

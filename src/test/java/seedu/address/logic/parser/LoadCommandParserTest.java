@@ -16,6 +16,8 @@ import seedu.address.logic.commands.LoadCommand;
 
 public class LoadCommandParserTest {
 
+    public LoadCommandParser theOne = LoadCommandParser.getInstance();
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
@@ -25,7 +27,7 @@ public class LoadCommandParserTest {
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
 
-        IncorrectCommand incorrectCommand =  (IncorrectCommand) LoadCommandParser.parse(null);
+        IncorrectCommand incorrectCommand =  (IncorrectCommand) theOne.parse(null);
         assertEquals(field.get(incorrectCommand), String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, LoadCommand.MESSAGE_USAGE));
     }
@@ -36,7 +38,7 @@ public class LoadCommandParserTest {
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
 
-        IncorrectCommand incorrectCommand =  (IncorrectCommand) LoadCommandParser.parse("");
+        IncorrectCommand incorrectCommand =  (IncorrectCommand) theOne.parse("");
         assertEquals(field.get(incorrectCommand), String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, LoadCommand.MESSAGE_USAGE));
     }
@@ -47,7 +49,7 @@ public class LoadCommandParserTest {
         Field field = LoadCommand.class.getDeclaredField("path");
         field.setAccessible(true);
 
-        LoadCommand loadCommand =  (LoadCommand) LoadCommandParser.parse("abc");
+        LoadCommand loadCommand =  (LoadCommand) theOne.parse("abc");
         assertEquals(field.get(loadCommand), "abc");
     }
 }

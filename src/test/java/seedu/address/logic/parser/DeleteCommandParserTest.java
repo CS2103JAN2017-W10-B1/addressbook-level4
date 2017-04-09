@@ -17,6 +17,8 @@ import seedu.address.logic.commands.IncorrectCommand;
 
 public class DeleteCommandParserTest {
 
+    public DeleteCommandParser theOne = DeleteCommandParser.getInstance();
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
@@ -30,7 +32,7 @@ public class DeleteCommandParserTest {
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
 
-        IncorrectCommand incorrectCommand =  (IncorrectCommand) DeleteCommandParser.parse("");
+        IncorrectCommand incorrectCommand =  (IncorrectCommand) theOne.parse("");
         assertEquals(field.get(incorrectCommand),
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
@@ -41,7 +43,7 @@ public class DeleteCommandParserTest {
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
 
-        IncorrectCommand incorrectCommand =  (IncorrectCommand) DeleteCommandParser.parse("0\n");
+        IncorrectCommand incorrectCommand =  (IncorrectCommand) theOne.parse("0\n");
         assertEquals(field.get(incorrectCommand),
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }

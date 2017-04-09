@@ -22,7 +22,7 @@ public class FinishCommandParserTest {
     @Test
     public void finishTask_nullString_nullPointerException() throws Exception {
         thrown.expect(NullPointerException.class);
-        FinishCommandParser.parse(null);
+        FinishCommandParser.getInstance().parse(null);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class FinishCommandParserTest {
         Field field = FinishCommand.class.getDeclaredField("targetIndex");
         field.setAccessible(true);
 
-        FinishCommand finishCommand = (FinishCommand) FinishCommandParser.parse("1");
+        FinishCommand finishCommand = (FinishCommand) FinishCommandParser.getInstance().parse("1");
         assertEquals(field.get(finishCommand), 1);
     }
 
@@ -39,7 +39,7 @@ public class FinishCommandParserTest {
         Field field = IncorrectCommand.class.getDeclaredField("feedbackToUser");
         field.setAccessible(true);
 
-        IncorrectCommand incorrectCommand = (IncorrectCommand) FinishCommandParser.parse("+");
+        IncorrectCommand incorrectCommand = (IncorrectCommand) FinishCommandParser.getInstance().parse("+");
         assertEquals(field.get(incorrectCommand),
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FinishCommand.MESSAGE_USAGE));
     }
