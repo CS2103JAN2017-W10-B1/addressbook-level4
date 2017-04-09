@@ -10,7 +10,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.events.ui.JumpToTagListRequestEvent;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.TaskManager;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
@@ -56,8 +55,9 @@ public abstract class Command {
      * Does not support highlighting multiple list names concurrently.
      * @param keywords
      */
+
     public void highlightCurrentTagName(String keywords) {
-        int index = TaskManager.getInstance().find(keywords);
+        int index = model.getListIndex(keywords.toString());
         if (index != -1) {
             EventsCenter.getInstance().post(new JumpToTagListRequestEvent(index - 1));
         }

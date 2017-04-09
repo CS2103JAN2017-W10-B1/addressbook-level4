@@ -126,6 +126,9 @@ public interface Model {
     /** Updates the filter of the filtered tag list to show all tasks */
     void updateFilteredTagListToShowAllTags();
 
+    /** Get the index of the list with given list name */
+    int getListIndex(String listName);
+
     /** Check whether the list name exist*/
     boolean isListExist(Set<String> listNames);
 
