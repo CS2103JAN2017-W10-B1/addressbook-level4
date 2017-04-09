@@ -24,10 +24,21 @@ public class ViewNextCommand extends Command {
             + "Example: " + COMMAND_WORD + " next/Monday";
     private final String numberOfDays;
 
-    public ViewNextCommand(int numberDays) throws IllegalValueException {
+    /**
+     * Create ViewNextCommand with the number of days from today
+     *
+     * @param numberDays A integer for number of days from today
+     */
+    public ViewNextCommand(int numberDays) {
         numberOfDays = String.valueOf(numberDays);
     }
 
+    /**
+     * Create ViewNextCommand with a specific date
+     *
+     * @param date A TaskDate object for the specific date
+     * @throws IllegalValueException if today's date cannot be converted into a TaskDate
+     */
     public ViewNextCommand(TaskDate date) throws IllegalValueException {
         Calendar today = Calendar.getInstance(TimeZone.getTimeZone("Asia/Singapore"));
         TaskDate todayDate = new TaskDate(TaskDate.getDateString(today));
