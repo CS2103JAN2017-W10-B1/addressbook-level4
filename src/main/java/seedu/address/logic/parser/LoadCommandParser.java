@@ -28,7 +28,7 @@ public class LoadCommandParser {
      * and returns a LoadCommand object for execution.
      *
      * @param args The string after the command word load.
-     * @return a LoadCommand
+     * @return a LoadCommand.
      */
     public Command parse(String args) {
         if (args != null) {

@@ -13,9 +13,9 @@ public class ListFinishedCommand extends ListCommand {
     protected Set<String> keywords;
 
     /**
-     * Create a ListFinishedCommand using a set of keywords
+     * Create a ListFinishedCommand using a set of keywords.
      *
-     * @param keywords A set of keywords which cannot be empty
+     * @param keywords A set of keywords.
      */
     public ListFinishedCommand(Set<String> keywords) {
         this.keywords = keywords;

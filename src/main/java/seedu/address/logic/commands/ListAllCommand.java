@@ -14,9 +14,9 @@ public class ListAllCommand extends ListCommand {
     protected Set<String> keywords;
 
     /**
-     * Create a ListAllCommand using a set of keywords
+     * Create a ListAllCommand using a set of keywords.
      *
-     * @param keywords A set of keywords which cannot be empty
+     * @param keywords A set of keywords.
      */
     public ListAllCommand(Set<String> keywords) {
         this.keywords = keywords;

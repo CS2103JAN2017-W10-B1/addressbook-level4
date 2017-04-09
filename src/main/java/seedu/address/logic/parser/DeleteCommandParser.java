@@ -11,7 +11,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.IncorrectCommand;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new DeleteCommand object.
  */
 public class DeleteCommandParser {
 

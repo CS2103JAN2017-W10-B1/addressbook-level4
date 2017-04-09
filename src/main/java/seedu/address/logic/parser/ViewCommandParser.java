@@ -25,7 +25,7 @@ public class ViewCommandParser {
     /**
      * Return the single instance of ViewCommandParser.
      *
-     * @return theOne
+     * @return theOne.
      */
     public static ViewCommandParser getInstance() {
         if (theOne == null) {
@@ -59,17 +59,19 @@ public class ViewCommandParser {
 
     /**
      * Create a new ViewNextCommand with date today
-     * when there is no parameter after "view"
-     * @return A ViewNextCommand dated today
+     * when there is no parameter after "view".
+     *
+     * @return A ViewNextCommand dated today.
      */
     private static Command parseNoParamGiven() {
         return new ViewNextCommand(0);
     }
 
     /**
-     * Create a new ViewNextCommand
-     * @param parameters A set of dates/number of days
-     * @return A new ViewNextCommand with specific date associated
+     * Create a new ViewNextCommand.
+     *
+     * @param parameters A set of dates/number of days.
+     * @return A new ViewNextCommand with specific date associated.
      */
     private static Command parseViewNext(String[] parameters) {
         try {
@@ -91,9 +93,10 @@ public class ViewCommandParser {
     }
 
     /**
-     * Create a new ViewOnCommand
-     * @param parameters A set of dates/number of days
-     * @return A new ViewOnCommand with specific date associated
+     * Create a new ViewOnCommand.
+     *
+     * @param parameters A set of dates/number of days.
+     * @return A new ViewOnCommand with specific date associated.
      */
     private static Command parseViewOn(String[] parameters) {
         try {
