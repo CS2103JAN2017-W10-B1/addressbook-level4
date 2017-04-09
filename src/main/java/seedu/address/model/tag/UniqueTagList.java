@@ -174,10 +174,8 @@ public class UniqueTagList implements Iterable<Tag> {
 //@@author A0147996E
     public int find(String tagName) {
         int size = internalList.size();
-        System.out.println(size);
         tagName = tagName.trim();
         for (int index = 0; index < size; index++) {
-            System.out.println("啊啊啊啊" + tagName + internalList.get(index).toString());
             if (tagName.equalsIgnoreCase(internalList.get(index).toString())) {
                 return index;
             }
