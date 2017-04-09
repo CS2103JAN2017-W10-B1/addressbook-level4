@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.tag.Tag;
 
 /**
- * Listcard defines format for individual task view.
+ * TagListCard defines format for individual tag view.
  */
 public class TagListCard extends UiPart<Region> {
 

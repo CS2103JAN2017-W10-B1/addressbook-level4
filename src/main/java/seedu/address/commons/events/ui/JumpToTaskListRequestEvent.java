@@ -4,7 +4,7 @@ package seedu.address.commons.events.ui;
 import seedu.address.commons.events.BaseEvent;
 
 /**
- * Indicates a request to jump to the list of tags
+ * Indicates a request to jump to a task in task list
  */
 public class JumpToTaskListRequestEvent extends BaseEvent {
 

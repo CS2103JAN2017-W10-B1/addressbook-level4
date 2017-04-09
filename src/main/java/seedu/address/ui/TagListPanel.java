@@ -1,4 +1,4 @@
-//@@author A0147996E-reused
+//@@author A0147996E
 package seedu.address.ui;
 
 import java.util.logging.Logger;
@@ -18,7 +18,7 @@ import seedu.address.commons.util.FxViewUtil;
 import seedu.address.model.tag.Tag;
 
 /**
- * Panel containing the list of tasks.
+ * TagListPanel containing the list of tags.
  */
 public class TagListPanel extends UiPart<Region> {
 

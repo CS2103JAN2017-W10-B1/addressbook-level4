@@ -13,6 +13,8 @@ import seedu.address.storage.StorageManager;
 
 /**
  * Load tasks from a specified file into Dueue.
+ * @param path User input directory used to load tasks from.
+ * @param tempTaskManager A temporary task manager copy saved for undo command.
  */
 public class LoadCommand extends AbleUndoCommand {
 
@@ -33,9 +35,7 @@ public class LoadCommand extends AbleUndoCommand {
     public LoadCommand(String path) {
         this.path = path;
     }
-    /**
-     * @tempTaskManager a temporary task manager copy saved for undo command.
-     */
+
     @Override
     public CommandResult execute() throws CommandException {
         saveTaskManagerCopy();
@@ -51,13 +51,22 @@ public class LoadCommand extends AbleUndoCommand {
             return new CommandResult(MESSAGE_LOAD_UNSUCCESS);
         }
     }
-
+/**
+ * Create a copy of current TaskManager in case user requests to undo the load command.
+ * @param tempTaskManager A temporary task manager copy saved for undo command.
+ */
     private void saveTaskManagerCopy() {
         assert model != null;
         tempTaskManager = TaskManager.getStub();
         tempTaskManager.resetData(model.getTaskManager());
     }
 
+    /**
+     * Try to reset data within the single instance of model.
+     * @param path User input directory used to load tasks from.
+     * @return If data resetting is successful.
+     * @throws CommandException Catches exceptions when storage attempts to read file from the directory.
+     */
     private boolean resetDataFromFilePath(String path) throws CommandException {
         try {
             StorageManager storage = new StorageManager(path);

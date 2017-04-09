@@ -84,5 +84,4 @@ public abstract class UiPart<T> {
         dialogStage.setScene(scene);
         return dialogStage;
     }
-
 }

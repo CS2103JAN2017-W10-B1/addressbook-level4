@@ -11,7 +11,7 @@ import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.ReadOnlyTask.RecurringProperty;
 
 /**
- * Taskcard defines format for individual task view.
+ * TaskListcard defines format for individual task view.
  */
 public class TaskListCard extends UiPart<Region> {
 

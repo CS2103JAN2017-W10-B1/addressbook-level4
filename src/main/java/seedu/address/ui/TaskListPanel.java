@@ -18,7 +18,7 @@ import seedu.address.commons.util.FxViewUtil;
 import seedu.address.model.task.ReadOnlyTask;
 
 /**
- * Panel containing the list of tasks.
+ * TaskListPanel containing the list of tasks.
  */
 public class TaskListPanel extends UiPart<Region> {
 

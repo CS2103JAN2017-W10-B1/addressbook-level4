@@ -9,7 +9,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.task.ReadOnlyTask;
 
 /**
- * Selects a task identified using it's last displayed index from the Dueue.
+ * Scrolls to a task identified using it's last displayed index from the Dueue.
+ * @param targetIndex Index given by user, not the internal index used by task list
  */
 public class ScrollToCommand extends Command {
 

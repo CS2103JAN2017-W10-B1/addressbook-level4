@@ -47,12 +47,11 @@ public class UiManager extends ComponentManager implements Ui {
         logger.info("Starting UI...");
         primaryStage.setTitle(config.getAppTitle());
 
-        //Set the application icon.
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
             MainWindow.initializeMainWindow(primaryStage, config, prefs, logic);
-            MainWindow.mainWindow.show(); //This should be called before creating other UI parts
+            MainWindow.mainWindow.show();
             MainWindow.mainWindow.fillInnerParts();
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
@@ -99,7 +98,6 @@ public class UiManager extends ComponentManager implements Ui {
     }
 
     //==================== Event Handling Code ===============================================================
-
     @Subscribe
     private void handleDataSavingExceptionEvent(DataSavingExceptionEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
