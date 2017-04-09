@@ -18,7 +18,7 @@ Role: Developer <br>
    * [Create interactive messages for redo command](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#215-reverse-previous-undo-command-redo)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/collated/main/A0143409J.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0143409J.md)]
 * Other major contributions:
-  * Apply Dependency Inversion Principle by TaskField inteface[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/cf16109842cf3476b1111f9fab33de78976f2980)]
+  * Apply Dependency Inversion Principle by TaskField interface[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/cf16109842cf3476b1111f9fab33de78976f2980)]
   * Apply Singleton to commandParsers[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/cfe0a0c5bb6462e30a509931db307d4391709353)]
   * Apply Singleton to UI class[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/fe0b435f3577e0adde247bec969b59d90274e347)]
   * Set up Travis, Appveyor, Coveralls and Codacy[[commit](https://github.com/CS2103JAN2017-W10-B1/main/commit/b226302f6552801a7fc135d406b5ce2badf244df)]
