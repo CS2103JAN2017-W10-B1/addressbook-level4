@@ -11,6 +11,8 @@ public class UserPrefs {
 
     private static UserPrefs instance;
 
+    public GuiSettings guiSettings;
+
     //@@author A0147996E
     public static UserPrefs getInstance() {
         if (instance == null) {
@@ -22,9 +24,6 @@ public class UserPrefs {
         return new UserPrefs();
     }
 //@@author
-
-
-    public GuiSettings guiSettings;
 
     public GuiSettings getGuiSettings() {
         return guiSettings == null ? new GuiSettings() : guiSettings;
