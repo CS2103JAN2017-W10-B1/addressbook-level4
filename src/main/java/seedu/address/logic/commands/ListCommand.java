@@ -26,13 +26,22 @@ public class ListCommand extends Command {
             + COMMAND_WORD + " all study\n"
             + COMMAND_WORD + " finished\n";
 
-    private final Set<String> keywords;
+    protected Set<String> keywords;
 
+    /**
+     * Create a ListCommand using a set of keywords
+     *
+     * @param keywords A set of keywords which cannot be empty
+     */
     public ListCommand(Set<String> keywords) {
         assert !keywords.isEmpty();
         this.keywords = keywords;
     }
 
+    /**
+     * Create a ListCommand with no argument
+     * The keywords set is automatically set to empty
+     */
     public ListCommand() {
         keywords = new HashSet<String>();
     }
@@ -54,6 +63,7 @@ public class ListCommand extends Command {
             return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_SUCCESS, keywords));
         }
     }
+
 //@@author A0147996E
     /**
      * Highlight the single tag if user requests to filter tasks under a single list.
