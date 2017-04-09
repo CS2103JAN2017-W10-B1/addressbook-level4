@@ -130,7 +130,7 @@ public interface Model {
     /** Updates the filter of the filtered tag list to show all tasks */
     void updateFilteredTagListToShowAllTags();
 
-    /** Check whether the list name exist*/
+    /** Check whether the list name exists in the current taglist*/
     boolean isListExist(Set<String> listNames);
 
 }

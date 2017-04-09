@@ -29,6 +29,11 @@ public class ListCommandParser {
     private ListCommandParser() {
     }
 
+    /**
+     * Return the single instance of ListCommandParser.
+     *
+     * @return theOne.
+     */
     public static ListCommandParser getInstance() {
         if (theOne == null) {
             theOne = new ListCommandParser();
@@ -40,7 +45,8 @@ public class ListCommandParser {
      * Parses the given {@code String} of arguments in the context of the ListCommand
      * and returns a ListCommand/ListAllCommand/ListFinishedCommand/ListFavoriteCommand object for execution.
      *
-     * @param args The string after the command word list
+     * @param args The string after the command word list.
+     * @return a ListCommand/ListAllCommand/ListFinishedCommand/ListFavoriteCommand.
      */
     public Command parse(String args) {
         if (args == null) {

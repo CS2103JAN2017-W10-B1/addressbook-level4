@@ -9,14 +9,14 @@ import java.util.Set;
  */
 public class ListAllCommand extends ListCommand {
 
-    public static final String MESSAGE_LIST_SUCCESS = "All tasks are listed!";
+    public static final String MESSAGE_LIST_SUCCESS = "All tasks are listed";
 
     protected Set<String> keywords;
 
     /**
-     * Create a ListAllCommand using a set of keywords
+     * Create a ListAllCommand using a set of keywords.
      *
-     * @param keywords A set of keywords which cannot be empty
+     * @param keywords A set of keywords.
      */
     public ListAllCommand(Set<String> keywords) {
         this.keywords = keywords;

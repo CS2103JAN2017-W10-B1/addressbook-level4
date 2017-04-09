@@ -74,4 +74,13 @@ public class CommandFormatterTest {
                 "2", "", "today!", "tomorrow!");
         assertEquals(messageDisplay, "");
     }
+
+    @Test
+    public void viewCommandParserFormatter_validString_chopUpSuccess() throws Exception {
+
+        String[] parameters = CommandFormatter.viewCommandParserFormatter("next/10");
+
+        assertEquals(parameters[0], "next");
+        assertEquals(parameters[1], "10");
+    }
 }

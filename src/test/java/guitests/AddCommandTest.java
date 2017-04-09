@@ -110,6 +110,12 @@ public class AddCommandTest extends TaskManagerGuiTest {
         assertResultMessage(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 
+    /**
+     * Checks whether the added task has the correct updated details.
+     *
+     * @param taskToAdd the expected Task after editing the Task's details.
+     * @param currentList the expected taskList after adding the task.
+     */
     private void assertAddSuccess(TestTask taskToAdd, TestTask... currentList) {
         commandBox.runCommand(taskToAdd.getAddCommand());
 

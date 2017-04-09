@@ -17,8 +17,8 @@ public class LoadCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("load " + path);
         assertResultMessage(CommandFormatter.undoFormatter(
                 String.format(MESSAGE_LOAD_SUCCESS, path), COMMAND_WORD));
-        //TODO: verify if mode has accepted a new ReadOnlyTaskManager
     }
+
     @Test
     public void load_loadFromEmptyFile_loadUnsuccess() {
         String path = "data/doeNotExist.xml";

@@ -19,14 +19,18 @@ public class HelpCommand extends Command {
     private String usageMessage;
 
     /**
-     * Creates a HelpCommand using one command .
+     * Create a HelpCommand object with help message for a command
+     *
+     * @param helpMessage The message for usage of a specific command
      */
-
     public HelpCommand(String helpMessage) {
         super();
         usageMessage = helpMessage;
     }
 
+    /**
+     * Create a HelpComand object with no specific help message
+     */
     public HelpCommand() {
         super();
     }

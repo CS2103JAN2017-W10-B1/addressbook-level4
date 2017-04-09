@@ -29,10 +29,10 @@ public class EditNextCommand extends EditCommand {
     private ReadOnlyTask finishedOnceTask;
 
     /**
-     * Create editNext command using an index for specific task and description for the edited task
+     * Create editNext command using an index for specific task and description for the edited task.
      *
-     * @param filteredTaskListIndex Index of the task to edit
-     * @param editTaskDescriptor All the fields for editing
+     * @param filteredTaskListIndex Index of the task to edit.
+     * @param editTaskDescriptor All the fields for editing.
      */
     public EditNextCommand(int filteredTaskListIndex, EditTaskDescriptor editTaskDescriptor) {
         super(filteredTaskListIndex, editTaskDescriptor);
@@ -42,9 +42,9 @@ public class EditNextCommand extends EditCommand {
     /**
      * Create editNextCommand for the execution of Redo.
      *
-     * @param task The new task to add
-     * @param oldTask The formerly finished recurring task
-     * @param finishedOnceTask The new recurring task which has been finished once
+     * @param task The new task to add.
+     * @param oldTask The formerly finished recurring task.
+     * @param finishedOnceTask The new recurring task which has been finished once.
      */
     public EditNextCommand(ReadOnlyTask task, Task oldTask, ReadOnlyTask finishedOnceTask) {
         super(task, oldTask);
@@ -140,11 +140,17 @@ public class EditNextCommand extends EditCommand {
     }
 
     /**
-     * Create a new task or event based on isEvent
+     * Create a new task or event based on isEvent.
      *
-     * @param newTask A typical task or typical event
-     * @return a new task or event
-     * @throws IllegalValueException
+<<<<<<< HEAD
+     * @param newTask a typical task or typical event.
+     * @return a new task or event.
+     * @throws IllegalValueException.
+=======
+     * @param newTask A typical task or typical event.
+     * @return a new task or event.
+     * @throws IllegalValueException If the task or event is of the wrong type.
+>>>>>>> origin/master
      */
     private Task createTaskOrEvent(ReadOnlyTask newTask) throws IllegalValueException {
         if (newTask.isEvent()) {
@@ -155,11 +161,11 @@ public class EditNextCommand extends EditCommand {
     }
 
     /**
-     * Create a new Recurring task or event based on isEvent
+     * Create a new Recurring task or event based on isEvent.
      *
-     * @param newTask A recurring task or recurring event
-     * @return A new recurring task or recurring event
-     * @throws IllegalValueException
+     * @param newTask A recurring task or recurring event.
+     * @return A new recurring task or recurring event.
+     * @throws IllegalValueException If the recurring task or event is of the wrong type.
      */
     private Task createRecurringTaskOrEvent(ReadOnlyTask newTask) throws IllegalValueException {
         if (newTask.isEvent()) {

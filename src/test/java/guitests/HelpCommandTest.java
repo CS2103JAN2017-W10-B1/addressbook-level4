@@ -27,6 +27,12 @@ public class HelpCommandTest extends TaskManagerGuiTest {
         assertHelpCommandSuccess("scroll");
         assertHelpCommandSuccess("view");
     }
+
+    /**
+     * Checks whether the command message is correct.
+     *
+     * @param commandWord the command that user requests help from.
+     */
     private void assertHelpCommandSuccess(String commandWord) {
         commandBox.runCommand("help " + commandWord);
         if (commandWord.equalsIgnoreCase("add")) {

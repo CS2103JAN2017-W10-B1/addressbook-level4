@@ -7,14 +7,14 @@ import java.util.Set;
  */
 public class ListFavoriteCommand extends ListCommand {
 
-    public static final String MESSAGE_LIST_SUCCESS = "Favorite tasks are listed!";
+    public static final String MESSAGE_LIST_SUCCESS = "Favorite tasks are listed";
 
     protected Set<String> keywords;
 
     /**
-     * Create a ListFavoriteCommand using a set of keywords
+     * Create a ListFavoriteCommand using a set of keywords.
      *
-     * @param keywords A set of keywords which cannot be empty
+     * @param keywords A set of keywords.
      */
     public ListFavoriteCommand(Set<String> keywords) {
         this.keywords = keywords;
