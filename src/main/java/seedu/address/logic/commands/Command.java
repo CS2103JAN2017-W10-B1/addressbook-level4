@@ -1,7 +1,6 @@
 //@@author generated
 package seedu.address.logic.commands;
 
-import java.util.Set;
 import java.util.logging.Logger;
 
 import seedu.address.MainApp;
@@ -57,8 +56,8 @@ public abstract class Command {
      * Does not support highlighting multiple list names concurrently.
      * @param keywords
      */
-    public void highlightCurrentTagName(Set<String> keywords) {
-        int index = TaskManager.getInstance().find(keywords.toString());
+    public void highlightCurrentTagName(String keywords) {
+        int index = TaskManager.getInstance().find(keywords);
         if (index != -1) {
             EventsCenter.getInstance().post(new JumpToTagListRequestEvent(index - 1));
         }

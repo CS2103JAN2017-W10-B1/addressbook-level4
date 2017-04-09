@@ -53,7 +53,7 @@ public class ListCommand extends Command {
             LOGGER.info(getClass() + " all the listnames given are not found");
             return new CommandResult(MESSAGE_LIST_DOES_NOT_EXIST);
         } else {
-            highlightCurrentTagName(keywords);
+            highlightCurrentTagName(keywords.toString());
             model.updateFilteredTaskListGivenListName(keywords);
             LOGGER.info(getClass() + " listed all unfinished tasks in the given lists");
             return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_SUCCESS, keywords));

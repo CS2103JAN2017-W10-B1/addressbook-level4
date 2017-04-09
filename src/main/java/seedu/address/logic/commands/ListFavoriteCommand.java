@@ -26,7 +26,7 @@ public class ListFavoriteCommand extends ListCommand {
             LOGGER.info(getClass() + " listed all favorite tasks");
             return new CommandResult(MESSAGE_LIST_SUCCESS);
         } else if (model.isListExist(keywords)) {
-            highlightCurrentTagName(keywords);
+            highlightCurrentTagName(keywords.toString());
             model.updateFilteredTaskListGivenListNameAllFavorite(keywords);
             LOGGER.info(getClass() + " listed all favorite tasks in the given lists");
             return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_SUCCESS, keywords));

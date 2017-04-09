@@ -213,6 +213,7 @@ public class AddCommand extends AbleUndoCommand {
             int taskIndex = model.getFilteredTaskList().indexOf(toAdd);
             EventsCenter.getInstance().post(new JumpToTaskListRequestEvent(taskIndex));
 
+            highlightCurrentTagName(toAdd.getTag().toString());
             return new CommandResult(message);
         } catch (UniqueTaskList.DuplicateTaskException e) {
             this.isSuccess = false;

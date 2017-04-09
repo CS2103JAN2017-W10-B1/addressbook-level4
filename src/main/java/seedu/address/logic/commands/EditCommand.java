@@ -103,6 +103,8 @@ public class EditCommand extends AbleUndoCommand {
                 task = editedTask;
                 int taskIndex = model.getFilteredTaskList().indexOf(editedTask);
                 EventsCenter.getInstance().post(new JumpToTaskListRequestEvent(taskIndex));
+
+                highlightCurrentTagName(editedTask.getTag().toString());
             } catch (UniqueTaskList.DuplicateTaskException dpe) {
                 isSuccess = false;
                 throw new CommandException(MESSAGE_DUPLICATE_TASK);

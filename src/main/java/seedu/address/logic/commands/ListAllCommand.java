@@ -28,7 +28,7 @@ public class ListAllCommand extends ListCommand {
             LOGGER.info(getClass() + "listed all tasks");
             return new CommandResult(MESSAGE_LIST_SUCCESS);
         } else if (model.isListExist(keywords)) {
-            highlightCurrentTagName(keywords);
+            highlightCurrentTagName(keywords.toString());
             model.updateFilteredTaskListGivenListNameAll(keywords);
             LOGGER.info(getClass() + "listed all tasks in the given lists");
             return new CommandResult(CommandFormatter.listFormatter(MESSAGE_LIST_SUCCESS, keywords));

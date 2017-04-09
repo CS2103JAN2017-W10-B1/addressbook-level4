@@ -78,6 +78,8 @@ public class EditNextCommand extends EditCommand {
 
             int taskIndex = model.getFilteredTaskList().indexOf(task);
             EventsCenter.getInstance().post(new JumpToTaskListRequestEvent(taskIndex));
+
+            highlightCurrentTagName(task.getTag().toString());
         } catch (IllegalValueException e) {
             throw new CommandException(e.getMessage());
         }
