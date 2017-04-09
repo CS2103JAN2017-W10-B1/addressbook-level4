@@ -85,6 +85,10 @@ Role: Developer <br>
    * [Finish a recurring task/event](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#27-finishing-a-recurring-taskevent--finish)
    * [Allow user to enter date in variable manners](https://github.com/CS2103JAN2017-W10-B1/main/blob/master/docs/UserGuide.md#22-adding-a-typical-task-add)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/main/A0147984L.md)][[test code](https://github.com/CS2103JAN2017-W10-B1/main/tree/master/collated/test/A0147984L.md)]
+* Other major contributions:
+  * Refactored original AddressBook to current Dueue
+  * Added reusable regular expressions for each field of task
+  * Added task filter in Model
 
 -----
 
