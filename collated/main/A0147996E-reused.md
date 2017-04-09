@@ -35,7 +35,7 @@ public class FindCommandParser {
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns an FindCommand object for execution.
      */
-    public static Command parse(String args) {
+    public Command parse(String args) {
         final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(
@@ -66,13 +66,23 @@ import seedu.address.logic.commands.ScrollToCommand;
  */
 public class ScrollToCommandParser {
 
+    private static ScrollToCommandParser theOne;
+
     private ScrollToCommandParser() {
+    }
+
+    public static ScrollToCommandParser getInstance() {
+        if (theOne == null) {
+            theOne = new ScrollToCommandParser();
+        }
+        return theOne;
     }
     /**
      * Parses the given {@code String} of arguments in the context of the ScrollToCommand
      * and returns an ScrollToCommand object for execution.
      */
-    public static Command parse(String args) {
+    public Command parse(String args) {
+        assert args != null;
         Optional<Integer> index = ParserUtil.parseIndex(args);
         if (!index.isPresent()) {
             return new IncorrectCommand(
