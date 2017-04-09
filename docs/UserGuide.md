@@ -244,10 +244,10 @@ Examples:
 * `edit 3 f/weekly`<br>
   Edits the event with `INDEX` 3 into a recurring event that repeats `weekly`.
 
-### 2.11. Edit next recurring task/event : `edit next/t`
+### 2.11. Edit next recurring task/event : `edit once/t`
 
 Edit the most recurrence of a recurring task/event<br>
-Format: `edit next/t TASKINDEX [n/NAME] [due/DUEDATE] [dueT/TIME] [start/STARTDATE] [startT/STARTTIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f/*u]`
+Format: `edit once/t TASKINDEX [n/NAME] [due/DUEDATE] [dueT/TIME] [start/STARTDATE] [startT/STARTTIME] [#LIST] [d/DESCRIPTION] [@VENUE] [p/PRIORITY] [*f/*u]`
 
 > * This command only applies to recurring tasks/events.
 > * All constraints applied to editing non-recurring tasks/events also applies.
