@@ -17,10 +17,16 @@ import seedu.address.model.task.TaskDate;
 public class ViewCommandParser {
 
     private static ViewCommandParser theOne;
+
     public static final String MESSAGE_NONNEGATIVE = "The number of days in the future cannot be negative.\n";
 
     private ViewCommandParser() {}
 
+    /**
+     * Return the single instance of ViewCommandParser.
+     *
+     * @return theOne.
+     */
     public static ViewCommandParser getInstance() {
         if (theOne == null) {
             theOne = new ViewCommandParser();
@@ -30,7 +36,9 @@ public class ViewCommandParser {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * ViewNextCommand or ViewOnCommand
+     * ViewNextCommand or ViewOnCommand.
+     *
+     * @param args The string after the command word view.
      * @return a ViewNextCommand/ViewOnCommand object for execution.
      */
     public Command parse(String args) {
@@ -51,17 +59,19 @@ public class ViewCommandParser {
 
     /**
      * Create a new ViewNextCommand with date today
-     * when there is no parameter after "view"
-     * @return A ViewNextCommand dated today
+     * when there is no parameter after "view".
+     *
+     * @return A ViewNextCommand dated today.
      */
     private static Command parseNoParamGiven() {
         return new ViewNextCommand(0);
     }
 
     /**
-     * Create a new ViewNextCommand
-     * @param parameters A set of dates/number of days
-     * @return A new ViewNextCommand with specific date associated
+     * Create a new ViewNextCommand.
+     *
+     * @param parameters A set of dates/number of days.
+     * @return A new ViewNextCommand with specific date associated.
      */
     private static Command parseViewNext(String[] parameters) {
         try {
@@ -83,9 +93,10 @@ public class ViewCommandParser {
     }
 
     /**
-     * Create a new ViewOnCommand
-     * @param parameters A set of dates/number of days
-     * @return A new ViewOnCommand with specific date associated
+     * Create a new ViewOnCommand.
+     *
+     * @param parameters A set of dates/number of days.
+     * @return A new ViewOnCommand with specific date associated.
      */
     private static Command parseViewOn(String[] parameters) {
         try {

@@ -35,6 +35,11 @@ public class ScrollToCommandTest extends TaskManagerGuiTest {
         assertResultMessage(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
+    /**
+     * Checks whether the list is scrolled to the specified index.
+     *
+     * @param index the index as shown in task list panel.
+     */
     private void assertScrollSuccess(int index) {
         commandBox.runCommand("scroll " + index);
         assertResultMessage("Scrolled to index " + index);

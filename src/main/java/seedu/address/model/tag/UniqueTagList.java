@@ -172,6 +172,12 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
 //@@author A0147996E
+    /**
+     * Find the tag index by its tagName in the {@code internalList}.
+     *
+     * @param tagName
+     * @return the index of the tag as identified by the tagName.
+     */
     public int find(String tagName) {
         int size = internalList.size();
         tagName = tagName.trim();

@@ -120,6 +120,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
+    @Override
     public int getListIndex(String listName) {
         for (int i = 0; i < filteredTag.size(); i++) {
             if (filteredTag.get(i).toString().equalsIgnoreCase(listName)) {
@@ -164,7 +165,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     private void updateFilteredTaskList(Expression expression) {
-        filteredTasks.setPredicate(expression::satisfies);
+        filteredTasks.setPredicate(expression::isSatisfying);
     }
 
     private DateQualifier constructDateQualifier(DueMode dueMode, String days) {
@@ -186,7 +187,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateFilteredListToShowAllTasks() {
-        filteredTasks.setPredicate(null);
+        updateFilteredTaskList(null, null, FinishedState.ALL, false, null, null);
     }
 
     @Override
@@ -255,7 +256,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     private void updateFilteredTagList(Expression expression) {
-        filteredTag.setPredicate(expression::satisfies);
+        filteredTag.setPredicate(expression::isSatisfying);
     }
     //@@author
 
@@ -271,8 +272,8 @@ public class ModelManager extends ComponentManager implements Model {
     //========== Inner classes/interfaces used for filtering =================================================
 
     interface Expression {
-        boolean satisfies(ReadOnlyTask task);
-        boolean satisfies(Tag list);
+        boolean isSatisfying(ReadOnlyTask task);
+        boolean isSatisfying(Tag list);
         String toString();
     }
 
@@ -291,14 +292,14 @@ public class ModelManager extends ComponentManager implements Model {
         }
 
         @Override
-        public boolean satisfies(ReadOnlyTask task) {
+        public boolean isSatisfying(ReadOnlyTask task) {
             return qualifiers.stream().
                     filter(qualifier -> qualifier.run(task)).count()
                     == this.qualifiers.size();
         }
 
         @Override
-        public boolean satisfies(Tag list) {
+        public boolean isSatisfying(Tag list) {
             return qualifiers.stream().
                     filter(qualifier -> qualifier.run(list)).count()
                     == this.qualifiers.size();
@@ -321,6 +322,9 @@ public class ModelManager extends ComponentManager implements Model {
         String toString();
     }
 
+    /**
+     * Qualifier to filter names of tasks and tags
+     */
     private class NameQualifier implements Qualifier {
         protected Set<String> nameKeyWords;
 
@@ -351,6 +355,9 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
 //@@author A0147984L
+    /**
+     * Qualifier to filter finishing state of tasks
+     */
     private class FinishedQualifier implements Qualifier {
         protected FinishedState state;
 
@@ -387,6 +394,9 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
+    /**
+     * Qualifier to filter favorite state of tasks
+     */
     private class FavoriteQualifier implements Qualifier {
 
         FavoriteQualifier() {}
@@ -408,6 +418,9 @@ public class ModelManager extends ComponentManager implements Model {
     }
 //@@author A0147984L
 
+    /**
+     * Qualifier to filter tag name of tasks
+     */
     private class TagQualifier implements Qualifier {
         protected Set<String> tagKeyWords;
 
@@ -434,6 +447,9 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
+    /**
+     * Qualifier to filter date of tasks
+     */
     private abstract class DateQualifier implements Qualifier {
         protected int daysToDue;
         protected Calendar today;
@@ -463,6 +479,10 @@ public class ModelManager extends ComponentManager implements Model {
         public abstract String toString();
     }
 
+    /**
+     * Qualifier to filter date of tasks
+     * Tasks with due date on the given date will be selected
+     */
     private class DateQualifierOn extends DateQualifier {
 
         DateQualifierOn(String days) {
@@ -481,6 +501,10 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
+    /**
+     * Qualifier to filter date of tasks
+     * Tasks with due date before the given date will be selected
+     */
     private class DateQualifierBy extends DateQualifier {
 
         DateQualifierBy(String days) {

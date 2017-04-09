@@ -23,6 +23,9 @@ public class ClearCommandTest extends TaskManagerGuiTest {
         assertListSize(0);
     }
 
+    /**
+     * Check if the clear command is correctly executed.
+     */
     private void assertClearCommandSuccess() {
         commandBox.runCommand("clear");
         assertListSize(0);

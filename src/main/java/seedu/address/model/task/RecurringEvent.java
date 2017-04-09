@@ -3,6 +3,12 @@ package seedu.address.model.task;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 
+
+/**
+ * A read-only immutable interface for a Event in the TaskManager.
+ * Implementations should guarantee: details are present and not null, field values are validated.
+ * The instance should be an event
+ */
 public class RecurringEvent extends Event implements ReadOnlyRecurringEvent {
 
     public static final String PERIOD_DAILY = "every day";
@@ -17,6 +23,8 @@ public class RecurringEvent extends Event implements ReadOnlyRecurringEvent {
 
     /**
      * Every field should not be null
+     * Due time should be later than start time
+     *
      * @throws IllegalValueException
      */
     public RecurringEvent(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate,
@@ -30,7 +38,7 @@ public class RecurringEvent extends Event implements ReadOnlyRecurringEvent {
     }
 
     /**
-     *  Constructor of event with flag on isFinshed
+     * Constructor of event with flag on isFinshed
      * @throws IllegalValueException
      */
     public RecurringEvent(Name name, TaskDate startDate, TaskTime startTime, TaskDate endDate, TaskTime endTime,
@@ -42,7 +50,7 @@ public class RecurringEvent extends Event implements ReadOnlyRecurringEvent {
     }
 
     /**
-     *  Constructor of event with only one date given
+     * Constructor of event with only one date given
      * @throws IllegalValueException
      */
     public RecurringEvent(Name name, TaskDate date, TaskTime startTime, TaskTime endTime,
@@ -53,7 +61,7 @@ public class RecurringEvent extends Event implements ReadOnlyRecurringEvent {
     }
 
     /**
-     *  Constructor of event with only one date given, with flag on isFinished
+     * Constructor of event with only one date given, with flag on isFinished
      * @throws IllegalValueException
      */
     public RecurringEvent(Name name, TaskDate date, TaskTime startTime, TaskTime endTime,

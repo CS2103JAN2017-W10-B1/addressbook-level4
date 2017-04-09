@@ -398,6 +398,11 @@ public class ScrollToCommandTest extends TaskManagerGuiTest {
         assertResultMessage(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
+    /**
+     * Checks whether the list is scrolled to the specified index.
+     *
+     * @param index the index as shown in task list panel.
+     */
     private void assertScrollSuccess(int index) {
         commandBox.runCommand("scroll " + index);
         assertResultMessage("Scrolled to index " + index);
@@ -444,7 +449,7 @@ public abstract class TaskManagerGuiTest {
     @Rule
     public TestName name = new TestName();
 
-    TestApp testApp;
+    private TestApp testApp;
 
     protected TypicalTestTasks td = new TypicalTestTasks();
     protected TypicalTestEvents te = new TypicalTestEvents();
@@ -526,7 +531,6 @@ public abstract class TaskManagerGuiTest {
     }
 
     public void raise(BaseEvent e) {
-        //JUnit doesn't run its test cases on the UI thread. Platform.runLater is used to post event on the UI thread.
         Platform.runLater(() -> EventsCenter.getInstance().post(e));
     }
 }

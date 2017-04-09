@@ -80,6 +80,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         this.tags.setTags(tags);
     }
 
+    //@@author A0147984L
     public void resetData(ReadOnlyTaskManager newData) {
         assert newData != null;
         try {
@@ -95,7 +96,6 @@ public class TaskManager implements ReadOnlyTaskManager {
         syncMasterTagListWith(tasks);
     }
 
-    //@@author A0147984L
     /**
      * Reset the task manager
      */
@@ -233,6 +233,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         replaceTask(recurringTask, current);
     }
 
+    /** Replace the recurring task with non-recurring task */
     private void replaceTask(ReadOnlyTask recurringTask, Task current) throws DuplicateTaskException {
         try {
             removeTask(recurringTask);

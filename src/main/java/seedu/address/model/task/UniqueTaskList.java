@@ -26,7 +26,6 @@ public class UniqueTaskList implements Iterable<Task> {
     public static UniqueTaskList getStub() {
         return new UniqueTaskList();
     }
-    public UniqueTaskList() {}
 
     /**
      * Returns true if the list contains an equivalent task as the given argument.

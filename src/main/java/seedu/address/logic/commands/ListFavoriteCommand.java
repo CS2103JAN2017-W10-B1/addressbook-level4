@@ -12,9 +12,9 @@ public class ListFavoriteCommand extends ListCommand {
     protected Set<String> keywords;
 
     /**
-     * Create a ListFavoriteCommand using a set of keywords
+     * Create a ListFavoriteCommand using a set of keywords.
      *
-     * @param keywords A set of keywords which cannot be empty
+     * @param keywords A set of keywords.
      */
     public ListFavoriteCommand(Set<String> keywords) {
         this.keywords = keywords;

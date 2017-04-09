@@ -40,6 +40,7 @@ public class DeleteCommandTest extends TaskManagerGuiTest {
 
     /**
      * Runs the delete command to delete the task at specified index and confirms the result is correct.
+     *
      * @param targetIndex e.g. index 1 to delete the first task in the list,
      * @param currentList A copy of the current list of tasks (before deletion).
      */
@@ -50,7 +51,6 @@ public class DeleteCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("delete " + targetIndex);
         assertTrue(taskListPanel.isListMatching(expectedRemainder));
 
-        System.out.println("啊 啊啊啊啊" + currentList[targetIndex - 1].toString());
         assertResultMessage(CommandFormatter.undoFormatter(
                 String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete), COMMAND_DELETE));
     }

@@ -36,6 +36,7 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
     /**
      * Validates given time.
      *
+     * @param time
      * @throws IllegalValueException if given time string is invalid.
      */
     public TaskTime(String time) throws IllegalValueException {
@@ -92,6 +93,7 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
     }
 
     /**
+     * Returns the time difference in hours
      * Empty TaskTime is always greater compare to non-empty one
      */
     @Override
@@ -127,6 +129,11 @@ public class TaskTime implements TaskField, Comparable<TaskTime> {
         }
     }
  //@@author A0147996E
+    /**
+     * Get the displayed text of startTime on Ui TaskCard.
+     *
+     * @return the text to display for the task's startTime
+     */
     public String getStartDisplayText() {
         if (" ".equals(value) || "".equals(value)) {
             return "";

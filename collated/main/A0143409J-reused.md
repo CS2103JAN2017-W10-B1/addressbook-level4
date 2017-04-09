@@ -300,7 +300,7 @@ package seedu.address.commons.core;
 public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Sorry, Dueue cannot understand your command."
-            + "You may want to call up the help command?\n";
+            + " You may want to call up the help command?\n";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Oops. The command format given is invalid! \n%1$s";
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "Oops! The task index provided is invalid";
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
@@ -815,7 +815,7 @@ package seedu.address.commons.events.ui;
 import seedu.address.commons.events.BaseEvent;
 
 /**
- * Indicates that a new result is available.
+ * Indicates that a new change in Dueue is available.
  */
 public class NewResultAvailableEvent extends BaseEvent {
 
@@ -1148,11 +1148,11 @@ public class JsonUtil {
                     .addSerializer(Level.class, new ToStringSerializer())
                     .addDeserializer(Level.class, new LevelDeserializer(Level.class)));
 
-    static <T> void serializeObjectToJsonFile(File jsonFile, T objectToSerialize) throws IOException {
+    public static <T> void serializeObjectToJsonFile(File jsonFile, T objectToSerialize) throws IOException {
         FileUtil.writeToFile(jsonFile, toJsonString(objectToSerialize));
     }
 
-    static <T> T deserializeObjectFromJsonFile(File jsonFile, Class<T> classOfObjectToDeserialize)
+    public static <T> T deserializeObjectFromJsonFile(File jsonFile, Class<T> classOfObjectToDeserialize)
             throws IOException {
         return fromJsonString(FileUtil.readFromFile(jsonFile), classOfObjectToDeserialize);
     }

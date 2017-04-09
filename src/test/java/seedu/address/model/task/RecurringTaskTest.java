@@ -21,15 +21,15 @@ public class RecurringTaskTest {
     private RecurringTask tester;
     private static RecurringTask sample;
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
     @BeforeClass
     public static void oneTimeSetup() throws IllegalValueException {
         sample = new RecurringTask(new Name("tester"), new TaskDate("20/12/2017"),
                 new TaskTime(""), new Description(""), new Tag(""), new Venue(""), new Priority(""),
                 false, FinishProperty.FINISHED, RecurringMode.MONTH);
     }
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void constructor1_validInput_recurringTaskConstructed() throws IllegalValueException {

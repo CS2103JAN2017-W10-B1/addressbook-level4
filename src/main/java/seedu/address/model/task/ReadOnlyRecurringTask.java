@@ -1,6 +1,11 @@
 //@@author A0147984L
 package seedu.address.model.task;
 
+/**
+ * A read-only immutable interface for a Recurring Task in the TaskManager.
+ * Implementations should guarantee: details are present and not null, field values are validated.
+ * The instance should be recurring
+ */
 public interface ReadOnlyRecurringTask extends ReadOnlyTask {
     public enum RecurringMode {
         DAY, WEEK, MONTH

@@ -21,6 +21,9 @@ public class RecurringEventTest {
     private RecurringEvent tester;
     private static RecurringEvent sample;
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
     @BeforeClass
     public static void oneTimeSetup() throws IllegalValueException {
         sample = new RecurringEvent(new Name("tester"), new TaskDate("20/12/2017"), new TaskTime("0:00"),
@@ -28,9 +31,6 @@ public class RecurringEventTest {
                 new Venue(""), new Priority(""),
                 false, FinishProperty.FINISHED, RecurringMode.MONTH);
     }
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void constructor1_validInput_recurringEventConstructed() throws IllegalValueException {

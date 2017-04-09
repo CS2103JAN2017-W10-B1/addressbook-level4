@@ -25,9 +25,9 @@ public class ListCommand extends Command {
     protected Set<String> keywords;
 
     /**
-     * Create a ListCommand using a set of keywords
+     * Create a ListCommand using a set of keywords.
      *
-     * @param keywords A set of keywords which cannot be empty
+     * @param keywords A set of keywords which cannot be empty.
      */
     public ListCommand(Set<String> keywords) {
         assert !keywords.isEmpty();
@@ -35,8 +35,8 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Create a ListCommand with no argument
-     * The keywords set is automatically set to empty
+     * Create a ListCommand with no argument.
+     * The keywords set is automatically set to empty.
      */
     public ListCommand() {
         keywords = new HashSet<String>();

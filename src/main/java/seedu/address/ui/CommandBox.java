@@ -16,7 +16,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
  * An ui for user to type input commands.
- * @param  logic If a command exception is thrown upon the execution
+ * @param  logic if a command exception is thrown upon the execution
  * of given command through logic, commandBox will highlight in error style.
  */
 public class CommandBox extends UiPart<Region> {
