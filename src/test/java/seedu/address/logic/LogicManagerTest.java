@@ -903,7 +903,7 @@ public class LogicManagerTest {
         /**
          * Generates an TaskManager based on the list of Tasks given.
          */
-        TaskManager generateTaskManager(List<Task> tasks) throws Exception {
+        public TaskManager generateTaskManager(List<Task> tasks) throws Exception {
             TaskManager taskManager = TaskManager.getStub();
             addToTaskManager(taskManager, tasks);
             return taskManager;
