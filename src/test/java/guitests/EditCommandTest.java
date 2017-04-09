@@ -94,20 +94,25 @@ public class EditCommandTest extends TaskManagerGuiTest {
     @Test
     public void editNext_someFieldsSpecified_editSuccess() throws IllegalValueException {
         TestRecurringTask recurringTaskToAdd = tr.gym;
+        commandBox.runCommand("clear");
         commandBox.runCommand(recurringTaskToAdd.getAddCommand());
 
         String detailsToEdit = "d/test";
-        commandBox.runCommand("edit " + 1 + " " + detailsToEdit);
-        recurringTaskToAdd.setDescription("test");
+        commandBox.runCommand("edit " + 1 + " once/t " + detailsToEdit);
+        TestTask typicalTaskToAdd = new TestTask(tr.gym);
+        typicalTaskToAdd.setDescription("test");
+        recurringTaskToAdd.setDate("27/12/2017");
 
-        // confirm the new task is added to the current list
-        //assertTrue(taskListPanel.navigateToTask(recurringTaskToAdd));
+        // confirm the new typical and recurring task is added to the current list
+        assertTrue(taskListPanel.navigateToTask(typicalTaskToAdd));
+        assertTrue(taskListPanel.navigateToTask(recurringTaskToAdd));
 
         // confirm the list now contains all previous Tasks plus the Task with updated details
-        //expectedTasksList = TestUtil.replaceTaskFromList(expectedTasksList, recurringTaskToAdd, 1 - 1);
-        //assertTrue(taskListPanel.isListMatching(expectedTasksList));
-        //assertResultMessage(CommandFormatter.undoFormatter(
-        String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, recurringTaskToAdd.getName(), "edit command");
+        expectedTasksList = new TestTask[2];
+        expectedTasksList[0] = typicalTaskToAdd;
+        expectedTasksList[1] = recurringTaskToAdd;
+        assertTrue(taskListPanel.isListMatching(expectedTasksList));
+        assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, recurringTaskToAdd.getName()));
     }
 
     @Test
