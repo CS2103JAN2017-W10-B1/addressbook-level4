@@ -48,9 +48,15 @@ public class ListCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void list_EmptyList_noTasksListed() {
+    public void list_invalidListname_noTasksListed() {
         commandBox.runCommand("clear");
         assertListResult("list exercise");
+        assertResultMessage(MESSAGE_LIST_DOES_NOT_EXIST);
+        assertListResult("list all exercise");
+        assertResultMessage(MESSAGE_LIST_DOES_NOT_EXIST);
+        assertListResult("list favorite exercise");
+        assertResultMessage(MESSAGE_LIST_DOES_NOT_EXIST);
+        assertListResult("list finished exercise");
         assertResultMessage(MESSAGE_LIST_DOES_NOT_EXIST);
     }
 
