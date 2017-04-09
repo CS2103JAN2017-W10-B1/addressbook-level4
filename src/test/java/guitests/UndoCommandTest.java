@@ -35,6 +35,10 @@ public class UndoCommandTest extends TaskManagerGuiTest {
         commandWord = "finish";
         assertUndoSuccess(currentList, commandToUndo, commandWord);
 
+        commandToUndo = "clear";
+        commandWord = "clear";
+        assertUndoSuccess(currentList, commandToUndo, commandWord);
+
         commandToUndo = "load data/dueue.xml";
         commandWord = "load";
         assertUndoSuccess(currentList, commandToUndo, commandWord);
@@ -46,7 +50,7 @@ public class UndoCommandTest extends TaskManagerGuiTest {
     }
 
     @Test
-    public void undo_editNext_undoSuccess() throws IllegalValueException {
+    public void undo_editNextRecurringTask_undoSuccess() throws IllegalValueException {
         TestRecurringTask recurringTaskToAdd = tr.gym;
         commandBox.runCommand("clear");
         commandBox.runCommand(recurringTaskToAdd.getAddCommand());
@@ -67,6 +71,7 @@ public class UndoCommandTest extends TaskManagerGuiTest {
         expectedTasksList[1] = recurringTaskToAdd;
         assertTrue(taskListPanel.isListMatching(expectedTasksList));
 
+        //execute undo and confirm the list is reverted back to the original
         commandBox.runCommand("undo");
         expectedTasksList = new TestTask[1];
         expectedTasksList[0] = tr.gym;
