@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskmanager>
+    <tasks>
+        <name>visit friends</name>
+        <date>3/3/2017</date>
+        <time></time>
+        <tag>personal</tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>FINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>homework2</name>
+        <date>21/3/2017</date>
+        <time></time>
+        <tag>MA3252</tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>FINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>qf assignment</name>
+        <date>25/3/2017</date>
+        <time></time>
+        <tag>QF3101</tag>
+        <description></description>
+        <venue></venue>
+        <priority>3</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>FINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>trading workshop</name>
+        <date>26/3/2017</date>
+        <time>11:00</time>
+        <tag>QF3101</tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>FINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>26/3/2017</startDate>
+        <startTime>8:00</startTime>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>online quiz</name>
+        <date>30/3/2017</date>
+        <time></time>
+        <tag>selfStudy</tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>FINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>review lecture</name>
+        <date>3/4/2017</date>
+        <time>10:00</time>
+        <tag>ST3131</tag>
+        <description>get up early</description>
+        <venue></venue>
+        <priority>3</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>FINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>3/4/2017</startDate>
+        <startTime>8:00</startTime>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>homework3</name>
+        <date>4/4/2017</date>
+        <time></time>
+        <tag>MA3252</tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>FINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>cs2103 tutorial</name>
+        <date>5/4/2017</date>
+        <time>11:00</time>
+        <tag>CS2103</tag>
+        <description></description>
+        <venue>com-1</venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>5/4/2017</startDate>
+        <startTime>10:00</startTime>
+        <isRecurring>true</isRecurring>
+        <recurringMode>every week</recurringMode>
+    </tasks>
+    <tasks>
+        <name>cs2103 discussion</name>
+        <date>6/4/2017</date>
+        <time></time>
+        <tag>CS2103</tag>
+        <description>last discussion</description>
+        <venue></venue>
+        <priority>3</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>FINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>6/4/2017</startDate>
+        <startTime>20:00</startTime>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>cs2103 lecture</name>
+        <date>7/4/2017</date>
+        <time>18:00</time>
+        <tag>CS2103</tag>
+        <description></description>
+        <venue>icube</venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>7/4/2017</startDate>
+        <startTime>16:00</startTime>
+        <isRecurring>true</isRecurring>
+        <recurringMode>every week</recurringMode>
+    </tasks>
+    <tasks>
+        <name>quiz</name>
+        <date>9/4/2017</date>
+        <time>23:59</time>
+        <tag>ST3131</tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>FINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>clean room</name>
+        <date>9/4/2017</date>
+        <time></time>
+        <tag>personal</tag>
+        <description>clean room every week</description>
+        <venue>my room</venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>true</isRecurring>
+        <recurringMode>every week</recurringMode>
+    </tasks>
+    <tasks>
+        <name>online discussion</name>
+        <date>9/4/2017</date>
+        <time>20:00</time>
+        <tag>ST3131</tag>
+        <description>not important</description>
+        <venue></venue>
+        <priority>1</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>FINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>cs2103 deadline</name>
+        <date>10/4/2017</date>
+        <time>12:00</time>
+        <tag>CS2103</tag>
+        <description>don't forget</description>
+        <venue></venue>
+        <priority>3</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>sleep</name>
+        <date>10/4/2017</date>
+        <time>0:30</time>
+        <tag>personal</tag>
+        <description>don't stay up late!!</description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>true</isRecurring>
+        <recurringMode>every day</recurringMode>
+    </tasks>
+    <tasks>
+        <name>qf3101 lecture</name>
+        <date>10/4/2017</date>
+        <time>14:00</time>
+        <tag>QF3101</tag>
+        <description></description>
+        <venue>lt20</venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>10/4/2017</startDate>
+        <startTime>12:00</startTime>
+        <isRecurring>true</isRecurring>
+        <recurringMode>every week</recurringMode>
+    </tasks>
+    <tasks>
+        <name>report deadline</name>
+        <date>11/4/2017</date>
+        <time></time>
+        <tag>ST3131</tag>
+        <description>don't forget</description>
+        <venue></venue>
+        <priority>3</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>ma3252 lecture</name>
+        <date>11/4/2017</date>
+        <time>22:00</time>
+        <tag>MA3252</tag>
+        <description>not very interesting :(</description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>11/4/2017</startDate>
+        <startTime>19:00</startTime>
+        <isRecurring>true</isRecurring>
+        <recurringMode>every week</recurringMode>
+    </tasks>
+    <tasks>
+        <name>qf3101 tutorial</name>
+        <date>12/4/2017</date>
+        <time>13:00</time>
+        <tag>QF3101</tag>
+        <description></description>
+        <venue>s17</venue>
+        <priority>3</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>12/4/2017</startDate>
+        <startTime>12:00</startTime>
+        <isRecurring>true</isRecurring>
+        <recurringMode>every week</recurringMode>
+    </tasks>
+    <tasks>
+        <name>cs2103 demo</name>
+        <date>12/4/2017</date>
+        <time></time>
+        <tag>CS2103</tag>
+        <description>final demo</description>
+        <venue></venue>
+        <priority>3</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>gym</name>
+        <date>12/4/2017</date>
+        <time>20:00</time>
+        <tag>personal</tag>
+        <description>at least 30 minutes</description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>true</isRecurring>
+        <recurringMode>every week</recurringMode>
+    </tasks>
+    <tasks>
+        <name>ma3252 tutorial</name>
+        <date>12/4/2017</date>
+        <time>10:00</time>
+        <tag>MA3252</tag>
+        <description></description>
+        <venue></venue>
+        <priority>1</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>12/4/2017</startDate>
+        <startTime>9:00</startTime>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>qf3101 lecture</name>
+        <date>13/4/2017</date>
+        <time>14:00</time>
+        <tag>QF3101</tag>
+        <description></description>
+        <venue>lt20</venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>13/4/2017</startDate>
+        <startTime>12:00</startTime>
+        <isRecurring>true</isRecurring>
+        <recurringMode>every week</recurringMode>
+    </tasks>
+    <tasks>
+        <name>FastFurious 8</name>
+        <date>15/4/2017</date>
+        <time>0:30</time>
+        <tag>personal</tag>
+        <description>don't miss the premier</description>
+        <venue></venue>
+        <priority>3</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>laundry</name>
+        <date>15/4/2017</date>
+        <time>9:00</time>
+        <tag>personal</tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>15/4/2017</startDate>
+        <startTime>8:00</startTime>
+        <isRecurring>true</isRecurring>
+        <recurringMode>every week</recurringMode>
+    </tasks>
+    <tasks>
+        <name>watch online lecture</name>
+        <date>15/4/2017</date>
+        <time>19:00</time>
+        <tag>selfStudy</tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>true</isRecurring>
+        <recurringMode>every week</recurringMode>
+    </tasks>
+    <tasks>
+        <name>coding practice</name>
+        <date>15/4/2017</date>
+        <time>23:00</time>
+        <tag>selfStudy</tag>
+        <description></description>
+        <venue>Kaggle</venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>true</isRecurring>
+        <recurringMode>every week</recurringMode>
+    </tasks>
+    <tasks>
+        <name>book flight</name>
+        <date>15/4/2017</date>
+        <time></time>
+        <tag>travelInSummer</tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>FINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>gym</name>
+        <date>16/4/2017</date>
+        <time>20:00</time>
+        <tag>personal</tag>
+        <description>at least 30 minutes</description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>true</isRecurring>
+        <recurringMode>every week</recurringMode>
+    </tasks>
+    <tasks>
+        <name>steamboat dinner</name>
+        <date>16/4/2017</date>
+        <time></time>
+        <tag>personal</tag>
+        <description>dinner with friends</description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>shopping</name>
+        <date>16/4/2017</date>
+        <time></time>
+        <tag>personal</tag>
+        <description></description>
+        <venue></venue>
+        <priority>1</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>true</isRecurring>
+        <recurringMode>every week</recurringMode>
+    </tasks>
+    <tasks>
+        <name>consulting session</name>
+        <date>20/4/2017</date>
+        <time>11:00</time>
+        <tag>MA3252</tag>
+        <description>must attend to ask prof questions!!</description>
+        <venue>s17</venue>
+        <priority>3</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>20/4/2017</startDate>
+        <startTime>9:00</startTime>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>module reviews</name>
+        <date>22/4/2017</date>
+        <time></time>
+        <tag>Inbox</tag>
+        <description>do module reviews to earn bidding points</description>
+        <venue></venue>
+        <priority>3</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>qf3101 final</name>
+        <date>24/4/2017</date>
+        <time>19:00</time>
+        <tag>QF3101</tag>
+        <description></description>
+        <venue>mpsh</venue>
+        <priority>3</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>24/4/2017</startDate>
+        <startTime>17:00</startTime>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>cs2103 final</name>
+        <date>25/4/2017</date>
+        <time>15:00</time>
+        <tag>CS2103</tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>25/4/2017</startDate>
+        <startTime>13:00</startTime>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>pay rent</name>
+        <date>28/4/2017</date>
+        <time></time>
+        <tag>personal</tag>
+        <description></description>
+        <venue>hall office</venue>
+        <priority>3</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>true</isRecurring>
+        <recurringMode>every month</recurringMode>
+    </tasks>
+    <tasks>
+        <name>ma3252 finals</name>
+        <date>29/4/2017</date>
+        <time>3:00</time>
+        <tag>MA3252</tag>
+        <description></description>
+        <venue>mpsh</venue>
+        <priority>3</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>29/4/2017</startDate>
+        <startTime>1:00</startTime>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>study</name>
+        <date>4/5/2017</date>
+        <time></time>
+        <tag>Inbox</tag>
+        <description>study hard for finals</description>
+        <venue></venue>
+        <priority>3</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>st3131 final</name>
+        <date>4/5/2017</date>
+        <time>11:00</time>
+        <tag>ST3131</tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>4/5/2017</startDate>
+        <startTime>9:00</startTime>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>online quiz</name>
+        <date>5/5/2017</date>
+        <time></time>
+        <tag>selfStudy</tag>
+        <description></description>
+        <venue>Kaggle</venue>
+        <priority>1</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>go to airport</name>
+        <date>15/6/2017</date>
+        <time>12:00</time>
+        <tag>travelInSummer</tag>
+        <description>don't be late!!</description>
+        <venue>airport</venue>
+        <priority>3</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>package</name>
+        <date>15/6/2017</date>
+        <time></time>
+        <tag>travelInSummer</tag>
+        <description>don't take too much time</description>
+        <venue></venue>
+        <priority>1</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>shopping</name>
+        <date>15/6/2017</date>
+        <time></time>
+        <tag>travelInSummer</tag>
+        <description></description>
+        <venue>airport</venue>
+        <priority>1</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>travel</name>
+        <date>30/6/2017</date>
+        <time></time>
+        <tag>travelInSummer</tag>
+        <description>enjoy your trip!</description>
+        <venue>aruba</venue>
+        <priority>3</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>15/6/2017</startDate>
+        <startTime></startTime>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>family dinner</name>
+        <date>1/7/2017</date>
+        <time></time>
+        <tag>personal</tag>
+        <description>important family dinner</description>
+        <venue>grandparents' home</venue>
+        <priority>3</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>relax</name>
+        <date>15/8/2017</date>
+        <time></time>
+        <tag>Inbox</tag>
+        <description>enjoy vacation! :)</description>
+        <venue></venue>
+        <priority>1</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>true</isEvent>
+        <startDate>4/5/2017</startDate>
+        <startTime></startTime>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>book hotel</name>
+        <date></date>
+        <time></time>
+        <tag>travelInSummer</tag>
+        <description></description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>FINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>read books</name>
+        <date></date>
+        <time></time>
+        <tag>Inbox</tag>
+        <description>should read books at free time :)</description>
+        <venue></venue>
+        <priority>2</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>buy snacks</name>
+        <date></date>
+        <time></time>
+        <tag>personal</tag>
+        <description></description>
+        <venue></venue>
+        <priority>1</priority>
+        <isFavourite>true</isFavourite>
+        <isFinished>FINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tasks>
+        <name>dogfeeding</name>
+        <date></date>
+        <time></time>
+        <tag>CS2103</tag>
+        <description>use your own product</description>
+        <venue></venue>
+        <priority>1</priority>
+        <isFavourite>false</isFavourite>
+        <isFinished>UNFINISHED</isFinished>
+        <isEvent>false</isEvent>
+        <isRecurring>false</isRecurring>
+    </tasks>
+    <tags>CS2103</tags>
+    <tags>Inbox</tags>
+    <tags>MA3252</tags>
+    <tags>personal</tags>
+    <tags>QF3101</tags>
+    <tags>selfStudy</tags>
+    <tags>ST3131</tags>
+    <tags>travelInSummer</tags>
+</taskmanager>
