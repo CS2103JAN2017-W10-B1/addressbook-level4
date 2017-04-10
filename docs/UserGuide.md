@@ -210,6 +210,10 @@ Format: `edit TASKINDEX [n/TASKNAME] [due/DUEDATE] [dueT/TIME] [#LIST] [d/DESCRI
 > * A field will be updated only if the given details does not violate task constraints.
 > * For the field "favorite", use "*f" to mark as favorite and use "*u" to unfavorite a task.
 > * If FREQUENCY is specified, a non-recurring task will be changed into a recurring task.
+> * If FREQUENCY is specified but is empty the changes to the frequency will be ignored will ignore the changes made.
+> * If STARTDATE is specified, a task will be changed to an event.
+> * If STARTTIME is specified but the STARTDATE is not specified, changes will not be made to the task.
+> * If StartDate is specified but is empty the event will be converted to a task.
 > * Existing values will be edited to the input values.
 > * You can remove the content of a specific field by typing the field prefix only, e.g.`edit TASK_INDEX due/`.
 > * Specification of fields for task can be entered in any order.

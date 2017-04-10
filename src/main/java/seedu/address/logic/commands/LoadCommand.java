@@ -1,7 +1,6 @@
 //@@author A0147996E
 package seedu.address.logic.commands;
 
-import java.io.File;
 import java.io.IOException;
 
 import seedu.address.commons.exceptions.DataConversionException;
@@ -38,10 +37,10 @@ public class LoadCommand extends AbleUndoCommand {
     public CommandResult execute() throws CommandException {
         saveTaskManagerCopy();
         if (!path.matches(PATH_VALIDATION_REGEX)) {
+            LOGGER.info(getClass() + "Input file " + path + "is not in XML format. Load unsuccessful");
             throw new CommandException(MESSAGE_ILLEGAL_DATA_TYPE);
         }
-        File file = new File(path);
-        assert file != null;
+
         if (resetDataFromFilePath(path)) {
             return new CommandResult(CommandFormatter.undoFormatter(
                     String.format(MESSAGE_LOAD_SUCCESS, path), COMMAND_WORD));
@@ -55,6 +54,7 @@ public class LoadCommand extends AbleUndoCommand {
      * @param tempTaskManager A temporary task manager copy saved for undo command.
      */
     private void saveTaskManagerCopy() {
+        LOGGER.info(getClass() + "Start saving a copy of current task manager");
         assert model != null;
         tempTaskManager = TaskManager.getStub();
         tempTaskManager.resetData(model.getTaskManager());
@@ -69,6 +69,7 @@ public class LoadCommand extends AbleUndoCommand {
      */
     private boolean resetDataFromFilePath(String path) throws CommandException {
         try {
+            LOGGER.info(getClass() + "Start resetting data in current model from given directory");
             StorageManager storage = new StorageManager(path);
             ReadOnlyTaskManager taskManager = storage.readTaskManager(path).get();
             model.resetData(taskManager);
