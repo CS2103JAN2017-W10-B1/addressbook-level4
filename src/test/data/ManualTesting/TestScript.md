@@ -93,21 +93,21 @@
 
 #### 10. Finish a task
 
-  7.1 Finish a task/event
+  10.1 Finish a task/event
   * finish 5
   * finish 21
 
-  7.2 Finish a recurring task/event
+  10.2 Finish a recurring task/event
   * finish 1
 
 
 #### 11. Find tasks by names
 
-  8.1 Find all tasks containing keywords
+  11.1 Find all tasks containing keywords
   * find cs
   * find cs2103
 
-  8.2 Find unfinished/finished tasks containing keywords
+  11.2 Find unfinished/finished tasks containing keywords
   * find final unfinished
   * find quiz finished
 
@@ -130,12 +130,15 @@
   13.1 View tasks with due before the given date
   * view next/10
   * view next/4/5
-  * view next/sunday
+  * view by/sunday
 
   13.2 View tasks with due on the given date
   * view on/10
   * view on/sunday
   * view on/4/5
+
+  13.3 View tasks due today
+  * view
 
 
 #### 14. Exit the program
