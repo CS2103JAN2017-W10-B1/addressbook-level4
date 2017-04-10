@@ -31,7 +31,7 @@
   * add Event2 due/wednesday start/tue startT/09:00 dueT/10:00
 
   2.4 Add recurring task/event by specifying frequency
-  * add recurring task1 due/today dueT/09:00 f/daily
+  * add recurring task1 due/6/6 dueT/09:00 f/daily
   * add recurring task2 due/tomorrow dueT/10:00 p/3 f/every week
   * add recurring Event1 due/tmr start/today startT/09:00 dueT/10:00 f/daily
   * add recurring Event2 due/2/5 start/1/5 startT/9:00 dueT/9:00 f/month #testing
@@ -40,30 +40,30 @@
 #### 3. Deleting a task
 
   3.1 Delete a task/event by specifying its index
-  * delete 8
+  * delete 9
 
   3.2 Delete one occurrence of a recurring task/event
-  * delete 3
+  * delete 6
 
   3.3 Delete all occurrences of a recurring task/event
-  * delete 4 all
+  * delete 7 all
 
 
 #### 4. Edit a task
 
   4.1 Edit certain field of a task/event
   * edit 1 *f
-  * edit 2 n/task1 edited #testing *f
-  * edit 8 *u
-  * edit 4 startT/8:00 start/tmr
-  * edit 6 d/edited
+  * edit 1 n/task1 edited #testing
+  * edit 7 *u
+  * edit 6 startT/8:00 start/30/5
+  * edit 8 d/edited
 
   4.2 Edit one occurrence of a recurring task/event by specifying "once"
-  * edit 5 once/t n/recurring task2 change
+  * edit 6 once/t n/recurring event2 change
 
   4.3 Edit field of all occurrences of a recurring task/event
-  * edit 6 f/month
-  * edit 6 @nus
+  * edit 7 f/week
+  * edit 7 @nus
 
 
 #### 5. Undo the previous command
@@ -76,52 +76,53 @@
   * redo
 
 
-#### 7. Finish a task
+
+#### 7. Clear the current data
+  * clear
+
+
+#### 8. Load an xml data file (path can be both relative path or absolute path)
+  * load sample_data.xml
+
+
+#### 9. Scroll to the specific task
+  * scroll 5
+  * scroll 22
+  * scroll 33
+  * scroll 1
+
+#### 10. Finish a task
 
   7.1 Finish a task/event
-  * finish 3
-  * finish 7
+  * finish 5
+  * finish 21
 
   7.2 Finish a recurring task/event
   * finish 1
 
 
-#### 8. Find tasks by names
+#### 11. Find tasks by names
 
   8.1 Find all tasks containing keywords
-  * find task
-  * find task1
+  * find cs
+  * find cs2103
 
   8.2 Find unfinished/finished tasks containing keywords
-  * find task1 unfinished
-  * find task1 finished
+  * find final unfinished
+  * find quiz finished
 
 
-#### 9. List tasks by tags
+#### 12. List tasks by tags
   * list
   * list favorite
   * list finished
   * list all
   * list inbox
-  * list all inbox 
-  * list finished inbox
-  * list testing
-  * list favorite testing
+  * list all cs2103 
+  * list finished cs2103
+  * list personal
+  * list favorite travelinsummer
 
-
-#### 10. Clear the current data
-  * clear
-
-
-#### 11. Load an xml data file (path can be both relative path or absolute path)
-  * load data/sample_data.xml
-
-
-#### 12. Scroll to the specific task
-  * scroll 2
-  * scroll 6
-  * scroll 11
-  * scroll 14
 
 
 #### 13. View tasks by due dates
@@ -133,6 +134,7 @@
 
   13.2 View tasks with due on the given date
   * view on/10
+  * view on/sunday
   * view on/4/5
 
 
