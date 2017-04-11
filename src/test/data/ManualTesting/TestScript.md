@@ -22,7 +22,7 @@
   * add floating task1
   * add floating task2 #testing2 @anywhere p/3 *f d/a floating task
 
-  2.2 Aadd task by specifying due date
+  2.2 Add task by specifying due date
   * add task1 due/today dueT/09:00
   * add task2 due/20/12 #testing @anywhere p/1 *f d/a task
 
